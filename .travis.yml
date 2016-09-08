@@ -1,17 +1,8 @@
-language: python
-python:
-  - "3.4"
-services:
-  - redis-server
-  - postgresql
+language: objective-c
+osx_image: xcode7.3
+xcode_project: mala-ios.xcodeproj # path to your xcodeproj folder
+xcode_scheme: parent
+xcode_sdk: iphonesimulator8.4
 # command to install dependencies
-before_install:
-  - cd server/
-  - openssl aes-256-cbc -K $encrypted_788c8f248cb4_key -iv $encrypted_788c8f248cb4_iv -in local_settings.py.enc -out server/local_settings.py -d
-install:
-  - pip install -r pip_install.txt
-# command to run tests
-script:
-  - python manage.py cold_test app.cold_tests.SimpleTest -v2
-  - python manage.py test --noinput --setting=server.custom_settings.travis_ci_settings -v2
 
+# command to run tests
