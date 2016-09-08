@@ -1,5 +1,5 @@
 //
-//  CityTableView.swift
+//  CityTableViewController.swift
 //  mala-ios
 //
 //  Created by 王新宇 on 16/8/16.
@@ -11,45 +11,82 @@ import UIKit
 private let CityTableViewCellReuseId = "CityTableViewCellReuseId"
 private let CityTableViewHeaderViewReuseId = "CityTableViewHeaderViewReuseId"
 
-class CityTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
+class CityTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     // MARK: - Property
     // 城市数据模型
     var models: [BaseObjectModel] = [] {
         didSet {
             dispatch_async(dispatch_get_main_queue(), { [weak self] () -> Void in
-                self?.reloadData()
+                self?.tableView.reloadData()
             })
         }
     }
     // 选择闭包
     var didSelectAction: (()->())?
-    // 关闭闭包
-    var closeAction: (()->())?
     
     
-    // MARK: - Instance Method
-    override init(frame: CGRect, style: UITableViewStyle) {
-        super.init(frame: frame, style: style)
+    // MARK: - Components
+    // 城市列表
+    private lazy var tableView: UITableView = {
+        let tableView = UITableView(frame: CGRectZero, style: .Grouped)
+        return tableView
+    }()
+    // 关闭按钮
+    private lazy var closeButton: UIButton = {
+        let button = UIButton(
+            imageName: "close",
+            target: self,
+            action: #selector(CityTableViewController.closeButtonDidClick)
+        )
+        return button
+    }()
+    
+    
+    // MARK: - Life Cycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
         setupUserInterface()
     }
     
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        loadCitylist()
     }
     
     
-    // MARK: - Private Method
+    // MARK: - Private
     private func setupUserInterface() {
         // Style
-        delegate = self
-        dataSource = self
-        registerClass(CityTableViewCell.self, forCellReuseIdentifier: CityTableViewCellReuseId)
-        registerClass(CityTableViewHeaderView.self, forHeaderFooterViewReuseIdentifier: CityTableViewHeaderViewReuseId)
+        title = "选择城市"
+        view.backgroundColor = UIColor.whiteColor()
+        let leftBarButtonItem = UIBarButtonItem(customView: closeButton)
+        navigationItem.leftBarButtonItem = leftBarButtonItem
+        UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.Default
+        navigationController?.navigationBar.shadowImage = UIImage()
         
-        backgroundColor = MalaColor_F6F7F9_0
-        separatorStyle = .None
+        // tableView Style
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.backgroundColor = MalaColor_F6F7F9_0
+        tableView.separatorStyle = .None
+        tableView.registerClass(CityTableViewCell.self, forCellReuseIdentifier: CityTableViewCellReuseId)
+        tableView.registerClass(CityTableViewHeaderView.self, forHeaderFooterViewReuseIdentifier: CityTableViewHeaderViewReuseId)
         
+        // SubViews
+        self.view.addSubview(tableView)
+        
+        // AutoLayout
+        tableView.snp_makeConstraints { (make) in
+            make.top.equalTo(self.view.snp_top)
+            make.bottom.equalTo(self.view.snp_bottom)
+            make.left.equalTo(self.view.snp_left)
+            make.right.equalTo(self.view.snp_right)
+        }
     }
     
     
@@ -65,8 +102,7 @@ class CityTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         MalaCurrentRegion = models[indexPath.row]
-        didSelectAction?()
-        closeAction?()
+        pushToSchoolList()
     }
     
     
@@ -81,6 +117,42 @@ class CityTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
+    
+    // MARK: - Private Method
+    // 获取城市列表
+    private func loadCitylist() {
+        
+        loadRegions({ (reason, errorMessage) in
+            ThemeHUD.hideActivityIndicator()
+            defaultFailureHandler(reason, errorMessage: errorMessage)
+            
+            // 错误处理
+            if let errorMessage = errorMessage {
+                println("CityTableViewController - loadCitylist Error \(errorMessage)")
+            }
+        }, completion:{ [weak self] (cities) in
+            self?.models = cities.reverse()
+            println("城市列表 - \(cities)")
+        })
+    }
+    
+    private func pushToSchoolList() {
+        let viewController = SchoolTableViewController()
+        viewController.didSelectAction = self.didSelectAction
+        navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+    
+    // MARK: - Events Response
+    @objc private func closeButtonDidClick() {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    
+    // MARK: - Public Method
+    func hideCloseButton(hidden: Bool = true) {
+        closeButton.hidden = hidden
+    }
 }
 
 
@@ -118,7 +190,7 @@ class CityTableViewCell: UITableViewCell {
 
 
 class CityTableViewHeaderView: UITableViewHeaderFooterView {
-
+    
     // MARK: - Components
     private lazy var titleLabel: UILabel = {
         let label = UILabel(title: "选择服务城市")

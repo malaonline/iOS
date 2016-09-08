@@ -32,7 +32,8 @@ var MalaUserCoupons: [CouponModel] = []
 var MalaUserDidSelectCoupon: Bool = false
 /// 当前选择城市数据模型
 var MalaCurrentRegion: BaseObjectModel?
-
+/// 当前选择校区数据模型
+var MalaCurrentSchool: SchoolModel?
 
 /// 用户是否首次购买该学科课程标记
 /// 进入[课程购买]页面时请求服务端并赋值，退出[课程购买]页面时置空
