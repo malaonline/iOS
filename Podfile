@@ -19,8 +19,8 @@ pod 'Pingpp/Alipay', '~> 2.2.8'
 pod 'Pingpp/Wx', '~> 2.2.8'
 
 # ShareSDK
+pod 'MOBFoundation', '~> 2.0.11'
 pod 'ShareSDK3', '~> 3.4.1'
-pod 'MOBFoundation', '~> 3.4.1'
 pod 'ShareSDK3/ShareSDKUI', '~> 3.4.1'
 pod 'ShareSDK3/ShareSDKPlatforms/WeChat', '~> 3.4.1'
 
