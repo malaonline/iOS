@@ -17,10 +17,10 @@ before_install:
 
 # command to install dependencies
 install:
-  - rvm reinstall ruby-2.3.0
-  - sudo gem install cocoapods
-  - pod repo remove master
-  - pod setup
+  # - rvm reinstall ruby-2.3.0
+  # - sudo gem install cocoapods
+  # - pod repo remove master
+  # - pod setup
 
 # command to build
 # script:
