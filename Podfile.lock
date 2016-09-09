@@ -39,19 +39,19 @@ PODS:
   - SnapKit (0.22.0)
 
 DEPENDENCIES:
-  - Alamofire (~> 3.3.1)
-  - Charts (~> 2.2.5)
-  - DateTools (~> 1.7.0)
-  - Google/Analytics (~> 3.0.3)
-  - IQKeyboardManagerSwift (~> 4.0.5)
-  - Kingfisher (~> 2.2.2)
-  - MOBFoundation (~> 2.0.11)
-  - Pingpp/Alipay (~> 2.2.8)
-  - Pingpp/Wx (~> 2.2.8)
-  - ShareSDK3 (~> 3.4.1)
-  - ShareSDK3/ShareSDKPlatforms/WeChat (~> 3.4.1)
-  - ShareSDK3/ShareSDKUI (~> 3.4.1)
-  - SnapKit (~> 0.22.0)
+  - Alamofire
+  - Charts
+  - DateTools
+  - Google/Analytics
+  - IQKeyboardManagerSwift
+  - Kingfisher
+  - MOBFoundation
+  - Pingpp/Alipay
+  - Pingpp/Wx
+  - ShareSDK3
+  - ShareSDK3/ShareSDKPlatforms/WeChat
+  - ShareSDK3/ShareSDKUI
+  - SnapKit
 
 SPEC CHECKSUMS:
   Alamofire: 369bc67b6f5ac33ded3648d7bd21c5bfb91c2ecc
@@ -71,6 +71,6 @@ SPEC CHECKSUMS:
   ShareSDK3: e7bcdfeb95338f89efd6fff82b4793d2bfee76f8
   SnapKit: 0dd2fd157330f1ea11fd84da13e6be8a7a22bae0
 
-PODFILE CHECKSUM: 927eb143d7170de099549ff1482e5b3b28f32db6
+PODFILE CHECKSUM: 3187b29680259da392a921318b77552bde86b684
 
 COCOAPODS: 1.0.0
