@@ -1,8 +1,5 @@
 language: objective-c
 
-rvm:
-  - 2.3
-
 script:
   - xcodebuild -workspace mala-ios.xcworkspace -scheme parent-dev -sdk iphonesimulator ONLY_ACTIVE_ARCH=NOa
   - xcodebuild -workspace mala-ios.xcworkspace -scheme parent-dev -sdk iphonesimulator ONLY_ACTIVE_ARCH=NOa
@@ -17,7 +14,7 @@ cache: cocoapods
 
 before_install:
      - rvm list known
-     - rvm install 2.3
+     - rvm reinstall ruby-2.3.0
      - sudo gem install cocoapods
      - pod --version
      - brew --version
