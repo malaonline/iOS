@@ -10,6 +10,6 @@ before_install:
 #     - pod repo remove master
 #     - pod repo add master https://git.coding.net/akuandev/Specs.git
 #     - pod setup
-    - pod repo update
+#    - pod repo update
 
 # command to run tests
