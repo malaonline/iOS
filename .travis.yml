@@ -7,8 +7,9 @@ before_install:
      - brew update
      - brew install xctool
 # command to install dependencies
-     - pod repo remove master
-     - pod repo add master https://gitcafe.com/akuandev/Specs.git
-     - pod repo update
+#     - pod repo remove master
+#     - pod repo add master https://git.coding.net/akuandev/Specs.git
+#     - pod setup
+    - pod repo update
 
 # command to run tests
