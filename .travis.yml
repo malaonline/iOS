@@ -1,11 +1,24 @@
 language: objective-c
+
+script:
+  - xcodebuild -workspace mala-ios.xcworkspace -scheme parent-dev -sdk iphonesimulator ONLY_ACTIVE_ARCH=NOa
+  - xcodebuild -workspace mala-ios.xcworkspace -scheme parent-dev -sdk iphonesimulator ONLY_ACTIVE_ARCH=NOa
+  - xcodebuild -workspace mala-ios.xcworkspace -scheme parent-dev -sdk iphonesimulator ONLY_ACTIVE_ARCH=NOa
+
+cache: cocoapods
+
 osx_image: xcode7.3
 xcode_project: mala-ios.xcodeproj # path to your xcodeproj folder
 xcode_scheme: [parent-dev, parent-stage, parent-prd]
 xcode_sdk: iphonesimulator9.3
+
 before_install:
-     - brew update
-     - brew install xctool
+     - gem cocoapod --version
+     - brew --version
+     - xctool -version
+     - xcodebuild -version -sdk
+
+
 # command to install dependencies
 #     - pod repo remove master
 #     - pod repo add master https://git.coding.net/akuandev/Specs.git
