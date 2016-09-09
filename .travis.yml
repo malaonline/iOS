@@ -1,10 +1,4 @@
 language: objective-c
-
-script:
-  - xcodebuild -workspace mala-ios.xcworkspace -scheme parent-dev -sdk iphonesimulator ONLY_ACTIVE_ARCH=NOa
-  - xcodebuild -workspace mala-ios.xcworkspace -scheme parent-dev -sdk iphonesimulator ONLY_ACTIVE_ARCH=NOa
-  - xcodebuild -workspace mala-ios.xcworkspace -scheme parent-dev -sdk iphonesimulator ONLY_ACTIVE_ARCH=NOa
-
 cache: cocoapods
 
 # osx_image: xcode7.3
@@ -12,6 +6,7 @@ cache: cocoapods
 # xcode_scheme: [parent-dev, parent-stage, parent-prd]
 # xcode_sdk: iphonesimulator9.3
 
+# command to show version for debug
 before_install:
   - pod --version
   - brew --version
@@ -19,15 +14,17 @@ before_install:
   - xcodebuild -version -sdk
   - rvm list known
 
+# command to install dependencies
+install:
   - rvm reinstall ruby-2.3.0
   - sudo gem install cocoapods
-  - pod repo remove master  
+  - pod repo remove master
   - pod setup
 
-# command to install dependencies
-#     - pod repo remove master
-#     - pod repo add master https://git.coding.net/akuandev/Specs.git
-#     - pod setup
-#    - pod repo update
+# command to build
+script:
+  - xcodebuild -workspace mala-ios.xcworkspace -scheme parent-dev -sdk iphonesimulator ONLY_ACTIVE_ARCH=NOa
+  - xcodebuild -workspace mala-ios.xcworkspace -scheme parent-dev -sdk iphonesimulator ONLY_ACTIVE_ARCH=NOa
+  - xcodebuild -workspace mala-ios.xcworkspace -scheme parent-dev -sdk iphonesimulator ONLY_ACTIVE_ARCH=NOa
 
 # command to run tests
