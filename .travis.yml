@@ -7,13 +7,13 @@ script:
 
 cache: cocoapods
 
-osx_image: xcode7.3
-xcode_project: mala-ios.xcodeproj # path to your xcodeproj folder
-xcode_scheme: [parent-dev, parent-stage, parent-prd]
-xcode_sdk: iphonesimulator9.3
+# osx_image: xcode7.3
+# xcode_project: mala-ios.xcodeproj # path to your xcodeproj folder
+# xcode_scheme: [parent-dev, parent-stage, parent-prd]
+# xcode_sdk: iphonesimulator9.3
 
 before_install:
-     - gem cocoapod --version
+     - pod --version
      - brew --version
      - xctool -version
      - xcodebuild -version -sdk
