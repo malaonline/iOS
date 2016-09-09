@@ -19,8 +19,8 @@ before_install:
 install:
   # - rvm reinstall ruby-2.3.0
   # - sudo gem install cocoapods
-  # - pod repo remove master
-  # - pod setup
+  - pod repo remove master
+  - pod setup
 
 # command to build
 # script:
