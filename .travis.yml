@@ -13,6 +13,8 @@ cache: cocoapods
 # xcode_sdk: iphonesimulator9.3
 
 before_install:
+     - rvm list known
+     - rvm install 2.3
      - sudo gem install cocoapods
      - pod --version
      - brew --version
