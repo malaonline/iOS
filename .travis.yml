@@ -1,13 +1,10 @@
 language: objective-c
 cache: cocoapods
 rvm: 2.3
-
 osx_image: xcode7.3
 xcode_workspace: mala-ios.xcworkspace
-xcode_scheme: parent-dev #[parent-dev, parent-stage, parent-prd]
+xcode_scheme: parent-dev
 xcode_sdk: iphonesimulator9.3
-
-
 before_install:
 - pod --version
 - brew --version
@@ -26,10 +23,7 @@ before_script:
 - openssl aes-256-cbc -k $ENCRYPTION_SECRET -in scripts/certs/dist.cer.enc -d -a -out scripts/certs/dist.cer
 - openssl aes-256-cbc -k $ENCRYPTION_SECRET -in scripts/certs/dist.p12.enc -d -a -out scripts/certs/dist.p12
 - ./scripts/add-key.sh
-# script:
-# - xctool -workspace mala-ios.xcworkspace -scheme parent-dev -sdk iphoneos -configuration Release OBJROOT=$PWD/build SYMROOT=$PWD/build ONLY_ACTIVE_ARCH=NO
 after_success:
-# - ./scripts/sign-and-upload.sh
 after_script:
 - ./scripts/remove-key.sh
 env:
@@ -37,3 +31,6 @@ env:
   - APP_NAME="parent-dev"
   - $DEVELOPER_NAME
   - PROFILE_NAME="Mala_DevAdHoc"
+notifications:
+  slack:
+    secure: nNiMsobz1FrZQw1TU+b0AsfhH7Au0oFmXCSTIUbYCTqfqGfAloDCQzxzbIK2p4LZBHMKR20uFuu4d+ZyTUbwuCxDMDqWruUqATECbohir071k6lgJiGUhcnSORy+kWdrfD11jRPxlRzIVGpw8Xl2QNw3OZrxgtre+NnbcQlLMMKAkK+5RMR33PwSX/tlwa9I4wdrasB6y2dutBrsLyQ+jq1ZPRwguAT0G5w8rUD46ZuI/2dpexFECqG4rtvyzPqOYVe/QU1QztawRlW87rWcrFthqGYv5Y7aW4UtphhkF9eokERecl7LY/qhy0yBtm7opsxVrXky9Wy0T56THx4HNsctDUrllINZ1aG9JfXPse69HEgT57U9T6DwdBiXO5yuPDqWfF1SQ4XRPp+X/1f6RFtLBcfrKDY8yJQxfa9Xwgb/tQ10GmBjhtNks5uMEEY7l9pbHbbwaV7p6TyI/RmYfpYRCoKOJHyYt2EsRoPeCPyWXWBhitqXfinL86rDY3p+jlk8SsEYjc62tMqihyfWj/lcEv/xz6ds+CUXeSy7lOTdinSPXUTuCHbEg44CINqMnj44gjML+BxT3Cr3/W5N+AV/mTviOS8Mi48m0xcim+fTlcFWUrbB/uWB9dxmAow2HZGBzI4THE0PHdptT7m6cqTGlnYNVZiypmQQguNrREM=
