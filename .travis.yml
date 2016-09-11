@@ -1,30 +1,35 @@
 language: objective-c
 cache: cocoapods
 rvm: 2.3
-
-osx_image: xcode7.3
-xcode_workspace: mala-ios.xcworkspace
-xcode_scheme: parent-dev #[parent-dev, parent-stage, parent-prd]
-xcode_sdk: iphonesimulator9.3
-
-# command to show version for debug
 before_install:
-  - pod --version
-  - brew --version
-  - xctool -version
-  - xcodebuild -version -sdk
-  - rvm list known
-
-# command to install dependencies
+- pod --version
+- brew --version
+- xctool -version
+- xcodebuild -version -sdk
+- rvm list known
+- gem install fir-cli
 install:
-  # - rvm reinstall ruby-2.3.0
-  # - sudo gem install cocoapods
-  - pod repo remove master  # for clean cocoapods tool cache
-  - pod setup
-  - pod install
-
-# command to build
-# script:
-#   - xcodebuild -workspace mala-ios.xcworkspace -scheme parent-dev -sdk iphonesimulator ONLY_ACTIVE_ARCH=NOa
-
-# command to run tests
+- pod repo remove master
+- pod setup
+- pod install
+before_script:
+- openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in scripts/profile/mala_dev_AdHoc.mobileprovision.enc -d -a -out scripts/profile/Mala_DevAdHoc.mobileprovision
+- openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in scripts/profile/mala_prd_AdHoc.mobileprovision.enc -d -a -out scripts/profile/Mala_PrdAdHoc.mobileprovision
+- openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in scripts/profile/mala_stage_AdHoc.mobileprovision.enc -d -a -out scripts/profile/Mala_StageAdHoc.mobileprovision
+- openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in scripts/certs/dist.cer.enc -d -a -out scripts/certs/dist.cer
+- openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in scripts/certs/dist.p12.enc -d -a -out scripts/certs/dist.p12
+- ./scripts/add-key.sh
+script:
+- xctool -workspace mala-ios.xcworkspace -scheme parent-dev -sdk iphoneos -configuration Release OBJROOT=$PWD/build SYMROOT=$PWD/build ONLY_ACTIVE_ARCH=NO
+after_success:
+- ./scripts/sign-and-upload.sh
+after_script:
+- ./scripts/remove-key.sh
+env:
+  global:
+  - APP_NAME="parent-dev"
+  - 'DEVELOPER_NAME="iPhone Distribution: elorsat@foxmail.com (6CA2LLEG5D)"'
+  - PROFILE_NAME="Mala_DevAdHoc"
+dd:
+  secure: tPp1hcoUM4B3m8TD/218Rhqnjo7y2oJh2pSqVu3Rnfz1iuXh39DczOu73s4SwX6G8XiZD8EYBXVjgFbVteJeheUnexglt/SD7kUZqDpUEwHNa/K4Z4SXdyd8nCtJbDXjfpZLXWDm26ikxi1ACvyTmu5elp3+1kDhUIbEYZMFU4bzVI2VVbOjPP5Y8kyBcDcYcczomnseRdODC0TIw66+4inFJdzJDKwRKg2/bDd9nq1UfGdTj5LzxTc5811V0aoBg/JhjkqgHcoWOVoj6qvEqaUDnnpc8oWxlx2Wsu9AIT3Ksmc5yF61dZcyvC2RVkhKfFxeuybxgUKXyYVsE3oJ1tdup9iSXqjyVnErSXxpVhmnPSLYdlR7X8BOTZPgUU/cqoMg3MKcAd6cZUPhhRCNywxsvqUK08wUaO+0geEaJTAc5vMcB/M2pAE4yXc5ZzJ+j2zWerIMJr2jwQSCg0yPbjUgNaALDGlulQ2pcHwNOiXxLSCTGaS0yKFSODQAPJ6CuvR+oMU9xyUP0WQ6hLKlvP4zcQJ3BvEkoSnnW8gz5HlJ5u0JgQjbzn1TAU2G7zLF3ugkNxHNxMPxM6vWHtTh3LHy2SaRpLcO5L5EE6XuwqFIje7apv8SRQCS78m81qjqVz/8CoQY05rBXY54CzCJmJb3XO9/mpyMThdtE/3bUBM=
+  secure: F/ediXl7Ts2536Ca1jRrMiU1nm8xT+3zycdhPzjBMDcE1syb32mU3+K6Nxk4wCbCgacuorO1c7pb5w2ltykq2VS+xNbxJrJKGudw+iv+0ftSz/3xmB6bS+/ID73Ht409X9RXqNc+v1j2I0MUtGaCRaRKYz/jSGGmPcyfwaQtFY+QXQMasf4jKQvdhOG7DBHjdkvlT0aNrgadlFG4I6VwXxWf2QEhyOtDSg2hEL1ANqZ+lkW3iJGWsaHI83X40JFgCFwsQNd+SqmzWfmoIKQkfh1rq3FUEO0TZl3BXVNSijxgyU23NWZNJ4Enhdfp3ssXevGZjrbuc56PzHA9Zfi8qS9G4Ot89cSvekYlhtN4sa9XS6KZeRDPZjq1xzQAhVNWzTBcWpDXB9+3YBWX3VARQQMsnW0ILw+g6MGtjsdHJp2TarjrTY99rV4z9Jcqlk+Ckf0q0cqNPrkougVBHcZrRcoWASg5KxNiD10mlAMOJGHggM5qI6NcGMIZ1IR44UOSUkPX9zDzM5iPGsu9nQIdhS4JwCTZ0Yf9a6O11j6upFuFc4jwpoEhY9Nq5nBmym5VsaW6ObkQare+13Rs7bhrFcKYcZsnMY0KHq8S+o1ahvnA04WPmVc+nZM9Gd49he6OR3jroAdSPcTjIzwo+brebbftxiMnDjruP2BCihT+IlU=
