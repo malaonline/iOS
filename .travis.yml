@@ -1,5 +1,6 @@
 language: objective-c
 cache: cocoapods
+rvm: 2.3
 before_install:
 - pod --version
 - brew --version
