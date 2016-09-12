@@ -36,7 +36,7 @@ class FindTeacherViewController: BaseViewController {
             imageName: "location_normal",
             highlightImageName: "location_press",
             target: self,
-            action: #selector(FindTeacherViewController.profileButtonDidClick)
+            action: #selector(FindTeacherViewController.locationButtonDidClick)
         )
         return button
     }()
@@ -45,6 +45,8 @@ class FindTeacherViewController: BaseViewController {
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        locationButtonDidClick(force: true)
         
         setupNotification()
         setupUserInterface()
@@ -206,23 +208,11 @@ class FindTeacherViewController: BaseViewController {
     
     
     // MARK: - Event Response
-    @objc private func locationButtonDidClick() {
-        //TODO:定位功能代码
-    }
-
-    @objc private func filterButtonDidClick() {
-        TeacherFilterPopupWindow(contentView: FilterView(frame: CGRectZero)).show()
-    }
-    
-    
-    deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: MalaNotification_CommitCondition, object: nil)
-    }
-    
-    @objc private func profileButtonDidClick() {
+    @objc private func locationButtonDidClick(force hidden: Bool = true) {
         
         // 城市选择器
-        let viewController = TCPViewController()
+        let viewController = CityTableViewController()
+        viewController.hideCloseButton(hidden)
         viewController.didSelectAction = { [weak self] in
             self?.locationButton.titleLabel?.text = MalaCurrentRegion?.name ?? "郑州市"
             self?.loadTeachers()
@@ -233,5 +223,14 @@ class FindTeacherViewController: BaseViewController {
             animated: true,
             completion: nil
         )
+    }
+
+    @objc private func filterButtonDidClick() {
+        TeacherFilterPopupWindow(contentView: FilterView(frame: CGRectZero)).show()
+    }
+    
+    
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: MalaNotification_CommitCondition, object: nil)
     }
 }

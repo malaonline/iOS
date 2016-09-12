@@ -78,7 +78,7 @@ class SchoolModel: BaseObjectModel {
     
     // MARK: - Description
     override var description: String {
-        let keys = ["address", "thumbnail", "region", "center", "longitude", "latitude"]
-        return super.description + dictionaryWithValuesForKeys(keys).description
+        // let keys = ["address", "thumbnail", "region", "center", "longitude", "latitude"]
+        return super.description// + dictionaryWithValuesForKeys(keys).description
     }
 }

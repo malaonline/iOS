@@ -422,6 +422,9 @@ extension MalaNetworking {
         if let region = MalaCurrentRegion {
             params["region"] = region.id
         }
+        if let school = MalaCurrentSchool {
+            params["school"] = school.id
+        }
         request(.GET, URLString: MalaBaseUrl+teacherList, parameters: params, finished: finished)
     }
     
