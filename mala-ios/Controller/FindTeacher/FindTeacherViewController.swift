@@ -29,17 +29,6 @@ class FindTeacherViewController: BaseViewController {
         tableView.contentInset = UIEdgeInsets(top: 6, left: 0, bottom: 48 + 6, right: 0)
         return tableView
     }()
-    /// 城市选择按钮
-    private lazy var locationButton: UIButton = {
-        let button = UIButton(
-            title: "郑州市",
-            imageName: "location_normal",
-            highlightImageName: "location_press",
-            target: self,
-            action: #selector(FindTeacherViewController.locationButtonDidTap)
-        )
-        return button
-    }()
     /// 上课地点选择按钮
     private lazy var regionPickButton: RegionPicker = {
         let picker = RegionPicker()
@@ -120,8 +109,7 @@ class FindTeacherViewController: BaseViewController {
         spacer.width = -12
         
         // leftBarButtonItem
-        let leftBarButtonItem = UIBarButtonItem(customView: locationButton)
-        navigationItem.leftBarButtonItems = [spacer, leftBarButtonItem]
+        navigationItem.leftBarButtonItems = []
         
         // rightBarButtonItem
         let rightBarButtonItem = UIBarButtonItem(customView:
@@ -220,7 +208,6 @@ class FindTeacherViewController: BaseViewController {
         let viewController = CityTableViewController()
         viewController.hideCloseButton(hidden)
         viewController.didSelectAction = { [weak self] in
-            self?.locationButton.titleLabel?.text = MalaCurrentRegion?.name ?? "郑州市"
             self?.loadTeachers()
             self?.regionPickButton.schoolName = MalaCurrentSchool?.name
         }
