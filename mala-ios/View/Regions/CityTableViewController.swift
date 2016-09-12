@@ -75,7 +75,6 @@ class CityTableViewController: UIViewController, UITableViewDelegate, UITableVie
         tableView.backgroundColor = MalaColor_F6F7F9_0
         tableView.separatorStyle = .None
         tableView.registerClass(CityTableViewCell.self, forCellReuseIdentifier: CityTableViewCellReuseId)
-        tableView.registerClass(CityTableViewHeaderView.self, forHeaderFooterViewReuseIdentifier: CityTableViewHeaderViewReuseId)
         
         // SubViews
         self.view.addSubview(tableView)
@@ -91,13 +90,8 @@ class CityTableViewController: UIViewController, UITableViewDelegate, UITableVie
     
     
     // MARK: - Delegate
-    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = tableView.dequeueReusableHeaderFooterViewWithIdentifier(CityTableViewHeaderViewReuseId)
-        return headerView
-    }
-    
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 40
+        return 10
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -114,6 +108,12 @@ class CityTableViewController: UIViewController, UITableViewDelegate, UITableVie
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(CityTableViewCellReuseId, forIndexPath: indexPath) as! CityTableViewCell
         cell.model = models[indexPath.row]
+        
+        // Section的最后一个Cell隐藏分割线
+        if (indexPath.row+1) == models.count {
+            cell.hideSeparator()
+        }
+        
         return cell
     }
     
@@ -167,6 +167,22 @@ class CityTableViewCell: UITableViewCell {
     }
     
     
+    // MARK: - Components
+    /// 标题label
+    private lazy var titleLabel: UILabel = {
+        let titleLabel = UILabel()
+        titleLabel.font = UIFont.systemFontOfSize(14)
+        titleLabel.textColor = MalaColor_636363_0
+        return titleLabel
+    }()
+    /// 分割线
+    lazy var separatorLine: UIView = {
+        let separatorLine = UIView.line()
+        separatorLine.backgroundColor = MalaColor_E5E5E5_0
+        return separatorLine
+    }()
+    
+    
     // MARK: - Instance Method
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -181,60 +197,29 @@ class CityTableViewCell: UITableViewCell {
     // MARK: - Private Method
     private func setupUserInterface() {
         // Style
-        backgroundColor = MalaColor_F6F7F9_0
-        selectionStyle = .None
-        
         textLabel?.font = UIFont.systemFontOfSize(14)
-    }
-}
-
-
-class CityTableViewHeaderView: UITableViewHeaderFooterView {
-    
-    // MARK: - Components
-    private lazy var titleLabel: UILabel = {
-        let label = UILabel(title: "选择服务城市")
-        label.font = UIFont.systemFontOfSize(14)
-        return label
-    }()
-    private lazy var separatorLine: UIView = {
-        let view = UIView.separator(MalaColor_DEDFD0_0)
-        return view
-    }()
-    
-    
-    // MARK: - Instance Method
-    override init(reuseIdentifier: String?) {
-        super.init(reuseIdentifier: reuseIdentifier)
-        setupUserInterface()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    
-    
-    // MARK: - Private Method
-    private func setupUserInterface() {
-        // Style
-        backgroundColor = MalaColor_F6F7F9_0
+        selectionStyle = .None
+        separatorInset = UIEdgeInsets(top: 0, left: 12, bottom: 0, right: 12)
         
         // SubViews
-        addSubview(titleLabel)
-        addSubview(separatorLine)
+        contentView.addSubview(titleLabel)
+        contentView.addSubview(separatorLine)
         
-        // AutoLayout
+        // Autolayout
         titleLabel.snp_makeConstraints { (make) in
-            make.bottom.equalTo(self.snp_bottom).offset(-8)
-            make.left.equalTo(self.snp_left).offset(15)
-            make.height.equalTo(20)
+            make.height.equalTo(14)
+            make.centerY.equalTo(contentView.snp_centerY)
+            make.left.equalTo(contentView.snp_left).offset(13)
         }
         separatorLine.snp_makeConstraints { (make) in
-            make.left.equalTo(self.snp_left).offset(15)
-            make.right.equalTo(self.snp_right).offset(-15)
+            make.bottom.equalTo(contentView.snp_bottom)
+            make.left.equalTo(contentView.snp_left).offset(12)
+            make.right.equalTo(contentView.snp_right).offset(12)
             make.height.equalTo(MalaScreenOnePixel)
-            make.bottom.equalTo(self.snp_bottom)
         }
+    }
+    
+    func hideSeparator() {
+        self.separatorLine.hidden = true
     }
 }

@@ -668,6 +668,9 @@
 		F41CE63F1D8660E400B57F69 /* SchoolTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41CE63B1D8660E400B57F69 /* SchoolTableViewController.swift */; };
 		F41CE6401D8660E400B57F69 /* SchoolTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41CE63B1D8660E400B57F69 /* SchoolTableViewController.swift */; };
 		F41CE6411D8660E400B57F69 /* SchoolTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41CE63B1D8660E400B57F69 /* SchoolTableViewController.swift */; };
+		F41CE6431D8661E400B57F69 /* RegionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41CE6421D8661E400B57F69 /* RegionViewController.swift */; };
+		F41CE6441D8661E400B57F69 /* RegionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41CE6421D8661E400B57F69 /* RegionViewController.swift */; };
+		F41CE6451D8661E400B57F69 /* RegionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41CE6421D8661E400B57F69 /* RegionViewController.swift */; };
 		F4215D6B1D50521A0014B653 /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4215D6A1D50521A0014B653 /* FavoriteViewController.swift */; };
 		F4215D6C1D50521A0014B653 /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4215D6A1D50521A0014B653 /* FavoriteViewController.swift */; };
 		F4215D6D1D50521A0014B653 /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4215D6A1D50521A0014B653 /* FavoriteViewController.swift */; };
@@ -1016,6 +1019,7 @@
 		F41CE6361D86487500B57F69 /* RegionPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegionPicker.swift; sourceTree = "<group>"; };
 		F41CE63A1D8660E400B57F69 /* CityTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CityTableViewController.swift; sourceTree = "<group>"; };
 		F41CE63B1D8660E400B57F69 /* SchoolTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchoolTableViewController.swift; sourceTree = "<group>"; };
+		F41CE6421D8661E400B57F69 /* RegionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegionViewController.swift; sourceTree = "<group>"; };
 		F4215D6A1D50521A0014B653 /* FavoriteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
 		F427FF991CEB0B5C00EAB748 /* MemberSerivceCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberSerivceCollectionView.swift; sourceTree = "<group>"; };
 		F427FF9B1CEC1CE100EAB748 /* PageControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageControl.swift; sourceTree = "<group>"; };
@@ -1637,6 +1641,7 @@
 			isa = PBXGroup;
 			children = (
 				F41CE6361D86487500B57F69 /* RegionPicker.swift */,
+				F41CE6421D8661E400B57F69 /* RegionViewController.swift */,
 				F41CE63A1D8660E400B57F69 /* CityTableViewController.swift */,
 				F41CE63B1D8660E400B57F69 /* SchoolTableViewController.swift */,
 			);
@@ -2717,6 +2722,7 @@
 				F49BD5A41CA4131D00EB3CCF /* SKPhoto.swift in Sources */,
 				F45F27F81CA9135A00F0012C /* MalaDefaultPanel.swift in Sources */,
 				3037B5841C3A84C2005672D9 /* SMSResultModel.swift in Sources */,
+				F41CE6431D8661E400B57F69 /* RegionViewController.swift in Sources */,
 				F4B3C6771CFD3EBB00C1B423 /* SingleHomeworkData.swift in Sources */,
 				F45BDAEB1CB760540038CE3D /* ThemeCalendarViewWeekdayHeader.swift in Sources */,
 				F4C5C2401C75CFCC00FB833B /* IntroductionModel.swift in Sources */,
@@ -2937,6 +2943,7 @@
 				35FF7B0E1CF8325A000A70EE /* SKPhoto.swift in Sources */,
 				35FF7B0F1CF8325A000A70EE /* MalaDefaultPanel.swift in Sources */,
 				35FF7B101CF8325A000A70EE /* SMSResultModel.swift in Sources */,
+				F41CE6441D8661E400B57F69 /* RegionViewController.swift in Sources */,
 				F4B3C6781CFD3EBB00C1B423 /* SingleHomeworkData.swift in Sources */,
 				35FF7B111CF8325A000A70EE /* ThemeCalendarViewWeekdayHeader.swift in Sources */,
 				35FF7B121CF8325A000A70EE /* IntroductionModel.swift in Sources */,
@@ -3157,6 +3164,7 @@
 				35FF7BF11CF83264000A70EE /* SKPhoto.swift in Sources */,
 				35FF7BF21CF83264000A70EE /* MalaDefaultPanel.swift in Sources */,
 				35FF7BF31CF83264000A70EE /* SMSResultModel.swift in Sources */,
+				F41CE6451D8661E400B57F69 /* RegionViewController.swift in Sources */,
 				F4B3C6791CFD3EBB00C1B423 /* SingleHomeworkData.swift in Sources */,
 				35FF7BF41CF83264000A70EE /* ThemeCalendarViewWeekdayHeader.swift in Sources */,
 				35FF7BF51CF83264000A70EE /* IntroductionModel.swift in Sources */,
