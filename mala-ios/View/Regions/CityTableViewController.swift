@@ -35,9 +35,9 @@ class CityTableViewController: UIViewController, UITableViewDelegate, UITableVie
     // 关闭按钮
     private lazy var closeButton: UIButton = {
         let button = UIButton(
-            imageName: "close",
+            imageName: "leftArrow_black",
             target: self,
-            action: #selector(CityTableViewController.closeButtonDidClick)
+            action: #selector(CityTableViewController.pop)
         )
         return button
     }()
@@ -144,8 +144,8 @@ class CityTableViewController: UIViewController, UITableViewDelegate, UITableVie
     
     
     // MARK: - Events Response
-    @objc private func closeButtonDidClick() {
-        dismissViewControllerAnimated(true, completion: nil)
+    func pop() {
+        navigationController?.popViewControllerAnimated(true)
     }
     
     

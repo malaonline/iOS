@@ -205,13 +205,12 @@ class FindTeacherViewController: BaseViewController {
     // MARK: - Event Response
     @objc private func locationButtonDidTap(force hidden: Bool = true) {
         // 城市选择器
-        let viewController = CityTableViewController()
-        viewController.hideCloseButton(hidden)
+        let viewController = RegionViewController()
         viewController.didSelectAction = { [weak self] in
             self?.loadTeachers()
             self?.regionPickButton.schoolName = MalaCurrentSchool?.name
         }
-        
+                
         navigationController?.presentViewController(
             UINavigationController(rootViewController: viewController),
             animated: true,
