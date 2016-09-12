@@ -64,7 +64,7 @@ class SchoolTableViewController: UIViewController, UITableViewDelegate, UITableV
         tableView.backgroundColor = MalaColor_F6F7F9_0
         tableView.separatorStyle = .None
         tableView.separatorColor = MalaColor_E5E5E5_0
-        tableView.registerClass(SchoolTableViewCell.self, forCellReuseIdentifier: SchoolTableViewCellReuseId)
+        tableView.registerClass(RegionUnitCell.self, forCellReuseIdentifier: SchoolTableViewCellReuseId)
         
         // Style
         title = "选择校区"
@@ -127,8 +127,8 @@ class SchoolTableViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(SchoolTableViewCellReuseId, forIndexPath: indexPath) as! SchoolTableViewCell
-        cell.model = models[indexPath.row]
+        let cell = tableView.dequeueReusableCellWithIdentifier(SchoolTableViewCellReuseId, forIndexPath: indexPath) as! RegionUnitCell
+        cell.school = models[indexPath.row]
         
         // Section的最后一个Cell隐藏分割线
         if (indexPath.row+1) == models.count {
@@ -142,73 +142,5 @@ class SchoolTableViewController: UIViewController, UITableViewDelegate, UITableV
     // MARK: - Events Response
     func pop() {
         navigationController?.popViewControllerAnimated(true)
-    }
-}
-
-
-class SchoolTableViewCell: UITableViewCell {
-    
-    // MARK: - Property
-    // 城市数据模型
-    var model: SchoolModel = SchoolModel() {
-        didSet {
-            textLabel?.text = model.name
-        }
-    }
-    
-    // MARK: - Components
-    /// 标题label
-    private lazy var titleLabel: UILabel = {
-        let titleLabel = UILabel()
-        titleLabel.font = UIFont.systemFontOfSize(14)
-        titleLabel.textColor = MalaColor_636363_0
-        return titleLabel
-    }()
-    /// 分割线
-    lazy var separatorLine: UIView = {
-        let separatorLine = UIView.line()
-        separatorLine.backgroundColor = MalaColor_E5E5E5_0
-        return separatorLine
-    }()
-    
-    
-    // MARK: - Instance Method
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        setupUserInterface()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    
-    // MARK: - Private Method
-    private func setupUserInterface() {
-        // Style
-        textLabel?.font = UIFont.systemFontOfSize(14)
-        selectionStyle = .None
-        separatorInset = UIEdgeInsets(top: 0, left: 12, bottom: 0, right: 12)
-        
-        // SubViews
-        contentView.addSubview(titleLabel)
-        contentView.addSubview(separatorLine)
-        
-        // Autolayout
-        titleLabel.snp_makeConstraints { (make) in
-            make.height.equalTo(14)
-            make.centerY.equalTo(contentView.snp_centerY)
-            make.left.equalTo(contentView.snp_left).offset(13)
-        }
-        separatorLine.snp_makeConstraints { (make) in
-            make.bottom.equalTo(contentView.snp_bottom)
-            make.left.equalTo(contentView.snp_left).offset(12)
-            make.right.equalTo(contentView.snp_right).offset(12)
-            make.height.equalTo(MalaScreenOnePixel)
-        }
-    }
-    
-    func hideSeparator() {
-        self.separatorLine.hidden = true
     }
 }
