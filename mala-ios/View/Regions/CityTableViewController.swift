@@ -64,10 +64,13 @@ class CityTableViewController: UIViewController, UITableViewDelegate, UITableVie
         // Style
         title = "选择城市"
         view.backgroundColor = UIColor.whiteColor()
-        let leftBarButtonItem = UIBarButtonItem(customView: closeButton)
-        navigationItem.leftBarButtonItem = leftBarButtonItem
         UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.Default
         navigationController?.navigationBar.shadowImage = UIImage()
+        
+        if let _ = MalaUserDefaults.currentCity.value {
+            let leftBarButtonItem = UIBarButtonItem(customView: closeButton)
+            navigationItem.leftBarButtonItem = leftBarButtonItem
+        }
         
         // tableView Style
         tableView.delegate = self
@@ -95,8 +98,14 @@ class CityTableViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        MalaCurrentRegion = models[indexPath.row]
-        pushToSchoolList()
+        MalaCurrentCity = models[indexPath.row]
+        MalaUserDefaults.currentCity.value = models[indexPath.row]
+        
+        if let _ = MalaUserDefaults.currentCity.value {
+            pop()
+        }else {
+            pushToSchoolList()
+        }
     }
     
     

@@ -46,7 +46,11 @@ class RegionViewController: UIViewController, UITableViewDelegate, UITableViewDa
         return view
     }()
     private lazy var cityLabel: UILabel = {
-        let label = UILabel(text: "北京", fontSize: 14, textColor: MalaColor_333333_0)
+        let label = UILabel(
+            text: "",
+            fontSize: 14,
+            textColor: MalaColor_333333_0
+        )
         return label
     }()
     private lazy var cityArrow: UIImageView = {
@@ -78,9 +82,9 @@ class RegionViewController: UIViewController, UITableViewDelegate, UITableViewDa
         super.didReceiveMemoryWarning()
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewWillAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        loadCitylist()
+        loadSchoolList()
     }
     
     
@@ -98,6 +102,7 @@ class RegionViewController: UIViewController, UITableViewDelegate, UITableViewDa
         // tableView Style
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.bounces = false
         tableView.backgroundColor = MalaColor_F6F7F9_0
         tableView.separatorStyle = .None
         tableView.separatorColor = MalaColor_E5E5E5_0
@@ -137,14 +142,16 @@ class RegionViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     // 获取学校列表
-    private func loadCitylist() {
+    private func loadSchoolList() {
         
-//        guard let region = MalaCurrentRegion else {
-//            ShowTost("地区选择有误，请重试")
-//            return
-//        }
+        cityLabel.text = MalaCurrentCity?.name ?? "未选择"
         
-        getSchools(3405, failureHandler: { (reason, errorMessage) in
+        guard let city = MalaCurrentCity else {
+            ShowTost("地区选择有误，请重试")
+            return
+        }
+        
+        getSchools(city.id, failureHandler: { (reason, errorMessage) in
             ThemeHUD.hideActivityIndicator()
             defaultFailureHandler(reason, errorMessage: errorMessage)
             

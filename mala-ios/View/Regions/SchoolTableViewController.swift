@@ -89,7 +89,7 @@ class SchoolTableViewController: UIViewController, UITableViewDelegate, UITableV
     // 获取学校列表
     private func loadCitylist() {
         
-        guard let region = MalaCurrentRegion else {
+        guard let region = MalaCurrentCity else {
             ShowTost("地区选择有误，请重试")
             return
         }

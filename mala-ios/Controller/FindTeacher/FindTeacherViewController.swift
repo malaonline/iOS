@@ -205,17 +205,31 @@ class FindTeacherViewController: BaseViewController {
     // MARK: - Event Response
     @objc private func locationButtonDidTap(force hidden: Bool = true) {
         // 城市选择器
-        let viewController = RegionViewController()
-        viewController.didSelectAction = { [weak self] in
-            self?.loadTeachers()
-            self?.regionPickButton.schoolName = MalaCurrentSchool?.name
+        if let _ = MalaUserDefaults.currentCity.value {
+            let viewController = RegionViewController()
+            viewController.didSelectAction = { [weak self] in
+                self?.loadTeachers()
+                self?.regionPickButton.schoolName = MalaCurrentSchool?.name
+            }
+            
+            navigationController?.presentViewController(
+                UINavigationController(rootViewController: viewController),
+                animated: true,
+                completion: nil
+            )
+        }else {
+            let viewController = CityTableViewController()
+            viewController.didSelectAction = { [weak self] in
+                self?.loadTeachers()
+                self?.regionPickButton.schoolName = MalaCurrentSchool?.name
+            }
+            
+            navigationController?.presentViewController(
+                UINavigationController(rootViewController: viewController),
+                animated: true,
+                completion: nil
+            )
         }
-                
-        navigationController?.presentViewController(
-            UINavigationController(rootViewController: viewController),
-            animated: true,
-            completion: nil
-        )
     }
     
     @objc private func regionsPickButtonDidTap() {

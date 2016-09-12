@@ -78,4 +78,9 @@ class RegionUnitCell: UITableViewCell {
     func hideSeparator() {
         separatorLine.hidden = true
     }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        separatorLine.hidden = false
+    }
 }

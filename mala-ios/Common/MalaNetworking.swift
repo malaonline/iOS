@@ -419,7 +419,7 @@ extension MalaNetworking {
     func loadTeachers(parameters: [String: AnyObject]?, page: Int = 1, finished: RequestCallBack) {
         var params = parameters ?? [String: AnyObject]()
         params["page"] = page
-        if let region = MalaCurrentRegion {
+        if let region = MalaCurrentCity {
             params["region"] = region.id
         }
         if let school = MalaCurrentSchool {
