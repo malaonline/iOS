@@ -41,7 +41,7 @@ class FindTeacherViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        locationButtonDidTap(force: true)
+        regionsPickButtonDidTap(true)
         
         setupNotification()
         setupUserInterface()
@@ -203,9 +203,16 @@ class FindTeacherViewController: BaseViewController {
     
     
     // MARK: - Event Response
-    @objc private func locationButtonDidTap(force hidden: Bool = true) {
-        // 城市选择器
+    @objc private func regionsPickButtonDidTap(isStartup: Bool) {
+        
         if let _ = MalaUserDefaults.currentCity.value {
+            
+            // 启动时如果已选择过地点，则不显示地点选择面板
+            if isStartup {
+                return
+            }
+            
+            // 地点选择器
             let viewController = RegionViewController()
             viewController.didSelectAction = { [weak self] in
                 self?.loadTeachers()
@@ -218,6 +225,7 @@ class FindTeacherViewController: BaseViewController {
                 completion: nil
             )
         }else {
+            // 初次启动时
             let viewController = CityTableViewController()
             viewController.didSelectAction = { [weak self] in
                 self?.loadTeachers()
@@ -230,10 +238,6 @@ class FindTeacherViewController: BaseViewController {
                 completion: nil
             )
         }
-    }
-    
-    @objc private func regionsPickButtonDidTap() {
-        locationButtonDidTap(force: false)
     }
 
     @objc private func filterButtonDidTap() {

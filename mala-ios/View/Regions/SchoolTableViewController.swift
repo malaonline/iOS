@@ -116,6 +116,7 @@ class SchoolTableViewController: UIViewController, UITableViewDelegate, UITableV
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         MalaCurrentSchool = models[indexPath.row]
+        MalaUserDefaults.currentSchool.value = models[indexPath.row]
         didSelectAction?()
         dismissViewControllerAnimated(true, completion: nil)
     }

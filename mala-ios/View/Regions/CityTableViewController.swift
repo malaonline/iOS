@@ -24,6 +24,8 @@ class CityTableViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     // 选择闭包
     var didSelectAction: (()->())?
+    // 是否未选择地点－标记
+    var unSelectRegion: Bool = (MalaUserDefaults.currentCity.value == nil)
     
     
     // MARK: - Components
@@ -67,7 +69,7 @@ class CityTableViewController: UIViewController, UITableViewDelegate, UITableVie
         UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.Default
         navigationController?.navigationBar.shadowImage = UIImage()
         
-        if let _ = MalaUserDefaults.currentCity.value {
+        if !unSelectRegion {
             let leftBarButtonItem = UIBarButtonItem(customView: closeButton)
             navigationItem.leftBarButtonItem = leftBarButtonItem
         }
@@ -101,10 +103,10 @@ class CityTableViewController: UIViewController, UITableViewDelegate, UITableVie
         MalaCurrentCity = models[indexPath.row]
         MalaUserDefaults.currentCity.value = models[indexPath.row]
         
-        if let _ = MalaUserDefaults.currentCity.value {
-            pop()
-        }else {
+        if unSelectRegion {
             pushToSchoolList()
+        }else {
+            pop()
         }
     }
     

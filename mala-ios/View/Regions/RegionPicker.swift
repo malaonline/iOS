@@ -11,7 +11,7 @@ import UIKit
 class RegionPicker: UIView {
 
     // MARK: - Property
-    var schoolName: String? {
+    var schoolName: String? = MalaCurrentSchool?.name {
         didSet {
             regionLabel.text = String(format: "校区:%@", schoolName ?? "未选择")
         }
@@ -24,7 +24,11 @@ class RegionPicker: UIView {
         return view
     }()
     private lazy var regionLabel: UILabel = {
-        let label = UILabel(text: "校区:未选择", fontSize: 15, textColor: MalaColor_333333_0)
+        let label = UILabel(
+            text: String(format: "校区:%@", MalaCurrentSchool?.name ?? "未选择"),
+            fontSize: 15,
+            textColor: MalaColor_333333_0
+        )
         return label
     }()
     private lazy var arrow: UIImageView = {

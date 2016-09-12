@@ -173,6 +173,7 @@ class RegionViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         MalaCurrentSchool = models[indexPath.row]
+        MalaUserDefaults.currentSchool.value = models[indexPath.row]
         didSelectAction?()
         dismissViewControllerAnimated(true, completion: nil)
     }
