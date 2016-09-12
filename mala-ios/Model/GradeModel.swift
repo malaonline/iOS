@@ -25,6 +25,10 @@ class GradeModel: BaseObjectModel {
         setValuesForKeysWithDictionary(dict)
     }
     
+    required init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     
     // MARK: - Override
     override func setValue(value: AnyObject?, forUndefinedKey key: String) {

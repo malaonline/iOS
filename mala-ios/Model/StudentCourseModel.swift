@@ -76,6 +76,10 @@ public class StudentCourseModel: BaseObjectModel {
         self.is_expired = is_expired
     }
     
+    required public init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     // MARK: - Override
     override public func setValue(value: AnyObject?, forUndefinedKey key: String) {
         println("StudentCourseModel - Set for UndefinedKey: \(key)")

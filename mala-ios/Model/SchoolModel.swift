@@ -58,6 +58,10 @@ class SchoolModel: BaseObjectModel {
         self.latitude = latitude
     }
     
+    required internal init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     private func getDistance() {
         guard longitude != nil && latitude != nil && MalaLoginLocation != nil else {
             return
