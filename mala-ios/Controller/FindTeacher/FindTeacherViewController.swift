@@ -205,7 +205,7 @@ class FindTeacherViewController: BaseViewController {
     // MARK: - Event Response
     @objc private func regionsPickButtonDidTap(isStartup: Bool) {
         
-        if let _ = MalaUserDefaults.currentCity.value {
+        if let _ = MalaUserDefaults.currentSchool.value {
             
             // 启动时如果已选择过地点，则不显示地点选择面板
             if isStartup {
