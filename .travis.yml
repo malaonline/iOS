@@ -12,7 +12,7 @@ before_install:
 - xcodebuild -version -sdk
 - rvm list known
 - gem install fir-cli
-install:
+install: travis_wait 30 mvn install
 - pod repo remove master
 - pod setup
 - pod install
