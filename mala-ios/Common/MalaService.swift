@@ -910,7 +910,7 @@ func getSchools(region: Int? = nil, teacher: Int? = nil, failureHandler: ((Reaso
     
     if let id = region {
         params["region"] = id
-    } else if let region = MalaCurrentRegion {
+    } else if let region = MalaCurrentCity {
         params["region"] = region.id
     }
     if let teacherId = teacher {

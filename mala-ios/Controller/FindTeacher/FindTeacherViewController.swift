@@ -29,16 +29,11 @@ class FindTeacherViewController: BaseViewController {
         tableView.contentInset = UIEdgeInsets(top: 6, left: 0, bottom: 48 + 6, right: 0)
         return tableView
     }()
-    /// 城市选择按钮
-    private lazy var locationButton: UIButton = {
-        let button = UIButton(
-            title: "郑州市",
-            imageName: "location_normal",
-            highlightImageName: "location_press",
-            target: self,
-            action: #selector(FindTeacherViewController.locationButtonDidClick)
-        )
-        return button
+    /// 上课地点选择按钮
+    private lazy var regionPickButton: RegionPicker = {
+        let picker = RegionPicker()
+        picker.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(FindTeacherViewController.regionsPickButtonDidTap)))
+        return picker
     }()
     
     
@@ -46,7 +41,7 @@ class FindTeacherViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        locationButtonDidClick(force: true)
+        regionsPickButtonDidTap(true)
         
         setupNotification()
         setupUserInterface()
@@ -87,10 +82,11 @@ class FindTeacherViewController: BaseViewController {
     
     private func setupUserInterface() {
         // Style
-        self.title = MalaCommonString_Malalaoshi
-        self.tabBarItem.title = MalaCommonString_FindTeacher
         defaultView.imageName = "filter_no_result"
         defaultView.text = "当前城市没有老师！"
+        
+        // titleView
+        navigationItem.titleView = regionPickButton
         
         // 下拉刷新组件
         self.tableView.addPullToRefresh({ [weak self] in
@@ -113,8 +109,7 @@ class FindTeacherViewController: BaseViewController {
         spacer.width = -12
         
         // leftBarButtonItem
-        let leftBarButtonItem = UIBarButtonItem(customView: locationButton)
-        navigationItem.leftBarButtonItems = [spacer, leftBarButtonItem]
+        navigationItem.leftBarButtonItems = []
         
         // rightBarButtonItem
         let rightBarButtonItem = UIBarButtonItem(customView:
@@ -122,7 +117,7 @@ class FindTeacherViewController: BaseViewController {
                 imageName: "filter_normal",
                 highlightImageName: "filter_press",
                 target: self,
-                action: #selector(FindTeacherViewController.filterButtonDidClick)
+                action: #selector(FindTeacherViewController.filterButtonDidTap)
             )
         )
         navigationItem.rightBarButtonItems = [spacer, rightBarButtonItem]
@@ -208,24 +203,44 @@ class FindTeacherViewController: BaseViewController {
     
     
     // MARK: - Event Response
-    @objc private func locationButtonDidClick(force hidden: Bool = true) {
+    @objc private func regionsPickButtonDidTap(isStartup: Bool) {
         
-        // 城市选择器
-        let viewController = CityTableViewController()
-        viewController.hideCloseButton(hidden)
-        viewController.didSelectAction = { [weak self] in
-            self?.locationButton.titleLabel?.text = MalaCurrentRegion?.name ?? "郑州市"
-            self?.loadTeachers()
+        if let _ = MalaUserDefaults.currentSchool.value {
+            
+            // 启动时如果已选择过地点，则不显示地点选择面板
+            if isStartup {
+                return
+            }
+            
+            // 地点选择器
+            let viewController = RegionViewController()
+            viewController.didSelectAction = { [weak self] in
+                self?.loadTeachers()
+                self?.regionPickButton.schoolName = MalaCurrentSchool?.name
+            }
+            
+            navigationController?.presentViewController(
+                UINavigationController(rootViewController: viewController),
+                animated: true,
+                completion: nil
+            )
+        }else {
+            // 初次启动时
+            let viewController = CityTableViewController()
+            viewController.didSelectAction = { [weak self] in
+                self?.loadTeachers()
+                self?.regionPickButton.schoolName = MalaCurrentSchool?.name
+            }
+            
+            navigationController?.presentViewController(
+                UINavigationController(rootViewController: viewController),
+                animated: true,
+                completion: nil
+            )
         }
-        
-        navigationController?.presentViewController(
-            UINavigationController(rootViewController: viewController),
-            animated: true,
-            completion: nil
-        )
     }
 
-    @objc private func filterButtonDidClick() {
+    @objc private func filterButtonDidTap() {
         TeacherFilterPopupWindow(contentView: FilterView(frame: CGRectZero)).show()
     }
     

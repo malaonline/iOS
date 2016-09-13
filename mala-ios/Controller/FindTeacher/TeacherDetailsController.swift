@@ -320,7 +320,7 @@ class TeacherDetailsController: BaseViewController, UIGestureRecognizerDelegate,
     }
     
     private func loadSchoolsData() {
-        getSchools(teacherID, failureHandler: { (reason, errorMessage) in
+        getSchools(teacher: teacherID, failureHandler: { (reason, errorMessage) in
             ThemeHUD.hideActivityIndicator()
             defaultFailureHandler(reason, errorMessage: errorMessage)
             

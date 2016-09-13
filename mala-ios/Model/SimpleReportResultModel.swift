@@ -44,6 +44,10 @@ class SimpleReportResultModel: BaseObjectModel {
         self.right_nums = rightNums
     }
     
+    required init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     
     // MARK: - Override
     override func setValue(value: AnyObject?, forUndefinedKey key: String) {

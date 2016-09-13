@@ -24,6 +24,8 @@ class CityTableViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     // 选择闭包
     var didSelectAction: (()->())?
+    // 是否未选择地点－标记
+    var unSelectRegion: Bool = (MalaUserDefaults.currentSchool.value == nil)
     
     
     // MARK: - Components
@@ -35,9 +37,9 @@ class CityTableViewController: UIViewController, UITableViewDelegate, UITableVie
     // 关闭按钮
     private lazy var closeButton: UIButton = {
         let button = UIButton(
-            imageName: "close",
+            imageName: "leftArrow_black",
             target: self,
-            action: #selector(CityTableViewController.closeButtonDidClick)
+            action: #selector(CityTableViewController.pop)
         )
         return button
     }()
@@ -64,18 +66,20 @@ class CityTableViewController: UIViewController, UITableViewDelegate, UITableVie
         // Style
         title = "选择城市"
         view.backgroundColor = UIColor.whiteColor()
-        let leftBarButtonItem = UIBarButtonItem(customView: closeButton)
-        navigationItem.leftBarButtonItem = leftBarButtonItem
         UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.Default
         navigationController?.navigationBar.shadowImage = UIImage()
+        
+        if !unSelectRegion {
+            let leftBarButtonItem = UIBarButtonItem(customView: closeButton)
+            navigationItem.leftBarButtonItem = leftBarButtonItem
+        }
         
         // tableView Style
         tableView.delegate = self
         tableView.dataSource = self
         tableView.backgroundColor = MalaColor_F6F7F9_0
         tableView.separatorStyle = .None
-        tableView.registerClass(CityTableViewCell.self, forCellReuseIdentifier: CityTableViewCellReuseId)
-        tableView.registerClass(CityTableViewHeaderView.self, forHeaderFooterViewReuseIdentifier: CityTableViewHeaderViewReuseId)
+        tableView.registerClass(RegionUnitCell.self, forCellReuseIdentifier: CityTableViewCellReuseId)
         
         // SubViews
         self.view.addSubview(tableView)
@@ -91,18 +95,19 @@ class CityTableViewController: UIViewController, UITableViewDelegate, UITableVie
     
     
     // MARK: - Delegate
-    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = tableView.dequeueReusableHeaderFooterViewWithIdentifier(CityTableViewHeaderViewReuseId)
-        return headerView
-    }
-    
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 40
+        return 10
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        MalaCurrentRegion = models[indexPath.row]
-        pushToSchoolList()
+        MalaCurrentCity = models[indexPath.row]
+        MalaUserDefaults.currentCity.value = models[indexPath.row]
+        
+        if unSelectRegion {
+            pushToSchoolList()
+        }else {
+            pop()
+        }
     }
     
     
@@ -112,8 +117,14 @@ class CityTableViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(CityTableViewCellReuseId, forIndexPath: indexPath) as! CityTableViewCell
-        cell.model = models[indexPath.row]
+        let cell = tableView.dequeueReusableCellWithIdentifier(CityTableViewCellReuseId, forIndexPath: indexPath) as! RegionUnitCell
+        cell.city = models[indexPath.row]
+        
+        // Section的最后一个Cell隐藏分割线
+        if (indexPath.row+1) == models.count {
+            cell.hideSeparator()
+        }
+        
         return cell
     }
     
@@ -144,97 +155,13 @@ class CityTableViewController: UIViewController, UITableViewDelegate, UITableVie
     
     
     // MARK: - Events Response
-    @objc private func closeButtonDidClick() {
-        dismissViewControllerAnimated(true, completion: nil)
+    func pop() {
+        navigationController?.popViewControllerAnimated(true)
     }
     
     
     // MARK: - Public Method
     func hideCloseButton(hidden: Bool = true) {
         closeButton.hidden = hidden
-    }
-}
-
-
-class CityTableViewCell: UITableViewCell {
-    
-    // MARK: - Property
-    // 城市数据模型
-    var model: BaseObjectModel = BaseObjectModel() {
-        didSet {
-            textLabel?.text = model.name
-        }
-    }
-    
-    
-    // MARK: - Instance Method
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        setupUserInterface()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    
-    // MARK: - Private Method
-    private func setupUserInterface() {
-        // Style
-        backgroundColor = MalaColor_F6F7F9_0
-        selectionStyle = .None
-        
-        textLabel?.font = UIFont.systemFontOfSize(14)
-    }
-}
-
-
-class CityTableViewHeaderView: UITableViewHeaderFooterView {
-    
-    // MARK: - Components
-    private lazy var titleLabel: UILabel = {
-        let label = UILabel(title: "选择服务城市")
-        label.font = UIFont.systemFontOfSize(14)
-        return label
-    }()
-    private lazy var separatorLine: UIView = {
-        let view = UIView.separator(MalaColor_DEDFD0_0)
-        return view
-    }()
-    
-    
-    // MARK: - Instance Method
-    override init(reuseIdentifier: String?) {
-        super.init(reuseIdentifier: reuseIdentifier)
-        setupUserInterface()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    
-    
-    // MARK: - Private Method
-    private func setupUserInterface() {
-        // Style
-        backgroundColor = MalaColor_F6F7F9_0
-        
-        // SubViews
-        addSubview(titleLabel)
-        addSubview(separatorLine)
-        
-        // AutoLayout
-        titleLabel.snp_makeConstraints { (make) in
-            make.bottom.equalTo(self.snp_bottom).offset(-8)
-            make.left.equalTo(self.snp_left).offset(15)
-            make.height.equalTo(20)
-        }
-        separatorLine.snp_makeConstraints { (make) in
-            make.left.equalTo(self.snp_left).offset(15)
-            make.right.equalTo(self.snp_right).offset(-15)
-            make.height.equalTo(MalaScreenOnePixel)
-            make.bottom.equalTo(self.snp_bottom)
-        }
     }
 }

@@ -51,6 +51,10 @@ class TeacherModel: BaseObjectModel {
         self.avatar = NSURL(string: avatar)
     }
     
+    required init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     // MARK: - Override
     override func setValue(value: AnyObject?, forUndefinedKey key: String) {
         println("TeacherModel - Set for UndefinedKey: \(key)")

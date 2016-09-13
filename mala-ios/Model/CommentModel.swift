@@ -37,6 +37,10 @@ public class CommentModel: BaseObjectModel {
         self.content = content
     }
     
+    required public init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     // MARK: - Override
     override public func setValue(value: AnyObject?, forUndefinedKey key: String) {
         println("CommentModel - Set for UndefinedKey: \(key)")

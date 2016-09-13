@@ -19,6 +19,9 @@ let AvatarKey = "AvatarKey"
 let StudentNameKey = "StudentNameKey"
 let SchoolNameKey = "SchoolNameKey"
 
+let CurrentCityKey = "CurrentCityKey"
+let CurrentSchoolKey = "CurrentSchoolKey"
+
 ///  监听者
 struct Listener<T>: Hashable {
     /// 监听者名称
@@ -187,6 +190,34 @@ class MalaUserDefaults {
         
         return Listenable<String?>(schoolName) { schoolName in
             defaults.setObject(schoolName, forKey: SchoolNameKey)
+        }
+    }()
+    /// 当前选择城市
+    static var currentCity: Listenable<BaseObjectModel?> = {
+        var currentCity: BaseObjectModel?
+        if let data = defaults.objectForKey(CurrentCityKey) as? NSData {
+            currentCity = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? BaseObjectModel
+        }
+        
+        return Listenable<BaseObjectModel?>(currentCity) { currentCity in
+            if let object  = currentCity {
+                let encodedObject = NSKeyedArchiver.archivedDataWithRootObject(object)
+                defaults.setObject(encodedObject, forKey: CurrentCityKey)
+            }
+        }
+    }()
+    /// 当前选择校区
+    static var currentSchool: Listenable<SchoolModel?> = {
+        var currentSchool: SchoolModel?
+        if let data = defaults.objectForKey(CurrentSchoolKey) as? NSData {
+            currentSchool = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? SchoolModel
+        }
+        
+        return Listenable<SchoolModel?>(currentSchool) { currentSchool in
+            if let object  = currentSchool {
+                let encodedObject = NSKeyedArchiver.archivedDataWithRootObject(object)
+                defaults.setObject(encodedObject, forKey: CurrentSchoolKey)
+            }
         }
     }()
     

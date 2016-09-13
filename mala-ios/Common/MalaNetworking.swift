@@ -169,6 +169,8 @@ public func apiRequest<A>(modifyRequest: NSMutableURLRequest -> (), baseURL: NSU
     
     let task = session.dataTaskWithRequest(request) { (data, response, error) -> Void in
         
+        println("RequestURL@Malalaoshi - \(request.URLString)")
+        
         if let httpResponse = response as? NSHTTPURLResponse {
             
             // 识别StatusCode并处理
@@ -419,7 +421,7 @@ extension MalaNetworking {
     func loadTeachers(parameters: [String: AnyObject]?, page: Int = 1, finished: RequestCallBack) {
         var params = parameters ?? [String: AnyObject]()
         params["page"] = page
-        if let region = MalaCurrentRegion {
+        if let region = MalaCurrentCity {
             params["region"] = region.id
         }
         if let school = MalaCurrentSchool {

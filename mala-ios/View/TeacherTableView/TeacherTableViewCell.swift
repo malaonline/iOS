@@ -192,4 +192,9 @@ class TeacherTableViewCell: UITableViewCell {
             make.bottom.equalTo(self.content.snp_bottom).offset(-15)
         }
     }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        avatarView.image = UIImage(named: "avatar_placeholder")
+    }
 }
