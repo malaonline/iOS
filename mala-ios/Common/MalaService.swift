@@ -900,7 +900,7 @@ func loadRegions(failureHandler: ((Reason, String?) -> Void)?, completion: [Base
 ///  - parameter teacher: 老师id（传入即为筛选该老师指定的上课地点）
 ///  - parameter failureHandler: 失败处理闭包
 ///  - parameter completion:     成功处理闭包
-func getSchools(region: Int? = nil, teacher: Int? = nil, failureHandler: ((Reason, String?) -> Void)?, completion: [SchoolModel] -> Void) {
+func getSchools(cityId: Int? = nil, teacher: Int? = nil, failureHandler: ((Reason, String?) -> Void)?, completion: [SchoolModel] -> Void) {
     
     let parse: JSONDictionary -> [SchoolModel] = { data in
         return sortSchoolsByDistance(parseSchoolsResult(data))
@@ -908,7 +908,7 @@ func getSchools(region: Int? = nil, teacher: Int? = nil, failureHandler: ((Reaso
     
     var params = nullDictionary()
     
-    if let id = region {
+    if let id = cityId {
         params["region"] = id
     } else if let region = MalaCurrentCity {
         params["region"] = region.id
