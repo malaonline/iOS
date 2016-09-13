@@ -169,6 +169,8 @@ public func apiRequest<A>(modifyRequest: NSMutableURLRequest -> (), baseURL: NSU
     
     let task = session.dataTaskWithRequest(request) { (data, response, error) -> Void in
         
+        println("RequestURL@Malalaoshi - \(request.URLString)")
+        
         if let httpResponse = response as? NSHTTPURLResponse {
             
             // 识别StatusCode并处理
