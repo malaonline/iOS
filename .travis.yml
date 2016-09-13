@@ -13,6 +13,7 @@ before_install:
 - rvm list known
 - gem install fir-cli
 install:
+- travis_wait 30 mvn install
 - pod repo remove master
 - pod setup
 - pod install
@@ -24,6 +25,7 @@ before_script:
 - openssl aes-256-cbc -k $ENCRYPTION_SECRET -in scripts/certs/dist.p12.enc -d -a -out scripts/certs/dist.p12
 - ./scripts/add-key.sh
 after_success:
+# - ./scripts/sign-and-upload.sh
 after_script:
 - ./scripts/remove-key.sh
 env:
