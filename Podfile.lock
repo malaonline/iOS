@@ -1,5 +1,5 @@
 PODS:
-  - Alamofire (3.3.1)
+  - Alamofire (3.5.0)
   - Charts (2.2.5):
     - Charts/Core (= 2.2.5)
   - Charts/Core (2.2.5)
@@ -22,7 +22,7 @@ PODS:
   - GoogleUtilities (1.3.1):
     - GoogleSymbolUtilities (~> 1.0)
   - IQKeyboardManagerSwift (4.0.5)
-  - Kingfisher (2.2.2)
+  - Kingfisher (2.5.1)
   - MOBFoundation (2.0.11)
   - Pingpp/Alipay (2.2.8):
     - Pingpp/Core
@@ -36,25 +36,25 @@ PODS:
   - ShareSDK3/ShareSDK (3.4.1)
   - ShareSDK3/ShareSDKPlatforms/WeChat (3.4.1)
   - ShareSDK3/ShareSDKUI (3.4.1)
-  - SnapKit (0.22.0)
+  - SnapKit (0.30.0.beta2)
 
 DEPENDENCIES:
-  - Alamofire
-  - Charts
-  - DateTools
-  - Google/Analytics
-  - IQKeyboardManagerSwift
-  - Kingfisher
-  - MOBFoundation
-  - Pingpp/Alipay
-  - Pingpp/Wx
-  - ShareSDK3
-  - ShareSDK3/ShareSDKPlatforms/WeChat
-  - ShareSDK3/ShareSDKUI
-  - SnapKit
+  - Alamofire (~> 3.5.0)
+  - Charts (~> 2.2.5)
+  - DateTools (~> 1.7.0)
+  - Google/Analytics (~> 3.0.3)
+  - IQKeyboardManagerSwift (~> 4.0.5)
+  - Kingfisher (~> 2.5.1)
+  - MOBFoundation (~> 2.0.11)
+  - Pingpp/Alipay (~> 2.2.8)
+  - Pingpp/Wx (~> 2.2.8)
+  - ShareSDK3 (~> 3.4.1)
+  - ShareSDK3/ShareSDKPlatforms/WeChat (~> 3.4.1)
+  - ShareSDK3/ShareSDKUI (~> 3.4.1)
+  - SnapKit (~> 0.30.0.beta2)
 
 SPEC CHECKSUMS:
-  Alamofire: 369bc67b6f5ac33ded3648d7bd21c5bfb91c2ecc
+  Alamofire: b70a7352335f8ea5babd0a923eb7e8eacc67b877
   Charts: b48fcc8d7190de910ff9e9748f5360c8ea7856e5
   DateTools: 53288ee8b905fdc75897a1e6b5cc0144b14cba60
   FirebaseAnalytics: d968d4d5f6aeb795cd64144337bcd233e530efc6
@@ -65,12 +65,12 @@ SPEC CHECKSUMS:
   GoogleSymbolUtilities: 33117db1b5f290c6fbf259585e4885b4c84b98d7
   GoogleUtilities: 56c5ac05b7aa5dc417a1bb85221a9516e04d7032
   IQKeyboardManagerSwift: 41fd3a45a2cdb2a0e031af697708a95b865068a1
-  Kingfisher: 7e8de5b0cf7b5dc8ec559d193029a0859df93ef1
+  Kingfisher: 9b82e0e1f1a296f149a50bbc2214532eaa4df4f1
   MOBFoundation: e213065e65eebd8146ab29d10a8445dc8f385091
   Pingpp: b5ad287bd6969d69cff1f2438ea63147976711c9
   ShareSDK3: e7bcdfeb95338f89efd6fff82b4793d2bfee76f8
-  SnapKit: 0dd2fd157330f1ea11fd84da13e6be8a7a22bae0
+  SnapKit: c4bb32b1d3c5d18ff63bf95ffcbc599d2bab964c
 
-PODFILE CHECKSUM: 3187b29680259da392a921318b77552bde86b684
+PODFILE CHECKSUM: e90350fc4a3014d35eb6ef0e4394a59c3ca20b3a
 
 COCOAPODS: 1.0.0
