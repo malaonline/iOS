@@ -4,7 +4,7 @@ rvm: 2.3
 osx_image: xcode8
 xcode_workspace: mala-ios.xcworkspace
 xcode_scheme: parent-dev
-xcode_sdk: iphonesimulator10
+xcode_sdk: iphonesimulator10.0
 # before_install:
 # - pod --version
 # - brew --version
