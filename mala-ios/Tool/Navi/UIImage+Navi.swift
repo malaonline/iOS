@@ -51,13 +51,13 @@ public extension UIImage {
         let newRect = CGRectIntegral(CGRect(origin: CGPointZero, size: pixelSize))
         let transposedRect = CGRect(origin: CGPointZero, size: CGSize(width: pixelSize.height, height: pixelSize.width))
 
-        let bitmapContext = CGBitmapContextCreate(nil, Int(newRect.width), Int(newRect.height), CGImageGetBitsPerComponent(CGImage), 0, CGImageGetColorSpace(CGImage), CGImageGetBitmapInfo(CGImage).rawValue)
+        let bitmapContext = CGBitmapContextCreate(nil, Int(newRect.width), Int(newRect.height), CGImageGetBitsPerComponent(CGImage!), 0, CGImageGetColorSpace(CGImage!)!, CGImageGetBitmapInfo(CGImage!).rawValue)!
 
         CGContextConcatCTM(bitmapContext, transform)
 
         CGContextSetInterpolationQuality(bitmapContext, interpolationQuality)
 
-        CGContextDrawImage(bitmapContext, drawTransposed ? transposedRect : newRect, CGImage)
+        CGContextDrawImage(bitmapContext, drawTransposed ? transposedRect : newRect, CGImage!)
 
         if let newCGImage = CGBitmapContextCreateImage(bitmapContext) {
             let image = UIImage(CGImage: newCGImage, scale: screenScale, orientation: imageOrientation)
@@ -123,7 +123,7 @@ public extension UIImage {
 
     public func navi_cropWithBounds(bounds: CGRect) -> UIImage? {
 
-        if let newCGImage = CGImageCreateWithImageInRect(CGImage, bounds) {
+        if let newCGImage = CGImageCreateWithImageInRect(CGImage!, bounds) {
             let image = UIImage(CGImage: newCGImage, scale: screenScale, orientation: imageOrientation)
             return image
         }
@@ -202,7 +202,7 @@ public extension UIImage {
 
         let pixelSize = CGSize(width: image.size.width * screenScale, height: image.size.height * screenScale)
 
-        guard let bitmapContext = CGBitmapContextCreate(nil, Int(pixelSize.width), Int(pixelSize.height), CGImageGetBitsPerComponent(image.CGImage), 0, CGImageGetColorSpace(image.CGImage), CGImageGetBitmapInfo(image.CGImage).rawValue) else {
+        guard let bitmapContext = CGBitmapContextCreate(nil, Int(pixelSize.width), Int(pixelSize.height), CGImageGetBitsPerComponent(image.CGImage!), 0, CGImageGetColorSpace(image.CGImage!)!, CGImageGetBitmapInfo(image.CGImage!).rawValue) else {
             return nil
         }
 
@@ -216,7 +216,7 @@ public extension UIImage {
         CGContextClip(bitmapContext)
 
         let imageRect = CGRect(origin: CGPointZero, size: pixelSize)
-        CGContextDrawImage(bitmapContext, imageRect, image.CGImage)
+        CGContextDrawImage(bitmapContext, imageRect, image.CGImage!)
 
         if let newCGImage = CGBitmapContextCreateImage(bitmapContext) {
             let image = UIImage(CGImage: newCGImage, scale: screenScale, orientation: imageOrientation)
@@ -233,7 +233,7 @@ public extension UIImage {
 
     public func navi_hasAlpha() -> Bool {
 
-        let alpha = CGImageGetAlphaInfo(CGImage)
+        let alpha = CGImageGetAlphaInfo(CGImage!)
 
         switch alpha {
 
@@ -255,9 +255,9 @@ public extension UIImage {
 
         let bitmapInfo = CGBitmapInfo(rawValue: CGBitmapInfo.ByteOrderDefault.rawValue | CGImageAlphaInfo.PremultipliedFirst.rawValue)
 
-        let offscreenContext = CGBitmapContextCreate(nil, Int(pixelSize.width), Int(pixelSize.height), CGImageGetBitsPerComponent(CGImage), 0, CGColorSpaceCreateDeviceRGB(), bitmapInfo.rawValue)
+        let offscreenContext = CGBitmapContextCreate(nil, Int(pixelSize.width), Int(pixelSize.height), CGImageGetBitsPerComponent(CGImage!), 0, CGColorSpaceCreateDeviceRGB(), bitmapInfo.rawValue)!
         
-        CGContextDrawImage(offscreenContext, CGRect(origin: CGPointZero, size: pixelSize), CGImage)
+        CGContextDrawImage(offscreenContext, CGRect(origin: CGPointZero, size: pixelSize), CGImage!)
         
         if let alphaCGImage = CGBitmapContextCreateImage(offscreenContext) {
             let image = UIImage(CGImage: alphaCGImage, scale: screenScale, orientation: imageOrientation)
