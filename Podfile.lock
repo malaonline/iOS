@@ -1,8 +1,8 @@
 PODS:
   - Alamofire (3.5.0)
-  - Charts (2.2.5):
-    - Charts/Core (= 2.2.5)
-  - Charts/Core (2.2.5)
+  - Charts (2.2.6):
+    - Charts/Core (= 2.2.6)
+  - Charts/Core (2.2.6)
   - DateTools (1.7.0)
   - FirebaseAnalytics (3.3.1):
     - FirebaseInstanceID (~> 1.0)
@@ -36,26 +36,36 @@ PODS:
   - ShareSDK3/ShareSDK (3.4.1)
   - ShareSDK3/ShareSDKPlatforms/WeChat (3.4.1)
   - ShareSDK3/ShareSDKUI (3.4.1)
-  - SnapKit (0.30.0.beta2)
+  - SnapKit (0.22.0)
 
 DEPENDENCIES:
-  - Alamofire (~> 3.5.0)
-  - Charts (~> 2.2.5)
-  - DateTools (~> 1.7.0)
-  - Google/Analytics (~> 3.0.3)
-  - IQKeyboardManagerSwift (~> 4.0.5)
-  - Kingfisher (~> 2.5.1)
-  - MOBFoundation (~> 2.0.11)
-  - Pingpp/Alipay (~> 2.2.8)
-  - Pingpp/Wx (~> 2.2.8)
-  - ShareSDK3 (~> 3.4.1)
-  - ShareSDK3/ShareSDKPlatforms/WeChat (~> 3.4.1)
-  - ShareSDK3/ShareSDKUI (~> 3.4.1)
-  - SnapKit (~> 0.30.0.beta2)
+  - Alamofire
+  - Charts (from `git@github.com:danielgindi/Charts.git`, branch `Chart2.2.5-Swift2.3`)
+  - DateTools
+  - Google/Analytics
+  - IQKeyboardManagerSwift
+  - Kingfisher
+  - MOBFoundation
+  - Pingpp/Alipay
+  - Pingpp/Wx
+  - ShareSDK3
+  - ShareSDK3/ShareSDKPlatforms/WeChat
+  - ShareSDK3/ShareSDKUI
+  - SnapKit (~> 0.22.0)
+
+EXTERNAL SOURCES:
+  Charts:
+    :branch: Chart2.2.5-Swift2.3
+    :git: git@github.com:danielgindi/Charts.git
+
+CHECKOUT OPTIONS:
+  Charts:
+    :commit: c675f7e2b3900a6ea76dad817079678b6b27a14b
+    :git: git@github.com:danielgindi/Charts.git
 
 SPEC CHECKSUMS:
   Alamofire: b70a7352335f8ea5babd0a923eb7e8eacc67b877
-  Charts: b48fcc8d7190de910ff9e9748f5360c8ea7856e5
+  Charts: 661fa55f906b8dc8b4f1b372b0e30d21dc1b08cd
   DateTools: 53288ee8b905fdc75897a1e6b5cc0144b14cba60
   FirebaseAnalytics: d968d4d5f6aeb795cd64144337bcd233e530efc6
   FirebaseInstanceID: ba1e640935235e5fac39dfa816fe7660e72e1a8a
@@ -69,8 +79,8 @@ SPEC CHECKSUMS:
   MOBFoundation: e213065e65eebd8146ab29d10a8445dc8f385091
   Pingpp: b5ad287bd6969d69cff1f2438ea63147976711c9
   ShareSDK3: e7bcdfeb95338f89efd6fff82b4793d2bfee76f8
-  SnapKit: c4bb32b1d3c5d18ff63bf95ffcbc599d2bab964c
+  SnapKit: 0dd2fd157330f1ea11fd84da13e6be8a7a22bae0
 
-PODFILE CHECKSUM: e90350fc4a3014d35eb6ef0e4394a59c3ca20b3a
+PODFILE CHECKSUM: af0a26ed8fca2266dc5c7204cd2276999dc04b73
 
 COCOAPODS: 1.0.0
