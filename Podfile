@@ -14,7 +14,6 @@ def pods
   pod 'Pingpp/Wx'
   pod 'MOBFoundation'
   pod 'ShareSDK3'
-  pod 'ShareSDK3/ShareSDKUI'
   pod 'ShareSDK3/ShareSDKPlatforms/WeChat'
 end
 
