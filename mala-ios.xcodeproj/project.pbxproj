@@ -653,9 +653,6 @@
 		F41A01AC1D212B1F0069CF29 /* MalaBaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41A01AB1D212B1F0069CF29 /* MalaBaseCell.swift */; };
 		F41A01AD1D212B1F0069CF29 /* MalaBaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41A01AB1D212B1F0069CF29 /* MalaBaseCell.swift */; };
 		F41A01AE1D212B1F0069CF29 /* MalaBaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41A01AB1D212B1F0069CF29 /* MalaBaseCell.swift */; };
-		F41A01B01D2220AF0069CF29 /* UIImageEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41A01AF1D2220AF0069CF29 /* UIImageEffects.swift */; };
-		F41A01B11D2220AF0069CF29 /* UIImageEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41A01AF1D2220AF0069CF29 /* UIImageEffects.swift */; };
-		F41A01B21D2220AF0069CF29 /* UIImageEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41A01AF1D2220AF0069CF29 /* UIImageEffects.swift */; };
 		F41CE6321D86457300B57F69 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F41CE6311D86457300B57F69 /* GoogleService-Info.plist */; };
 		F41CE6331D86457300B57F69 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F41CE6311D86457300B57F69 /* GoogleService-Info.plist */; };
 		F41CE6341D86457300B57F69 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F41CE6311D86457300B57F69 /* GoogleService-Info.plist */; };
@@ -1017,7 +1014,6 @@
 		F40D896D1C7EAFB100BD6871 /* MalaLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MalaLog.swift; sourceTree = "<group>"; };
 		F41A01A71D20E15F0069CF29 /* KYCircularProgress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCircularProgress.swift; sourceTree = "<group>"; };
 		F41A01AB1D212B1F0069CF29 /* MalaBaseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MalaBaseCell.swift; sourceTree = "<group>"; };
-		F41A01AF1D2220AF0069CF29 /* UIImageEffects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageEffects.swift; sourceTree = "<group>"; };
 		F41CE6311D86457300B57F69 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F41CE6361D86487500B57F69 /* RegionPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegionPicker.swift; sourceTree = "<group>"; };
 		F41CE6421D8661E400B57F69 /* RegionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegionViewController.swift; sourceTree = "<group>"; };
@@ -1367,7 +1363,6 @@
 		304135851C23AE6400830C43 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				F41A01AF1D2220AF0069CF29 /* UIImageEffects.swift */,
 				30D4AA121C2417A700C5A336 /* Extension+UIButton.swift */,
 				30E3365D1C27A82C00DCF1C5 /* Extension+UIColor.swift */,
 				3077884E1C297C34007AF6B0 /* Extension+UIImage.swift */,
@@ -2578,7 +2573,6 @@
 				F46065241C97B168004056B1 /* TeacherDetailsController.swift in Sources */,
 				F460650C1C96D363004056B1 /* UIImageView+Navi.swift in Sources */,
 				F40B53B01C7EEA2800C20037 /* Extension+NSURLRequest.swift in Sources */,
-				F41A01B01D2220AF0069CF29 /* UIImageEffects.swift in Sources */,
 				F49BD5A21CA4131D00EB3CCF /* SKDetectingView.swift in Sources */,
 				F49432D81D237B34001C4D22 /* FilterBar.swift in Sources */,
 				30D4AA051C23E07600C5A336 /* Common.swift in Sources */,
@@ -2800,7 +2794,6 @@
 				35FF7A861CF8325A000A70EE /* UIImageView+Navi.swift in Sources */,
 				35FF7A871CF8325A000A70EE /* Extension+NSURLRequest.swift in Sources */,
 				35FF7A881CF8325A000A70EE /* SKDetectingView.swift in Sources */,
-				F41A01B11D2220AF0069CF29 /* UIImageEffects.swift in Sources */,
 				35FF7A891CF8325A000A70EE /* Common.swift in Sources */,
 				F49432D91D237B34001C4D22 /* FilterBar.swift in Sources */,
 				35FF7A8A1CF8325A000A70EE /* CourseChoosingTableView.swift in Sources */,
@@ -3022,7 +3015,6 @@
 				35FF7B691CF83264000A70EE /* UIImageView+Navi.swift in Sources */,
 				35FF7B6A1CF83264000A70EE /* Extension+NSURLRequest.swift in Sources */,
 				35FF7B6B1CF83264000A70EE /* SKDetectingView.swift in Sources */,
-				F41A01B21D2220AF0069CF29 /* UIImageEffects.swift in Sources */,
 				35FF7B6C1CF83264000A70EE /* Common.swift in Sources */,
 				F49432DA1D237B34001C4D22 /* FilterBar.swift in Sources */,
 				35FF7B6D1CF83264000A70EE /* CourseChoosingTableView.swift in Sources */,
