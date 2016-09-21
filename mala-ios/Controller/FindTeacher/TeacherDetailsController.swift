@@ -13,8 +13,7 @@ private let TeacherDetailsCellReuseId = [
     1: "TeacherDetailsTagsCellReuseId",
     2: "TeacherDetailsHighScoreCellReuseId",
     3: "TeacherDetailsPhotosCellReuseId",
-    4: "TeacherDetailsCertificateCellReuseId",
-    5: "TeacherDetailsPlaceCellReuseId",
+    4: "TeacherDetailsCertificateCellReuseId"
 ]
 
 private let TeacherDetailsCellTitle = [
@@ -22,8 +21,7 @@ private let TeacherDetailsCellTitle = [
     2: "风格标签",
     3: "提分榜",
     4: "个人相册",
-    5: "特殊成就",
-    6: "教学环境",
+    5: "特殊成就"
 ]
 
 class TeacherDetailsController: BaseViewController, UIGestureRecognizerDelegate, UITableViewDelegate, UITableViewDataSource, SignupButtonDelegate {
@@ -62,16 +60,6 @@ class TeacherDetailsController: BaseViewController, UIGestureRecognizerDelegate,
             signupView.isFavorite = isFavorite
         }
     }
-    /// 学校数据模型
-    var schoolArray: [SchoolModel] = [SchoolModel(id: 0, name: "线下体验店", address: "----")] {
-        didSet {
-            // 刷新 [教学环境] Cell
-            dispatch_async(dispatch_get_main_queue(), { [weak self] () -> Void in
-                self?.tableView.reloadSections(NSIndexSet(index: 5), withRowAnimation: .None)
-            })
-        }
-    }
-    var isOpenSchoolsCell: Bool = false
     var isNavigationBarShow: Bool = false
     /// 必要数据加载完成计数
     private var requiredCount: Int = 0 {
@@ -138,7 +126,6 @@ class TeacherDetailsController: BaseViewController, UIGestureRecognizerDelegate,
         setupUserInterface()
         loadTeacherDetail()
         setupNotification()
-        loadSchoolsData()
         
         // 激活Pop手势识别
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
@@ -194,7 +181,6 @@ class TeacherDetailsController: BaseViewController, UIGestureRecognizerDelegate,
         tableView.registerClass(TeacherDetailsHighScoreCell.self, forCellReuseIdentifier: TeacherDetailsCellReuseId[2]!)
         tableView.registerClass(TeacherDetailsPhotosCell.self, forCellReuseIdentifier: TeacherDetailsCellReuseId[3]!)
         tableView.registerClass(TeacherDetailsCertificateCell.self, forCellReuseIdentifier: TeacherDetailsCellReuseId[4]!)
-        tableView.registerClass(TeacherDetailsPlaceCell.self, forCellReuseIdentifier: TeacherDetailsCellReuseId[5]!)
         
         // leftBarButtonItem
         let spacer1 = UIBarButtonItem(barButtonSystemItem: .FixedSpace, target: nil, action: nil)
@@ -236,22 +222,6 @@ class TeacherDetailsController: BaseViewController, UIGestureRecognizerDelegate,
     }
     
     private func setupNotification() {
-        NSNotificationCenter.defaultCenter().addObserverForName(
-            MalaNotification_OpenSchoolsCell,
-            object: nil,
-            queue: nil
-            ) { [weak self] (notification) -> Void in
-            // 展开 [教学环境] Cell
-                if let isOpen = notification.object as? Bool {
-                    self?.isOpenSchoolsCell = isOpen
-                    self?.tableView.reloadSections(NSIndexSet(index: 5), withRowAnimation: .Fade)
-                    if isOpen {
-                        self?.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 5), atScrollPosition: .Top, animated: true)
-                    }else {
-                        self?.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 5), atScrollPosition: .Bottom, animated: false)
-                    }
-                }
-        } 
         NSNotificationCenter.defaultCenter().addObserverForName(
             MalaNotification_PushPhotoBrowser,
             object: nil,
@@ -316,23 +286,6 @@ class TeacherDetailsController: BaseViewController, UIGestureRecognizerDelegate,
                 self?.model = model
             }
             self?.requiredCount += 1
-        })
-    }
-    
-    private func loadSchoolsData() {
-        getSchools(teacher: teacherID, failureHandler: { (reason, errorMessage) in
-            ThemeHUD.hideActivityIndicator()
-            defaultFailureHandler(reason, errorMessage: errorMessage)
-            
-            // 错误处理
-            if let errorMessage = errorMessage {
-                println("TeacherDetailsController - loadSchoolsData Error \(errorMessage)")
-            }
-        }, completion: { [weak self] (schools) in
-            if schools.count > 0 {
-                self?.schoolArray = schools
-                self?.requiredCount += 1
-            }
         })
     }
     
@@ -519,12 +472,6 @@ class TeacherDetailsController: BaseViewController, UIGestureRecognizerDelegate,
             cell.models = model.achievement_set
             return cell
             
-        case 5:
-            let cell = reuseCell as! TeacherDetailsPlaceCell
-            cell.schools = schoolArray
-            cell.isOpen = isOpenSchoolsCell
-            return cell
-            
         default:
             break
         }
@@ -553,7 +500,6 @@ class TeacherDetailsController: BaseViewController, UIGestureRecognizerDelegate,
     deinit {
         println("TeacherDetailController Deinit")
         // 移除观察者
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: MalaNotification_OpenSchoolsCell, object: nil)
         NSNotificationCenter.defaultCenter().removeObserver(self, name: MalaNotification_PushPhotoBrowser, object: nil)
     }
 }

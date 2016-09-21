@@ -19,15 +19,13 @@ class CourseChoosingViewController: BaseViewController, CourseChoosingConfirmVie
             }
             
             let operationTeacher = NSBlockOperation(block: loadTeacherDetail)
-            let operationSchool = NSBlockOperation(block: loadSchoolsData)
             let operationTimeSlots = NSBlockOperation(block: loadClassSchedule)
             let operationEvaluatedStatus = NSBlockOperation(block: loadUserEvaluatedStatus)
             
             operationTimeSlots.addDependency(operationTeacher)
-            operationTimeSlots.addDependency(operationSchool)
+            operationEvaluatedStatus.addDependency(operationTeacher)
             
             operationQueue.addOperation(operationTeacher)
-            operationQueue.addOperation(operationSchool)
             operationQueue.addOperation(operationTimeSlots)
             operationQueue.addOperation(operationEvaluatedStatus)
         }
@@ -51,11 +49,12 @@ class CourseChoosingViewController: BaseViewController, CourseChoosingConfirmVie
             self.tableView.teacherModel = teacherModel
         }
     }
-    /// 上课地点数据模型
-    var schoolArray: [SchoolModel] = [] {
+    /// 学校id（仅再次购买时存在）
+    var school: SchoolModel? {
         didSet {
-            MalaCourseChoosingObject.school = schoolArray[0]
-            self.tableView.schoolModel = schoolArray
+            // 再次购买时设置已进行测评建档
+            MalaIsHasBeenEvaluatedThisSubject = false
+            requiredCount += 1
         }
     }
     /// 课程表数据模型
@@ -64,8 +63,6 @@ class CourseChoosingViewController: BaseViewController, CourseChoosingConfirmVie
             self.tableView.classScheduleModel = classScheduleModel
         }
     }
-    /// 上课地点Cell打开标识
-    var isOpenSchoolsCell: Bool = false
     /// 是否需要重新获取上课时间表标识
     var isNeedReloadTimeSchedule: Bool = false
     /// 当前上课地点记录下标
@@ -75,8 +72,8 @@ class CourseChoosingViewController: BaseViewController, CourseChoosingConfirmVie
     /// 必要数据加载完成计数
     private var requiredCount: Int = 0 {
         didSet {
-            // [老师模型][上课地点][老师可用时间表][奖学金][是否首次购买]5个必要数据加载完成才激活界面
-            if requiredCount == 5 {
+            // [老师模型][老师可用时间表][奖学金][是否首次购买]4个必要数据加载完成才激活界面
+            if requiredCount == 4 {
                 ThemeHUD.hideActivityIndicator()
             }
         }
@@ -175,36 +172,15 @@ class CourseChoosingViewController: BaseViewController, CourseChoosingConfirmVie
                 println("CourseChoosingViewController - loadTeacherDetail Error \(errorMessage)")
             }
         }, completion: { [weak self] (model) in
-            ThemeHUD.hideActivityIndicator()
             self?.teacherModel = model
             self?.requiredCount += 1
-        })
-    }
-    
-    private func loadSchoolsData() {
-        
-        getSchools(teacher: teacherId, failureHandler: { (reason, errorMessage) in
-            ThemeHUD.hideActivityIndicator()
-            defaultFailureHandler(reason, errorMessage: errorMessage)
-            
-            // 错误处理
-            if let errorMessage = errorMessage {
-                println("CourseChoosingViewController - loadSchoolsData Error \(errorMessage)")
-            }
-        }, completion: { [weak self] (schools) in
-            if schools.count > 0 {
-                MalaCourseChoosingObject.school = schools[0]
-                self?.schoolArray = schools
-                self?.loadClassSchedule()
-                self?.requiredCount += 1
-            }
         })
     }
     
     private func loadClassSchedule() {
         
         let teacherID = teacherModel?.id ?? teacherId ?? 0
-        let schoolID = MalaCourseChoosingObject.school?.id ?? 1
+        let schoolID = MalaCurrentSchool?.id ?? 1
         
         getTeacherAvailableTimeInSchool(teacherID, schoolID: schoolID, failureHandler: { (reason, errorMessage) -> Void in
             ThemeHUD.hideActivityIndicator()
@@ -275,40 +251,6 @@ class CourseChoosingViewController: BaseViewController, CourseChoosingConfirmVie
                 }
         }
         self.observers.append(observerChoosingGrade)
-        
-        // 选择上课地点
-        let observerChoosingSchool = NSNotificationCenter.defaultCenter().addObserverForName(
-            MalaNotification_ChoosingSchool,
-            object: nil,
-            queue: nil
-            ) { [weak self] (notification) -> Void in
-                let school = notification.object as! schoolChoosingObject
-
-                self?.tableView.isOpenSchoolsCell = school.isOpenCell
-                
-                if school.isOpenCell {
-                    // 设置所有上课地点数据，设置选中样式
-                    self?.tableView.selectedIndexPath = self?.selectedSchoolIndexPath
-                    self?.tableView.schoolModel = self?.schoolArray ?? []
-                }else if school.schoolModel != nil {
-                    
-                    // 当户用选择不同的上课地点时，更新课程表视图,清空所有选课条件
-                    if school.schoolModel?.id != MalaCourseChoosingObject.school?.id {
-                        
-                        // 保存用户所选上课地点
-                        MalaCourseChoosingObject.school = school.schoolModel
-                        
-                        self?.loadClassSchedule()
-                        MalaCourseChoosingObject.refresh()
-                        (self?.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 3)) as? CourseChoosingClassPeriodCell)?.updateSetpValue()
-                    }
-                    
-                    // 设置tableView 的数据源和选中项
-                    self?.tableView.schoolModel = [school.schoolModel!]
-                    self?.selectedSchoolIndexPath = school.selectedIndexPath!
-                }
-        }
-        self.observers.append(observerChoosingSchool)
         
         // 选择上课时间
         let observerClassScheduleDidTap = NSNotificationCenter.defaultCenter().addObserverForName(
@@ -429,6 +371,7 @@ class CourseChoosingViewController: BaseViewController, CourseChoosingConfirmVie
     private func launchOrderOverViewController() {
         let viewController = OrderFormInfoViewController()
         viewController.isForConfirm = true
+        viewController.school = self.school
         self.navigationController?.pushViewController(viewController, animated: true)
     }
     
@@ -443,7 +386,11 @@ class CourseChoosingViewController: BaseViewController, CourseChoosingConfirmVie
             return
         }
         // 选择上课地点
-        guard let schoolID = MalaCourseChoosingObject.school?.id else {
+        if let schoolID = self.school?.id {
+            MalaOrderObject.school  = schoolID
+        }else if let schoolID = MalaCurrentSchool?.id {
+            MalaOrderObject.school  = schoolID
+        }else {
             ShowTost("请选择上课地点！")
             return
         }
@@ -461,7 +408,6 @@ class CourseChoosingViewController: BaseViewController, CourseChoosingConfirmVie
         
         MalaOrderObject.teacher = (teacherModel?.id) ?? 0
         MalaOrderObject.grade = gradeCourseID
-        MalaOrderObject.school  = schoolID
         MalaOrderObject.subject = MalaConfig.malaSubjectName()[(teacherModel?.subject) ?? ""] ?? 0
         MalaOrderObject.coupon = MalaCourseChoosingObject.coupon?.id ?? 0
         MalaOrderObject.hours = MalaCourseChoosingObject.classPeriod
@@ -476,6 +422,7 @@ class CourseChoosingViewController: BaseViewController, CourseChoosingConfirmVie
     
     deinit {
         println("choosing Controller deinit")
+        ThemeHUD.hideActivityIndicator()
         
         // 还原选课模型
         MalaIsHasBeenEvaluatedThisSubject = nil

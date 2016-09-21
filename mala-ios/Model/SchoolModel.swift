@@ -39,10 +39,10 @@ class SchoolModel: BaseObjectModel {
         setValuesForKeysWithDictionary(dict)
     }
     
-    convenience init(id: Int, name: String, address: String) {
+    convenience init(id: Int? = 0, name: String? = "", address: String) {
         self.init()
-        self.id = id
-        self.name = name
+        self.id = id ?? 0
+        self.name = name ?? ""
         self.address = address
     }
     

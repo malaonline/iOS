@@ -43,6 +43,8 @@ class OrderFormViewController: BaseTableViewController {
     var currentPageIndex = 1
     /// 所有老师数据总量
     var allOrderFormCount = 0
+    /// 当前选择订单的上课地点信息
+    var school: SchoolModel?
     
     
     // MARK: - Components
@@ -166,8 +168,9 @@ class OrderFormViewController: BaseTableViewController {
         ) { [weak self] (notification) -> Void in
             // 跳转到课程购买页
             let viewController = CourseChoosingViewController()
-            if let id = notification.object as? Int {
-                viewController.teacherId = id
+            if let model = notification.object as? OrderForm {
+                viewController.teacherId = model.teacher
+                viewController.school = SchoolModel(id: model.school, name: model.schoolName , address: "")
                 viewController.hidesBottomBarWhenPushed = true
                 self?.navigationController?.pushViewController(viewController, animated: true)
             }else {
@@ -272,7 +275,8 @@ class OrderFormViewController: BaseTableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let viewController = OrderFormInfoViewController()
-        viewController.id = models[indexPath.row].id
+        let model = models[indexPath.row]
+        viewController.id = model.id
         self.navigationController?.pushViewController(viewController, animated: true)
     }
     

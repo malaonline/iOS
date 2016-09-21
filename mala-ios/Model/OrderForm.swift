@@ -71,13 +71,14 @@ class OrderForm: BaseObjectModel {
         self.code = code
     }
     
-    convenience init(id: Int, orderId: String?, teacherId: Int?, teacherName: String?, avatarURL: String?, schoolName: String?, gradeName: String?, subjectName: String?, orderStatus: String?, hours: Int = 0, amount: Int, timeSlots: [[NSTimeInterval]] = [], chargeChannel: String? = "other", createAt: NSTimeInterval = 0, evaluated: Bool?, teacherPublished: Bool? = false) {
+    convenience init(id: Int, orderId: String?, teacherId: Int?, teacherName: String?, avatarURL: String?, schoolId: Int? = nil, schoolName: String?, gradeName: String?, subjectName: String?, orderStatus: String?, hours: Int = 0, amount: Int, timeSlots: [[NSTimeInterval]] = [], chargeChannel: String? = "other", createAt: NSTimeInterval = 0, evaluated: Bool?, teacherPublished: Bool? = false) {
         self.init()
         self.id = id
         self.order_id = orderId
         self.teacher = teacherId ?? -1
         self.teacherName = teacherName
         self.avatarURL = avatarURL
+        self.school = schoolId ?? 0
         self.schoolName = schoolName
         self.gradeName = gradeName
         self.subjectName = subjectName
@@ -122,7 +123,7 @@ class OrderForm: BaseObjectModel {
     
     // MARK: - Description
     override var description: String {
-        let keys = ["id", "name", "teacher", "school", "grade", "subject", "coupon", "hours", "weekly_time_slots", "order_id", "parent", "total", "price", "status"]
+        let keys = ["id", "name", "teacher", "school", "grade", "subject", "coupon", "hours", "weekly_time_slots", "order_id", "parent", "total", "price", "status", "schoolName"]
         return dictionaryWithValuesForKeys(keys).description
     }
     

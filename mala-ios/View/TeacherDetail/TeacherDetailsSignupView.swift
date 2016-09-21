@@ -67,6 +67,8 @@ class TeacherDetailsSignupView: UIView {
         button.circleColor = MalaColor_F76E6D_0
         button.lineColor = MalaColor_F76E6D_0
         button.addTarget(self, action: #selector(TeacherDetailsSignupView.likeButtonDidTap(_:)), forControlEvents: .TouchUpInside)
+        // TODO: temp disable likeButton
+        button.userInteractionEnabled = false
         return  button
     }()
     /// 报名按钮

@@ -28,6 +28,8 @@ class OrderFormInfoViewController: BaseViewController, OrderFormOperatingViewDel
     }
     /// 标识是否为确认订单状态
     var isForConfirm: Bool = false
+    /// 学校id（仅再次购买时存在）
+    var school: SchoolModel?
     
     
     // MARK: - Compontents
@@ -122,7 +124,7 @@ class OrderFormInfoViewController: BaseViewController, OrderFormOperatingViewDel
     private func loadOrderOverView() {
         
         println("订单预览")
-        ///  课时
+        //  课时
         guard MalaCourseChoosingObject.classPeriod != 0 else {
             ShowTost("订单信息有误")
             return
@@ -160,7 +162,7 @@ class OrderFormInfoViewController: BaseViewController, OrderFormOperatingViewDel
             
             MalaOrderOverView.timeSlots = timesSchedule
             MalaOrderOverView.hours = MalaCourseChoosingObject.classPeriod
-            MalaOrderOverView.schoolName = MalaCourseChoosingObject.school?.name
+            MalaOrderOverView.schoolName = (self?.school != nil) ? self?.school!.name : (MalaCurrentSchool?.name)
             MalaOrderOverView.status = "c"
             
             dispatch_async(dispatch_get_main_queue()) { [weak self] in
@@ -280,6 +282,7 @@ class OrderFormInfoViewController: BaseViewController, OrderFormOperatingViewDel
         if let id = model?.teacher  {
             viewController.teacherModel?.subject = model?.subjectName
             viewController.teacherId = id
+            viewController.school = SchoolModel(id: model?.school, name: model?.schoolName , address: "")
             viewController.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(viewController, animated: true)
         }else {
