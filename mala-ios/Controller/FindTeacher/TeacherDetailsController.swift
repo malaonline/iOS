@@ -60,7 +60,6 @@ class TeacherDetailsController: BaseViewController, UIGestureRecognizerDelegate,
             signupView.isFavorite = isFavorite
         }
     }
-    var isOpenSchoolsCell: Bool = false
     var isNavigationBarShow: Bool = false
     /// 必要数据加载完成计数
     private var requiredCount: Int = 0 {
@@ -223,22 +222,6 @@ class TeacherDetailsController: BaseViewController, UIGestureRecognizerDelegate,
     }
     
     private func setupNotification() {
-        NSNotificationCenter.defaultCenter().addObserverForName(
-            MalaNotification_OpenSchoolsCell,
-            object: nil,
-            queue: nil
-            ) { [weak self] (notification) -> Void in
-            // 展开 [教学环境] Cell
-                if let isOpen = notification.object as? Bool {
-                    self?.isOpenSchoolsCell = isOpen
-                    self?.tableView.reloadSections(NSIndexSet(index: 5), withRowAnimation: .Fade)
-                    if isOpen {
-                        self?.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 5), atScrollPosition: .Top, animated: true)
-                    }else {
-                        self?.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 5), atScrollPosition: .Bottom, animated: false)
-                    }
-                }
-        } 
         NSNotificationCenter.defaultCenter().addObserverForName(
             MalaNotification_PushPhotoBrowser,
             object: nil,
@@ -517,7 +500,6 @@ class TeacherDetailsController: BaseViewController, UIGestureRecognizerDelegate,
     deinit {
         println("TeacherDetailController Deinit")
         // 移除观察者
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: MalaNotification_OpenSchoolsCell, object: nil)
         NSNotificationCenter.defaultCenter().removeObserver(self, name: MalaNotification_PushPhotoBrowser, object: nil)
     }
 }

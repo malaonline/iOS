@@ -160,7 +160,7 @@ class OrderFormInfoViewController: BaseViewController, OrderFormOperatingViewDel
             
             MalaOrderOverView.timeSlots = timesSchedule
             MalaOrderOverView.hours = MalaCourseChoosingObject.classPeriod
-            MalaOrderOverView.schoolName = MalaCourseChoosingObject.school?.name
+            MalaOrderOverView.schoolName = MalaCurrentSchool?.name
             MalaOrderOverView.status = "c"
             
             dispatch_async(dispatch_get_main_queue()) { [weak self] in

@@ -143,7 +143,6 @@
 		35FDCEC51CAD0A2300A25FE8 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F460652C1C97B1C8004056B1 /* AboutViewController.swift */; };
 		35FDCEC61CAD0A2300A25FE8 /* KMSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = F4402DA21C5768F600E7D3DB /* KMSwizzle.m */; };
 		35FDCEC71CAD0A2300A25FE8 /* TeacherDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 307AB89C1C33CDD200D8397F /* TeacherDetailModel.swift */; };
-		35FDCEC81CAD0A2300A25FE8 /* CourseChoosingPlaceTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4402D5C1C54A5CC00E7D3DB /* CourseChoosingPlaceTableView.swift */; };
 		35FDCEC91CAD0A2300A25FE8 /* SchoolModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303BCFF01C44A86200B37DD9 /* SchoolModel.swift */; };
 		35FDCECA1CAD0A2300A25FE8 /* CourseChoosingTimeScheduleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45871F81C51E0270048D93F /* CourseChoosingTimeScheduleCell.swift */; };
 		35FDCECB1CAD0A2300A25FE8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304135821C23AE6400830C43 /* AppDelegate.swift */; };
@@ -156,7 +155,6 @@
 		35FDCED51CAD0A2300A25FE8 /* MemberServiceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B5980D1C451A8900169390 /* MemberServiceModel.swift */; };
 		35FDCED61CAD0A2300A25FE8 /* MalaNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40B53AD1C7EDA7500C20037 /* MalaNetworking.swift */; };
 		35FDCED71CAD0A2300A25FE8 /* Avatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46065051C96D363004056B1 /* Avatar.swift */; };
-		35FDCED81CAD0A2300A25FE8 /* CourseChoosingPlaceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45871EF1C51DFD00048D93F /* CourseChoosingPlaceCell.swift */; };
 		35FDCED91CAD0A2300A25FE8 /* PaymentBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F404D47E1C8436A700C19C44 /* PaymentBottomView.swift */; };
 		35FDCEDA1CAD0A2300A25FE8 /* MalaAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47C2ABC1C85785A0051A880 /* MalaAlert.swift */; };
 		35FDCEDB1CAD0A2300A25FE8 /* SubjectFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30445B1B1C4A3B3D002CD290 /* SubjectFilterView.swift */; };
@@ -342,7 +340,6 @@
 		35FF7ACF1CF8325A000A70EE /* ProfileViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F455EB2F1C91981B00BAEC78 /* ProfileViewCell.swift */; };
 		35FF7AD01CF8325A000A70EE /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F460652C1C97B1C8004056B1 /* AboutViewController.swift */; };
 		35FF7AD11CF8325A000A70EE /* TeacherDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 307AB89C1C33CDD200D8397F /* TeacherDetailModel.swift */; };
-		35FF7AD21CF8325A000A70EE /* CourseChoosingPlaceTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4402D5C1C54A5CC00E7D3DB /* CourseChoosingPlaceTableView.swift */; };
 		35FF7AD31CF8325A000A70EE /* SchoolModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303BCFF01C44A86200B37DD9 /* SchoolModel.swift */; };
 		35FF7AD41CF8325A000A70EE /* CourseChoosingTimeScheduleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45871F81C51E0270048D93F /* CourseChoosingTimeScheduleCell.swift */; };
 		35FF7AD51CF8325A000A70EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304135821C23AE6400830C43 /* AppDelegate.swift */; };
@@ -362,7 +359,6 @@
 		35FF7AE61CF8325A000A70EE /* MalaNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40B53AD1C7EDA7500C20037 /* MalaNetworking.swift */; };
 		35FF7AE71CF8325A000A70EE /* Extension+UIDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E106251CC0D390001AD4AF /* Extension+UIDevice.swift */; };
 		35FF7AE81CF8325A000A70EE /* Avatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46065051C96D363004056B1 /* Avatar.swift */; };
-		35FF7AE91CF8325A000A70EE /* CourseChoosingPlaceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45871EF1C51DFD00048D93F /* CourseChoosingPlaceCell.swift */; };
 		35FF7AEA1CF8325A000A70EE /* PaymentBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F404D47E1C8436A700C19C44 /* PaymentBottomView.swift */; };
 		35FF7AEB1CF8325A000A70EE /* MalaAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47C2ABC1C85785A0051A880 /* MalaAlert.swift */; };
 		35FF7AEC1CF8325A000A70EE /* SubjectFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30445B1B1C4A3B3D002CD290 /* SubjectFilterView.swift */; };
@@ -536,7 +532,6 @@
 		35FF7BB21CF83264000A70EE /* ProfileViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F455EB2F1C91981B00BAEC78 /* ProfileViewCell.swift */; };
 		35FF7BB31CF83264000A70EE /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F460652C1C97B1C8004056B1 /* AboutViewController.swift */; };
 		35FF7BB41CF83264000A70EE /* TeacherDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 307AB89C1C33CDD200D8397F /* TeacherDetailModel.swift */; };
-		35FF7BB51CF83264000A70EE /* CourseChoosingPlaceTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4402D5C1C54A5CC00E7D3DB /* CourseChoosingPlaceTableView.swift */; };
 		35FF7BB61CF83264000A70EE /* SchoolModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303BCFF01C44A86200B37DD9 /* SchoolModel.swift */; };
 		35FF7BB71CF83264000A70EE /* CourseChoosingTimeScheduleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45871F81C51E0270048D93F /* CourseChoosingTimeScheduleCell.swift */; };
 		35FF7BB81CF83264000A70EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304135821C23AE6400830C43 /* AppDelegate.swift */; };
@@ -556,7 +551,6 @@
 		35FF7BC91CF83264000A70EE /* MalaNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40B53AD1C7EDA7500C20037 /* MalaNetworking.swift */; };
 		35FF7BCA1CF83264000A70EE /* Extension+UIDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E106251CC0D390001AD4AF /* Extension+UIDevice.swift */; };
 		35FF7BCB1CF83264000A70EE /* Avatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46065051C96D363004056B1 /* Avatar.swift */; };
-		35FF7BCC1CF83264000A70EE /* CourseChoosingPlaceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45871EF1C51DFD00048D93F /* CourseChoosingPlaceCell.swift */; };
 		35FF7BCD1CF83264000A70EE /* PaymentBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F404D47E1C8436A700C19C44 /* PaymentBottomView.swift */; };
 		35FF7BCE1CF83264000A70EE /* MalaAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47C2ABC1C85785A0051A880 /* MalaAlert.swift */; };
 		35FF7BCF1CF83264000A70EE /* SubjectFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30445B1B1C4A3B3D002CD290 /* SubjectFilterView.swift */; };
@@ -708,7 +702,6 @@
 		F43F44C91D0CFD2800B7A358 /* CommentViewWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43F44C81D0CFD2800B7A358 /* CommentViewWindow.swift */; };
 		F43F44CA1D0CFD2800B7A358 /* CommentViewWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43F44C81D0CFD2800B7A358 /* CommentViewWindow.swift */; };
 		F43F44CB1D0CFD2800B7A358 /* CommentViewWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43F44C81D0CFD2800B7A358 /* CommentViewWindow.swift */; };
-		F4402D5D1C54A5CC00E7D3DB /* CourseChoosingPlaceTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4402D5C1C54A5CC00E7D3DB /* CourseChoosingPlaceTableView.swift */; };
 		F4402D851C5729A200E7D3DB /* ClassScheduleDayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4402D841C5729A200E7D3DB /* ClassScheduleDayModel.swift */; };
 		F4402DAE1C58A64200E7D3DB /* KWStepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4402DAD1C58A64200E7D3DB /* KWStepper.swift */; };
 		F4402DFE1C5A0DE200E7D3DB /* Extension+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4402DFD1C5A0DE200E7D3DB /* Extension+String.swift */; };
@@ -723,7 +716,6 @@
 		F455EB301C91981B00BAEC78 /* ProfileViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F455EB2F1C91981B00BAEC78 /* ProfileViewCell.swift */; };
 		F45871EB1C51D7910048D93F /* CourseChoosingTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45871E91C51D7910048D93F /* CourseChoosingTableView.swift */; };
 		F45871EE1C51DFB60048D93F /* CourseChoosingGradeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45871EC1C51DFB60048D93F /* CourseChoosingGradeCell.swift */; };
-		F45871F11C51DFD00048D93F /* CourseChoosingPlaceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45871EF1C51DFD00048D93F /* CourseChoosingPlaceCell.swift */; };
 		F45871F41C51DFE70048D93F /* CourseChoosingClassScheduleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45871F21C51DFE70048D93F /* CourseChoosingClassScheduleCell.swift */; };
 		F45871F71C51DFFF0048D93F /* CourseChoosingClassPeriodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45871F51C51DFFF0048D93F /* CourseChoosingClassPeriodCell.swift */; };
 		F45871FA1C51E0270048D93F /* CourseChoosingTimeScheduleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45871F81C51E0270048D93F /* CourseChoosingTimeScheduleCell.swift */; };
@@ -1033,7 +1025,6 @@
 		F43F44C01D06B14A00B7A358 /* CommentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentViewController.swift; sourceTree = "<group>"; };
 		F43F44C41D06B66800B7A358 /* CommentViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentViewCell.swift; sourceTree = "<group>"; };
 		F43F44C81D0CFD2800B7A358 /* CommentViewWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentViewWindow.swift; sourceTree = "<group>"; };
-		F4402D5C1C54A5CC00E7D3DB /* CourseChoosingPlaceTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseChoosingPlaceTableView.swift; sourceTree = "<group>"; };
 		F4402D841C5729A200E7D3DB /* ClassScheduleDayModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassScheduleDayModel.swift; sourceTree = "<group>"; };
 		F4402DA11C5768F600E7D3DB /* KMSwizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMSwizzle.h; sourceTree = "<group>"; };
 		F4402DA21C5768F600E7D3DB /* KMSwizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMSwizzle.m; sourceTree = "<group>"; };
@@ -1064,7 +1055,6 @@
 		F455EB2F1C91981B00BAEC78 /* ProfileViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewCell.swift; sourceTree = "<group>"; };
 		F45871E91C51D7910048D93F /* CourseChoosingTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseChoosingTableView.swift; sourceTree = "<group>"; };
 		F45871EC1C51DFB60048D93F /* CourseChoosingGradeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseChoosingGradeCell.swift; sourceTree = "<group>"; };
-		F45871EF1C51DFD00048D93F /* CourseChoosingPlaceCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseChoosingPlaceCell.swift; sourceTree = "<group>"; };
 		F45871F21C51DFE70048D93F /* CourseChoosingClassScheduleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseChoosingClassScheduleCell.swift; sourceTree = "<group>"; };
 		F45871F51C51DFFF0048D93F /* CourseChoosingClassPeriodCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseChoosingClassPeriodCell.swift; sourceTree = "<group>"; };
 		F45871F81C51E0270048D93F /* CourseChoosingTimeScheduleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseChoosingTimeScheduleCell.swift; sourceTree = "<group>"; };
@@ -1749,13 +1739,11 @@
 			children = (
 				F45871E91C51D7910048D93F /* CourseChoosingTableView.swift */,
 				F45871EC1C51DFB60048D93F /* CourseChoosingGradeCell.swift */,
-				F45871EF1C51DFD00048D93F /* CourseChoosingPlaceCell.swift */,
 				F45871F21C51DFE70048D93F /* CourseChoosingClassScheduleCell.swift */,
 				F45871F51C51DFFF0048D93F /* CourseChoosingClassPeriodCell.swift */,
 				F45871F81C51E0270048D93F /* CourseChoosingTimeScheduleCell.swift */,
 				F45871FB1C51E0380048D93F /* CourseChoosingOtherServiceCell.swift */,
 				F45871FE1C51E0C40048D93F /* CourseChoosingConfirmView.swift */,
-				F4402D5C1C54A5CC00E7D3DB /* CourseChoosingPlaceTableView.swift */,
 				F4C5C2361C757EF600FB833B /* CourseChoosingServiceTableView.swift */,
 			);
 			path = CourseChoosingView;
@@ -2639,7 +2627,6 @@
 				F4ADCFE41D0FC3CD004D517A /* CourseTableViewController.swift in Sources */,
 				F41CE64F1D86826C00B57F69 /* SchoolTableViewController.swift in Sources */,
 				F4F29B061D10FF92000D1904 /* SingleCourseView.swift in Sources */,
-				F4402D5D1C54A5CC00E7D3DB /* CourseChoosingPlaceTableView.swift in Sources */,
 				303BCFF21C44A86200B37DD9 /* SchoolModel.swift in Sources */,
 				F45871FA1C51E0270048D93F /* CourseChoosingTimeScheduleCell.swift in Sources */,
 				304135A51C23AE6400830C43 /* AppDelegate.swift in Sources */,
@@ -2661,7 +2648,6 @@
 				F40B53AE1C7EDA7500C20037 /* MalaNetworking.swift in Sources */,
 				F4E106261CC0D390001AD4AF /* Extension+UIDevice.swift in Sources */,
 				F46065091C96D363004056B1 /* Avatar.swift in Sources */,
-				F45871F11C51DFD00048D93F /* CourseChoosingPlaceCell.swift in Sources */,
 				F44DC7C21D59C6D400E5979B /* DOFavoriteButton.swift in Sources */,
 				F43C98971D6C2FAE0013799E /* ThemeShareCollectionView.swift in Sources */,
 				F404D47F1C8436A700C19C44 /* PaymentBottomView.swift in Sources */,
@@ -2858,7 +2844,6 @@
 				F4ADCFE51D0FC3CD004D517A /* CourseTableViewController.swift in Sources */,
 				F41CE6501D86826C00B57F69 /* SchoolTableViewController.swift in Sources */,
 				F4F29B071D10FF92000D1904 /* SingleCourseView.swift in Sources */,
-				35FF7AD21CF8325A000A70EE /* CourseChoosingPlaceTableView.swift in Sources */,
 				35FF7AD31CF8325A000A70EE /* SchoolModel.swift in Sources */,
 				35FF7AD41CF8325A000A70EE /* CourseChoosingTimeScheduleCell.swift in Sources */,
 				35FF7AD51CF8325A000A70EE /* AppDelegate.swift in Sources */,
@@ -2880,7 +2865,6 @@
 				35FF7AE61CF8325A000A70EE /* MalaNetworking.swift in Sources */,
 				35FF7AE71CF8325A000A70EE /* Extension+UIDevice.swift in Sources */,
 				35FF7AE81CF8325A000A70EE /* Avatar.swift in Sources */,
-				35FF7AE91CF8325A000A70EE /* CourseChoosingPlaceCell.swift in Sources */,
 				F44DC7C31D59C6D400E5979B /* DOFavoriteButton.swift in Sources */,
 				F43C98981D6C2FAE0013799E /* ThemeShareCollectionView.swift in Sources */,
 				35FF7AEA1CF8325A000A70EE /* PaymentBottomView.swift in Sources */,
@@ -3077,7 +3061,6 @@
 				F4ADCFE61D0FC3CD004D517A /* CourseTableViewController.swift in Sources */,
 				F41CE6511D86826C00B57F69 /* SchoolTableViewController.swift in Sources */,
 				F4F29B081D10FF92000D1904 /* SingleCourseView.swift in Sources */,
-				35FF7BB51CF83264000A70EE /* CourseChoosingPlaceTableView.swift in Sources */,
 				35FF7BB61CF83264000A70EE /* SchoolModel.swift in Sources */,
 				35FF7BB71CF83264000A70EE /* CourseChoosingTimeScheduleCell.swift in Sources */,
 				35FF7BB81CF83264000A70EE /* AppDelegate.swift in Sources */,
@@ -3099,7 +3082,6 @@
 				35FF7BC91CF83264000A70EE /* MalaNetworking.swift in Sources */,
 				35FF7BCA1CF83264000A70EE /* Extension+UIDevice.swift in Sources */,
 				35FF7BCB1CF83264000A70EE /* Avatar.swift in Sources */,
-				35FF7BCC1CF83264000A70EE /* CourseChoosingPlaceCell.swift in Sources */,
 				F44DC7C41D59C6D400E5979B /* DOFavoriteButton.swift in Sources */,
 				F43C98991D6C2FAE0013799E /* ThemeShareCollectionView.swift in Sources */,
 				35FF7BCD1CF83264000A70EE /* PaymentBottomView.swift in Sources */,
@@ -3256,7 +3238,6 @@
 				35FDCEC51CAD0A2300A25FE8 /* AboutViewController.swift in Sources */,
 				35FDCEC61CAD0A2300A25FE8 /* KMSwizzle.m in Sources */,
 				35FDCEC71CAD0A2300A25FE8 /* TeacherDetailModel.swift in Sources */,
-				35FDCEC81CAD0A2300A25FE8 /* CourseChoosingPlaceTableView.swift in Sources */,
 				35FDCEC91CAD0A2300A25FE8 /* SchoolModel.swift in Sources */,
 				35FDCECA1CAD0A2300A25FE8 /* CourseChoosingTimeScheduleCell.swift in Sources */,
 				35FDCECB1CAD0A2300A25FE8 /* AppDelegate.swift in Sources */,
@@ -3269,7 +3250,6 @@
 				35FDCED51CAD0A2300A25FE8 /* MemberServiceModel.swift in Sources */,
 				35FDCED61CAD0A2300A25FE8 /* MalaNetworking.swift in Sources */,
 				35FDCED71CAD0A2300A25FE8 /* Avatar.swift in Sources */,
-				35FDCED81CAD0A2300A25FE8 /* CourseChoosingPlaceCell.swift in Sources */,
 				35FDCED91CAD0A2300A25FE8 /* PaymentBottomView.swift in Sources */,
 				35FDCEDA1CAD0A2300A25FE8 /* MalaAlert.swift in Sources */,
 				35FDCEDB1CAD0A2300A25FE8 /* SubjectFilterView.swift in Sources */,

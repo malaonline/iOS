@@ -10,20 +10,18 @@ import UIKit
 
 let CourseChoosingCellReuseId = [
     0: "CourseChoosingGradeCellReuseId",            // 选择授课年级
-    1: "CourseChoosingPlaceCellReuseId",            // 选择上课地点
-    2: "CourseChoosingClassScheduleCellReuseId",    // 选择上课时间（课程表）
-    3: "CourseChoosingClassPeriodCellReuseId",      // 选择课时
-    4: "CourseChoosingTimeScheduleCellReuseId",     // 上课时间表
-    5: "CourseChoosingOtherServiceCellReuseId"      // 其他服务
+    1: "CourseChoosingClassScheduleCellReuseId",    // 选择上课时间（课程表）
+    2: "CourseChoosingClassPeriodCellReuseId",      // 选择课时
+    3: "CourseChoosingTimeScheduleCellReuseId",     // 上课时间表
+    4: "CourseChoosingOtherServiceCellReuseId"      // 其他服务
 ]
 
 let CourseChoosingCellTitle = [
     1: "选择授课年级",
-    2: "选择上课地点",
-    3: "选择上课时间",
-    4: "选择小时",
-    5: "上课时间",
-    6: "",
+    2: "选择上课时间",
+    3: "选择小时",
+    4: "上课时间",
+    5: "",
 ]
 
 
@@ -38,31 +36,12 @@ class CourseChoosingTableView: UITableView, UITableViewDelegate, UITableViewData
                 })
         }
     }
-    /// 上课地点数据模型
-    var schoolModel: [SchoolModel] = [] {
-        didSet {
-            // 刷新 [选择上课地点] Cell
-            dispatch_async(dispatch_get_main_queue(), { [weak self] () -> Void in
-                self?.reloadSections(NSIndexSet(index: 1), withRowAnimation: .Fade)
-            })
-        }
-    }
-    /// 上课地点Cell展开标识
-    var isOpenSchoolsCell: Bool = false {
-        didSet {
-            if isOpenSchoolsCell != oldValue {
-                dispatch_async(dispatch_get_main_queue(), { [weak self] () -> Void in
-                    self?.reloadSections(NSIndexSet(index: 1), withRowAnimation: .Fade)
-                })
-            }
-        }
-    }
-    /// 上课地点Cell展开标识
+    /// 上课时间Cell展开标识
     var isOpenTimeScheduleCell: Bool = true {
         didSet {
             if isOpenTimeScheduleCell != oldValue {
                 dispatch_async(dispatch_get_main_queue(), { [weak self] () -> Void in
-                    self?.reloadSections(NSIndexSet(index: 4), withRowAnimation: .Fade)
+                    self?.reloadSections(NSIndexSet(index: 3), withRowAnimation: .Fade)
                 })
             }
         }
@@ -72,7 +51,7 @@ class CourseChoosingTableView: UITableView, UITableViewDelegate, UITableViewData
         didSet {
             // 刷新 [选择上课地点][选择小时][上课时间] Cell
             dispatch_async(dispatch_get_main_queue(), { [weak self] () -> Void in
-                self?.reloadSections(NSIndexSet(index: 2), withRowAnimation: .Fade)
+                self?.reloadSections(NSIndexSet(index: 1), withRowAnimation: .Fade)
             })
 
         }
@@ -82,7 +61,7 @@ class CourseChoosingTableView: UITableView, UITableViewDelegate, UITableViewData
         didSet {
             // 刷新 [上课时间] Cell
             dispatch_async(dispatch_get_main_queue(), { [weak self] () -> Void in
-                self?.reloadSections(NSIndexSet(index: 4), withRowAnimation: .Fade)
+                self?.reloadSections(NSIndexSet(index: 3), withRowAnimation: .Fade)
             })
 
         }
@@ -112,11 +91,10 @@ class CourseChoosingTableView: UITableView, UITableViewDelegate, UITableViewData
          
         
         registerClass(CourseChoosingGradeCell.self, forCellReuseIdentifier: CourseChoosingCellReuseId[0]!)
-        registerClass(CourseChoosingPlaceCell.self, forCellReuseIdentifier: CourseChoosingCellReuseId[1]!)
-        registerClass(CourseChoosingClassScheduleCell.self, forCellReuseIdentifier: CourseChoosingCellReuseId[2]!)
-        registerClass(CourseChoosingClassPeriodCell.self, forCellReuseIdentifier: CourseChoosingCellReuseId[3]!)
-        registerClass(CourseChoosingTimeScheduleCell.self, forCellReuseIdentifier: CourseChoosingCellReuseId[4]!)
-        registerClass(CourseChoosingOtherServiceCell.self, forCellReuseIdentifier: CourseChoosingCellReuseId[5]!)
+        registerClass(CourseChoosingClassScheduleCell.self, forCellReuseIdentifier: CourseChoosingCellReuseId[1]!)
+        registerClass(CourseChoosingClassPeriodCell.self, forCellReuseIdentifier: CourseChoosingCellReuseId[2]!)
+        registerClass(CourseChoosingTimeScheduleCell.self, forCellReuseIdentifier: CourseChoosingCellReuseId[3]!)
+        registerClass(CourseChoosingOtherServiceCell.self, forCellReuseIdentifier: CourseChoosingCellReuseId[4]!)
     }
     
     // MARK: - Delegate
@@ -154,31 +132,23 @@ class CourseChoosingTableView: UITableView, UITableViewDelegate, UITableViewData
             return cell
             
         case 1:
-            let cell = reuseCell as! CourseChoosingPlaceCell
-            cell.schools = schoolModel
-            cell.isOpen = self.isOpenSchoolsCell
-            cell.selectedIndexPath = self.selectedIndexPath
-            cell.tableViewReloadData()
-            return cell
-            
-        case 2:
             let cell = reuseCell as! CourseChoosingClassScheduleCell
             cell.classScheduleModel = self.classScheduleModel
             return cell
             
-        case 3:
+        case 2:
             let cell = reuseCell as! CourseChoosingClassPeriodCell
             // 更新已选择课时数
             cell.updateSetpValue()
             return cell
             
-        case 4:
+        case 3:
             let cell = reuseCell as! CourseChoosingTimeScheduleCell
             cell.isOpen = self.isOpenTimeScheduleCell
             cell.timeSchedules = self.timeScheduleResult
             return cell
             
-        case 5:
+        case 4:
             let cell = reuseCell as! CourseChoosingOtherServiceCell
             cell.price = MalaCourseChoosingObject.getPrice() ?? 0
             return cell
