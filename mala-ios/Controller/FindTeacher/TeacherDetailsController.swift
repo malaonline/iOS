@@ -21,7 +21,7 @@ private let TeacherDetailsCellTitle = [
     2: "风格标签",
     3: "提分榜",
     4: "个人相册",
-    5: "特殊成就",
+    5: "特殊成就"
 ]
 
 class TeacherDetailsController: BaseViewController, UIGestureRecognizerDelegate, UITableViewDelegate, UITableViewDataSource, SignupButtonDelegate {
@@ -58,15 +58,6 @@ class TeacherDetailsController: BaseViewController, UIGestureRecognizerDelegate,
     var isFavorite: Bool = false {
         didSet {
             signupView.isFavorite = isFavorite
-        }
-    }
-    /// 学校数据模型
-    var schoolArray: [SchoolModel] = [SchoolModel(id: 0, name: "线下体验店", address: "----")] {
-        didSet {
-            // 刷新 [教学环境] Cell
-            dispatch_async(dispatch_get_main_queue(), { [weak self] () -> Void in
-                self?.tableView.reloadSections(NSIndexSet(index: 5), withRowAnimation: .None)
-            })
         }
     }
     var isOpenSchoolsCell: Bool = false
@@ -136,7 +127,6 @@ class TeacherDetailsController: BaseViewController, UIGestureRecognizerDelegate,
         setupUserInterface()
         loadTeacherDetail()
         setupNotification()
-        loadSchoolsData()
         
         // 激活Pop手势识别
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
@@ -313,23 +303,6 @@ class TeacherDetailsController: BaseViewController, UIGestureRecognizerDelegate,
                 self?.model = model
             }
             self?.requiredCount += 1
-        })
-    }
-    
-    private func loadSchoolsData() {
-        getSchools(teacher: teacherID, failureHandler: { (reason, errorMessage) in
-            ThemeHUD.hideActivityIndicator()
-            defaultFailureHandler(reason, errorMessage: errorMessage)
-            
-            // 错误处理
-            if let errorMessage = errorMessage {
-                println("TeacherDetailsController - loadSchoolsData Error \(errorMessage)")
-            }
-        }, completion: { [weak self] (schools) in
-            if schools.count > 0 {
-                self?.schoolArray = schools
-                self?.requiredCount += 1
-            }
         })
     }
     
