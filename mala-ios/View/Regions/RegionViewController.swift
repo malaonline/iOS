@@ -47,9 +47,17 @@ class RegionViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }()
     private lazy var cityLabel: UILabel = {
         let label = UILabel(
-            text: "",
-            fontSize: 14,
+            text: "当前城市",
+            fontSize: 15,
             textColor: MalaColor_333333_0
+        )
+        return label
+    }()
+    private lazy var currentCityLabel: UILabel = {
+        let label = UILabel(
+            text: "",
+            fontSize: 15,
+            textColor: MalaColor_71B3E3_0
         )
         return label
     }()
@@ -58,6 +66,18 @@ class RegionViewController: UIViewController, UITableViewDelegate, UITableViewDa
         return imageView
     }()
     /// 校区列表
+    private lazy var tableHeaderView: UIView = {
+        let view = UIView()
+        return view
+    }()
+    private lazy var tableHeaderString: UILabel = {
+        let label = UILabel(
+            text: "点击切换校区",
+            fontSize: 13,
+            textColor: MalaColor_6C6C6C_0
+        )
+        return label
+    }()
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: CGRectZero, style: .Grouped)
         return tableView
@@ -112,7 +132,10 @@ class RegionViewController: UIViewController, UITableViewDelegate, UITableViewDa
         // SubViews
         view.addSubview(cityView)
         cityView.addSubview(cityLabel)
+        cityView.addSubview(currentCityLabel)
         cityView.addSubview(cityArrow)
+        view.addSubview(tableHeaderView)
+        tableHeaderView.addSubview(tableHeaderString)
         view.addSubview(tableView)
         
         // AutoLayout
@@ -124,8 +147,13 @@ class RegionViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
         cityLabel.snp_makeConstraints { (make) in
             make.centerY.equalTo(cityView)
-            make.height.equalTo(14)
+            make.height.equalTo(15)
             make.left.equalTo(cityView).offset(12)
+        }
+        currentCityLabel.snp_makeConstraints { (make) in
+            make.centerY.equalTo(cityView)
+            make.right.equalTo(cityArrow.snp_left).offset(-10)
+            make.height.equalTo(15)
         }
         cityArrow.snp_makeConstraints { (make) in
             make.height.equalTo(13)
@@ -133,18 +161,30 @@ class RegionViewController: UIViewController, UITableViewDelegate, UITableViewDa
             make.right.equalTo(cityView).offset(-12)
             make.centerY.equalTo(cityView)
         }
-        tableView.snp_makeConstraints { (make) in
+        tableHeaderView.snp_makeConstraints { (make) in
             make.top.equalTo(cityView.snp_bottom)
-            make.bottom.equalTo(view.snp_bottom)
-            make.left.equalTo(view.snp_left)
-            make.right.equalTo(view.snp_right)
+            make.bottom.equalTo(tableView.snp_top)
+            make.height.equalTo(33)
+            make.left.equalTo(view)
+            make.right.equalTo(view)
+        }
+        tableHeaderString.snp_makeConstraints { (make) in
+            make.centerY.equalTo(tableHeaderView)
+            make.left.equalTo(tableHeaderView).offset(12)
+            make.height.equalTo(13)
+        }
+        tableView.snp_makeConstraints { (make) in
+            make.top.equalTo(tableHeaderString.snp_bottom)
+            make.bottom.equalTo(view)
+            make.left.equalTo(view)
+            make.right.equalTo(view)
         }
     }
     
     // 获取学校列表
     private func loadSchoolList() {
         
-        cityLabel.text = MalaCurrentCity?.name ?? "未选择"
+        currentCityLabel.text = MalaCurrentCity?.name ?? "未选择"
         
         guard let city = MalaCurrentCity else {
             ShowTost("地区选择有误，请重试")
@@ -168,7 +208,7 @@ class RegionViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     // MARK: - Delegate
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 10
+        return 0.01
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
