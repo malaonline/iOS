@@ -16,9 +16,6 @@
 
 // ShareSDK 头文件
 #import <ShareSDK/ShareSDK.h>
-#import <ShareSDKUI/ShareSDK+SSUI.h>
 #import <ShareSDKConnector/ShareSDKConnector.h>
-#import <ShareSDKUI/SSUIShareActionSheetStyle.h>
-#import <ShareSDKUI/SSUIEditorViewStyle.h>
 //微信SDK头文件
 #import "WXApi.h"

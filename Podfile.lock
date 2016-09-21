@@ -1,8 +1,8 @@
 PODS:
-  - Alamofire (3.3.1)
-  - Charts (2.2.5):
-    - Charts/Core (= 2.2.5)
-  - Charts/Core (2.2.5)
+  - Alamofire (3.5.0)
+  - Charts (2.3.0):
+    - Charts/Core (= 2.3.0)
+  - Charts/Core (2.3.0)
   - DateTools (1.7.0)
   - FirebaseAnalytics (3.3.1):
     - FirebaseInstanceID (~> 1.0)
@@ -22,7 +22,7 @@ PODS:
   - GoogleUtilities (1.3.1):
     - GoogleSymbolUtilities (~> 1.0)
   - IQKeyboardManagerSwift (4.0.5)
-  - Kingfisher (2.2.2)
+  - Kingfisher (2.5.1)
   - MOBFoundation (2.0.11)
   - Pingpp/Alipay (2.2.8):
     - Pingpp/Core
@@ -35,12 +35,11 @@ PODS:
     - ShareSDK3/ShareSDK (= 3.4.1)
   - ShareSDK3/ShareSDK (3.4.1)
   - ShareSDK3/ShareSDKPlatforms/WeChat (3.4.1)
-  - ShareSDK3/ShareSDKUI (3.4.1)
   - SnapKit (0.22.0)
 
 DEPENDENCIES:
   - Alamofire
-  - Charts
+  - Charts (from `https://github.com/danielgindi/Charts.git`, branch `Chart2.2.5-Swift2.3`)
   - DateTools
   - Google/Analytics
   - IQKeyboardManagerSwift
@@ -50,12 +49,21 @@ DEPENDENCIES:
   - Pingpp/Wx
   - ShareSDK3
   - ShareSDK3/ShareSDKPlatforms/WeChat
-  - ShareSDK3/ShareSDKUI
-  - SnapKit
+  - SnapKit (~> 0.22.0)
+
+EXTERNAL SOURCES:
+  Charts:
+    :branch: Chart2.2.5-Swift2.3
+    :git: https://github.com/danielgindi/Charts.git
+
+CHECKOUT OPTIONS:
+  Charts:
+    :commit: 2813ef5f18e38a1a0d26446d5be9d03658e6f3eb
+    :git: https://github.com/danielgindi/Charts.git
 
 SPEC CHECKSUMS:
-  Alamofire: 369bc67b6f5ac33ded3648d7bd21c5bfb91c2ecc
-  Charts: b48fcc8d7190de910ff9e9748f5360c8ea7856e5
+  Alamofire: b70a7352335f8ea5babd0a923eb7e8eacc67b877
+  Charts: 63361a73e42a6bc67abe71a2a7a1aba7acba8d71
   DateTools: 53288ee8b905fdc75897a1e6b5cc0144b14cba60
   FirebaseAnalytics: d968d4d5f6aeb795cd64144337bcd233e530efc6
   FirebaseInstanceID: ba1e640935235e5fac39dfa816fe7660e72e1a8a
@@ -65,12 +73,12 @@ SPEC CHECKSUMS:
   GoogleSymbolUtilities: 33117db1b5f290c6fbf259585e4885b4c84b98d7
   GoogleUtilities: 56c5ac05b7aa5dc417a1bb85221a9516e04d7032
   IQKeyboardManagerSwift: 41fd3a45a2cdb2a0e031af697708a95b865068a1
-  Kingfisher: 7e8de5b0cf7b5dc8ec559d193029a0859df93ef1
+  Kingfisher: 9b82e0e1f1a296f149a50bbc2214532eaa4df4f1
   MOBFoundation: e213065e65eebd8146ab29d10a8445dc8f385091
   Pingpp: b5ad287bd6969d69cff1f2438ea63147976711c9
   ShareSDK3: e7bcdfeb95338f89efd6fff82b4793d2bfee76f8
   SnapKit: 0dd2fd157330f1ea11fd84da13e6be8a7a22bae0
 
-PODFILE CHECKSUM: 3187b29680259da392a921318b77552bde86b684
+PODFILE CHECKSUM: c7bd2b45d26e77fca0b028f6d05119915d968786
 
 COCOAPODS: 1.0.0

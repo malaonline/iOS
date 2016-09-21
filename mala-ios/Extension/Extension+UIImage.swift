@@ -19,12 +19,11 @@ extension UIImage {
         
         let rect = bounds
         UIGraphicsBeginImageContext(rect.size)
-        let context = UIGraphicsGetCurrentContext()
-        
+        let context = UIGraphicsGetCurrentContext()!
         CGContextSetFillColorWithColor(context, color.CGColor)
         CGContextFillRect(context, rect)
         
-        let image = UIGraphicsGetImageFromCurrentImageContext()
+        let image = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
         return image
     }
@@ -47,9 +46,11 @@ extension UIImage {
         
         let cropSquare = CGRectMake(posX, posY, edge, edge)
         
-        let imageRef = CGImageCreateWithImageInRect(self.CGImage, cropSquare)!
-        
-        return UIImage(CGImage: imageRef, scale: scale, orientation: self.imageOrientation)
+        if let cgImage = self.CGImage, imageRef = CGImageCreateWithImageInRect(cgImage, cropSquare) {
+            return UIImage(CGImage: imageRef, scale: scale, orientation: self.imageOrientation)
+        }else {
+            return self
+        }
     }
     
     func resizeToTargetSize(targetSize: CGSize) -> UIImage {
@@ -72,9 +73,11 @@ extension UIImage {
         
         UIGraphicsBeginImageContextWithOptions(newSize, false, 1.0)
         self.drawInRect(rect)
-        let newImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        
-        return newImage
+        if let newImage = UIGraphicsGetImageFromCurrentImageContext() {
+            UIGraphicsEndImageContext()
+            return newImage
+        }else {
+            return self
+        }
     }
 }

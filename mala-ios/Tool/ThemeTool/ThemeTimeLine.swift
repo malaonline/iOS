@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ThemeTimeLine: UIView {
+class ThemeTimeLine: UIView, CAAnimationDelegate {
 
     private let BettweenLabelOffset: CGFloat = 20
     private let LineWidth: CGFloat = 2.0

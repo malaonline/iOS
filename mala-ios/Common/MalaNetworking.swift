@@ -125,8 +125,10 @@ public func apiRequest<A>(modifyRequest: NSMutableURLRequest -> (), baseURL: NSU
         let session = NSURLSession.sharedSession()
     #endif
     
-    let url = baseURL.URLByAppendingPathComponent(resource.path)
-    let request = NSMutableURLRequest(URL: url)
+    var request = NSMutableURLRequest()
+    if let url = baseURL.URLByAppendingPathComponent(resource.path) {
+        request = NSMutableURLRequest(URL: url)
+    }
     request.HTTPMethod = resource.method.rawValue
     
     

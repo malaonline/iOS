@@ -949,7 +949,7 @@ public class SKPhotoBrowser: UIViewController, UIScrollViewDelegate {
     private func getImageFromView(sender: UIView) -> UIImage {
         UIGraphicsBeginImageContextWithOptions(sender.frame.size, true, 0.0)
         sender.layer.renderInContext(UIGraphicsGetCurrentContext()!)
-        let result = UIGraphicsGetImageFromCurrentImageContext()
+        let result = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
         return result
     }

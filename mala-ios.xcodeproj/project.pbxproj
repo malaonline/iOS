@@ -653,9 +653,6 @@
 		F41A01AC1D212B1F0069CF29 /* MalaBaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41A01AB1D212B1F0069CF29 /* MalaBaseCell.swift */; };
 		F41A01AD1D212B1F0069CF29 /* MalaBaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41A01AB1D212B1F0069CF29 /* MalaBaseCell.swift */; };
 		F41A01AE1D212B1F0069CF29 /* MalaBaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41A01AB1D212B1F0069CF29 /* MalaBaseCell.swift */; };
-		F41A01B01D2220AF0069CF29 /* UIImageEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41A01AF1D2220AF0069CF29 /* UIImageEffects.swift */; };
-		F41A01B11D2220AF0069CF29 /* UIImageEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41A01AF1D2220AF0069CF29 /* UIImageEffects.swift */; };
-		F41A01B21D2220AF0069CF29 /* UIImageEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41A01AF1D2220AF0069CF29 /* UIImageEffects.swift */; };
 		F41CE6321D86457300B57F69 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F41CE6311D86457300B57F69 /* GoogleService-Info.plist */; };
 		F41CE6331D86457300B57F69 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F41CE6311D86457300B57F69 /* GoogleService-Info.plist */; };
 		F41CE6341D86457300B57F69 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F41CE6311D86457300B57F69 /* GoogleService-Info.plist */; };
@@ -1017,7 +1014,6 @@
 		F40D896D1C7EAFB100BD6871 /* MalaLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MalaLog.swift; sourceTree = "<group>"; };
 		F41A01A71D20E15F0069CF29 /* KYCircularProgress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCircularProgress.swift; sourceTree = "<group>"; };
 		F41A01AB1D212B1F0069CF29 /* MalaBaseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MalaBaseCell.swift; sourceTree = "<group>"; };
-		F41A01AF1D2220AF0069CF29 /* UIImageEffects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageEffects.swift; sourceTree = "<group>"; };
 		F41CE6311D86457300B57F69 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F41CE6361D86487500B57F69 /* RegionPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegionPicker.swift; sourceTree = "<group>"; };
 		F41CE6421D8661E400B57F69 /* RegionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegionViewController.swift; sourceTree = "<group>"; };
@@ -1367,7 +1363,6 @@
 		304135851C23AE6400830C43 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				F41A01AF1D2220AF0069CF29 /* UIImageEffects.swift */,
 				30D4AA121C2417A700C5A336 /* Extension+UIButton.swift */,
 				30E3365D1C27A82C00DCF1C5 /* Extension+UIColor.swift */,
 				3077884E1C297C34007AF6B0 /* Extension+UIImage.swift */,
@@ -2153,12 +2148,13 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0720;
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "Mala Online";
 				TargetAttributes = {
 					35D7A3201C0FE851007D7679 = {
 						CreatedOnToolsVersion = 7.1.1;
 						DevelopmentTeam = 85KXKD6J43;
+						LastSwiftMigration = 0800;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 0;
@@ -2577,7 +2573,6 @@
 				F46065241C97B168004056B1 /* TeacherDetailsController.swift in Sources */,
 				F460650C1C96D363004056B1 /* UIImageView+Navi.swift in Sources */,
 				F40B53B01C7EEA2800C20037 /* Extension+NSURLRequest.swift in Sources */,
-				F41A01B01D2220AF0069CF29 /* UIImageEffects.swift in Sources */,
 				F49BD5A21CA4131D00EB3CCF /* SKDetectingView.swift in Sources */,
 				F49432D81D237B34001C4D22 /* FilterBar.swift in Sources */,
 				30D4AA051C23E07600C5A336 /* Common.swift in Sources */,
@@ -2799,7 +2794,6 @@
 				35FF7A861CF8325A000A70EE /* UIImageView+Navi.swift in Sources */,
 				35FF7A871CF8325A000A70EE /* Extension+NSURLRequest.swift in Sources */,
 				35FF7A881CF8325A000A70EE /* SKDetectingView.swift in Sources */,
-				F41A01B11D2220AF0069CF29 /* UIImageEffects.swift in Sources */,
 				35FF7A891CF8325A000A70EE /* Common.swift in Sources */,
 				F49432D91D237B34001C4D22 /* FilterBar.swift in Sources */,
 				35FF7A8A1CF8325A000A70EE /* CourseChoosingTableView.swift in Sources */,
@@ -3021,7 +3015,6 @@
 				35FF7B691CF83264000A70EE /* UIImageView+Navi.swift in Sources */,
 				35FF7B6A1CF83264000A70EE /* Extension+NSURLRequest.swift in Sources */,
 				35FF7B6B1CF83264000A70EE /* SKDetectingView.swift in Sources */,
-				F41A01B21D2220AF0069CF29 /* UIImageEffects.swift in Sources */,
 				35FF7B6C1CF83264000A70EE /* Common.swift in Sources */,
 				F49432DA1D237B34001C4D22 /* FilterBar.swift in Sources */,
 				35FF7B6D1CF83264000A70EE /* CourseChoosingTableView.swift in Sources */,
@@ -3357,6 +3350,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 27E1EB202C2BF124A400C17B /* Pods-parent-dev.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-dev";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -3364,7 +3358,6 @@
 				CODE_SIGN_ENTITLEMENTS = parent/parent.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(SRCROOT)/mala-ios/Application/parent-dev-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -3378,6 +3371,7 @@
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				SWIFT_OBJC_BRIDGING_HEADER = "mala-ios/Application/parent-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 2.3;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -3386,6 +3380,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C898A08D259A5009D3EEE3C7 /* Pods-parent-dev.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-dev";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -3393,7 +3388,6 @@
 				CODE_SIGN_ENTITLEMENTS = parent/parent.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(SRCROOT)/mala-ios/Application/parent-dev-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -3406,6 +3400,7 @@
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				SWIFT_OBJC_BRIDGING_HEADER = "mala-ios/Application/parent-Bridging-Header.h";
+				SWIFT_VERSION = 2.3;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
@@ -3414,6 +3409,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5C1FCFE86B8E94F22F978817 /* Pods-parent-stage.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-stage";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -3421,7 +3417,6 @@
 				CODE_SIGN_ENTITLEMENTS = parent/parent.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(SRCROOT)/mala-ios/Application/parent-stage-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -3435,6 +3430,7 @@
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				SWIFT_OBJC_BRIDGING_HEADER = "mala-ios/Application/parent-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 2.3;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -3443,6 +3439,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9CC92B14F9947764A79215B8 /* Pods-parent-stage.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-stage";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -3450,7 +3447,6 @@
 				CODE_SIGN_ENTITLEMENTS = parent/parent.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(SRCROOT)/mala-ios/Application/parent-stage-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -3463,6 +3459,7 @@
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				SWIFT_OBJC_BRIDGING_HEADER = "mala-ios/Application/parent-Bridging-Header.h";
+				SWIFT_VERSION = 2.3;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
@@ -3471,6 +3468,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F12B72CA706C78F519A08F8A /* Pods-parent-prd.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -3478,7 +3476,6 @@
 				CODE_SIGN_ENTITLEMENTS = parent/parent.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(SRCROOT)/mala-ios/Application/parent-prd-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -3492,6 +3489,7 @@
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				SWIFT_OBJC_BRIDGING_HEADER = "mala-ios/Application/parent-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 2.3;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -3500,6 +3498,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 360F4FA05A1E5736460744B9 /* Pods-parent-prd.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -3507,7 +3506,6 @@
 				CODE_SIGN_ENTITLEMENTS = parent/parent.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(SRCROOT)/mala-ios/Application/parent-prd-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -3520,6 +3518,7 @@
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				SWIFT_OBJC_BRIDGING_HEADER = "mala-ios/Application/parent-Bridging-Header.h";
+				SWIFT_VERSION = 2.3;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
@@ -3537,8 +3536,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -3562,12 +3563,13 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_SWIFT_FLAGS = "-D DEBUG";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 2.3;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -3585,8 +3587,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -3605,10 +3609,12 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_SWIFT_FLAGS = "";
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 2.3;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -3632,6 +3638,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.Elors.parentTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "mala-ios/Application/parent-Bridging-Header.h";
+				SWIFT_VERSION = 2.3;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/parent.app/parent";
 			};
 			name = Debug;
@@ -3654,6 +3661,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.Elors.parentTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "mala-ios/Application/parent-Bridging-Header.h";
+				SWIFT_VERSION = 2.3;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/parent.app/parent";
 			};
 			name = Release;
