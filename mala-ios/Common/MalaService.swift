@@ -993,6 +993,7 @@ let parseOrderFormInfo: JSONDictionary -> OrderForm? = { orderInfo in
         teacherName     = orderInfo["teacher_name"] as? String,
         avatar          = orderInfo["teacher_avatar"] as? String,
         school          = orderInfo["school"] as? String,
+        schoolId        = orderInfo["school_id"] as? Int,
         grade           = orderInfo["grade"] as? String,
         subject         = orderInfo["subject"] as? String,
         hours           = orderInfo["hours"] as? Int,
@@ -1005,7 +1006,7 @@ let parseOrderFormInfo: JSONDictionary -> OrderForm? = { orderInfo in
         isTimeAllocated = orderInfo["is_timeslot_allocated"] as? Bool,
         isteacherPublished = orderInfo["is_teacher_published"] as? Bool {
         // 订单信息
-        let order = OrderForm(id: id, orderId: orderId, teacherId: teacher, teacherName: teacherName, avatarURL: avatar, schoolName: school, gradeName: grade, subjectName: subject, orderStatus: status, hours: hours, amount: amount, timeSlots: timeSlots, createAt: createdAt, evaluated: evaluated, teacherPublished: isteacherPublished)
+        let order = OrderForm(id: id, orderId: orderId, teacherId: teacher, teacherName: teacherName, avatarURL: avatar, schoolId: schoolId, schoolName: school, gradeName: grade, subjectName: subject, orderStatus: status, hours: hours, amount: amount, timeSlots: timeSlots, createAt: createdAt, evaluated: evaluated, teacherPublished: isteacherPublished)
         // 判断是否存在支付时间（未支付状态无此数据）
         if let paidAt = orderInfo["paid_at"] as? NSTimeInterval {
             order.paidAt = paidAt

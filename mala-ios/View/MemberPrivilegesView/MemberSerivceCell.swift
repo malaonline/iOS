@@ -64,7 +64,7 @@ class MemberSerivceCell: UITableViewCell {
         }
         titleLabel.snp_makeConstraints { (make) in
             make.top.equalTo(content.snp_top).offset(16)
-            make.left.equalTo(content.snp_top).offset(12)
+            make.left.equalTo(content.snp_left).offset(12)
             make.height.equalTo(15)
         }
         collectionView.snp_makeConstraints { (make) in
