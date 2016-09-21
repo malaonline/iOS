@@ -13,8 +13,7 @@ private let TeacherDetailsCellReuseId = [
     1: "TeacherDetailsTagsCellReuseId",
     2: "TeacherDetailsHighScoreCellReuseId",
     3: "TeacherDetailsPhotosCellReuseId",
-    4: "TeacherDetailsCertificateCellReuseId",
-    5: "TeacherDetailsPlaceCellReuseId",
+    4: "TeacherDetailsCertificateCellReuseId"
 ]
 
 private let TeacherDetailsCellTitle = [
@@ -23,7 +22,6 @@ private let TeacherDetailsCellTitle = [
     3: "提分榜",
     4: "个人相册",
     5: "特殊成就",
-    6: "教学环境",
 ]
 
 class TeacherDetailsController: BaseViewController, UIGestureRecognizerDelegate, UITableViewDelegate, UITableViewDataSource, SignupButtonDelegate {
@@ -194,7 +192,6 @@ class TeacherDetailsController: BaseViewController, UIGestureRecognizerDelegate,
         tableView.registerClass(TeacherDetailsHighScoreCell.self, forCellReuseIdentifier: TeacherDetailsCellReuseId[2]!)
         tableView.registerClass(TeacherDetailsPhotosCell.self, forCellReuseIdentifier: TeacherDetailsCellReuseId[3]!)
         tableView.registerClass(TeacherDetailsCertificateCell.self, forCellReuseIdentifier: TeacherDetailsCellReuseId[4]!)
-        tableView.registerClass(TeacherDetailsPlaceCell.self, forCellReuseIdentifier: TeacherDetailsCellReuseId[5]!)
         
         // leftBarButtonItem
         let spacer1 = UIBarButtonItem(barButtonSystemItem: .FixedSpace, target: nil, action: nil)
@@ -517,12 +514,6 @@ class TeacherDetailsController: BaseViewController, UIGestureRecognizerDelegate,
         case 4:
             let cell = reuseCell as! TeacherDetailsCertificateCell
             cell.models = model.achievement_set
-            return cell
-            
-        case 5:
-            let cell = reuseCell as! TeacherDetailsPlaceCell
-            cell.schools = schoolArray
-            cell.isOpen = isOpenSchoolsCell
             return cell
             
         default:
