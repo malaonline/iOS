@@ -182,7 +182,7 @@ class CourseChoosingViewController: BaseViewController, CourseChoosingConfirmVie
         let teacherID = teacherModel?.id ?? teacherId ?? 0
         let schoolID = MalaCurrentSchool?.id ?? 1
         
-        getTeacherAvailableTimeInSchool(teacherID, schoolID: schoolID, failureHandler: { (reason, errorMessage) -> Void in
+        getTeacherAvailableTimeInSchool(teacherID, schoolId: schoolID, failureHandler: { (reason, errorMessage) -> Void in
             ThemeHUD.hideActivityIndicator()
             defaultFailureHandler(reason, errorMessage: errorMessage)
             

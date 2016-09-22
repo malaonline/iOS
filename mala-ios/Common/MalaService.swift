@@ -622,7 +622,26 @@ func getTeacherAvailableTimeInSchool(teacherID: Int, schoolID: Int, failureHandl
         apiRequest({_ in}, baseURL: MalaBaseURL, resource: resource, failure: defaultFailureHandler, completion: completion)
     }
 }
-
+///  获取[指定老师]在[指定上课地点]的价格阶梯
+///
+///  - parameter teacherID:      老师id
+///  - parameter schoolID:       上课地点id
+///  - parameter failureHandler: 失败处理闭包
+///  - parameter completion:     成功处理闭包
+func getTeacherGradePrice(teacherId: Int, schoolId: Int, failureHandler: ((Reason, String?) -> Void)?, completion: [GradeModel] -> Void) {
+    
+    let parse: JSONDictionary -> [GradeModel] = { data in
+        return parseTeacherGradePrice(data)
+    }
+    
+    let resource = authJsonResource(path: "teacher/\(teacherId)/school/\(schoolId)/price", method: .GET, requestParameters: nullDictionary(), parse: parse)
+    
+    if let failureHandler = failureHandler {
+        apiRequest({_ in}, baseURL: MalaBaseURL, resource: resource, failure: failureHandler, completion: completion)
+    } else {
+        apiRequest({_ in}, baseURL: MalaBaseURL, resource: resource, failure: defaultFailureHandler, completion: completion)
+    }
+}
 func loadTeachersWithConditions(conditions: JSONDictionary?, failureHandler: ((Reason, String?) -> Void)?, completion: [TeacherModel] -> Void) {
     
 }
@@ -1332,4 +1351,16 @@ let parseCitiesResult: JSONDictionary -> [BaseObjectModel] = { resultInfo in
         }
     }
     return cities
+}
+/// 价格阶梯JSON解析器
+let parseTeacherGradePrice: JSONDictionary -> [GradeModel] = { resultInfo in
+    
+    var prices: [GradeModel] = []
+
+    if let results = info["results"] as? [JSONDictionary] where results.count > 0 {
+        for grade in results {
+            prices.append(GradeModel(dict: grade))
+        }
+    }
+    return prices
 }

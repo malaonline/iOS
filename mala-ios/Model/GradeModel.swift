@@ -14,6 +14,9 @@ class GradeModel: BaseObjectModel {
     var subset: [GradeModel]? = []
     var subjects: [NSNumber] = []
     
+    /// 价格阶梯
+    var prices: [GradePriceModel]? = []
+    
     
     // MARK: - Constructed
     override init() {
@@ -44,6 +47,17 @@ class GradeModel: BaseObjectModel {
                     tempDict?.append(set)
                 }
                 subset = tempDict
+            }
+            return
+        }
+        if key == "prices" {
+            if let dicts = value as? [[String: AnyObject]] {
+                var tempDict: [GradePriceModel]? = []
+                for dict in dicts {
+                    let set = GradePriceModel(dict: dict)
+                    tempDict?.append(set)
+                }
+                prices = tempDict
             }
             return
         }

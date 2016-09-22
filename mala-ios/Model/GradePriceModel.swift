@@ -14,6 +14,10 @@ class GradePriceModel: NSObject {
     var grade: BaseObjectModel?
     var price: Int = 0
     
+    // 阶梯定价
+    var min_hours: Int?
+    var max_hours: Int?
+    
     
     // MARK: - Constructed
     override init() {
