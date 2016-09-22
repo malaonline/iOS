@@ -1357,7 +1357,7 @@ let parseTeacherGradePrice: JSONDictionary -> [GradeModel] = { resultInfo in
     
     var prices: [GradeModel] = []
 
-    if let results = info["results"] as? [JSONDictionary] where results.count > 0 {
+    if let results = resultInfo["results"] as? [JSONDictionary] where results.count > 0 {
         for grade in results {
             prices.append(GradeModel(dict: grade))
         }
