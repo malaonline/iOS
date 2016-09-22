@@ -32,6 +32,13 @@ class GradeModel: BaseObjectModel {
         fatalError("init(coder:) has not been implemented")
     }
     
+    convenience init(id: Int, name: String, prices: [[String: AnyObject]]) {
+        self.init()
+        self.id = id
+        self.name = name
+        self.setValue(prices, forKey: "prices")
+    }
+    
     
     // MARK: - Override
     override func setValue(value: AnyObject?, forUndefinedKey key: String) {

@@ -600,21 +600,21 @@ func loadTeacherDetailData(id: Int, failureHandler: ((Reason, String?) -> Void)?
 }
 ///  获取[指定老师]在[指定上课地点]的可用时间表
 ///
-///  - parameter teacherID:      老师id
-///  - parameter schoolID:       上课地点id
+///  - parameter teacherId:      老师id
+///  - parameter schoolId:       上课地点id
 ///  - parameter failureHandler: 失败处理闭包
 ///  - parameter completion:     成功处理闭包
-func getTeacherAvailableTimeInSchool(teacherID: Int, schoolID: Int, failureHandler: ((Reason, String?) -> Void)?, completion: [[ClassScheduleDayModel]] -> Void) {
+func getTeacherAvailableTimeInSchool(teacherId: Int, schoolId: Int, failureHandler: ((Reason, String?) -> Void)?, completion: [[ClassScheduleDayModel]] -> Void) {
     
     let requestParameters = [
-        "school_id": schoolID,
+        "school_id": schoolId,
     ]
     
     let parse: JSONDictionary -> [[ClassScheduleDayModel]] = { data in
         return parseClassSchedule(data)
     }
     
-    let resource = authJsonResource(path: "teachers/\(teacherID)/weeklytimeslots", method: .GET, requestParameters: requestParameters, parse: parse)
+    let resource = authJsonResource(path: "teachers/\(teacherId)/weeklytimeslots", method: .GET, requestParameters: requestParameters, parse: parse)
     
     if let failureHandler = failureHandler {
         apiRequest({_ in}, baseURL: MalaBaseURL, resource: resource, failure: failureHandler, completion: completion)
@@ -634,7 +634,7 @@ func getTeacherGradePrice(teacherId: Int, schoolId: Int, failureHandler: ((Reaso
         return parseTeacherGradePrice(data)
     }
     
-    let resource = authJsonResource(path: "teacher/\(teacherId)/school/\(schoolId)/price", method: .GET, requestParameters: nullDictionary(), parse: parse)
+    let resource = authJsonResource(path: "teacher/\(teacherId)/school/\(schoolId)/prices", method: .GET, requestParameters: nullDictionary(), parse: parse)
     
     if let failureHandler = failureHandler {
         apiRequest({_ in}, baseURL: MalaBaseURL, resource: resource, failure: failureHandler, completion: completion)
@@ -1359,7 +1359,12 @@ let parseTeacherGradePrice: JSONDictionary -> [GradeModel] = { resultInfo in
 
     if let results = resultInfo["results"] as? [JSONDictionary] where results.count > 0 {
         for grade in results {
-            prices.append(GradeModel(dict: grade))
+            if let
+                id      = grade["grade"] as? Int,
+                name    = grade["grade_name"] as? String,
+                price   = grade["prices"] as? [[String: AnyObject]] {
+                prices.append(GradeModel(id: id, name: name, prices: price))
+            }
         }
     }
     return prices

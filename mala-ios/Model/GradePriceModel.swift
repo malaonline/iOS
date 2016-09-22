@@ -15,8 +15,8 @@ class GradePriceModel: NSObject {
     var price: Int = 0
     
     // 阶梯定价
-    var min_hours: Int?
-    var max_hours: Int?
+    var min_hours: Int = 0
+    var max_hours: Int = 0
     
     
     // MARK: - Constructed
