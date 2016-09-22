@@ -2131,6 +2131,7 @@
 						CreatedOnToolsVersion = 7.1.1;
 						DevelopmentTeam = 85KXKD6J43;
 						LastSwiftMigration = 0800;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 0;
@@ -2144,10 +2145,11 @@
 						};
 					};
 					35FF7A3C1CF8325A000A70EE = {
-						DevelopmentTeam = 85KXKD6J43;
+						ProvisioningStyle = Manual;
 					};
 					35FF7B1F1CF83264000A70EE = {
 						DevelopmentTeam = 85KXKD6J43;
+						ProvisioningStyle = Manual;
 					};
 					F4402E131C5A16A700E7D3DB = {
 						CreatedOnToolsVersion = 7.2;
@@ -3377,6 +3379,7 @@
 				CODE_SIGN_ENTITLEMENTS = parent/parent.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(SRCROOT)/mala-ios/Application/parent-stage-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -3407,6 +3410,7 @@
 				CODE_SIGN_ENTITLEMENTS = parent/parent.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(SRCROOT)/mala-ios/Application/parent-stage-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
