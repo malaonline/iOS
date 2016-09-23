@@ -63,7 +63,7 @@ class GradePriceModel: NSObject {
     
     // MARK: - Description
     override var description: String {
-        let keys = ["grade", "price"]
+        let keys = ["min_hours", "max_hours", "price"]
         return dictionaryWithValuesForKeys(keys).description
     }
 }
