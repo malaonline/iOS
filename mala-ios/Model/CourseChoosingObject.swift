@@ -73,9 +73,21 @@ class CourseChoosingObject: NSObject {
         }
     }
     
+    /// 根据[所选课时][价格梯度]计算优惠后价格
+    func calculateAmount() -> Int {
+        for priceLevel in (prices ?? []) {
+            if classPeriod >= priceLevel.min_hours && classPeriod <= priceLevel.max_hours {
+                return priceLevel.price * classPeriod
+            }
+        }
+        return 0
+    }
+    
     /// 获取最终需支付金额
     func getAmount() -> Int? {
-        var amount = MalaCurrentCourse.getPrice()
+        // 根据价格阶梯计算优惠后价格
+        var amount = calculateAmount()
+        
         //  循环其他服务数组，计算折扣、减免
         //  暂时注释，目前仅有奖学金折扣
         /* for object in MalaServiceObject {
@@ -109,6 +121,7 @@ class CourseChoosingObject: NSObject {
     func reset() {
         gradePrice = nil
         school = nil
+        prices = nil
         school?.id = -1
         selectedTime.removeAll()
         classPeriod = 2
