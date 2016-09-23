@@ -21,6 +21,7 @@ class CourseChoosingViewController: BaseViewController, CourseChoosingConfirmVie
             let operationTeacher = NSBlockOperation(block: loadTeacherDetail)
             let operationTimeSlots = NSBlockOperation(block: loadClassSchedule)
             let operationEvaluatedStatus = NSBlockOperation(block: loadUserEvaluatedStatus)
+            let operationLoadGradePrices = NSBlockOperation(block: loadGradePrices)
             
             operationTimeSlots.addDependency(operationTeacher)
             operationEvaluatedStatus.addDependency(operationTeacher)
@@ -28,6 +29,7 @@ class CourseChoosingViewController: BaseViewController, CourseChoosingConfirmVie
             operationQueue.addOperation(operationTeacher)
             operationQueue.addOperation(operationTimeSlots)
             operationQueue.addOperation(operationEvaluatedStatus)
+            operationQueue.addOperation(operationLoadGradePrices)
         }
     }
     /// 教师详情数据模型
@@ -49,12 +51,18 @@ class CourseChoosingViewController: BaseViewController, CourseChoosingConfirmVie
             self.tableView.teacherModel = teacherModel
         }
     }
-    /// 学校id（仅再次购买时存在）
+    /// 学校（仅再次购买时存在）
     var school: SchoolModel? {
         didSet {
             // 再次购买时设置已进行测评建档
             MalaIsHasBeenEvaluatedThisSubject = false
             requiredCount += 1
+        }
+    }
+    /// 价格阶梯
+    var prices: [GradeModel] = [] {
+        didSet {
+            println("价格阶梯 - \(prices)")
         }
     }
     /// 课程表数据模型
@@ -72,8 +80,8 @@ class CourseChoosingViewController: BaseViewController, CourseChoosingConfirmVie
     /// 必要数据加载完成计数
     private var requiredCount: Int = 0 {
         didSet {
-            // [老师模型][老师可用时间表][奖学金][是否首次购买]4个必要数据加载完成才激活界面
-            if requiredCount == 4 {
+            // [老师模型][价格阶梯表][老师可用时间表][奖学金][是否首次购买]5个必要数据加载完成才激活界面
+            if requiredCount == 5 {
                 ThemeHUD.hideActivityIndicator()
             }
         }
@@ -83,6 +91,7 @@ class CourseChoosingViewController: BaseViewController, CourseChoosingConfirmVie
         let queue = NSOperationQueue()
         return queue
     }()
+    
     
     // MARK: - Compontents
     private lazy var tableView: CourseChoosingTableView = {
@@ -177,12 +186,44 @@ class CourseChoosingViewController: BaseViewController, CourseChoosingConfirmVie
         })
     }
     
+    private func loadGradePrices() {
+        guard let teacherID = self.teacherId else {
+            println("Prices teacher id null")
+            return
+        }
+        
+        guard let schoolId = self.school != nil ? self.school?.id : MalaCurrentSchool?.id else {
+            println("Prices school id null")
+            return
+        }
+        
+        getTeacherGradePrice(teacherID, schoolId: schoolId, failureHandler: { (reason, errorMessage) -> Void in
+            ThemeHUD.hideActivityIndicator()
+            defaultFailureHandler(reason, errorMessage: errorMessage)
+            
+            // 错误处理
+            if let errorMessage = errorMessage {
+                println("CourseChoosingViewController - getTeacherGradePrice Error \(errorMessage)")
+            }
+        },completion: { [weak self] (prices) -> Void in
+            self?.prices = prices
+            self?.requiredCount += 1
+        })
+    }
+    
     private func loadClassSchedule() {
         
-        let teacherID = teacherModel?.id ?? teacherId ?? 0
-        let schoolID = MalaCurrentSchool?.id ?? 1
+        guard let teacherID = self.teacherId else {
+            println("TimeSlots teacher id null")
+            return
+        }
         
-        getTeacherAvailableTimeInSchool(teacherID, schoolId: schoolID, failureHandler: { (reason, errorMessage) -> Void in
+        guard let schoolId = self.school != nil ? self.school?.id : MalaCurrentSchool?.id else {
+            println("TimeSlots school id null")
+            return
+        }
+        
+        getTeacherAvailableTimeInSchool(teacherID, schoolId: schoolId, failureHandler: { (reason, errorMessage) -> Void in
             ThemeHUD.hideActivityIndicator()
             defaultFailureHandler(reason, errorMessage: errorMessage)
             
@@ -214,14 +255,15 @@ class CourseChoosingViewController: BaseViewController, CourseChoosingConfirmVie
     
     private func loadUserEvaluatedStatus() {
         /// 若测评建档结果存在，则不发送请求
-        if let _ = MalaIsHasBeenEvaluatedThisSubject {
+        guard MalaIsHasBeenEvaluatedThisSubject == nil else {
+            return
+        }
+        guard let subjectId = MalaConfig.malaSubjectName()[(teacherModel?.subject) ?? ""] else {
             return
         }
         
-        println("*** \(teacherModel?.subject)")
-        
         ///  判断用户是否首次购买此学科课程
-        isHasBeenEvaluatedWithSubject(MalaConfig.malaSubjectName()[(teacherModel?.subject) ?? ""] ?? 0, failureHandler: { (reason, errorMessage) -> Void in
+        isHasBeenEvaluatedWithSubject(subjectId, failureHandler: { (reason, errorMessage) -> Void in
             ThemeHUD.hideActivityIndicator()
             defaultFailureHandler(reason, errorMessage: errorMessage)
             
@@ -348,8 +390,6 @@ class CourseChoosingViewController: BaseViewController, CourseChoosingConfirmVie
     
     ///  计算最优奖学金使用方案
     private func calculateCoupon() {
-        println("计算最优奖学金使用方案")
-        
         var currentCoupon = CouponModel()
         var currentDis    = 0
         let currentPrice  = MalaCourseChoosingObject.getPrice()
@@ -362,8 +402,6 @@ class CourseChoosingViewController: BaseViewController, CourseChoosingConfirmVie
                 currentCoupon = coupon
             }
         }
-        println("Price - \(currentPrice) - \(MalaUserCoupons.count)")
-        println("最优奖学金 - \(currentCoupon)")
         MalaCourseChoosingObject.coupon = currentCoupon
     }
     

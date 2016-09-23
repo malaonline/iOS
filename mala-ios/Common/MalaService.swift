@@ -1269,7 +1269,8 @@ let parseOrderList: JSONDictionary -> ([OrderForm], Int) = { ordersInfo in
             teacher     = order["teacher"] as? Int,
             teacherName = order["teacher_name"] as? String,
             avatar      = order["teacher_avatar"] as? String,
-            school      = order["school"] as? String,
+            schoolId    = order["school_id"] as? Int,
+            schoolName  = order["school"] as? String,
             grade       = order["grade"] as? String,
             subject     = order["subject"] as? String,
             hours       = order["hours"] as? Int,
@@ -1278,7 +1279,7 @@ let parseOrderList: JSONDictionary -> ([OrderForm], Int) = { ordersInfo in
             amount      = order["to_pay"] as? Int,
             evaluated   = order["evaluated"] as? Bool,
             isteacherPublished = order["is_teacher_published"] as? Bool {
-            orderList.append(OrderForm(id: id, orderId: orderId, teacherId: teacher, teacherName: teacherName, avatarURL: avatar, schoolName: school, gradeName: grade, subjectName: subject, orderStatus: status, amount: amount, evaluated: evaluated, teacherPublished: isteacherPublished))
+            orderList.append(OrderForm(id: id, orderId: orderId, teacherId: teacher, teacherName: teacherName, avatarURL: avatar, schoolId: schoolId, schoolName: schoolName, gradeName: grade, subjectName: subject, orderStatus: status, amount: amount, evaluated: evaluated, teacherPublished: isteacherPublished))
         }
     }
     

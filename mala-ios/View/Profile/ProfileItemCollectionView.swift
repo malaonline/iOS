@@ -91,7 +91,6 @@ class ProfileItemCollectionViewCell: UICollectionViewCell {
                 if title == "我的订单" {
                     newMessageView.hidden = (MalaUnpaidOrderCount == 0)
                 }else if title == "我的评价" {
-                    println("我的评价数量 － \(MalaToCommentCount)")
                     newMessageView.hidden = (MalaToCommentCount == 0)
                 }
             }
