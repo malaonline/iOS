@@ -38,6 +38,47 @@ class TestFactory {
         ]
     }
     
+    class func testPrices() -> [GradeModel] {
+        return [
+            GradeModel(id: 2, name: "一年级", price: [
+                GradePriceModel(minHours: 1, maxHours: 10, price: 17000),
+                GradePriceModel(minHours: 11, maxHours: 20, price: 16500),
+                GradePriceModel(minHours: 21, maxHours: 50, price: 16000),
+                GradePriceModel(minHours: 51, maxHours: 10, price: 15000),
+            ]),
+            GradeModel(id: 3, name: "二年级", price: [
+                GradePriceModel(minHours: 1, maxHours: 10, price: 17000),
+                GradePriceModel(minHours: 11, maxHours: 20, price: 16500),
+                GradePriceModel(minHours: 21, maxHours: 50, price: 16000),
+                GradePriceModel(minHours: 51, maxHours: 10, price: 15000),
+                ]),
+            GradeModel(id: 4, name: "三年级", price: [
+                GradePriceModel(minHours: 1, maxHours: 10, price: 17000),
+                GradePriceModel(minHours: 11, maxHours: 20, price: 16500),
+                GradePriceModel(minHours: 21, maxHours: 50, price: 16000),
+                GradePriceModel(minHours: 51, maxHours: 10, price: 15000),
+                ]),
+            GradeModel(id: 5, name: "四年级", price: [
+                GradePriceModel(minHours: 1, maxHours: 10, price: 17000),
+                GradePriceModel(minHours: 11, maxHours: 20, price: 16500),
+                GradePriceModel(minHours: 21, maxHours: 50, price: 16000),
+                GradePriceModel(minHours: 51, maxHours: 10, price: 15000),
+                ]),
+            GradeModel(id: 6, name: "五年级", price: [
+                GradePriceModel(minHours: 1, maxHours: 10, price: 17000),
+                GradePriceModel(minHours: 11, maxHours: 20, price: 16500),
+                GradePriceModel(minHours: 21, maxHours: 50, price: 16000),
+                GradePriceModel(minHours: 51, maxHours: 10, price: 15000),
+                ]),
+            GradeModel(id: 7, name: "六年级", price: [
+                GradePriceModel(minHours: 1, maxHours: 10, price: 17000),
+                GradePriceModel(minHours: 11, maxHours: 20, price: 16500),
+                GradePriceModel(minHours: 21, maxHours: 50, price: 16000),
+                GradePriceModel(minHours: 51, maxHours: 10, price: 15000),
+                ]),
+        ]
+    }
+    
     class func testDateInThisWeek() {
         println(NSDate().weekday())
         println("周一".dateInThisWeek().formattedDateWithFormat("YYYY/MM/dd"))

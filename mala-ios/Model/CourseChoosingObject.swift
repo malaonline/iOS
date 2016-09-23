@@ -42,6 +42,14 @@ class CourseChoosingObject: NSObject {
             originalPrice = getPrice()
         }
     }
+    
+    /// 价格阶梯
+    dynamic var prices: [GradePriceModel]? = [] {
+        didSet {
+            println("MalaCurrentCourse - \(prices)")
+        }
+    }
+    
     /// 原价
     dynamic var originalPrice: Int = 0
     
@@ -67,7 +75,7 @@ class CourseChoosingObject: NSObject {
     
     /// 获取最终需支付金额
     func getAmount() -> Int? {
-        var amount = MalaCourseChoosingObject.getPrice()
+        var amount = MalaCurrentCourse.getPrice()
         //  循环其他服务数组，计算折扣、减免
         //  暂时注释，目前仅有奖学金折扣
         /* for object in MalaServiceObject {

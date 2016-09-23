@@ -62,6 +62,7 @@ class CourseChoosingViewController: BaseViewController, CourseChoosingConfirmVie
     /// 价格阶梯
     var prices: [GradeModel] = [] {
         didSet {
+            prices = TestFactory.testPrices()
             println("价格阶梯 - \(prices)")
         }
     }
@@ -285,10 +286,11 @@ class CourseChoosingViewController: BaseViewController, CourseChoosingConfirmVie
             object: nil,
             queue: nil) { [weak self] (notification) -> Void in
                 let price = notification.object as! GradePriceModel
+                self?.switchGradePrices(price)
                 self?.calculateCoupon()
                 // 保存用户所选课程
-                if price != MalaCourseChoosingObject.gradePrice {
-                    MalaCourseChoosingObject.gradePrice = price
+                if price != MalaCurrentCourse.gradePrice {
+                    MalaCurrentCourse.gradePrice = price
                     
                 }
         }
@@ -302,25 +304,25 @@ class CourseChoosingViewController: BaseViewController, CourseChoosingConfirmVie
                 let model = notification.object as! ClassScheduleDayModel
                
                 // 判断上课时间是否已经选择
-                if let index = MalaCourseChoosingObject.selectedTime.indexOf(model) {
+                if let index = MalaCurrentCourse.selectedTime.indexOf(model) {
                     // 如果上课时间已经选择，从课程购买模型中移除
-                    MalaCourseChoosingObject.selectedTime.removeAtIndex(index)
+                    MalaCurrentCourse.selectedTime.removeAtIndex(index)
                 }else {
                     // 如果上课时间尚未选择，加入课程购买模型
-                    MalaCourseChoosingObject.selectedTime.append(model)
+                    MalaCurrentCourse.selectedTime.append(model)
                 }
                 
                 // 若当前没有选中上课时间，清空上课时间表并收起，课时数重置为2
-                if MalaCourseChoosingObject.selectedTime.count == 0 {
+                if MalaCurrentCourse.selectedTime.count == 0 {
                     self?.tableView.timeScheduleResult = []
                     self?.tableView.isOpenTimeScheduleCell = false
-                    MalaCourseChoosingObject.classPeriod = 2
+                    MalaCurrentCourse.classPeriod = 2
                 }
                 
                 // 若[所选上课时间]多于当前课时，则改变课时，并刷新课时选择Cell
-                let selectedTimePeriod = MalaCourseChoosingObject.selectedTime.count*2
-                if selectedTimePeriod > MalaCourseChoosingObject.classPeriod {
-                    MalaCourseChoosingObject.classPeriod = selectedTimePeriod
+                let selectedTimePeriod = MalaCurrentCourse.selectedTime.count*2
+                if selectedTimePeriod > MalaCurrentCourse.classPeriod {
+                    MalaCurrentCourse.classPeriod = selectedTimePeriod
                 }
                 
                 // 课时选择
@@ -328,8 +330,8 @@ class CourseChoosingViewController: BaseViewController, CourseChoosingConfirmVie
                 self?.calculateCoupon()
                 
                 // 上课时间
-                if MalaCourseChoosingObject.selectedTime.count != 0 {
-                     let array = ThemeDate.dateArray((MalaCourseChoosingObject.selectedTime), period: Int(MalaCourseChoosingObject.classPeriod))
+                if MalaCurrentCourse.selectedTime.count != 0 {
+                     let array = ThemeDate.dateArray((MalaCurrentCourse.selectedTime), period: Int(MalaCurrentCourse.classPeriod))
                      self?.tableView.timeScheduleResult = array
                 }else {
                     self?.tableView.timeScheduleResult = []
@@ -344,12 +346,12 @@ class CourseChoosingViewController: BaseViewController, CourseChoosingConfirmVie
             queue: nil) { [weak self] (notification) -> Void in
                 let period = (notification.object as? Double) ?? 2
                 // 保存选择课时数
-                MalaCourseChoosingObject.classPeriod = Int(period == 0 ? 2 : period)
+                MalaCurrentCourse.classPeriod = Int(period == 0 ? 2 : period)
                 self?.calculateCoupon()
                 
                 // 上课时间
-                if MalaCourseChoosingObject.selectedTime.count != 0 {
-                     let array = ThemeDate.dateArray(MalaCourseChoosingObject.selectedTime, period: Int(MalaCourseChoosingObject.classPeriod))
+                if MalaCurrentCourse.selectedTime.count != 0 {
+                     let array = ThemeDate.dateArray(MalaCurrentCourse.selectedTime, period: Int(MalaCurrentCourse.classPeriod))
                      self?.tableView.timeScheduleResult = array
                 }
         }
@@ -361,7 +363,7 @@ class CourseChoosingViewController: BaseViewController, CourseChoosingConfirmVie
             object: nil,
             queue: nil) { [weak self] (notification) -> Void in
                 
-                guard let _ = self?.teacherModel?.id where MalaCourseChoosingObject.classPeriod != 0 else {
+                guard let _ = self?.teacherModel?.id where MalaCurrentCourse.classPeriod != 0 else {
                     return
                 }
                 
@@ -374,7 +376,7 @@ class CourseChoosingViewController: BaseViewController, CourseChoosingConfirmVie
                     // 请求上课时间表，并展开cell
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
                         if bool && self?.isNeedReloadTimeSchedule == true {
-                            let array = ThemeDate.dateArray(MalaCourseChoosingObject.selectedTime, period: Int(MalaCourseChoosingObject.classPeriod))
+                            let array = ThemeDate.dateArray(MalaCurrentCourse.selectedTime, period: Int(MalaCurrentCourse.classPeriod))
                             self?.tableView.timeScheduleResult = array
                             self?.isNeedReloadTimeSchedule = false
                         }
@@ -387,12 +389,22 @@ class CourseChoosingViewController: BaseViewController, CourseChoosingConfirmVie
         self.observers.append(observerOpenTimeScheduleCell)
     }
     
+    /// 切换当前价格梯度（年级）
+    private func switchGradePrices(selectGrade: GradePriceModel) {
+        println("Switch Grade - \(selectGrade)")
+        
+        for grade in prices {
+            if grade.id == selectGrade.grade?.id {
+                MalaCurrentCourse.prices = grade.prices
+            }
+        }
+    }
     
     ///  计算最优奖学金使用方案
     private func calculateCoupon() {
         var currentCoupon = CouponModel()
         var currentDis    = 0
-        let currentPrice  = MalaCourseChoosingObject.getPrice()
+        let currentPrice  = MalaCurrentCourse.getPrice()
         
         ///  遍历用户当前奖学金
         for coupon in MalaUserCoupons {            
@@ -402,7 +414,7 @@ class CourseChoosingViewController: BaseViewController, CourseChoosingConfirmVie
                 currentCoupon = coupon
             }
         }
-        MalaCourseChoosingObject.coupon = currentCoupon
+        MalaCurrentCourse.coupon = currentCoupon
     }
     
     ///  加载订单预览页面
@@ -419,7 +431,7 @@ class CourseChoosingViewController: BaseViewController, CourseChoosingConfirmVie
         
         // 条件校验, 设置订单模型
         // 选择授课年级
-        guard let gradeCourseID = MalaCourseChoosingObject.gradePrice?.grade?.id else {
+        guard let gradeCourseID = MalaCurrentCourse.gradePrice?.grade?.id else {
             ShowTost("请选择授课年级！")
             return
         }
@@ -433,12 +445,12 @@ class CourseChoosingViewController: BaseViewController, CourseChoosingConfirmVie
             return
         }
         // 选择上课时间
-        guard MalaCourseChoosingObject.selectedTime.count != 0 else {
+        guard MalaCurrentCourse.selectedTime.count != 0 else {
             ShowTost("请选择上课时间！")
             return
         }
         // 课时数应不小于已选上课时间（此情况文案暂时自定，通常情况此Toast不会触发）
-        guard MalaCourseChoosingObject.classPeriod >= MalaCourseChoosingObject.selectedTime.count*2 else {
+        guard MalaCurrentCourse.classPeriod >= MalaCurrentCourse.selectedTime.count*2 else {
             ShowTost("课时数不得少于已选上课时间！")
             return
         }
@@ -447,9 +459,9 @@ class CourseChoosingViewController: BaseViewController, CourseChoosingConfirmVie
         MalaOrderObject.teacher = (teacherModel?.id) ?? 0
         MalaOrderObject.grade = gradeCourseID
         MalaOrderObject.subject = MalaConfig.malaSubjectName()[(teacherModel?.subject) ?? ""] ?? 0
-        MalaOrderObject.coupon = MalaCourseChoosingObject.coupon?.id ?? 0
-        MalaOrderObject.hours = MalaCourseChoosingObject.classPeriod
-        MalaOrderObject.weekly_time_slots = MalaCourseChoosingObject.selectedTime.map{ (model) -> Int in
+        MalaOrderObject.coupon = MalaCurrentCourse.coupon?.id ?? 0
+        MalaOrderObject.hours = MalaCurrentCourse.classPeriod
+        MalaOrderObject.weekly_time_slots = MalaCurrentCourse.selectedTime.map{ (model) -> Int in
             return model.id
         }
         

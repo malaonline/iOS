@@ -36,6 +36,13 @@ class GradePriceModel: NSObject {
         self.price = price
     }
     
+    convenience init(minHours: Int, maxHours: Int, price: Int) {
+        self.init()
+        self.min_hours = minHours
+        self.max_hours = maxHours
+        self.price = price
+    }
+    
     
     // MARK: - Override
     override func setValue(value: AnyObject?, forUndefinedKey key: String) {

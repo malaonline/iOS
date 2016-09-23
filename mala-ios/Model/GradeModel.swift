@@ -39,6 +39,13 @@ class GradeModel: BaseObjectModel {
         self.setValue(prices, forKey: "prices")
     }
     
+    convenience init(id: Int, name: String, price: [GradePriceModel]) {
+        self.init()
+        self.id = id
+        self.name = name
+        self.prices = price
+    }
+    
     
     // MARK: - Override
     override func setValue(value: AnyObject?, forUndefinedKey key: String) {
