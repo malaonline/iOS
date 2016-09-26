@@ -39,7 +39,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire
-  - Charts (from `https://github.com/danielgindi/Charts.git`, branch `Chart2.2.5-Swift2.3`)
+  - Charts (from `https://github.com/danielgindi/Charts.git`, branch `legacy/v2`)
   - DateTools
   - Google/Analytics
   - IQKeyboardManagerSwift
@@ -53,17 +53,17 @@ DEPENDENCIES:
 
 EXTERNAL SOURCES:
   Charts:
-    :branch: Chart2.2.5-Swift2.3
+    :branch: legacy/v2
     :git: https://github.com/danielgindi/Charts.git
 
 CHECKOUT OPTIONS:
   Charts:
-    :commit: 2813ef5f18e38a1a0d26446d5be9d03658e6f3eb
+    :commit: fcb6b2fb69d629a59893467043a3e9142cfa9414
     :git: https://github.com/danielgindi/Charts.git
 
 SPEC CHECKSUMS:
   Alamofire: b70a7352335f8ea5babd0a923eb7e8eacc67b877
-  Charts: 63361a73e42a6bc67abe71a2a7a1aba7acba8d71
+  Charts: 55d7fd9af175b500208601bea872f0fc72c1d19e
   DateTools: 53288ee8b905fdc75897a1e6b5cc0144b14cba60
   FirebaseAnalytics: d968d4d5f6aeb795cd64144337bcd233e530efc6
   FirebaseInstanceID: ba1e640935235e5fac39dfa816fe7660e72e1a8a
@@ -79,6 +79,6 @@ SPEC CHECKSUMS:
   ShareSDK3: e7bcdfeb95338f89efd6fff82b4793d2bfee76f8
   SnapKit: 0dd2fd157330f1ea11fd84da13e6be8a7a22bae0
 
-PODFILE CHECKSUM: c7bd2b45d26e77fca0b028f6d05119915d968786
+PODFILE CHECKSUM: 13a24b8d2bb64cc36fc85ef39fdfc1244ae2dcce
 
 COCOAPODS: 1.0.0
