@@ -4,13 +4,13 @@ rvm: "2.3"
 osx_image: xcode8
 xcode_workspace: mala-ios.xcworkspace
 xcode_scheme: parent-dev
-# before_install:
+before_install:
 # - pod --version
 # - brew --version
 # - xctool -version
 # - xcodebuild -version -sdk
 # - rvm list known
-# - gem install fir-cli
+- gem install fir-cli
 install:
 - pod repo remove master
 - travis_wait pod setup
@@ -22,8 +22,8 @@ before_script:
 - openssl aes-256-cbc -k $ENCRYPTION_SECRET -in scripts/certs/dist.cer.enc -d -a -out scripts/certs/dist.cer
 - openssl aes-256-cbc -k $ENCRYPTION_SECRET -in scripts/certs/dist.p12.enc -d -a -out scripts/certs/dist.p12
 - ./scripts/add-key.sh
-# script:
-# - xcodebuild  -workspace mala-ios.xcworkspace -scheme parent-dev -sdk iphonesimulator10.0  build
+script:
+- xctool -workspace mala-ios.xcworkspace -scheme parent-dev -sdk iphoneos -configuration Debug OBJROOT=$PWD/build SYMROOT=$PWD/build ONLY_ACTIVE_ARCH=NO
 after_success:
 - ./scripts/sign-and-upload.sh
 after_script:
