@@ -10,6 +10,7 @@ before_install:
 # - xctool -version
 # - xcodebuild -version -sdk
 # - rvm list known
+- gem install xcpretty
 - gem install fir-cli
 install:
 - pod repo remove master
@@ -23,7 +24,7 @@ before_script:
 - openssl aes-256-cbc -k $ENCRYPTION_SECRET -in scripts/certs/dist.p12.enc -d -a -out scripts/certs/dist.p12
 - ./scripts/add-key.sh
 script:
-- xcodebuild  -workspace mala-ios.xcworkspace -scheme parent-dev -sdk iphoneos -configuration Debug OBJROOT=$PWD/build SYMROOT=$PWD/build ONLY_ACTIVE_ARCH=NO build
+- xcodebuild  -workspace mala-ios.xcworkspace -scheme parent-dev -sdk iphoneos -configuration Debug OBJROOT=$PWD/build SYMROOT=$PWD/build ONLY_ACTIVE_ARCH=NO build | xcpretty -c
 # - xctool -workspace mala-ios.xcworkspace -scheme parent-dev -sdk iphoneos -configuration Debug OBJROOT=$PWD/build SYMROOT=$PWD/build ONLY_ACTIVE_ARCH=NO
 
 
