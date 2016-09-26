@@ -23,7 +23,10 @@ before_script:
 - openssl aes-256-cbc -k $ENCRYPTION_SECRET -in scripts/certs/dist.p12.enc -d -a -out scripts/certs/dist.p12
 - ./scripts/add-key.sh
 script:
-- xctool -workspace mala-ios.xcworkspace -scheme parent-dev -sdk iphoneos -configuration Debug OBJROOT=$PWD/build SYMROOT=$PWD/build ONLY_ACTIVE_ARCH=NO
+- xcodebuild  -workspace mala-ios.xcworkspace -scheme parent-dev -sdk iphoneos -configuration Debug OBJROOT=$PWD/build SYMROOT=$PWD/build ONLY_ACTIVE_ARCH=NO build
+# - xctool -workspace mala-ios.xcworkspace -scheme parent-dev -sdk iphoneos -configuration Debug OBJROOT=$PWD/build SYMROOT=$PWD/build ONLY_ACTIVE_ARCH=NO
+
+
 after_success:
 - ./scripts/sign-and-upload.sh
 after_script:
