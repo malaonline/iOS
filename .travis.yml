@@ -22,8 +22,8 @@ before_script:
 - openssl aes-256-cbc -k $ENCRYPTION_SECRET -in scripts/certs/dist.cer.enc -d -a -out scripts/certs/dist.cer
 - openssl aes-256-cbc -k $ENCRYPTION_SECRET -in scripts/certs/dist.p12.enc -d -a -out scripts/certs/dist.p12
 - ./scripts/add-key.sh
-script:
-- xcodebuild  -workspace mala-ios.xcworkspace -scheme parent-dev -sdk iphonesimulator10.0  build
+# script:
+# - xcodebuild  -workspace mala-ios.xcworkspace -scheme parent-dev -sdk iphonesimulator10.0  build
 after_success:
 - ./scripts/sign-and-upload.sh
 after_script:
