@@ -128,7 +128,7 @@ class CourseChoosingTableView: UITableView, UITableViewDelegate, UITableViewData
         switch indexPath.section {
         case 0:
             let cell = reuseCell as! CourseChoosingGradeCell
-            cell.prices = (teacherModel?.prices) ?? []
+            cell.prices = MalaCurrentCourse.grades ?? []
             return cell
             
         case 1:
@@ -150,7 +150,7 @@ class CourseChoosingTableView: UITableView, UITableViewDelegate, UITableViewData
             
         case 4:
             let cell = reuseCell as! CourseChoosingOtherServiceCell
-            cell.price = MalaCurrentCourse.getPrice() ?? 0
+            cell.price = MalaCurrentCourse.getOriginalPrice() ?? 0
             return cell
             
         default:

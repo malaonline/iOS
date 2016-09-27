@@ -13,65 +13,85 @@ class CourseChoosingObject: NSObject {
     
     // MARK: - Property
     /// 授课年级
-    dynamic var gradePrice: GradePriceModel? {
+    dynamic var grade: GradeModel? {
         didSet {
-            originalPrice = getPrice()
+            println("MalaCurrentCourse - Grade - \(grade)")
+            switchGradePrices()
         }
     }
-    /// 已选上课时间
+    /// 上课时间
     dynamic var selectedTime: [ClassScheduleDayModel] = [] {
         didSet {
-            originalPrice = getPrice()
+            isBeginEditing = true
+            originalPrice = getOriginalPrice()
         }
     }
     /// 上课小时数
     dynamic var classPeriod: Int = 2 {
         didSet {
-            originalPrice = getPrice()
+            isBeginEditing = true
+            originalPrice = getOriginalPrice()
         }
     }
     /// 优惠券
     dynamic var coupon: CouponModel? {
         didSet {
-            originalPrice = getPrice()
+            originalPrice = getOriginalPrice()
         }
     }
-    
-    /// 价格阶梯
+    /// 全部年级价格阶梯数据
+    dynamic var grades: [GradeModel]? {
+        didSet {
+            originalPrice = getOriginalPrice()
+        }
+    }
+    /// 当前年级价格阶梯
     dynamic var prices: [GradePriceModel]? = [] {
         didSet {
-            println("MalaCurrentCourse - \(prices)")
+            originalPrice = getOriginalPrice()
         }
     }
-    
     /// 原价
     dynamic var originalPrice: Int = 0
+    /// 是否已开始选课标记(未开始选课时，还需支付数额返回0)
+    var isBeginEditing: Bool = false
     
     
     // MARK: - API
+    /// 切换当前价格梯度（与年级相对应）
+    func switchGradePrices() {
+        
+        guard let currentGradeId = grade?.id, grades = grades else {
+            return
+        }
+        
+        for grade in grades {
+            if grade.id == currentGradeId {
+                prices = grade.prices
+                break
+            }else {
+                println("无与用户所选年级相对应的价格阶梯")
+            }
+        }
+    }
+    
     ///  根据当前选课条件获取价格, 选课条件不正确时返回0
     ///
     ///  - returns: 原价
-    func getPrice() ->Int {
-        // [课程]、[上课时间]、[课时]三个条件均符合规则, 且[课时数]大于等于[选择上课时间数*2]时，使用[课时]进行费用计算
-        if (gradePrice?.price != nil && selectedTime.count != 0 && classPeriod >= selectedTime.count*2) {
-            return (gradePrice?.price)! * classPeriod
-        
-        // 若[课时数]和[上课时间数]不符合，则按照[上课时间数]来进行费用计算
-        }else if (gradePrice?.price != nil && selectedTime.count != 0){
-            return (gradePrice?.price)! * selectedTime.count*2
-            
-        // 不合规则
+    func getOriginalPrice() -> Int {
+        // 验证[当前年级价格阶梯]［上课时间］［课时］
+        if prices != nil && prices!.count > 0 && selectedTime.count != 0 && classPeriod >= selectedTime.count*2 {
+            return prices![0].price * classPeriod
         }else {
             return 0
         }
     }
     
-    /// 根据[所选课时][价格梯度]计算优惠后价格
-    func calculateAmount() -> Int {
+    /// 根据[所选课时][价格梯度]计算优惠后单价
+    func calculatePrice() -> Int {
         for priceLevel in (prices ?? []) {
             if classPeriod >= priceLevel.min_hours && classPeriod <= priceLevel.max_hours {
-                return priceLevel.price * classPeriod
+                return priceLevel.price
             }
         }
         return 0
@@ -79,8 +99,14 @@ class CourseChoosingObject: NSObject {
     
     /// 获取最终需支付金额
     func getAmount() -> Int? {
+        
+        // 未开始选课时，还需支付数额返回0(例如初始化状态)
+        if !isBeginEditing {
+            return 0
+        }
+        
         // 根据价格阶梯计算优惠后价格
-        var amount = calculateAmount()
+        var amount = calculatePrice() * classPeriod
         
         //  循环其他服务数组，计算折扣、减免
         //  暂时注释，目前仅有奖学金折扣
@@ -104,18 +130,15 @@ class CourseChoosingObject: NSObject {
         return amount
     }
     
-    
-    /// 刷新选课模型
-    func refresh() {
-        selectedTime.removeAll()
-        classPeriod = 2
-    }
-    
     /// 重置选课模型
     func reset() {
-        gradePrice = nil
-        prices = nil
+        grade = nil
         selectedTime.removeAll()
         classPeriod = 2
+        coupon = nil
+        grades = nil
+        prices = nil
+        originalPrice = 0
+        isBeginEditing = false
     }
 }

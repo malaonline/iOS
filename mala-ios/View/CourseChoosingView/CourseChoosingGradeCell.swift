@@ -11,11 +11,11 @@ import UIKit
 class CourseChoosingGradeCell: MalaBaseCell {
     
     // MARK: - Property
-    var prices: [GradePriceModel?] = [] {
+    var prices: [GradeModel]? = [] {
         didSet {
             self.collectionView.prices = prices
-            var collectionRow = CGFloat(Int(prices.count ?? 0)/2)
-            collectionRow = (prices.count)%2 == 0 ? collectionRow : collectionRow + 1
+            var collectionRow = CGFloat(Int(prices?.count ?? 0)/2)
+            collectionRow = (prices?.count ?? 0)%2 == 0 ? collectionRow : collectionRow + 1
             let collectionHeight = (MalaLayout_GradeSelectionWidth*0.20) * collectionRow + (14*(collectionRow-1))
             collectionView.snp_updateConstraints(closure: { (make) -> Void in
                 make.height.equalTo(collectionHeight)
@@ -73,7 +73,7 @@ class GradeSelectCollectionView: UICollectionView, UICollectionViewDelegate, UIC
     
     // MARK: - Property
     /// 年级价格数据模型
-    var prices: [GradePriceModel?] = [] {
+    var prices: [GradeModel]? = [] {
         didSet {
             self.reloadData()
         }
@@ -117,16 +117,16 @@ class GradeSelectCollectionView: UICollectionView, UICollectionViewDelegate, UIC
     
     // MARK: - DataSource
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return prices.count ?? 0
+        return prices?.count ?? 0
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(GradeSelectionCellReuseId, forIndexPath: indexPath) as! GradeSelectionCell
-        cell.price = prices[indexPath.row]
+        cell.grade = prices?[indexPath.row]
         // 选中当前选择项
         if indexPath == currentSelectedIndexPath {
             cell.selected = true
-            MalaOrderOverView.gradeName = cell.price?.grade?.name
+            MalaOrderOverView.gradeName = cell.grade?.name
         }
         return cell
     }
@@ -137,9 +137,9 @@ class GradeSelectCollectionView: UICollectionView, UICollectionViewDelegate, UIC
 class GradeSelectionCell: UICollectionViewCell {
     
     // MARK: - Property
-    var price: GradePriceModel? {
+    var grade: GradeModel? {
         didSet {
-            let title = String(format: "%@  %@/小时", (price?.grade?.name)!, (price?.price.money)!)
+            let title = String(format: "%@  %@/小时", (grade?.name) ?? "", (grade?.prices?[0].price.money) ?? "")
             self.button.setTitle(title, forState: .Normal)
         }
     }
@@ -147,7 +147,7 @@ class GradeSelectionCell: UICollectionViewCell {
         didSet {
             self.button.selected = selected
             if selected {
-                NSNotificationCenter.defaultCenter().postNotificationName(MalaNotification_ChoosingGrade, object: self.price!)
+                NSNotificationCenter.defaultCenter().postNotificationName(MalaNotification_ChoosingGrade, object: self.grade!)
             }
         }
     }

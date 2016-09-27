@@ -405,7 +405,7 @@ func parseCouponlist(coupons: [CouponModel]) -> [CouponModel] {
     
     var result = coupons
     // 当前用户选课价格
-    let currentPrice = MalaCurrentCourse.getPrice()
+    let currentPrice = MalaCurrentCourse.getOriginalPrice()
     
     for coupon in result {
         

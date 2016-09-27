@@ -32,7 +32,7 @@ extension Int {
         get {
             if self == 0 {
                 /// 若原总价不为零，则返回0.01（至少需支付1分钱完成支付逻辑）
-                if MalaCurrentCourse.calculateAmount() == 0 {
+                if MalaCurrentCourse.getOriginalPrice() == 0 {
                     return "￥0.00"
                 }else {
                     return "￥0.01"

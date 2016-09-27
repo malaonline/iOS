@@ -59,8 +59,6 @@ class CourseChoosingViewController: BaseViewController, CourseChoosingConfirmVie
             requiredCount += 1
         }
     }
-    /// 价格阶梯
-    var prices: [GradeModel] = []
     /// 课程表数据模型
     var classScheduleModel: [[ClassScheduleDayModel]] = [] {
         didSet {
@@ -201,8 +199,11 @@ class CourseChoosingViewController: BaseViewController, CourseChoosingConfirmVie
             if let errorMessage = errorMessage {
                 println("CourseChoosingViewController - getTeacherGradePrice Error \(errorMessage)")
             }
-        },completion: { [weak self] (prices) -> Void in
-            self?.prices = prices
+        },completion: { [weak self] (grades) -> Void in
+            MalaCurrentCourse.grades = grades
+            // 获取到价格阶梯数据后，自动切换到指定年级
+            MalaCurrentCourse.switchGradePrices()
+            self?.refreshTableView()
             self?.requiredCount += 1
         })
     }
@@ -280,13 +281,14 @@ class CourseChoosingViewController: BaseViewController, CourseChoosingConfirmVie
             MalaNotification_ChoosingGrade,
             object: nil,
             queue: nil) { [weak self] (notification) -> Void in
-                let price = notification.object as! GradePriceModel
-                self?.switchGradePrices(price)
-                self?.calculateCoupon()
+                guard let grade = notification.object as? GradeModel else {
+                    return
+                }
+
                 // 保存用户所选课程
-                if price != MalaCurrentCourse.gradePrice {
-                    MalaCurrentCourse.gradePrice = price
-                    
+                if grade != MalaCurrentCourse.grade {
+                    MalaCurrentCourse.grade = grade
+                    self?.calculateCoupon()
                 }
         }
         self.observers.append(observerChoosingGrade)
@@ -384,22 +386,11 @@ class CourseChoosingViewController: BaseViewController, CourseChoosingConfirmVie
         self.observers.append(observerOpenTimeScheduleCell)
     }
     
-    /// 切换当前价格梯度（年级）
-    private func switchGradePrices(selectGrade: GradePriceModel) {
-        println("Switch Grade - \(selectGrade)")
-        
-        for grade in prices {
-            if grade.id == selectGrade.grade?.id {
-                MalaCurrentCourse.prices = grade.prices
-            }
-        }
-    }
-    
     ///  计算最优奖学金使用方案
     private func calculateCoupon() {
         var currentCoupon = CouponModel()
         var currentDis    = 0
-        let currentPrice  = MalaCurrentCourse.getPrice()
+        let currentPrice  = MalaCurrentCourse.getOriginalPrice()
         
         ///  遍历用户当前奖学金
         for coupon in MalaUserCoupons {            
@@ -420,13 +411,18 @@ class CourseChoosingViewController: BaseViewController, CourseChoosingConfirmVie
         self.navigationController?.pushViewController(viewController, animated: true)
     }
     
+    private func refreshTableView() {
+        dispatch_async(dispatch_get_main_queue(), { [weak self] () -> Void in
+            self?.tableView.reloadData()
+        })
+    }
     
     // MARK: - Delegate
     func OrderDidconfirm() {
         
         // 条件校验, 设置订单模型
         // 选择授课年级
-        guard let gradeCourseID = MalaCurrentCourse.gradePrice?.grade?.id else {
+        guard let gradeCourseID = MalaCurrentCourse.grade?.id else {
             ShowTost("请选择授课年级！")
             return
         }
