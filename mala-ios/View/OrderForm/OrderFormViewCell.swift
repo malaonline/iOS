@@ -19,7 +19,7 @@ class OrderFormViewCell: UITableViewCell {
             teacherNameString.text = model?.teacherName
             subjectString.text = (model?.gradeName ?? "") + " " + (model?.subjectName ?? "")
             schoolString.text = model?.schoolName
-            amountString.text = model?.amount.moneyCNY
+            amountString.text = model?.amount.priceCNY
             
             // 老师头像
             if let url = NSURL(string: (model?.avatarURL ?? "")) {

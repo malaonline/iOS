@@ -93,6 +93,17 @@ class GradeSelectCollectionView: UICollectionView, UICollectionViewDelegate, UIC
     }
     
     
+    // MARK: - Private Method
+    private func configure() {
+        dataSource = self
+        delegate = self
+        backgroundColor = UIColor.whiteColor()
+        scrollEnabled = false
+        
+        registerClass(GradeSelectionCell.self, forCellWithReuseIdentifier: GradeSelectionCellReuseId)
+    }
+    
+    
     // MARK: - Delegate
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         let cell = collectionView.cellForItemAtIndexPath(indexPath) as! GradeSelectionCell
@@ -118,17 +129,6 @@ class GradeSelectCollectionView: UICollectionView, UICollectionViewDelegate, UIC
             MalaOrderOverView.gradeName = cell.price?.grade?.name
         }
         return cell
-    }
-    
-    
-    // MARK: - Private Method
-    private func configure() {
-        dataSource = self
-        delegate = self
-        backgroundColor = UIColor.whiteColor()
-        scrollEnabled = false
-        
-        registerClass(GradeSelectionCell.self, forCellWithReuseIdentifier: GradeSelectionCellReuseId)
     }
 }
 

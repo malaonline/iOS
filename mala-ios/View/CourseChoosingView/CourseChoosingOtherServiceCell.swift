@@ -78,7 +78,7 @@ class PriceResultView: UIView {
     /// 价格
     var price: Int = 0 {
         didSet{
-            self.priceLabel.text = price.moneyCNY
+            self.priceLabel.text = price.priceCNY
         }
     }
     private var myContext = 0

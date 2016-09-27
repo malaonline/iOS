@@ -18,11 +18,25 @@ extension Int {
             #endif
         }
     }
-    
-    public var moneyCNY: String {
+    /// 优惠前总价中文文字
+    public var priceCNY: String {
         get {
             if self == 0 {
-                return "￥0.01"
+                return "￥0.00"
+            }
+            return String(format: "￥%.2f", Double(self)/100)
+        }
+    }
+    /// 优惠后最终价格中文文字
+    public var amountCNY: String {
+        get {
+            if self == 0 {
+                /// 若原总价不为零，则返回0.01（至少需支付1分钱完成支付逻辑）
+                if MalaCurrentCourse.calculateAmount() == 0 {
+                    return "￥0.00"
+                }else {
+                    return "￥0.01"
+                }
             }
             return String(format: "￥%.2f", Double(self)/100)
         }

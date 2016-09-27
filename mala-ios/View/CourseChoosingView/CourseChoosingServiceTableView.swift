@@ -94,8 +94,8 @@ class CourseChoosingServiceTableViewCell: UITableViewCell {
             switch model.priceHandleType {
             case .Discount:
                 
-                self.priceHandleLabel.text = model.price?.moneyCNY == nil ? "" : "-"
-                self.priceLabel.text = model.price?.moneyCNY
+                self.priceHandleLabel.text = model.price?.priceCNY == nil ? "" : "-"
+                self.priceLabel.text = model.price?.priceCNY
                 break
                 
             case .Reduce:
@@ -221,7 +221,7 @@ class CourseChoosingServiceTableViewCell: UITableViewCell {
             self.priceLabel.text = "不使用奖学金"
         }else if let amount = MalaCurrentCourse.coupon?.amount where amount != 0 {
             self.priceHandleLabel.text = "-"
-            self.priceLabel.text = MalaCurrentCourse.coupon?.amount.moneyCNY
+            self.priceLabel.text = MalaCurrentCourse.coupon?.amount.priceCNY
         }else {
             self.priceHandleLabel.text = ""
             self.priceLabel.text = "不使用奖学金"

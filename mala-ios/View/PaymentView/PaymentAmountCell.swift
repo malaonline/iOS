@@ -14,7 +14,7 @@ class PaymentAmountCell: UITableViewCell {
     /// 金额
     private var amount: Int = 0 {
         didSet {
-            amountLabel.text = amount.moneyCNY
+            amountLabel.text = amount.amountCNY
             self.amountLabel.sizeToFit()
         }
     }

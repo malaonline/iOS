@@ -60,12 +60,7 @@ class CourseChoosingViewController: BaseViewController, CourseChoosingConfirmVie
         }
     }
     /// 价格阶梯
-    var prices: [GradeModel] = [] {
-        didSet {
-            prices = TestFactory.testPrices()
-            println("价格阶梯 - \(prices)")
-        }
-    }
+    var prices: [GradeModel] = []
     /// 课程表数据模型
     var classScheduleModel: [[ClassScheduleDayModel]] = [] {
         didSet {
@@ -326,7 +321,7 @@ class CourseChoosingViewController: BaseViewController, CourseChoosingConfirmVie
                 }
                 
                 // 课时选择
-                (self?.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 3)) as? CourseChoosingClassPeriodCell)?.updateSetpValue()
+                (self?.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 2)) as? CourseChoosingClassPeriodCell)?.updateSetpValue()
                 self?.calculateCoupon()
                 
                 // 上课时间

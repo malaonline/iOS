@@ -18,12 +18,6 @@ class CourseChoosingObject: NSObject {
             originalPrice = getPrice()
         }
     }
-    /// 上课地点
-    dynamic var school: SchoolModel? {
-        didSet {
-            
-        }
-    }
     /// 已选上课时间
     dynamic var selectedTime: [ClassScheduleDayModel] = [] {
         didSet {
@@ -120,9 +114,7 @@ class CourseChoosingObject: NSObject {
     /// 重置选课模型
     func reset() {
         gradePrice = nil
-        school = nil
         prices = nil
-        school?.id = -1
         selectedTime.removeAll()
         classPeriod = 2
     }
