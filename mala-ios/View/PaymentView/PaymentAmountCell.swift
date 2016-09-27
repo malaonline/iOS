@@ -14,7 +14,7 @@ class PaymentAmountCell: UITableViewCell {
     /// 金额
     private var amount: Int = 0 {
         didSet {
-            amountLabel.text = amount.moneyCNY
+            amountLabel.text = amount.amountCNY
             self.amountLabel.sizeToFit()
         }
     }
@@ -73,6 +73,6 @@ class PaymentAmountCell: UITableViewCell {
             make.height.equalTo(15)
         }
         
-        amount = ServiceResponseOrder.amount == 0 ? MalaCourseChoosingObject.getAmount() ?? 0 : ServiceResponseOrder.amount
+        amount = ServiceResponseOrder.amount == 0 ? MalaCurrentCourse.getAmount() ?? 0 : ServiceResponseOrder.amount
     }
 }

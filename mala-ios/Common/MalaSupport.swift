@@ -392,10 +392,6 @@ func parseTimeSlots(timeSchedule: [[NSTimeInterval]]) -> (dates: [String], times
         height += 20
     }
     height -= 20
-    println("日期表 : \(dateStrings)")
-    println("时间表 : \(timeStrings)")
-    println("高度 : \(height)")
- 
     return (dateStrings, timeStrings, height)
 }
 
@@ -409,7 +405,7 @@ func parseCouponlist(coupons: [CouponModel]) -> [CouponModel] {
     
     var result = coupons
     // 当前用户选课价格
-    let currentPrice = MalaCourseChoosingObject.getPrice()
+    let currentPrice = MalaCurrentCourse.getOriginalPrice()
     
     for coupon in result {
         

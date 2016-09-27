@@ -102,8 +102,8 @@ public class PeriodStepper: UIView, UITextFieldDelegate {
     
     // MARK: - Public Method
     public func updateStepValue() {
-        stepper.value = Double(MalaCourseChoosingObject.classPeriod)
-        stepper.minimumValue = Double(MalaCourseChoosingObject.selectedTime.count*2)
+        stepper.value = Double(MalaCurrentCourse.classPeriod)
+        stepper.minimumValue = Double(MalaCurrentCourse.selectedTime.count*2)
     }
     
     

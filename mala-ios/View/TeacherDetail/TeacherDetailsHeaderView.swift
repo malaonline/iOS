@@ -264,7 +264,7 @@ class TeacherDetailsHeaderView: UIView {
         subjectLabel.snp_makeConstraints(closure: { (make) -> Void in
             make.top.equalTo(nameLabel.snp_bottom).offset(8)
             make.left.equalTo(nameLabel.snp_left)
-            make.width.equalTo(24)
+            make.width.equalTo(36)
             make.height.equalTo(12)
         })
         priceLabel.snp_makeConstraints(closure: { (make) -> Void in

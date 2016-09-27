@@ -20,9 +20,6 @@ class OrderFormTimeScheduleCell: UITableViewCell {
     /// 上课时间列表
     var timeSchedules: [[NSTimeInterval]]? {
         didSet {
-            println("newValue: \(timeSchedules)")
-            println("oldValue: \(oldValue)")
-            
             if (timeSchedules ?? []) != (oldValue ?? []) && timeSchedules != nil {
                 parseTimeSchedules()
             }

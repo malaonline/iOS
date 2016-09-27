@@ -23,7 +23,7 @@ class OrderFormInfoViewController: BaseViewController, OrderFormOperatingViewDel
             /// 渲染底部视图UI
             confirmView.orderStatus = MalaOrderStatus(rawValue: model?.status ?? "d") ?? .Canceled
             confirmView.isTeacherPublished = model?.teacherPublished
-            confirmView.price = isForConfirm ? MalaCourseChoosingObject.getAmount() ?? 0 : model?.amount ?? 0
+            confirmView.price = isForConfirm ? MalaCurrentCourse.getAmount() ?? 0 : model?.amount ?? 0
         }
     }
     /// 标识是否为确认订单状态
@@ -125,20 +125,20 @@ class OrderFormInfoViewController: BaseViewController, OrderFormOperatingViewDel
         
         println("订单预览")
         //  课时
-        guard MalaCourseChoosingObject.classPeriod != 0 else {
+        guard MalaCurrentCourse.classPeriod != 0 else {
             ShowTost("订单信息有误")
             return
         }
         
         // 上课时间
-        let timeslots = MalaCourseChoosingObject.selectedTime.map{$0.id}
+        let timeslots = MalaCurrentCourse.selectedTime.map{$0.id}
         guard timeslots.count != 0 else {
             ShowTost("订单信息有误")
             return
         }
         
         // 课时
-        let hours = MalaCourseChoosingObject.classPeriod
+        let hours = MalaCurrentCourse.classPeriod
         
         ThemeHUD.showActivityIndicator()
         
@@ -161,7 +161,7 @@ class OrderFormInfoViewController: BaseViewController, OrderFormOperatingViewDel
             }
             
             MalaOrderOverView.timeSlots = timesSchedule
-            MalaOrderOverView.hours = MalaCourseChoosingObject.classPeriod
+            MalaOrderOverView.hours = MalaCurrentCourse.classPeriod
             MalaOrderOverView.schoolName = (self?.school != nil) ? self?.school!.name : (MalaCurrentSchool?.name)
             MalaOrderOverView.status = "c"
             

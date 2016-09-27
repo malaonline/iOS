@@ -78,7 +78,7 @@ class PriceResultView: UIView {
     /// 价格
     var price: Int = 0 {
         didSet{
-            self.priceLabel.text = price.moneyCNY
+            self.priceLabel.text = price.priceCNY
         }
     }
     private var myContext = 0
@@ -118,7 +118,7 @@ class PriceResultView: UIView {
     // MARK: - Override
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
         // 当选课条件改变时，更新总价
-        self.price = MalaCourseChoosingObject.originalPrice
+        self.price = MalaCurrentCourse.originalPrice
     }
     
     
@@ -145,11 +145,11 @@ class PriceResultView: UIView {
     }
     
     private func configure() {
-        MalaCourseChoosingObject.addObserver(self, forKeyPath: "originalPrice", options: .New, context: &myContext)
+        MalaCurrentCourse.addObserver(self, forKeyPath: "originalPrice", options: .New, context: &myContext)
     }
     
     
     deinit {
-        MalaCourseChoosingObject.removeObserver(self, forKeyPath: "originalPrice", context: &myContext)
+        MalaCurrentCourse.removeObserver(self, forKeyPath: "originalPrice", context: &myContext)
     }
 }

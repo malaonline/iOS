@@ -24,7 +24,7 @@ class OrderFormOperatingView: UIView {
     /// 需支付金额
     var price: Int = 0 {
         didSet{
-            self.priceLabel.text = price.moneyCNY
+            self.priceLabel.text = price.amountCNY
         }
     }
     /// 订单状态

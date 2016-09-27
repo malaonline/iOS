@@ -17,7 +17,7 @@ var MalaMainViewController: MainViewController = MainViewController()
 var MalaCondition: ConditionObject = ConditionObject()
 
 /// 当前课程选择对象
-var MalaCourseChoosingObject: CourseChoosingObject = CourseChoosingObject()
+var MalaCurrentCourse: CourseChoosingObject = CourseChoosingObject()
 /// 其他课程服务数组
 var MalaServiceObject: [OtherServiceModel] = MalaOtherService
 /// 需支付金额

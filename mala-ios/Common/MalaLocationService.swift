@@ -31,14 +31,12 @@ class MalaLocationService: NSObject, CLLocationManagerDelegate {
     // MARK: - Method
     class func turnOn() {
         if (CLLocationManager.locationServicesEnabled()){
-            println("开始获取地理位置")
             self.sharedManager.locationManager.startUpdatingLocation()
         }
     }
     
     class func turnOff() {
         if (CLLocationManager.locationServicesEnabled()){
-            println("停止获取地理位置")
             self.sharedManager.locationManager.stopUpdatingLocation()
         }
     }
@@ -49,7 +47,6 @@ class MalaLocationService: NSObject, CLLocationManagerDelegate {
             return
         }
         MalaLoginLocation = newLocation
-        println("获取到地理位置 - \(MalaLoginLocation)")
         locationManager.stopUpdatingLocation()
     }
 }

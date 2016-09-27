@@ -66,10 +66,7 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        println("UserToken is \(MalaUserDefaults.userAccessToken.value)")
-        println("profileID is \(MalaUserDefaults.profileID.value)")
-        println("parentID is \(MalaUserDefaults.parentID.value)")
-        println("studentName is \(MalaUserDefaults.studentName.value)")
+        println("token is \(MalaUserDefaults.userAccessToken.value)")
         configure()
         setupUserInterface()
         setupNotification()

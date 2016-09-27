@@ -8,7 +8,7 @@ def pods
   pod 'Alamofire'
   pod 'Kingfisher'
   pod 'IQKeyboardManagerSwift'
-  pod 'Charts', :git => 'https://github.com/danielgindi/Charts.git', :branch => 'Chart2.2.5-Swift2.3'
+  pod 'Charts', :git => 'https://github.com/danielgindi/Charts.git', :branch => 'legacy/v2'
   pod 'Google/Analytics'
   pod 'Pingpp/Alipay'
   pod 'Pingpp/Wx'

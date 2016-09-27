@@ -86,7 +86,7 @@ class CourseChoosingServiceTableViewCell: UITableViewCell {
             
             self.titleLabel.text = service?.title
 
-            if let amount = MalaCourseChoosingObject.coupon?.amount where amount != 0 {
+            if let amount = MalaCurrentCourse.coupon?.amount where amount != 0 {
                 updateUserInterface()
                 return
             }
@@ -94,8 +94,8 @@ class CourseChoosingServiceTableViewCell: UITableViewCell {
             switch model.priceHandleType {
             case .Discount:
                 
-                self.priceHandleLabel.text = model.price?.moneyCNY == nil ? "" : "-"
-                self.priceLabel.text = model.price?.moneyCNY
+                self.priceHandleLabel.text = model.price?.priceCNY == nil ? "" : "-"
+                self.priceLabel.text = model.price?.priceCNY
                 break
                 
             case .Reduce:
@@ -202,7 +202,7 @@ class CourseChoosingServiceTableViewCell: UITableViewCell {
     }
     
     private func configure() {
-        MalaCourseChoosingObject.addObserver(self, forKeyPath: "coupon", options: .New, context: &myContext)
+        MalaCurrentCourse.addObserver(self, forKeyPath: "coupon", options: .New, context: &myContext)
         didAddObserve = true
     }
     
@@ -216,18 +216,18 @@ class CourseChoosingServiceTableViewCell: UITableViewCell {
     private func updateUserInterface() {
         
         // 选择优惠券时更新UI
-        if let title = MalaCourseChoosingObject.coupon?.name where title == "不使用奖学金" {
+        if let title = MalaCurrentCourse.coupon?.name where title == "不使用奖学金" {
             self.priceHandleLabel.text = ""
             self.priceLabel.text = "不使用奖学金"
-        }else if let amount = MalaCourseChoosingObject.coupon?.amount where amount != 0 {
+        }else if let amount = MalaCurrentCourse.coupon?.amount where amount != 0 {
             self.priceHandleLabel.text = "-"
-            self.priceLabel.text = MalaCourseChoosingObject.coupon?.amount.moneyCNY
+            self.priceLabel.text = MalaCurrentCourse.coupon?.amount.priceCNY
         }else {
             self.priceHandleLabel.text = ""
             self.priceLabel.text = "不使用奖学金"
         }
         
-        if let title = MalaCourseChoosingObject.coupon?.name where title != "" {
+        if let title = MalaCurrentCourse.coupon?.name where title != "" {
             self.titleLabel.text = title
         }else {
             self.titleLabel.text = "奖学金"
@@ -237,7 +237,7 @@ class CourseChoosingServiceTableViewCell: UITableViewCell {
 
     deinit {
         if didAddObserve {
-            MalaCourseChoosingObject.removeObserver(self, forKeyPath: "coupon", context: &myContext)
+            MalaCurrentCourse.removeObserver(self, forKeyPath: "coupon", context: &myContext)
         }
     }
 }

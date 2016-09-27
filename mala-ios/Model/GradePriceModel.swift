@@ -14,6 +14,10 @@ class GradePriceModel: NSObject {
     var grade: BaseObjectModel?
     var price: Int = 0
     
+    // 阶梯定价
+    var min_hours: Int = 0
+    var max_hours: Int = 0
+    
     
     // MARK: - Constructed
     override init() {
@@ -29,6 +33,13 @@ class GradePriceModel: NSObject {
         self.init()
         let grade = BaseObjectModel(id: id, name: name)
         self.grade = grade
+        self.price = price
+    }
+    
+    convenience init(minHours: Int, maxHours: Int, price: Int) {
+        self.init()
+        self.min_hours = minHours
+        self.max_hours = maxHours
         self.price = price
     }
     
@@ -52,7 +63,7 @@ class GradePriceModel: NSObject {
     
     // MARK: - Description
     override var description: String {
-        let keys = ["grade", "price"]
+        let keys = ["min_hours", "max_hours", "price"]
         return dictionaryWithValuesForKeys(keys).description
     }
 }

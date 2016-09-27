@@ -20,7 +20,9 @@ class CourseChoosingConfirmView: UIView {
     /// 需支付金额
     var price: Int = 0 {
         didSet{
-            self.priceLabel.text = price.moneyCNY
+            dispatch_async(dispatch_get_main_queue(), { [weak self] () -> Void in
+                self?.priceLabel.text = self?.price.amountCNY
+            })
         }
     }
     private var myContext = 0
@@ -81,7 +83,7 @@ class CourseChoosingConfirmView: UIView {
     // MARK: - Override
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
         // 当选课条件改变时，更新总价
-        self.price = MalaCourseChoosingObject.getAmount() ?? 0
+        self.price = MalaCurrentCourse.getAmount() ?? 0
     }
     
     
@@ -123,7 +125,7 @@ class CourseChoosingConfirmView: UIView {
     }
     
     private func configure() {
-        MalaCourseChoosingObject.addObserver(self, forKeyPath: "originalPrice", options: .New, context: &myContext)
+        MalaCurrentCourse.addObserver(self, forKeyPath: "originalPrice", options: .New, context: &myContext)
     }
     
     
@@ -133,6 +135,6 @@ class CourseChoosingConfirmView: UIView {
     }
     
     deinit {
-        MalaCourseChoosingObject.removeObserver(self, forKeyPath: "originalPrice", context: &myContext)
+        MalaCurrentCourse.removeObserver(self, forKeyPath: "originalPrice", context: &myContext)
     }
 }

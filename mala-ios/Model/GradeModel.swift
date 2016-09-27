@@ -14,6 +14,9 @@ class GradeModel: BaseObjectModel {
     var subset: [GradeModel]? = []
     var subjects: [NSNumber] = []
     
+    /// 价格阶梯
+    var prices: [GradePriceModel]? = []
+    
     
     // MARK: - Constructed
     override init() {
@@ -27,6 +30,20 @@ class GradeModel: BaseObjectModel {
     
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    convenience init(id: Int, name: String, prices: [[String: AnyObject]]) {
+        self.init()
+        self.id = id
+        self.name = name
+        self.setValue(prices, forKey: "prices")
+    }
+    
+    convenience init(id: Int, name: String, price: [GradePriceModel]) {
+        self.init()
+        self.id = id
+        self.name = name
+        self.prices = price
     }
     
     
@@ -44,6 +61,17 @@ class GradeModel: BaseObjectModel {
                     tempDict?.append(set)
                 }
                 subset = tempDict
+            }
+            return
+        }
+        if key == "prices" {
+            if let dicts = value as? [[String: AnyObject]] {
+                var tempDict: [GradePriceModel]? = []
+                for dict in dicts {
+                    let set = GradePriceModel(dict: dict)
+                    tempDict?.append(set)
+                }
+                prices = tempDict
             }
             return
         }

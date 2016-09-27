@@ -19,7 +19,7 @@ class OrderFormViewCell: UITableViewCell {
             teacherNameString.text = model?.teacherName
             subjectString.text = (model?.gradeName ?? "") + " " + (model?.subjectName ?? "")
             schoolString.text = model?.schoolName
-            amountString.text = model?.amount.moneyCNY
+            amountString.text = model?.amount.priceCNY
             
             // 老师头像
             if let url = NSURL(string: (model?.avatarURL ?? "")) {
@@ -385,7 +385,6 @@ class OrderFormViewCell: UITableViewCell {
         // 渲染UI样式
         switch orderStatus {
         case .Penging:
-            println("orderStatus : Penging")
             // 待付款
             topLayoutView.backgroundColor = MalaColor_8FBCDD_0
             statusString.text = "订单待支付"
@@ -403,7 +402,6 @@ class OrderFormViewCell: UITableViewCell {
             break
         
         case .Paid:
-            println("orderStatus : Paid")
             // 已付款
             topLayoutView.backgroundColor = MalaColor_B1D0E8_0
             statusString.text = "交易完成"
@@ -420,7 +418,6 @@ class OrderFormViewCell: UITableViewCell {
             break
         
         case .Canceled:
-            println("orderStatus : Canceled")
             // 已取消
             topLayoutView.backgroundColor = MalaColor_CFCFCF_0
             statusString.text = "订单已关闭"
@@ -437,7 +434,6 @@ class OrderFormViewCell: UITableViewCell {
             break
         
         case .Refund:
-            println("orderStatus : Refund")
             // 已退款
             topLayoutView.backgroundColor = MalaColor_B1D0E8_0
             statusString.text = "退款成功"
