@@ -12,6 +12,7 @@ before_install:
 # - rvm list known
 - gem install xcpretty
 - gem install fir-cli
+- security list-keychain
 install:
 - pod repo remove master
 - travis_wait pod setup
