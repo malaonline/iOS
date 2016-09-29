@@ -23,21 +23,22 @@ before_script:
 - openssl aes-256-cbc -k $ENCRYPTION_SECRET -in scripts/profile/mala_stage_AdHoc.mobileprovision.enc -d -a -out scripts/profile/Mala_StageAdHoc.mobileprovision
 - openssl aes-256-cbc -k $ENCRYPTION_SECRET -in scripts/certs/dist.cer.enc -d -a -out scripts/certs/dist.cer
 - openssl aes-256-cbc -k $ENCRYPTION_SECRET -in scripts/certs/dist.p12.enc -d -a -out scripts/certs/dist.p12
+- openssl aes-256-cbc -k $ENCRYPTION_SECRET -in scripts/profile/exportOptions.plist.enc -d -a -out scripts/profile/exportOptions.plist
 - ./scripts/add-key.sh
 script:
-- xcodebuild  -workspace mala-ios.xcworkspace -scheme parent-dev -sdk iphoneos -configuration Debug OBJROOT=$PWD/build SYMROOT=$PWD/build ONLY_ACTIVE_ARCH=NO PROVISIONING_PROFILE=$PROFILE_ID build | xcpretty -c
-# - xctool -workspace mala-ios.xcworkspace -scheme parent-dev -sdk iphoneos -configuration Debug OBJROOT=$PWD/build SYMROOT=$PWD/build ONLY_ACTIVE_ARCH=NO
-
-
+- xcodebuild  -workspace mala-ios.xcworkspace -scheme parent-dev -sdk iphoneos -configuration Debug archive -archivePath $BUILD_PATH -derivedDataPath "$DERIVED_DATA_PATH" PROVISIONING_PROFILE=$PROFILE_ID | xcpretty -c
 after_success:
 - ./scripts/sign-and-upload.sh
 after_script:
-- ./scripts/remove-key.sh
+# - ./scripts/remove-key.sh
 env:
   global:
   - APP_NAME="parent-dev"
   - $DEVELOPER_NAME
   - PROFILE_NAME="Mala_DevAdHoc"
+  - BUILD_PATH="$PWD/build/parent.xcarchive"
+  - DERIVED_DATA_PATH="$PWD/build/derivedData"
+  - IPA_PATH="$PWD/build/ipa"
 # notifications:
 #   slack:
 #     on_failure: [change]

@@ -11,13 +11,11 @@
 PROVISIONING_PROFILE="$HOME/Library/MobileDevice/Provisioning Profiles/$PROFILE_NAME.mobileprovision"
 OUTPUTDIR="$PWD/build/Debug-iphoneos"
 
-xcrun -log -sdk iphoneos PackageApplication "$OUTPUTDIR/$APP_NAME.app" -o "$OUTPUTDIR/$APP_NAME.ipa" -sign "$DEVELOPER_NAME" -embed "$PROVISIONING_PROFILE"
+xcodebuild -exportArchive -archivePath $BUILD_PATH -exportPath $IPA_PATH -exportOptionsPlist exportOptions.plist
 
 if [ ! -z "$FIR_APP_TOKEN" ]; then
-  echo ""
   echo "***************************"
   echo "*   Uploading to Fir.im   *"
   echo "***************************"
-  fir p $OUTPUTDIR/$APP_NAME.ipa \
-  -T $FIR_APP_TOKEN
+  fir p $IPA_PATH/$APP_NAME.ipa -T $FIR_APP_TOKEN
 fi
