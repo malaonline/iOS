@@ -15,11 +15,10 @@ OUTPUTDIR="$PWD/build/Debug-iphoneos"
 rvm use system
 xcodebuild "$@"
 
-# xcodebuild -exportArchive -archivePath $BUILD_PATH -exportPath $IPA_PATH -exportOptionsPlist exportOptions.plist
-
 if [ ! -z "$FIR_APP_TOKEN" ]; then
   echo "***************************"
   echo "*   Uploading to Fir.im   *"
   echo "***************************"
+  rvm use 2.3
   fir p $IPA_PATH/$APP_NAME.ipa -T $FIR_APP_TOKEN
 fi
