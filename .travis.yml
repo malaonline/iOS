@@ -23,7 +23,7 @@ before_script:
 - openssl aes-256-cbc -k $ENCRYPTION_SECRET -in scripts/profile/mala_stage_AdHoc.mobileprovision.enc -d -a -out scripts/profile/Mala_StageAdHoc.mobileprovision
 - openssl aes-256-cbc -k $ENCRYPTION_SECRET -in scripts/certs/dist.cer.enc -d -a -out scripts/certs/dist.cer
 - openssl aes-256-cbc -k $ENCRYPTION_SECRET -in scripts/certs/dist.p12.enc -d -a -out scripts/certs/dist.p12
-- openssl aes-256-cbc -k $ENCRYPTION_SECRET -in scripts/profile/exportOptions.plist.enc -d -a -out scripts/profile/exportOptions.plist
+- openssl aes-256-cbc -k $ENCRYPTION_SECRET -in scripts/profile/exportOptions.plist.enc -d -a -out exportOptions.plist
 - ./scripts/add-key.sh
 script:
 - xcodebuild  -workspace mala-ios.xcworkspace -scheme parent-dev -sdk iphoneos -configuration Debug archive -archivePath $BUILD_PATH -derivedDataPath "$DERIVED_DATA_PATH" PROVISIONING_PROFILE=$PROFILE_ID | xcpretty -c
