@@ -28,7 +28,7 @@ before_script:
 script:
 - xcodebuild  -workspace mala-ios.xcworkspace -scheme parent-dev -sdk iphoneos -configuration Debug archive -archivePath $BUILD_PATH -derivedDataPath "$DERIVED_DATA_PATH" PROVISIONING_PROFILE=$PROFILE_ID | xcpretty -c
 after_success:
-- ./scripts/sign-and-upload.sh
+- ./scripts/sign-and-upload.sh -exportArchive -archivePath "$PWD/build/parent.xcarchive" -exportPath "$PWD/build/ipa" -exportOptionsPlist exportOptions.plist
 after_script:
 # - ./scripts/remove-key.sh
 env:
