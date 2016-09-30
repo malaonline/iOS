@@ -982,7 +982,6 @@ let parseOrderForm: JSONDictionary -> OrderForm? = { orderInfo in
         id          = orderInfo["id"] as? Int,
         teacher     = orderInfo["teacher"] as? Int,
         teacherName = orderInfo["teacher_name"] as? String,
-        avatar      = orderInfo["teacher_avatar"] as? String,
         school      = orderInfo["school"] as? String,
         grade       = orderInfo["grade"] as? String,
         subject     = orderInfo["subject"] as? String,
@@ -991,7 +990,13 @@ let parseOrderForm: JSONDictionary -> OrderForm? = { orderInfo in
         orderId     = orderInfo["order_id"] as? String,
         amount      = orderInfo["to_pay"] as? Int,
         evaluated   = orderInfo["evaluated"] as? Bool {
-        return OrderForm(id: id, orderId: orderId, teacherId: teacher, teacherName: teacherName, avatarURL: avatar, schoolName: school, gradeName: grade, subjectName: subject, orderStatus: status, amount: amount, evaluated: evaluated)
+        // 创建订单模型
+        let order = OrderForm(id: id, orderId: orderId, teacherId: teacher, teacherName: teacherName, schoolName: school, gradeName: grade, subjectName: subject, orderStatus: status, amount: amount, evaluated: evaluated)
+        // 教师头像
+        if let avatar = orderInfo["teacher_avatar"] as? String {
+            order.avatarURL = avatar
+        }
+        return order
     }
     return nil
 }
@@ -1010,7 +1015,6 @@ let parseOrderFormInfo: JSONDictionary -> OrderForm? = { orderInfo in
         id              = orderInfo["id"] as? Int,
         teacher         = orderInfo["teacher"] as? Int,
         teacherName     = orderInfo["teacher_name"] as? String,
-        avatar          = orderInfo["teacher_avatar"] as? String,
         school          = orderInfo["school"] as? String,
         schoolId        = orderInfo["school_id"] as? Int,
         grade           = orderInfo["grade"] as? String,
@@ -1025,7 +1029,7 @@ let parseOrderFormInfo: JSONDictionary -> OrderForm? = { orderInfo in
         isTimeAllocated = orderInfo["is_timeslot_allocated"] as? Bool,
         isteacherPublished = orderInfo["is_teacher_published"] as? Bool {
         // 订单信息
-        let order = OrderForm(id: id, orderId: orderId, teacherId: teacher, teacherName: teacherName, avatarURL: avatar, schoolId: schoolId, schoolName: school, gradeName: grade, subjectName: subject, orderStatus: status, hours: hours, amount: amount, timeSlots: timeSlots, createAt: createdAt, evaluated: evaluated, teacherPublished: isteacherPublished)
+        let order = OrderForm(id: id, orderId: orderId, teacherId: teacher, teacherName: teacherName, schoolId: schoolId, schoolName: school, gradeName: grade, subjectName: subject, orderStatus: status, hours: hours, amount: amount, timeSlots: timeSlots, createAt: createdAt, evaluated: evaluated, teacherPublished: isteacherPublished)
         // 判断是否存在支付时间（未支付状态无此数据）
         if let paidAt = orderInfo["paid_at"] as? NSTimeInterval {
             order.paidAt = paidAt
@@ -1034,7 +1038,10 @@ let parseOrderFormInfo: JSONDictionary -> OrderForm? = { orderInfo in
         if let chargeChannel   = orderInfo["charge_channel"] as? String {
             order.chargeChannel = chargeChannel
         }
-        
+        // 教师头像
+        if let avatar = orderInfo["teacher_avatar"] as? String {
+            order.avatarURL = avatar
+        }
         return order
     }
     return nil
@@ -1278,9 +1285,9 @@ let parseOrderList: JSONDictionary -> ([OrderForm], Int) = { ordersInfo in
             amount      = order["to_pay"] as? Int,
             evaluated   = order["evaluated"] as? Bool,
             isteacherPublished = order["is_teacher_published"] as? Bool {
-            
+            // 创建订单模型
             let orderForm = OrderForm(id: id, orderId: orderId, teacherId: teacher, teacherName: teacherName, schoolId: schoolId, schoolName: schoolName, gradeName: grade, subjectName: subject, orderStatus: status, amount: amount, evaluated: evaluated, teacherPublished: isteacherPublished)
-            
+            // 教师头像
             if let avatar = order["teacher_avatar"] as? String {
                 orderForm.avatarURL = avatar
             }
