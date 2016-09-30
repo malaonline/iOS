@@ -19,6 +19,6 @@ if [ ! -z "$FIR_APP_TOKEN" ]; then
   echo "***************************"
   echo "*   Uploading to Fir.im   *"
   echo "***************************"
-  gem install fir-cli
+  sudo gem install fir-cli
   fir p $IPA_PATH/$APP_NAME.ipa -T $FIR_APP_TOKEN
 fi
