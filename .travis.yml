@@ -29,7 +29,7 @@ script:
 after_success:
 - ./scripts/sign-and-upload.sh -exportArchive -archivePath "$PWD/build/parent.xcarchive" -exportPath "$PWD/build/ipa" -exportOptionsPlist exportOptions.plist
 after_script:
-# - ./scripts/remove-key.sh
+- ./scripts/remove-key.sh
 env:
   global:
   - APP_NAME="parent-dev"
@@ -38,7 +38,7 @@ env:
   - BUILD_PATH="$PWD/build/parent.xcarchive"
   - DERIVED_DATA_PATH="$PWD/build/derivedData"
   - IPA_PATH="$PWD/build/ipa"
-# notifications:
-#   slack:
-#     on_failure: [change]
-#     secure: nNiMsobz1FrZQw1TU+b0AsfhH7Au0oFmXCSTIUbYCTqfqGfAloDCQzxzbIK2p4LZBHMKR20uFuu4d+ZyTUbwuCxDMDqWruUqATECbohir071k6lgJiGUhcnSORy+kWdrfD11jRPxlRzIVGpw8Xl2QNw3OZrxgtre+NnbcQlLMMKAkK+5RMR33PwSX/tlwa9I4wdrasB6y2dutBrsLyQ+jq1ZPRwguAT0G5w8rUD46ZuI/2dpexFECqG4rtvyzPqOYVe/QU1QztawRlW87rWcrFthqGYv5Y7aW4UtphhkF9eokERecl7LY/qhy0yBtm7opsxVrXky9Wy0T56THx4HNsctDUrllINZ1aG9JfXPse69HEgT57U9T6DwdBiXO5yuPDqWfF1SQ4XRPp+X/1f6RFtLBcfrKDY8yJQxfa9Xwgb/tQ10GmBjhtNks5uMEEY7l9pbHbbwaV7p6TyI/RmYfpYRCoKOJHyYt2EsRoPeCPyWXWBhitqXfinL86rDY3p+jlk8SsEYjc62tMqihyfWj/lcEv/xz6ds+CUXeSy7lOTdinSPXUTuCHbEg44CINqMnj44gjML+BxT3Cr3/W5N+AV/mTviOS8Mi48m0xcim+fTlcFWUrbB/uWB9dxmAow2HZGBzI4THE0PHdptT7m6cqTGlnYNVZiypmQQguNrREM=
+notifications:
+  slack:
+    on_failure: [change]
+    secure: nNiMsobz1FrZQw1TU+b0AsfhH7Au0oFmXCSTIUbYCTqfqGfAloDCQzxzbIK2p4LZBHMKR20uFuu4d+ZyTUbwuCxDMDqWruUqATECbohir071k6lgJiGUhcnSORy+kWdrfD11jRPxlRzIVGpw8Xl2QNw3OZrxgtre+NnbcQlLMMKAkK+5RMR33PwSX/tlwa9I4wdrasB6y2dutBrsLyQ+jq1ZPRwguAT0G5w8rUD46ZuI/2dpexFECqG4rtvyzPqOYVe/QU1QztawRlW87rWcrFthqGYv5Y7aW4UtphhkF9eokERecl7LY/qhy0yBtm7opsxVrXky9Wy0T56THx4HNsctDUrllINZ1aG9JfXPse69HEgT57U9T6DwdBiXO5yuPDqWfF1SQ4XRPp+X/1f6RFtLBcfrKDY8yJQxfa9Xwgb/tQ10GmBjhtNks5uMEEY7l9pbHbbwaV7p6TyI/RmYfpYRCoKOJHyYt2EsRoPeCPyWXWBhitqXfinL86rDY3p+jlk8SsEYjc62tMqihyfWj/lcEv/xz6ds+CUXeSy7lOTdinSPXUTuCHbEg44CINqMnj44gjML+BxT3Cr3/W5N+AV/mTviOS8Mi48m0xcim+fTlcFWUrbB/uWB9dxmAow2HZGBzI4THE0PHdptT7m6cqTGlnYNVZiypmQQguNrREM=
