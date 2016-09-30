@@ -11,7 +11,7 @@ before_install:
 # - xcodebuild -version -sdk
 # - rvm list known
 - gem install xcpretty
-- gem install fir-cli
+- security list-keychain
 install:
 - pod repo remove master
 - travis_wait pod setup
@@ -22,14 +22,12 @@ before_script:
 - openssl aes-256-cbc -k $ENCRYPTION_SECRET -in scripts/profile/mala_stage_AdHoc.mobileprovision.enc -d -a -out scripts/profile/Mala_StageAdHoc.mobileprovision
 - openssl aes-256-cbc -k $ENCRYPTION_SECRET -in scripts/certs/dist.cer.enc -d -a -out scripts/certs/dist.cer
 - openssl aes-256-cbc -k $ENCRYPTION_SECRET -in scripts/certs/dist.p12.enc -d -a -out scripts/certs/dist.p12
+- openssl aes-256-cbc -k $ENCRYPTION_SECRET -in scripts/profile/exportOptions.plist.enc -d -a -out exportOptions.plist
 - ./scripts/add-key.sh
 script:
-- xcodebuild  -workspace mala-ios.xcworkspace -scheme parent-dev -sdk iphoneos -configuration Debug OBJROOT=$PWD/build SYMROOT=$PWD/build ONLY_ACTIVE_ARCH=NO build | xcpretty -c
-# - xctool -workspace mala-ios.xcworkspace -scheme parent-dev -sdk iphoneos -configuration Debug OBJROOT=$PWD/build SYMROOT=$PWD/build ONLY_ACTIVE_ARCH=NO
-
-
+- xcodebuild  -workspace mala-ios.xcworkspace -scheme parent-dev -sdk iphoneos -configuration Debug archive -archivePath $BUILD_PATH -derivedDataPath "$DERIVED_DATA_PATH" PROVISIONING_PROFILE=$PROFILE_ID | xcpretty -c
 after_success:
-- ./scripts/sign-and-upload.sh
+- ./scripts/sign-and-upload.sh -exportArchive -archivePath "$PWD/build/parent.xcarchive" -exportPath "$PWD/build/ipa" -exportOptionsPlist exportOptions.plist
 after_script:
 - ./scripts/remove-key.sh
 env:
@@ -37,7 +35,10 @@ env:
   - APP_NAME="parent-dev"
   - $DEVELOPER_NAME
   - PROFILE_NAME="Mala_DevAdHoc"
-# notifications:
-#   slack:
-#     on_failure: [change]
-#     secure: nNiMsobz1FrZQw1TU+b0AsfhH7Au0oFmXCSTIUbYCTqfqGfAloDCQzxzbIK2p4LZBHMKR20uFuu4d+ZyTUbwuCxDMDqWruUqATECbohir071k6lgJiGUhcnSORy+kWdrfD11jRPxlRzIVGpw8Xl2QNw3OZrxgtre+NnbcQlLMMKAkK+5RMR33PwSX/tlwa9I4wdrasB6y2dutBrsLyQ+jq1ZPRwguAT0G5w8rUD46ZuI/2dpexFECqG4rtvyzPqOYVe/QU1QztawRlW87rWcrFthqGYv5Y7aW4UtphhkF9eokERecl7LY/qhy0yBtm7opsxVrXky9Wy0T56THx4HNsctDUrllINZ1aG9JfXPse69HEgT57U9T6DwdBiXO5yuPDqWfF1SQ4XRPp+X/1f6RFtLBcfrKDY8yJQxfa9Xwgb/tQ10GmBjhtNks5uMEEY7l9pbHbbwaV7p6TyI/RmYfpYRCoKOJHyYt2EsRoPeCPyWXWBhitqXfinL86rDY3p+jlk8SsEYjc62tMqihyfWj/lcEv/xz6ds+CUXeSy7lOTdinSPXUTuCHbEg44CINqMnj44gjML+BxT3Cr3/W5N+AV/mTviOS8Mi48m0xcim+fTlcFWUrbB/uWB9dxmAow2HZGBzI4THE0PHdptT7m6cqTGlnYNVZiypmQQguNrREM=
+  - BUILD_PATH="$PWD/build/parent.xcarchive"
+  - DERIVED_DATA_PATH="$PWD/build/derivedData"
+  - IPA_PATH="$PWD/build/ipa"
+notifications:
+  slack:
+    on_failure: [change]
+    secure: nNiMsobz1FrZQw1TU+b0AsfhH7Au0oFmXCSTIUbYCTqfqGfAloDCQzxzbIK2p4LZBHMKR20uFuu4d+ZyTUbwuCxDMDqWruUqATECbohir071k6lgJiGUhcnSORy+kWdrfD11jRPxlRzIVGpw8Xl2QNw3OZrxgtre+NnbcQlLMMKAkK+5RMR33PwSX/tlwa9I4wdrasB6y2dutBrsLyQ+jq1ZPRwguAT0G5w8rUD46ZuI/2dpexFECqG4rtvyzPqOYVe/QU1QztawRlW87rWcrFthqGYv5Y7aW4UtphhkF9eokERecl7LY/qhy0yBtm7opsxVrXky9Wy0T56THx4HNsctDUrllINZ1aG9JfXPse69HEgT57U9T6DwdBiXO5yuPDqWfF1SQ4XRPp+X/1f6RFtLBcfrKDY8yJQxfa9Xwgb/tQ10GmBjhtNks5uMEEY7l9pbHbbwaV7p6TyI/RmYfpYRCoKOJHyYt2EsRoPeCPyWXWBhitqXfinL86rDY3p+jlk8SsEYjc62tMqihyfWj/lcEv/xz6ds+CUXeSy7lOTdinSPXUTuCHbEg44CINqMnj44gjML+BxT3Cr3/W5N+AV/mTviOS8Mi48m0xcim+fTlcFWUrbB/uWB9dxmAow2HZGBzI4THE0PHdptT7m6cqTGlnYNVZiypmQQguNrREM=
