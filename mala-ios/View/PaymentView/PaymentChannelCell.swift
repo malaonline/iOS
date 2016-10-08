@@ -58,8 +58,7 @@ class PaymentChannelCell: UITableViewCell {
     }()
     /// 分割线
     lazy var separatorLine: UIView = {
-        let separatorLine = UIView.line()
-        separatorLine.backgroundColor = MalaColor_E5E5E5_0
+        let separatorLine = UIView.line(MalaColor_E5E5E5_0)
         return separatorLine
     }()
     
