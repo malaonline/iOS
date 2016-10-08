@@ -755,6 +755,10 @@
 		F464BD6B1DA8C1FF00032C88 /* jpush-ios-2.1.9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F464BD6A1DA8C1FF00032C88 /* jpush-ios-2.1.9.a */; };
 		F464BD6C1DA8C1FF00032C88 /* jpush-ios-2.1.9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F464BD6A1DA8C1FF00032C88 /* jpush-ios-2.1.9.a */; };
 		F464BD6D1DA8C1FF00032C88 /* jpush-ios-2.1.9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F464BD6A1DA8C1FF00032C88 /* jpush-ios-2.1.9.a */; };
+		F464BD6F1DA8CDD500032C88 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F464BD6E1DA8CDD500032C88 /* QuartzCore.framework */; };
+		F464BD711DA8CE3A00032C88 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F464BD701DA8CE3A00032C88 /* libc++.tbd */; };
+		F464BD731DA8CE5600032C88 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F464BD721DA8CE5600032C88 /* libsqlite3.0.tbd */; };
+		F464BD751DA8CE6B00032C88 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F464BD741DA8CE6B00032C88 /* CoreMotion.framework */; };
 		F46CA2451CC8841C00457EA6 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E1061B1CBBA35B001AD4AF /* BaseViewController.swift */; };
 		F46CA2461CC8841C00457EA6 /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E1061F1CBBA497001AD4AF /* BaseTableViewController.swift */; };
 		F46CA2471CC8841C00457EA6 /* Extension+UIDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E106251CC0D390001AD4AF /* Extension+UIDevice.swift */; };
@@ -1093,6 +1097,11 @@
 		F460651E1C97B168004056B1 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		F460652C1C97B1C8004056B1 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		F464BD6A1DA8C1FF00032C88 /* jpush-ios-2.1.9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "jpush-ios-2.1.9.a"; sourceTree = "<group>"; };
+		F464BD6E1DA8CDD500032C88 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		F464BD701DA8CE3A00032C88 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		F464BD721DA8CE5600032C88 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
+		F464BD741DA8CE6B00032C88 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		F464BD761DA8D10500032C88 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		F474E89C1CF2A9ED0025A865 /* SimpleReportResultModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleReportResultModel.swift; sourceTree = "<group>"; };
 		F474E89E1CF2DCEE0025A865 /* MalaBaseReportCardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MalaBaseReportCardCell.swift; sourceTree = "<group>"; };
 		F4767A3E1D2CDCD000FD47F1 /* ThemePhotoCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemePhotoCollectionView.swift; sourceTree = "<group>"; };
@@ -1224,17 +1233,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F43C98851D6AD81A0013799E /* JavaScriptCore.framework in Frameworks */,
+				35FF7B2A1CF83264000A70EE /* CFNetwork.framework in Frameworks */,
+				F464BD751DA8CE6B00032C88 /* CoreMotion.framework in Frameworks */,
 				F43C98841D6AD8130013799E /* libstdc++.tbd in Frameworks */,
+				F464BD731DA8CE5600032C88 /* libsqlite3.0.tbd in Frameworks */,
+				35FF7B251CF83264000A70EE /* libz.tbd in Frameworks */,
+				F464BD711DA8CE3A00032C88 /* libc++.tbd in Frameworks */,
+				F464BD6F1DA8CDD500032C88 /* QuartzCore.framework in Frameworks */,
+				F43C98851D6AD81A0013799E /* JavaScriptCore.framework in Frameworks */,
 				F43C98831D6AD80B0013799E /* libicucore.tbd in Frameworks */,
 				F464BD6D1DA8C1FF00032C88 /* jpush-ios-2.1.9.a in Frameworks */,
 				35FF7B231CF83264000A70EE /* libsqlite3.tbd in Frameworks */,
 				35FF7B241CF83264000A70EE /* libc++.1.tbd in Frameworks */,
-				35FF7B251CF83264000A70EE /* libz.tbd in Frameworks */,
 				35FF7B271CF83264000A70EE /* CoreTelephony.framework in Frameworks */,
 				35FF7B281CF83264000A70EE /* Security.framework in Frameworks */,
 				35FF7B291CF83264000A70EE /* SystemConfiguration.framework in Frameworks */,
-				35FF7B2A1CF83264000A70EE /* CFNetwork.framework in Frameworks */,
 				4D9B08D764A72A4D36B254FE /* Pods_parent_prd.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1541,6 +1554,11 @@
 		D07419656EA549B65E42E332 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F464BD761DA8D10500032C88 /* UIKit.framework */,
+				F464BD741DA8CE6B00032C88 /* CoreMotion.framework */,
+				F464BD721DA8CE5600032C88 /* libsqlite3.0.tbd */,
+				F464BD701DA8CE3A00032C88 /* libc++.tbd */,
+				F464BD6E1DA8CDD500032C88 /* QuartzCore.framework */,
 				F43C98811D6AD7E80013799E /* JavaScriptCore.framework */,
 				F43C987F1D6AD7DD0013799E /* libstdc++.tbd */,
 				F43C987D1D6AD7C40013799E /* libicucore.tbd */,
