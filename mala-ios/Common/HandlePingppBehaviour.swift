@@ -26,7 +26,7 @@ class HandlePingppBehaviour: NSObject {
     ///  - parameter result:                支付结果: success, fail, cancel, invalid
     ///  - parameter error:                 PingppError对象
     ///  - parameter currentViewController: 当前视图控制器
-    func handleResult(result: String, error: PingppError?, currentViewController: UIViewController?) {
+    func handleResult(result: String?, error: PingppError?, currentViewController: UIViewController?) {
         
         guard currentViewController != nil else {
             ThemeHUD.hideActivityIndicator()

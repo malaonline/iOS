@@ -116,11 +116,11 @@ public class CouponRulesPopupWindow: UIViewController, UITextViewDelegate {
     
     
     // MARK: - Override
-    public override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    public override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if closeWhenTap {
             // 若触摸点不位于Window视图，关闭弹窗
-            if let point = touches.first?.locationInView(window) where !window.pointInside(point, withEvent: nil) {
-                closeAlert(0)
+            if let point = touches.first?.location(in: window), !window.point(inside: point, with: nil) {
+                closeAlert(buttonIndex: 0)
             }
         }
     }

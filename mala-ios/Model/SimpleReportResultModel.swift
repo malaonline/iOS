@@ -32,7 +32,7 @@ class SimpleReportResultModel: BaseObjectModel {
     
     override init(dict: [String: AnyObject]) {
         super.init()
-        setValuesForKeysWithDictionary(dict)
+        setValuesForKeys(dict)
     }
     
     convenience init(subjectId: Int, supported: Bool, purchased: Bool, totalNums: Int, rightNums: Int) {
@@ -50,7 +50,7 @@ class SimpleReportResultModel: BaseObjectModel {
     
     
     // MARK: - Override
-    override func setValue(value: AnyObject?, forUndefinedKey key: String) {
+    override func setValue(_ value: Any?, forUndefinedKey key: String) {
         println("SimpleReportResultModel - Set for UndefinedKey: \(key)")
     }
     
@@ -58,6 +58,6 @@ class SimpleReportResultModel: BaseObjectModel {
     // MARK: - Description
     override var description: String {
         let keys = ["subject_id", "supported", "total_nums", "right_nums"]
-        return "\n"+dictionaryWithValuesForKeys(keys).description+"\n"
+        return "\n"+dictionaryWithValues(forKeys: keys).description+"\n"
     }
 }

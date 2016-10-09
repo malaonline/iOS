@@ -18,11 +18,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var notRegisteredPush = true
     
 
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+    private func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
         // Setup Window
-        window = UIWindow(frame: UIScreen.mainScreen().bounds)
-        window?.backgroundColor = UIColor.whiteColor()
+        window = UIWindow(frame: UIScreen.main.bounds)
+        window?.backgroundColor = UIColor.white
         let mainViewController = MainViewController()
         MalaMainViewController = mainViewController
         window?.rootViewController = mainViewController
@@ -34,19 +34,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // 配置JPush
         #if DevDebug
-            JPUSHService.setupWithOption(launchOptions, appKey: Mala_JPush_AppKey, channel: "AppStore", apsForProduction: false)
+            JPUSHService.setup(withOption: launchOptions, appKey: Mala_JPush_AppKey, channel: "AppStore", apsForProduction: false)
         #else
-            JPUSHService.setupWithOption(launchOptions, appKey: Mala_JPush_AppKey, channel: "AppStore", apsForProduction: true)
+            JPUSHService.setup(withOption: launchOptions, appKey: Mala_JPush_AppKey, channel: "AppStore", apsForProduction: true)
         #endif
         
-        let kUserNotificationBSA: UIUserNotificationType = [.Badge, .Sound, .Alert]
-        JPUSHService.registerForRemoteNotificationTypes(kUserNotificationBSA.rawValue, categories: nil)
+        let kUserNotificationBSA: UIUserNotificationType = [.badge, .sound, .alert]
+        JPUSHService.register(forRemoteNotificationTypes: kUserNotificationBSA.rawValue, categories: nil)
         
-        if MalaUserDefaults.isLogined {
+        if let options = launchOptions, MalaUserDefaults.isLogined {
             
             // 记录启动通知类型
-            if let
-                notification = launchOptions?[UIApplicationLaunchOptionsRemoteNotificationKey] as? UILocalNotification,
+            if let notification = options[UIApplicationLaunchOptionsKey.remoteNotification] as? UILocalNotification,
                 userInfo = notification.userInfo {
                     MalaRemoteNotificationHandler().handleRemoteNotification(userInfo)
             }
@@ -57,37 +56,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     
     // MARK: - Life Cycle
-    func applicationWillResignActive(application: UIApplication) {
+    func applicationWillResignActive(_ application: UIApplication) {
         
         println("Will Resign Active")
         
         // 发生支付行为跳回时，取消遮罩
         ThemeHUD.hideActivityIndicator()
-        UIApplication.sharedApplication().applicationIconBadgeNumber = 0
+        UIApplication.shared.applicationIconBadgeNumber = 0
     }
 
-    func applicationDidEnterBackground(application: UIApplication) {
+    func applicationDidEnterBackground(_ application: UIApplication) {
         
         println("Did Enter Background")
         
         MalaIsForeground = false
     }
 
-    func applicationWillEnterForeground(application: UIApplication) {
+    func applicationWillEnterForeground(_ application: UIApplication) {
         
         println("Will Enter Foreground")
         
         MalaIsForeground = true
     }
 
-    func applicationDidBecomeActive(application: UIApplication) {
+    func applicationDidBecomeActive(_ application: UIApplication) {
         
         println("Did Become Active")
         
         application.applicationIconBadgeNumber = 0
     }
 
-    func applicationWillTerminate(application: UIApplication) {
+    func applicationWillTerminate(_ application: UIApplication) {
         
     }
     
@@ -95,62 +94,62 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - APNs
     func registerThirdPartyPushWithDeciveToken(deviceToken: NSData, pusherID: String) {
         
-        JPUSHService.registerDeviceToken(deviceToken)
+        JPUSHService.registerDeviceToken(deviceToken as Data!)
         JPUSHService.setTags(Set(["iOS"]), alias: pusherID, callbackSelector:nil, object: nil)
     }
     
-    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         
         println("didRegisterForRemoteNotificationsWithDeviceToken - \(MalaUserDefaults.parentID.value)")
         
         if let parentID = MalaUserDefaults.parentID.value {
             if notRegisteredPush {
                 notRegisteredPush = false
-                registerThirdPartyPushWithDeciveToken(deviceToken, pusherID: String(parentID))
+                registerThirdPartyPushWithDeciveToken(deviceToken: deviceToken as NSData, pusherID: String(parentID))
             }
         }
         
         // 纪录设备token，用于初次登录或注册有 pusherID 后，或“注销再登录”
-        self.deviceToken = deviceToken
+        self.deviceToken = deviceToken as NSData?
     }
     
-    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject], fetchCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
+    private func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject], fetchCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
         
         println("didReceiveRemoteNotification: - \(userInfo)")
         JPUSHService.handleRemoteNotification(userInfo)
         
         if MalaUserDefaults.isLogined {
-            if MalaRemoteNotificationHandler().handleRemoteNotification(userInfo) {
-                completionHandler(UIBackgroundFetchResult.NewData)
+            if MalaRemoteNotificationHandler().handleRemoteNotification(userInfo: userInfo) {
+                completionHandler(UIBackgroundFetchResult.newData)
             }
         }
     }
     
-    func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
         
-        println(String(format: "did Fail To Register For Remote Notifications With Error: %@", error))
+        println(String(format: "did Fail To Register For Remote Notifications With Error: %@", error as! CVarArg))
     }
     
     
     // MARK: - openURL
-    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
+    private func application(application: UIApplication, openURL url: URL, sourceApplication: String?, annotation: AnyObject) -> Bool {
         
         // 微信,支付宝 回调
-        let canHandleURL = Pingpp.handleOpenURL(url) { (result, error) -> Void in
+        let canHandleURL = Pingpp.handleOpen(url) { (result, error) -> Void in
             // 处理Ping++回调
             let handler = HandlePingppBehaviour()
-            handler.handleResult(result, error: error, currentViewController: MalaPaymentController)
+            handler.handleResult(result: result, error: error, currentViewController: MalaPaymentController)
         }
         return canHandleURL
     }
     
-    func application(app: UIApplication, openURL url: NSURL, options: [String : AnyObject]) -> Bool {
+    private func application(app: UIApplication, openURL url: URL, options: [String : AnyObject]) -> Bool {
         
         // 微信,支付宝 回调
-        let canHandleURL = Pingpp.handleOpenURL(url) { (result, error) -> Void in
+        let canHandleURL = Pingpp.handleOpen(url) { (result, error) -> Void in
             // 处理Ping++回调
             let handler = HandlePingppBehaviour()
-            handler.handleResult(result, error: error, currentViewController: MalaPaymentController)
+            handler.handleResult(result: result, error: error, currentViewController: MalaPaymentController)
         }
         return canHandleURL
     }
@@ -208,7 +207,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // NavigationBar
         UINavigationBar.appearance().tintColor = MalaColor_6C6C6C_0
-        UINavigationBar.appearance().setBackgroundImage(UIImage.withColor(UIColor.whiteColor()), forBarMetrics: .Default)
+        UINavigationBar.appearance().setBackgroundImage(UIImage.withColor(color: UIColor.white), for: .default)
         
         // TabBar
         UITabBar.appearance().tintColor = MalaColor_82B4D9_0
@@ -223,7 +222,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let loginViewController = LoginViewController()
         loginViewController.closeAction = MalaCurrentCancelAction
         
-        window?.rootViewController?.presentViewController(
+        window?.rootViewController?.present(
             UINavigationController(rootViewController: loginViewController),
             animated: true,
             completion: { () -> Void in
@@ -242,7 +241,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func switchTabBarControllerWithIndex(index: Int) {
 
         guard let tabbarController = window?.rootViewController as? MainViewController
-            where index <= ((tabbarController.viewControllers?.count ?? 0)-1) && index >= 0 else {
+            , index <= ((tabbarController.viewControllers?.count ?? 0)-1) && index >= 0 else {
             return
         }
         

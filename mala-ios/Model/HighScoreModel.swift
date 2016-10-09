@@ -24,7 +24,7 @@ class HighScoreModel: NSObject {
 
     init(dict: [String: AnyObject]) {
         super.init()
-        setValuesForKeysWithDictionary(dict)
+        setValuesForKeys(dict)
     }
     
     convenience init(name: String, score: Int, school: String, admitted: String) {
@@ -37,7 +37,7 @@ class HighScoreModel: NSObject {
     
     
     // MARK: - Override
-    override func setValue(value: AnyObject?, forUndefinedKey key: String) {
+    override func setValue(_ value: Any?, forUndefinedKey key: String) {
         println("HighScoreModel - Set for UndefinedKey: \(key)")
     }
     
@@ -45,6 +45,6 @@ class HighScoreModel: NSObject {
     // MARK: - Description
     override var description: String {
         let keys = ["name", "increased_scores", "school_name", "admitted_to"]
-        return dictionaryWithValuesForKeys(keys).description
+        return dictionaryWithValues(forKeys: keys).description
     }
 }

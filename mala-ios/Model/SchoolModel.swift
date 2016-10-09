@@ -36,7 +36,7 @@ class SchoolModel: BaseObjectModel {
 
     override init(dict: [String: AnyObject]) {
         super.init(dict: dict)
-        setValuesForKeysWithDictionary(dict)
+        setValuesForKeys(dict)
     }
     
     convenience init(id: Int? = 0, name: String? = "", address: String) {
@@ -54,8 +54,8 @@ class SchoolModel: BaseObjectModel {
         self.thumbnail = thumbnail
         self.region = region ?? 0
         self.center = center ?? false
-        self.longitude = longitude
-        self.latitude = latitude
+        self.longitude = (longitude ?? 0) as NSNumber
+        self.latitude = (latitude ?? 0) as NSNumber
     }
     
     required internal init(coder aDecoder: NSCoder) {
@@ -69,13 +69,13 @@ class SchoolModel: BaseObjectModel {
         
         // 计算上课地点距用户当前位置距离
         let targetLocation = CLLocation(latitude: latitude!.doubleValue, longitude: longitude!.doubleValue)
-        let distance: CLLocationDistance = MalaLoginLocation?.distanceFromLocation(targetLocation) ?? 0.0
+        let distance: CLLocationDistance = MalaLoginLocation?.distance(from: targetLocation) ?? 0.0
         self.distance = distance
     }
     
     
     // MARK: - Override
-    override func setValue(value: AnyObject?, forUndefinedKey key: String) {
+    override func setValue(_ value: Any?, forUndefinedKey key: String) {
         println("SchoolModel - Set for UndefinedKey: \(key)")
     }
     

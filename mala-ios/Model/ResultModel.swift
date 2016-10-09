@@ -40,12 +40,12 @@ class ResultModel: NSObject {
     
     init(dict: [String: AnyObject]) {
         super.init()
-        setValuesForKeysWithDictionary(dict)
+        setValuesForKeys(dict)
     }
     
     
     // MARK: - Override
-    override func setValue(value: AnyObject?, forUndefinedKey key: String) {
+    override func setValue(_ value: Any?, forUndefinedKey key: String) {
         println("ResultModel - Set for UndefinedKey: \(key) -")
     }
     
@@ -53,6 +53,6 @@ class ResultModel: NSObject {
     // MARK: - Description
     override var description: String {
         let keys = ["count", "next", "previous", "results"]
-        return dictionaryWithValuesForKeys(keys).description
+        return dictionaryWithValues(forKeys: keys).description
     }
 }

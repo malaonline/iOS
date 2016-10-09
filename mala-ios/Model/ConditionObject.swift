@@ -24,16 +24,16 @@ class ConditionObject: NSObject {
         var param: [String: AnyObject] = [String: AnyObject]()
         
         // 过滤年级
-        param["grade"] = grade.id
+        param["grade"] = grade.id as AnyObject?
         // 过滤科目
-        param["subject"] = subject.id
+        param["subject"] = subject.id as AnyObject?
         // 过滤风格
         if tags.count != 0 {
-            let tagsString: String = tags.reduce("", combine: { (string, model) -> String in
+            let tagsString: String = tags.reduce("", { (string, model) -> String in
                 let operation = (String(string) == "" ? "" : " ")
                 return String(string)+operation+String(model.id)
             })
-            param["tags"] = tagsString
+            param["tags"] = tagsString as AnyObject?
         }
         return param
     }

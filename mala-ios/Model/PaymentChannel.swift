@@ -34,6 +34,6 @@ class PaymentChannel: NSObject {
     // MARK: - Description
     override var description: String {
         let keys = ["imageName", "title", "subTitle", "channel"]
-        return dictionaryWithValuesForKeys(keys).description
+        return dictionaryWithValues(forKeys: keys).description
     }
 }

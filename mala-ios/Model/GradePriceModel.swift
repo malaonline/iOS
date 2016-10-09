@@ -26,7 +26,7 @@ class GradePriceModel: NSObject {
     
     init(dict: [String: AnyObject]) {
         super.init()
-        setValuesForKeysWithDictionary(dict)
+        setValuesForKeys(dict)
     }
     
     convenience init(name: String, id: Int, price: Int) {
@@ -45,11 +45,11 @@ class GradePriceModel: NSObject {
     
     
     // MARK: - Override
-    override func setValue(value: AnyObject?, forUndefinedKey key: String) {
+    override func setValue(_ value: Any?, forUndefinedKey key: String) {
         println("GradePriceModel - Set for UndefinedKey: \(key)")
     }
     
-    override func setValue(value: AnyObject?, forKey key: String) {
+    override func setValue(_ value: Any?, forKey key: String) {
         if key == "grade" {
             if let dict = value as? [String: AnyObject] {
                 let model = BaseObjectModel(dict: dict)
@@ -64,6 +64,6 @@ class GradePriceModel: NSObject {
     // MARK: - Description
     override var description: String {
         let keys = ["min_hours", "max_hours", "price"]
-        return dictionaryWithValuesForKeys(keys).description
+        return dictionaryWithValues(forKeys: keys).description
     }
 }

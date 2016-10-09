@@ -21,12 +21,12 @@ class SMSResultModel: NSObject {
     // MARK: - Constructed
     init(dict: [String: AnyObject]) {
         super.init()
-        setValuesForKeysWithDictionary(dict)
+        setValuesForKeys(dict)
     }
     
     
     // MARK: - Override
-    override func setValue(value: AnyObject?, forUndefinedKey key: String) {
+    override func setValue(_ value: Any?, forUndefinedKey key: String) {
         println("SMSResultModel - Set for UndefinedKey: \(key) -")
     }
     
@@ -34,6 +34,6 @@ class SMSResultModel: NSObject {
     // MARK: - Description
     override var description: String {
         let keys = ["sent", "verified", "first_login", "token", "reason"]
-        return dictionaryWithValuesForKeys(keys).description
+        return dictionaryWithValues(forKeys: keys).description
     }
 }

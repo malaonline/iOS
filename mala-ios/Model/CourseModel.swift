@@ -34,7 +34,7 @@ public class CourseModel: BaseObjectModel {
     
     override init(dict: [String: AnyObject]) {
         super.init()
-        setValuesForKeysWithDictionary(dict)
+        setValuesForKeys(dict)
     }
     
     convenience init(id: Int, start: NSTimeInterval, end: NSTimeInterval, subject: String,
@@ -55,7 +55,7 @@ public class CourseModel: BaseObjectModel {
     }
     
     // MARK: - Override
-    override public func setValue(value: AnyObject?, forKey key: String) {
+    override func setValue(_ value: Any?, forKey key: String) {
         if key == "teacher" {
             if let dict = value as? [String: AnyObject] {
                 teacher = TeacherModel(dict: dict)
@@ -71,7 +71,7 @@ public class CourseModel: BaseObjectModel {
         super.setValue(value, forKey: key)
     }
     
-    override public func setValue(value: AnyObject?, forUndefinedKey key: String) {
+    override func setValue(_ value: Any?, forUndefinedKey key: String) {
         println("StudentCourseModel - Set for UndefinedKey: \(key)")
     }
     
@@ -79,6 +79,6 @@ public class CourseModel: BaseObjectModel {
     // MARK: - Description
     override public var description: String {
         let keys = ["id", "start", "end", "subject", "school", "is_passed", "teacher", "comment"]
-        return "\n"+dictionaryWithValuesForKeys(keys).description+"\n"
+        return "\n"+dictionaryWithValues(forKeys: keys).description+"\n"
     }
 }
