@@ -76,7 +76,7 @@
     animation.removedOnCompletion=NO;
     animation.fillMode=kCAFillModeForwards;
     animation.repeatCount= repeatCount;
-    animation.delegate= self;
+    animation.delegate= (id<CAAnimationDelegate>)self;
     
     return animation;
 }
