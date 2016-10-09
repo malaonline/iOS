@@ -5,13 +5,13 @@ use_frameworks!
 inhibit_all_warnings!
 
 def pods
-  pod 'SnapKit', '~> 0.22.0'
+  pod 'SnapKit', '~> 3.0.2'
   pod 'DateTools'
-  pod 'Alamofire'
+  pod 'Alamofire', '~> 4.0.1'
   pod 'Kingfisher'
   pod 'IQKeyboardManagerSwift'
-  pod 'Charts', :git => 'https://github.com/danielgindi/Charts.git', :branch => 'legacy/v2'
-  pod 'Google/Analytics'
+  pod 'Charts', :git => 'https://github.com/danielgindi/Charts.git', :branch => 'Chart2.2.5-Swift3.0'
+  pod 'Google'
   pod 'Pingpp/Alipay'
   pod 'Pingpp/Wx'
   pod 'MOBFoundation'
@@ -38,10 +38,10 @@ end
 post_install do |installer|
   installer.pods_project.targets.each do |target|
     case target.name
-    when 'Alamofire', 'Charts', 'IQKeyboardManagerSwift', 'Kingfisher', 'SnapKit'
-      target.build_configurations.each do |config|
-      config.build_settings['SWIFT_VERSION'] = '2.3'
-    end
+      when 'Alamofire', 'Charts', 'IQKeyboardManagerSwift', 'Kingfisher', 'SnapKit'
+        target.build_configurations.each do |config|
+        config.build_settings['SWIFT_VERSION'] = '3.0'
+      end
     end
   end
 end
