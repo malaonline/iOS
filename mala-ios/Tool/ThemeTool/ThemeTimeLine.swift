@@ -107,11 +107,11 @@ class ThemeTimeLine: UIView, CAAnimationDelegate {
             // 日期label与上一组数据高度最大的内容底部保持20的距离
             let bottomMargin = i >= 1 ? (descs[i-1].characters.count > 26 ? betweenLabelOffset : betweenLabelOffset+12) : (betweenLabelOffset)
  
-            label.snp_makeConstraints({ (make) in
-                make.left.equalTo(self.progressDescriptionViewContainer).offset(7)
-                make.width.equalTo(leftWidth)
-                make.top.equalTo(lastLabel.snp_bottom).offset(bottomMargin)
-                make.height.greaterThanOrEqualTo(16)
+            label.snp.makeConstraints({ (maker) in
+                maker.left.equalTo(self.progressDescriptionViewContainer).offset(7)
+                maker.width.equalTo(leftWidth)
+                maker.top.equalTo(lastLabel.snp.bottom).offset(bottomMargin)
+                maker.height.greaterThanOrEqualTo(16)
             })
             
             label.preferredMaxLayoutWidth = leftWidth
@@ -141,27 +141,27 @@ class ThemeTimeLine: UIView, CAAnimationDelegate {
             /// 最后一个时间点
             if i == (self.dataCount-1) {
                 line.image = UIImage(named: "time_point")
-                line.snp_makeConstraints({ (make) in
-                    make.centerX.equalTo(progressViewContainer)
-                    make.width.equalTo(9)
-                    make.top.equalTo(label.snp_top).offset(4)
-                    make.height.equalTo(9)
+                line.snp.makeConstraints({ (maker) in
+                    maker.centerX.equalTo(progressViewContainer)
+                    maker.width.equalTo(9)
+                    maker.top.equalTo(label.snp.top).offset(4)
+                    maker.height.equalTo(9)
                 })
             /// 描述字数多于一行的，下一个时间点以描述label为基准
             }else if label.text?.characters.count > 26 {
-                line.snp_makeConstraints({ (make) in
-                    make.centerX.equalTo(progressViewContainer)
-                    make.width.equalTo(9)
-                    make.top.equalTo(label.snp_top).offset(2)
-                    make.bottom.equalTo(label.snp_bottom).offset(24)
+                line.snp.makeConstraints({ (maker) in
+                    maker.centerX.equalTo(progressViewContainer)
+                    maker.width.equalTo(9)
+                    maker.top.equalTo(label.snp.top).offset(2)
+                    maker.bottom.equalTo(label.snp.bottom).offset(24)
                 })
             /// 描述字数少于一行的，下一个时间点以时间label为基准
             }else {
-                line.snp_makeConstraints({ (make) in
-                    make.centerX.equalTo(progressViewContainer)
-                    make.width.equalTo(9)
-                    make.top.equalTo(label.snp_top).offset(2)
-                    make.bottom.equalTo(label.snp_bottom).offset(36)
+                line.snp.makeConstraints({ (maker) in
+                    maker.centerX.equalTo(progressViewContainer)
+                    maker.width.equalTo(9)
+                    maker.top.equalTo(label.snp.top).offset(2)
+                    maker.bottom.equalTo(label.snp.bottom).offset(36)
                 })
             }
             i += 1
@@ -186,11 +186,11 @@ class ThemeTimeLine: UIView, CAAnimationDelegate {
             
             let descLabel = self.labelDscriptionsArray[i]
             
-            label.snp_makeConstraints({ (make) in
-                make.height.equalTo(32)
-                make.left.equalTo(timeViewContainer)
-                make.width.equalTo(timeViewContainer)
-                make.top.equalTo(descLabel.snp_top)
+            label.snp.makeConstraints({ (maker) in
+                maker.height.equalTo(32)
+                maker.left.equalTo(timeViewContainer)
+                maker.width.equalTo(timeViewContainer)
+                maker.top.equalTo(descLabel.snp.top)
             })
             let fittingSize = label.systemLayoutSizeFitting(UILayoutFittingCompressedSize)
             betweenLabelOffset = BettweenLabelOffset
@@ -288,23 +288,23 @@ class ThemeTimeLine: UIView, CAAnimationDelegate {
     }
     
     override func updateConstraints() {
-        self.progressViewContainer.snp_updateConstraints { (make) in
-            make.width.equalTo(CircleRadius+InitProgressContainerWidth)
-            make.height.equalTo(viewHeight)
-            make.top.equalTo(self)
-            make.left.equalTo(ProgressViewContainerLeft)
+        self.progressViewContainer.snp.updateConstraints { (maker) in
+            maker.width.equalTo(CircleRadius+InitProgressContainerWidth)
+            maker.height.equalTo(viewHeight)
+            maker.top.equalTo(self)
+            maker.left.equalTo(ProgressViewContainerLeft)
         }
-        self.timeViewContainer.snp_updateConstraints { (make) in
-            make.left.equalTo(self)
-            make.right.equalTo(progressViewContainer.snp_left)
-            make.top.equalTo(self)
-            make.height.equalTo(viewHeight)
+        self.timeViewContainer.snp.updateConstraints { (maker) in
+            maker.left.equalTo(self)
+            maker.right.equalTo(progressViewContainer.snp.left)
+            maker.top.equalTo(self)
+            maker.height.equalTo(viewHeight)
         }
-        self.progressDescriptionViewContainer.snp_updateConstraints { (make) in
-            make.right.equalTo(self)
-            make.left.equalTo(progressViewContainer.snp_right).offset(0)
-            make.top.equalTo(self)
-            make.height.equalTo(viewHeight)
+        self.progressDescriptionViewContainer.snp.updateConstraints { (maker) in
+            maker.right.equalTo(self)
+            maker.left.equalTo(progressViewContainer.snp.right).offset(0)
+            maker.top.equalTo(self)
+            maker.height.equalTo(viewHeight)
         }
         super.updateConstraints()
     }

@@ -42,8 +42,8 @@ class ThemeReloadView: UITableViewCell {
         addSubview(activityIndicator)
         
         // Autolayout
-        activityIndicator.snp_makeConstraints { (make) -> Void in
-            make.center.equalTo(self.snp_center)
+        activityIndicator.snp.makeConstraints { (maker) -> Void in
+            maker.center.equalTo(self.snp.center)
         }
     }
 }

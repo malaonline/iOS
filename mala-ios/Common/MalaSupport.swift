@@ -34,7 +34,7 @@ func delay(_ time: TimeInterval, work: @escaping ()->()) -> CancelableTask? {
     
     finalTask = cancelableTask
     
-    (DispatchQueue.main).asyncAfter(deadline: DispatchTime(DispatchTime.now) + Double(Int64(time * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)) {
+    (DispatchQueue.main).asyncAfter(deadline: DispatchTime(uptimeNanoseconds: DispatchTime.now) + Double(Int64(time * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)) {
         if let task = finalTask {
             task(cancel: false)
         }

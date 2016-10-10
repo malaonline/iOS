@@ -47,12 +47,12 @@ class TeacherDetailsTagsCell: MalaBaseCell {
         content.addSubview(tagsView)
         
         // AutoLayout
-        tagsView.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(content.snp.top)
-            make.left.equalTo(content.snp.left)
-            make.bottom.equalTo(content.snp.bottom)
-            make.height.equalTo(25)
-            make.right.equalTo(content.snp.right)
+        tagsView.snp.makeConstraints { (maker) -> Void in
+            maker.top.equalTo(content.snp.top)
+            maker.left.equalTo(content.snp.left)
+            maker.bottom.equalTo(content.snp.bottom)
+            maker.height.equalTo(25)
+            maker.right.equalTo(content.snp.right)
         }
     }
 }

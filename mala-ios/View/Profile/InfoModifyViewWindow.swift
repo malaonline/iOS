@@ -161,56 +161,56 @@ open class InfoModifyViewWindow: UIViewController, UITextViewDelegate {
         window.addSubview(buttonSeparatorLine)
         
         // Autolayout
-        window.snp.makeConstraints { (make) -> Void in
-            make.center.equalTo(self.view.snp.center)
-            make.width.equalTo(MalaLayout_CoursePopupWindowWidth)
-            make.height.equalTo(MalaLayout_CoursePopupWindowWidth*0.588)
+        window.snp.makeConstraints { (maker) -> Void in
+            maker.center.equalTo(self.view.snp.center)
+            maker.width.equalTo(MalaLayout_CoursePopupWindowWidth)
+            maker.height.equalTo(MalaLayout_CoursePopupWindowWidth*0.588)
         }
-        contentContainer.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(self.window.snp.top)
-            make.left.equalTo(self.window.snp.left)
-            make.right.equalTo(self.window.snp.right)
-            make.bottom.equalTo(self.buttonTopLine.snp.top)
+        contentContainer.snp.makeConstraints { (maker) -> Void in
+            maker.top.equalTo(self.window.snp.top)
+            maker.left.equalTo(self.window.snp.left)
+            maker.right.equalTo(self.window.snp.right)
+            maker.bottom.equalTo(self.buttonTopLine.snp.top)
         }
-        nameLine.snp.makeConstraints { (make) -> Void in
-            make.height.equalTo(2)
-            make.centerX.equalTo(contentContainer.snp.centerX)
-            make.centerY.equalTo(contentContainer.snp.bottom).multipliedBy(0.65)
-            make.width.equalTo(window.snp.width).multipliedBy(0.8)
+        nameLine.snp.makeConstraints { (maker) -> Void in
+            maker.height.equalTo(2)
+            maker.centerX.equalTo(contentContainer.snp.centerX)
+            maker.centerY.equalTo(contentContainer.snp.bottom).multipliedBy(0.65)
+            maker.width.equalTo(window.snp.width).multipliedBy(0.8)
         }
-        nameLabel.snp.makeConstraints { (make) -> Void in
-            make.height.equalTo(15)
-            make.centerX.equalTo(contentContainer.snp.centerX)
-            make.bottom.equalTo(nameLine.snp.top).offset(-15)
-            make.width.equalTo(100)
+        nameLabel.snp.makeConstraints { (maker) -> Void in
+            maker.height.equalTo(15)
+            maker.centerX.equalTo(contentContainer.snp.centerX)
+            maker.bottom.equalTo(nameLine.snp.top).offset(-15)
+            maker.width.equalTo(100)
         }
-        warningLabel.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(nameLine.snp.bottom).offset(10)
-            make.right.equalTo(nameLine.snp.right)
+        warningLabel.snp.makeConstraints { (maker) -> Void in
+            maker.top.equalTo(nameLine.snp.bottom).offset(10)
+            maker.right.equalTo(nameLine.snp.right)
         }
-        cancelButton.snp.makeConstraints { (make) -> Void in
-            make.bottom.equalTo(self.window.snp.bottom)
-            make.left.equalTo(self.window.snp.left)
-            make.height.equalTo(44)
-            make.width.equalTo(self.window.snp.width).multipliedBy(0.5)
+        cancelButton.snp.makeConstraints { (maker) -> Void in
+            maker.bottom.equalTo(self.window.snp.bottom)
+            maker.left.equalTo(self.window.snp.left)
+            maker.height.equalTo(44)
+            maker.width.equalTo(self.window.snp.width).multipliedBy(0.5)
         }
-        saveButton.snp.makeConstraints { (make) -> Void in
-            make.bottom.equalTo(self.window.snp.bottom)
-            make.right.equalTo(self.window.snp.right)
-            make.height.equalTo(44)
-            make.width.equalTo(self.window.snp.width).multipliedBy(0.5)
+        saveButton.snp.makeConstraints { (maker) -> Void in
+            maker.bottom.equalTo(self.window.snp.bottom)
+            maker.right.equalTo(self.window.snp.right)
+            maker.height.equalTo(44)
+            maker.width.equalTo(self.window.snp.width).multipliedBy(0.5)
         }
-        buttonTopLine.snp.makeConstraints { (make) -> Void in
-            make.bottom.equalTo(cancelButton.snp.top)
-            make.height.equalTo(MalaScreenOnePixel)
-            make.left.equalTo(self.window.snp.left)
-            make.right.equalTo(self.window.snp.right)
+        buttonTopLine.snp.makeConstraints { (maker) -> Void in
+            maker.bottom.equalTo(cancelButton.snp.top)
+            maker.height.equalTo(MalaScreenOnePixel)
+            maker.left.equalTo(self.window.snp.left)
+            maker.right.equalTo(self.window.snp.right)
         }
-        buttonSeparatorLine.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(self.cancelButton.snp.top)
-            make.bottom.equalTo(self.window.snp.bottom)
-            make.width.equalTo(MalaScreenOnePixel)
-            make.left.equalTo(cancelButton.snp.right)
+        buttonSeparatorLine.snp.makeConstraints { (maker) -> Void in
+            maker.top.equalTo(self.cancelButton.snp.top)
+            maker.bottom.equalTo(self.window.snp.bottom)
+            maker.width.equalTo(MalaScreenOnePixel)
+            maker.left.equalTo(cancelButton.snp.right)
         }
     }
     

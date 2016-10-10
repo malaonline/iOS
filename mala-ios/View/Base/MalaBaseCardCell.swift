@@ -41,11 +41,11 @@ class MalaBaseCardCell: UICollectionViewCell {
         
         
         // Autolayout
-        layoutView.snp.makeConstraints { (make) in
-            make.top.equalTo(self.contentView.snp.top).offset(6)
-            make.left.equalTo(self.contentView.snp.left).offset(6)
-            make.bottom.equalTo(self.contentView.snp.bottom).offset(-6)
-            make.right.equalTo(self.contentView.snp.right).offset(-6)
+        layoutView.snp.makeConstraints { (maker) in
+            maker.top.equalTo(self.contentView.snp.top).offset(6)
+            maker.left.equalTo(self.contentView.snp.left).offset(6)
+            maker.bottom.equalTo(self.contentView.snp.bottom).offset(-6)
+            maker.right.equalTo(self.contentView.snp.right).offset(-6)
         }
     }
 }

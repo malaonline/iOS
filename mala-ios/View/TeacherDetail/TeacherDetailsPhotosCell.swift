@@ -59,23 +59,23 @@ class TeacherDetailsPhotosCell: MalaBaseCell {
         content.addSubview(photoCollection)
 
         // Autolayout
-        detailButton.snp.makeConstraints { (make) -> Void in
-            make.height.equalTo(13)
-            make.right.equalTo(headerView.snp.right).offset(-12)
-            make.centerY.equalTo(headerView.snp.centerY)
+        detailButton.snp.makeConstraints { (maker) -> Void in
+            maker.height.equalTo(13)
+            maker.right.equalTo(headerView.snp.right).offset(-12)
+            maker.centerY.equalTo(headerView.snp.centerY)
         }
-        content.snp.updateConstraints { (make) -> Void in
-            make.top.equalTo(headerView.snp.bottom).offset(10)
-            make.left.equalTo(contentView.snp.left)
-            make.right.equalTo(contentView.snp.right)
-            make.bottom.equalTo(contentView.snp.bottom).offset(-10)
+        content.snp.updateConstraints { (maker) -> Void in
+            maker.top.equalTo(headerView.snp.bottom).offset(10)
+            maker.left.equalTo(contentView.snp.left)
+            maker.right.equalTo(contentView.snp.right)
+            maker.bottom.equalTo(contentView.snp.bottom).offset(-10)
         }
-        photoCollection.snp.makeConstraints { (make) in
-            make.left.equalTo(content)
-            make.right.equalTo(content)
-            make.top.equalTo(content)
-            make.height.equalTo(MalaLayout_DetailPhotoWidth)
-            make.bottom.equalTo(content)
+        photoCollection.snp.makeConstraints { (maker) in
+            maker.left.equalTo(content)
+            maker.right.equalTo(content)
+            maker.top.equalTo(content)
+            maker.height.equalTo(MalaLayout_DetailPhotoWidth)
+            maker.bottom.equalTo(content)
         }
     }
  

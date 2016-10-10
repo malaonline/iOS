@@ -291,7 +291,7 @@ class OrderFormViewController: BaseTableViewController {
         switch section {
             
         case Section.teacher.rawValue:
-            return models.count ?? 0
+            return models.count 
             
         case Section.loadMore.rawValue:
             if allOrderFormCount == models.count {

@@ -235,25 +235,25 @@ open class ClassScheduleViewCell: UICollectionViewCell {
         contentView.addSubview(subjectLabel)
         
         // Autolayout
-        dayLabel.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(contentView.snp.top).offset(15)
-            make.centerX.equalTo(contentView.snp.centerX)
-            make.height.equalTo(ClassScheduleViewCellCircleSize)
-            make.width.equalTo(ClassScheduleViewCellCircleSize)
+        dayLabel.snp.makeConstraints { (maker) -> Void in
+            maker.top.equalTo(contentView.snp.top).offset(15)
+            maker.centerX.equalTo(contentView.snp.centerX)
+            maker.height.equalTo(ClassScheduleViewCellCircleSize)
+            maker.width.equalTo(ClassScheduleViewCellCircleSize)
         }
-        separatorLine.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(contentView.snp.top)
-            make.centerX.equalTo(contentView.snp.centerX)
-            make.width.equalTo(contentView.snp.width).offset(2)
-            make.height.equalTo(MalaScreenOnePixel)
+        separatorLine.snp.makeConstraints { (maker) -> Void in
+            maker.top.equalTo(contentView.snp.top)
+            maker.centerX.equalTo(contentView.snp.centerX)
+            maker.width.equalTo(contentView.snp.width).offset(2)
+            maker.height.equalTo(MalaScreenOnePixel)
         }
-        subjectLabel.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(dayLabel.snp.bottom).offset(10)
-            make.height.equalTo(15)
-            make.centerX.equalTo(contentView.snp.centerX)
+        subjectLabel.snp.makeConstraints { (maker) -> Void in
+            maker.top.equalTo(dayLabel.snp.bottom).offset(10)
+            maker.height.equalTo(15)
+            maker.centerX.equalTo(contentView.snp.centerX)
         }
-        courseIndicator.snp.makeConstraints { (make) -> Void in
-            make.center.equalTo(subjectLabel.snp.center)
+        courseIndicator.snp.makeConstraints { (maker) -> Void in
+            maker.center.equalTo(subjectLabel.snp.center)
         }
         
         setCircleColor(isToday: false, selected: false)

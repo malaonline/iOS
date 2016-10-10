@@ -228,103 +228,103 @@ class TeacherDetailsHeaderView: UIView {
         
         
         // Autolayout
-        contentView.snp.makeConstraints({ (make) -> Void in
-            make.left.equalTo(self.snp.left)
-            make.right.equalTo(self.snp.right)
-            make.bottom.equalTo(self.snp.bottom)
-            make.height.equalTo(MalaLayout_DetailHeaderContentHeight)
+        contentView.snp.makeConstraints({ (maker) -> Void in
+            maker.left.equalTo(self.snp.left)
+            maker.right.equalTo(self.snp.right)
+            maker.bottom.equalTo(self.snp.bottom)
+            maker.height.equalTo(MalaLayout_DetailHeaderContentHeight)
         })
-        avatarBackground.snp.makeConstraints { (make) in
-            make.left.equalTo(contentView.snp.left).offset(12)
-            make.bottom.equalTo(separatorLine.snp.top).offset(-7)
-            make.width.equalTo(MalaLayout_AvatarSize)
-            make.height.equalTo(MalaLayout_AvatarSize)
+        avatarBackground.snp.makeConstraints { (maker) in
+            maker.left.equalTo(contentView.snp.left).offset(12)
+            maker.bottom.equalTo(separatorLine.snp.top).offset(-7)
+            maker.width.equalTo(MalaLayout_AvatarSize)
+            maker.height.equalTo(MalaLayout_AvatarSize)
         }
-        avatarView.snp.makeConstraints({ (make) -> Void in
-            make.center.equalTo(avatarBackground.snp.center)
-            make.size.equalTo(avatarBackground.snp.size).offset(-5)
+        avatarView.snp.makeConstraints({ (maker) -> Void in
+            maker.center.equalTo(avatarBackground.snp.center)
+            maker.size.equalTo(avatarBackground.snp.size).offset(-5)
         })
-        vipIconView.snp.makeConstraints({ (make) -> Void in
-            make.right.equalTo(avatarView.snp.right).offset(-3)
-            make.bottom.equalTo(avatarView.snp.bottom).offset(-3)
-            make.width.equalTo(MalaLayout_VipIconSize)
-            make.height.equalTo(MalaLayout_VipIconSize)
+        vipIconView.snp.makeConstraints({ (maker) -> Void in
+            maker.right.equalTo(avatarView.snp.right).offset(-3)
+            maker.bottom.equalTo(avatarView.snp.bottom).offset(-3)
+            maker.width.equalTo(MalaLayout_VipIconSize)
+            maker.height.equalTo(MalaLayout_VipIconSize)
         })
-        nameLabel.snp.makeConstraints({ (make) -> Void in
-            make.top.equalTo(contentView.snp.top).offset(12)
-            make.left.equalTo(avatarView.snp.right).offset(12)
-            make.height.equalTo(16)
+        nameLabel.snp.makeConstraints({ (maker) -> Void in
+            maker.top.equalTo(contentView.snp.top).offset(12)
+            maker.left.equalTo(avatarView.snp.right).offset(12)
+            maker.height.equalTo(16)
         })
-        genderIcon.snp.makeConstraints({ (make) -> Void in
-            make.centerY.equalTo(nameLabel.snp.centerY)
-            make.left.equalTo(nameLabel.snp.right).offset(12)
-            make.width.equalTo(13)
-            make.height.equalTo(13)
+        genderIcon.snp.makeConstraints({ (maker) -> Void in
+            maker.centerY.equalTo(nameLabel.snp.centerY)
+            maker.left.equalTo(nameLabel.snp.right).offset(12)
+            maker.width.equalTo(13)
+            maker.height.equalTo(13)
         })
-        subjectLabel.snp.makeConstraints({ (make) -> Void in
-            make.top.equalTo(nameLabel.snp.bottom).offset(8)
-            make.left.equalTo(nameLabel.snp.left)
-            make.width.equalTo(36)
-            make.height.equalTo(12)
+        subjectLabel.snp.makeConstraints({ (maker) -> Void in
+            maker.top.equalTo(nameLabel.snp.bottom).offset(8)
+            maker.left.equalTo(nameLabel.snp.left)
+            maker.width.equalTo(36)
+            maker.height.equalTo(12)
         })
-        priceLabel.snp.makeConstraints({ (make) -> Void in
-            make.top.equalTo(nameLabel.snp.bottom).offset(8)
-            make.left.equalTo(subjectLabel.snp.right).offset(12)
-            make.right.equalTo(contentView.snp.right).offset(-12)
-            make.height.equalTo(12)
+        priceLabel.snp.makeConstraints({ (maker) -> Void in
+            maker.top.equalTo(nameLabel.snp.bottom).offset(8)
+            maker.left.equalTo(subjectLabel.snp.right).offset(12)
+            maker.right.equalTo(contentView.snp.right).offset(-12)
+            maker.height.equalTo(12)
         })
-        separatorLine.snp.makeConstraints { (make) in
-            make.top.equalTo(subjectLabel.snp.bottom).offset(10)
-            make.height.equalTo(MalaScreenOnePixel)
-            make.left.equalTo(contentView.snp.left).offset(12)
-            make.right.equalTo(contentView.snp.right).offset(-12)
+        separatorLine.snp.makeConstraints { (maker) in
+            maker.top.equalTo(subjectLabel.snp.bottom).offset(10)
+            maker.height.equalTo(MalaScreenOnePixel)
+            maker.left.equalTo(contentView.snp.left).offset(12)
+            maker.right.equalTo(contentView.snp.right).offset(-12)
         }
-        teachingAgeProgressBar.snp.makeConstraints { (make) in
-            make.top.equalTo(separatorLine.snp.bottom).offset(20)
-            make.width.equalTo(50)
-            make.height.equalTo(50)
-            make.right.equalTo(contentView.snp.right).multipliedBy(0.25)
-            make.bottom.equalTo(contentView.snp.bottom).offset(-20)
+        teachingAgeProgressBar.snp.makeConstraints { (maker) in
+            maker.top.equalTo(separatorLine.snp.bottom).offset(20)
+            maker.width.equalTo(50)
+            maker.height.equalTo(50)
+            maker.right.equalTo(contentView.snp.right).multipliedBy(0.25)
+            maker.bottom.equalTo(contentView.snp.bottom).offset(-20)
         }
-        teachingAgeIcon.snp.makeConstraints { (make) in
-            make.center.equalTo(teachingAgeProgressBar.snp.center)
-            make.width.equalTo(23)
-            make.height.equalTo(23)
+        teachingAgeIcon.snp.makeConstraints { (maker) in
+            maker.center.equalTo(teachingAgeProgressBar.snp.center)
+            maker.width.equalTo(23)
+            maker.height.equalTo(23)
         }
-        teachingAgeString.snp.makeConstraints { (make) in
-            make.width.equalTo(30)
-            make.height.equalTo(14)
-            make.left.equalTo(teachingAgeProgressBar.snp.right).offset(12)
-            make.bottom.equalTo(teachingAgeProgressBar.snp.centerY).offset(-5)
+        teachingAgeString.snp.makeConstraints { (maker) in
+            maker.width.equalTo(30)
+            maker.height.equalTo(14)
+            maker.left.equalTo(teachingAgeProgressBar.snp.right).offset(12)
+            maker.bottom.equalTo(teachingAgeProgressBar.snp.centerY).offset(-5)
         }
-        teachingAgeLabel.snp.makeConstraints { (make) in
-            make.width.equalTo(65)
-            make.height.equalTo(14)
-            make.left.equalTo(teachingAgeProgressBar.snp.right).offset(12)
-            make.top.equalTo(teachingAgeProgressBar.snp.centerY).offset(5)
+        teachingAgeLabel.snp.makeConstraints { (maker) in
+            maker.width.equalTo(65)
+            maker.height.equalTo(14)
+            maker.left.equalTo(teachingAgeProgressBar.snp.right).offset(12)
+            maker.top.equalTo(teachingAgeProgressBar.snp.centerY).offset(5)
         }
-        levelProgressBar.snp.makeConstraints { (make) in
-            make.top.equalTo(separatorLine.snp.bottom).offset(20)
-            make.width.equalTo(50)
-            make.height.equalTo(50)
-            make.right.equalTo(contentView.snp.right).multipliedBy(0.75)
+        levelProgressBar.snp.makeConstraints { (maker) in
+            maker.top.equalTo(separatorLine.snp.bottom).offset(20)
+            maker.width.equalTo(50)
+            maker.height.equalTo(50)
+            maker.right.equalTo(contentView.snp.right).multipliedBy(0.75)
         }
-        levelIcon.snp.makeConstraints { (make) in
-            make.center.equalTo(levelProgressBar.snp.center)
-            make.width.equalTo(23)
-            make.height.equalTo(23)
+        levelIcon.snp.makeConstraints { (maker) in
+            maker.center.equalTo(levelProgressBar.snp.center)
+            maker.width.equalTo(23)
+            maker.height.equalTo(23)
         }
-        levelString.snp.makeConstraints { (make) in
-            make.width.equalTo(30)
-            make.height.equalTo(14)
-            make.left.equalTo(levelProgressBar.snp.right).offset(12)
-            make.bottom.equalTo(levelProgressBar.snp.centerY).offset(-5)
+        levelString.snp.makeConstraints { (maker) in
+            maker.width.equalTo(30)
+            maker.height.equalTo(14)
+            maker.left.equalTo(levelProgressBar.snp.right).offset(12)
+            maker.bottom.equalTo(levelProgressBar.snp.centerY).offset(-5)
         }
-        levelLabel.snp.makeConstraints { (make) in
-            make.width.equalTo(65)
-            make.height.equalTo(14)
-            make.left.equalTo(levelProgressBar.snp.right).offset(12)
-            make.top.equalTo(levelProgressBar.snp.centerY).offset(5)
+        levelLabel.snp.makeConstraints { (maker) in
+            maker.width.equalTo(65)
+            maker.height.equalTo(14)
+            maker.left.equalTo(levelProgressBar.snp.right).offset(12)
+            maker.top.equalTo(levelProgressBar.snp.centerY).offset(5)
         }
     }
     

@@ -194,22 +194,22 @@ class MemberSerivceCollectionViewCell: UICollectionViewCell {
         contentView.addSubview(separator)
         
         // Autolayout
-        iconView.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(self.contentView.snp.top).offset(20)
-            make.centerX.equalTo(self.contentView.snp.centerX)
-            make.width.equalTo(23)
-            make.height.equalTo(23)
+        iconView.snp.makeConstraints { (maker) -> Void in
+            maker.top.equalTo(self.contentView.snp.top).offset(20)
+            maker.centerX.equalTo(self.contentView.snp.centerX)
+            maker.width.equalTo(23)
+            maker.height.equalTo(23)
         }
-        titleLabel.snp.makeConstraints { (make) -> Void in
-            make.centerX.equalTo(self.contentView.snp.centerX)
-            make.height.equalTo(13)
-            make.top.equalTo(iconView.snp.bottom).offset(14)
+        titleLabel.snp.makeConstraints { (maker) -> Void in
+            maker.centerX.equalTo(self.contentView.snp.centerX)
+            maker.height.equalTo(13)
+            maker.top.equalTo(iconView.snp.bottom).offset(14)
         }
-        separator.snp.makeConstraints { (make) in
-            make.left.equalTo(self.contentView.snp.left)
-            make.width.equalTo(MalaScreenOnePixel)
-            make.top.equalTo(self.contentView.snp.top).offset(15)
-            make.bottom.equalTo(self.contentView.snp.bottom).offset(-15)
+        separator.snp.makeConstraints { (maker) in
+            maker.left.equalTo(self.contentView.snp.left)
+            maker.width.equalTo(MalaScreenOnePixel)
+            maker.top.equalTo(self.contentView.snp.top).offset(15)
+            maker.bottom.equalTo(self.contentView.snp.bottom).offset(-15)
         }
     }
     

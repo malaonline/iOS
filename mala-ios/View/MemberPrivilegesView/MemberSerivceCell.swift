@@ -55,23 +55,23 @@ class MemberSerivceCell: UITableViewCell {
         content.addSubview(collectionView)
         
         // Autolayout
-        content.snp.makeConstraints { (make) in
-            make.top.equalTo(self.contentView.snp.top).offset(8)
-            make.left.equalTo(self.contentView.snp.left)
-            make.right.equalTo(self.contentView.snp.right)
-            make.height.equalTo(229)
-            make.bottom.equalTo(self.contentView.snp.bottom)
+        content.snp.makeConstraints { (maker) in
+            maker.top.equalTo(self.contentView.snp.top).offset(8)
+            maker.left.equalTo(self.contentView.snp.left)
+            maker.right.equalTo(self.contentView.snp.right)
+            maker.height.equalTo(229)
+            maker.bottom.equalTo(self.contentView.snp.bottom)
         }
-        titleLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(content.snp.top).offset(16)
-            make.left.equalTo(content.snp.left).offset(12)
-            make.height.equalTo(15)
+        titleLabel.snp.makeConstraints { (maker) in
+            maker.top.equalTo(content.snp.top).offset(16)
+            maker.left.equalTo(content.snp.left).offset(12)
+            maker.height.equalTo(15)
         }
-        collectionView.snp.makeConstraints { (make) in
-            make.top.equalTo(titleLabel.snp.bottom).offset(16)
-            make.bottom.equalTo(content.snp.bottom)
-            make.left.equalTo(content.snp.left).offset(12)
-            make.right.equalTo(content.snp.right).offset(-12)
+        collectionView.snp.makeConstraints { (maker) in
+            maker.top.equalTo(titleLabel.snp.bottom).offset(16)
+            maker.bottom.equalTo(content.snp.bottom)
+            maker.left.equalTo(content.snp.left).offset(12)
+            maker.right.equalTo(content.snp.right).offset(-12)
         }
     }
 }

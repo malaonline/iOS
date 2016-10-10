@@ -145,51 +145,51 @@ class TeacherTableViewCell: UITableViewCell {
         content.addSubview(tagsLabel)
         
         // Autolayout
-        content.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(self.contentView.snp.top).offset(4)
-            make.left.equalTo(self.contentView.snp.left).offset(12)
-            make.bottom.equalTo(self.contentView.snp.bottom).offset(-4)
-            make.right.equalTo(self.contentView.snp.right).offset(-12)
+        content.snp.makeConstraints { (maker) -> Void in
+            maker.top.equalTo(self.contentView.snp.top).offset(4)
+            maker.left.equalTo(self.contentView.snp.left).offset(12)
+            maker.bottom.equalTo(self.contentView.snp.bottom).offset(-4)
+            maker.right.equalTo(self.contentView.snp.right).offset(-12)
         }
-        courseLabel.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(self.contentView.snp.top).offset(4)
-            make.left.equalTo(self.contentView.snp.left)
-            make.height.equalTo(24)
-            make.width.equalTo(100)
+        courseLabel.snp.makeConstraints { (maker) -> Void in
+            maker.top.equalTo(self.contentView.snp.top).offset(4)
+            maker.left.equalTo(self.contentView.snp.left)
+            maker.height.equalTo(24)
+            maker.width.equalTo(100)
         }
-        nameLabel.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(self.content.snp.top).offset(15)
-            make.centerX.equalTo(self.content.snp.centerX)
-            make.height.equalTo(17)
+        nameLabel.snp.makeConstraints { (maker) -> Void in
+            maker.top.equalTo(self.content.snp.top).offset(15)
+            maker.centerX.equalTo(self.content.snp.centerX)
+            maker.height.equalTo(17)
         }
-        levelLabel.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(self.nameLabel.snp.bottom).offset(10)
-            make.centerX.equalTo(self.content.snp.centerX)
-            make.height.equalTo(13)
+        levelLabel.snp.makeConstraints { (maker) -> Void in
+            maker.top.equalTo(self.nameLabel.snp.bottom).offset(10)
+            maker.centerX.equalTo(self.content.snp.centerX)
+            maker.height.equalTo(13)
         }
-        separator.snp.makeConstraints { (make) -> Void in
-            make.centerX.equalTo(self.content.snp.centerX)
-            make.centerY.equalTo(self.levelLabel.snp.centerY)
-            make.left.equalTo(self.content.snp.left).offset(10)
-            make.right.equalTo(self.content.snp.right).offset(-10)
-            make.height.equalTo(MalaScreenOnePixel)
+        separator.snp.makeConstraints { (maker) -> Void in
+            maker.centerX.equalTo(self.content.snp.centerX)
+            maker.centerY.equalTo(self.levelLabel.snp.centerY)
+            maker.left.equalTo(self.content.snp.left).offset(10)
+            maker.right.equalTo(self.content.snp.right).offset(-10)
+            maker.height.equalTo(MalaScreenOnePixel)
         }
-        avatarView.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(self.levelLabel.snp.bottom).offset(12)
-            make.centerX.equalTo(self.content.snp.centerX)
-            make.width.equalTo(MalaLayout_AvatarSize)
-            make.height.equalTo(MalaLayout_AvatarSize)
+        avatarView.snp.makeConstraints { (maker) -> Void in
+            maker.top.equalTo(self.levelLabel.snp.bottom).offset(12)
+            maker.centerX.equalTo(self.content.snp.centerX)
+            maker.width.equalTo(MalaLayout_AvatarSize)
+            maker.height.equalTo(MalaLayout_AvatarSize)
         }
-        priceLabel.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(self.avatarView.snp.bottom).offset(11)
-            make.centerX.equalTo(self.content.snp.centerX)
-            make.height.equalTo(14)
+        priceLabel.snp.makeConstraints { (maker) -> Void in
+            maker.top.equalTo(self.avatarView.snp.bottom).offset(11)
+            maker.centerX.equalTo(self.content.snp.centerX)
+            maker.height.equalTo(14)
         }
-        tagsLabel.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(self.priceLabel.snp.bottom).offset(12)
-            make.centerX.equalTo(self.content.snp.centerX)
-            make.height.equalTo(11)
-            make.bottom.equalTo(self.content.snp.bottom).offset(-15)
+        tagsLabel.snp.makeConstraints { (maker) -> Void in
+            maker.top.equalTo(self.priceLabel.snp.bottom).offset(12)
+            maker.centerX.equalTo(self.content.snp.centerX)
+            maker.height.equalTo(11)
+            maker.bottom.equalTo(self.content.snp.bottom).offset(-15)
         }
     }
     

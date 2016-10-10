@@ -19,7 +19,7 @@ class GradeFilterView: BaseFilterView {
     
     
     // MARK: - Constructed
-    override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout, didTapCallBack: FilterDidTapCallBack) {
+    override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout, didTapCallBack: @escaping FilterDidTapCallBack) {
         super.init(frame: frame, collectionViewLayout: layout, didTapCallBack: didTapCallBack)
     }
     

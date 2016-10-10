@@ -13,20 +13,23 @@ import UIKit
     func handleDoubleTap(_ view: UIView, touch: UITouch)
 }
 
-
 class SKDetectingView: UIView {
     weak var delegate: SKDetectingViewDelegate?
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesEnded(touches, with: event)
+        defer {
+            _ = next
+        }
         
-        let touch = touches.first!
+        guard let touch = touches.first else {
+            return
+        }
         switch touch.tapCount {
         case 1 : handleSingleTap(touch)
         case 2 : handleDoubleTap(touch)
         default: break
         }
-        next
     }
     
     func handleSingleTap(_ touch: UITouch) {

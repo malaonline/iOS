@@ -29,14 +29,9 @@ fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
 
 
 open class SKCaptionView: UIView {
-    final let screenBound = UIScreen.main.bounds
-    fileprivate var screenWidth: CGFloat { return screenBound.size.width }
-    fileprivate var screenHeight: CGFloat { return screenBound.size.height }
-    fileprivate var photo: SKPhotoProtocol!
+    fileprivate var photo: SKPhotoProtocol?
     fileprivate var photoLabel: UILabel!
     fileprivate var photoLabelPadding: CGFloat = 10
-    fileprivate var fadeView: UIView = UIView()
-    fileprivate var gradientLayer = CAGradientLayer()
     
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -53,36 +48,6 @@ open class SKCaptionView: UIView {
         setup()
     }
     
-    func setup() {
-        isOpaque = false
-        autoresizingMask = [.flexibleWidth, .flexibleTopMargin, .flexibleRightMargin, .flexibleLeftMargin]
-        
-        // setup background first
-        fadeView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        addSubview(fadeView)
-        
-        // add layer at fadeView
-        gradientLayer.colors = [UIColor(white: 0.0, alpha: 0.0).cgColor, UIColor(white: 0.0, alpha: 0.8).cgColor]
-        fadeView.layer.insertSublayer(gradientLayer, at: 0)
-        
-        photoLabel = UILabel(frame: CGRect(x: photoLabelPadding, y: 0,
-            width: bounds.size.width - (photoLabelPadding * 2), height: bounds.size.height))
-        photoLabel.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        photoLabel.isOpaque = false
-        photoLabel.backgroundColor = .clear()
-        photoLabel.textColor = .white()
-        photoLabel.textAlignment = .center
-        photoLabel.lineBreakMode = .byTruncatingTail
-        photoLabel.numberOfLines = 3
-        photoLabel.shadowColor = UIColor(white: 0.0, alpha: 0.5)
-        photoLabel.shadowOffset = CGSize(width: 0.0, height: 1.0)
-        photoLabel.font = UIFont.systemFont(ofSize: 17.0)
-        if let cap = photo.caption {
-            photoLabel.text = cap
-        }
-        addSubview(photoLabel)
-    }
-    
     open override func sizeThatFits(_ size: CGSize) -> CGSize {
         guard let text = photoLabel.text else {
             return CGSize.zero
@@ -92,19 +57,39 @@ open class SKCaptionView: UIView {
         }
         
         let font: UIFont = photoLabel.font
-        let width: CGFloat = size.width - (photoLabelPadding * 2)
+        let width: CGFloat = size.width - photoLabelPadding * 2
         let height: CGFloat = photoLabel.font.lineHeight * CGFloat(photoLabel.numberOfLines)
         
         let attributedText = NSAttributedString(string: text, attributes: [NSFontAttributeName: font])
-        let textSize = attributedText.boundingRect(with: CGSize(width: width, height: height),
-            options: NSStringDrawingOptions.usesLineFragmentOrigin, context: nil).size
+        let textSize = attributedText.boundingRect(with: CGSize(width: width, height: height), options: .usesLineFragmentOrigin, context: nil).size
         
         return CGSize(width: textSize.width, height: textSize.height + photoLabelPadding * 2)
     }
+}
+
+private extension SKCaptionView {
+    func setup() {
+        isOpaque = false
+        autoresizingMask = [.flexibleWidth, .flexibleTopMargin, .flexibleRightMargin, .flexibleLeftMargin]
+        
+        // setup photoLabel
+        setupPhotoLabel()
+    }
     
-    open override func layoutSubviews() {
-        fadeView.frame = frame
-        gradientLayer.frame = frame
+    func setupPhotoLabel() {
+        photoLabel = UILabel(frame: CGRect(x: photoLabelPadding, y: 0, width: bounds.size.width - (photoLabelPadding * 2), height: bounds.size.height))
+        photoLabel.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        photoLabel.isOpaque = false
+        photoLabel.backgroundColor = UIColor.clear
+        photoLabel.textColor = UIColor.white
+        photoLabel.textAlignment = .center
+        photoLabel.lineBreakMode = .byTruncatingTail
+        photoLabel.numberOfLines = 3
+        photoLabel.shadowColor = UIColor(white: 0.0, alpha: 0.5)
+        photoLabel.shadowOffset = CGSize(width: 0.0, height: 1.0)
+        photoLabel.font = UIFont.systemFont(ofSize: 17.0)
+        photoLabel.text = photo?.caption
+        addSubview(photoLabel)
     }
 }
 

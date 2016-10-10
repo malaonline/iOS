@@ -242,10 +242,10 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
         
         // 向下滑动页面时，使顶部图片跟随放大
         if displacement < 0 && headerBackground.superview != nil{
-            headerBackground.snp.updateConstraints({ (make) -> Void in
-                make.top.equalTo(0).offset(displacement)
+            headerBackground.snp.updateConstraints({ (maker) -> Void in
+                maker.top.equalTo(0).offset(displacement)
                 // 1.1为放大速率
-                make.height.equalTo(MalaLayout_ProfileHeaderViewHeight + abs(displacement)*1.1)
+                maker.height.equalTo(MalaLayout_ProfileHeaderViewHeight + abs(displacement)*1.1)
             })
         }
     }
@@ -419,10 +419,10 @@ class ProfileItemViewCell: UITableViewCell {
         
         contentView.addSubview(collectionView)
         
-        collectionView.snp.makeConstraints { (make) -> Void in
-            make.center.equalTo(contentView)
-            make.width.equalTo(MalaScreenWidth)
-            make.height.equalTo(114)
+        collectionView.snp.makeConstraints { (maker) -> Void in
+            maker.center.equalTo(contentView)
+            maker.width.equalTo(MalaScreenWidth)
+            maker.height.equalTo(114)
         }
     }
 }

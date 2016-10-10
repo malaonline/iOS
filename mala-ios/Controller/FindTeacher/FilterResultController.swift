@@ -72,7 +72,7 @@ class FilterResultController: BaseViewController {
             maker.right.equalTo(view.snp.right)
             maker.height.equalTo(MalaLayout_FilterBarHeight)
         }
-        tableView.snp.makeConstraints { (make) -> Void in
+        tableView.snp.makeConstraints { (maker) -> Void in
             maker.top.equalTo(filterBar.snp.bottom)
             maker.left.equalTo(view.snp.left)
             maker.right.equalTo(view.snp.right)

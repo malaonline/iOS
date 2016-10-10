@@ -81,8 +81,8 @@ open class CouponRulesPopupWindow: UIViewController, UITextViewDelegate {
         
         self.windowHeight = CGFloat((desc.characters.count / 16)+2)*14 + 90 + 14 + 44
         self.windowHeight = windowHeight > MalaLayout_CouponRulesPopupWindowHeight ? MalaLayout_CouponRulesPopupWindowHeight : windowHeight
-        self.window.snp.updateConstraints { (make) in
-            make.height.equalTo(self.windowHeight)
+        self.window.snp.updateConstraints { (maker) in
+            maker.height.equalTo(self.windowHeight)
         }
     }
     
@@ -152,39 +152,39 @@ open class CouponRulesPopupWindow: UIViewController, UITextViewDelegate {
         
         
         // Autolayout
-        window.snp.makeConstraints { (make) -> Void in
-            make.width.equalTo(MalaLayout_CommentPopupWindowWidth)
-            make.height.equalTo(self.windowHeight)
-            make.center.equalTo(self.view.snp.center)
+        window.snp.makeConstraints { (maker) -> Void in
+            maker.width.equalTo(MalaLayout_CommentPopupWindowWidth)
+            maker.height.equalTo(self.windowHeight)
+            maker.center.equalTo(self.view.snp.center)
         }
-        buttonSeparatorLine.snp.makeConstraints { (make) in
-            make.height.equalTo(MalaScreenOnePixel)
-            make.left.equalTo(self.confirmButton.snp.left)
-            make.right.equalTo(self.confirmButton.snp.right)
-            make.top.equalTo(self.confirmButton.snp.top)
+        buttonSeparatorLine.snp.makeConstraints { (maker) in
+            maker.height.equalTo(MalaScreenOnePixel)
+            maker.left.equalTo(self.confirmButton.snp.left)
+            maker.right.equalTo(self.confirmButton.snp.right)
+            maker.top.equalTo(self.confirmButton.snp.top)
         }
-        confirmButton.snp.makeConstraints { (make) in
-            make.bottom.equalTo(self.window.snp.bottom)
-            make.left.equalTo(self.window.snp.left)
-            make.right.equalTo(self.window.snp.right)
-            make.height.equalTo(44)
+        confirmButton.snp.makeConstraints { (maker) in
+            maker.bottom.equalTo(self.window.snp.bottom)
+            maker.left.equalTo(self.window.snp.left)
+            maker.right.equalTo(self.window.snp.right)
+            maker.height.equalTo(44)
         }
-        textBackground.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(self.window.snp.top).offset(18)
-            make.left.equalTo(self.window.snp.left).offset(18)
-            make.right.equalTo(self.window.snp.right).offset(-18)
-            make.bottom.equalTo(self.confirmButton.snp.top).offset(-18)
+        textBackground.snp.makeConstraints { (maker) -> Void in
+            maker.top.equalTo(self.window.snp.top).offset(18)
+            maker.left.equalTo(self.window.snp.left).offset(18)
+            maker.right.equalTo(self.window.snp.right).offset(-18)
+            maker.bottom.equalTo(self.confirmButton.snp.top).offset(-18)
         }
-        titleView.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(textBackground.snp.top).offset(18)
-            make.left.equalTo(textBackground.snp.left)
-            make.right.equalTo(textBackground.snp.right)
+        titleView.snp.makeConstraints { (maker) -> Void in
+            maker.top.equalTo(textBackground.snp.top).offset(18)
+            maker.left.equalTo(textBackground.snp.left)
+            maker.right.equalTo(textBackground.snp.right)
         }
-        descTextView.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(titleView.snp.bottom).offset(18)
-            make.left.equalTo(textBackground.snp.left).offset(18)
-            make.right.equalTo(textBackground.snp.right).offset(-18)
-            make.bottom.equalTo(textBackground.snp.bottom).offset(-18)
+        descTextView.snp.makeConstraints { (maker) -> Void in
+            maker.top.equalTo(titleView.snp.bottom).offset(18)
+            maker.left.equalTo(textBackground.snp.left).offset(18)
+            maker.right.equalTo(textBackground.snp.right).offset(-18)
+            maker.bottom.equalTo(textBackground.snp.bottom).offset(-18)
         }
     }
     

@@ -94,19 +94,19 @@ class MalaDefaultPanel: UIView {
         addSubview(descLabel)
         
         // Autolayout
-        label.snp.makeConstraints { (make) -> Void in
-            make.centerY.equalTo(self.snp.centerY).offset(-50)
-            make.centerX.equalTo(self.snp.centerX)
-            make.height.equalTo(13)
+        label.snp.makeConstraints { (maker) -> Void in
+            maker.centerY.equalTo(self.snp.centerY).offset(-50)
+            maker.centerX.equalTo(self.snp.centerX)
+            maker.height.equalTo(13)
         }
-        imageView.snp.makeConstraints { (make) -> Void in
-            make.centerX.equalTo(self.snp.centerX)
-            make.bottom.equalTo(label.snp.top).offset(-8)
+        imageView.snp.makeConstraints { (maker) -> Void in
+            maker.centerX.equalTo(self.snp.centerX)
+            maker.bottom.equalTo(label.snp.top).offset(-8)
         }
-        descLabel.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(label.snp.bottom).offset(12)
-            make.centerX.equalTo(self.snp.centerX)
-            make.height.equalTo(13)
+        descLabel.snp.makeConstraints { (maker) -> Void in
+            maker.top.equalTo(label.snp.bottom).offset(12)
+            maker.centerX.equalTo(self.snp.centerX)
+            maker.height.equalTo(13)
         }
     }
     
@@ -114,11 +114,11 @@ class MalaDefaultPanel: UIView {
     func addTarget(_ target: AnyObject?, action: Selector) {
         
         addSubview(button)
-        button.snp.makeConstraints { (make) -> Void in
-            make.centerX.equalTo(self.snp.centerX)
-            make.top.equalTo(label.snp.bottom).offset(25)
-            make.height.equalTo(36)
-            make.width.equalTo(164)
+        button.snp.makeConstraints { (maker) -> Void in
+            maker.centerX.equalTo(self.snp.centerX)
+            maker.top.equalTo(label.snp.bottom).offset(25)
+            maker.height.equalTo(36)
+            maker.width.equalTo(164)
         }
         
         button.addTarget(target, action: action, for: .touchUpInside)

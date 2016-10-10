@@ -87,7 +87,7 @@ class TeacherTableView: UITableView, UITableViewDelegate, UITableViewDataSource 
         switch section {
             
         case Section.teacher.rawValue:
-            return teachers.count ?? 0
+            return teachers.count 
             
         case Section.loadMore.rawValue:
             if (controller as? FindTeacherViewController)?.allTeacherCount == teachers.count {

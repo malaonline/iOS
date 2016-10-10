@@ -49,7 +49,7 @@ class LearningReportTopicDataCell: MalaBaseReportCardCell {
         xAxis.labelTextColor = MalaColor_5E5E5E_0
         xAxis.drawGridLinesEnabled = false
         xAxis.spaceBetweenLabels = 1
-        xAxis.labelPosition = .Bottom
+        xAxis.labelPosition = .bottom
         xAxis.gridLineDashLengths = [2,2]
         xAxis.gridColor = MalaColor_E6E9EC_0
         xAxis.drawGridLinesEnabled = true
@@ -64,13 +64,13 @@ class LearningReportTopicDataCell: MalaBaseReportCardCell {
         leftAxis.labelCount = 5
 
         lineChartView.legend.enabled = true
-        lineChartView.legend.form = .Circle
+        lineChartView.legend.form = .circle
         lineChartView.legend.formSize = 8
         lineChartView.legend.font = NSUIFont.systemFont(ofSize: 10)
         lineChartView.legend.textColor = MalaColor_5E5E5E_0
-        lineChartView.legend.horizontalAlignment = .Right
-        lineChartView.legend.verticalAlignment = .Top
-        lineChartView.legend.orientation = .Horizontal
+        lineChartView.legend.horizontalAlignment = .right
+        lineChartView.legend.verticalAlignment = .top
+        lineChartView.legend.orientation = .horizontal
         return lineChartView
     }()
     
@@ -100,11 +100,11 @@ class LearningReportTopicDataCell: MalaBaseReportCardCell {
         layoutView.addSubview(lineChartView)
         
         // Autolayout
-        lineChartView.snp.makeConstraints { (make) in
-            make.top.equalTo(layoutView.snp.bottom).multipliedBy(0.18)
-            make.left.equalTo(descView.snp.left)
-            make.right.equalTo(descView.snp.right)
-            make.bottom.equalTo(layoutView.snp.bottom).multipliedBy(0.68)
+        lineChartView.snp.makeConstraints { (maker) in
+            maker.top.equalTo(layoutView.snp.bottom).multipliedBy(0.18)
+            maker.left.equalTo(descView.snp.left)
+            maker.right.equalTo(descView.snp.right)
+            maker.bottom.equalTo(layoutView.snp.bottom).multipliedBy(0.68)
         }
     }
     

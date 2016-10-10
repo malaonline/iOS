@@ -80,17 +80,17 @@ class LearningReportKnowledgeCell: MalaBaseReportCardCell {
         
         
         // Autolayout
-        infoLabel.snp.makeConstraints { (make) in
-            make.width.equalTo(170)
-            make.height.equalTo(22)
-            make.centerX.equalTo(layoutView.snp.centerX)
-            make.top.equalTo(layoutView.snp.bottom).multipliedBy(0.17)
+        infoLabel.snp.makeConstraints { (maker) in
+            maker.width.equalTo(170)
+            maker.height.equalTo(22)
+            maker.centerX.equalTo(layoutView.snp.centerX)
+            maker.top.equalTo(layoutView.snp.bottom).multipliedBy(0.17)
         }
-        barChartView.snp.makeConstraints { (make) in
-            make.top.equalTo(infoLabel.snp.bottom).offset(10)
-            make.left.equalTo(descView.snp.left)
-            make.right.equalTo(descView.snp.right)
-            make.bottom.equalTo(descView.snp.top).offset(-10)
+        barChartView.snp.makeConstraints { (maker) in
+            maker.top.equalTo(infoLabel.snp.bottom).offset(10)
+            maker.left.equalTo(descView.snp.left)
+            maker.right.equalTo(descView.snp.right)
+            maker.bottom.equalTo(descView.snp.top).offset(-10)
         }
     }
     

@@ -80,15 +80,15 @@ class ThemeIntroductionView: BaseViewController, UICollectionViewDelegate, UICol
         view.addSubview(pageControl)
         
         // Autolayout
-        collectionView.snp_makeConstraints { (make) in
-            make.center.equalTo(self.view.snp_center)
-            make.size.equalTo(self.view.snp_size)
+        collectionView.snp.makeConstraints { (maker) in
+            maker.center.equalTo(self.view.snp.center)
+            maker.size.equalTo(self.view.snp.size)
         }
-        pageControl.snp_makeConstraints { (make) in
-            make.width.equalTo(200)
-            make.centerX.equalTo(self.view.snp_centerX)
-            make.bottom.equalTo(self.view.snp_bottom).offset(-20)
-            make.height.equalTo(10)
+        pageControl.snp.makeConstraints { (maker) in
+            maker.width.equalTo(200)
+            maker.centerX.equalTo(self.view.snp.centerX)
+            maker.bottom.equalTo(self.view.snp.bottom).offset(-20)
+            maker.height.equalTo(10)
         }
     }
     
@@ -191,26 +191,26 @@ class ThemeIntroductionViewCell: UICollectionViewCell {
         layoutView.addSubview(detailLabel)
         
         // Autolayout
-        layoutView.snp_makeConstraints { (make) in
-            make.center.equalTo(self.contentView.snp_center)
-            make.width.equalTo(self.contentView.snp_width)
-            make.height.equalTo(self.contentView.snp_height).multipliedBy(0.75)
+        layoutView.snp.makeConstraints { (maker) in
+            maker.center.equalTo(self.contentView.snp.center)
+            maker.width.equalTo(self.contentView.snp.width)
+            maker.height.equalTo(self.contentView.snp.height).multipliedBy(0.75)
         }
-        imageView.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(layoutView.snp_top).offset(40)
-            make.centerX.equalTo(self.contentView.snp_centerX)
-            make.width.equalTo(217)
-            make.height.equalTo(183)
+        imageView.snp.makeConstraints { (maker) -> Void in
+            maker.top.equalTo(layoutView.snp.top).offset(40)
+            maker.centerX.equalTo(self.contentView.snp.centerX)
+            maker.width.equalTo(217)
+            maker.height.equalTo(183)
         }
-        titleLabel.snp_makeConstraints { (make) -> Void in
-            make.centerX.equalTo(imageView.snp_centerX)
-            make.height.equalTo(16)
-            make.top.equalTo(imageView.snp_bottom).offset(30)
+        titleLabel.snp.makeConstraints { (maker) -> Void in
+            maker.centerX.equalTo(imageView.snp.centerX)
+            maker.height.equalTo(16)
+            maker.top.equalTo(imageView.snp.bottom).offset(30)
         }
-        detailLabel.snp_makeConstraints { (make) in
-            make.top.equalTo(titleLabel.snp_bottom).offset(25)
-            make.centerX.equalTo(imageView.snp_centerX)
-            make.width.equalTo(200)
+        detailLabel.snp.makeConstraints { (maker) in
+            maker.top.equalTo(titleLabel.snp.bottom).offset(25)
+            maker.centerX.equalTo(imageView.snp.centerX)
+            maker.width.equalTo(200)
         }
     }
 }

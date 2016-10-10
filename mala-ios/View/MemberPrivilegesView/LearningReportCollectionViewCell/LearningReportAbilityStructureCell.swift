@@ -82,11 +82,11 @@ class LearningReportAbilityStructureCell: MalaBaseReportCardCell {
         layoutView.addSubview(radarChartView)
         
         // Autolayout
-        radarChartView.snp.makeConstraints { (make) in
-            make.top.equalTo(layoutView.snp.bottom).multipliedBy(0.18)
-            make.left.equalTo(descView.snp.left)
-            make.right.equalTo(descView.snp.right)
-            make.bottom.equalTo(layoutView.snp.bottom).multipliedBy(0.68)
+        radarChartView.snp.makeConstraints { (maker) in
+            maker.top.equalTo(layoutView.snp.bottom).multipliedBy(0.18)
+            maker.left.equalTo(descView.snp.left)
+            maker.right.equalTo(descView.snp.right)
+            maker.bottom.equalTo(layoutView.snp.bottom).multipliedBy(0.68)
         }
     }
     

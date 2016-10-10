@@ -165,7 +165,7 @@ class OrderFormInfoViewController: BaseViewController, OrderFormOperatingViewDel
             MalaOrderOverView.schoolName = (self?.school != nil) ? self?.school!.name : (MalaCurrentSchool?.name)
             MalaOrderOverView.status = "c"
             
-            dispatch_async(dispatch_get_main_queue()) { [weak self] in
+            DispatchQueue.async(DispatchQueue.main) { [weak self] in
                 self?.model = MalaOrderOverView
             }
         })

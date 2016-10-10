@@ -24,11 +24,11 @@ class OrderFormOtherInfoCell: UITableViewCell {
                     paymentDateString.isHidden = true
                     paymentDateLabel.isHidden = true
                     
-                    createDateString.snp.updateConstraints { (make) -> Void in
-                        make.top.equalTo(titleString.snp.bottom).offset(10)
-                        make.left.equalTo(titleString.snp.left)
-                        make.height.equalTo(12)
-                        make.bottom.equalTo(self.contentView.snp.bottom).offset(-16)
+                    createDateString.snp.updateConstraints { (maker) -> Void in
+                        maker.top.equalTo(titleString.snp.bottom).offset(10)
+                        maker.left.equalTo(titleString.snp.left)
+                        maker.height.equalTo(12)
+                        maker.bottom.equalTo(self.contentView.snp.bottom).offset(-16)
                     }
                     break
                     
@@ -143,36 +143,36 @@ class OrderFormOtherInfoCell: UITableViewCell {
         contentView.addSubview(paymentDateLabel)
         
         // Autolayout
-        titleString.snp.updateConstraints { (make) -> Void in
-            make.top.equalTo(self.contentView.snp.top).offset(16)
-            make.left.equalTo(self.contentView.snp.left).offset(12)
-            make.height.equalTo(12)
+        titleString.snp.updateConstraints { (maker) -> Void in
+            maker.top.equalTo(self.contentView.snp.top).offset(16)
+            maker.left.equalTo(self.contentView.snp.left).offset(12)
+            maker.height.equalTo(12)
         }
-        titleLabel.snp.updateConstraints { (make) -> Void in
-            make.top.equalTo(titleString.snp.top)
-            make.left.equalTo(titleString.snp.right).offset(10)
-            make.height.equalTo(12)
+        titleLabel.snp.updateConstraints { (maker) -> Void in
+            maker.top.equalTo(titleString.snp.top)
+            maker.left.equalTo(titleString.snp.right).offset(10)
+            maker.height.equalTo(12)
         }
-        createDateString.snp.updateConstraints { (make) -> Void in
-            make.top.equalTo(titleString.snp.bottom).offset(10)
-            make.left.equalTo(titleString.snp.left)
-            make.height.equalTo(12)
+        createDateString.snp.updateConstraints { (maker) -> Void in
+            maker.top.equalTo(titleString.snp.bottom).offset(10)
+            maker.left.equalTo(titleString.snp.left)
+            maker.height.equalTo(12)
         }
-        createDateLabel.snp.updateConstraints { (make) -> Void in
-            make.top.equalTo(createDateString.snp.top)
-            make.left.equalTo(createDateString.snp.right).offset(10)
-            make.height.equalTo(12)
+        createDateLabel.snp.updateConstraints { (maker) -> Void in
+            maker.top.equalTo(createDateString.snp.top)
+            maker.left.equalTo(createDateString.snp.right).offset(10)
+            maker.height.equalTo(12)
         }
-        paymentDateString.snp.updateConstraints { (make) -> Void in
-            make.top.equalTo(createDateString.snp.bottom).offset(10)
-            make.left.equalTo(titleString.snp.left)
-            make.height.equalTo(12)
-            make.bottom.equalTo(self.contentView.snp.bottom).offset(-16)
+        paymentDateString.snp.updateConstraints { (maker) -> Void in
+            maker.top.equalTo(createDateString.snp.bottom).offset(10)
+            maker.left.equalTo(titleString.snp.left)
+            maker.height.equalTo(12)
+            maker.bottom.equalTo(self.contentView.snp.bottom).offset(-16)
         }
-        paymentDateLabel.snp.updateConstraints { (make) -> Void in
-            make.top.equalTo(paymentDateString.snp.top)
-            make.left.equalTo(paymentDateString.snp.right).offset(10)
-            make.height.equalTo(12)
+        paymentDateLabel.snp.updateConstraints { (maker) -> Void in
+            maker.top.equalTo(paymentDateString.snp.top)
+            maker.left.equalTo(paymentDateString.snp.right).offset(10)
+            maker.height.equalTo(12)
         }
     }
 }

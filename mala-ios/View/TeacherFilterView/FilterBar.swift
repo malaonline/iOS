@@ -21,7 +21,7 @@ class FilterBar: UIView {
             let tags = filterCondition.tags.map({ (object: BaseObjectModel) -> String in
                 return object.name ?? ""
             })
-            let tagsButtonTitle = (tags ?? ["不限"]).joined(separator: " • ")
+            let tagsButtonTitle = tags.joined(separator: " • ")
             self.styleButton.setTitle(tagsButtonTitle == "" ? "不限" : tagsButtonTitle, for: UIControlState())
         }
     }
@@ -85,23 +85,23 @@ class FilterBar: UIView {
         self.addSubview(styleButton)
         
         // Autolayout
-        gradeButton.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(self.snp.top).offset(9)
-            make.left.equalTo(self.snp.left).offset(12)
-            make.width.equalTo(88)
-            make.bottom.equalTo(self.snp.bottom).offset(-5)
+        gradeButton.snp.makeConstraints { (maker) -> Void in
+            maker.top.equalTo(self.snp.top).offset(9)
+            maker.left.equalTo(self.snp.left).offset(12)
+            maker.width.equalTo(88)
+            maker.bottom.equalTo(self.snp.bottom).offset(-5)
         }
-        subjectButton.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(self.gradeButton.snp.top)
-            make.left.equalTo(self.gradeButton.snp.right).offset(7)
-            make.width.equalTo(54)
-            make.height.equalTo(gradeButton.snp.height)
+        subjectButton.snp.makeConstraints { (maker) -> Void in
+            maker.top.equalTo(self.gradeButton.snp.top)
+            maker.left.equalTo(self.gradeButton.snp.right).offset(7)
+            maker.width.equalTo(54)
+            maker.height.equalTo(gradeButton.snp.height)
         }
-        styleButton.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(self.subjectButton.snp.top)
-            make.left.equalTo(self.subjectButton.snp.right).offset(7)
-            make.right.equalTo(self.snp.right).offset(-12)
-            make.height.equalTo(self.subjectButton.snp.height)
+        styleButton.snp.makeConstraints { (maker) -> Void in
+            maker.top.equalTo(self.subjectButton.snp.top)
+            maker.left.equalTo(self.subjectButton.snp.right).offset(7)
+            maker.right.equalTo(self.snp.right).offset(-12)
+            maker.height.equalTo(self.subjectButton.snp.height)
         }
     }
     

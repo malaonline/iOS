@@ -93,31 +93,31 @@ class PaymentChannelCell: UITableViewCell {
         contentView.addSubview(separatorLine)
         
         // Autolayout
-        iconView.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(contentView.snp.top).offset(16)
-            make.left.equalTo(contentView.snp.left).offset(12)
-            make.bottom.equalTo(contentView.snp.bottom).offset(-16)
-            make.width.equalTo(iconView.snp.height)
+        iconView.snp.makeConstraints { (maker) -> Void in
+            maker.top.equalTo(contentView.snp.top).offset(16)
+            maker.left.equalTo(contentView.snp.left).offset(12)
+            maker.bottom.equalTo(contentView.snp.bottom).offset(-16)
+            maker.width.equalTo(iconView.snp.height)
         }
-        titleLabel.snp.makeConstraints { (make) -> Void in
-            make.height.equalTo(14)
-            make.top.equalTo(iconView.snp.top)
-            make.left.equalTo(iconView.snp.right).offset(12)
+        titleLabel.snp.makeConstraints { (maker) -> Void in
+            maker.height.equalTo(14)
+            maker.top.equalTo(iconView.snp.top)
+            maker.left.equalTo(iconView.snp.right).offset(12)
         }
-        subTitleLabel.snp.makeConstraints { (make) -> Void in
-            make.left.equalTo(titleLabel.snp.left)
-            make.bottom.equalTo(iconView.snp.bottom)
-            make.height.equalTo(13)
+        subTitleLabel.snp.makeConstraints { (maker) -> Void in
+            maker.left.equalTo(titleLabel.snp.left)
+            maker.bottom.equalTo(iconView.snp.bottom)
+            maker.height.equalTo(13)
         }
-        selectButton.snp.makeConstraints { (make) -> Void in
-            make.centerY.equalTo(contentView.snp.centerY)
-            make.right.equalTo(contentView.snp.right).offset(-12)
+        selectButton.snp.makeConstraints { (maker) -> Void in
+            maker.centerY.equalTo(contentView.snp.centerY)
+            maker.right.equalTo(contentView.snp.right).offset(-12)
         }
-        separatorLine.snp.makeConstraints { (make) in
-            make.bottom.equalTo(contentView.snp.bottom)
-            make.left.equalTo(contentView.snp.left).offset(12)
-            make.right.equalTo(contentView.snp.right).offset(-12)
-            make.height.equalTo(MalaScreenOnePixel)
+        separatorLine.snp.makeConstraints { (maker) in
+            maker.bottom.equalTo(contentView.snp.bottom)
+            maker.left.equalTo(contentView.snp.left).offset(12)
+            maker.right.equalTo(contentView.snp.right).offset(-12)
+            maker.height.equalTo(MalaScreenOnePixel)
         }
     }
     

@@ -29,13 +29,13 @@ class CourseChoosingTimeScheduleCell: MalaBaseCell {
             
             if isOpen {
                 timeLineView.isHidden = false
-                timeLineView.snp.updateConstraints { (make) -> Void in
-                    make.height.equalTo(currentHeight)
+                timeLineView.snp.updateConstraints { (maker) -> Void in
+                    maker.height.equalTo(currentHeight)
                 }
             }else {
                 timeLineView.isHidden = true
-                timeLineView.snp.updateConstraints { (make) -> Void in
-                    make.height.equalTo(0)
+                timeLineView.snp.updateConstraints { (maker) -> Void in
+                    maker.height.equalTo(0)
                 }
             }
             detailButton.isSelected = isOpen
@@ -79,13 +79,13 @@ class CourseChoosingTimeScheduleCell: MalaBaseCell {
         headerView.addSubview(detailButton)
         
         // Autolayout
-        content.snp.updateConstraints { (make) -> Void in
-            make.top.equalTo(headerView.snp.bottom).offset(14)
+        content.snp.updateConstraints { (maker) -> Void in
+            maker.top.equalTo(headerView.snp.bottom).offset(14)
         }
-        detailButton.snp.makeConstraints { (make) -> Void in
-            make.height.equalTo(13)
-            make.right.equalTo(headerView.snp.right).offset(-12)
-            make.centerY.equalTo(headerView.snp.centerY)
+        detailButton.snp.makeConstraints { (maker) -> Void in
+            maker.height.equalTo(13)
+            maker.right.equalTo(headerView.snp.right).offset(-12)
+            maker.centerY.equalTo(headerView.snp.centerY)
         }
     }
     
@@ -99,12 +99,12 @@ class CourseChoosingTimeScheduleCell: MalaBaseCell {
         self.timeLineView = ThemeTimeLine(times: result.dates, descs: result.times)
         content.addSubview(timeLineView!)
         currentHeight = result.height
-        timeLineView!.snp.makeConstraints { (make) in
-            make.top.equalTo(content.snp.top)
-            make.left.equalTo(content.snp.left)
-            make.right.equalTo(content.snp.right)
-            make.bottom.equalTo(content.snp.bottom)
-            make.height.equalTo(currentHeight)
+        timeLineView!.snp.makeConstraints { (maker) in
+            maker.top.equalTo(content.snp.top)
+            maker.left.equalTo(content.snp.left)
+            maker.right.equalTo(content.snp.right)
+            maker.bottom.equalTo(content.snp.bottom)
+            maker.height.equalTo(currentHeight)
         }
     }
     

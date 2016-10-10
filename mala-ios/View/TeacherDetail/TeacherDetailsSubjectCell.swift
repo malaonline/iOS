@@ -55,8 +55,8 @@ class TeacherDetailsSubjectCell: MalaBaseCell {
                 self.setupTags(elementarySchool, strings: &elementarySchools)
                 
                 let height = (MalaScreenWidth <= 375 && elementarySchools.count > 4) ? 55 : 25
-                elementarySchool.snp.updateConstraints { (make) in
-                    make.height.equalTo(height)
+                elementarySchool.snp.updateConstraints { (maker) in
+                    maker.height.equalTo(height)
                 }
                 
                 self.setupTags(juniorSchool, strings: &juniorSchools)
@@ -114,24 +114,24 @@ class TeacherDetailsSubjectCell: MalaBaseCell {
         content.addSubview(seniorSchool)
         
         // Autolayout
-        elementarySchool.snp.makeConstraints { (make) in
-            make.left.equalTo(content.snp.left)
-            make.right.equalTo(content.snp.right)
-            make.top.equalTo(content.snp.top)
-            make.height.equalTo(25)
+        elementarySchool.snp.makeConstraints { (maker) in
+            maker.left.equalTo(content.snp.left)
+            maker.right.equalTo(content.snp.right)
+            maker.top.equalTo(content.snp.top)
+            maker.height.equalTo(25)
         }
-        juniorSchool.snp.makeConstraints { (make) in
-            make.left.equalTo(content.snp.left)
-            make.right.equalTo(content.snp.right)
-            make.top.equalTo(elementarySchool.snp.bottom).offset(12)
-            make.height.equalTo(25)
+        juniorSchool.snp.makeConstraints { (maker) in
+            maker.left.equalTo(content.snp.left)
+            maker.right.equalTo(content.snp.right)
+            maker.top.equalTo(elementarySchool.snp.bottom).offset(12)
+            maker.height.equalTo(25)
         }
-        seniorSchool.snp.makeConstraints { (make) in
-            make.left.equalTo(content.snp.left)
-            make.right.equalTo(content.snp.right)
-            make.top.equalTo(juniorSchool.snp.bottom).offset(12)
-            make.height.equalTo(25)
-            make.bottom.equalTo(content.snp.bottom)
+        seniorSchool.snp.makeConstraints { (maker) in
+            maker.left.equalTo(content.snp.left)
+            maker.right.equalTo(content.snp.right)
+            maker.top.equalTo(juniorSchool.snp.bottom).offset(12)
+            maker.height.equalTo(25)
+            maker.bottom.equalTo(content.snp.bottom)
         }
     }
     
@@ -162,45 +162,45 @@ class TeacherDetailsSubjectCell: MalaBaseCell {
             break
         case (_, nil, nil):
             
-            elementarySchool.snp.updateConstraints({ (make) in
-                make.bottom.equalTo(content.snp.bottom)
+            elementarySchool.snp.updateConstraints({ (maker) in
+                maker.bottom.equalTo(content.snp.bottom)
             })
             
             break
         case (nil, _, nil):
             
-            juniorSchool.snp.updateConstraints({ (make) in
-                make.top.equalTo(content.snp.top)
-                make.bottom.equalTo(content.snp.bottom)
+            juniorSchool.snp.updateConstraints({ (maker) in
+                maker.top.equalTo(content.snp.top)
+                maker.bottom.equalTo(content.snp.bottom)
             })
             
             break
         case (nil, nil, _):
             
-            seniorSchool.snp.updateConstraints({ (make) in
-                make.top.equalTo(content.snp.top)
-                make.bottom.equalTo(content.snp.bottom)
+            seniorSchool.snp.updateConstraints({ (maker) in
+                maker.top.equalTo(content.snp.top)
+                maker.bottom.equalTo(content.snp.bottom)
             })
             
             break
         case (_, _, nil):
             
-            juniorSchool.snp.updateConstraints({ (make) in
-                make.bottom.equalTo(content.snp.bottom)
+            juniorSchool.snp.updateConstraints({ (maker) in
+                maker.bottom.equalTo(content.snp.bottom)
             })
             
             break
         case (_, nil, _):
             
-            seniorSchool.snp.updateConstraints({ (make) in
-                make.top.equalTo(elementarySchool.snp.bottom).offset(12)
+            seniorSchool.snp.updateConstraints({ (maker) in
+                maker.top.equalTo(elementarySchool.snp.bottom).offset(12)
             })
             
             break
         case (nil, _, _):
             
-            juniorSchool.snp.updateConstraints({ (make) in
-                make.top.equalTo(content.snp.top)
+            juniorSchool.snp.updateConstraints({ (maker) in
+                maker.top.equalTo(content.snp.top)
             })
             
             break

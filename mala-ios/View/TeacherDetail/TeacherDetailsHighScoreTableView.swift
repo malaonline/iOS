@@ -126,35 +126,35 @@ class TeacherDetailsHighScoreTableViewCell: UITableViewCell {
         contentView.addSubview(separator)
         
         // Autolayout
-        nameLabel.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(self.contentView.snp.top)
-            make.bottom.equalTo(self.contentView.snp.bottom)
-            make.left.equalTo(self.contentView.snp.left)
+        nameLabel.snp.makeConstraints { (maker) -> Void in
+            maker.top.equalTo(self.contentView.snp.top)
+            maker.bottom.equalTo(self.contentView.snp.bottom)
+            maker.left.equalTo(self.contentView.snp.left)
         }
-        scoresLabel.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(self.contentView.snp.top)
-            make.left.equalTo(self.nameLabel.snp.right)
-            make.width.equalTo(self.nameLabel.snp.width)
-            make.height.equalTo(self.nameLabel.snp.height)
+        scoresLabel.snp.makeConstraints { (maker) -> Void in
+            maker.top.equalTo(self.contentView.snp.top)
+            maker.left.equalTo(self.nameLabel.snp.right)
+            maker.width.equalTo(self.nameLabel.snp.width)
+            maker.height.equalTo(self.nameLabel.snp.height)
         }
-        schoolLabel.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(self.contentView.snp.top)
-            make.left.equalTo(self.scoresLabel.snp.right)
-            make.width.equalTo(self.scoresLabel.snp.width)
-            make.height.equalTo(self.scoresLabel.snp.height)
+        schoolLabel.snp.makeConstraints { (maker) -> Void in
+            maker.top.equalTo(self.contentView.snp.top)
+            maker.left.equalTo(self.scoresLabel.snp.right)
+            maker.width.equalTo(self.scoresLabel.snp.width)
+            maker.height.equalTo(self.scoresLabel.snp.height)
         }
-        admittedLabel.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(self.contentView.snp.top)
-            make.left.equalTo(self.schoolLabel.snp.right)
-            make.width.equalTo(self.schoolLabel.snp.width)
-            make.height.equalTo(self.schoolLabel.snp.height)
-            make.right.equalTo(self.contentView.snp.right)
+        admittedLabel.snp.makeConstraints { (maker) -> Void in
+            maker.top.equalTo(self.contentView.snp.top)
+            maker.left.equalTo(self.schoolLabel.snp.right)
+            maker.width.equalTo(self.schoolLabel.snp.width)
+            maker.height.equalTo(self.schoolLabel.snp.height)
+            maker.right.equalTo(self.contentView.snp.right)
         }
-        separator.snp.makeConstraints { (make) -> Void in
-            make.left.equalTo(self.contentView.snp.left)
-            make.right.equalTo(self.contentView.snp.right)
-            make.height.equalTo(MalaScreenOnePixel)
-            make.bottom.equalTo(self.contentView.snp.bottom)
+        separator.snp.makeConstraints { (maker) -> Void in
+            maker.left.equalTo(self.contentView.snp.left)
+            maker.right.equalTo(self.contentView.snp.right)
+            maker.height.equalTo(MalaScreenOnePixel)
+            maker.bottom.equalTo(self.contentView.snp.bottom)
         }
     }
     

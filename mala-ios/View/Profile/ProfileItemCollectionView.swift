@@ -140,22 +140,22 @@ class ProfileItemCollectionViewCell: UICollectionViewCell {
         contentView.addSubview(titleLabel)
         
         // AutoLayout
-        iconView.snp.makeConstraints { (make) in
-            make.centerX.equalTo(self.contentView.snp.centerX)
-            make.top.equalTo(self.contentView.snp.top).offset(13)
-            make.width.equalTo(53)
-            make.height.equalTo(53)
+        iconView.snp.makeConstraints { (maker) in
+            maker.centerX.equalTo(self.contentView.snp.centerX)
+            maker.top.equalTo(self.contentView.snp.top).offset(13)
+            maker.width.equalTo(53)
+            maker.height.equalTo(53)
         }
-        newMessageView.snp.makeConstraints { (make) in
-            make.top.equalTo(self.iconView.snp.top)
-            make.right.equalTo(self.contentView.snp.right).offset(-10)
-            make.width.equalTo(39)
-            make.height.equalTo(15)
+        newMessageView.snp.makeConstraints { (maker) in
+            maker.top.equalTo(self.iconView.snp.top)
+            maker.right.equalTo(self.contentView.snp.right).offset(-10)
+            maker.width.equalTo(39)
+            maker.height.equalTo(15)
         }
-        titleLabel.snp.makeConstraints { (make) in
-            make.centerX.equalTo(self.contentView.snp.centerX)
-            make.top.equalTo(self.iconView.snp.bottom).offset(17)
-            make.height.equalTo(14)
+        titleLabel.snp.makeConstraints { (maker) in
+            maker.centerX.equalTo(self.contentView.snp.centerX)
+            maker.top.equalTo(self.iconView.snp.bottom).offset(17)
+            maker.height.equalTo(14)
         }
     }
     

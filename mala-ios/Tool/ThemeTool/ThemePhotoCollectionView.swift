@@ -97,9 +97,9 @@ class ThemePhotoCollectionViewCell: UICollectionViewCell {
         contentView.addSubview(imageView)
         
         // Autolayout
-        imageView.snp_makeConstraints { (make) in
-            make.center.equalTo(contentView)
-            make.size.equalTo(contentView)
+        imageView.snp.makeConstraints { (maker) in
+            maker.center.equalTo(contentView)
+            maker.size.equalTo(contentView)
         }
     }
 }

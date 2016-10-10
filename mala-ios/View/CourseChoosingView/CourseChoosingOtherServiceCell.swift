@@ -51,21 +51,21 @@ class CourseChoosingOtherServiceCell: MalaBaseCell {
         contentView.addSubview(priceView)
         
         // Autolayout
-        priceView.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(self.tableView.snp.bottom)
-            make.left.equalTo(self.contentView.snp.left)
-            make.right.equalTo(self.contentView.snp.right)
-            make.bottom.equalTo(self.contentView.snp.bottom)
-            make.height.equalTo(MalaLayout_OtherServiceCellHeight)
+        priceView.snp.makeConstraints { (maker) -> Void in
+            maker.top.equalTo(self.tableView.snp.bottom)
+            maker.left.equalTo(self.contentView.snp.left)
+            maker.right.equalTo(self.contentView.snp.right)
+            maker.bottom.equalTo(self.contentView.snp.bottom)
+            maker.height.equalTo(MalaLayout_OtherServiceCellHeight)
         }
         
         let otherServiceCount = (MalaIsHasBeenEvaluatedThisSubject == true ? MalaOtherService.count : (MalaOtherService.count-1))
-        tableView.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(self.contentView.snp.top)
-            make.bottom.equalTo(priceView.snp.top)
-            make.left.equalTo(self.contentView.snp.left).offset(12)
-            make.right.equalTo(self.contentView.snp.right).offset(-12)
-            make.height.equalTo(otherServiceCount*Int(MalaLayout_OtherServiceCellHeight))
+        tableView.snp.makeConstraints { (maker) -> Void in
+            maker.top.equalTo(self.contentView.snp.top)
+            maker.bottom.equalTo(priceView.snp.top)
+            maker.left.equalTo(self.contentView.snp.left).offset(12)
+            maker.right.equalTo(self.contentView.snp.right).offset(-12)
+            maker.height.equalTo(otherServiceCount*Int(MalaLayout_OtherServiceCellHeight))
         }
     }
 }
@@ -132,15 +132,15 @@ class PriceResultView: UIView {
         addSubview(priceLabel)
         
         // Autolayout
-        priceLabel.snp.makeConstraints { (make) -> Void in
-            make.height.equalTo(14)
-            make.centerY.equalTo(self.snp.centerY)
-            make.right.equalTo(self.snp.right).offset(-12)
+        priceLabel.snp.makeConstraints { (maker) -> Void in
+            maker.height.equalTo(14)
+            maker.centerY.equalTo(self.snp.centerY)
+            maker.right.equalTo(self.snp.right).offset(-12)
         }
-        stringLabel.snp.makeConstraints { (make) -> Void in
-            make.height.equalTo(14)
-            make.bottom.equalTo(self.priceLabel.snp.bottom)
-            make.right.equalTo(priceLabel.snp.left)
+        stringLabel.snp.makeConstraints { (maker) -> Void in
+            maker.height.equalTo(14)
+            maker.bottom.equalTo(self.priceLabel.snp.bottom)
+            maker.right.equalTo(priceLabel.snp.left)
         }
     }
     

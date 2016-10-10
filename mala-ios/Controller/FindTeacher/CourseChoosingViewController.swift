@@ -152,7 +152,7 @@ class CourseChoosingViewController: BaseViewController, CourseChoosingConfirmVie
             maker.right.equalTo(self.view.snp.right)
             maker.height.equalTo(47)
         }
-        tableView.snp.makeConstraints { (make) -> Void in
+        tableView.snp.makeConstraints { (maker) -> Void in
             maker.top.equalTo(self.view.snp.top)
             maker.left.equalTo(self.view.snp.left)
             maker.right.equalTo(self.view.snp.right)

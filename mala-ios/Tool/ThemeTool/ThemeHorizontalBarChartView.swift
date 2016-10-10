@@ -45,11 +45,11 @@ open class ThemeHorizontalBarChartView: UIView {
             let bar = ThemeHorizontalBar()
             self.addSubview(bar)
             
-            bar.snp_makeConstraints({ (make) in
-                make.height.equalTo(16)//self.snp_height).multipliedBy(1/count*2)
-                make.top.equalTo(self.snp_top).offset(((index*2)+1)*16)
-                make.left.equalTo(self.snp_left)
-                make.right.equalTo(self.snp_right)
+            bar.snp.makeConstraints({ (maker) in
+                maker.height.equalTo(16)//self.snp.height).multipliedBy(1/count*2)
+                maker.top.equalTo(self.snp.top).offset(((index*2)+1)*16)
+                maker.left.equalTo(self.snp.left)
+                maker.right.equalTo(self.snp.right)
             })
             
             bar.data = data
@@ -142,25 +142,25 @@ open class ThemeHorizontalBar: UIView {
         self.addSubview(percentLabel)
         
         // AutoLayout
-        titleLabel.snp_makeConstraints { (make) in
-            make.width.equalTo(56)
-            make.left.equalTo(self.snp_left)
-            make.right.equalTo(progressBar.snp_left).offset(-8)
-            make.height.equalTo(self.snp_height)
-            make.centerY.equalTo(self.snp_centerY)
+        titleLabel.snp.makeConstraints { (maker) in
+            maker.width.equalTo(56)
+            maker.left.equalTo(self.snp.left)
+            maker.right.equalTo(progressBar.snp.left).offset(-8)
+            maker.height.equalTo(self.snp.height)
+            maker.centerY.equalTo(self.snp.centerY)
         }
-        progressBar.snp_makeConstraints { (make) in
-            make.centerY.equalTo(self.snp_centerY)
-            make.left.equalTo(titleLabel.snp_right).offset(8)
-            make.right.equalTo(percentLabel.snp_left).offset(-8)
-            make.height.equalTo(self.snp_height)
+        progressBar.snp.makeConstraints { (maker) in
+            maker.centerY.equalTo(self.snp.centerY)
+            maker.left.equalTo(titleLabel.snp.right).offset(8)
+            maker.right.equalTo(percentLabel.snp.left).offset(-8)
+            maker.height.equalTo(self.snp.height)
         }
-        percentLabel.snp_makeConstraints { (make) in
-            make.width.equalTo(34)
-            make.right.equalTo(self.snp_right)
-            make.left.equalTo(progressBar.snp_right).offset(8)
-            make.height.equalTo(self.snp_height)
-            make.centerY.equalTo(self.snp_centerY)
+        percentLabel.snp.makeConstraints { (maker) in
+            maker.width.equalTo(34)
+            maker.right.equalTo(self.snp.right)
+            maker.left.equalTo(progressBar.snp.right).offset(8)
+            maker.height.equalTo(self.snp.height)
+            maker.centerY.equalTo(self.snp.centerY)
         }
     }
 }

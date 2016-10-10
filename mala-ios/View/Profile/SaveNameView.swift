@@ -79,27 +79,27 @@ class SaveNameView: UIView, UITextFieldDelegate {
         addSubview(finishButton)
         
         // Autolayout
-        inputBackground.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(self.snp.top).offset(12)
-            make.left.equalTo(self.snp.left)
-            make.right.equalTo(self.snp.right)
-            make.height.equalTo(MalaLayout_ProfileModifyViewHeight)
+        inputBackground.snp.makeConstraints { (maker) -> Void in
+            maker.top.equalTo(self.snp.top).offset(12)
+            maker.left.equalTo(self.snp.left)
+            maker.right.equalTo(self.snp.right)
+            maker.height.equalTo(MalaLayout_ProfileModifyViewHeight)
         }
-        inputField.snp.makeConstraints { (make) -> Void in
-            make.left.equalTo(inputBackground.snp.left)
-            make.right.equalTo(inputBackground.snp.right)
-            make.centerY.equalTo(inputBackground.snp.centerY)
+        inputField.snp.makeConstraints { (maker) -> Void in
+            maker.left.equalTo(inputBackground.snp.left)
+            maker.right.equalTo(inputBackground.snp.right)
+            maker.centerY.equalTo(inputBackground.snp.centerY)
         }
-        descLabel.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(inputBackground.snp.bottom).offset(12)
-            make.left.equalTo(self.snp.left).offset(12)
-            make.height.equalTo(12)
+        descLabel.snp.makeConstraints { (maker) -> Void in
+            maker.top.equalTo(inputBackground.snp.bottom).offset(12)
+            maker.left.equalTo(self.snp.left).offset(12)
+            maker.height.equalTo(12)
         }
-        finishButton.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(descLabel.snp.bottom).offset(12)
-            make.left.equalTo(self.snp.left).offset(12)
-            make.right.equalTo(self.snp.right).offset(-12)
-            make.height.equalTo(37)
+        finishButton.snp.makeConstraints { (maker) -> Void in
+            maker.top.equalTo(descLabel.snp.bottom).offset(12)
+            maker.left.equalTo(self.snp.left).offset(12)
+            maker.right.equalTo(self.snp.right).offset(-12)
+            maker.height.equalTo(37)
         }
     }
     

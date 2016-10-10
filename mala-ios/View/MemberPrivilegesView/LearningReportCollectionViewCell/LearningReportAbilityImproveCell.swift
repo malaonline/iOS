@@ -57,7 +57,7 @@ class LearningReportAbilityImproveCell: MalaBaseReportCardCell {
         xAxis.labelFont = UIFont.systemFont(ofSize: 8)
         xAxis.labelTextColor = MalaColor_5E5E5E_0
         xAxis.drawGridLinesEnabled = false
-        xAxis.labelPosition = .Bottom
+        xAxis.labelPosition = .bottom
         
         let leftAxis = chartView.leftAxis
         leftAxis.labelFont = UIFont.systemFont(ofSize: 10)
@@ -70,7 +70,7 @@ class LearningReportAbilityImproveCell: MalaBaseReportCardCell {
         leftAxis.labelCount = 5
         
         let pFormatter = NumberFormatter()
-        pFormatter.numberStyle = .PercentStyle
+        pFormatter.numberStyle = .percentStyle
         pFormatter.maximumFractionDigits = 1
         pFormatter.multiplier = 1
         pFormatter.percentSymbol = "%"
@@ -112,17 +112,17 @@ class LearningReportAbilityImproveCell: MalaBaseReportCardCell {
         layoutView.addSubview(legendView)
         
         // Autolayout
-        legendView.snp.makeConstraints { (make) in
-            make.left.equalTo(descView.snp.left)
-            make.right.equalTo(descView.snp.right)
-            make.height.equalTo(12)
-            make.top.equalTo(layoutView.snp.bottom).multipliedBy(0.17)
+        legendView.snp.makeConstraints { (maker) in
+            maker.left.equalTo(descView.snp.left)
+            maker.right.equalTo(descView.snp.right)
+            maker.height.equalTo(12)
+            maker.top.equalTo(layoutView.snp.bottom).multipliedBy(0.17)
         }
-        combinedChartView.snp.makeConstraints { (make) in
-            make.top.equalTo(legendView.snp.bottom)
-            make.left.equalTo(descView.snp.left)
-            make.right.equalTo(descView.snp.right)
-            make.bottom.equalTo(layoutView.snp.bottom).multipliedBy(0.68)
+        combinedChartView.snp.makeConstraints { (maker) in
+            maker.top.equalTo(legendView.snp.bottom)
+            maker.left.equalTo(descView.snp.left)
+            maker.right.equalTo(descView.snp.right)
+            maker.bottom.equalTo(layoutView.snp.bottom).multipliedBy(0.68)
         }
     }
     
@@ -224,9 +224,9 @@ open class CombinedLegendView: UIView {
         button.sizeToFit()
         self.addSubview(button)
         
-        button.snp.makeConstraints { (make) in
-            make.centerY.equalTo(self.snp.centerY)
-            make.right.equalTo(currentButton?.snp.left ?? self.snp.right).offset(-13)
+        button.snp.makeConstraints { (maker) in
+            maker.centerY.equalTo(self.snp.centerY)
+            maker.right.equalTo(currentButton?.snp.left ?? self.snp.right).offset(-13)
         }
         currentButton = button
         

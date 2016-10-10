@@ -17,8 +17,8 @@ class CourseChoosingGradeCell: MalaBaseCell {
             var collectionRow = CGFloat(Int(prices?.count ?? 0)/2)
             collectionRow = (prices?.count ?? 0)%2 == 0 ? collectionRow : collectionRow + 1
             let collectionHeight = (MalaLayout_GradeSelectionWidth*0.20) * collectionRow + (14*(collectionRow-1))
-            collectionView.snp.updateConstraints({ (make) -> Void in
-                make.height.equalTo(collectionHeight)
+            collectionView.snp.updateConstraints({ (maker) -> Void in
+                maker.height.equalTo(collectionHeight)
             })
         }
     }
@@ -54,14 +54,14 @@ class CourseChoosingGradeCell: MalaBaseCell {
         content.addSubview(collectionView)
         
         // Autolayout
-        content.snp.updateConstraints { (make) -> Void in
-            make.top.equalTo(headerView.snp.bottom).offset(14)
+        content.snp.updateConstraints { (maker) -> Void in
+            maker.top.equalTo(headerView.snp.bottom).offset(14)
         }
-        collectionView.snp.makeConstraints({ (make) -> Void in
-            make.top.equalTo(content.snp.top)
-            make.left.equalTo(content.snp.left)
-            make.right.equalTo(content.snp.right)
-            make.bottom.equalTo(content.snp.bottom)
+        collectionView.snp.makeConstraints({ (maker) -> Void in
+            maker.top.equalTo(content.snp.top)
+            maker.left.equalTo(content.snp.left)
+            maker.right.equalTo(content.snp.right)
+            maker.bottom.equalTo(content.snp.bottom)
         })
     }
 }
@@ -181,11 +181,11 @@ class GradeSelectionCell: UICollectionViewCell {
         self.contentView.addSubview(button)
         
         // Autolayout
-        button.snp.makeConstraints({ (make) -> Void in
-            make.top.equalTo(self.contentView.snp.top)
-            make.left.equalTo(self.contentView.snp.left)
-            make.right.equalTo(self.contentView.snp.right)
-            make.bottom.equalTo(self.contentView.snp.bottom)
+        button.snp.makeConstraints({ (maker) -> Void in
+            maker.top.equalTo(self.contentView.snp.top)
+            maker.left.equalTo(self.contentView.snp.left)
+            maker.right.equalTo(self.contentView.snp.right)
+            maker.bottom.equalTo(self.contentView.snp.bottom)
         })
     }
 }

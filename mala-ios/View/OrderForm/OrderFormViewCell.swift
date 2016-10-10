@@ -256,121 +256,121 @@ class OrderFormViewCell: UITableViewCell {
         
         
         // Autolayout
-        separatorView.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(self.contentView.snp.top)
-            make.left.equalTo(self.contentView.snp.left).offset(6)
-            make.bottom.equalTo(content.snp.top)
-            make.right.equalTo(self.contentView.snp.right).offset(-6)
-            make.height.equalTo(6)
+        separatorView.snp.makeConstraints { (maker) -> Void in
+            maker.top.equalTo(self.contentView.snp.top)
+            maker.left.equalTo(self.contentView.snp.left).offset(6)
+            maker.bottom.equalTo(content.snp.top)
+            maker.right.equalTo(self.contentView.snp.right).offset(-6)
+            maker.height.equalTo(6)
         }
-        content.snp.makeConstraints { (make) in
-            make.top.equalTo(separatorView.snp.bottom)
-            make.left.equalTo(contentView.snp.left).offset(6)
-            make.bottom.equalTo(contentView.snp.bottom)
-            make.right.equalTo(contentView.snp.right).offset(-6)
-        }
-        
-        topLayoutView.snp.makeConstraints { (make) in
-            make.top.equalTo(content.snp.top)
-            make.left.equalTo(content.snp.left).offset(MalaScreenOnePixel)
-            make.right.equalTo(content.snp.right).offset(-MalaScreenOnePixel)
-            make.height.equalTo(content.snp.height).multipliedBy(0.15)
-        }
-        orderIdLabel.snp.makeConstraints { (make) in
-            make.height.equalTo(11)
-            make.centerY.equalTo(topLayoutView.snp.centerY)
-            make.left.equalTo(topLayoutView.snp.left).offset(12)
-        }
-        orderIdString.snp.makeConstraints { (make) in
-            make.height.equalTo(11)
-            make.centerY.equalTo(orderIdLabel.snp.centerY)
-            make.left.equalTo(orderIdLabel.snp.right)
+        content.snp.makeConstraints { (maker) in
+            maker.top.equalTo(separatorView.snp.bottom)
+            maker.left.equalTo(contentView.snp.left).offset(6)
+            maker.bottom.equalTo(contentView.snp.bottom)
+            maker.right.equalTo(contentView.snp.right).offset(-6)
         }
         
-        middleLayoutView.snp.makeConstraints { (make) in
-            make.top.equalTo(topLayoutView.snp.bottom)
-            make.left.equalTo(content.snp.left).offset(12)
-            make.right.equalTo(content.snp.right).offset(-12)
-            make.height.equalTo(content.snp.height).multipliedBy(0.55)
+        topLayoutView.snp.makeConstraints { (maker) in
+            maker.top.equalTo(content.snp.top)
+            maker.left.equalTo(content.snp.left).offset(MalaScreenOnePixel)
+            maker.right.equalTo(content.snp.right).offset(-MalaScreenOnePixel)
+            maker.height.equalTo(content.snp.height).multipliedBy(0.15)
         }
-        teacherNameLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(middleLayoutView.snp.top).offset(14)
-            make.left.equalTo(middleLayoutView.snp.left)
-            make.height.equalTo(11)
+        orderIdLabel.snp.makeConstraints { (maker) in
+            maker.height.equalTo(11)
+            maker.centerY.equalTo(topLayoutView.snp.centerY)
+            maker.left.equalTo(topLayoutView.snp.left).offset(12)
         }
-        teacherNameString.snp.makeConstraints { (make) in
-            make.top.equalTo(teacherNameLabel.snp.top)
-            make.left.equalTo(teacherNameLabel.snp.right)
-            make.height.equalTo(11)
-        }
-        subjectLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(teacherNameLabel.snp.bottom).offset(14)
-            make.left.equalTo(middleLayoutView.snp.left)
-            make.height.equalTo(11)
-        }
-        subjectString.snp.makeConstraints { (make) in
-            make.top.equalTo(subjectLabel.snp.top)
-            make.left.equalTo(subjectLabel.snp.right)
-            make.height.equalTo(11)
-        }
-        schoolLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(subjectLabel.snp.bottom).offset(14)
-            make.left.equalTo(middleLayoutView.snp.left)
-            make.height.equalTo(11)
-        }
-        schoolString.snp.makeConstraints { (make) in
-            make.top.equalTo(schoolLabel.snp.top)
-            make.left.equalTo(schoolLabel.snp.right)
-            make.height.equalTo(11)
-        }
-        statusString.snp.makeConstraints { (make) in
-            make.centerX.equalTo(confirmButton.snp.centerX)
-            make.top.equalTo(middleLayoutView.snp.top).offset(14)
-            make.height.equalTo(12)
-        }
-        avatarView.snp.makeConstraints { (make) in
-            make.centerX.equalTo(statusString.snp.centerX)
-            make.bottom.equalTo(middleLayoutView.snp.bottom).offset(-14)
-            make.height.equalTo(55)
-            make.width.equalTo(55)
-        }
-        separatorLine.snp.makeConstraints { (make) in
-            make.left.equalTo(middleLayoutView.snp.left).offset(-3)
-            make.right.equalTo(middleLayoutView.snp.right).offset(3)
-            make.bottom.equalTo(middleLayoutView.snp.bottom)
-            make.height.equalTo(MalaScreenOnePixel)
+        orderIdString.snp.makeConstraints { (maker) in
+            maker.height.equalTo(11)
+            maker.centerY.equalTo(orderIdLabel.snp.centerY)
+            maker.left.equalTo(orderIdLabel.snp.right)
         }
         
-        bottomLayoutView.snp.makeConstraints { (make) in
-            make.top.equalTo(middleLayoutView.snp.bottom)
-            make.left.equalTo(content.snp.left).offset(12)
-            make.right.equalTo(content.snp.right).offset(-12)
-            make.height.equalTo(content.snp.height).multipliedBy(0.24)
+        middleLayoutView.snp.makeConstraints { (maker) in
+            maker.top.equalTo(topLayoutView.snp.bottom)
+            maker.left.equalTo(content.snp.left).offset(12)
+            maker.right.equalTo(content.snp.right).offset(-12)
+            maker.height.equalTo(content.snp.height).multipliedBy(0.55)
         }
-        amountLabel.snp.makeConstraints { (make) in
-            make.centerY.equalTo(bottomLayoutView.snp.centerY)
-            make.left.equalTo(bottomLayoutView.snp.left)
-            make.height.equalTo(12)
+        teacherNameLabel.snp.makeConstraints { (maker) in
+            maker.top.equalTo(middleLayoutView.snp.top).offset(14)
+            maker.left.equalTo(middleLayoutView.snp.left)
+            maker.height.equalTo(11)
         }
-        amountString.snp.makeConstraints { (make) in
-            make.centerY.equalTo(bottomLayoutView.snp.centerY)
-            make.left.equalTo(amountLabel.snp.right)
-            make.height.equalTo(16)
+        teacherNameString.snp.makeConstraints { (maker) in
+            maker.top.equalTo(teacherNameLabel.snp.top)
+            maker.left.equalTo(teacherNameLabel.snp.right)
+            maker.height.equalTo(11)
         }
-        confirmButton.snp.makeConstraints { (make) in
-            make.width.equalTo(content.snp.width).multipliedBy(0.23)
-            make.height.equalTo(24)
-            make.centerY.equalTo(bottomLayoutView.snp.centerY)
-            make.right.equalTo(bottomLayoutView.snp.right)
+        subjectLabel.snp.makeConstraints { (maker) in
+            maker.top.equalTo(teacherNameLabel.snp.bottom).offset(14)
+            maker.left.equalTo(middleLayoutView.snp.left)
+            maker.height.equalTo(11)
         }
-        disabledLabel.snp.makeConstraints { (make) in
-            make.center.equalTo(confirmButton)
+        subjectString.snp.makeConstraints { (maker) in
+            maker.top.equalTo(subjectLabel.snp.top)
+            maker.left.equalTo(subjectLabel.snp.right)
+            maker.height.equalTo(11)
         }
-        cancelButton.snp.makeConstraints { (make) in
-            make.width.equalTo(content.snp.width).multipliedBy(0.23)
-            make.height.equalTo(24)
-            make.centerY.equalTo(bottomLayoutView.snp.centerY)
-            make.right.equalTo(confirmButton.snp.left).offset(-14)
+        schoolLabel.snp.makeConstraints { (maker) in
+            maker.top.equalTo(subjectLabel.snp.bottom).offset(14)
+            maker.left.equalTo(middleLayoutView.snp.left)
+            maker.height.equalTo(11)
+        }
+        schoolString.snp.makeConstraints { (maker) in
+            maker.top.equalTo(schoolLabel.snp.top)
+            maker.left.equalTo(schoolLabel.snp.right)
+            maker.height.equalTo(11)
+        }
+        statusString.snp.makeConstraints { (maker) in
+            maker.centerX.equalTo(confirmButton.snp.centerX)
+            maker.top.equalTo(middleLayoutView.snp.top).offset(14)
+            maker.height.equalTo(12)
+        }
+        avatarView.snp.makeConstraints { (maker) in
+            maker.centerX.equalTo(statusString.snp.centerX)
+            maker.bottom.equalTo(middleLayoutView.snp.bottom).offset(-14)
+            maker.height.equalTo(55)
+            maker.width.equalTo(55)
+        }
+        separatorLine.snp.makeConstraints { (maker) in
+            maker.left.equalTo(middleLayoutView.snp.left).offset(-3)
+            maker.right.equalTo(middleLayoutView.snp.right).offset(3)
+            maker.bottom.equalTo(middleLayoutView.snp.bottom)
+            maker.height.equalTo(MalaScreenOnePixel)
+        }
+        
+        bottomLayoutView.snp.makeConstraints { (maker) in
+            maker.top.equalTo(middleLayoutView.snp.bottom)
+            maker.left.equalTo(content.snp.left).offset(12)
+            maker.right.equalTo(content.snp.right).offset(-12)
+            maker.height.equalTo(content.snp.height).multipliedBy(0.24)
+        }
+        amountLabel.snp.makeConstraints { (maker) in
+            maker.centerY.equalTo(bottomLayoutView.snp.centerY)
+            maker.left.equalTo(bottomLayoutView.snp.left)
+            maker.height.equalTo(12)
+        }
+        amountString.snp.makeConstraints { (maker) in
+            maker.centerY.equalTo(bottomLayoutView.snp.centerY)
+            maker.left.equalTo(amountLabel.snp.right)
+            maker.height.equalTo(16)
+        }
+        confirmButton.snp.makeConstraints { (maker) in
+            maker.width.equalTo(content.snp.width).multipliedBy(0.23)
+            maker.height.equalTo(24)
+            maker.centerY.equalTo(bottomLayoutView.snp.centerY)
+            maker.right.equalTo(bottomLayoutView.snp.right)
+        }
+        disabledLabel.snp.makeConstraints { (maker) in
+            maker.center.equalTo(confirmButton)
+        }
+        cancelButton.snp.makeConstraints { (maker) in
+            maker.width.equalTo(content.snp.width).multipliedBy(0.23)
+            maker.height.equalTo(24)
+            maker.centerY.equalTo(bottomLayoutView.snp.centerY)
+            maker.right.equalTo(confirmButton.snp.left).offset(-14)
         }
     }
     

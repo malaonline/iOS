@@ -115,29 +115,29 @@ class ProfileViewHeaderView: UIView {
         avatarView.addSubview(activityIndicator)
         
         // Autolayout
-        avatarBackground.snp.makeConstraints { (make) in
-            make.top.equalTo(self.snp.top).offset(16)
-            make.centerX.equalTo(self.snp.centerX)
-            make.width.equalTo(MalaLayout_AvatarSize)
-            make.height.equalTo(MalaLayout_AvatarSize)
+        avatarBackground.snp.makeConstraints { (maker) in
+            maker.top.equalTo(self.snp.top).offset(16)
+            maker.centerX.equalTo(self.snp.centerX)
+            maker.width.equalTo(MalaLayout_AvatarSize)
+            maker.height.equalTo(MalaLayout_AvatarSize)
         }
-        avatarView.snp.makeConstraints({ (make) -> Void in
-            make.center.equalTo(self.avatarBackground.snp.center)
-            make.size.equalTo(self.avatarBackground.snp.size).offset(-5)
+        avatarView.snp.makeConstraints({ (maker) -> Void in
+            maker.center.equalTo(self.avatarBackground.snp.center)
+            maker.size.equalTo(self.avatarBackground.snp.size).offset(-5)
         })
-        nameLabel.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(avatarView.snp.bottom).offset(10)
-            make.centerX.equalTo(avatarView.snp.centerX)
-            make.height.equalTo(14)
+        nameLabel.snp.makeConstraints { (maker) -> Void in
+            maker.top.equalTo(avatarView.snp.bottom).offset(10)
+            maker.centerX.equalTo(avatarView.snp.centerX)
+            maker.height.equalTo(14)
         }
-        editButton.snp.makeConstraints { (make) -> Void in
-            make.centerY.equalTo(nameLabel.snp.centerY)
-            make.left.equalTo(nameLabel.snp.right).offset(3)
-            make.width.equalTo(9)
-            make.height.equalTo(13)
+        editButton.snp.makeConstraints { (maker) -> Void in
+            maker.centerY.equalTo(nameLabel.snp.centerY)
+            maker.left.equalTo(nameLabel.snp.right).offset(3)
+            maker.width.equalTo(9)
+            maker.height.equalTo(13)
         }
-        activityIndicator.snp.makeConstraints { (make) -> Void in
-            make.center.equalTo(avatarView.snp.center)
+        activityIndicator.snp.makeConstraints { (maker) -> Void in
+            maker.center.equalTo(avatarView.snp.center)
         }
     }
     

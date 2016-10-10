@@ -44,15 +44,15 @@ class CourseChoosingClassPeriodCell: MalaBaseCell {
         contentView.addSubview(legendView)
         
         // Autolayout
-        headerView.snp.updateConstraints { (make) -> Void in
-            make.bottom.equalTo(self.contentView.snp.bottom).offset(-16)
+        headerView.snp.updateConstraints { (maker) -> Void in
+            maker.bottom.equalTo(self.contentView.snp.bottom).offset(-16)
         }
 
-        legendView.snp.makeConstraints { (make) -> Void in
-            make.width.equalTo(97)
-            make.height.equalTo(27)
-            make.centerY.equalTo(headerView.snp.centerY)
-            make.right.equalTo(contentView.snp.right).offset(-12)
+        legendView.snp.makeConstraints { (maker) -> Void in
+            maker.width.equalTo(97)
+            maker.height.equalTo(27)
+            maker.centerY.equalTo(headerView.snp.centerY)
+            maker.right.equalTo(contentView.snp.right).offset(-12)
         }
     }
 
@@ -135,23 +135,23 @@ open class PeriodStepper: UIView, UITextFieldDelegate {
         addSubview(incrementButton)
         
         // Autolayout
-        decrementButton.snp.makeConstraints { (make) -> Void in
-            make.width.equalTo(31)
-            make.height.equalTo(27)
-            make.top.equalTo(self.snp.top)
-            make.left.equalTo(self.snp.left)
+        decrementButton.snp.makeConstraints { (maker) -> Void in
+            maker.width.equalTo(31)
+            maker.height.equalTo(27)
+            maker.top.equalTo(self.snp.top)
+            maker.left.equalTo(self.snp.left)
         }
-        incrementButton.snp.makeConstraints { (make) -> Void in
-            make.width.equalTo(31)
-            make.height.equalTo(27)
-            make.top.equalTo(decrementButton.snp.top)
-            make.right.equalTo(self.snp.right)
+        incrementButton.snp.makeConstraints { (maker) -> Void in
+            maker.width.equalTo(31)
+            maker.height.equalTo(27)
+            maker.top.equalTo(decrementButton.snp.top)
+            maker.right.equalTo(self.snp.right)
         }
-        textField.snp.makeConstraints { (make) -> Void in
-            make.height.equalTo(27)
-            make.top.equalTo(decrementButton.snp.top)
-            make.left.equalTo(decrementButton.snp.right)
-            make.right.equalTo(incrementButton.snp.left)
+        textField.snp.makeConstraints { (maker) -> Void in
+            maker.height.equalTo(27)
+            maker.top.equalTo(decrementButton.snp.top)
+            maker.left.equalTo(decrementButton.snp.right)
+            maker.right.equalTo(incrementButton.snp.left)
         }
     }
     

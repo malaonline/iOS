@@ -49,8 +49,8 @@ extension UIButton {
         titleLabel?.font = UIFont.systemFont(ofSize: 14)
         setTitleColor(titleColor, for: .normal)
         setTitleColor(selectedTitleColor, for: .selected)
-        setBackgroundImage(UIImage.withColor(color: bgColor), for: .normal)
-        setBackgroundImage(UIImage.withColor(color: selectedBgColor), for: .selected)
+        setBackgroundImage(UIImage.withColor(bgColor), for: .normal)
+        setBackgroundImage(UIImage.withColor(selectedBgColor), for: .selected)
         sizeToFit()
     }
     
@@ -91,9 +91,9 @@ extension UIButton {
         self.setTitleColor(UIColor.white, for: .highlighted)
         self.setTitleColor(UIColor.white, for: .selected)
         // 背景状态颜色
-        self.setBackgroundImage(UIImage.withColor(color: UIColor.white), for: .normal)
-        self.setBackgroundImage(UIImage.withColor(color: borderColor), for: .highlighted)
-        self.setBackgroundImage(UIImage.withColor(color: borderColor), for: .selected)
+        self.setBackgroundImage(UIImage.withColor(UIColor.white), for: .normal)
+        self.setBackgroundImage(UIImage.withColor(borderColor), for: .highlighted)
+        self.setBackgroundImage(UIImage.withColor(borderColor), for: .selected)
         // 圆角和边框
         self.layer.cornerRadius = 5
         self.layer.masksToBounds = true

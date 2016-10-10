@@ -163,22 +163,22 @@ class ThemeShareCollectionViewCell: UICollectionViewCell {
         contentView.addSubview(titleLabel)
         
         // Autolayout
-        background.snp_makeConstraints { (make) in
-            make.top.equalTo(contentView)
-            make.centerX.equalTo(contentView)
-            make.height.equalTo(55)
-            make.width.equalTo(55)
+        background.snp.makeConstraints { (maker) in
+            maker.top.equalTo(contentView)
+            maker.centerX.equalTo(contentView)
+            maker.height.equalTo(55)
+            maker.width.equalTo(55)
         }
-        iconView.snp_makeConstraints { (make) -> Void in
-            make.center.equalTo(background)
-            make.width.equalTo(47)
-            make.height.equalTo(47)
+        iconView.snp.makeConstraints { (maker) -> Void in
+            maker.center.equalTo(background)
+            maker.width.equalTo(47)
+            maker.height.equalTo(47)
         }
-        titleLabel.snp_makeConstraints { (make) -> Void in
-            make.centerX.equalTo(contentView.snp_centerX)
-            make.height.equalTo(13)
-            make.top.equalTo(background.snp_bottom).offset(10)
-            make.bottom.equalTo(contentView.snp_bottom)
+        titleLabel.snp.makeConstraints { (maker) -> Void in
+            maker.centerX.equalTo(contentView.snp.centerX)
+            maker.height.equalTo(13)
+            maker.top.equalTo(background.snp.bottom).offset(10)
+            maker.bottom.equalTo(contentView.snp.bottom)
         }
     }
 }

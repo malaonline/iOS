@@ -60,8 +60,8 @@ class TagListView:UIScrollView
         for string in labels {
             self.addTag(string)
         }
-        self.snp_updateConstraints { (make) -> Void in
-            make.height.equalTo(Int((currentRow+1)*30))
+        self.snp.updateConstraints { (maker) -> Void in
+            maker.height.equalTo(Int((currentRow+1)*30))
         }
     }
     
@@ -88,11 +88,11 @@ class TagListView:UIScrollView
             let imageView = UIImageView(image: UIImage(named: iconName!))
             label.addSubview(imageView)
             
-            imageView.snp_makeConstraints { (make) -> Void in
-                make.width.equalTo(14)
-                make.height.equalTo(14)
-                make.right.equalTo(label.snp_right).offset(-tagCombinedMargin)
-                make.centerY.equalTo(label.snp_centerY)
+            imageView.snp.makeConstraints { (maker) -> Void in
+                maker.width.equalTo(14)
+                maker.height.equalTo(14)
+                maker.right.equalTo(label.snp.right).offset(-tagCombinedMargin)
+                maker.centerY.equalTo(label.snp.centerY)
             }
         }
         

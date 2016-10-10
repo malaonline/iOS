@@ -263,7 +263,7 @@ func updateAvatarWithImageData(_ imageData: Data, failureHandler: ((Reason, Stri
         println("updateAvatarWithImageData error - no profileID")
         return
     }
-    
+     
     let parameters: [String: String] = [
         "Authorization": "Token \(token)",
     ]

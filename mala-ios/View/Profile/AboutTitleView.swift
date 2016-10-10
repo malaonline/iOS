@@ -60,21 +60,21 @@ class AboutTitleView: UIView {
         addSubview(rightLine)
         
         // Autolayout
-        titleLabel.snp.makeConstraints { (make) -> Void in
-            make.centerX.equalTo(self.snp.centerX)
-            make.top.equalTo(self.snp.top)
-            make.bottom.equalTo(self.snp.bottom)
-            make.height.equalTo(14)
+        titleLabel.snp.makeConstraints { (maker) -> Void in
+            maker.centerX.equalTo(self.snp.centerX)
+            maker.top.equalTo(self.snp.top)
+            maker.bottom.equalTo(self.snp.bottom)
+            maker.height.equalTo(14)
         }
-        leftLine.snp.makeConstraints { (make) -> Void in
-            make.centerY.equalTo(titleLabel.snp.centerY)
-            make.left.equalTo(self.snp.left).offset(10)
-            make.right.equalTo(titleLabel.snp.left).offset(-5)
+        leftLine.snp.makeConstraints { (maker) -> Void in
+            maker.centerY.equalTo(titleLabel.snp.centerY)
+            maker.left.equalTo(self.snp.left).offset(10)
+            maker.right.equalTo(titleLabel.snp.left).offset(-5)
         }
-        rightLine.snp.makeConstraints { (make) -> Void in
-            make.centerY.equalTo(titleLabel.snp.centerY)
-            make.left.equalTo(titleLabel.snp.right).offset(5)
-            make.right.equalTo(self.snp.right).offset(-10)
+        rightLine.snp.makeConstraints { (maker) -> Void in
+            maker.centerY.equalTo(titleLabel.snp.centerY)
+            maker.left.equalTo(titleLabel.snp.right).offset(5)
+            maker.right.equalTo(self.snp.right).offset(-10)
         }
     }
 }

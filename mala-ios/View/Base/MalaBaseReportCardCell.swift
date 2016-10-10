@@ -84,40 +84,40 @@ class MalaBaseReportCardCell: MalaBaseCardCell {
         
         
         // Autolayout
-        titleLabel.snp.makeConstraints { (make) in
-            make.height.equalTo(20)
-            make.centerX.equalTo(layoutView.snp.centerX)
-            make.top.equalTo(layoutView.snp.bottom).multipliedBy(0.05)
+        titleLabel.snp.makeConstraints { (maker) in
+            maker.height.equalTo(20)
+            maker.centerX.equalTo(layoutView.snp.centerX)
+            maker.top.equalTo(layoutView.snp.bottom).multipliedBy(0.05)
         }
-        separatorLine.snp.makeConstraints { (make) in
-            make.top.equalTo(layoutView.snp.bottom).multipliedBy(0.13)
-            make.height.equalTo(MalaScreenOnePixel)
-            make.centerX.equalTo(layoutView.snp.centerX)
-            make.width.equalTo(layoutView.snp.width).multipliedBy(0.84)
+        separatorLine.snp.makeConstraints { (maker) in
+            maker.top.equalTo(layoutView.snp.bottom).multipliedBy(0.13)
+            maker.height.equalTo(MalaScreenOnePixel)
+            maker.centerX.equalTo(layoutView.snp.centerX)
+            maker.width.equalTo(layoutView.snp.width).multipliedBy(0.84)
         }
-        descView.snp.makeConstraints { (make) in
-            make.top.equalTo(layoutView.snp.bottom).multipliedBy(0.74)
-            make.left.equalTo(layoutView.snp.left).offset(12)
-            make.right.equalTo(layoutView.snp.right).offset(-12)
-            make.bottom.equalTo(layoutView.snp.bottom).multipliedBy(0.92)
+        descView.snp.makeConstraints { (maker) in
+            maker.top.equalTo(layoutView.snp.bottom).multipliedBy(0.74)
+            maker.left.equalTo(layoutView.snp.left).offset(12)
+            maker.right.equalTo(layoutView.snp.right).offset(-12)
+            maker.bottom.equalTo(layoutView.snp.bottom).multipliedBy(0.92)
         }
-        pinIcon.snp.makeConstraints { (make) in
-            make.height.equalTo(19)
-            make.width.equalTo(19)
-            make.centerY.equalTo(descView.snp.top)
-            make.right.equalTo(descView.snp.right).offset(-11)
+        pinIcon.snp.makeConstraints { (maker) in
+            maker.height.equalTo(19)
+            maker.width.equalTo(19)
+            maker.centerY.equalTo(descView.snp.top)
+            maker.right.equalTo(descView.snp.right).offset(-11)
         }
-        descTitleLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(descView.snp.bottom).multipliedBy(0.17)
-            make.height.equalTo(12)
-            make.left.equalTo(descView.snp.left).offset(16)
-            make.right.equalTo(descView.snp.right).offset(-16)
+        descTitleLabel.snp.makeConstraints { (maker) in
+            maker.top.equalTo(descView.snp.bottom).multipliedBy(0.17)
+            maker.height.equalTo(12)
+            maker.left.equalTo(descView.snp.left).offset(16)
+            maker.right.equalTo(descView.snp.right).offset(-16)
         }
-        descDetailLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(descView.snp.bottom).multipliedBy(0.32)
-            make.left.equalTo(descView.snp.left).offset(16)
-            make.right.equalTo(descView.snp.right).offset(-16)
-            make.bottom.equalTo(descView.snp.bottom).multipliedBy(0.82)
+        descDetailLabel.snp.makeConstraints { (maker) in
+            maker.top.equalTo(descView.snp.bottom).multipliedBy(0.32)
+            maker.left.equalTo(descView.snp.left).offset(16)
+            maker.right.equalTo(descView.snp.right).offset(-16)
+            maker.bottom.equalTo(descView.snp.bottom).multipliedBy(0.82)
         }
     }
     

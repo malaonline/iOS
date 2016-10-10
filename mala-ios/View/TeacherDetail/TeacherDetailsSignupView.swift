@@ -109,35 +109,35 @@ class TeacherDetailsSignupView: UIView {
         addSubview(button)
         
         // Autolayout
-        topLine.snp.makeConstraints({ (make) -> Void in
-            make.left.equalTo(0)
-            make.width.equalTo(MalaScreenWidth)
-            make.top.equalTo(self.snp.top)
-            make.height.equalTo(MalaScreenOnePixel)
+        topLine.snp.makeConstraints({ (maker) -> Void in
+            maker.left.equalTo(0)
+            maker.width.equalTo(MalaScreenWidth)
+            maker.top.equalTo(self.snp.top)
+            maker.height.equalTo(MalaScreenOnePixel)
         })
-        likeView.snp.makeConstraints({ (make) -> Void in
-            make.top.equalTo(topLine.snp.bottom)
-            make.left.equalTo(self.snp.left)
-            make.bottom.equalTo(self.snp.bottom)
-            make.right.equalTo(self.snp.right).multipliedBy(0.422)
+        likeView.snp.makeConstraints({ (maker) -> Void in
+            maker.top.equalTo(topLine.snp.bottom)
+            maker.left.equalTo(self.snp.left)
+            maker.bottom.equalTo(self.snp.bottom)
+            maker.right.equalTo(self.snp.right).multipliedBy(0.422)
         })
-        likeButton.snp.makeConstraints({ (make) -> Void in
-            make.centerX.equalTo(likeView.snp.centerX)
-            make.centerY.equalTo(likeView.snp.centerY).offset(-8)
-            make.height.equalTo(44)
-            make.width.equalTo(44)
+        likeButton.snp.makeConstraints({ (maker) -> Void in
+            maker.centerX.equalTo(likeView.snp.centerX)
+            maker.centerY.equalTo(likeView.snp.centerY).offset(-8)
+            maker.height.equalTo(44)
+            maker.width.equalTo(44)
         })
-        likeString.snp.makeConstraints({ (make) -> Void in
-            make.centerX.equalTo(likeView.snp.centerX)
-            make.centerY.equalTo(likeView.snp.centerY).offset(10)
-            make.height.equalTo(10)
-            make.width.equalTo(40)
+        likeString.snp.makeConstraints({ (maker) -> Void in
+            maker.centerX.equalTo(likeView.snp.centerX)
+            maker.centerY.equalTo(likeView.snp.centerY).offset(10)
+            maker.height.equalTo(10)
+            maker.width.equalTo(40)
         })
-        button.snp.makeConstraints({ (make) -> Void in
-            make.top.equalTo(topLine.snp.bottom)
-            make.left.equalTo(likeView.snp.right)
-            make.bottom.equalTo(self.snp.bottom)
-            make.right.equalTo(self.snp.right)
+        button.snp.makeConstraints({ (maker) -> Void in
+            maker.top.equalTo(topLine.snp.bottom)
+            maker.left.equalTo(likeView.snp.right)
+            maker.bottom.equalTo(self.snp.bottom)
+            maker.right.equalTo(self.snp.right)
         })
     }
     
@@ -174,7 +174,7 @@ class TeacherDetailsSignupView: UIView {
         // 屏蔽1.25秒内操作，防止连续点击
         likeButton.isUserInteractionEnabled = false
         delay(1.25) {
-            self.likeButton.userInteractionEnabled = true
+            self.likeButton.isUserInteractionEnabled = true
         }
         
         delegate?.likeButtonDidTap(sender)

@@ -99,28 +99,28 @@ class CourseChoosingConfirmView: UIView {
         addSubview(confirmButton)
         
         // Autolayout
-        topLine.snp.makeConstraints({ (make) -> Void in
-            make.top.equalTo(self.snp.top)
-            make.left.equalTo(self.snp.left)
-            make.right.equalTo(self.snp.right)
-            make.height.equalTo(MalaScreenOnePixel)
+        topLine.snp.makeConstraints({ (maker) -> Void in
+            maker.top.equalTo(self.snp.top)
+            maker.left.equalTo(self.snp.left)
+            maker.right.equalTo(self.snp.right)
+            maker.height.equalTo(MalaScreenOnePixel)
         })
-        stringLabel.snp.makeConstraints { (make) -> Void in
-            make.left.equalTo(self.snp.left).offset(12)
-            make.centerY.equalTo(self.snp.centerY)
-            make.height.equalTo(14)
+        stringLabel.snp.makeConstraints { (maker) -> Void in
+            maker.left.equalTo(self.snp.left).offset(12)
+            maker.centerY.equalTo(self.snp.centerY)
+            maker.height.equalTo(14)
         }
-        priceLabel.snp.makeConstraints { (make) -> Void in
-            make.left.equalTo(stringLabel.snp.right)
-            make.width.equalTo(100)
-            make.bottom.equalTo(stringLabel.snp.bottom)
-            make.height.equalTo(14)
+        priceLabel.snp.makeConstraints { (maker) -> Void in
+            maker.left.equalTo(stringLabel.snp.right)
+            maker.width.equalTo(100)
+            maker.bottom.equalTo(stringLabel.snp.bottom)
+            maker.height.equalTo(14)
         }
-        confirmButton.snp.makeConstraints { (make) -> Void in
-            make.right.equalTo(self.snp.right).offset(-12)
-            make.centerY.equalTo(self.snp.centerY)
-            make.width.equalTo(144)
-            make.height.equalTo(37)
+        confirmButton.snp.makeConstraints { (maker) -> Void in
+            maker.right.equalTo(self.snp.right).offset(-12)
+            maker.centerY.equalTo(self.snp.centerY)
+            maker.width.equalTo(144)
+            maker.height.equalTo(37)
         }
     }
     

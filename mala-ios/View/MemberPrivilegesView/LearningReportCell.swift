@@ -186,77 +186,77 @@ class LearningReportCell: UITableViewCell {
         button.addSubview(loadingView)
         
         // Autolayout
-        content.snp.makeConstraints { (make) in
-            make.top.equalTo(self.contentView.snp.top).offset(8)
-            make.left.equalTo(self.contentView.snp.left)
-            make.right.equalTo(self.contentView.snp.right)
-            make.height.equalTo(212)
-            make.bottom.equalTo(self.contentView.snp.bottom)
+        content.snp.makeConstraints { (maker) in
+            maker.top.equalTo(self.contentView.snp.top).offset(8)
+            maker.left.equalTo(self.contentView.snp.left)
+            maker.right.equalTo(self.contentView.snp.right)
+            maker.height.equalTo(212)
+            maker.bottom.equalTo(self.contentView.snp.bottom)
         }
-        titleLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(content.snp.top).offset(16)
-            make.left.equalTo(content.snp.left).offset(12)
-            make.height.equalTo(15)
+        titleLabel.snp.makeConstraints { (maker) in
+            maker.top.equalTo(content.snp.top).offset(16)
+            maker.left.equalTo(content.snp.left).offset(12)
+            maker.height.equalTo(15)
         }
-        subjectLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(content.snp.top).offset(-4)
-            make.right.equalTo(content.snp.right).offset(-12)
-            make.width.equalTo(40.5)
-            make.height.equalTo(34)
+        subjectLabel.snp.makeConstraints { (maker) in
+            maker.top.equalTo(content.snp.top).offset(-4)
+            maker.right.equalTo(content.snp.right).offset(-12)
+            maker.width.equalTo(40.5)
+            maker.height.equalTo(34)
         }
-        separator.snp.makeConstraints { (make) in
-            make.top.equalTo(titleLabel.snp.bottom).offset(20)
-            make.centerX.equalTo(content.snp.centerX)
-            make.width.equalTo(MalaScreenOnePixel)
-            make.bottom.equalTo(button.snp.top).offset(-20)
+        separator.snp.makeConstraints { (maker) in
+            maker.top.equalTo(titleLabel.snp.bottom).offset(20)
+            maker.centerX.equalTo(content.snp.centerX)
+            maker.width.equalTo(MalaScreenOnePixel)
+            maker.bottom.equalTo(button.snp.top).offset(-20)
         }
-        answerNumberLabel.snp.makeConstraints { (make) in
-            make.left.equalTo(button.snp.left)
-            make.right.equalTo(separator.snp.left)
-            make.bottom.equalTo(separator.snp.bottom)
-            make.height.equalTo(35)
+        answerNumberLabel.snp.makeConstraints { (maker) in
+            maker.left.equalTo(button.snp.left)
+            maker.right.equalTo(separator.snp.left)
+            maker.bottom.equalTo(separator.snp.bottom)
+            maker.height.equalTo(35)
         }
-        correctRateLabel.snp.makeConstraints { (make) in
-            make.left.equalTo(separator.snp.right)
-            make.right.equalTo(button.snp.right)
-            make.bottom.equalTo(separator.snp.bottom)
-            make.height.equalTo(35)
+        correctRateLabel.snp.makeConstraints { (maker) in
+            maker.left.equalTo(separator.snp.right)
+            maker.right.equalTo(button.snp.right)
+            maker.bottom.equalTo(separator.snp.bottom)
+            maker.height.equalTo(35)
         }
-        answerNumberLegend.snp.makeConstraints { (make) in
-            make.centerX.equalTo(answerNumberLabel.snp.centerX)
-            make.top.equalTo(separator.snp.top).offset(8)
+        answerNumberLegend.snp.makeConstraints { (maker) in
+            maker.centerX.equalTo(answerNumberLabel.snp.centerX)
+            maker.top.equalTo(separator.snp.top).offset(8)
         }
-        correctRateLegend.snp.makeConstraints { (make) in
-            make.centerX.equalTo(correctRateLabel.snp.centerX)
-            make.top.equalTo(separator.snp.top).offset(8)
+        correctRateLegend.snp.makeConstraints { (maker) in
+            maker.centerX.equalTo(correctRateLabel.snp.centerX)
+            maker.top.equalTo(separator.snp.top).offset(8)
         }
-        button.snp.makeConstraints { (make) in
-            make.height.equalTo(37)
-            make.left.equalTo(content.snp.left).offset(12)
-            make.right.equalTo(content.snp.right).offset(-12)
-            make.bottom.equalTo(content.snp.bottom).offset(-20)
+        button.snp.makeConstraints { (maker) in
+            maker.height.equalTo(37)
+            maker.left.equalTo(content.snp.left).offset(12)
+            maker.right.equalTo(content.snp.right).offset(-12)
+            maker.bottom.equalTo(content.snp.bottom).offset(-20)
         }
         
-        layerView.snp.makeConstraints { (make) in
-            make.left.equalTo(content)
-            make.right.equalTo(content)
-            make.top.equalTo(content)
-            make.bottom.equalTo(button.snp.top)
+        layerView.snp.makeConstraints { (maker) in
+            maker.left.equalTo(content)
+            maker.right.equalTo(content)
+            maker.top.equalTo(content)
+            maker.bottom.equalTo(button.snp.top)
         }
-        layerLabel.snp.makeConstraints { (make) in
-            make.height.equalTo(12)
-            make.centerX.equalTo(layerView.snp.centerX)
-            make.bottom.equalTo(layerView.snp.bottom).offset(-15)
+        layerLabel.snp.makeConstraints { (maker) in
+            maker.height.equalTo(12)
+            maker.centerX.equalTo(layerView.snp.centerX)
+            maker.bottom.equalTo(layerView.snp.bottom).offset(-15)
         }
-        layerImage.snp.makeConstraints { (make) in
-            make.width.equalTo(92)
-            make.height.equalTo(95)
-            make.centerX.equalTo(layerView.snp.centerX)
-            make.bottom.equalTo(layerLabel.snp.top).offset(-15)
+        layerImage.snp.makeConstraints { (maker) in
+            maker.width.equalTo(92)
+            maker.height.equalTo(95)
+            maker.centerX.equalTo(layerView.snp.centerX)
+            maker.bottom.equalTo(layerLabel.snp.top).offset(-15)
         }
-        loadingView.snp.makeConstraints { (make) in
-            make.centerX.equalTo(button.snp.centerX).offset(-16*3.5)
-            make.centerY.equalTo(button.snp.centerY)
+        loadingView.snp.makeConstraints { (maker) in
+            maker.centerX.equalTo(button.snp.centerX).offset(-16*3.5)
+            maker.centerY.equalTo(button.snp.centerY)
         }
     }
     

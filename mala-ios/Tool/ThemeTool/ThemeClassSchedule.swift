@@ -247,26 +247,26 @@ class ThemeClassScheduleCell: UICollectionViewCell {
         contentView.insertSubview(titleLabel, aboveSubview: endLabel)
         
         // Autolayout
-        button.snp_makeConstraints { (make) -> Void in
-            make.size.equalTo(contentView.snp_size)
-            make.center.equalTo(contentView.snp_center)
+        button.snp.makeConstraints { (maker) -> Void in
+            maker.size.equalTo(contentView.snp.size)
+            maker.center.equalTo(contentView.snp.center)
         }
-        startLabel.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(contentView.snp_top)
-            make.left.equalTo(contentView.snp_left)
-            make.right.equalTo(contentView.snp_right)
-            make.height.equalTo(contentView.snp_height).multipliedBy(0.5)
+        startLabel.snp.makeConstraints { (maker) -> Void in
+            maker.top.equalTo(contentView.snp.top)
+            maker.left.equalTo(contentView.snp.left)
+            maker.right.equalTo(contentView.snp.right)
+            maker.height.equalTo(contentView.snp.height).multipliedBy(0.5)
         }
-        endLabel.snp_makeConstraints { (make) -> Void in
-            make.bottom.equalTo(contentView.snp_bottom)
-            make.left.equalTo(contentView.snp_left)
-            make.right.equalTo(contentView.snp_right)
-            make.height.equalTo(contentView.snp_height).multipliedBy(0.5)
+        endLabel.snp.makeConstraints { (maker) -> Void in
+            maker.bottom.equalTo(contentView.snp.bottom)
+            maker.left.equalTo(contentView.snp.left)
+            maker.right.equalTo(contentView.snp.right)
+            maker.height.equalTo(contentView.snp.height).multipliedBy(0.5)
         }
-        titleLabel.snp_makeConstraints { (make) -> Void in
-            make.width.equalTo(contentView.snp_width)
-            make.height.equalTo(12)
-            make.center.equalTo(contentView.snp_center)
+        titleLabel.snp.makeConstraints { (maker) -> Void in
+            maker.width.equalTo(contentView.snp.width)
+            maker.height.equalTo(12)
+            maker.center.equalTo(contentView.snp.center)
         }
     }
     

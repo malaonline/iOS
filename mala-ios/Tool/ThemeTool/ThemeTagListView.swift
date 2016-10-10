@@ -69,17 +69,17 @@ class ThemeTagListView: UIView {
         addSubview(tagsView)
         
         // AutoLayout
-        iconView.snp_makeConstraints { (make) in
-            make.left.equalTo(self.snp_left)
-            make.top.equalTo(self.snp_top).offset(2)
-            make.height.equalTo(21)
-            make.width.equalTo(21)
+        iconView.snp.makeConstraints { (maker) in
+            maker.left.equalTo(self.snp.left)
+            maker.top.equalTo(self.snp.top).offset(2)
+            maker.height.equalTo(21)
+            maker.width.equalTo(21)
         }
-        tagsView.snp_makeConstraints { (make) -> Void in
-            make.left.equalTo(iconView.snp_right).offset(12)
-            make.top.equalTo(self.snp_top)
-            make.bottom.equalTo(self.snp_bottom)
-            make.right.equalTo(self.snp_right)
+        tagsView.snp.makeConstraints { (maker) -> Void in
+            maker.left.equalTo(iconView.snp.right).offset(12)
+            maker.top.equalTo(self.snp.top)
+            maker.bottom.equalTo(self.snp.bottom)
+            maker.right.equalTo(self.snp.right)
         }
     }
     

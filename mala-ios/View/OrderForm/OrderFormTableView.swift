@@ -30,7 +30,7 @@ class OrderFormTableView: UITableView, UITableViewDelegate, UITableViewDataSourc
             self.reloadData()
             delay(0.5) { [weak self] in
                 self?.shouldHiddenTimeSlots = false
-                self?.reloadSections(NSIndexSet(index: 1), withRowAnimation: .Fade)
+                self?.reloadSections(IndexSet(integer: 1), withRowAnimation: .fade)
                 ThemeHUD.hideActivityIndicator()
             }
         }

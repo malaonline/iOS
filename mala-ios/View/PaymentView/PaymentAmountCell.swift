@@ -62,15 +62,15 @@ class PaymentAmountCell: UITableViewCell {
         contentView.addSubview(amountLabel)
         
         // Autolayout
-        titleLabel.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(contentView.snp.top).offset(16)
-            make.left.equalTo(contentView.snp.left).offset(12)
-            make.bottom.equalTo(contentView.snp.bottom).offset(-16)
+        titleLabel.snp.makeConstraints { (maker) -> Void in
+            maker.top.equalTo(contentView.snp.top).offset(16)
+            maker.left.equalTo(contentView.snp.left).offset(12)
+            maker.bottom.equalTo(contentView.snp.bottom).offset(-16)
         }
-        amountLabel.snp.makeConstraints { (make) -> Void in
-            make.centerY.equalTo(contentView.snp.centerY)
-            make.right.equalTo(contentView.snp.right).offset(-12)
-            make.height.equalTo(15)
+        amountLabel.snp.makeConstraints { (maker) -> Void in
+            maker.centerY.equalTo(contentView.snp.centerY)
+            maker.right.equalTo(contentView.snp.right).offset(-12)
+            maker.height.equalTo(15)
         }
         
         amount = ServiceResponseOrder.amount == 0 ? MalaCurrentCourse.getAmount() ?? 0 : ServiceResponseOrder.amount

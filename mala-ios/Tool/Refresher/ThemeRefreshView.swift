@@ -54,18 +54,18 @@ class ThemeRefreshView: UIView {
         addSubview(view)
         
         // Autolayout
-        view.snp_makeConstraints { (make) -> Void in
-            make.height.equalTo(30)
-            make.width.equalTo(105)
-            make.center.equalTo(self.snp_center)
+        view.snp.makeConstraints { (maker) -> Void in
+            maker.height.equalTo(30)
+            maker.width.equalTo(105)
+            maker.center.equalTo(self.snp.center)
         }
-        imageView.snp_makeConstraints { (make) -> Void in
-            make.centerY.equalTo(self.view.snp_centerY).offset(-MalaScreenOnePixel*3)
-            make.left.equalTo(self.view.snp_left)
+        imageView.snp.makeConstraints { (maker) -> Void in
+            maker.centerY.equalTo(self.view.snp.centerY).offset(-MalaScreenOnePixel*3)
+            maker.left.equalTo(self.view.snp.left)
         }
-        label.snp_makeConstraints { (make) -> Void in
-            make.centerY.equalTo(self.view.snp_centerY)
-            make.right.equalTo(self.view.snp_right)
+        label.snp.makeConstraints { (maker) -> Void in
+            maker.centerY.equalTo(self.view.snp.centerY)
+            maker.right.equalTo(self.view.snp.right)
         }
         
     }

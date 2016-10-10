@@ -112,44 +112,44 @@ class OrderFormTimeScheduleCell: UITableViewCell {
         topLayoutView.addSubview(periodLeftLabel)
         
         // Autolayout
-        topLayoutView.snp.makeConstraints { (make) in
-            make.top.equalTo(self.contentView.snp.top)
-            make.left.equalTo(self.contentView.snp.left)
-            make.right.equalTo(self.contentView.snp.right)
-            make.height.equalTo(35)
-            make.bottom.equalTo(self.contentView.snp.bottom).offset(-12)
+        topLayoutView.snp.makeConstraints { (maker) in
+            maker.top.equalTo(self.contentView.snp.top)
+            maker.left.equalTo(self.contentView.snp.left)
+            maker.right.equalTo(self.contentView.snp.right)
+            maker.height.equalTo(35)
+            maker.bottom.equalTo(self.contentView.snp.bottom).offset(-12)
         }
-        separatorLine.snp.makeConstraints { (make) in
-            make.bottom.equalTo(topLayoutView.snp.bottom)
-            make.left.equalTo(topLayoutView.snp.left)
-            make.right.equalTo(topLayoutView.snp.right)
-            make.height.equalTo(MalaScreenOnePixel)
+        separatorLine.snp.makeConstraints { (maker) in
+            maker.bottom.equalTo(topLayoutView.snp.bottom)
+            maker.left.equalTo(topLayoutView.snp.left)
+            maker.right.equalTo(topLayoutView.snp.right)
+            maker.height.equalTo(MalaScreenOnePixel)
         }
-        iconView.snp.makeConstraints { (make) in
-            make.left.equalTo(topLayoutView.snp.left)
-            make.centerY.equalTo(topLayoutView.snp.centerY)
-            make.height.equalTo(19)
-            make.width.equalTo(3)
+        iconView.snp.makeConstraints { (maker) in
+            maker.left.equalTo(topLayoutView.snp.left)
+            maker.centerY.equalTo(topLayoutView.snp.centerY)
+            maker.height.equalTo(19)
+            maker.width.equalTo(3)
         }
-        titleLabel.snp.updateConstraints { (make) -> Void in
-            make.centerY.equalTo(topLayoutView.snp.centerY)
-            make.left.equalTo(topLayoutView.snp.left).offset(12)
-            make.height.equalTo(15)
+        titleLabel.snp.updateConstraints { (maker) -> Void in
+            maker.centerY.equalTo(topLayoutView.snp.centerY)
+            maker.left.equalTo(topLayoutView.snp.left).offset(12)
+            maker.height.equalTo(15)
         }
-        periodRightLabel.snp.makeConstraints { (make) in
-            make.centerY.equalTo(topLayoutView.snp.centerY)
-            make.right.equalTo(topLayoutView.snp.right).offset(-12)
-            make.height.equalTo(13)
+        periodRightLabel.snp.makeConstraints { (maker) in
+            maker.centerY.equalTo(topLayoutView.snp.centerY)
+            maker.right.equalTo(topLayoutView.snp.right).offset(-12)
+            maker.height.equalTo(13)
         }
-        periodLabel.snp.makeConstraints { (make) in
-            make.centerY.equalTo(topLayoutView.snp.centerY)
-            make.right.equalTo(periodRightLabel.snp.left).offset(-5)
-            make.height.equalTo(13)
+        periodLabel.snp.makeConstraints { (maker) in
+            maker.centerY.equalTo(topLayoutView.snp.centerY)
+            maker.right.equalTo(periodRightLabel.snp.left).offset(-5)
+            maker.height.equalTo(13)
         }
-        periodLeftLabel.snp.makeConstraints { (make) in
-            make.centerY.equalTo(topLayoutView.snp.centerY)
-            make.right.equalTo(periodLabel.snp.left).offset(-5)
-            make.height.equalTo(13)
+        periodLeftLabel.snp.makeConstraints { (maker) in
+            maker.centerY.equalTo(topLayoutView.snp.centerY)
+            maker.right.equalTo(periodLabel.snp.left).offset(-5)
+            maker.height.equalTo(13)
         }
     }
     
@@ -163,15 +163,15 @@ class OrderFormTimeScheduleCell: UITableViewCell {
         timeLineView?.isHidden = true
         
         self.contentView.addSubview(timeLineView!)
-        topLayoutView.snp.updateConstraints { (make) in
-            make.bottom.equalTo(timeLineView!.snp.top).offset(-10)
+        topLayoutView.snp.updateConstraints { (maker) in
+            maker.bottom.equalTo(timeLineView!.snp.top).offset(-10)
         }
-        timeLineView!.snp.updateConstraints { (make) in
-            make.top.equalTo(topLayoutView.snp.bottom).offset(10)
-            make.left.equalTo(self.contentView.snp.left).offset(12)
-            make.right.equalTo(self.contentView.snp.right).offset(-12)
-            make.bottom.equalTo(self.contentView.snp.bottom).offset(-16)
-            make.height.equalTo(result.height)
+        timeLineView!.snp.updateConstraints { (maker) in
+            maker.top.equalTo(topLayoutView.snp.bottom).offset(10)
+            maker.left.equalTo(self.contentView.snp.left).offset(12)
+            maker.right.equalTo(self.contentView.snp.right).offset(-12)
+            maker.bottom.equalTo(self.contentView.snp.bottom).offset(-16)
+            maker.height.equalTo(result.height)
         }
     }
 }

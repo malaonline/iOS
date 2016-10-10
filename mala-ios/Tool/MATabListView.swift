@@ -100,8 +100,8 @@ class MATabListView: UIView {
     // MARK: - Private Method
     private func setHeight(_ height: CGFloat) {
         self.layoutHeight = height
-        self.snp_updateConstraints { (make) -> Void in
-            make.height.equalTo(self.layoutHeight)
+        self.snp.updateConstraints { (maker) -> Void in
+            maker.height.equalTo(self.layoutHeight)
         }
     }
     
