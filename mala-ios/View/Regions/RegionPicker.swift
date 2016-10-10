@@ -57,22 +57,22 @@ class RegionPicker: UIView {
         layoutView.addSubview(arrow)
         
         // AutoLayout
-        layoutView.snp_makeConstraints { (make) in
-            make.center.equalTo(self)
-            make.height.equalTo(self)
+        layoutView.snp.makeConstraints { (maker) in
+            maker.center.equalTo(self)
+            maker.height.equalTo(self)
         }
-        regionLabel.snp_makeConstraints { (make) in
-            make.centerY.equalTo(layoutView)
-            make.height.equalTo(layoutView)
-            make.left.equalTo(layoutView)
-            make.right.equalTo(arrow.snp_left).offset(-5)
+        regionLabel.snp.makeConstraints { (maker) in
+            maker.centerY.equalTo(layoutView)
+            maker.height.equalTo(layoutView)
+            maker.left.equalTo(layoutView)
+            maker.right.equalTo(arrow.snp.left).offset(-5)
         }
-        arrow.snp_makeConstraints { (make) in
-            make.width.equalTo(8)
-            make.height.equalTo(4.5)
-            make.centerY.equalTo(layoutView)
-            make.left.equalTo(regionLabel.snp_right).offset(5)
-            make.right.equalTo(layoutView)
+        arrow.snp.makeConstraints { (maker) in
+            maker.width.equalTo(8)
+            maker.height.equalTo(4.5)
+            maker.centerY.equalTo(layoutView)
+            maker.left.equalTo(regionLabel.snp.right).offset(5)
+            maker.right.equalTo(layoutView)
         }
     }
 }

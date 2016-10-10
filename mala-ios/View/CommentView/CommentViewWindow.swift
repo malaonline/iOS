@@ -240,56 +240,56 @@ open class CommentViewWindow: UIViewController, UITextViewDelegate {
         }
         
         // Autolayout
-        window.snp_makeConstraints { (make) -> Void in
-            make.center.equalTo(self.view.snp_center)
+        window.snp.makeConstraints { (make) -> Void in
+            make.center.equalTo(self.view.snp.center)
             make.width.equalTo(MalaLayout_CommentPopupWindowWidth)
             make.height.equalTo(MalaLayout_CommentPopupWindowHeight)
         }
-        titleView.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(self.window.snp_top)
-            make.left.equalTo(self.window.snp_left)
-            make.right.equalTo(self.window.snp_right)
+        titleView.snp.makeConstraints { (make) -> Void in
+            make.top.equalTo(self.window.snp.top)
+            make.left.equalTo(self.window.snp.left)
+            make.right.equalTo(self.window.snp.right)
             make.height.equalTo(44)
         }
-        closeButton.snp_makeConstraints { (make) -> Void in
-            make.centerY.equalTo(titleView.snp_centerY)
-            make.right.equalTo(self.window.snp_right).offset(-12)
+        closeButton.snp.makeConstraints { (make) -> Void in
+            make.centerY.equalTo(titleView.snp.centerY)
+            make.right.equalTo(self.window.snp.right).offset(-12)
         }
-        titleLine.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(titleView.snp_bottom)
+        titleLine.snp.makeConstraints { (make) -> Void in
+            make.top.equalTo(titleView.snp.bottom)
             make.height.equalTo(MalaScreenOnePixel)
-            make.left.equalTo(self.window.snp_left)
-            make.right.equalTo(self.window.snp_right)
+            make.left.equalTo(self.window.snp.left)
+            make.right.equalTo(self.window.snp.right)
         }
-        avatarView.snp_makeConstraints { (make) -> Void in
-            make.centerX.equalTo(self.window.snp_centerX)
-            make.top.equalTo(titleLine.snp_bottom).offset(10)
+        avatarView.snp.makeConstraints { (make) -> Void in
+            make.centerX.equalTo(self.window.snp.centerX)
+            make.top.equalTo(titleLine.snp.bottom).offset(10)
             make.width.equalTo(MalaLayout_CoursePopupWindowTitleViewHeight)
             make.height.equalTo(MalaLayout_CoursePopupWindowTitleViewHeight)
         }
-        teacherNameLabel.snp_makeConstraints { (make) -> Void in
-            make.right.equalTo(avatarView.snp_centerX).offset(-5)
-            make.top.equalTo(avatarView.snp_bottom).offset(10)
+        teacherNameLabel.snp.makeConstraints { (make) -> Void in
+            make.right.equalTo(avatarView.snp.centerX).offset(-5)
+            make.top.equalTo(avatarView.snp.bottom).offset(10)
             make.height.equalTo(13)
         }
-        subjectLabel.snp_makeConstraints { (make) -> Void in
-            make.left.equalTo(avatarView.snp_centerX).offset(5)
-            make.top.equalTo(avatarView.snp_bottom).offset(10)
+        subjectLabel.snp.makeConstraints { (make) -> Void in
+            make.left.equalTo(avatarView.snp.centerX).offset(5)
+            make.top.equalTo(avatarView.snp.bottom).offset(10)
             make.height.equalTo(13)
         }
-        floatRating.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(subjectLabel.snp_bottom).offset(12)
-            make.centerX.equalTo(avatarView.snp_centerX)
+        floatRating.snp.makeConstraints { (make) -> Void in
+            make.top.equalTo(subjectLabel.snp.bottom).offset(12)
+            make.centerX.equalTo(avatarView.snp.centerX)
             make.height.equalTo(30)
             make.width.equalTo(120)
         }
-        textBackground.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(floatRating.snp_bottom).offset(8)
-            make.left.equalTo(self.window.snp_left).offset(18)
-            make.right.equalTo(self.window.snp_right).offset(-18)
-            make.bottom.equalTo(buttonSeparatorLine.snp_top).offset(-12)
+        textBackground.snp.makeConstraints { (make) -> Void in
+            make.top.equalTo(floatRating.snp.bottom).offset(8)
+            make.left.equalTo(self.window.snp.left).offset(18)
+            make.right.equalTo(self.window.snp.right).offset(-18)
+            make.bottom.equalTo(buttonSeparatorLine.snp.top).offset(-12)
         }
-        textView.snp_makeConstraints { (make) -> Void in
+        textView.snp.makeConstraints { (make) -> Void in
             make.edges.equalTo(textBackground).inset(
                 UIEdgeInsets(
                     top: 12,
@@ -299,16 +299,16 @@ open class CommentViewWindow: UIViewController, UITextViewDelegate {
                 )
             )
         }
-        buttonSeparatorLine.snp_makeConstraints { (make) -> Void in
-            make.bottom.equalTo(commitButton.snp_top)
-            make.left.equalTo(self.window.snp_left)
-            make.right.equalTo(self.window.snp_right)
+        buttonSeparatorLine.snp.makeConstraints { (make) -> Void in
+            make.bottom.equalTo(commitButton.snp.top)
+            make.left.equalTo(self.window.snp.left)
+            make.right.equalTo(self.window.snp.right)
             make.height.equalTo(MalaScreenOnePixel)
         }
-        commitButton.snp_makeConstraints { (make) -> Void in
-            make.bottom.equalTo(self.window.snp_bottom)
-            make.left.equalTo(self.window.snp_left)
-            make.right.equalTo(self.window.snp_right)
+        commitButton.snp.makeConstraints { (make) -> Void in
+            make.bottom.equalTo(self.window.snp.bottom)
+            make.left.equalTo(self.window.snp.left)
+            make.right.equalTo(self.window.snp.right)
             make.height.equalTo(44)
         }
         
@@ -329,37 +329,37 @@ open class CommentViewWindow: UIViewController, UITextViewDelegate {
     private func changeToEditingMode() {
         
         // Autolayout
-        window.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(self.view.snp_top).offset(36)
-            make.centerX.equalTo(self.view.snp_centerX)
+        window.snp.makeConstraints { (make) -> Void in
+            make.top.equalTo(self.view.snp.top).offset(36)
+            make.centerX.equalTo(self.view.snp.centerX)
             make.width.equalTo(MalaLayout_CommentPopupWindowWidth)
             make.height.equalTo(MalaLayout_CommentPopupWindowHeight)
         }
-        textBackground.snp_updateConstraints({ (make) -> Void in
-            make.top.equalTo(titleLine.snp_bottom).offset(12)
-            make.left.equalTo(self.window.snp_left).offset(18)
-            make.right.equalTo(self.window.snp_right).offset(-18)
-            make.bottom.equalTo(buttonSeparatorLine.snp_top).offset(-12)
+        textBackground.snp.updateConstraints({ (make) -> Void in
+            make.top.equalTo(titleLine.snp.bottom).offset(12)
+            make.left.equalTo(self.window.snp.left).offset(18)
+            make.right.equalTo(self.window.snp.right).offset(-18)
+            make.bottom.equalTo(buttonSeparatorLine.snp.top).offset(-12)
         })
-        avatarView.snp_updateConstraints { (make) -> Void in
-            make.centerX.equalTo(self.window.snp_centerX)
-            make.top.equalTo(titleLine.snp_bottom)
+        avatarView.snp.updateConstraints { (make) -> Void in
+            make.centerX.equalTo(self.window.snp.centerX)
+            make.top.equalTo(titleLine.snp.bottom)
             make.width.equalTo(0)
             make.height.equalTo(0)
         }
-        teacherNameLabel.snp_updateConstraints { (make) -> Void in
-            make.right.equalTo(avatarView.snp_centerX).offset(-5)
-            make.top.equalTo(avatarView.snp_bottom).offset(10)
+        teacherNameLabel.snp.updateConstraints { (make) -> Void in
+            make.right.equalTo(avatarView.snp.centerX).offset(-5)
+            make.top.equalTo(avatarView.snp.bottom).offset(10)
             make.height.equalTo(0)
         }
-        subjectLabel.snp_updateConstraints { (make) -> Void in
-            make.left.equalTo(avatarView.snp_centerX).offset(5)
-            make.top.equalTo(avatarView.snp_bottom).offset(10)
+        subjectLabel.snp.updateConstraints { (make) -> Void in
+            make.left.equalTo(avatarView.snp.centerX).offset(5)
+            make.top.equalTo(avatarView.snp.bottom).offset(10)
             make.height.equalTo(0)
         }
-        floatRating.snp_updateConstraints { (make) -> Void in
-            make.top.equalTo(subjectLabel.snp_bottom)
-            make.centerX.equalTo(avatarView.snp_centerX)
+        floatRating.snp.updateConstraints { (make) -> Void in
+            make.top.equalTo(subjectLabel.snp.bottom)
+            make.centerX.equalTo(avatarView.snp.centerX)
             make.height.equalTo(0)
             make.width.equalTo(0)
         }
@@ -377,17 +377,17 @@ open class CommentViewWindow: UIViewController, UITextViewDelegate {
     
     ///  删除所有约束
     private func removeAllConstraints() {
-        window.snp_removeConstraints()
-        titleView.snp_removeConstraints()
-        closeButton.snp_removeConstraints()
-        titleLine.snp_removeConstraints()
-        avatarView.snp_removeConstraints()
-        teacherNameLabel.snp_removeConstraints()
-        subjectLabel.snp_removeConstraints()
-        floatRating.snp_removeConstraints()
-        textView.snp_removeConstraints()
-        buttonSeparatorLine.snp_removeConstraints()
-        commitButton.snp_removeConstraints()
+        window.snp.removeConstraints()
+        titleView.snp.removeConstraints()
+        closeButton.snp.removeConstraints()
+        titleLine.snp.removeConstraints()
+        avatarView.snp.removeConstraints()
+        teacherNameLabel.snp.removeConstraints()
+        subjectLabel.snp.removeConstraints()
+        floatRating.snp.removeConstraints()
+        textView.snp.removeConstraints()
+        buttonSeparatorLine.snp.removeConstraints()
+        commitButton.snp.removeConstraints()
     }
     
     ///  根据 [是否仅为展示标记] 调整 UI、UX

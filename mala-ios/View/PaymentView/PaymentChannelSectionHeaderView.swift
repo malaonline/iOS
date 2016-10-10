@@ -42,10 +42,10 @@ class PaymentChannelSectionHeaderView: UIView {
         self.addSubview(titleLabel)
         
         // Autolayout
-        titleLabel.snp_makeConstraints { (make) -> Void in
-            make.left.equalTo(self.snp_left).offset(12)
-            make.top.equalTo(self.snp_top).offset(10)
-            make.bottom.equalTo(self.snp_bottom).offset(-10)
+        titleLabel.snp.makeConstraints { (make) -> Void in
+            make.left.equalTo(self.snp.left).offset(12)
+            make.top.equalTo(self.snp.top).offset(10)
+            make.bottom.equalTo(self.snp.bottom).offset(-10)
             make.height.equalTo(13)
         }
     }

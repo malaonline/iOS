@@ -93,42 +93,42 @@ class AboutViewController: BaseViewController, UIScrollViewDelegate {
         textBackground.addSubview(aboutTextView)
         
         // Autolayout
-        scrollView.snp_makeConstraints { (make) -> Void in
-            make.size.equalTo(view.snp_size)
-            make.top.equalTo(view.snp_top)
-            make.left.equalTo(view.snp_left)
+        scrollView.snp.makeConstraints { (maker) -> Void in
+            maker.size.equalTo(view.snp.size)
+            maker.top.equalTo(view.snp.top)
+            maker.left.equalTo(view.snp.left)
         }
-        appLogoView.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(scrollView.snp_top).offset(24)
-            make.centerX.equalTo(scrollView.snp_centerX)
-            make.width.equalTo(MalaLayout_AboutAPPLogoViewHeight)
-            make.height.equalTo(MalaLayout_AboutAPPLogoViewHeight)
+        appLogoView.snp.makeConstraints { (maker) -> Void in
+            maker.top.equalTo(scrollView.snp.top).offset(24)
+            maker.centerX.equalTo(scrollView.snp.centerX)
+            maker.width.equalTo(MalaLayout_AboutAPPLogoViewHeight)
+            maker.height.equalTo(MalaLayout_AboutAPPLogoViewHeight)
         }
-        appVersionLabel.snp_makeConstraints { (make) -> Void in
-            make.centerX.equalTo(scrollView.snp_centerX)
-            make.top.equalTo(appLogoView.snp_bottom).offset(12)
-            make.height.equalTo(14)
+        appVersionLabel.snp.makeConstraints { (maker) -> Void in
+            maker.centerX.equalTo(scrollView.snp.centerX)
+            maker.top.equalTo(appLogoView.snp.bottom).offset(12)
+            maker.height.equalTo(14)
         }
-        copyrightLabel.snp_makeConstraints { (make) -> Void in
-            make.centerX.equalTo(scrollView.snp_centerX)
-            make.top.equalTo(appVersionLabel.snp_bottom).offset(12)
+        copyrightLabel.snp.makeConstraints { (maker) -> Void in
+            maker.centerX.equalTo(scrollView.snp.centerX)
+            maker.top.equalTo(appVersionLabel.snp.bottom).offset(12)
         }
-        textBackground.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(copyrightLabel.snp_bottom).offset(12)
-            make.centerX.equalTo(scrollView.snp_centerX)
-            make.left.equalTo(scrollView.snp_left).offset(12)
-            make.right.equalTo(scrollView.snp_right).offset(-12)
+        textBackground.snp.makeConstraints { (maker) -> Void in
+            maker.top.equalTo(copyrightLabel.snp.bottom).offset(12)
+            maker.centerX.equalTo(scrollView.snp.centerX)
+            maker.left.equalTo(scrollView.snp.left).offset(12)
+            maker.right.equalTo(scrollView.snp.right).offset(-12)
         }
-        titleView.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(textBackground.snp_top).offset(18)
-            make.left.equalTo(textBackground.snp_left)
-            make.right.equalTo(textBackground.snp_right)
+        titleView.snp.makeConstraints { (maker) -> Void in
+            maker.top.equalTo(textBackground.snp.top).offset(18)
+            maker.left.equalTo(textBackground.snp.left)
+            maker.right.equalTo(textBackground.snp.right)
         }
-        aboutTextView.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(titleView.snp_bottom).offset(18)
-            make.left.equalTo(textBackground.snp_left).offset(18)
-            make.right.equalTo(textBackground.snp_right).offset(-18)
-            make.bottom.equalTo(textBackground.snp_bottom).offset(-18)
+        aboutTextView.snp.makeConstraints { (maker) -> Void in
+            maker.top.equalTo(titleView.snp.bottom).offset(18)
+            maker.left.equalTo(textBackground.snp.left).offset(18)
+            maker.right.equalTo(textBackground.snp.right).offset(-18)
+            maker.bottom.equalTo(textBackground.snp.bottom).offset(-18)
         }
         
         upateContentSize()

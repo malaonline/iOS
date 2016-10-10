@@ -29,12 +29,12 @@ class CourseChoosingTimeScheduleCell: MalaBaseCell {
             
             if isOpen {
                 timeLineView.isHidden = false
-                timeLineView.snp_updateConstraints { (make) -> Void in
+                timeLineView.snp.updateConstraints { (make) -> Void in
                     make.height.equalTo(currentHeight)
                 }
             }else {
                 timeLineView.isHidden = true
-                timeLineView.snp_updateConstraints { (make) -> Void in
+                timeLineView.snp.updateConstraints { (make) -> Void in
                     make.height.equalTo(0)
                 }
             }
@@ -79,13 +79,13 @@ class CourseChoosingTimeScheduleCell: MalaBaseCell {
         headerView.addSubview(detailButton)
         
         // Autolayout
-        content.snp_updateConstraints { (make) -> Void in
-            make.top.equalTo(headerView.snp_bottom).offset(14)
+        content.snp.updateConstraints { (make) -> Void in
+            make.top.equalTo(headerView.snp.bottom).offset(14)
         }
-        detailButton.snp_makeConstraints { (make) -> Void in
+        detailButton.snp.makeConstraints { (make) -> Void in
             make.height.equalTo(13)
-            make.right.equalTo(headerView.snp_right).offset(-12)
-            make.centerY.equalTo(headerView.snp_centerY)
+            make.right.equalTo(headerView.snp.right).offset(-12)
+            make.centerY.equalTo(headerView.snp.centerY)
         }
     }
     
@@ -99,11 +99,11 @@ class CourseChoosingTimeScheduleCell: MalaBaseCell {
         self.timeLineView = ThemeTimeLine(times: result.dates, descs: result.times)
         content.addSubview(timeLineView!)
         currentHeight = result.height
-        timeLineView!.snp_makeConstraints { (make) in
-            make.top.equalTo(content.snp_top)
-            make.left.equalTo(content.snp_left)
-            make.right.equalTo(content.snp_right)
-            make.bottom.equalTo(content.snp_bottom)
+        timeLineView!.snp.makeConstraints { (make) in
+            make.top.equalTo(content.snp.top)
+            make.left.equalTo(content.snp.left)
+            make.right.equalTo(content.snp.right)
+            make.bottom.equalTo(content.snp.bottom)
             make.height.equalTo(currentHeight)
         }
     }

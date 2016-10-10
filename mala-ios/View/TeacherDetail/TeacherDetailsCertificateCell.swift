@@ -60,14 +60,14 @@ class TeacherDetailsCertificateCell: MalaBaseCell {
     private func configure() {
         
         content.addSubview(tagsView)
-        content.snp_updateConstraints { (make) -> Void in
-            make.bottom.equalTo(contentView.snp_bottom).offset(-10)
+        content.snp.updateConstraints { (make) -> Void in
+            make.bottom.equalTo(contentView.snp.bottom).offset(-10)
         }
-        tagsView.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(content.snp_top)
-            make.left.equalTo(content.snp_left)
+        tagsView.snp.makeConstraints { (make) -> Void in
+            make.top.equalTo(content.snp.top)
+            make.left.equalTo(content.snp.left)
             make.width.equalTo(MalaLayout_CardCellWidth)
-            make.bottom.equalTo(content.snp_bottom)
+            make.bottom.equalTo(content.snp.bottom)
         }
     }
     

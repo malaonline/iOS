@@ -59,18 +59,18 @@ class TeacherDetailsPhotosCell: MalaBaseCell {
         content.addSubview(photoCollection)
 
         // Autolayout
-        detailButton.snp_makeConstraints { (make) -> Void in
+        detailButton.snp.makeConstraints { (make) -> Void in
             make.height.equalTo(13)
-            make.right.equalTo(headerView.snp_right).offset(-12)
-            make.centerY.equalTo(headerView.snp_centerY)
+            make.right.equalTo(headerView.snp.right).offset(-12)
+            make.centerY.equalTo(headerView.snp.centerY)
         }
-        content.snp_updateConstraints { (make) -> Void in
-            make.top.equalTo(headerView.snp_bottom).offset(10)
-            make.left.equalTo(contentView.snp_left)
-            make.right.equalTo(contentView.snp_right)
-            make.bottom.equalTo(contentView.snp_bottom).offset(-10)
+        content.snp.updateConstraints { (make) -> Void in
+            make.top.equalTo(headerView.snp.bottom).offset(10)
+            make.left.equalTo(contentView.snp.left)
+            make.right.equalTo(contentView.snp.right)
+            make.bottom.equalTo(contentView.snp.bottom).offset(-10)
         }
-        photoCollection.snp_makeConstraints { (make) in
+        photoCollection.snp.makeConstraints { (make) in
             make.left.equalTo(content)
             make.right.equalTo(content)
             make.top.equalTo(content)

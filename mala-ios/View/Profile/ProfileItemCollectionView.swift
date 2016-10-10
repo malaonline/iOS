@@ -140,21 +140,21 @@ class ProfileItemCollectionViewCell: UICollectionViewCell {
         contentView.addSubview(titleLabel)
         
         // AutoLayout
-        iconView.snp_makeConstraints { (make) in
-            make.centerX.equalTo(self.contentView.snp_centerX)
-            make.top.equalTo(self.contentView.snp_top).offset(13)
+        iconView.snp.makeConstraints { (make) in
+            make.centerX.equalTo(self.contentView.snp.centerX)
+            make.top.equalTo(self.contentView.snp.top).offset(13)
             make.width.equalTo(53)
             make.height.equalTo(53)
         }
-        newMessageView.snp_makeConstraints { (make) in
-            make.top.equalTo(self.iconView.snp_top)
-            make.right.equalTo(self.contentView.snp_right).offset(-10)
+        newMessageView.snp.makeConstraints { (make) in
+            make.top.equalTo(self.iconView.snp.top)
+            make.right.equalTo(self.contentView.snp.right).offset(-10)
             make.width.equalTo(39)
             make.height.equalTo(15)
         }
-        titleLabel.snp_makeConstraints { (make) in
-            make.centerX.equalTo(self.contentView.snp_centerX)
-            make.top.equalTo(self.iconView.snp_bottom).offset(17)
+        titleLabel.snp.makeConstraints { (make) in
+            make.centerX.equalTo(self.contentView.snp.centerX)
+            make.top.equalTo(self.iconView.snp.bottom).offset(17)
             make.height.equalTo(14)
         }
     }

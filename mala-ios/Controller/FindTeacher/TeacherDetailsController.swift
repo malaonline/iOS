@@ -201,23 +201,23 @@ class TeacherDetailsController: BaseViewController, UIGestureRecognizerDelegate,
         tableView.insertSubview(headerBackground, at: 0)
         
         // Autolayout
-        tableView.snp_makeConstraints { (make) in
-            make.top.equalTo(view.snp_top)
-            make.left.equalTo(view.snp_left)
-            make.right.equalTo(view.snp_right)
-            make.bottom.equalTo(view.snp_bottom).offset(-MalaLayout_DetailBottomViewHeight)
+        tableView.snp.makeConstraints { (maker) in
+            maker.top.equalTo(view.snp.top)
+            maker.left.equalTo(view.snp.left)
+            maker.right.equalTo(view.snp.right)
+            maker.bottom.equalTo(view.snp.bottom).offset(-MalaLayout_DetailBottomViewHeight)
         }
-        headerBackground.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(0).offset(-MalaScreenNaviHeight)
-            make.left.equalTo(view.snp_left)
-            make.right.equalTo(view.snp_right)
-            make.height.equalTo(MalaLayout_DetailHeaderContentHeight)
+        headerBackground.snp.makeConstraints { (maker) -> Void in
+            maker.top.equalTo(0).offset(-MalaScreenNaviHeight)
+            maker.left.equalTo(view.snp.left)
+            maker.right.equalTo(view.snp.right)
+            maker.height.equalTo(MalaLayout_DetailHeaderContentHeight)
         }
-        signupView.snp_makeConstraints({ (make) -> Void in
-            make.left.equalTo(view.snp_left)
-            make.right.equalTo(view.snp_right)
-            make.bottom.equalTo(view.snp_bottom)
-            make.height.equalTo(MalaLayout_DetailBottomViewHeight)
+        signupView.snp.makeConstraints({ (maker) -> Void in
+            maker.left.equalTo(view.snp.left)
+            maker.right.equalTo(view.snp.right)
+            maker.bottom.equalTo(view.snp.bottom)
+            maker.height.equalTo(MalaLayout_DetailBottomViewHeight)
         })
     }
     
@@ -402,7 +402,7 @@ class TeacherDetailsController: BaseViewController, UIGestureRecognizerDelegate,
         
         // 向下滑动页面时，使顶部图片跟随放大
         if displacement < -MalaScreenNaviHeight {
-            headerBackground.snp_updateConstraints({ (make) -> Void in
+            headerBackground.snp.updateConstraints({ (make) -> Void in
                 make.top.equalTo(0).offset(displacement)
                 // 1.1为放大速率
                 make.height.equalTo(MalaLayout_DetailHeaderContentHeight + abs(displacement+MalaScreenNaviHeight)*1.1)

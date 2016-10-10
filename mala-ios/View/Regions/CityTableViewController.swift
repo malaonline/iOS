@@ -85,11 +85,11 @@ class CityTableViewController: UIViewController, UITableViewDelegate, UITableVie
         self.view.addSubview(tableView)
         
         // AutoLayout
-        tableView.snp_makeConstraints { (make) in
-            make.top.equalTo(self.view.snp_top)
-            make.bottom.equalTo(self.view.snp_bottom)
-            make.left.equalTo(self.view.snp_left)
-            make.right.equalTo(self.view.snp_right)
+        tableView.snp.makeConstraints { (maker) in
+            maker.top.equalTo(view.snp.top)
+            maker.bottom.equalTo(view.snp.bottom)
+            maker.left.equalTo(view.snp.left)
+            maker.right.equalTo(view.snp.right)
         }
     }
     

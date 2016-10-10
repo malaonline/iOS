@@ -62,14 +62,14 @@ class PaymentAmountCell: UITableViewCell {
         contentView.addSubview(amountLabel)
         
         // Autolayout
-        titleLabel.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(contentView.snp_top).offset(16)
-            make.left.equalTo(contentView.snp_left).offset(12)
-            make.bottom.equalTo(contentView.snp_bottom).offset(-16)
+        titleLabel.snp.makeConstraints { (make) -> Void in
+            make.top.equalTo(contentView.snp.top).offset(16)
+            make.left.equalTo(contentView.snp.left).offset(12)
+            make.bottom.equalTo(contentView.snp.bottom).offset(-16)
         }
-        amountLabel.snp_makeConstraints { (make) -> Void in
-            make.centerY.equalTo(contentView.snp_centerY)
-            make.right.equalTo(contentView.snp_right).offset(-12)
+        amountLabel.snp.makeConstraints { (make) -> Void in
+            make.centerY.equalTo(contentView.snp.centerY)
+            make.right.equalTo(contentView.snp.right).offset(-12)
             make.height.equalTo(15)
         }
         

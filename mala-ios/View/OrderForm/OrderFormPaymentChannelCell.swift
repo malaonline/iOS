@@ -69,15 +69,15 @@ class OrderFormPaymentChannelCell: UITableViewCell {
         contentView.addSubview(payChannelLabel)
         
         // Autolayout
-        titleLabel.snp_updateConstraints { (make) -> Void in
-            make.top.equalTo(self.contentView.snp_top).offset(16)
-            make.left.equalTo(self.contentView.snp_left).offset(12)
+        titleLabel.snp.updateConstraints { (make) -> Void in
+            make.top.equalTo(self.contentView.snp.top).offset(16)
+            make.left.equalTo(self.contentView.snp.left).offset(12)
             make.height.equalTo(15)
-            make.bottom.equalTo(self.contentView.snp_bottom).offset(-16)
+            make.bottom.equalTo(self.contentView.snp.bottom).offset(-16)
         }
-        payChannelLabel.snp_updateConstraints { (make) -> Void in
-            make.centerY.equalTo(titleLabel.snp_centerY)
-            make.right.equalTo(self.contentView.snp_right).offset(-12)
+        payChannelLabel.snp.updateConstraints { (make) -> Void in
+            make.centerY.equalTo(titleLabel.snp.centerY)
+            make.right.equalTo(self.contentView.snp.right).offset(-12)
             make.height.equalTo(13)
         }
     }

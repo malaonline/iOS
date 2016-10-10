@@ -180,24 +180,24 @@ class CourseChoosingServiceTableViewCell: UITableViewCell {
         contentView.addSubview(priceHandleLabel)
         
         // Autolayout
-        titleLabel.snp_makeConstraints { (make) -> Void in
-            make.left.equalTo(contentView.snp_left)
+        titleLabel.snp.makeConstraints { (make) -> Void in
+            make.left.equalTo(contentView.snp.left)
             make.height.equalTo(14)
-            make.centerY.equalTo(contentView.snp_centerY)
+            make.centerY.equalTo(contentView.snp.centerY)
         }
-        detailImageView.snp_makeConstraints { (make) -> Void in
-            make.right.equalTo(contentView.snp_right)
-            make.centerY.equalTo(contentView.snp_centerY)
+        detailImageView.snp.makeConstraints { (make) -> Void in
+            make.right.equalTo(contentView.snp.right)
+            make.centerY.equalTo(contentView.snp.centerY)
         }
-        priceLabel.snp_makeConstraints { (make) -> Void in
+        priceLabel.snp.makeConstraints { (make) -> Void in
             make.height.equalTo(14)
-            make.right.equalTo(detailImageView.snp_left).offset(-6)
-            make.centerY.equalTo(contentView.snp_centerY)
+            make.right.equalTo(detailImageView.snp.left).offset(-6)
+            make.centerY.equalTo(contentView.snp.centerY)
         }
-        priceHandleLabel.snp_makeConstraints { (make) -> Void in
+        priceHandleLabel.snp.makeConstraints { (make) -> Void in
             make.height.equalTo(14)
-            make.right.equalTo(priceLabel.snp_left).offset(-6)
-            make.centerY.equalTo(contentView.snp_centerY)
+            make.right.equalTo(priceLabel.snp.left).offset(-6)
+            make.centerY.equalTo(contentView.snp.centerY)
         }
     }
     

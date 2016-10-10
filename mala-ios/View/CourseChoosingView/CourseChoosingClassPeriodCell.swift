@@ -44,15 +44,15 @@ class CourseChoosingClassPeriodCell: MalaBaseCell {
         contentView.addSubview(legendView)
         
         // Autolayout
-        headerView.snp_updateConstraints { (make) -> Void in
-            make.bottom.equalTo(self.contentView.snp_bottom).offset(-16)
+        headerView.snp.updateConstraints { (make) -> Void in
+            make.bottom.equalTo(self.contentView.snp.bottom).offset(-16)
         }
 
-        legendView.snp_makeConstraints { (make) -> Void in
+        legendView.snp.makeConstraints { (make) -> Void in
             make.width.equalTo(97)
             make.height.equalTo(27)
-            make.centerY.equalTo(headerView.snp_centerY)
-            make.right.equalTo(contentView.snp_right).offset(-12)
+            make.centerY.equalTo(headerView.snp.centerY)
+            make.right.equalTo(contentView.snp.right).offset(-12)
         }
     }
 
@@ -135,23 +135,23 @@ open class PeriodStepper: UIView, UITextFieldDelegate {
         addSubview(incrementButton)
         
         // Autolayout
-        decrementButton.snp_makeConstraints { (make) -> Void in
+        decrementButton.snp.makeConstraints { (make) -> Void in
             make.width.equalTo(31)
             make.height.equalTo(27)
-            make.top.equalTo(self.snp_top)
-            make.left.equalTo(self.snp_left)
+            make.top.equalTo(self.snp.top)
+            make.left.equalTo(self.snp.left)
         }
-        incrementButton.snp_makeConstraints { (make) -> Void in
+        incrementButton.snp.makeConstraints { (make) -> Void in
             make.width.equalTo(31)
             make.height.equalTo(27)
-            make.top.equalTo(decrementButton.snp_top)
-            make.right.equalTo(self.snp_right)
+            make.top.equalTo(decrementButton.snp.top)
+            make.right.equalTo(self.snp.right)
         }
-        textField.snp_makeConstraints { (make) -> Void in
+        textField.snp.makeConstraints { (make) -> Void in
             make.height.equalTo(27)
-            make.top.equalTo(decrementButton.snp_top)
-            make.left.equalTo(decrementButton.snp_right)
-            make.right.equalTo(incrementButton.snp_left)
+            make.top.equalTo(decrementButton.snp.top)
+            make.left.equalTo(decrementButton.snp.right)
+            make.right.equalTo(incrementButton.snp.left)
         }
     }
     

@@ -55,21 +55,21 @@ class CourseChoosingClassScheduleCell: MalaBaseCell {
         content.addSubview(legendView)
         
         // Autolayout
-        content.snp_updateConstraints { (make) -> Void in
-            make.top.equalTo(headerView.snp_bottom).offset(14)
+        content.snp.updateConstraints { (make) -> Void in
+            make.top.equalTo(headerView.snp.bottom).offset(14)
         }
-        classSchedule.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(content.snp_top)
-            make.left.equalTo(content.snp_left)
-            make.right.equalTo(content.snp_right)
-            make.height.equalTo(classSchedule.snp_width).multipliedBy(0.65)
+        classSchedule.snp.makeConstraints { (make) -> Void in
+            make.top.equalTo(content.snp.top)
+            make.left.equalTo(content.snp.left)
+            make.right.equalTo(content.snp.right)
+            make.height.equalTo(classSchedule.snp.width).multipliedBy(0.65)
         }
-        legendView.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(classSchedule.snp_bottom).offset(14)
-            make.left.equalTo(content.snp_left)
+        legendView.snp.makeConstraints { (make) -> Void in
+            make.top.equalTo(classSchedule.snp.bottom).offset(14)
+            make.left.equalTo(content.snp.left)
             make.height.equalTo(15)
-            make.right.equalTo(content.snp_right)
-            make.bottom.equalTo(content.snp_bottom)
+            make.right.equalTo(content.snp.right)
+            make.bottom.equalTo(content.snp.bottom)
         }
     }
     

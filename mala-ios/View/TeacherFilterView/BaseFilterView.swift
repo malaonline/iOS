@@ -172,15 +172,15 @@ class FilterSectionHeaderView: UICollectionReusableView {
         self.addSubview(titleLabel)
         
         // AutoLayout
-        iconView.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(self.snp_top).offset(4)
-            make.left.equalTo(self.snp_left)
+        iconView.snp.makeConstraints { (make) -> Void in
+            make.top.equalTo(self.snp.top).offset(4)
+            make.left.equalTo(self.snp.left)
             make.width.equalTo(20)
             make.height.equalTo(20)
         }
-        titleLabel.snp_makeConstraints { (make) -> Void in
-            make.centerY.equalTo(self.iconView.snp_centerY)
-            make.left.equalTo(self.iconView.snp_right).offset(9)
+        titleLabel.snp.makeConstraints { (make) -> Void in
+            make.centerY.equalTo(self.iconView.snp.centerY)
+            make.left.equalTo(self.iconView.snp.right).offset(9)
         }
     }
 }

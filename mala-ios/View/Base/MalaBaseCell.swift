@@ -60,21 +60,21 @@ class MalaBaseCell: UITableViewCell {
         headerView.addSubview(titleLabel)
         
         // Autolayout
-        headerView.snp_makeConstraints { (make) in
-            make.top.equalTo(contentView.snp_top)
+        headerView.snp.makeConstraints { (make) in
+            make.top.equalTo(contentView.snp.top)
             make.height.equalTo(34)
-            make.left.equalTo(contentView.snp_left)
-            make.right.equalTo(contentView.snp_right)
+            make.left.equalTo(contentView.snp.left)
+            make.right.equalTo(contentView.snp.right)
         }
-        content.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(headerView.snp_bottom).offset(15)
-            make.left.equalTo(contentView.snp_left).offset(12)
-            make.right.equalTo(contentView.snp_right).offset(-12)
-            make.bottom.equalTo(contentView.snp_bottom).offset(-15)
+        content.snp.makeConstraints { (make) -> Void in
+            make.top.equalTo(headerView.snp.bottom).offset(15)
+            make.left.equalTo(contentView.snp.left).offset(12)
+            make.right.equalTo(contentView.snp.right).offset(-12)
+            make.bottom.equalTo(contentView.snp.bottom).offset(-15)
         }
-        titleLabel.snp_makeConstraints { (make) -> Void in
-            make.centerY.equalTo(headerView.snp_centerY)
-            make.left.equalTo(headerView.snp_left).offset(12)
+        titleLabel.snp.makeConstraints { (make) -> Void in
+            make.centerY.equalTo(headerView.snp.centerY)
+            make.left.equalTo(headerView.snp.left).offset(12)
             make.height.equalTo(14)
         }
     }
@@ -84,12 +84,12 @@ class MalaBaseCell: UITableViewCell {
         titleLabel.font = UIFont.systemFont(ofSize: 15)
         headerView.backgroundColor = UIColor.white
         
-        headerView.snp_updateConstraints { (make) in
-            make.top.equalTo(contentView.snp_top).offset(15)
+        headerView.snp.updateConstraints { (make) in
+            make.top.equalTo(contentView.snp.top).offset(15)
             make.height.equalTo(15)
         }
-        content.snp_updateConstraints { (make) in
-            make.top.equalTo(headerView.snp_bottom)
+        content.snp.updateConstraints { (make) in
+            make.top.equalTo(headerView.snp.bottom)
         }
     }
 }

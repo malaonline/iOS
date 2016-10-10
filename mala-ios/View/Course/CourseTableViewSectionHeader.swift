@@ -82,10 +82,10 @@ class CourseTableViewSectionHeader: UITableViewHeaderFooterView {
         contentView.addSubview(dateLabel)
         
         // AutoLayout
-        dateLabel.snp_makeConstraints { (make) in
-            make.height.equalTo(20)
-            make.left.equalTo(contentView.snp_left).offset(70)
-            make.bottom.equalTo(contentView.snp_bottom).offset(-20)
+        dateLabel.snp.makeConstraints { (maker) in
+            maker.height.equalTo(20)
+            maker.left.equalTo(contentView.snp.left).offset(70)
+            maker.bottom.equalTo(contentView.snp.bottom).offset(-20)
         }
         
         // 确保图片宽度与屏幕保持一致（仅需在初始化后）

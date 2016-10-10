@@ -139,45 +139,45 @@ class RegionViewController: UIViewController, UITableViewDelegate, UITableViewDa
         view.addSubview(tableView)
         
         // AutoLayout
-        cityView.snp_makeConstraints { (make) in
-            make.top.equalTo(view).offset(10)
-            make.left.equalTo(view)
-            make.right.equalTo(view)
-            make.height.equalTo(40)
+        cityView.snp.makeConstraints { (maker) in
+            maker.top.equalTo(view).offset(10)
+            maker.left.equalTo(view)
+            maker.right.equalTo(view)
+            maker.height.equalTo(40)
         }
-        cityLabel.snp_makeConstraints { (make) in
-            make.centerY.equalTo(cityView)
-            make.height.equalTo(15)
-            make.left.equalTo(cityView).offset(12)
+        cityLabel.snp.makeConstraints { (maker) in
+            maker.centerY.equalTo(cityView)
+            maker.height.equalTo(15)
+            maker.left.equalTo(cityView).offset(12)
         }
-        currentCityLabel.snp_makeConstraints { (make) in
-            make.centerY.equalTo(cityView)
-            make.right.equalTo(cityArrow.snp_left).offset(-10)
-            make.height.equalTo(15)
+        currentCityLabel.snp.makeConstraints { (maker) in
+            maker.centerY.equalTo(cityView)
+            maker.right.equalTo(cityArrow.snp.left).offset(-10)
+            maker.height.equalTo(15)
         }
-        cityArrow.snp_makeConstraints { (make) in
-            make.height.equalTo(13)
-            make.width.equalTo(7)
-            make.right.equalTo(cityView).offset(-12)
-            make.centerY.equalTo(cityView)
+        cityArrow.snp.makeConstraints { (maker) in
+            maker.height.equalTo(13)
+            maker.width.equalTo(7)
+            maker.right.equalTo(cityView).offset(-12)
+            maker.centerY.equalTo(cityView)
         }
-        tableHeaderView.snp_makeConstraints { (make) in
-            make.top.equalTo(cityView.snp_bottom)
-            make.bottom.equalTo(tableView.snp_top)
-            make.height.equalTo(33)
-            make.left.equalTo(view)
-            make.right.equalTo(view)
+        tableHeaderView.snp.makeConstraints { (maker) in
+            maker.top.equalTo(cityView.snp.bottom)
+            maker.bottom.equalTo(tableView.snp.top)
+            maker.height.equalTo(33)
+            maker.left.equalTo(view)
+            maker.right.equalTo(view)
         }
-        tableHeaderString.snp_makeConstraints { (make) in
-            make.centerY.equalTo(tableHeaderView)
-            make.left.equalTo(tableHeaderView).offset(12)
-            make.height.equalTo(13)
+        tableHeaderString.snp.makeConstraints { (maker) in
+            maker.centerY.equalTo(tableHeaderView)
+            maker.left.equalTo(tableHeaderView).offset(12)
+            maker.height.equalTo(13)
         }
-        tableView.snp_makeConstraints { (make) in
-            make.top.equalTo(tableHeaderString.snp_bottom)
-            make.bottom.equalTo(view)
-            make.left.equalTo(view)
-            make.right.equalTo(view)
+        tableView.snp.makeConstraints { (maker) in
+            maker.top.equalTo(tableHeaderString.snp.bottom)
+            maker.bottom.equalTo(view)
+            maker.left.equalTo(view)
+            maker.right.equalTo(view)
         }
     }
     

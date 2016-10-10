@@ -228,103 +228,103 @@ class TeacherDetailsHeaderView: UIView {
         
         
         // Autolayout
-        contentView.snp_makeConstraints({ (make) -> Void in
-            make.left.equalTo(self.snp_left)
-            make.right.equalTo(self.snp_right)
-            make.bottom.equalTo(self.snp_bottom)
+        contentView.snp.makeConstraints({ (make) -> Void in
+            make.left.equalTo(self.snp.left)
+            make.right.equalTo(self.snp.right)
+            make.bottom.equalTo(self.snp.bottom)
             make.height.equalTo(MalaLayout_DetailHeaderContentHeight)
         })
-        avatarBackground.snp_makeConstraints { (make) in
-            make.left.equalTo(contentView.snp_left).offset(12)
-            make.bottom.equalTo(separatorLine.snp_top).offset(-7)
+        avatarBackground.snp.makeConstraints { (make) in
+            make.left.equalTo(contentView.snp.left).offset(12)
+            make.bottom.equalTo(separatorLine.snp.top).offset(-7)
             make.width.equalTo(MalaLayout_AvatarSize)
             make.height.equalTo(MalaLayout_AvatarSize)
         }
-        avatarView.snp_makeConstraints({ (make) -> Void in
-            make.center.equalTo(avatarBackground.snp_center)
-            make.size.equalTo(avatarBackground.snp_size).offset(-5)
+        avatarView.snp.makeConstraints({ (make) -> Void in
+            make.center.equalTo(avatarBackground.snp.center)
+            make.size.equalTo(avatarBackground.snp.size).offset(-5)
         })
-        vipIconView.snp_makeConstraints({ (make) -> Void in
-            make.right.equalTo(avatarView.snp_right).offset(-3)
-            make.bottom.equalTo(avatarView.snp_bottom).offset(-3)
+        vipIconView.snp.makeConstraints({ (make) -> Void in
+            make.right.equalTo(avatarView.snp.right).offset(-3)
+            make.bottom.equalTo(avatarView.snp.bottom).offset(-3)
             make.width.equalTo(MalaLayout_VipIconSize)
             make.height.equalTo(MalaLayout_VipIconSize)
         })
-        nameLabel.snp_makeConstraints({ (make) -> Void in
-            make.top.equalTo(contentView.snp_top).offset(12)
-            make.left.equalTo(avatarView.snp_right).offset(12)
+        nameLabel.snp.makeConstraints({ (make) -> Void in
+            make.top.equalTo(contentView.snp.top).offset(12)
+            make.left.equalTo(avatarView.snp.right).offset(12)
             make.height.equalTo(16)
         })
-        genderIcon.snp_makeConstraints({ (make) -> Void in
-            make.centerY.equalTo(nameLabel.snp_centerY)
-            make.left.equalTo(nameLabel.snp_right).offset(12)
+        genderIcon.snp.makeConstraints({ (make) -> Void in
+            make.centerY.equalTo(nameLabel.snp.centerY)
+            make.left.equalTo(nameLabel.snp.right).offset(12)
             make.width.equalTo(13)
             make.height.equalTo(13)
         })
-        subjectLabel.snp_makeConstraints({ (make) -> Void in
-            make.top.equalTo(nameLabel.snp_bottom).offset(8)
-            make.left.equalTo(nameLabel.snp_left)
+        subjectLabel.snp.makeConstraints({ (make) -> Void in
+            make.top.equalTo(nameLabel.snp.bottom).offset(8)
+            make.left.equalTo(nameLabel.snp.left)
             make.width.equalTo(36)
             make.height.equalTo(12)
         })
-        priceLabel.snp_makeConstraints({ (make) -> Void in
-            make.top.equalTo(nameLabel.snp_bottom).offset(8)
-            make.left.equalTo(subjectLabel.snp_right).offset(12)
-            make.right.equalTo(contentView.snp_right).offset(-12)
+        priceLabel.snp.makeConstraints({ (make) -> Void in
+            make.top.equalTo(nameLabel.snp.bottom).offset(8)
+            make.left.equalTo(subjectLabel.snp.right).offset(12)
+            make.right.equalTo(contentView.snp.right).offset(-12)
             make.height.equalTo(12)
         })
-        separatorLine.snp_makeConstraints { (make) in
-            make.top.equalTo(subjectLabel.snp_bottom).offset(10)
+        separatorLine.snp.makeConstraints { (make) in
+            make.top.equalTo(subjectLabel.snp.bottom).offset(10)
             make.height.equalTo(MalaScreenOnePixel)
-            make.left.equalTo(contentView.snp_left).offset(12)
-            make.right.equalTo(contentView.snp_right).offset(-12)
+            make.left.equalTo(contentView.snp.left).offset(12)
+            make.right.equalTo(contentView.snp.right).offset(-12)
         }
-        teachingAgeProgressBar.snp_makeConstraints { (make) in
-            make.top.equalTo(separatorLine.snp_bottom).offset(20)
+        teachingAgeProgressBar.snp.makeConstraints { (make) in
+            make.top.equalTo(separatorLine.snp.bottom).offset(20)
             make.width.equalTo(50)
             make.height.equalTo(50)
-            make.right.equalTo(contentView.snp_right).multipliedBy(0.25)
-            make.bottom.equalTo(contentView.snp_bottom).offset(-20)
+            make.right.equalTo(contentView.snp.right).multipliedBy(0.25)
+            make.bottom.equalTo(contentView.snp.bottom).offset(-20)
         }
-        teachingAgeIcon.snp_makeConstraints { (make) in
-            make.center.equalTo(teachingAgeProgressBar.snp_center)
+        teachingAgeIcon.snp.makeConstraints { (make) in
+            make.center.equalTo(teachingAgeProgressBar.snp.center)
             make.width.equalTo(23)
             make.height.equalTo(23)
         }
-        teachingAgeString.snp_makeConstraints { (make) in
+        teachingAgeString.snp.makeConstraints { (make) in
             make.width.equalTo(30)
             make.height.equalTo(14)
-            make.left.equalTo(teachingAgeProgressBar.snp_right).offset(12)
-            make.bottom.equalTo(teachingAgeProgressBar.snp_centerY).offset(-5)
+            make.left.equalTo(teachingAgeProgressBar.snp.right).offset(12)
+            make.bottom.equalTo(teachingAgeProgressBar.snp.centerY).offset(-5)
         }
-        teachingAgeLabel.snp_makeConstraints { (make) in
+        teachingAgeLabel.snp.makeConstraints { (make) in
             make.width.equalTo(65)
             make.height.equalTo(14)
-            make.left.equalTo(teachingAgeProgressBar.snp_right).offset(12)
-            make.top.equalTo(teachingAgeProgressBar.snp_centerY).offset(5)
+            make.left.equalTo(teachingAgeProgressBar.snp.right).offset(12)
+            make.top.equalTo(teachingAgeProgressBar.snp.centerY).offset(5)
         }
-        levelProgressBar.snp_makeConstraints { (make) in
-            make.top.equalTo(separatorLine.snp_bottom).offset(20)
+        levelProgressBar.snp.makeConstraints { (make) in
+            make.top.equalTo(separatorLine.snp.bottom).offset(20)
             make.width.equalTo(50)
             make.height.equalTo(50)
-            make.right.equalTo(contentView.snp_right).multipliedBy(0.75)
+            make.right.equalTo(contentView.snp.right).multipliedBy(0.75)
         }
-        levelIcon.snp_makeConstraints { (make) in
-            make.center.equalTo(levelProgressBar.snp_center)
+        levelIcon.snp.makeConstraints { (make) in
+            make.center.equalTo(levelProgressBar.snp.center)
             make.width.equalTo(23)
             make.height.equalTo(23)
         }
-        levelString.snp_makeConstraints { (make) in
+        levelString.snp.makeConstraints { (make) in
             make.width.equalTo(30)
             make.height.equalTo(14)
-            make.left.equalTo(levelProgressBar.snp_right).offset(12)
-            make.bottom.equalTo(levelProgressBar.snp_centerY).offset(-5)
+            make.left.equalTo(levelProgressBar.snp.right).offset(12)
+            make.bottom.equalTo(levelProgressBar.snp.centerY).offset(-5)
         }
-        levelLabel.snp_makeConstraints { (make) in
+        levelLabel.snp.makeConstraints { (make) in
             make.width.equalTo(65)
             make.height.equalTo(14)
-            make.left.equalTo(levelProgressBar.snp_right).offset(12)
-            make.top.equalTo(levelProgressBar.snp_centerY).offset(5)
+            make.left.equalTo(levelProgressBar.snp.right).offset(12)
+            make.top.equalTo(levelProgressBar.snp.centerY).offset(5)
         }
     }
     

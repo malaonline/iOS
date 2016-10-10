@@ -113,17 +113,17 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
         
         
         // Autolayout
-        headerBackground.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(0)
-            make.centerX.equalTo(self.tableView.snp_centerX)
-            make.width.equalTo(MalaScreenWidth)
-            make.height.equalTo(MalaLayout_ProfileHeaderViewHeight)
+        headerBackground.snp.makeConstraints { (maker) -> Void in
+            maker.top.equalTo(0)
+            maker.centerX.equalTo(tableView.snp.centerX)
+            maker.width.equalTo(MalaScreenWidth)
+            maker.height.equalTo(MalaLayout_ProfileHeaderViewHeight)
         }
-        logoutButton.snp_makeConstraints { (make) -> Void in
-            make.bottom.equalTo(profileFooterView.snp_bottom)
-            make.centerX.equalTo(profileFooterView)
-            make.width.equalTo(profileFooterView).multipliedBy(0.85)
-            make.height.equalTo(37)
+        logoutButton.snp.makeConstraints { (maker) -> Void in
+            maker.bottom.equalTo(profileFooterView.snp.bottom)
+            maker.centerX.equalTo(profileFooterView)
+            maker.width.equalTo(profileFooterView).multipliedBy(0.85)
+            maker.height.equalTo(37)
         }
     }
     
@@ -242,7 +242,7 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
         
         // 向下滑动页面时，使顶部图片跟随放大
         if displacement < 0 && headerBackground.superview != nil{
-            headerBackground.snp_updateConstraints({ (make) -> Void in
+            headerBackground.snp.updateConstraints({ (make) -> Void in
                 make.top.equalTo(0).offset(displacement)
                 // 1.1为放大速率
                 make.height.equalTo(MalaLayout_ProfileHeaderViewHeight + abs(displacement)*1.1)
@@ -419,7 +419,7 @@ class ProfileItemViewCell: UITableViewCell {
         
         contentView.addSubview(collectionView)
         
-        collectionView.snp_makeConstraints { (make) -> Void in
+        collectionView.snp.makeConstraints { (make) -> Void in
             make.center.equalTo(contentView)
             make.width.equalTo(MalaScreenWidth)
             make.height.equalTo(114)

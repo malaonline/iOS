@@ -137,36 +137,36 @@ class OrderFormOperatingView: UIView {
         addSubview(disabledLabel)
         
         // Autolayout
-        topLine.snp_makeConstraints({ (make) -> Void in
-            make.top.equalTo(self.snp_top)
-            make.left.equalTo(self.snp_left)
-            make.right.equalTo(self.snp_right)
+        topLine.snp.makeConstraints({ (make) -> Void in
+            make.top.equalTo(self.snp.top)
+            make.left.equalTo(self.snp.left)
+            make.right.equalTo(self.snp.right)
             make.height.equalTo(MalaScreenOnePixel)
         })
-        stringLabel.snp_makeConstraints { (make) -> Void in
-            make.left.equalTo(self.snp_left).offset(12)
-            make.centerY.equalTo(self.snp_centerY)
+        stringLabel.snp.makeConstraints { (make) -> Void in
+            make.left.equalTo(self.snp.left).offset(12)
+            make.centerY.equalTo(self.snp.centerY)
             make.height.equalTo(14)
         }
-        priceLabel.snp_makeConstraints { (make) -> Void in
-            make.left.equalTo(stringLabel.snp_right)
+        priceLabel.snp.makeConstraints { (make) -> Void in
+            make.left.equalTo(stringLabel.snp.right)
             make.width.equalTo(100)
-            make.bottom.equalTo(stringLabel.snp_bottom)
+            make.bottom.equalTo(stringLabel.snp.bottom)
             make.height.equalTo(14)
         }
-        confirmButton.snp_makeConstraints { (make) in
-            make.right.equalTo(self.snp_right).offset(-12)
-            make.centerY.equalTo(self.snp_centerY)
-            make.width.equalTo(confirmButton.snp_height).multipliedBy(2.78)
-            make.height.equalTo(self.snp_height).multipliedBy(0.55)
+        confirmButton.snp.makeConstraints { (make) in
+            make.right.equalTo(self.snp.right).offset(-12)
+            make.centerY.equalTo(self.snp.centerY)
+            make.width.equalTo(confirmButton.snp.height).multipliedBy(2.78)
+            make.height.equalTo(self.snp.height).multipliedBy(0.55)
         }
-        cancelButton.snp_makeConstraints { (make) in
-            make.right.equalTo(confirmButton.snp_left).offset(-10)
-            make.centerY.equalTo(confirmButton.snp_centerY)
-            make.width.equalTo(confirmButton.snp_height).multipliedBy(2.78)
-            make.height.equalTo(self.snp_height).multipliedBy(0.55)
+        cancelButton.snp.makeConstraints { (make) in
+            make.right.equalTo(confirmButton.snp.left).offset(-10)
+            make.centerY.equalTo(confirmButton.snp.centerY)
+            make.width.equalTo(confirmButton.snp.height).multipliedBy(2.78)
+            make.height.equalTo(self.snp.height).multipliedBy(0.55)
         }
-        disabledLabel.snp_makeConstraints { (make) in
+        disabledLabel.snp.makeConstraints { (make) in
             make.center.equalTo(confirmButton)
         }
     }

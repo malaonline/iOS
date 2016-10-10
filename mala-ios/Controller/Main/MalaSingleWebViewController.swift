@@ -70,9 +70,9 @@ class MalaSingleWebViewController: UIViewController, WKNavigationDelegate, WKUID
         view.addSubview(webView)
         
         // Autolayout
-        webView.snp_makeConstraints { (make) -> Void in
-            make.center.equalTo(self.view.snp_center)
-            make.size.equalTo(self.view.snp_size)
+        webView.snp.makeConstraints { (maker) -> Void in
+            maker.center.equalTo(self.view.snp.center)
+            maker.size.equalTo(self.view.snp.size)
         }
     }
     

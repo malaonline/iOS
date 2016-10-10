@@ -49,9 +49,9 @@ open class BaseViewController: UIViewController {
             view.addSubview(defaultView)
             
             // AutoLayout
-            defaultView.snp_makeConstraints { (make) -> Void in
-                make.size.equalTo(view.snp_size)
-                make.center.equalTo(view.snp_center)
+            defaultView.snp.makeConstraints { (maker) -> Void in
+                maker.size.equalTo(view.snp.size)
+                maker.center.equalTo(view.snp.center)
             }
         }
     }

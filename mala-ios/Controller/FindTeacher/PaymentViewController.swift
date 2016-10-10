@@ -70,17 +70,17 @@ class PaymentViewController: BaseViewController, PaymentBottomViewDelegate {
         view.addSubview(paymentConfirmView)
         
         // Autolayout
-        paymentConfirmView.snp_makeConstraints { (make) -> Void in
-            make.height.equalTo(47)
-            make.left.equalTo(self.view.snp_left)
-            make.right.equalTo(self.view.snp_right)
-            make.bottom.equalTo(self.view.snp_bottom)
+        paymentConfirmView.snp.makeConstraints { (maker) -> Void in
+            maker.height.equalTo(47)
+            maker.left.equalTo(view.snp.left)
+            maker.right.equalTo(view.snp.right)
+            maker.bottom.equalTo(view.snp.bottom)
         }
-        paymentTableView.snp_makeConstraints { (make) -> Void in
-            make.left.equalTo(self.view.snp_left)
-            make.right.equalTo(self.view.snp_right)
-            make.top.equalTo(self.view.snp_top)
-            make.bottom.equalTo(self.view.snp_bottom)
+        paymentTableView.snp.makeConstraints { (maker) -> Void in
+            maker.left.equalTo(view.snp.left)
+            maker.right.equalTo(view.snp.right)
+            maker.top.equalTo(view.snp.top)
+            maker.bottom.equalTo(view.snp.bottom)
         }
     }
     

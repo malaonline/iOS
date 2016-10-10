@@ -25,9 +25,9 @@ class ProfileViewCell: UITableViewCell {
                 if MalaUnpaidOrderCount > 0 {
                     self.titleLabel.showBadge()
                     self.titleLabel.badgeBgColor = MalaColor_E26254_0
-                    self.titleLabel.badge.snp_makeConstraints({ (make) in
-                        make.top.equalTo(titleLabel.snp_top).offset(-1)
-                        make.right.equalTo(titleLabel.snp_right).offset(7)
+                    self.titleLabel.badge.snp.makeConstraints({ (make) in
+                        make.top.equalTo(titleLabel.snp.top).offset(-1)
+                        make.right.equalTo(titleLabel.snp.right).offset(7)
                         make.height.equalTo(7)
                         make.width.equalTo(7)
                     })
@@ -86,20 +86,20 @@ class ProfileViewCell: UITableViewCell {
         contentView.addSubview(separatorLine)
         
         // Autolayout
-        titleLabel.snp_makeConstraints { (make) in
+        titleLabel.snp.makeConstraints { (make) in
             make.height.equalTo(14)
-            make.centerY.equalTo(contentView.snp_centerY)
-            make.left.equalTo(contentView.snp_left).offset(13)
+            make.centerY.equalTo(contentView.snp.centerY)
+            make.left.equalTo(contentView.snp.left).offset(13)
         }
-        infoLabel.snp_makeConstraints { (make) in
+        infoLabel.snp.makeConstraints { (make) in
             make.height.equalTo(13)
-            make.centerY.equalTo(contentView.snp_centerY)
-            make.right.equalTo(contentView.snp_right)
+            make.centerY.equalTo(contentView.snp.centerY)
+            make.right.equalTo(contentView.snp.right)
         }
-        separatorLine.snp_makeConstraints { (make) in
-            make.bottom.equalTo(contentView.snp_bottom)
-            make.left.equalTo(contentView.snp_left).offset(12)
-            make.right.equalTo(contentView.snp_right).offset(12)
+        separatorLine.snp.makeConstraints { (make) in
+            make.bottom.equalTo(contentView.snp.bottom)
+            make.left.equalTo(contentView.snp.left).offset(12)
+            make.right.equalTo(contentView.snp.right).offset(12)
             make.height.equalTo(MalaScreenOnePixel)
         }
     }

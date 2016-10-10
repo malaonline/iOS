@@ -97,11 +97,11 @@ class FindTeacherViewController: BaseViewController {
         self.view.addSubview(tableView)
         
         // Autolayout
-        tableView.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(self.view.snp_top)
-            make.left.equalTo(self.view.snp_left)
-            make.bottom.equalTo(self.view.snp_bottom)
-            make.right.equalTo(self.view.snp_right)
+        tableView.snp.makeConstraints { (maker) -> Void in
+            maker.top.equalTo(view.snp.top)
+            maker.left.equalTo(view.snp.left)
+            maker.bottom.equalTo(view.snp.bottom)
+            maker.right.equalTo(view.snp.right)
         }
         
         // 设置BarButtomItem间隔

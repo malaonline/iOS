@@ -194,22 +194,22 @@ class MemberSerivceCollectionViewCell: UICollectionViewCell {
         contentView.addSubview(separator)
         
         // Autolayout
-        iconView.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(self.contentView.snp_top).offset(20)
-            make.centerX.equalTo(self.contentView.snp_centerX)
+        iconView.snp.makeConstraints { (make) -> Void in
+            make.top.equalTo(self.contentView.snp.top).offset(20)
+            make.centerX.equalTo(self.contentView.snp.centerX)
             make.width.equalTo(23)
             make.height.equalTo(23)
         }
-        titleLabel.snp_makeConstraints { (make) -> Void in
-            make.centerX.equalTo(self.contentView.snp_centerX)
+        titleLabel.snp.makeConstraints { (make) -> Void in
+            make.centerX.equalTo(self.contentView.snp.centerX)
             make.height.equalTo(13)
-            make.top.equalTo(iconView.snp_bottom).offset(14)
+            make.top.equalTo(iconView.snp.bottom).offset(14)
         }
-        separator.snp_makeConstraints { (make) in
-            make.left.equalTo(self.contentView.snp_left)
+        separator.snp.makeConstraints { (make) in
+            make.left.equalTo(self.contentView.snp.left)
             make.width.equalTo(MalaScreenOnePixel)
-            make.top.equalTo(self.contentView.snp_top).offset(15)
-            make.bottom.equalTo(self.contentView.snp_bottom).offset(-15)
+            make.top.equalTo(self.contentView.snp.top).offset(15)
+            make.bottom.equalTo(self.contentView.snp.bottom).offset(-15)
         }
     }
     

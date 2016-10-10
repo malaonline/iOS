@@ -144,45 +144,45 @@ class LearningReportHomeworkDataCell: MalaBaseCardCell {
         
         
         // Autolayout
-        titleLabel.snp_makeConstraints { (make) in
+        titleLabel.snp.makeConstraints { (make) in
             make.height.equalTo(20)
-            make.centerX.equalTo(layoutView.snp_centerX)
-            make.top.equalTo(layoutView.snp_bottom).multipliedBy(0.05)
+            make.centerX.equalTo(layoutView.snp.centerX)
+            make.top.equalTo(layoutView.snp.bottom).multipliedBy(0.05)
         }
-        separatorLine.snp_makeConstraints { (make) in
-            make.top.equalTo(layoutView.snp_bottom).multipliedBy(0.13)
+        separatorLine.snp.makeConstraints { (make) in
+            make.top.equalTo(layoutView.snp.bottom).multipliedBy(0.13)
             make.height.equalTo(MalaScreenOnePixel)
-            make.centerX.equalTo(layoutView.snp_centerX)
-            make.width.equalTo(layoutView.snp_width).multipliedBy(0.84)
+            make.centerX.equalTo(layoutView.snp.centerX)
+            make.width.equalTo(layoutView.snp.width).multipliedBy(0.84)
         }
-        infoLabel.snp_makeConstraints { (make) in
+        infoLabel.snp.makeConstraints { (make) in
             make.width.equalTo(120)
             make.height.equalTo(22)
-            make.centerX.equalTo(layoutView.snp_centerX)
-            make.top.equalTo(layoutView.snp_bottom).multipliedBy(0.17)
+            make.centerX.equalTo(layoutView.snp.centerX)
+            make.top.equalTo(layoutView.snp.bottom).multipliedBy(0.17)
         }
-        infoIcon.snp_makeConstraints { (make) in
-            make.bottom.equalTo(infoLabel.snp_bottom)
-            make.left.equalTo(infoLabel.snp_left)
+        infoIcon.snp.makeConstraints { (make) in
+            make.bottom.equalTo(infoLabel.snp.bottom)
+            make.left.equalTo(infoLabel.snp.left)
             make.width.equalTo(22.5)
             make.height.equalTo(33)
         }
-        homeworkLabel.snp_makeConstraints { (make) in
-            make.top.equalTo(layoutView.snp_bottom).multipliedBy(0.23)
+        homeworkLabel.snp.makeConstraints { (make) in
+            make.top.equalTo(layoutView.snp.bottom).multipliedBy(0.23)
             make.height.equalTo(12)
-            make.centerX.equalTo(layoutView.snp_centerX)
+            make.centerX.equalTo(layoutView.snp.centerX)
         }
-        pieChartView.snp_makeConstraints { (make) in
-            make.top.equalTo(homeworkLabel.snp_bottom)
-            make.left.equalTo(layoutView.snp_left).offset(27)
-            make.right.equalTo(layoutView.snp_right).offset(-27)
-            make.height.equalTo(pieChartView.snp_width)//.offset(100)
+        pieChartView.snp.makeConstraints { (make) in
+            make.top.equalTo(homeworkLabel.snp.bottom)
+            make.left.equalTo(layoutView.snp.left).offset(27)
+            make.right.equalTo(layoutView.snp.right).offset(-27)
+            make.height.equalTo(pieChartView.snp.width)//.offset(100)
         }
-        legendView.snp_makeConstraints { (make) in
-            make.top.equalTo(pieChartView.snp_bottom)
-            make.left.equalTo(layoutView.snp_left).offset(27)
-            make.right.equalTo(layoutView.snp_right).offset(-27)
-            make.bottom.equalTo(layoutView.snp_bottom).multipliedBy(0.914)
+        legendView.snp.makeConstraints { (make) in
+            make.top.equalTo(pieChartView.snp.bottom)
+            make.left.equalTo(layoutView.snp.left).offset(27)
+            make.right.equalTo(layoutView.snp.right).offset(-27)
+            make.bottom.equalTo(layoutView.snp.bottom).multipliedBy(0.914)
         }
     }
     

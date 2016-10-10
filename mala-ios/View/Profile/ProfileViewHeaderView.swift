@@ -115,29 +115,29 @@ class ProfileViewHeaderView: UIView {
         avatarView.addSubview(activityIndicator)
         
         // Autolayout
-        avatarBackground.snp_makeConstraints { (make) in
-            make.top.equalTo(self.snp_top).offset(16)
-            make.centerX.equalTo(self.snp_centerX)
+        avatarBackground.snp.makeConstraints { (make) in
+            make.top.equalTo(self.snp.top).offset(16)
+            make.centerX.equalTo(self.snp.centerX)
             make.width.equalTo(MalaLayout_AvatarSize)
             make.height.equalTo(MalaLayout_AvatarSize)
         }
-        avatarView.snp_makeConstraints({ (make) -> Void in
-            make.center.equalTo(self.avatarBackground.snp_center)
-            make.size.equalTo(self.avatarBackground.snp_size).offset(-5)
+        avatarView.snp.makeConstraints({ (make) -> Void in
+            make.center.equalTo(self.avatarBackground.snp.center)
+            make.size.equalTo(self.avatarBackground.snp.size).offset(-5)
         })
-        nameLabel.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(avatarView.snp_bottom).offset(10)
-            make.centerX.equalTo(avatarView.snp_centerX)
+        nameLabel.snp.makeConstraints { (make) -> Void in
+            make.top.equalTo(avatarView.snp.bottom).offset(10)
+            make.centerX.equalTo(avatarView.snp.centerX)
             make.height.equalTo(14)
         }
-        editButton.snp_makeConstraints { (make) -> Void in
-            make.centerY.equalTo(nameLabel.snp_centerY)
-            make.left.equalTo(nameLabel.snp_right).offset(3)
+        editButton.snp.makeConstraints { (make) -> Void in
+            make.centerY.equalTo(nameLabel.snp.centerY)
+            make.left.equalTo(nameLabel.snp.right).offset(3)
             make.width.equalTo(9)
             make.height.equalTo(13)
         }
-        activityIndicator.snp_makeConstraints { (make) -> Void in
-            make.center.equalTo(avatarView.snp_center)
+        activityIndicator.snp.makeConstraints { (make) -> Void in
+            make.center.equalTo(avatarView.snp.center)
         }
     }
     

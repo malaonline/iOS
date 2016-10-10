@@ -202,86 +202,86 @@ class LoginViewController: UIViewController {
         view.addSubview(protocolString)
         
         // Autolayout
-        contentView.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(self.view.snp_top).offset(12)
-            make.left.equalTo(self.view.snp_left)
-            make.right.equalTo(self.view.snp_right)
-            make.height.equalTo(93)
+        contentView.snp.makeConstraints { (maker) -> Void in
+            maker.top.equalTo(self.view.snp.top).offset(12)
+            maker.left.equalTo(self.view.snp.left)
+            maker.right.equalTo(self.view.snp.right)
+            maker.height.equalTo(93)
         }
-        topSeparator.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(self.contentView.snp_top)
-            make.height.equalTo(MalaScreenOnePixel)
-            make.left.equalTo(self.contentView.snp_left)
-            make.right.equalTo(self.contentView.snp_right)
+        topSeparator.snp.makeConstraints { (maker) -> Void in
+            maker.top.equalTo(self.contentView.snp.top)
+            maker.height.equalTo(MalaScreenOnePixel)
+            maker.left.equalTo(self.contentView.snp.left)
+            maker.right.equalTo(self.contentView.snp.right)
         }
-        middleSeparator.snp_makeConstraints { (make) -> Void in
-            make.centerY.equalTo(self.contentView.snp_centerY)
-            make.height.equalTo(MalaScreenOnePixel)
-            make.left.equalTo(self.contentView.snp_left)
-            make.right.equalTo(self.contentView.snp_right)
+        middleSeparator.snp.makeConstraints { (maker) -> Void in
+            maker.centerY.equalTo(self.contentView.snp.centerY)
+            maker.height.equalTo(MalaScreenOnePixel)
+            maker.left.equalTo(self.contentView.snp.left)
+            maker.right.equalTo(self.contentView.snp.right)
         }
-        bottomSeparator.snp_makeConstraints { (make) -> Void in
-            make.bottom.equalTo(self.contentView.snp_bottom)
-            make.height.equalTo(MalaScreenOnePixel)
-            make.left.equalTo(self.contentView.snp_left)
-            make.right.equalTo(self.contentView.snp_right)
+        bottomSeparator.snp.makeConstraints { (maker) -> Void in
+            maker.bottom.equalTo(self.contentView.snp.bottom)
+            maker.height.equalTo(MalaScreenOnePixel)
+            maker.left.equalTo(self.contentView.snp.left)
+            maker.right.equalTo(self.contentView.snp.right)
         }
-        phoneIcon.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(self.contentView.snp_top).offset(15)
-            make.left.equalTo(self.contentView.snp_left).offset(14)
-            make.width.equalTo(10)
-            make.height.equalTo(15)
+        phoneIcon.snp.makeConstraints { (maker) -> Void in
+            maker.top.equalTo(self.contentView.snp.top).offset(15)
+            maker.left.equalTo(self.contentView.snp.left).offset(14)
+            maker.width.equalTo(10)
+            maker.height.equalTo(15)
         }
-        codeGetButton.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(self.contentView.snp_top).offset(9)
-            make.right.equalTo(self.contentView.snp_right).offset(-12)
-            make.width.equalTo(67)
-            make.height.equalTo(27)
+        codeGetButton.snp.makeConstraints { (maker) -> Void in
+            maker.top.equalTo(self.contentView.snp.top).offset(9)
+            maker.right.equalTo(self.contentView.snp.right).offset(-12)
+            maker.width.equalTo(67)
+            maker.height.equalTo(27)
         }
-        phoneError.snp_makeConstraints { (make) -> Void in
-            make.centerY.equalTo(self.codeGetButton)
-            make.right.equalTo(self.codeGetButton.snp_left).offset(-4)
-            make.width.equalTo(67)
-            make.height.equalTo(15)
+        phoneError.snp.makeConstraints { (maker) -> Void in
+            maker.centerY.equalTo(self.codeGetButton)
+            maker.right.equalTo(self.codeGetButton.snp.left).offset(-4)
+            maker.width.equalTo(67)
+            maker.height.equalTo(15)
         }
-        phoneTextField.snp_makeConstraints { (make) -> Void in
-            make.left.equalTo(self.phoneIcon.snp_right).offset(10)
-            make.right.equalTo(self.phoneError.snp_left).offset(-5)
-            make.centerY.equalTo(self.phoneIcon.snp_centerY)
-            make.height.equalTo(25)
+        phoneTextField.snp.makeConstraints { (maker) -> Void in
+            maker.left.equalTo(self.phoneIcon.snp.right).offset(10)
+            maker.right.equalTo(self.phoneError.snp.left).offset(-5)
+            maker.centerY.equalTo(self.phoneIcon.snp.centerY)
+            maker.height.equalTo(25)
         }
-        codeIcon.snp_makeConstraints { (make) -> Void in
-            make.bottom.equalTo(self.contentView.snp_bottom).offset(-15)
-            make.left.equalTo(self.contentView.snp_left).offset(14)
+        codeIcon.snp.makeConstraints { (maker) -> Void in
+            maker.bottom.equalTo(self.contentView.snp.bottom).offset(-15)
+            maker.left.equalTo(self.contentView.snp.left).offset(14)
         }
-        codeError.snp_makeConstraints { (make) -> Void in
-            make.bottom.equalTo(self.contentView.snp_bottom).offset(-9)
-            make.right.equalTo(self.contentView.snp_right).offset(-12)
-            make.width.equalTo(67)
-            make.height.equalTo(27)
+        codeError.snp.makeConstraints { (maker) -> Void in
+            maker.bottom.equalTo(self.contentView.snp.bottom).offset(-9)
+            maker.right.equalTo(self.contentView.snp.right).offset(-12)
+            maker.width.equalTo(67)
+            maker.height.equalTo(27)
         }
-        codeTextField.snp_makeConstraints { (make) -> Void in
-            make.left.equalTo(self.codeIcon.snp_right).offset(7)
-            make.right.equalTo(self.codeError.snp_left).offset(-5)
-            make.centerY.equalTo(self.codeIcon.snp_centerY)
-            make.height.equalTo(25)
+        codeTextField.snp.makeConstraints { (maker) -> Void in
+            maker.left.equalTo(self.codeIcon.snp.right).offset(7)
+            maker.right.equalTo(self.codeError.snp.left).offset(-5)
+            maker.centerY.equalTo(self.codeIcon.snp.centerY)
+            maker.height.equalTo(25)
         }
-        verifyButton.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(self.contentView.snp_bottom).offset(12)
-            make.left.equalTo(self.view.snp_left).offset(12)
-            make.right.equalTo(self.view.snp_right).offset(-12)
-            make.height.equalTo(37)
+        verifyButton.snp.makeConstraints { (maker) -> Void in
+            maker.top.equalTo(self.contentView.snp.bottom).offset(12)
+            maker.left.equalTo(self.view.snp.left).offset(12)
+            maker.right.equalTo(self.view.snp.right).offset(-12)
+            maker.height.equalTo(37)
         }
-        protocolLabel.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(self.verifyButton.snp_bottom).offset(12)
-            make.left.equalTo(self.view.snp_left).offset(12)
-            make.right.equalTo(self.protocolString.snp_left)
+        protocolLabel.snp.makeConstraints { (maker) -> Void in
+            maker.top.equalTo(self.verifyButton.snp.bottom).offset(12)
+            maker.left.equalTo(self.view.snp.left).offset(12)
+            maker.right.equalTo(self.protocolString.snp.left)
         }
-        protocolString.snp_makeConstraints { (make) -> Void in
-            make.centerY.equalTo(self.protocolLabel.snp_centerY)
-            make.left.equalTo(self.protocolLabel.snp_right)
+        protocolString.snp.makeConstraints { (maker) -> Void in
+            maker.centerY.equalTo(self.protocolLabel.snp.centerY)
+            maker.left.equalTo(self.protocolLabel.snp.right)
             // 增加高度，扩大热区
-            make.height.equalTo(self.protocolLabel.snp_height).offset(10)
+            maker.height.equalTo(self.protocolLabel.snp.height).offset(10)
         }
     }
     

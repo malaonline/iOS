@@ -130,56 +130,56 @@ class LearningReportTitlePageCell: MalaBaseCardCell {
         layoutView.addSubview(gradeSeparator)
         
         // Autolayout
-        titleBackground.snp_makeConstraints { (make) in
-            make.center.equalTo(titleLabel.snp_center)
-            make.width.equalTo(titleLabel.snp_width).offset(16)
+        titleBackground.snp.makeConstraints { (make) in
+            make.center.equalTo(titleLabel.snp.center)
+            make.width.equalTo(titleLabel.snp.width).offset(16)
         }
-        titleLabel.snp_makeConstraints { (make) in
+        titleLabel.snp.makeConstraints { (make) in
             make.height.equalTo(20)
-            make.centerX.equalTo(layoutView.snp_centerX)
-            make.top.equalTo(layoutView.snp_bottom).multipliedBy(0.09)
+            make.centerX.equalTo(layoutView.snp.centerX)
+            make.top.equalTo(layoutView.snp.bottom).multipliedBy(0.09)
         }
-        dateLabel.snp_makeConstraints { (make) in
+        dateLabel.snp.makeConstraints { (make) in
             make.width.equalTo(160)
             make.height.equalTo(24)
-            make.centerX.equalTo(layoutView.snp_centerX)
-            make.top.equalTo(layoutView.snp_bottom).multipliedBy(0.18)
+            make.centerX.equalTo(layoutView.snp.centerX)
+            make.top.equalTo(layoutView.snp.bottom).multipliedBy(0.18)
         }
-        folderImage.snp_makeConstraints { (make) in
-            make.top.equalTo(layoutView.snp_bottom).multipliedBy(0.32)
-            make.centerX.equalTo(layoutView.snp_centerX)
+        folderImage.snp.makeConstraints { (make) in
+            make.top.equalTo(layoutView.snp.bottom).multipliedBy(0.32)
+            make.centerX.equalTo(layoutView.snp.centerX)
             make.width.equalTo(100.5)
             make.height.equalTo(142.5)
         }
-        nameString.snp_makeConstraints { (make) in
-            make.top.equalTo(layoutView.snp_bottom).multipliedBy(0.73)
+        nameString.snp.makeConstraints { (make) in
+            make.top.equalTo(layoutView.snp.bottom).multipliedBy(0.73)
             make.height.equalTo(12)
-            make.right.equalTo(layoutView.snp_centerX)
+            make.right.equalTo(layoutView.snp.centerX)
         }
-        nameLabel.snp_makeConstraints { (make) in
-            make.top.equalTo(nameString.snp_top)
-            make.left.equalTo(layoutView.snp_centerX)
+        nameLabel.snp.makeConstraints { (make) in
+            make.top.equalTo(nameString.snp.top)
+            make.left.equalTo(layoutView.snp.centerX)
         }
-        nameSeparator.snp_makeConstraints { (make) in
-            make.top.equalTo(layoutView.snp_bottom).multipliedBy(0.76)
+        nameSeparator.snp.makeConstraints { (make) in
+            make.top.equalTo(layoutView.snp.bottom).multipliedBy(0.76)
             make.height.equalTo(6)
-            make.left.equalTo(layoutView.snp_left)
-            make.right.equalTo(nameLabel.snp_right).offset(20)
+            make.left.equalTo(layoutView.snp.left)
+            make.right.equalTo(nameLabel.snp.right).offset(20)
         }
-        gradeString.snp_makeConstraints { (make) in
-            make.top.equalTo(layoutView.snp_bottom).multipliedBy(0.81)
+        gradeString.snp.makeConstraints { (make) in
+            make.top.equalTo(layoutView.snp.bottom).multipliedBy(0.81)
             make.height.equalTo(12)
-            make.right.equalTo(layoutView.snp_centerX)
+            make.right.equalTo(layoutView.snp.centerX)
         }
-        gradeLabel.snp_makeConstraints { (make) in
-            make.top.equalTo(gradeString.snp_top)
-            make.left.equalTo(layoutView.snp_centerX)
+        gradeLabel.snp.makeConstraints { (make) in
+            make.top.equalTo(gradeString.snp.top)
+            make.left.equalTo(layoutView.snp.centerX)
         }
-        gradeSeparator.snp_makeConstraints { (make) in
-            make.top.equalTo(layoutView.snp_bottom).multipliedBy(0.84)
+        gradeSeparator.snp.makeConstraints { (make) in
+            make.top.equalTo(layoutView.snp.bottom).multipliedBy(0.84)
             make.height.equalTo(6)
-            make.left.equalTo(gradeString.snp_left).offset(-20)
-            make.right.equalTo(layoutView.snp_right)
+            make.left.equalTo(gradeString.snp.left).offset(-20)
+            make.right.equalTo(layoutView.snp.right)
         }
     }
     

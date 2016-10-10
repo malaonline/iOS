@@ -109,35 +109,35 @@ class TeacherDetailsSignupView: UIView {
         addSubview(button)
         
         // Autolayout
-        topLine.snp_makeConstraints({ (make) -> Void in
+        topLine.snp.makeConstraints({ (make) -> Void in
             make.left.equalTo(0)
             make.width.equalTo(MalaScreenWidth)
-            make.top.equalTo(self.snp_top)
+            make.top.equalTo(self.snp.top)
             make.height.equalTo(MalaScreenOnePixel)
         })
-        likeView.snp_makeConstraints({ (make) -> Void in
-            make.top.equalTo(topLine.snp_bottom)
-            make.left.equalTo(self.snp_left)
-            make.bottom.equalTo(self.snp_bottom)
-            make.right.equalTo(self.snp_right).multipliedBy(0.422)
+        likeView.snp.makeConstraints({ (make) -> Void in
+            make.top.equalTo(topLine.snp.bottom)
+            make.left.equalTo(self.snp.left)
+            make.bottom.equalTo(self.snp.bottom)
+            make.right.equalTo(self.snp.right).multipliedBy(0.422)
         })
-        likeButton.snp_makeConstraints({ (make) -> Void in
-            make.centerX.equalTo(likeView.snp_centerX)
-            make.centerY.equalTo(likeView.snp_centerY).offset(-8)
+        likeButton.snp.makeConstraints({ (make) -> Void in
+            make.centerX.equalTo(likeView.snp.centerX)
+            make.centerY.equalTo(likeView.snp.centerY).offset(-8)
             make.height.equalTo(44)
             make.width.equalTo(44)
         })
-        likeString.snp_makeConstraints({ (make) -> Void in
-            make.centerX.equalTo(likeView.snp_centerX)
-            make.centerY.equalTo(likeView.snp_centerY).offset(10)
+        likeString.snp.makeConstraints({ (make) -> Void in
+            make.centerX.equalTo(likeView.snp.centerX)
+            make.centerY.equalTo(likeView.snp.centerY).offset(10)
             make.height.equalTo(10)
             make.width.equalTo(40)
         })
-        button.snp_makeConstraints({ (make) -> Void in
-            make.top.equalTo(topLine.snp_bottom)
-            make.left.equalTo(likeView.snp_right)
-            make.bottom.equalTo(self.snp_bottom)
-            make.right.equalTo(self.snp_right)
+        button.snp.makeConstraints({ (make) -> Void in
+            make.top.equalTo(topLine.snp.bottom)
+            make.left.equalTo(likeView.snp.right)
+            make.bottom.equalTo(self.snp.bottom)
+            make.right.equalTo(self.snp.right)
         })
     }
     

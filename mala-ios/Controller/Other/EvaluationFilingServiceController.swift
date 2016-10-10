@@ -139,17 +139,17 @@ class EvaluationFilingServiceCell: MalaBaseCell {
         content.addSubview(contentLabel)
         
         // Autolayout
-        contentImageView.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(content.snp_top)
-            make.left.equalTo(content.snp_left)
-            make.right.equalTo(content.snp_right)
-            make.height.equalTo(contentImageView.snp_width).multipliedBy(0.47)
+        contentImageView.snp.makeConstraints { (maker) -> Void in
+            maker.top.equalTo(content.snp.top)
+            maker.left.equalTo(content.snp.left)
+            maker.right.equalTo(content.snp.right)
+            maker.height.equalTo(contentImageView.snp.width).multipliedBy(0.47)
         }
-        contentLabel.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(contentImageView.snp_bottom).offset(14)
-            make.left.equalTo(content.snp_left)
-            make.right.equalTo(content.snp_right)
-            make.bottom.equalTo(content.snp_bottom)
+        contentLabel.snp.makeConstraints { (maker) -> Void in
+            maker.top.equalTo(contentImageView.snp.bottom).offset(14)
+            maker.left.equalTo(content.snp.left)
+            maker.right.equalTo(content.snp.right)
+            maker.bottom.equalTo(content.snp.bottom)
         }
     }
 }

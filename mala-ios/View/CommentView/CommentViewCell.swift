@@ -242,108 +242,108 @@ class CommentViewCell: UITableViewCell {
         bottomLayoutView.addSubview(showCommentButton)
         
         // Autolayout
-        content.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(self.contentView.snp_top).offset(6)
-            make.left.equalTo(self.contentView.snp_left).offset(12)
-            make.bottom.equalTo(self.contentView.snp_bottom).offset(-6)
-            make.right.equalTo(self.contentView.snp_right).offset(-12)
+        content.snp.makeConstraints { (make) -> Void in
+            make.top.equalTo(self.contentView.snp.top).offset(6)
+            make.left.equalTo(self.contentView.snp.left).offset(12)
+            make.bottom.equalTo(self.contentView.snp.bottom).offset(-6)
+            make.right.equalTo(self.contentView.snp.right).offset(-12)
         }
-        mainLayoutView.snp_makeConstraints { (make) in
-            make.top.equalTo(content.snp_top)
-            make.left.equalTo(content.snp_left)
+        mainLayoutView.snp.makeConstraints { (make) in
+            make.top.equalTo(content.snp.top)
+            make.left.equalTo(content.snp.left)
             make.height.equalTo(252)
-            make.right.equalTo(content.snp_right)
-            make.bottom.equalTo(separatorLine.snp_top)
+            make.right.equalTo(content.snp.right)
+            make.bottom.equalTo(separatorLine.snp.top)
         }
-        separatorLine.snp_makeConstraints { (make) in
-            make.top.equalTo(mainLayoutView.snp_bottom).offset(14)
+        separatorLine.snp.makeConstraints { (make) in
+            make.top.equalTo(mainLayoutView.snp.bottom).offset(14)
             make.height.equalTo(MalaScreenOnePixel)
             make.left.equalTo(content).offset(5)
             make.right.equalTo(content).offset(-5)
         }
-        floatRating.snp_makeConstraints { (make) in
-            make.center.equalTo(separatorLine.snp_center)
+        floatRating.snp.makeConstraints { (make) in
+            make.center.equalTo(separatorLine.snp.center)
             make.height.equalTo(20)
             make.width.equalTo(80)
         }
-        bottomLayoutView.snp_makeConstraints { (make) in
-            make.top.equalTo(separatorLine.snp_bottom)
-            make.bottom.equalTo(content.snp_bottom)
-            make.left.equalTo(content.snp_left)
-            make.right.equalTo(content.snp_right)
+        bottomLayoutView.snp.makeConstraints { (make) in
+            make.top.equalTo(separatorLine.snp.bottom)
+            make.bottom.equalTo(content.snp.bottom)
+            make.left.equalTo(content.snp.left)
+            make.right.equalTo(content.snp.right)
             make.height.equalTo(50)
         }
-        statusIcon.snp_makeConstraints { (make) in
-            make.right.equalTo(mainLayoutView.snp_right).offset(-30)
-            make.top.equalTo(mainLayoutView.snp_top).offset(-6)
+        statusIcon.snp.makeConstraints { (make) in
+            make.right.equalTo(mainLayoutView.snp.right).offset(-30)
+            make.top.equalTo(mainLayoutView.snp.top).offset(-6)
         }
-        avatarView.snp_makeConstraints { (make) in
-            make.centerX.equalTo(statusIcon.snp_centerX)
-            make.top.equalTo(statusIcon.snp_bottom).offset(10)
+        avatarView.snp.makeConstraints { (make) in
+            make.centerX.equalTo(statusIcon.snp.centerX)
+            make.top.equalTo(statusIcon.snp.bottom).offset(10)
             make.height.equalTo(55)
             make.width.equalTo(55)
         }
-        teacherIcon.snp_makeConstraints { (make) in
-            make.top.equalTo(mainLayoutView.snp_top).offset(14)
-            make.left.equalTo(mainLayoutView.snp_left).offset(12)
+        teacherIcon.snp.makeConstraints { (make) in
+            make.top.equalTo(mainLayoutView.snp.top).offset(14)
+            make.left.equalTo(mainLayoutView.snp.left).offset(12)
             make.height.equalTo(14)
             make.width.equalTo(14)
         }
-        teacherLabel.snp_makeConstraints { (make) in
-            make.top.equalTo(teacherIcon.snp_top)
-            make.left.equalTo(teacherIcon.snp_right).offset(10)
+        teacherLabel.snp.makeConstraints { (make) in
+            make.top.equalTo(teacherIcon.snp.top)
+            make.left.equalTo(teacherIcon.snp.right).offset(10)
             make.height.equalTo(13)
         }
-        subjectIcon.snp_makeConstraints { (make) in
-            make.top.equalTo(teacherIcon.snp_bottom).offset(14)
-            make.left.equalTo(mainLayoutView.snp_left).offset(12)
+        subjectIcon.snp.makeConstraints { (make) in
+            make.top.equalTo(teacherIcon.snp.bottom).offset(14)
+            make.left.equalTo(mainLayoutView.snp.left).offset(12)
             make.height.equalTo(14)
             make.width.equalTo(14)
         }
-        subjectLabel.snp_makeConstraints { (make) in
-            make.top.equalTo(subjectIcon.snp_top)
-            make.left.equalTo(subjectIcon.snp_right).offset(10)
+        subjectLabel.snp.makeConstraints { (make) in
+            make.top.equalTo(subjectIcon.snp.top)
+            make.left.equalTo(subjectIcon.snp.right).offset(10)
             make.height.equalTo(13)
         }
-        timeSlotIcon.snp_makeConstraints { (make) in
-            make.top.equalTo(subjectIcon.snp_bottom).offset(14)
-            make.left.equalTo(mainLayoutView.snp_left).offset(12)
+        timeSlotIcon.snp.makeConstraints { (make) in
+            make.top.equalTo(subjectIcon.snp.bottom).offset(14)
+            make.left.equalTo(mainLayoutView.snp.left).offset(12)
             make.height.equalTo(14)
             make.width.equalTo(14)
         }
-        timeSlotLabel.snp_makeConstraints { (make) in
-            make.top.equalTo(timeSlotIcon.snp_top)
-            make.left.equalTo(timeSlotIcon.snp_right).offset(10)
+        timeSlotLabel.snp.makeConstraints { (make) in
+            make.top.equalTo(timeSlotIcon.snp.top)
+            make.left.equalTo(timeSlotIcon.snp.right).offset(10)
             make.height.equalTo(13)
         }
-        timeLabel.snp_makeConstraints { (make) in
+        timeLabel.snp.makeConstraints { (make) in
             make.top.equalTo(timeSlotLabel)
-            make.left.equalTo(timeSlotLabel.snp_right).offset(5)
+            make.left.equalTo(timeSlotLabel.snp.right).offset(5)
             make.height.equalTo(13)
         }
-        schoolIcon.snp_makeConstraints { (make) in
-            make.top.equalTo(timeSlotIcon.snp_bottom).offset(14)
-            make.left.equalTo(mainLayoutView.snp_left).offset(12)
+        schoolIcon.snp.makeConstraints { (make) in
+            make.top.equalTo(timeSlotIcon.snp.bottom).offset(14)
+            make.left.equalTo(mainLayoutView.snp.left).offset(12)
             make.height.equalTo(15)
             make.width.equalTo(14)
         }
-        schoolLabel.snp_makeConstraints { (make) in
-            make.top.equalTo(schoolIcon.snp_top)
-            make.left.equalTo(schoolIcon.snp_right).offset(10)
+        schoolLabel.snp.makeConstraints { (make) in
+            make.top.equalTo(schoolIcon.snp.top)
+            make.left.equalTo(schoolIcon.snp.right).offset(10)
             make.height.equalTo(13)
-            make.bottom.equalTo(mainLayoutView.snp_bottom).offset(-14)
+            make.bottom.equalTo(mainLayoutView.snp.bottom).offset(-14)
         }
-        expiredLabel.snp_makeConstraints { (make) in
+        expiredLabel.snp.makeConstraints { (make) in
             make.height.equalTo(12)
-            make.center.equalTo(bottomLayoutView.snp_center)
+            make.center.equalTo(bottomLayoutView.snp.center)
         }
-        commentButton.snp_makeConstraints { (make) in
-            make.center.equalTo(bottomLayoutView.snp_center)
+        commentButton.snp.makeConstraints { (make) in
+            make.center.equalTo(bottomLayoutView.snp.center)
             make.width.equalTo(96)
             make.height.equalTo(24)
         }
-        showCommentButton.snp_makeConstraints { (make) in
-            make.center.equalTo(bottomLayoutView.snp_center)
+        showCommentButton.snp.makeConstraints { (make) in
+            make.center.equalTo(bottomLayoutView.snp.center)
             make.width.equalTo(96)
             make.height.equalTo(24)
         }

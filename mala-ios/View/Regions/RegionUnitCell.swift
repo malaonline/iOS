@@ -61,16 +61,16 @@ class RegionUnitCell: UITableViewCell {
         contentView.addSubview(separatorLine)
         
         // Autolayout
-        titleLabel.snp_makeConstraints { (make) in
-            make.height.equalTo(14)
-            make.centerY.equalTo(contentView.snp_centerY)
-            make.left.equalTo(contentView.snp_left).offset(13)
+        titleLabel.snp.makeConstraints { (maker) in
+            maker.height.equalTo(14)
+            maker.centerY.equalTo(contentView.snp.centerY)
+            maker.left.equalTo(contentView.snp.left).offset(13)
         }
-        separatorLine.snp_makeConstraints { (make) in
-            make.bottom.equalTo(contentView.snp_bottom)
-            make.left.equalTo(contentView.snp_left).offset(12)
-            make.right.equalTo(contentView.snp_right).offset(12)
-            make.height.equalTo(MalaScreenOnePixel)
+        separatorLine.snp.makeConstraints { (maker) in
+            maker.bottom.equalTo(contentView.snp.bottom)
+            maker.left.equalTo(contentView.snp.left).offset(12)
+            maker.right.equalTo(contentView.snp.right).offset(12)
+            maker.height.equalTo(MalaScreenOnePixel)
         }
     }
     

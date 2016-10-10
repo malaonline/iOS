@@ -94,18 +94,18 @@ class MalaDefaultPanel: UIView {
         addSubview(descLabel)
         
         // Autolayout
-        label.snp_makeConstraints { (make) -> Void in
-            make.centerY.equalTo(self.snp_centerY).offset(-50)
-            make.centerX.equalTo(self.snp_centerX)
+        label.snp.makeConstraints { (make) -> Void in
+            make.centerY.equalTo(self.snp.centerY).offset(-50)
+            make.centerX.equalTo(self.snp.centerX)
             make.height.equalTo(13)
         }
-        imageView.snp_makeConstraints { (make) -> Void in
-            make.centerX.equalTo(self.snp_centerX)
-            make.bottom.equalTo(label.snp_top).offset(-8)
+        imageView.snp.makeConstraints { (make) -> Void in
+            make.centerX.equalTo(self.snp.centerX)
+            make.bottom.equalTo(label.snp.top).offset(-8)
         }
-        descLabel.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(label.snp_bottom).offset(12)
-            make.centerX.equalTo(self.snp_centerX)
+        descLabel.snp.makeConstraints { (make) -> Void in
+            make.top.equalTo(label.snp.bottom).offset(12)
+            make.centerX.equalTo(self.snp.centerX)
             make.height.equalTo(13)
         }
     }
@@ -114,9 +114,9 @@ class MalaDefaultPanel: UIView {
     func addTarget(_ target: AnyObject?, action: Selector) {
         
         addSubview(button)
-        button.snp_makeConstraints { (make) -> Void in
-            make.centerX.equalTo(self.snp_centerX)
-            make.top.equalTo(label.snp_bottom).offset(25)
+        button.snp.makeConstraints { (make) -> Void in
+            make.centerX.equalTo(self.snp.centerX)
+            make.top.equalTo(label.snp.bottom).offset(25)
             make.height.equalTo(36)
             make.width.equalTo(164)
         }

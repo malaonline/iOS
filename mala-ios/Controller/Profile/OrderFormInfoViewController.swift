@@ -83,17 +83,17 @@ class OrderFormInfoViewController: BaseViewController, OrderFormOperatingViewDel
         confirmView.delegate = self
         
         // Autolayout
-        confirmView.snp_makeConstraints { (make) -> Void in
-            make.bottom.equalTo(self.view.snp_bottom)
-            make.left.equalTo(self.view.snp_left)
-            make.right.equalTo(self.view.snp_right)
-            make.height.equalTo(47)
+        confirmView.snp.makeConstraints { (maker) -> Void in
+            maker.bottom.equalTo(view.snp.bottom)
+            maker.left.equalTo(view.snp.left)
+            maker.right.equalTo(view.snp.right)
+            maker.height.equalTo(47)
         }
-        tableView.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(self.view.snp_top)
-            make.left.equalTo(self.view.snp_left)
-            make.right.equalTo(self.view.snp_right)
-            make.bottom.equalTo(confirmView.snp_top)
+        tableView.snp.makeConstraints { (maker) -> Void in
+            maker.top.equalTo(view.snp.top)
+            maker.left.equalTo(view.snp.left)
+            maker.right.equalTo(view.snp.right)
+            maker.bottom.equalTo(confirmView.snp.top)
         }
     }
     

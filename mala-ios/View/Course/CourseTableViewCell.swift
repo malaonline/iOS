@@ -74,22 +74,22 @@ class CourseTableViewCell: UITableViewCell {
         contentView.addSubview(courseLayoutView)
         
         // AutoLayout
-        dateLabel.snp_makeConstraints { (make) in
-            make.top.equalTo(self.contentView.snp_top).offset(20)
-            make.left.equalTo(self.contentView.snp_left).offset(20)
-            make.height.equalTo(27)
+        dateLabel.snp.makeConstraints { (maker) in
+            maker.top.equalTo(contentView.snp.top).offset(20)
+            maker.left.equalTo(contentView.snp.left).offset(20)
+            maker.height.equalTo(27)
         }
-        weekLabel.snp_makeConstraints { (make) in
-            make.top.equalTo(dateLabel.snp_bottom).offset(5)
-            make.left.equalTo(dateLabel.snp_left)
-            make.width.equalTo(30)
-            make.height.equalTo(14)
+        weekLabel.snp.makeConstraints { (maker) in
+            maker.top.equalTo(dateLabel.snp.bottom).offset(5)
+            maker.left.equalTo(dateLabel.snp.left)
+            maker.width.equalTo(30)
+            maker.height.equalTo(14)
         }
-        courseLayoutView.snp_makeConstraints { (make) in
-            make.top.equalTo(dateLabel.snp_top)
-            make.left.equalTo(weekLabel.snp_right).offset(20)
-            make.right.equalTo(self.contentView.snp_right).offset(-12)
-            make.bottom.equalTo(self.contentView.snp_bottom)
+        courseLayoutView.snp.makeConstraints { (maker) in
+            maker.top.equalTo(dateLabel.snp.top)
+            maker.left.equalTo(weekLabel.snp.right).offset(20)
+            maker.right.equalTo(contentView.snp.right).offset(-12)
+            maker.bottom.equalTo(contentView.snp.bottom)
         }
     }
     
@@ -127,18 +127,18 @@ class CourseTableViewCell: UITableViewCell {
             courseLayoutView.addSubview(view)
             
             if let lastCourseView = lastCourseView {
-                view.snp_makeConstraints { (make) in
-                    make.top.equalTo(lastCourseView.snp_bottom)
-                    make.left.equalTo(courseLayoutView.snp_left)
-                    make.right.equalTo(courseLayoutView.snp_right)
-                    make.height.equalTo(102)
+                view.snp.makeConstraints { (maker) in
+                    maker.top.equalTo(lastCourseView.snp.bottom)
+                    maker.left.equalTo(courseLayoutView.snp.left)
+                    maker.right.equalTo(courseLayoutView.snp.right)
+                    maker.height.equalTo(102)
                 }
             }else {
-                view.snp_makeConstraints { (make) in
-                    make.top.equalTo(courseLayoutView.snp_top)
-                    make.left.equalTo(courseLayoutView.snp_left)
-                    make.right.equalTo(courseLayoutView.snp_right)
-                    make.height.equalTo(102)
+                view.snp.makeConstraints { (maker) in
+                    maker.top.equalTo(courseLayoutView.snp.top)
+                    maker.left.equalTo(courseLayoutView.snp.left)
+                    maker.right.equalTo(courseLayoutView.snp.right)
+                    maker.height.equalTo(102)
                 }
             }
             lastCourseView = view

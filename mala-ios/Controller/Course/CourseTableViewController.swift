@@ -146,27 +146,27 @@ open class CourseTableViewController: UIViewController, UITableViewDataSource, U
         tableView.addSubview(unLoginDefaultView)
         
         // AutoLayout
-        tableView.snp_makeConstraints { (make) -> Void in
-            make.center.equalTo(view.snp_center)
-            make.size.equalTo(view.snp_size)
+        tableView.snp.makeConstraints { (maker) -> Void in
+            maker.center.equalTo(view.snp.center)
+            maker.size.equalTo(view.snp.size)
         }
-        goTopButton.snp_makeConstraints { (make) -> Void in
-            make.right.equalTo(view.snp_right).offset(-20)
-            make.bottom.equalTo(view.snp_bottom).offset(-64)
-            make.width.equalTo(58)
-            make.height.equalTo(58)
+        goTopButton.snp.makeConstraints { (maker) -> Void in
+            maker.right.equalTo(view.snp.right).offset(-20)
+            maker.bottom.equalTo(view.snp.bottom).offset(-64)
+            maker.width.equalTo(58)
+            maker.height.equalTo(58)
         }
-        defaultView.snp_makeConstraints { (make) -> Void in
-            make.size.equalTo(tableView.snp_size)
-            make.center.equalTo(tableView.snp_center)
+        defaultView.snp.makeConstraints { (maker) -> Void in
+            maker.size.equalTo(tableView.snp.size)
+            maker.center.equalTo(tableView.snp.center)
         }
-        unLoginDefaultView.snp_makeConstraints { (make) -> Void in
-            make.size.equalTo(tableView.snp_size)
-            make.center.equalTo(tableView.snp_center)
+        unLoginDefaultView.snp.makeConstraints { (maker) -> Void in
+            maker.size.equalTo(tableView.snp.size)
+            maker.center.equalTo(tableView.snp.center)
         }
         if let titleView = navigationItem.titleView {
-            titleLabel.snp_makeConstraints { (make) -> Void in
-                make.center.equalTo(titleView.snp_center)
+            titleLabel.snp.makeConstraints { (maker) -> Void in
+                maker.center.equalTo(titleView.snp.center)
             }
         }
     }

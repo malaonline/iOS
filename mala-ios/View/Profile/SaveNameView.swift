@@ -79,26 +79,26 @@ class SaveNameView: UIView, UITextFieldDelegate {
         addSubview(finishButton)
         
         // Autolayout
-        inputBackground.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(self.snp_top).offset(12)
-            make.left.equalTo(self.snp_left)
-            make.right.equalTo(self.snp_right)
+        inputBackground.snp.makeConstraints { (make) -> Void in
+            make.top.equalTo(self.snp.top).offset(12)
+            make.left.equalTo(self.snp.left)
+            make.right.equalTo(self.snp.right)
             make.height.equalTo(MalaLayout_ProfileModifyViewHeight)
         }
-        inputField.snp_makeConstraints { (make) -> Void in
-            make.left.equalTo(inputBackground.snp_left)
-            make.right.equalTo(inputBackground.snp_right)
-            make.centerY.equalTo(inputBackground.snp_centerY)
+        inputField.snp.makeConstraints { (make) -> Void in
+            make.left.equalTo(inputBackground.snp.left)
+            make.right.equalTo(inputBackground.snp.right)
+            make.centerY.equalTo(inputBackground.snp.centerY)
         }
-        descLabel.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(inputBackground.snp_bottom).offset(12)
-            make.left.equalTo(self.snp_left).offset(12)
+        descLabel.snp.makeConstraints { (make) -> Void in
+            make.top.equalTo(inputBackground.snp.bottom).offset(12)
+            make.left.equalTo(self.snp.left).offset(12)
             make.height.equalTo(12)
         }
-        finishButton.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(descLabel.snp_bottom).offset(12)
-            make.left.equalTo(self.snp_left).offset(12)
-            make.right.equalTo(self.snp_right).offset(-12)
+        finishButton.snp.makeConstraints { (make) -> Void in
+            make.top.equalTo(descLabel.snp.bottom).offset(12)
+            make.left.equalTo(self.snp.left).offset(12)
+            make.right.equalTo(self.snp.right).offset(-12)
             make.height.equalTo(37)
         }
     }

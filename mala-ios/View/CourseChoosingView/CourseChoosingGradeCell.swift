@@ -17,7 +17,7 @@ class CourseChoosingGradeCell: MalaBaseCell {
             var collectionRow = CGFloat(Int(prices?.count ?? 0)/2)
             collectionRow = (prices?.count ?? 0)%2 == 0 ? collectionRow : collectionRow + 1
             let collectionHeight = (MalaLayout_GradeSelectionWidth*0.20) * collectionRow + (14*(collectionRow-1))
-            collectionView.snp_updateConstraints({ (make) -> Void in
+            collectionView.snp.updateConstraints({ (make) -> Void in
                 make.height.equalTo(collectionHeight)
             })
         }
@@ -54,14 +54,14 @@ class CourseChoosingGradeCell: MalaBaseCell {
         content.addSubview(collectionView)
         
         // Autolayout
-        content.snp_updateConstraints { (make) -> Void in
-            make.top.equalTo(headerView.snp_bottom).offset(14)
+        content.snp.updateConstraints { (make) -> Void in
+            make.top.equalTo(headerView.snp.bottom).offset(14)
         }
-        collectionView.snp_makeConstraints({ (make) -> Void in
-            make.top.equalTo(content.snp_top)
-            make.left.equalTo(content.snp_left)
-            make.right.equalTo(content.snp_right)
-            make.bottom.equalTo(content.snp_bottom)
+        collectionView.snp.makeConstraints({ (make) -> Void in
+            make.top.equalTo(content.snp.top)
+            make.left.equalTo(content.snp.left)
+            make.right.equalTo(content.snp.right)
+            make.bottom.equalTo(content.snp.bottom)
         })
     }
 }
@@ -181,11 +181,11 @@ class GradeSelectionCell: UICollectionViewCell {
         self.contentView.addSubview(button)
         
         // Autolayout
-        button.snp_makeConstraints({ (make) -> Void in
-            make.top.equalTo(self.contentView.snp_top)
-            make.left.equalTo(self.contentView.snp_left)
-            make.right.equalTo(self.contentView.snp_right)
-            make.bottom.equalTo(self.contentView.snp_bottom)
+        button.snp.makeConstraints({ (make) -> Void in
+            make.top.equalTo(self.contentView.snp.top)
+            make.left.equalTo(self.contentView.snp.left)
+            make.right.equalTo(self.contentView.snp.right)
+            make.bottom.equalTo(self.contentView.snp.bottom)
         })
     }
 }

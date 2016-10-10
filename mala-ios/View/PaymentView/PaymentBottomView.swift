@@ -53,10 +53,10 @@ class PaymentBottomView: UIView {
         addSubview(confirmButton)
         
         // Autolayout
-        confirmButton.snp_makeConstraints { (make) -> Void in
-            make.left.equalTo(self.snp_left).offset(12)
-            make.right.equalTo(self.snp_right).offset(-12)
-            make.centerY.equalTo(self.snp_centerY)
+        confirmButton.snp.makeConstraints { (make) -> Void in
+            make.left.equalTo(self.snp.left).offset(12)
+            make.right.equalTo(self.snp.right).offset(-12)
+            make.centerY.equalTo(self.snp.centerY)
             make.height.equalTo(37)
         }
     }

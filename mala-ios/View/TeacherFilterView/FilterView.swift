@@ -187,23 +187,23 @@ class FilterView: UIScrollView, UIScrollViewDelegate {
         addSubview(styleView)
         
         // Autolayout
-        gradeView.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(self.snp_top)
-            make.left.equalTo(self.snp_left)
-            make.width.equalTo(self.snp_width)
-            make.height.equalTo(self.snp_height)
+        gradeView.snp.makeConstraints { (make) -> Void in
+            make.top.equalTo(self.snp.top)
+            make.left.equalTo(self.snp.left)
+            make.width.equalTo(self.snp.width)
+            make.height.equalTo(self.snp.height)
         }
-        subjectView.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(self.snp_top)
-            make.left.equalTo(self.snp_left).offset(MalaLayout_FilterContentWidth)
-            make.width.equalTo(self.snp_width)
-            make.height.equalTo(self.snp_height)
+        subjectView.snp.makeConstraints { (make) -> Void in
+            make.top.equalTo(self.snp.top)
+            make.left.equalTo(self.snp.left).offset(MalaLayout_FilterContentWidth)
+            make.width.equalTo(self.snp.width)
+            make.height.equalTo(self.snp.height)
         }
-        styleView.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(self.snp_top)
-            make.left.equalTo(subjectView.snp_left).offset(MalaLayout_FilterContentWidth)
-            make.width.equalTo(self.snp_width)
-            make.height.equalTo(self.snp_height)
+        styleView.snp.makeConstraints { (make) -> Void in
+            make.top.equalTo(self.snp.top)
+            make.left.equalTo(subjectView.snp.left).offset(MalaLayout_FilterContentWidth)
+            make.width.equalTo(self.snp.width)
+            make.height.equalTo(self.snp.height)
         }
         self.backgroundColor = UIColor.lightGray
     }

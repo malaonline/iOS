@@ -145,51 +145,51 @@ class TeacherTableViewCell: UITableViewCell {
         content.addSubview(tagsLabel)
         
         // Autolayout
-        content.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(self.contentView.snp_top).offset(4)
-            make.left.equalTo(self.contentView.snp_left).offset(12)
-            make.bottom.equalTo(self.contentView.snp_bottom).offset(-4)
-            make.right.equalTo(self.contentView.snp_right).offset(-12)
+        content.snp.makeConstraints { (make) -> Void in
+            make.top.equalTo(self.contentView.snp.top).offset(4)
+            make.left.equalTo(self.contentView.snp.left).offset(12)
+            make.bottom.equalTo(self.contentView.snp.bottom).offset(-4)
+            make.right.equalTo(self.contentView.snp.right).offset(-12)
         }
-        courseLabel.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(self.contentView.snp_top).offset(4)
-            make.left.equalTo(self.contentView.snp_left)
+        courseLabel.snp.makeConstraints { (make) -> Void in
+            make.top.equalTo(self.contentView.snp.top).offset(4)
+            make.left.equalTo(self.contentView.snp.left)
             make.height.equalTo(24)
             make.width.equalTo(100)
         }
-        nameLabel.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(self.content.snp_top).offset(15)
-            make.centerX.equalTo(self.content.snp_centerX)
+        nameLabel.snp.makeConstraints { (make) -> Void in
+            make.top.equalTo(self.content.snp.top).offset(15)
+            make.centerX.equalTo(self.content.snp.centerX)
             make.height.equalTo(17)
         }
-        levelLabel.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(self.nameLabel.snp_bottom).offset(10)
-            make.centerX.equalTo(self.content.snp_centerX)
+        levelLabel.snp.makeConstraints { (make) -> Void in
+            make.top.equalTo(self.nameLabel.snp.bottom).offset(10)
+            make.centerX.equalTo(self.content.snp.centerX)
             make.height.equalTo(13)
         }
-        separator.snp_makeConstraints { (make) -> Void in
-            make.centerX.equalTo(self.content.snp_centerX)
-            make.centerY.equalTo(self.levelLabel.snp_centerY)
-            make.left.equalTo(self.content.snp_left).offset(10)
-            make.right.equalTo(self.content.snp_right).offset(-10)
+        separator.snp.makeConstraints { (make) -> Void in
+            make.centerX.equalTo(self.content.snp.centerX)
+            make.centerY.equalTo(self.levelLabel.snp.centerY)
+            make.left.equalTo(self.content.snp.left).offset(10)
+            make.right.equalTo(self.content.snp.right).offset(-10)
             make.height.equalTo(MalaScreenOnePixel)
         }
-        avatarView.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(self.levelLabel.snp_bottom).offset(12)
-            make.centerX.equalTo(self.content.snp_centerX)
+        avatarView.snp.makeConstraints { (make) -> Void in
+            make.top.equalTo(self.levelLabel.snp.bottom).offset(12)
+            make.centerX.equalTo(self.content.snp.centerX)
             make.width.equalTo(MalaLayout_AvatarSize)
             make.height.equalTo(MalaLayout_AvatarSize)
         }
-        priceLabel.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(self.avatarView.snp_bottom).offset(11)
-            make.centerX.equalTo(self.content.snp_centerX)
+        priceLabel.snp.makeConstraints { (make) -> Void in
+            make.top.equalTo(self.avatarView.snp.bottom).offset(11)
+            make.centerX.equalTo(self.content.snp.centerX)
             make.height.equalTo(14)
         }
-        tagsLabel.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(self.priceLabel.snp_bottom).offset(12)
-            make.centerX.equalTo(self.content.snp_centerX)
+        tagsLabel.snp.makeConstraints { (make) -> Void in
+            make.top.equalTo(self.priceLabel.snp.bottom).offset(12)
+            make.centerX.equalTo(self.content.snp.centerX)
             make.height.equalTo(11)
-            make.bottom.equalTo(self.content.snp_bottom).offset(-15)
+            make.bottom.equalTo(self.content.snp.bottom).offset(-15)
         }
     }
     

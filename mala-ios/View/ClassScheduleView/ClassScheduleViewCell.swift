@@ -235,25 +235,25 @@ open class ClassScheduleViewCell: UICollectionViewCell {
         contentView.addSubview(subjectLabel)
         
         // Autolayout
-        dayLabel.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(contentView.snp_top).offset(15)
-            make.centerX.equalTo(contentView.snp_centerX)
+        dayLabel.snp.makeConstraints { (make) -> Void in
+            make.top.equalTo(contentView.snp.top).offset(15)
+            make.centerX.equalTo(contentView.snp.centerX)
             make.height.equalTo(ClassScheduleViewCellCircleSize)
             make.width.equalTo(ClassScheduleViewCellCircleSize)
         }
-        separatorLine.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(contentView.snp_top)
-            make.centerX.equalTo(contentView.snp_centerX)
-            make.width.equalTo(contentView.snp_width).offset(2)
+        separatorLine.snp.makeConstraints { (make) -> Void in
+            make.top.equalTo(contentView.snp.top)
+            make.centerX.equalTo(contentView.snp.centerX)
+            make.width.equalTo(contentView.snp.width).offset(2)
             make.height.equalTo(MalaScreenOnePixel)
         }
-        subjectLabel.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(dayLabel.snp_bottom).offset(10)
+        subjectLabel.snp.makeConstraints { (make) -> Void in
+            make.top.equalTo(dayLabel.snp.bottom).offset(10)
             make.height.equalTo(15)
-            make.centerX.equalTo(contentView.snp_centerX)
+            make.centerX.equalTo(contentView.snp.centerX)
         }
-        courseIndicator.snp_makeConstraints { (make) -> Void in
-            make.center.equalTo(subjectLabel.snp_center)
+        courseIndicator.snp.makeConstraints { (make) -> Void in
+            make.center.equalTo(subjectLabel.snp.center)
         }
         
         setCircleColor(isToday: false, selected: false)

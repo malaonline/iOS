@@ -24,11 +24,11 @@ class OrderFormOtherInfoCell: UITableViewCell {
                     paymentDateString.isHidden = true
                     paymentDateLabel.isHidden = true
                     
-                    createDateString.snp_updateConstraints { (make) -> Void in
-                        make.top.equalTo(titleString.snp_bottom).offset(10)
-                        make.left.equalTo(titleString.snp_left)
+                    createDateString.snp.updateConstraints { (make) -> Void in
+                        make.top.equalTo(titleString.snp.bottom).offset(10)
+                        make.left.equalTo(titleString.snp.left)
                         make.height.equalTo(12)
-                        make.bottom.equalTo(self.contentView.snp_bottom).offset(-16)
+                        make.bottom.equalTo(self.contentView.snp.bottom).offset(-16)
                     }
                     break
                     
@@ -143,35 +143,35 @@ class OrderFormOtherInfoCell: UITableViewCell {
         contentView.addSubview(paymentDateLabel)
         
         // Autolayout
-        titleString.snp_updateConstraints { (make) -> Void in
-            make.top.equalTo(self.contentView.snp_top).offset(16)
-            make.left.equalTo(self.contentView.snp_left).offset(12)
+        titleString.snp.updateConstraints { (make) -> Void in
+            make.top.equalTo(self.contentView.snp.top).offset(16)
+            make.left.equalTo(self.contentView.snp.left).offset(12)
             make.height.equalTo(12)
         }
-        titleLabel.snp_updateConstraints { (make) -> Void in
-            make.top.equalTo(titleString.snp_top)
-            make.left.equalTo(titleString.snp_right).offset(10)
+        titleLabel.snp.updateConstraints { (make) -> Void in
+            make.top.equalTo(titleString.snp.top)
+            make.left.equalTo(titleString.snp.right).offset(10)
             make.height.equalTo(12)
         }
-        createDateString.snp_updateConstraints { (make) -> Void in
-            make.top.equalTo(titleString.snp_bottom).offset(10)
-            make.left.equalTo(titleString.snp_left)
+        createDateString.snp.updateConstraints { (make) -> Void in
+            make.top.equalTo(titleString.snp.bottom).offset(10)
+            make.left.equalTo(titleString.snp.left)
             make.height.equalTo(12)
         }
-        createDateLabel.snp_updateConstraints { (make) -> Void in
-            make.top.equalTo(createDateString.snp_top)
-            make.left.equalTo(createDateString.snp_right).offset(10)
+        createDateLabel.snp.updateConstraints { (make) -> Void in
+            make.top.equalTo(createDateString.snp.top)
+            make.left.equalTo(createDateString.snp.right).offset(10)
             make.height.equalTo(12)
         }
-        paymentDateString.snp_updateConstraints { (make) -> Void in
-            make.top.equalTo(createDateString.snp_bottom).offset(10)
-            make.left.equalTo(titleString.snp_left)
+        paymentDateString.snp.updateConstraints { (make) -> Void in
+            make.top.equalTo(createDateString.snp.bottom).offset(10)
+            make.left.equalTo(titleString.snp.left)
             make.height.equalTo(12)
-            make.bottom.equalTo(self.contentView.snp_bottom).offset(-16)
+            make.bottom.equalTo(self.contentView.snp.bottom).offset(-16)
         }
-        paymentDateLabel.snp_updateConstraints { (make) -> Void in
-            make.top.equalTo(paymentDateString.snp_top)
-            make.left.equalTo(paymentDateString.snp_right).offset(10)
+        paymentDateLabel.snp.updateConstraints { (make) -> Void in
+            make.top.equalTo(paymentDateString.snp.top)
+            make.left.equalTo(paymentDateString.snp.right).offset(10)
             make.height.equalTo(12)
         }
     }

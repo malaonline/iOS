@@ -112,17 +112,17 @@ class LearningReportAbilityImproveCell: MalaBaseReportCardCell {
         layoutView.addSubview(legendView)
         
         // Autolayout
-        legendView.snp_makeConstraints { (make) in
-            make.left.equalTo(descView.snp_left)
-            make.right.equalTo(descView.snp_right)
+        legendView.snp.makeConstraints { (make) in
+            make.left.equalTo(descView.snp.left)
+            make.right.equalTo(descView.snp.right)
             make.height.equalTo(12)
-            make.top.equalTo(layoutView.snp_bottom).multipliedBy(0.17)
+            make.top.equalTo(layoutView.snp.bottom).multipliedBy(0.17)
         }
-        combinedChartView.snp_makeConstraints { (make) in
-            make.top.equalTo(legendView.snp_bottom)
-            make.left.equalTo(descView.snp_left)
-            make.right.equalTo(descView.snp_right)
-            make.bottom.equalTo(layoutView.snp_bottom).multipliedBy(0.68)
+        combinedChartView.snp.makeConstraints { (make) in
+            make.top.equalTo(legendView.snp.bottom)
+            make.left.equalTo(descView.snp.left)
+            make.right.equalTo(descView.snp.right)
+            make.bottom.equalTo(layoutView.snp.bottom).multipliedBy(0.68)
         }
     }
     
@@ -224,9 +224,9 @@ open class CombinedLegendView: UIView {
         button.sizeToFit()
         self.addSubview(button)
         
-        button.snp_makeConstraints { (make) in
-            make.centerY.equalTo(self.snp_centerY)
-            make.right.equalTo(currentButton?.snp_left ?? self.snp_right).offset(-13)
+        button.snp.makeConstraints { (make) in
+            make.centerY.equalTo(self.snp.centerY)
+            make.right.equalTo(currentButton?.snp.left ?? self.snp.right).offset(-13)
         }
         currentButton = button
         

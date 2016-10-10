@@ -62,9 +62,9 @@ open class FilterViewCell: UICollectionViewCell {
         contentView.addSubview(button)
         
         // AutoLayout
-        button.snp_makeConstraints { (make) -> Void in
-            make.centerY.equalTo(self.contentView.snp_centerY)
-            make.left.equalTo(self.contentView.snp_left).offset(4)
+        button.snp.makeConstraints { (make) -> Void in
+            make.centerY.equalTo(self.contentView.snp.centerY)
+            make.left.equalTo(self.contentView.snp.left).offset(4)
         }
     }
 }
