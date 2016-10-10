@@ -36,21 +36,20 @@ class HandlePingppBehaviour: NSObject {
         
         self.currentViewController = currentViewController
         
-        if error == nil {
-            println("PingppError is nil")
-        }else {
+        guard let result = result, error == nil else {
             println("PingppError: code=\(error!.code), msg=\(error!.getMsg())")
+            return
         }
         
         switch result {
-        case ?"success":
+        case "success":
             // 支付成功后，向服务端验证支付结果
             validateOrderStatus()
             
-        case ?"cancel":
+        case "cancel":
             showCancelAlert()
             
-        case ?"fail":
+        case "fail":
             showFailAlert()
             
         default:
@@ -206,7 +205,7 @@ class HandlePingppBehaviour: NSObject {
         // 回调回App时若直接PopToRootViewController会出现TabBar莫名自动添加一个item的问题，暂时使用此方式解决问题。
         ThemeHUD.showActivityIndicator()
         delay(0.5) { () -> Void in
-            self.currentViewController!.navigationController?.popToRootViewControllerAnimated(true)
+            self.currentViewController!.navigationController?.popToRootViewController(animated: true)
             ThemeHUD.hideActivityIndicator()
         }
     }
@@ -222,7 +221,7 @@ class HandlePingppBehaviour: NSObject {
         
         delay(0.5) { () -> Void in
             
-            if let appDelegate = UIApplication.sharedApplication().delegate as? AppDelegate {
+            if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
                 appDelegate.window?.rootViewController = MainViewController()
                 appDelegate.switchTabBarControllerWithIndex(1)
             }

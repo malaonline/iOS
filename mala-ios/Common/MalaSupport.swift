@@ -440,7 +440,7 @@ func sortSchoolsByDistance(schools: [SchoolModel]) -> [SchoolModel] {
 
 
 // MARK: - Study Report Support
-func adjustHomeworkData(data: [SingleHomeworkData]) -> [SingleHomeworkData] {
+func adjustHomeworkData(_ data: [SingleHomeworkData]) -> [SingleHomeworkData] {
     
     /// 排序
     var sortData = data.sorted { (data1, data2) -> Bool in

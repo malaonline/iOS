@@ -32,7 +32,7 @@ public extension UIImage {
         case .roundedRectangle(let size, let cornerRadius, let borderWidth):
             avatarImage = navi_centerCropWithSize(size)?.navi_roundWithCornerRadius(cornerRadius, borderWidth: borderWidth)
 
-        case .free(_, let transform):
+        case .freeform(_, let transform):
             avatarImage = transform(self)
         }
 
@@ -51,20 +51,28 @@ public extension UIImage {
         let newRect = CGRect(origin: CGPoint.zero, size: pixelSize).integral
         let transposedRect = CGRect(origin: CGPoint.zero, size: CGSize(width: pixelSize.height, height: pixelSize.width))
 
-        let bitmapContext = CGContext(data: nil, width: Int(newRect.width), height: Int(newRect.height), bitsPerComponent: cgImage!.bitsPerComponent, bytesPerRow: 0, space: cgImage!.colorSpace!, bitmapInfo: cgImage!.bitmapInfo.rawValue)!
+        guard let cgImage = cgImage else {
+            return nil
+        }
+        guard let colorSpace = cgImage.colorSpace else {
+            return nil
+        }
+        guard let bitmapContext = CGContext(data: nil, width: Int(newRect.width), height: Int(newRect.height), bitsPerComponent: cgImage.bitsPerComponent, bytesPerRow: 0, space: colorSpace, bitmapInfo: cgImage.bitmapInfo.rawValue) else {
+            return nil
+        }
 
         bitmapContext.concatenate(transform)
 
         bitmapContext.interpolationQuality = interpolationQuality
 
-        bitmapContext.draw(cgImage!, in: drawTransposed ? transposedRect : newRect)
+        bitmapContext.draw(cgImage, in: drawTransposed ? transposedRect : newRect)
 
-        if let newCGImage = bitmapContext.makeImage() {
-            let image = UIImage(cgImage: newCGImage, scale: screenScale, orientation: imageOrientation)
-            return image
+        guard let newCGImage = bitmapContext.makeImage() else {
+            return nil
         }
 
-        return nil
+        let image = UIImage(cgImage: newCGImage, scale: screenScale, orientation: imageOrientation)
+        return image
     }
 
     public func navi_transformForOrientationWithSize(_ size: CGSize) -> CGAffineTransform {
@@ -123,12 +131,16 @@ public extension UIImage {
 
     public func navi_cropWithBounds(_ bounds: CGRect) -> UIImage? {
 
-        if let newCGImage = cgImage!.cropping(to: bounds) {
-            let image = UIImage(cgImage: newCGImage, scale: screenScale, orientation: imageOrientation)
-            return image
+        guard let cgImage = cgImage else {
+            return nil
+        }
+        guard let newCGImage = cgImage.cropping(to: bounds) else {
+            return nil
+
         }
 
-        return nil
+        let image = UIImage(cgImage: newCGImage, scale: screenScale, orientation: imageOrientation)
+        return image
     }
 
     public func navi_centerCropWithSize(_ size: CGSize) -> UIImage? {
@@ -167,7 +179,7 @@ public extension UIImage {
 
 public extension UIImage {
 
-    fileprivate func navi_CGContextAddRoundedRect(_ context: CGContext, rect: CGRect, ovalWidth: CGFloat, ovalHeight: CGFloat) {
+    fileprivate func navi_cgContextAddRoundedRect(_ context: CGContext, rect: CGRect, ovalWidth: CGFloat, ovalHeight: CGFloat) {
 
         if ovalWidth <= 0 || ovalHeight <= 0 {
             context.addRect(rect)
@@ -183,10 +195,10 @@ public extension UIImage {
             let fh = rect.height / ovalHeight
 
             context.move(to: CGPoint(x: fw, y: fh/2))
-            CGContextAddArcToPoint(context, fw, fh, fw/2, fh, 1)
-            CGContextAddArcToPoint(context, 0, fh, 0, fh/2, 1)
-            CGContextAddArcToPoint(context, 0, 0, fw/2, 0, 1)
-            CGContextAddArcToPoint(context, fw, 0, fw, fh/2, 1)
+            context.addArc(tangent1End: CGPoint(x: fw, y: fh), tangent2End: CGPoint(x: fw/2, y: fh), radius: 1)
+            context.addArc(tangent1End: CGPoint(x: 0, y: fh), tangent2End: CGPoint(x: 0, y: fh/2), radius: 1)
+            context.addArc(tangent1End: CGPoint(x: 0, y: 0), tangent2End: CGPoint(x: fw/2, y: 0), radius: 1)
+            context.addArc(tangent1End: CGPoint(x: fw, y: 0), tangent2End: CGPoint(x: fw, y: fh/2), radius: 1)
             context.closePath()
 
             context.restoreGState()
@@ -202,21 +214,27 @@ public extension UIImage {
 
         let pixelSize = CGSize(width: image.size.width * screenScale, height: image.size.height * screenScale)
 
-        guard let bitmapContext = CGContext(data: nil, width: Int(pixelSize.width), height: Int(pixelSize.height), bitsPerComponent: image.cgImage!.bitsPerComponent, bytesPerRow: 0, space: image.cgImage!.colorSpace!, bitmapInfo: image.cgImage!.bitmapInfo.rawValue) else {
+        guard let cgImage = image.cgImage else {
+            return nil
+        }
+        guard let colorSpace = cgImage.colorSpace else {
+            return nil
+        }
+        guard let bitmapContext = CGContext(data: nil, width: Int(pixelSize.width), height: Int(pixelSize.height), bitsPerComponent: cgImage.bitsPerComponent, bytesPerRow: 0, space: colorSpace, bitmapInfo: cgImage.bitmapInfo.rawValue) else {
             return nil
         }
 
         bitmapContext.beginPath()
 
         let rect = CGRect(x: borderWidth, y: borderWidth, width: pixelSize.width - borderWidth * 2, height: pixelSize.height - borderWidth * 2)
-        navi_CGContextAddRoundedRect(bitmapContext, rect: rect, ovalWidth: cornerRadius, ovalHeight: cornerRadius)
+        navi_cgContextAddRoundedRect(bitmapContext, rect: rect, ovalWidth: cornerRadius, ovalHeight: cornerRadius)
 
         bitmapContext.closePath()
 
         bitmapContext.clip()
 
         let imageRect = CGRect(origin: CGPoint.zero, size: pixelSize)
-        bitmapContext.draw(image.cgImage!, in: imageRect)
+        bitmapContext.draw(cgImage, in: imageRect)
 
         if let newCGImage = bitmapContext.makeImage() {
             let image = UIImage(cgImage: newCGImage, scale: screenScale, orientation: imageOrientation)
@@ -233,7 +251,11 @@ public extension UIImage {
 
     public func navi_hasAlpha() -> Bool {
 
-        let alpha = cgImage!.alphaInfo
+        guard let cgImage = cgImage else {
+            return false
+        }
+
+        let alpha = cgImage.alphaInfo
 
         switch alpha {
 
@@ -251,13 +273,19 @@ public extension UIImage {
             return self
         }
 
+        guard let cgImage = cgImage else {
+            return self
+        }
+
         let pixelSize = CGSize(width: self.size.width * screenScale, height: self.size.height * screenScale)
 
         let bitmapInfo = CGBitmapInfo(rawValue: CGBitmapInfo().rawValue | CGImageAlphaInfo.premultipliedFirst.rawValue)
 
-        let offscreenContext = CGContext(data: nil, width: Int(pixelSize.width), height: Int(pixelSize.height), bitsPerComponent: cgImage!.bitsPerComponent, bytesPerRow: 0, space: CGColorSpaceCreateDeviceRGB(), bitmapInfo: bitmapInfo.rawValue)!
+        guard let offscreenContext = CGContext(data: nil, width: Int(pixelSize.width), height: Int(pixelSize.height), bitsPerComponent: cgImage.bitsPerComponent, bytesPerRow: 0, space: CGColorSpaceCreateDeviceRGB(), bitmapInfo: bitmapInfo.rawValue) else {
+            return self
+        }
         
-        offscreenContext.draw(cgImage!, in: CGRect(origin: CGPoint.zero, size: pixelSize))
+        offscreenContext.draw(cgImage, in: CGRect(origin: CGPoint.zero, size: pixelSize))
         
         if let alphaCGImage = offscreenContext.makeImage() {
             let image = UIImage(cgImage: alphaCGImage, scale: screenScale, orientation: imageOrientation)
