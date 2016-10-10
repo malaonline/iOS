@@ -41,11 +41,11 @@ class LearningReportAbilityStructureCell: MalaBaseReportCardCell {
         radarChartView.innerWebLineWidth = 1
         radarChartView.webAlpha = 1
         radarChartView.rotationEnabled = false
-        radarChartView.innerWebColor = UIColor.whiteColor()
-        radarChartView.webColor = UIColor.whiteColor()
+        radarChartView.innerWebColor = UIColor.white
+        radarChartView.webColor = UIColor.white
                 
         let xAxis = radarChartView.xAxis
-        xAxis.labelFont = UIFont.systemFontOfSize(12)
+        xAxis.labelFont = UIFont.systemFont(ofSize: 12)
         xAxis.labelTextColor = MalaColor_5E5E5E_0
         xAxis.labelWidth = 20
         
@@ -116,7 +116,7 @@ class LearningReportAbilityStructureCell: MalaBaseReportCardCell {
         dataSet.highlightEnabled = false
         
         let data = RadarChartData(xVals: getXVals(), dataSets: [dataSet])
-        data.setValueFont(UIFont.systemFontOfSize(10))
+        data.setValueFont(UIFont.systemFont(ofSize: 10))
         data.setDrawValues(false)
         radarChartView.data = data
     }
@@ -124,7 +124,7 @@ class LearningReportAbilityStructureCell: MalaBaseReportCardCell {
     // 获取X轴文字信息
     private func getXVals() -> [String] {
         var xVals = [String]()
-        for (index, data) in model.enumerate() {
+        for (index, data) in model.enumerated() {
             var abilityString = data.abilityString
             if index == 1 || index == 2 {
                 abilityString = "   "+abilityString

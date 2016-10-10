@@ -66,7 +66,7 @@ class CourseTableViewCell: UITableViewCell {
     // MARK: - Private Method
     private func setupUserInterface() {
         // Style
-        selectionStyle = .None
+        selectionStyle = .none
         
         // SubViews
         contentView.addSubview(dateLabel)

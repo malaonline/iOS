@@ -17,7 +17,7 @@ class CityTableViewController: UIViewController, UITableViewDelegate, UITableVie
     // 城市数据模型
     var models: [BaseObjectModel] = [] {
         didSet {
-            dispatch_async(dispatch_get_main_queue(), { [weak self] () -> Void in
+            DispatchQueue.main.async(execute: { [weak self] () -> Void in
                 self?.tableView.reloadData()
             })
         }
@@ -31,7 +31,7 @@ class CityTableViewController: UIViewController, UITableViewDelegate, UITableVie
     // MARK: - Components
     // 城市列表
     private lazy var tableView: UITableView = {
-        let tableView = UITableView(frame: CGRectZero, style: .Grouped)
+        let tableView = UITableView(frame: CGRect.zero, style: .grouped)
         return tableView
     }()
     // 关闭按钮
@@ -55,7 +55,7 @@ class CityTableViewController: UIViewController, UITableViewDelegate, UITableVie
         super.didReceiveMemoryWarning()
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         loadCitylist()
     }
@@ -65,8 +65,8 @@ class CityTableViewController: UIViewController, UITableViewDelegate, UITableVie
     private func setupUserInterface() {
         // Style
         title = "选择城市"
-        view.backgroundColor = UIColor.whiteColor()
-        UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.Default
+        view.backgroundColor = UIColor.white
+        UIApplication.shared.statusBarStyle = UIStatusBarStyle.default
         navigationController?.navigationBar.shadowImage = UIImage()
         
         if !unSelectRegion {
@@ -78,8 +78,8 @@ class CityTableViewController: UIViewController, UITableViewDelegate, UITableVie
         tableView.delegate = self
         tableView.dataSource = self
         tableView.backgroundColor = MalaColor_F6F7F9_0
-        tableView.separatorStyle = .None
-        tableView.registerClass(RegionUnitCell.self, forCellReuseIdentifier: CityTableViewCellReuseId)
+        tableView.separatorStyle = .none
+        tableView.register(RegionUnitCell.self, forCellReuseIdentifier: CityTableViewCellReuseId)
         
         // SubViews
         self.view.addSubview(tableView)
@@ -95,13 +95,13 @@ class CityTableViewController: UIViewController, UITableViewDelegate, UITableVie
     
     
     // MARK: - Delegate
-    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 10
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        MalaCurrentCity = models[indexPath.row]
-        MalaUserDefaults.currentCity.value = models[indexPath.row]
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        MalaCurrentCity = models[(indexPath as NSIndexPath).row]
+        MalaUserDefaults.currentCity.value = models[(indexPath as NSIndexPath).row]
         
         if unSelectRegion {
             pushToSchoolList()
@@ -112,16 +112,16 @@ class CityTableViewController: UIViewController, UITableViewDelegate, UITableVie
     
     
     // MARK: - DataSource
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return models.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(CityTableViewCellReuseId, forIndexPath: indexPath) as! RegionUnitCell
-        cell.city = models[indexPath.row]
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: CityTableViewCellReuseId, for: indexPath) as! RegionUnitCell
+        cell.city = models[(indexPath as NSIndexPath).row]
         
         // Section的最后一个Cell隐藏分割线
-        if (indexPath.row+1) == models.count {
+        if ((indexPath as NSIndexPath).row+1) == models.count {
             cell.hideSeparator()
         }
         
@@ -142,7 +142,7 @@ class CityTableViewController: UIViewController, UITableViewDelegate, UITableVie
                 println("CityTableViewController - loadCitylist Error \(errorMessage)")
             }
         }, completion:{ [weak self] (cities) in
-            self?.models = cities.reverse()
+            self?.models = cities.reversed()
             println("城市列表 - \(cities)")
         })
     }
@@ -156,12 +156,12 @@ class CityTableViewController: UIViewController, UITableViewDelegate, UITableVie
     
     // MARK: - Events Response
     func pop() {
-        navigationController?.popViewControllerAnimated(true)
+        navigationController?.popViewController(animated: true)
     }
     
     
     // MARK: - Public Method
-    func hideCloseButton(hidden: Bool = true) {
-        closeButton.hidden = hidden
+    func hideCloseButton(_ hidden: Bool = true) {
+        closeButton.isHidden = hidden
     }
 }

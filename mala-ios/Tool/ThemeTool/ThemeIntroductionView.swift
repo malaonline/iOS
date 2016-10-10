@@ -32,7 +32,7 @@ class ThemeIntroductionView: BaseViewController, UICollectionViewDelegate, UICol
     /// 轮播视图
     private lazy var collectionView: UICollectionView = {
         let frame = CGRect(x: 0, y: 0, width: MalaScreenWidth, height: MalaScreenHeight-MalaScreenNaviHeight)
-        let collectionView = UICollectionView(frame: CGRectZero, collectionViewLayout: ThemeIntroductionFlowLayout(frame: frame))
+        let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: ThemeIntroductionFlowLayout(frame: frame))
         return collectionView
     }()
     
@@ -59,20 +59,20 @@ class ThemeIntroductionView: BaseViewController, UICollectionViewDelegate, UICol
     
     // MARK: - Private method
     private func configure() {
-        collectionView.pagingEnabled = true
+        collectionView.isPagingEnabled = true
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.showsVerticalScrollIndicator = false
         collectionView.delegate = self
         collectionView.dataSource = self
-        collectionView.registerClass(ThemeIntroductionViewCell.self, forCellWithReuseIdentifier: ThemeIntroductionViewCellReuseId)
+        collectionView.register(ThemeIntroductionViewCell.self, forCellWithReuseIdentifier: ThemeIntroductionViewCellReuseId)
         
         pageControl.numberOfPages = model.count
-        pageControl.addTarget(self, action: #selector(ThemeIntroductionView.pageControlDidChangeCurrentPage(_:)), forControlEvents: .ValueChanged)
+        pageControl.addTarget(self, action: #selector(ThemeIntroductionView.pageControlDidChangeCurrentPage(_:)), for: .valueChanged)
     }
     
     private func setupUserInterface() {
         // Style
-        collectionView.backgroundColor = UIColor.whiteColor()
+        collectionView.backgroundColor = UIColor.white
         pageControl.tintColor = MalaColor_2AAADD_0
         
         // SubViews
@@ -94,13 +94,13 @@ class ThemeIntroductionView: BaseViewController, UICollectionViewDelegate, UICol
     
     
     // MARK: - DataSource
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return model.count
     }
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(ThemeIntroductionViewCellReuseId, forIndexPath: indexPath) as! ThemeIntroductionViewCell
-        cell.model = self.model[indexPath.row]
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ThemeIntroductionViewCellReuseId, for: indexPath) as! ThemeIntroductionViewCell
+        cell.model = self.model[(indexPath as NSIndexPath).row]
         return cell
     }
     
@@ -109,12 +109,12 @@ class ThemeIntroductionView: BaseViewController, UICollectionViewDelegate, UICol
     
     
     // MARK: - Event Response
-    func pageControlDidChangeCurrentPage(pageControl: PageControl) {
+    func pageControlDidChangeCurrentPage(_ pageControl: PageControl) {
         collectionView.setContentOffset(CGPoint(x: collectionView.bounds.width * CGFloat(pageControl.currentPage), y: 0), animated: true)
     }
     
-    func scrollViewDidScroll(scrollView: UIScrollView) {
-        if scrollView.dragging || scrollView.decelerating {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.isDragging || scrollView.isDecelerating {
             let page = scrollView.contentOffset.x / scrollView.bounds.width
             pageControl.setCurrentPage(page)
         }
@@ -152,7 +152,7 @@ class ThemeIntroductionViewCell: UICollectionViewCell {
             fontSize: 16,
             textColor: MalaColor_2AAADD_0
         )
-        label.textAlignment = .Center
+        label.textAlignment = .center
         return label
     }()
     /// 简介内容标签
@@ -163,7 +163,7 @@ class ThemeIntroductionViewCell: UICollectionViewCell {
             textColor: MalaColor_2AAADD_0
         )
         label.numberOfLines = 0
-        label.textAlignment = .Center
+        label.textAlignment = .center
         return label
     }()
     
@@ -217,7 +217,7 @@ class ThemeIntroductionViewCell: UICollectionViewCell {
 
 class ThemeIntroductionFlowLayout: UICollectionViewFlowLayout {
     
-    private var frame = CGRectZero
+    private var frame = CGRect.zero
     
     
     // MARK: - Instance Method
@@ -234,7 +234,7 @@ class ThemeIntroductionFlowLayout: UICollectionViewFlowLayout {
     
     // MARK: - Private Method
     private func configure() {
-        scrollDirection = .Horizontal
+        scrollDirection = .horizontal
         itemSize = frame.size
         minimumInteritemSpacing = 0
         minimumLineSpacing = 0

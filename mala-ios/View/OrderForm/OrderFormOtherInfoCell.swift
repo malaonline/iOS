@@ -21,8 +21,8 @@ class OrderFormOtherInfoCell: UITableViewCell {
                 // 已支付、已退款状态时，不显示支付时间
                 case .Penging, .Canceled:
                     
-                    paymentDateString.hidden = true
-                    paymentDateLabel.hidden = true
+                    paymentDateString.isHidden = true
+                    paymentDateLabel.isHidden = true
                     
                     createDateString.snp_updateConstraints { (make) -> Void in
                         make.top.equalTo(titleString.snp_bottom).offset(10)
@@ -49,7 +49,7 @@ class OrderFormOtherInfoCell: UITableViewCell {
         }
     }
     /// 订单创建时间
-    var createDate: NSTimeInterval? {
+    var createDate: TimeInterval? {
         didSet {
             if let createDate = createDate {
                 createDateLabel.text = getDateTimeString(createDate)
@@ -57,7 +57,7 @@ class OrderFormOtherInfoCell: UITableViewCell {
         }
     }
     /// 订单支付时间
-    var paymentDate: NSTimeInterval? {
+    var paymentDate: TimeInterval? {
         didSet {
             if let paymentDate = paymentDate {
                 paymentDateLabel.text = getDateTimeString(paymentDate)

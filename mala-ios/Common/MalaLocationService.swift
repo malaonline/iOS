@@ -13,7 +13,7 @@ class MalaLocationService: NSObject, CLLocationManagerDelegate {
     // MARK: - Property
     /// 单例
     static let sharedManager = MalaLocationService()
-    var afterUpdatedLocationAction: (CLLocation -> Void)?
+    var afterUpdatedLocationAction: ((CLLocation) -> Void)?
     var currentLocation: CLLocation?
     
     lazy var locationManager: CLLocationManager = {
@@ -41,7 +41,7 @@ class MalaLocationService: NSObject, CLLocationManagerDelegate {
         }
     }
     
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
         guard let newLocation = locations.last else {
             return

@@ -41,7 +41,7 @@ class RegionPicker: UIView {
     override init(frame: CGRect) {
         super.init(frame: CGRect(x: 0, y: 0, width: 138, height: 30))
         setupUserInterface()
-        userInteractionEnabled = true
+        isUserInteractionEnabled = true
     }
     
     required init?(coder aDecoder: NSCoder) {

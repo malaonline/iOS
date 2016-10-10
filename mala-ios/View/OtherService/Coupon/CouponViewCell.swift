@@ -15,7 +15,7 @@ class CouponViewCell: UITableViewCell {
     var model: CouponModel? {
         didSet {
             
-            guard let model = model, status = model.status else {
+            guard let model = model, let status = model.status else {
                 return
             }
             
@@ -23,26 +23,26 @@ class CouponViewCell: UITableViewCell {
             priceLabel.text = model.amountString
             titleLabel.text = model.minPriceString
             validityTermLabel.text = model.expiredString
-            selectedView.hidden = true
+            selectedView.isHidden = true
             
             // 根据奖学金状态渲染UI
             switch status {
-            case .Used:
+            case .used:
                 // 已使用
                 setStyleUsed()
                 break
                 
-            case .Unused:
+            case .unused:
                 // 未使用
                 setStyleUnused()
                 break
                 
-            case .Expired:
+            case .expired:
                 // 已过期
                 setStyleExpired()
                 break
                 
-            case .Disabled:
+            case .disabled:
                 // 已冻结
                 disabled = true
                 break
@@ -52,7 +52,7 @@ class CouponViewCell: UITableViewCell {
     // 是否显示[选中指示器]标识
     var showSelectedIndicator: Bool = false {
         didSet {
-            self.selectedView.hidden = !showSelectedIndicator
+            self.selectedView.isHidden = !showSelectedIndicator
         }
     }
     /// 是否被冻结
@@ -91,7 +91,7 @@ class CouponViewCell: UITableViewCell {
         let label = UILabel(
             text: "￥",
             fontSize: 17,
-            textColor: UIColor.whiteColor()
+            textColor: UIColor.white
         )
         return label
     }()
@@ -100,7 +100,7 @@ class CouponViewCell: UITableViewCell {
         let label = UILabel(
             text: "",
             fontSize: 37,
-            textColor: UIColor.whiteColor()
+            textColor: UIColor.white
         )
         // label.font = UIFont(name: "Damascus", size: 37)
         return label
@@ -126,13 +126,13 @@ class CouponViewCell: UITableViewCell {
     /// 状态标识图标
     private lazy var statusIcon: UIImageView = {
         let imageView = UIImageView(image: UIImage(named: "coupon_expired"))
-        imageView.hidden = true
+        imageView.isHidden = true
         return imageView
     }()
     /// 选中效果箭头
     lazy var selectedView: UIImageView = {
         let imageView = UIImageView(image: UIImage(named: "coupon_selected"))
-        imageView.hidden = true
+        imageView.isHidden = true
         return imageView
     }()
     
@@ -227,26 +227,26 @@ class CouponViewCell: UITableViewCell {
     private func setStyleDisable() {
         titleLabel.textColor = MalaColor_999999_0
         content.image = UIImage(named: "coupon_unvalid")
-        statusIcon.hidden = true
+        statusIcon.isHidden = true
     }
     ///  过期样式(不可用)
     private func setStyleExpired() {
         titleLabel.textColor = MalaColor_999999_0
         content.image = UIImage(named: "coupon_unvalid")
-        statusIcon.hidden = false
+        statusIcon.isHidden = false
         statusIcon.image = UIImage(named: "coupon_expired")
     }
     ///  已使用样式(不可用)
     private func setStyleUsed() {
         titleLabel.textColor = MalaColor_999999_0
         content.image = UIImage(named: "coupon_unvalid")
-        statusIcon.hidden = false
+        statusIcon.isHidden = false
         statusIcon.image = UIImage(named: "coupon_used")
     }
     ///  未使用样式(可用)
     private func setStyleUnused() {
         titleLabel.textColor = MalaColor_6DB2E5_0
         content.image = UIImage(named: "coupon_valid")
-        statusIcon.hidden = true
+        statusIcon.isHidden = true
     }
 }

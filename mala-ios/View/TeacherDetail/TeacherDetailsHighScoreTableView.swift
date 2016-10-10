@@ -26,11 +26,11 @@ class TeacherDetailsHighScoreTableView: UITableView, UITableViewDelegate, UITabl
         
         delegate = self
         dataSource = self
-        registerClass(TeacherDetailsHighScoreTableViewCell.self, forCellReuseIdentifier: TeacherDetailsHighScoreTableViewCellReuseId)
+        register(TeacherDetailsHighScoreTableViewCell.self, forCellReuseIdentifier: TeacherDetailsHighScoreTableViewCellReuseId)
         
         // Style
-        scrollEnabled = false
-        separatorStyle = .None
+        isScrollEnabled = false
+        separatorStyle = .none
         
         setupTableHeaderView()
     }
@@ -42,21 +42,21 @@ class TeacherDetailsHighScoreTableView: UITableView, UITableViewDelegate, UITabl
     
     // MARK: - Private Method
     private func setupTableHeaderView() {
-        let headerView = TeacherDetailsHighScoreTableViewCell(style: .Default, reuseIdentifier: nil)
+        let headerView = TeacherDetailsHighScoreTableViewCell(style: .default, reuseIdentifier: nil)
         headerView.setTableTitles(["姓  名", "提分区间", "所在学校", "考入学校"])
-        headerView.separator.hidden = true
+        headerView.separator.isHidden = true
         self.tableHeaderView = headerView
     }
     
     
     // MARK: - DataSource
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return models.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(TeacherDetailsHighScoreTableViewCellReuseId, forIndexPath: indexPath)
-        let model = models[indexPath.row]
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: TeacherDetailsHighScoreTableViewCellReuseId, for: indexPath)
+        let model = models[(indexPath as NSIndexPath).row]
         if model == nil {
             (cell as! TeacherDetailsHighScoreTableViewCell).model = HighScoreModel(name: "-", score: 0, school: "-", admitted: "-")
         }else {
@@ -67,13 +67,13 @@ class TeacherDetailsHighScoreTableView: UITableView, UITableViewDelegate, UITabl
         return cell
     }
     
-    func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
         return false
     }
 
     
     // MARK: - Delegate
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 33
     }
 }
@@ -163,7 +163,7 @@ class TeacherDetailsHighScoreTableViewCell: UITableViewCell {
     ///  根据传入的表头字符串数组，生成对应的表头
     ///
     ///  - parameter titles: 表头字符串数组
-    func setTableTitles(titles: [String]) {
+    func setTableTitles(_ titles: [String]) {
         nameLabel.text = titles[0]
         scoresLabel.text = titles[1]
         schoolLabel.text = titles[2]

@@ -16,13 +16,13 @@ class FilterBar: UIView {
     /// 筛选条件
     var filterCondition: ConditionObject = MalaCondition {
         didSet {
-            self.gradeButton.setTitle(filterCondition.grade.name, forState: .Normal)
-            self.subjectButton.setTitle(filterCondition.subject.name, forState: .Normal)
+            self.gradeButton.setTitle(filterCondition.grade.name, for: UIControlState())
+            self.subjectButton.setTitle(filterCondition.subject.name, for: UIControlState())
             let tags = filterCondition.tags.map({ (object: BaseObjectModel) -> String in
                 return object.name ?? ""
             })
-            let tagsButtonTitle = (tags ?? ["不限"]).joinWithSeparator(" • ")
-            self.styleButton.setTitle(tagsButtonTitle == "" ? "不限" : tagsButtonTitle, forState: .Normal)
+            let tagsButtonTitle = (tags ?? ["不限"]).joined(separator: " • ")
+            self.styleButton.setTitle(tagsButtonTitle == "" ? "不限" : tagsButtonTitle, for: UIControlState())
         }
     }
     
@@ -55,7 +55,7 @@ class FilterBar: UIView {
             target: self,
             action: #selector(FilterBar.buttonDidTap(_:))
         )
-        styleButton.titleLabel?.lineBreakMode = .ByTruncatingTail
+        styleButton.titleLabel?.lineBreakMode = .byTruncatingTail
         styleButton.titleEdgeInsets = UIEdgeInsets(top: 0, left: 13, bottom: 0, right: 13)
         styleButton.tag = 3
         return styleButton
@@ -106,8 +106,8 @@ class FilterBar: UIView {
     }
     
     private func setupNotification() {
-        NSNotificationCenter.defaultCenter().addObserverForName(
-            MalaNotification_CommitCondition,
+        NotificationCenter.default.addObserver(
+            forName: NSNotification.Name(rawValue: MalaNotification_CommitCondition),
             object: nil,
             queue: nil) { [weak self] (notification) -> Void in
                 self?.filterCondition = MalaCondition
@@ -117,14 +117,14 @@ class FilterBar: UIView {
     
     
     // MARK: - Event Response
-    @objc private func buttonDidTap(sender: UIButton) {
+    @objc private func buttonDidTap(_ sender: UIButton) {
         
-        let filterView = FilterView(frame: CGRectZero)
+        let filterView = FilterView(frame: CGRect.zero)
         filterView.isSecondaryFilter = true
         filterView.subjects = MalaCondition.grade.subjects.map({ (i: NSNumber) -> GradeModel in
             let subject = GradeModel()
-            subject.id = i.integerValue
-            subject.name = MalaConfig.malaSubject()[i.integerValue]
+            subject.id = i.intValue
+            subject.name = MalaConfig.malaSubject()[i.intValue]
             return subject
         })
         
@@ -150,6 +150,6 @@ class FilterBar: UIView {
     
     deinit {
         println("FilterBar - Deinit")
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: MalaNotification_CommitCondition, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: MalaNotification_CommitCondition), object: nil)
     }
 }

@@ -34,7 +34,7 @@ class SingleTopicData: NSObject {
     
     init(dict: [String: AnyObject]) {
         super.init()
-        setValuesForKeysWithDictionary(dict)
+        setValuesForKeys(dict)
     }
     
     convenience init(id: String, name: String, totalItem: Int, rightItem: Int) {

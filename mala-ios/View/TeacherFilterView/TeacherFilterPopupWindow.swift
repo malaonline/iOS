@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class TeacherFilterPopupWindow: UIViewController {
+open class TeacherFilterPopupWindow: UIViewController {
 
     // MARK: - Property
     /// 自身强引用
@@ -41,37 +41,37 @@ public class TeacherFilterPopupWindow: UIViewController {
         themeIcon.frame = CGRect(x: 0, y: 0, width: 64, height: 64)
         themeIcon.layer.cornerRadius = 32
         themeIcon.layer.masksToBounds = true
-        themeIcon.backgroundColor = UIColor.lightGrayColor()
+        themeIcon.backgroundColor = UIColor.lightGray
         themeIcon.image = UIImage(named: self.tIcon)
         return themeIcon
     }()
     private lazy var closeButton: UIButton = {
         let closeButton = UIButton()
-        closeButton.setBackgroundImage(UIImage(named: "close_normal"), forState: .Normal)
-        closeButton.setBackgroundImage(UIImage(named: "close_press"), forState: .Selected)
-        closeButton.addTarget(self, action: #selector(TeacherFilterPopupWindow.pressed(_:)), forControlEvents: .TouchUpInside)
+        closeButton.setBackgroundImage(UIImage(named: "close_normal"), for: .normal)
+        closeButton.setBackgroundImage(UIImage(named: "close_press"), for: .selected)
+        closeButton.addTarget(self, action: #selector(TeacherFilterPopupWindow.pressed(_:)), for: .touchUpInside)
         return closeButton
     }()
     private lazy var cancelButton: UIButton = {
         let cancelButton = UIButton()
-        cancelButton.setBackgroundImage(UIImage(named: "leftArrow_normal"), forState: .Normal)
-        cancelButton.setBackgroundImage(UIImage(named: "leftArrow_press"), forState: .Selected)
-        cancelButton.addTarget(self, action: #selector(TeacherFilterPopupWindow.cancelButtonDidTap), forControlEvents: .TouchUpInside)
-        cancelButton.hidden = true
+        cancelButton.setBackgroundImage(UIImage(named: "leftArrow_normal"), for: .normal)
+        cancelButton.setBackgroundImage(UIImage(named: "leftArrow_press"), for: .selected)
+        cancelButton.addTarget(self, action: #selector(TeacherFilterPopupWindow.cancelButtonDidTap), for: .touchUpInside)
+        cancelButton.isHidden = true
         return cancelButton
     }()
     private lazy var confirmButton: UIButton = {
         let confirmButton = UIButton()
-        confirmButton.setBackgroundImage(UIImage(named: "confirm_normal"), forState: .Normal)
-        confirmButton.setBackgroundImage(UIImage(named: "confirm_press"), forState: .Selected)
-        confirmButton.addTarget(self, action: #selector(TeacherFilterPopupWindow.confirmButtonDidTap), forControlEvents: .TouchUpInside)
-        confirmButton.hidden = true
+        confirmButton.setBackgroundImage(UIImage(named: "confirm_normal"), for: .normal)
+        confirmButton.setBackgroundImage(UIImage(named: "confirm_press"), for: .selected)
+        confirmButton.addTarget(self, action: #selector(TeacherFilterPopupWindow.confirmButtonDidTap), for: .touchUpInside)
+        confirmButton.isHidden = true
         return confirmButton
     }()
     private lazy var themeTitle: UILabel = {
         let themeTitle = UILabel()
         themeTitle.font = UIFont(name: "HelveticaNeue", size: 15)
-        themeTitle.backgroundColor = UIColor.whiteColor()
+        themeTitle.backgroundColor = UIColor.white
         themeTitle.textColor = MalaColor_939393_0
         themeTitle.text = self.tTitle
         return themeTitle
@@ -95,14 +95,14 @@ public class TeacherFilterPopupWindow: UIViewController {
         
         // 添加横线
         let view = UIView()
-        pageControl.addSubview(view)
-        view.snp_makeConstraints { (make) -> Void in
-            make.left.equalTo(pageControl.snp_left)
-            make.right.equalTo(pageControl.snp_right)
-            make.height.equalTo(MalaScreenOnePixel)
-            make.centerY.equalTo(pageControl.snp_centerY)
-        }
         view.backgroundColor = MalaColor_C7DEEE_0
+        pageControl.addSubview(view)
+        view.snp.makeConstraints({ (maker) in
+            maker.left.equalTo(pageControl.snp.left)
+            maker.right.equalTo(pageControl.snp.right)
+            maker.height.equalTo(MalaScreenOnePixel)
+            maker.centerY.equalTo(pageControl.snp.centerY)
+        })
         return pageControl
     }()
     
@@ -111,7 +111,7 @@ public class TeacherFilterPopupWindow: UIViewController {
     // MARK: - Constructed
     init() {
         super.init(nibName: nil, bundle: nil)
-        view.frame = UIScreen.mainScreen().bounds
+        view.frame = UIScreen.main.bounds
         setupUserInterface()
 
         // 持有自己强引用，使自己在外界没有强引用时依然存在。
@@ -123,9 +123,9 @@ public class TeacherFilterPopupWindow: UIViewController {
         self.view.alpha = 0
         
         // 显示Window
-        let window: UIWindow = UIApplication.sharedApplication().keyWindow!
+        let window: UIWindow = UIApplication.shared.keyWindow!
         window.addSubview(view)
-        window.bringSubviewToFront(view)
+        window.bringSubview(toFront: view)
         view.frame = window.bounds
         // 设置属性
         self.contentView = contentView
@@ -141,21 +141,21 @@ public class TeacherFilterPopupWindow: UIViewController {
     
     
     // MARK: - Life Cycle
-    override public func viewDidLoad() {
+    override open func viewDidLoad() {
         super.viewDidLoad()
     }
 
-    override public func didReceiveMemoryWarning() {
+    override open func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
     
     // MARK: - Override
-    public override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    open override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if closeWhenTap {
             // 若触摸点不位于Window视图，关闭弹窗
-            if let point = touches.first?.locationInView(window) where !window.pointInside(point, withEvent: nil) {
+            if let point = touches.first?.location(in: window), !window.point(inside: point, with: nil) {
                 closeAlert(0)
             }
         }
@@ -163,21 +163,21 @@ public class TeacherFilterPopupWindow: UIViewController {
     
 
     // MARK: - API
-    public func show() {
+    open func show() {
         animateAlert()
     }
     
-    public func setButtonStatus(showClose showClose: Bool, showCancel: Bool, showConfirm: Bool) {
-        closeButton.hidden = !showClose
-        cancelButton.hidden = !showCancel
-        confirmButton.hidden = !showConfirm
+    open func setButtonStatus(_ showClose: Bool, showCancel: Bool, showConfirm: Bool) {
+        closeButton.isHidden = !showClose
+        cancelButton.isHidden = !showCancel
+        confirmButton.isHidden = !showConfirm
     }
     
-    public func setPageControl(number: Int) {
+    open func setPageControl(_ number: Int) {
         self.pageControl.currentPage = number
     }
     
-    public func close() {
+    open func close() {
         closeAlert(0)
     }
     
@@ -186,7 +186,7 @@ public class TeacherFilterPopupWindow: UIViewController {
     private func setupUserInterface() {
         // Style
         view.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: tBakcgroundTansperancy)
-        window.backgroundColor = UIColor.whiteColor()
+        window.backgroundColor = UIColor.white
         
         // SubViews
         view.addSubview(window)
@@ -266,13 +266,13 @@ public class TeacherFilterPopupWindow: UIViewController {
         let originTransform = self.window.transform
         self.window.layer.transform = CATransform3DMakeScale(0.7, 0.7, 0.0);
         
-        UIView.animateWithDuration(0.35) { () -> Void in
+        UIView.animate(withDuration: 0.35) { () -> Void in
             self.view.alpha = 1.0
             self.window.transform = originTransform
         }
     }
     
-    private func closeAlert(buttonIndex: Int) {
+    private func closeAlert(_ buttonIndex: Int) {
         self.view.removeFromSuperview()
         // 释放自身强引用
         self.strongSelf = nil
@@ -280,17 +280,17 @@ public class TeacherFilterPopupWindow: UIViewController {
     
     
     // MARK: - Event Response
-    @objc private func pressed(sender: UIButton!) {
+    @objc private func pressed(_ sender: UIButton!) {
         self.closeAlert(sender.tag)
     }
     
     @objc private func cancelButtonDidTap() {
-        NSNotificationCenter.defaultCenter().postNotificationName(MalaNotification_PopFilterView, object: nil)
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: MalaNotification_PopFilterView), object: nil)
     }
     
     @objc private func confirmButtonDidTap() {
-        confirmButton.userInteractionEnabled = false
-        NSNotificationCenter.defaultCenter().postNotificationName(MalaNotification_ConfirmFilterView, object: nil)
+        confirmButton.isUserInteractionEnabled = false
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: MalaNotification_ConfirmFilterView), object: nil)
     }
     
     deinit{

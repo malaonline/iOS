@@ -16,7 +16,7 @@ class ClassScheduleViewWeekdayHeader: ThemeCalendarViewWeekdayHeader {
         setupUserInterface()
     }
 
-    override init(calendar: NSCalendar, textType:ThemeCalendarViewWeekdayTextType) {
+    override init(calendar: Calendar, textType:ThemeCalendarViewWeekdayTextType) {
         super.init(calendar: calendar, textType: textType)
         setupUserInterface()
     }

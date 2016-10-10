@@ -23,7 +23,7 @@ class PaymentAmountCell: UITableViewCell {
     /// 应付金额label
     private lazy var titleLabel: UILabel = {
         let titleLabel = UILabel()
-        titleLabel.font = UIFont.systemFontOfSize(15)
+        titleLabel.font = UIFont.systemFont(ofSize: 15)
         titleLabel.textColor = MalaColor_333333_0
         titleLabel.text = "应付金额"
         return titleLabel
@@ -31,7 +31,7 @@ class PaymentAmountCell: UITableViewCell {
     /// 金额标签
     private lazy var amountLabel: UILabel = {
         let amountLabel = UILabel()
-        amountLabel.font = UIFont.systemFontOfSize(14)
+        amountLabel.font = UIFont.systemFont(ofSize: 14)
         amountLabel.textColor = MalaColor_E36A5D_0
         amountLabel.text = "￥0.01"
         return amountLabel
@@ -49,7 +49,7 @@ class PaymentAmountCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         
     }

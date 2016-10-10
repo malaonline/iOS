@@ -24,13 +24,13 @@ class ThemeTagListView: UIView {
         }
     }
     /// 标签背景色
-    var labelBackgroundColor:UIColor = UIColor.lightGrayColor() {
+    var labelBackgroundColor:UIColor = UIColor.lightGray {
         didSet {
             tagsView.labelBackgroundColor = labelBackgroundColor
         }
     }
     /// 标签文字颜色
-    var textColor:UIColor = UIColor.whiteColor()
+    var textColor:UIColor = UIColor.white
         {
         didSet {
             tagsView.textColor = textColor

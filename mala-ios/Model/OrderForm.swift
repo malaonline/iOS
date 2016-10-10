@@ -129,7 +129,7 @@ class OrderForm: BaseObjectModel {
     
     func jsonDictionary() -> JSONDictionary {
         var json: JSONDictionary = [
-            "teacher": teacher ?? 0,
+            "teacher": teacher as AnyObject? ?? 0,
             "school": school ?? 0,
             "grade": grade ?? 0,
             "subject": subject ?? 0,

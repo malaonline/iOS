@@ -22,12 +22,12 @@ class PaymentBottomView: UIView {
     private lazy var confirmButton: UIButton = {
         let confirmButton = UIButton()
         confirmButton.backgroundColor = MalaColor_E26254_0
-        confirmButton.titleLabel?.font = UIFont.systemFontOfSize(17)
-        confirmButton.setTitle("支付", forState: .Normal)
-        confirmButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        confirmButton.titleLabel?.font = UIFont.systemFont(ofSize: 17)
+        confirmButton.setTitle("支付", for: UIControlState())
+        confirmButton.setTitleColor(UIColor.white, for: UIControlState())
         confirmButton.layer.cornerRadius = 5
         confirmButton.layer.masksToBounds = true
-        confirmButton.addTarget(self, action: #selector(PaymentBottomView.buttonDidTap), forControlEvents: .TouchUpInside)
+        confirmButton.addTarget(self, action: #selector(PaymentBottomView.buttonDidTap), for: .touchUpInside)
         return confirmButton
     }()
     
@@ -47,7 +47,7 @@ class PaymentBottomView: UIView {
     // MARK: - Private method
     private func setupUserInterface() {
         // Style
-        self.backgroundColor = UIColor.clearColor()
+        self.backgroundColor = UIColor.clear
         
         // SubViews
         addSubview(confirmButton)

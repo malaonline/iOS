@@ -11,7 +11,7 @@ import DateTools
 import Kingfisher
 
 // MARK: - Task
-typealias CancelableTask = (cancel: Bool) -> Void
+typealias CancelableTask = (_ cancel: Bool) -> Void
 
 ///  延迟执行任务
 ///
@@ -19,7 +19,7 @@ typealias CancelableTask = (cancel: Bool) -> Void
 ///  - parameter work: 任务闭包
 ///
 ///  - returns: 任务对象闭包
-func delay(time: NSTimeInterval, work: dispatch_block_t) -> CancelableTask? {
+func delay(_ time: TimeInterval, work: @escaping ()->()) -> CancelableTask? {
     
     var finalTask: CancelableTask?
     
@@ -28,13 +28,13 @@ func delay(time: NSTimeInterval, work: dispatch_block_t) -> CancelableTask? {
             finalTask = nil // key
             
         } else {
-            dispatch_async(dispatch_get_main_queue(), work)
+            DispatchQueue.main.async(execute: work)
         }
     }
     
     finalTask = cancelableTask
     
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(time * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) {
+    (DispatchQueue.main).asyncAfter(deadline: DispatchTime(DispatchTime.now) + Double(Int64(time * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)) {
         if let task = finalTask {
             task(cancel: false)
         }
@@ -43,8 +43,8 @@ func delay(time: NSTimeInterval, work: dispatch_block_t) -> CancelableTask? {
     return finalTask
 }
 
-func cancel(cancelableTask: CancelableTask?) {
-    cancelableTask?(cancel: true)
+func cancel(_ cancelableTask: CancelableTask?) {
+    cancelableTask?(true)
 }
 
 
@@ -52,9 +52,9 @@ func cancel(cancelableTask: CancelableTask?) {
 
 ///  注销推送消息
 func unregisterThirdPartyPush() {
-    dispatch_async(dispatch_get_main_queue()) {
+    (DispatchQueue.main).async {
         JPUSHService.setAlias(nil, callbackSelector: nil, object: nil)
-        UIApplication.sharedApplication().applicationIconBadgeNumber = 0
+        UIApplication.shared.applicationIconBadgeNumber = 0
     }
 }
 
@@ -67,12 +67,12 @@ func cleanCaches() {
 
 
 // MARK: - Alert Message
-func showSaveResult(viewController: UIViewController?, result: Bool, property: String) {
+func showSaveResult(_ viewController: UIViewController?, result: Bool, property: String) {
     guard viewController != nil else {
         return
     }
     
-    dispatch_async(dispatch_get_main_queue()) { () -> Void in
+    DispatchQueue.main.async { () -> Void in
         let string = result ? "成功" : "失败"
         _ = JSSAlertView().show(
             viewController!,
@@ -92,26 +92,26 @@ public func commonTextStyle() -> [String: AnyObject]? {
 
 // MARK: - Method
 public func makeStatusBarBlack() {
-    UIApplication.sharedApplication().statusBarStyle = .Default
+    UIApplication.shared.statusBarStyle = .default
 }
 
 public func makeStatusBarWhite() {
-    UIApplication.sharedApplication().statusBarStyle = .LightContent
+    UIApplication.shared.statusBarStyle = .lightContent
 }
 
 public func MalaRandomColor() -> UIColor {
-    return MalaConfig.malaTagColors()[randomInRange(0...MalaConfig.malaTagColors().count-1)]
+    return MalaConfig.malaTagColors()[randomInRange(range: 0...MalaConfig.malaTagColors().count-1)]
 }
 
 ///  根据Date获取星期数
 ///
-///  - parameter date: NSDate对象
+///  - parameter date: Date对象
 ///
 ///  - returns: 星期数（0~6, 对应星期日~星期六）
-public func weekdayInt(date: NSDate) -> Int {
-    let calendar = NSCalendar.currentCalendar()
-    let components: NSDateComponents = calendar.components(NSCalendarUnit.Weekday, fromDate: date)
-    return components.weekday-1
+public func weekdayInt(date: Date) -> Int {
+    let calendar = Calendar.currentCalendar()
+    let components: DateComponents = calendar.components(CalendarUnit.Weekday, fromDate: date)
+    return components.weekday!-1
 }
 
 ///  解析学生上课时间表
@@ -119,7 +119,7 @@ public func weekdayInt(date: NSDate) -> Int {
 ///  - returns: [我的课表]页面课表数据
 func parseStudentCourseTable(courseTable: [StudentCourseModel]) -> (model: [[[StudentCourseModel]]], recently: NSIndexPath) {
     
-    let courseList = [StudentCourseModel](courseTable.reverse())
+    let courseList = [StudentCourseModel](courseTable.reversed())
     var datas = [[[StudentCourseModel]]]()
     var currentMonthsIndex: Int = 0
     var currentDaysIndex: Int = 0
@@ -128,7 +128,7 @@ func parseStudentCourseTable(courseTable: [StudentCourseModel]) -> (model: [[[St
     var indexPath: (section: Int, row: Int) = (0, 0)
     var recentCourse: StudentCourseModel?
     var nowTime: Int = 0
-    let nowTimeInterval = NSDate().timeIntervalSince1970
+    let nowTimeInterval = Date().timeIntervalSince1970
     
     ///  若该课程为最近课程，则将当前下标添加到indexPath中
     ///
@@ -139,7 +139,7 @@ func parseStudentCourseTable(courseTable: [StudentCourseModel]) -> (model: [[[St
         }
     }
     
-    for (index, course) in courseList.enumerate() {
+    for (index, course) in courseList.enumerated() {
         
         /// 该课程与当前时间的秒数差值
         let time = Int(course.end - nowTimeInterval)
@@ -173,14 +173,14 @@ func parseStudentCourseTable(courseTable: [StudentCourseModel]) -> (model: [[[St
                 datas.append([[course]])
                 currentMonthsIndex += 1
                 currentDaysIndex = 0
-                validate(course)
+                validate(course: course)
             }
         }else {
             // 均不同
             datas.append([[course]])
             currentMonthsIndex = 0
             currentDaysIndex = 0
-            validate(course)
+            validate(course: course)
         }
     }
     
@@ -198,8 +198,8 @@ func parseStudentCourseTable(courseTable: [StudentCourseModel]) -> (model: [[[St
 ///  - parameter timeStamp: 时间戳
 ///
 ///  - returns: 时间字符串
-func getTimeString(timeStamp: NSTimeInterval, format: String = "HH:mm") -> String {
-    return NSDate(timeIntervalSince1970: timeStamp).formattedDateWithFormat(format)
+func getTimeString(timeStamp: TimeInterval, format: String = "HH:mm") -> String {
+    return Date(timeIntervalSince1970: timeStamp).formattedDateWithFormat(format)
 }
 
 ///  根据时间戳获取时间字符串（例如2000/10/10）
@@ -207,13 +207,13 @@ func getTimeString(timeStamp: NSTimeInterval, format: String = "HH:mm") -> Strin
 ///  - parameter timeStamp: 时间戳
 ///
 ///  - returns: 时间字符串
-func getDateString(timeStamp: NSTimeInterval? = nil, date: NSDate? = nil, format: String = "yyyy/MM/dd") -> String {
+func getDateString(timeStamp: TimeInterval? = nil, date: Date? = nil, format: String = "yyyy/MM/dd") -> String {
     if timeStamp != nil {
-        return NSDate(timeIntervalSince1970: timeStamp!).formattedDateWithFormat(format)
+        return Date(timeIntervalSince1970: timeStamp!).formattedDateWithFormat(format)
     }else if date != nil {
         return date!.formattedDateWithFormat(format)
     }else {
-        return NSDate().formattedDateWithFormat(format)
+        return Date().formattedDateWithFormat(format)
     }
 }
 
@@ -222,8 +222,8 @@ func getDateString(timeStamp: NSTimeInterval? = nil, date: NSDate? = nil, format
 ///  - parameter timeStamp: 时间戳
 ///
 ///  - returns: 时间字符串
-func getDateTimeString(timeStamp: NSTimeInterval, format: String = "yyyy-MM-dd HH:mm:ss") -> String {
-    return NSDate(timeIntervalSince1970: timeStamp).formattedDateWithFormat(format)
+func getDateTimeString(timeStamp: TimeInterval, format: String = "yyyy-MM-dd HH:mm:ss") -> String {
+    return Date(timeIntervalSince1970: timeStamp).formattedDateWithFormat(format)
 }
 
 
@@ -246,10 +246,10 @@ func getLineSpacingAttrString(string: String, lineSpace: CGFloat) -> NSAttribute
 func getActivityViewController() -> UIViewController? {
     
     var activityViewController: UIViewController? = nil
-    var keyWindow = UIApplication.sharedApplication().keyWindow
+    var keyWindow = UIApplication.shared.keyWindow
     
     if keyWindow?.windowLevel != UIWindowLevelNormal {
-        let windows = UIApplication.sharedApplication().windows
+        let windows = UIApplication.shared.windows
         for window in windows {
             if window.windowLevel == UIWindowLevelNormal {
                 keyWindow = window
@@ -260,10 +260,10 @@ func getActivityViewController() -> UIViewController? {
     
     let viewsArray = keyWindow?.subviews
     
-    if viewsArray?.count > 0 {
+    if (viewsArray?.count)! > 0 {
         
         let frontView = viewsArray![0]
-        let nextResponder = frontView.nextResponder()
+        let nextResponder = frontView.next
         
         if nextResponder is UIViewController {
             activityViewController = nextResponder as? UIViewController
@@ -274,7 +274,7 @@ func getActivityViewController() -> UIViewController? {
     
     // 过滤TabbarController情况
     if let mainViewController = activityViewController as? MainViewController,
-        naviVC = mainViewController.viewControllers?[mainViewController.selectedIndex] as? UINavigationController {
+        let naviVC = mainViewController.viewControllers?[mainViewController.selectedIndex] as? UINavigationController {
         activityViewController = naviVC.viewControllers[0]
     }
     
@@ -286,7 +286,7 @@ func getActivityViewController() -> UIViewController? {
 ///  - parameter timeIntervals: 一组成对的时间戳（分别代表上课和结束的时间）
 ///
 ///  - returns: 文本样式
-func getTimeSchedule(timeIntervals timeStamps: [[NSTimeInterval]]) -> [String] {
+func getTimeSchedule(timeIntervals timeStamps: [[TimeInterval]]) -> [String] {
     
     var timeSchedule: [String] = []
     
@@ -308,12 +308,12 @@ func getTimeSchedule(timeIntervals timeStamps: [[NSTimeInterval]]) -> [String] {
 ///  - parameter date:      日期对象
 ///
 ///  - returns: 星期字符串
-func getWeekString(timeStamp: NSTimeInterval? = nil, date: NSDate? = nil) -> String {
+func getWeekString(timeStamp: TimeInterval? = nil, date: Date? = nil) -> String {
     
     var weekInt = 0
     
     if let timeStamp = timeStamp {
-        weekInt = NSDate(timeIntervalSince1970: timeStamp).weekday()
+        weekInt = Date(timeIntervalSince1970: timeStamp).weekday()
     }else if let date = date {
         weekInt = date.weekday()
     }
@@ -329,20 +329,20 @@ func getWeekString(timeStamp: NSTimeInterval? = nil, date: NSDate? = nil) -> Str
 ///  dates:     日期字符串
 ///  times:     上课时间字符串
 ///  height:    所需高度
-func parseTimeSlots(timeSchedule: [[NSTimeInterval]]) -> (dates: [String], times: [String], height: CGFloat) {
+func parseTimeSlots(timeSchedule: [[TimeInterval]]) -> (dates: [String], times: [String], height: CGFloat) {
     
     var dateStrings = [String]()
     var timeStrings = [String]()
     var height: CGFloat = 0
     var list: [TimeScheduleModel] = []
-    let sortTimeSlots = timeSchedule.sort { (timeIntervals1, timeIntervals2) -> Bool in
+    let sortTimeSlots = timeSchedule.sorted { (timeIntervals1, timeIntervals2) -> Bool in
         return (timeIntervals1.first ?? 0) < (timeIntervals2.first ?? 0)
     }
     
     for singleTime in sortTimeSlots {
         
-        let currentStartDate = NSDate(timeIntervalSince1970: singleTime[0])
-        let currentEndDate = NSDate(timeIntervalSince1970: singleTime[1])
+        let currentStartDate = Date(timeIntervalSince1970: singleTime[0])
+        let currentEndDate = Date(timeIntervalSince1970: singleTime[1])
         
         var appendedDate: TimeScheduleModel?
         
@@ -375,7 +375,7 @@ func parseTimeSlots(timeSchedule: [[NSTimeInterval]]) -> (dates: [String], times
 
         // 上课时间字符串
         var timeString = ""
-        for (index, slot) in slotDate.times.enumerate() {
+        for (index, slot) in slotDate.times.enumerated() {
             timeString += index%2 == 1 ? "    " : "\n"
             timeString = index == 0 ? "" : timeString
             timeString += getDateString(date: slot[0], format: "HH:mm") + "-" + getDateString(date: slot[1], format: "HH:mm")
@@ -416,7 +416,7 @@ func parseCouponlist(coupons: [CouponModel]) -> [CouponModel] {
   
     }
     
-    result.sortInPlace { (coupon1, coupon2) -> Bool in
+    result.sort { (coupon1, coupon2) -> Bool in
         if coupon2.status == .Disabled {
             return true
         }else {
@@ -433,9 +433,9 @@ func parseCouponlist(coupons: [CouponModel]) -> [CouponModel] {
 ///
 ///  - returns: 学校模型列表
 func sortSchoolsByDistance(schools: [SchoolModel]) -> [SchoolModel] {
-    return schools.sort({ (school1, school2) -> Bool in
+    return schools.sorted { (school1, school2) -> Bool in
         return school1.distance < school2.distance
-    })
+    }
 }
 
 
@@ -443,7 +443,7 @@ func sortSchoolsByDistance(schools: [SchoolModel]) -> [SchoolModel] {
 func adjustHomeworkData(data: [SingleHomeworkData]) -> [SingleHomeworkData] {
     
     /// 排序
-    var sortData = data.sort { (data1, data2) -> Bool in
+    var sortData = data.sorted { (data1, data2) -> Bool in
         return data1.rate.doubleValue > data2.rate.doubleValue
     }
     var allRate: Double = 0
@@ -456,13 +456,13 @@ func adjustHomeworkData(data: [SingleHomeworkData]) -> [SingleHomeworkData] {
         }
     }
 
-    sortData.append(SingleHomeworkData(id: 999, name: "其它", rate: NSNumber(double: allRate)))
+    sortData.append(SingleHomeworkData(id: 999, name: "其它", rate: NSNumber(value: allRate)))
     return sortData
 }
 
 func adjustTopicData(data: [SingleTopicData]) -> [SingleTopicData] {
     /// 排序
-    var sortData = data.sort { (data1, data2) -> Bool in
+    var sortData = data.sorted { (data1, data2) -> Bool in
         return data1.rightRate > data2.rightRate
     }
     var totalItem: Int = 0
@@ -481,7 +481,7 @@ func adjustTopicData(data: [SingleTopicData]) -> [SingleTopicData] {
 }
 func adjustTopicScoreData(data: [SingleTopicScoreData]) -> [SingleTopicScoreData] {
     /// 排序
-    var sortData = data.sort { (data1, data2) -> Bool in
+    var sortData = data.sorted { (data1, data2) -> Bool in
         return data1.my_score.doubleValue > data2.my_score.doubleValue
     }
     var myScore: Double = 0
@@ -496,7 +496,7 @@ func adjustTopicScoreData(data: [SingleTopicScoreData]) -> [SingleTopicScoreData
         }
     }
     
-    sortData.append(SingleTopicScoreData(id: "9999", name: "其它", score: NSNumber(double: myScore), aveScore: NSNumber(double: aveScore)))
+    sortData.append(SingleTopicScoreData(id: "9999", name: "其它", score: NSNumber(value: myScore), aveScore: NSNumber(value: aveScore)))
     return sortData
 }
 

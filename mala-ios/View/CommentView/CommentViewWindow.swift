@@ -8,14 +8,14 @@
 
 import UIKit
 
-public class CommentViewWindow: UIViewController, UITextViewDelegate {
+open class CommentViewWindow: UIViewController, UITextViewDelegate {
     
     // MARK: - Property
     var model: StudentCourseModel = StudentCourseModel() {
         didSet {
             println("评论视图 - 放置模型: \(model)")
             
-            avatarView.ma_setImage(model.teacher?.avatar ?? NSURL())
+            avatarView.ma_setImage(model.teacher?.avatar ?? URL())
             teacherNameLabel.text = model.teacher?.name
             subjectLabel.text = model.subject
             textView.text = model.comment?.content
@@ -60,15 +60,15 @@ public class CommentViewWindow: UIViewController, UITextViewDelegate {
     private lazy var titleView: UILabel = {
         let label = UILabel(title: "评价")
         label.textColor = MalaColor_8FBCDD_0
-        label.font = UIFont.systemFontOfSize(16)
-        label.textAlignment = .Center
+        label.font = UIFont.systemFont(ofSize: 16)
+        label.textAlignment = .center
         return label
     }()
     /// 关闭按钮
     private lazy var closeButton: UIButton = {
         let button = UIButton()
-        button.setBackgroundImage(UIImage(named: "close"), forState: .Normal)
-        button.addTarget(self, action: #selector(CommentViewWindow.closeButtonDidTap), forControlEvents: .TouchUpInside)
+        button.setBackgroundImage(UIImage(named: "close"), for: UIControlState())
+        button.addTarget(self, action: #selector(CommentViewWindow.closeButtonDidTap), for: .touchUpInside)
         return button
     }()
     /// 顶部装饰线
@@ -85,7 +85,7 @@ public class CommentViewWindow: UIViewController, UITextViewDelegate {
     /// 老师头像
     private lazy var avatarView: UIImageView = {
         let imageView = UIImageView(image: UIImage(named: "avatar_placeholder"))
-        imageView.contentMode = .ScaleAspectFill
+        imageView.contentMode = .scaleAspectFill
         imageView.layer.cornerRadius = MalaLayout_CoursePopupWindowTitleViewHeight/2
         imageView.layer.masksToBounds = true
         return imageView
@@ -93,7 +93,7 @@ public class CommentViewWindow: UIViewController, UITextViewDelegate {
     /// 老师姓名label
     private lazy var teacherNameLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFontOfSize(13)
+        label.font = UIFont.systemFont(ofSize: 13)
         label.textColor = MalaColor_939393_0
         label.text = "老师姓名"
         return label
@@ -101,7 +101,7 @@ public class CommentViewWindow: UIViewController, UITextViewDelegate {
     /// 教授科目label
     private lazy var subjectLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFontOfSize(13)
+        label.font = UIFont.systemFont(ofSize: 13)
         label.textColor = MalaColor_BEBEBE_0
         label.text = "教授科目"
         return label
@@ -121,7 +121,7 @@ public class CommentViewWindow: UIViewController, UITextViewDelegate {
         let textView = UITextView()
         textView.delegate = self
         textView.textContainerInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        textView.font = UIFont.systemFontOfSize(13)
+        textView.font = UIFont.systemFont(ofSize: 13)
         textView.textColor = MalaColor_D4D4D4_0
         textView.text = "请写下对老师的感受吧，对他人的帮助很大哦~最多可输入200字"
         return textView
@@ -135,15 +135,15 @@ public class CommentViewWindow: UIViewController, UITextViewDelegate {
     /// 提交按钮
     private lazy var commitButton: UIButton = {
         let button = UIButton()
-        button.setTitle("提  交", forState: .Normal)
-        button.setTitle("提交中", forState: .Disabled)
-        button.setTitleColor(MalaColor_BCD7EB_0, forState: .Normal)
-        button.setTitleColor(MalaColor_B7B7B7_0, forState: .Disabled)
-        button.setBackgroundImage(UIImage.withColor(MalaColor_FFFFFF_9), forState: .Normal)
-        button.setBackgroundImage(UIImage.withColor(MalaColor_F8F8F8_0), forState: .Highlighted)
-        button.setBackgroundImage(UIImage.withColor(MalaColor_F8F8F8_0), forState: .Disabled)
-        button.titleLabel?.font = UIFont.systemFontOfSize(15)
-        button.addTarget(self, action: #selector(CommentViewWindow.commitButtonDidTap(_:)), forControlEvents: .TouchUpInside)
+        button.setTitle("提  交", for: UIControlState())
+        button.setTitle("提交中", for: .disabled)
+        button.setTitleColor(MalaColor_BCD7EB_0, for: UIControlState())
+        button.setTitleColor(MalaColor_B7B7B7_0, for: .disabled)
+        button.setBackgroundImage(UIImage.withColor(MalaColor_FFFFFF_9), for: UIControlState())
+        button.setBackgroundImage(UIImage.withColor(MalaColor_F8F8F8_0), for: .highlighted)
+        button.setBackgroundImage(UIImage.withColor(MalaColor_F8F8F8_0), for: .disabled)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 15)
+        button.addTarget(self, action: #selector(CommentViewWindow.commitButtonDidTap(_:)), for: .touchUpInside)
         return button
     }()
     
@@ -151,7 +151,7 @@ public class CommentViewWindow: UIViewController, UITextViewDelegate {
     // MARK: - Constructed
     init() {
         super.init(nibName: nil, bundle: nil)
-        view.frame = UIScreen.mainScreen().bounds
+        view.frame = UIScreen.main.bounds
         setupUserInterface()
         
         // 持有自己强引用，使自己在外界没有强引用时依然存在。
@@ -163,9 +163,9 @@ public class CommentViewWindow: UIViewController, UITextViewDelegate {
         self.view.alpha = 0
         
         // 显示Window
-        let window: UIWindow = UIApplication.sharedApplication().keyWindow!
+        let window: UIWindow = UIApplication.shared.keyWindow!
         window.addSubview(view)
-        window.bringSubviewToFront(view)
+        window.bringSubview(toFront: view)
         view.frame = window.bounds
         // 设置属性
         self.contentView = contentView
@@ -177,21 +177,21 @@ public class CommentViewWindow: UIViewController, UITextViewDelegate {
     
     
     // MARK: - Life Cycle
-    override public func viewDidLoad() {
+    override open func viewDidLoad() {
         super.viewDidLoad()
     }
     
-    override public func didReceiveMemoryWarning() {
+    override open func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
     
     // MARK: - Override
-    public override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    open override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if closeWhenTap {
             // 若触摸点不位于Window视图，关闭弹窗
-            if let point = touches.first?.locationInView(window) where !window.pointInside(point, withEvent: nil) {
+            if let point = touches.first?.location(in: window), !window.point(inside: point, with: nil) {
                 closeAlert(0)
             }
         }
@@ -199,11 +199,11 @@ public class CommentViewWindow: UIViewController, UITextViewDelegate {
     
     
     // MARK: - API
-    public func show() {
+    open func show() {
         animateAlert()
     }
     
-    public func close() {
+    open func close() {
         closeAlert(0)
     }
     
@@ -212,7 +212,7 @@ public class CommentViewWindow: UIViewController, UITextViewDelegate {
     private func setupUserInterface() {
         // Style
         view.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: tBakcgroundTansperancy)
-        window.backgroundColor = UIColor.whiteColor()
+        window.backgroundColor = UIColor.white
         
         // SubViews
         view.addSubview(window)
@@ -233,7 +233,7 @@ public class CommentViewWindow: UIViewController, UITextViewDelegate {
     }
     
     ///  设置UI为普通模式
-    private func changeToNormalMode(animated animated: Bool) {
+    private func changeToNormalMode(animated: Bool) {
         
         if animated {
             removeAllConstraints()
@@ -315,13 +315,13 @@ public class CommentViewWindow: UIViewController, UITextViewDelegate {
         // Animate
         if animated {
             self.window.setNeedsUpdateConstraints()
-            UIView.animateWithDuration(0.35) { [weak self] () -> Void in
+            UIView.animate(withDuration: 0.35, animations: { [weak self] () -> Void in
                 self?.avatarView.alpha = 1
                 self?.teacherNameLabel.alpha = 1
                 self?.subjectLabel.alpha = 1
                 self?.floatRating.alpha = 1
                 self?.window.layoutIfNeeded()
-            }
+            }) 
         }
     }
     
@@ -335,7 +335,7 @@ public class CommentViewWindow: UIViewController, UITextViewDelegate {
             make.width.equalTo(MalaLayout_CommentPopupWindowWidth)
             make.height.equalTo(MalaLayout_CommentPopupWindowHeight)
         }
-        textBackground.snp_updateConstraints(closure: { (make) -> Void in
+        textBackground.snp_updateConstraints({ (make) -> Void in
             make.top.equalTo(titleLine.snp_bottom).offset(12)
             make.left.equalTo(self.window.snp_left).offset(18)
             make.right.equalTo(self.window.snp_right).offset(-18)
@@ -366,13 +366,13 @@ public class CommentViewWindow: UIViewController, UITextViewDelegate {
         
         // Animate
         self.window.setNeedsUpdateConstraints()
-        UIView.animateWithDuration(0.35) { [weak self] () -> Void in
+        UIView.animate(withDuration: 0.35, animations: { [weak self] () -> Void in
             self?.avatarView.alpha = 0
             self?.teacherNameLabel.alpha = 0
             self?.subjectLabel.alpha = 0
             self?.floatRating.alpha = 0
             self?.window.layoutIfNeeded()
-        }
+        }) 
     }
     
     ///  删除所有约束
@@ -394,12 +394,12 @@ public class CommentViewWindow: UIViewController, UITextViewDelegate {
     private func switchingModeWithJustShow(isJustShow justShow: Bool) {
         if justShow {
             // 提交按钮
-            commitButton.removeTarget(self, action: #selector(CommentViewWindow.commitButtonDidTap(_:)), forControlEvents: .TouchUpInside)
-            commitButton.addTarget(self, action: #selector(CommentViewWindow.closeButtonDidTap), forControlEvents: .TouchUpInside)
-            commitButton.setTitle("知道了", forState: .Normal)
+            commitButton.removeTarget(self, action: #selector(CommentViewWindow.commitButtonDidTap(_:)), for: .touchUpInside)
+            commitButton.addTarget(self, action: #selector(CommentViewWindow.closeButtonDidTap), for: .touchUpInside)
+            commitButton.setTitle("知道了", for: UIControlState())
             
             // 评价文本框
-            textView.userInteractionEnabled = false
+            textView.isUserInteractionEnabled = false
             textView.textColor = MalaColor_939393_0
             
             // 评分组件
@@ -414,14 +414,14 @@ public class CommentViewWindow: UIViewController, UITextViewDelegate {
         let originTransform = self.window.transform
         self.window.layer.transform = CATransform3DMakeScale(0.7, 0.7, 0.0);
         
-        UIView.animateWithDuration(0.35) { () -> Void in
+        UIView.animate(withDuration: 0.35, animations: { () -> Void in
             self.view.alpha = 1.0
             self.window.transform = originTransform
-        }
+        }) 
     }
     
     private func animateDismiss() {
-        UIView.animateWithDuration(0.35, animations: { () -> Void in
+        UIView.animate(withDuration: 0.35, animations: { () -> Void in
             
             self.view.alpha = 0
             self.window.transform = CGAffineTransform()
@@ -431,13 +431,13 @@ public class CommentViewWindow: UIViewController, UITextViewDelegate {
             })
     }
     
-    private func closeAlert(buttonIndex: Int) {
+    private func closeAlert(_ buttonIndex: Int) {
         self.view.removeFromSuperview()
         // 释放自身强引用
         self.strongSelf = nil
     }
     
-    private func adjustTextViewPlaceholder(isShow isShow: Bool) {
+    private func adjustTextViewPlaceholder(isShow: Bool) {
         if isShow {
             textView.textColor = MalaColor_D4D4D4_0
             textView.text = MalaCommonString_CommentPlaceholder
@@ -453,17 +453,17 @@ public class CommentViewWindow: UIViewController, UITextViewDelegate {
         // 验证数据并创建评论模型
         guard model.id != 0 else {
             ShowTost("网络环境较差，请稍后重试")
-            commitButton.enabled = true
+            commitButton.isEnabled = true
             return
         }
         guard floatRating.rating > 0 else {
             ShowTost("请给该课程打个分吧")
-            commitButton.enabled = true
+            commitButton.isEnabled = true
             return
         }
         guard textView.text != MalaCommonString_CommentPlaceholder else {
             ShowTost("请给该课程写几句评价吧")
-            commitButton.enabled = true
+            commitButton.isEnabled = true
             return
         }
         let comment = CommentModel(id: 0, timeslot: model.id, score: Int(floatRating.rating), content: textView.text)
@@ -478,12 +478,12 @@ public class CommentViewWindow: UIViewController, UITextViewDelegate {
             }
             
             self?.ShowTost("评价失败，请重试")
-            self?.commitButton.enabled = true
+            self?.commitButton.isEnabled = true
             
             }, completion: { [weak self] (bool) -> Void in
                 println("评论创建结果：\(bool)")
                 
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                DispatchQueue.main.async(execute: { () -> Void in
                     if bool {
                         // 设置评价数据，用于Cell状态更新后显示评论
                         self?.model.comment = comment
@@ -496,7 +496,7 @@ public class CommentViewWindow: UIViewController, UITextViewDelegate {
                         })
                     }else {
                         self?.ShowTost("评价失败，请重试")
-                        self?.commitButton.enabled = true
+                        self?.commitButton.isEnabled = true
                     }
                 })
             })
@@ -504,20 +504,20 @@ public class CommentViewWindow: UIViewController, UITextViewDelegate {
     
     
     // MARK: - Delegate
-    public func textViewDidBeginEditing(textView: UITextView) {
+    open func textViewDidBeginEditing(_ textView: UITextView) {
         // 用户开始输入时，展开输入区域
         changeToEditingMode()
         adjustTextViewPlaceholder(isShow: false)
     }
     
-    public func textViewDidChange(textView: UITextView) {
+    open func textViewDidChange(_ textView: UITextView) {
         // 保证用户联想词汇同样会被捕捉
         if textView.text.characters.count > TextViewMaximumLength {
-            textView.text = textView.text.substringToIndex(textView.text.startIndex.advancedBy(TextViewMaximumLength-1))
+            textView.text = textView.text.substring(to: textView.text.index(textView.text.startIndex, offsetBy: TextViewMaximumLength-1))
         }
     }
     
-    public func textViewDidEndEditing(textView: UITextView) {
+    open func textViewDidEndEditing(_ textView: UITextView) {
         // 用户停止输入时，恢复初始布局
         changeToNormalMode(animated: true)
         
@@ -529,7 +529,7 @@ public class CommentViewWindow: UIViewController, UITextViewDelegate {
     
     
     // MARK: - Event Response
-    @objc private func pressed(sender: UIButton!) {
+    @objc private func pressed(_ sender: UIButton!) {
         self.closeAlert(sender.tag)
     }
     
@@ -537,8 +537,8 @@ public class CommentViewWindow: UIViewController, UITextViewDelegate {
         close()
     }
     
-    @objc private func commitButtonDidTap(sender: UIButton) {
-        commitButton.enabled = false
+    @objc private func commitButtonDidTap(_ sender: UIButton) {
+        commitButton.isEnabled = false
         saveComment()
     }
 }

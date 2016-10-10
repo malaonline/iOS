@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class StudentCourseModel: BaseObjectModel {
+open class StudentCourseModel: BaseObjectModel {
 
     // MARK: - Property
     /// 开始时间 时间戳
@@ -33,9 +33,9 @@ public class StudentCourseModel: BaseObjectModel {
     /// 是否评价标记
     var is_commented: Bool? = false
     /// 日期对象
-    var date: NSDate {
+    var date: Date {
         get {
-            return NSDate(timeIntervalSince1970: end)
+            return Date(timeIntervalSince1970: end)
         }
     }
     /// 课程状态
@@ -81,13 +81,13 @@ public class StudentCourseModel: BaseObjectModel {
     }
     
     // MARK: - Override
-    override public func setValue(_ value: Any?, forUndefinedKey key: String) {
+    override open func setValue(_ value: Any?, forUndefinedKey key: String) {
         println("StudentCourseModel - Set for UndefinedKey: \(key)")
     }
     
     
     // MARK: - Description
-    override public var description: String {
+    override open var description: String {
         let keys = ["id", "start", "end", "subject", "grade", "school", "is_passed"]
         return "\n"+dictionaryWithValues(forKeys: keys).description+" Date: "+(getDateTimeString(end))+"\n"
     }

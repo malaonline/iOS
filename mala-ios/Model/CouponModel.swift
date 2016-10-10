@@ -50,13 +50,13 @@ class CouponModel: NSObject {
     func setupStatus() {
         // 已使用
         if used {
-            status = .Used
+            status = .used
         // 已过期
         }else if couponIsExpired(expired_at) {
-            status = .Expired
+            status = .expired
         // 未使用
         }else {
-            status = .Unused
+            status = .unused
         }
     }
     

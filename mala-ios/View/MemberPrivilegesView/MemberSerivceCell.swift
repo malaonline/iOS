@@ -27,7 +27,7 @@ class MemberSerivceCell: UITableViewCell {
     }()
     /// 会员服务视图
     private lazy var collectionView: MemberSerivceCollectionView = {
-        let view = MemberSerivceCollectionView(frame: CGRectZero, collectionViewLayout: MemberSerivceFlowLayout(frame: CGRectZero))
+        let view = MemberSerivceCollectionView(frame: CGRect.zero, collectionViewLayout: MemberSerivceFlowLayout(frame: CGRect.zero))
         return view
     }()
     
@@ -47,7 +47,7 @@ class MemberSerivceCell: UITableViewCell {
     private func setupUserInterface() {
         // Style
         contentView.backgroundColor = MalaColor_EDEDED_0
-        content.backgroundColor = UIColor.whiteColor()
+        content.backgroundColor = UIColor.white
         
         // SubViews
         contentView.addSubview(content)

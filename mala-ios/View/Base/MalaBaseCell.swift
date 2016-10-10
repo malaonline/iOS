@@ -81,8 +81,8 @@ class MalaBaseCell: UITableViewCell {
     
     func adjustForCourseChoosing() {
         titleLabel.textColor = MalaColor_333333_0
-        titleLabel.font = UIFont.systemFontOfSize(15)
-        headerView.backgroundColor = UIColor.whiteColor()
+        titleLabel.font = UIFont.systemFont(ofSize: 15)
+        headerView.backgroundColor = UIColor.white
         
         headerView.snp_updateConstraints { (make) in
             make.top.equalTo(contentView.snp_top).offset(15)

@@ -24,7 +24,7 @@ class TeacherDetailsHighScoreCell: MalaBaseCell {
     
     // MARK: - Components
     private lazy var tableView: TeacherDetailsHighScoreTableView = {
-        let tableView = TeacherDetailsHighScoreTableView(frame: CGRectZero, style: .Plain)
+        let tableView = TeacherDetailsHighScoreTableView(frame: CGRect.zero, style: .plain)
         return tableView
     }()
     

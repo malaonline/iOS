@@ -11,23 +11,23 @@ import UIKit
 // MARK: ClassScheduleViewCellDelegate
 @objc public protocol ClassScheduleViewCellDelegate: NSObjectProtocol {
     ///  是否使用自定义颜色
-    optional func classScheduleViewCell(cell: ClassScheduleViewCell, shouldUseCustomColorsForDate date: NSDate) -> Bool
+    @objc optional func classScheduleViewCell(_ cell: ClassScheduleViewCell, shouldUseCustomColorsForDate date: Date) -> Bool
     ///  根据Date对象返回圆形颜色
-    optional func classScheduleViewCell(cell: ClassScheduleViewCell, circleColorForDate date: NSDate) -> UIColor?
+    @objc optional func classScheduleViewCell(_ cell: ClassScheduleViewCell, circleColorForDate date: Date) -> UIColor?
     ///  根据Date对象返回文字颜色
-    optional func classScheduleViewCell(cell: ClassScheduleViewCell, textColorForDate date: NSDate) -> UIColor?
+    @objc optional func classScheduleViewCell(_ cell: ClassScheduleViewCell, textColorForDate date: Date) -> UIColor?
 }
 
 
 // MARK: - ClassScheduleViewCell
-public class ClassScheduleViewCell: UICollectionViewCell {
+open class ClassScheduleViewCell: UICollectionViewCell {
 
     /// 圆心直径
     private let ClassScheduleViewCellCircleSize: CGFloat = 30.0
     
     // MARK: Property
     /// 当天课程数据模型列表
-    public var models: [StudentCourseModel] = [] {
+    open var models: [StudentCourseModel] = [] {
         didSet {
             
             // 过滤掉无数据情况
@@ -59,8 +59,8 @@ public class ClassScheduleViewCell: UICollectionViewCell {
             if models.count > 1 {
                 
                 // 若当天课程大于一节，隐藏科目文字信息，显示多课程指示器
-                self.subjectLabel.hidden = true
-                self.courseIndicator.hidden = false
+                self.subjectLabel.isHidden = true
+                self.courseIndicator.isHidden = false
                 
                 if self.isPast {
                     self.courseIndicator.image = UIImage(named: "course indicators_normal")
@@ -71,19 +71,19 @@ public class ClassScheduleViewCell: UICollectionViewCell {
                 }
             }else {
                 // 若当天课程为一节，显示科目文字信息
-                self.courseIndicator.hidden = true
-                self.subjectLabel.hidden = false
+                self.courseIndicator.isHidden = true
+                self.subjectLabel.isHidden = false
             }
         }
     }
     
     /// 代理
-    public weak var delegate: ClassScheduleViewCellDelegate?
+    open weak var delegate: ClassScheduleViewCellDelegate?
     /// 是否为今天标记
-    public var isToday: Bool = false {
+    open var isToday: Bool = false {
         didSet {
             if isToday {
-                self.dayLabel.layer.borderColor = textTodayColor.CGColor
+                self.dayLabel.layer.borderColor = textTodayColor.cgColor
                 self.dayLabel.layer.borderWidth = MalaScreenOnePixel
                 self.dayLabel.textColor = textTodayColor
                 self.dayLabel.backgroundColor = circleDefaultColor
@@ -95,7 +95,7 @@ public class ClassScheduleViewCell: UICollectionViewCell {
         }
     }
     /// 是否为过去标记
-    public var isPast: Bool = false {
+    open var isPast: Bool = false {
         didSet {
             if isPast {
                 self.dayLabel.backgroundColor = MalaColor_DEE0E0_0
@@ -107,7 +107,7 @@ public class ClassScheduleViewCell: UICollectionViewCell {
         }
     }
     /// 是否为未来标记
-    public var isFuture: Bool = false {
+    open var isFuture: Bool = false {
         didSet {
             if isFuture {
                 self.dayLabel.backgroundColor = MalaColor_82B4D9_0
@@ -119,30 +119,30 @@ public class ClassScheduleViewCell: UICollectionViewCell {
         }
     }
     /// cell选择标记
-    override public var selected: Bool {
+    override open var isSelected: Bool {
         didSet {
-            setCircleColor(isToday: self.isToday, selected: selected)
+            setCircleColor(isToday: self.isToday, selected: isSelected)
         }
     }
     /// Date对象
-    public var date: NSDate?
+    open var date: Date?
     
     /// 图形默认日期颜色
-    public var circleDefaultColor: UIColor = MalaColor_FFFFFF_9
+    open var circleDefaultColor: UIColor = MalaColor_FFFFFF_9
     /// 图形日期为今天时的颜色
-    public var circleTodayColor: UIColor = UIColor.orangeColor() // useless
+    open var circleTodayColor: UIColor = UIColor.orange // useless
     /// cell被选中时的图形颜色
-    public var circleSelectedColor: UIColor = MalaColor_82B4D9_0
+    open var circleSelectedColor: UIColor = MalaColor_82B4D9_0
     /// 文字默认颜色
-    public var textDefaultColor: UIColor = MalaColor_333333_0
+    open var textDefaultColor: UIColor = MalaColor_333333_0
     /// 日期为今天时的文字颜色
-    public var textTodayColor: UIColor = MalaColor_82B4D9_0
+    open var textTodayColor: UIColor = MalaColor_82B4D9_0
     /// cell被选中时的文字颜色
-    public var textSelectedColor: UIColor = MalaColor_FFFFFF_9
+    open var textSelectedColor: UIColor = MalaColor_FFFFFF_9
     /// cell被冻结时的文字颜色
-    public var textDisabledColor: UIColor = MalaColor_333333_0
+    open var textDisabledColor: UIColor = MalaColor_333333_0
     /// 文字默认字体
-    public var textDefaultFont: UIFont = UIFont.systemFontOfSize(15)
+    open var textDefaultFont: UIFont = UIFont.systemFont(ofSize: 15)
     /// 分隔线颜色
     var separatorLineColor: UIColor = MalaColor_E5E5E5_0 {
         didSet {
@@ -150,16 +150,16 @@ public class ClassScheduleViewCell: UICollectionViewCell {
         }
     }
     /// 日期格式化组件
-    static let dateFormatter: NSDateFormatter = {
-        let dateFormatter = NSDateFormatter()
+    static let dateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "d"
         return dateFormatter
     }()
     /// 辅助性日期格式化组件
-    static let accessibilityDateFormatter: NSDateFormatter = {
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateStyle = .LongStyle
-        dateFormatter.timeStyle = .NoStyle
+    static let accessibilityDateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .longStyle
+        dateFormatter.timeStyle = .noStyle
         return dateFormatter
     }()
 
@@ -168,28 +168,28 @@ public class ClassScheduleViewCell: UICollectionViewCell {
     lazy var dayLabel: UILabel = {
         let dayLabel = UILabel()
         dayLabel.font = self.textDefaultFont
-        dayLabel.textAlignment = .Center
+        dayLabel.textAlignment = .center
         return dayLabel
     }()
     /// 视图容器
     lazy var contentButton: UIButton = {
         let contentButton = UIButton()
         contentButton.titleLabel?.font = self.textDefaultFont
-        contentButton.titleLabel?.textAlignment = .Center
+        contentButton.titleLabel?.textAlignment = .center
         return contentButton
     }()
     /// 多课程指示器
     lazy var courseIndicator: UIImageView = {
         let courseIndicator = UIImageView(image: UIImage(named: "course indicators_normal"))
-        courseIndicator.hidden = true
+        courseIndicator.isHidden = true
         return courseIndicator
     }()
     /// 科目label
     lazy var subjectLabel: UILabel = {
         let subjectLabel = UILabel()
         subjectLabel.text = ""
-        subjectLabel.font = UIFont.systemFontOfSize(15)
-        subjectLabel.textAlignment = .Center
+        subjectLabel.font = UIFont.systemFont(ofSize: 15)
+        subjectLabel.textAlignment = .center
         return subjectLabel
     }()
     
@@ -224,7 +224,7 @@ public class ClassScheduleViewCell: UICollectionViewCell {
     private func setupUserInterface() {
         // Style 
         dayLabel.translatesAutoresizingMaskIntoConstraints = false
-        dayLabel.backgroundColor = UIColor.clearColor()
+        dayLabel.backgroundColor = UIColor.clear
         dayLabel.layer.cornerRadius = ClassScheduleViewCellCircleSize/2
         dayLabel.layer.masksToBounds = true
         
@@ -311,22 +311,22 @@ public class ClassScheduleViewCell: UICollectionViewCell {
     
     
     // MARK: - Class Method
-    class func formatDate(date: NSDate, withCalendar calendar: NSCalendar) -> String {
+    class func formatDate(_ date: Date, withCalendar calendar: Calendar) -> String {
         let dateFormatter = self.dateFormatter
         return ClassScheduleViewCell.stringFromDate(date, withDateFormatter: dateFormatter, withCalendar: calendar)
     }
     
-    class func formatAccessibilityDate(date: NSDate, withCalendar calendar: NSCalendar) -> String {
+    class func formatAccessibilityDate(_ date: Date, withCalendar calendar: Calendar) -> String {
         let dateFormatter = self.accessibilityDateFormatter
         return ClassScheduleViewCell.stringFromDate(date, withDateFormatter: dateFormatter, withCalendar: calendar)
     }
     
     
-    class func stringFromDate(date: NSDate, withDateFormatter dateFormatter: NSDateFormatter, withCalendar calendar: NSCalendar) -> String {
+    class func stringFromDate(_ date: Date, withDateFormatter dateFormatter: DateFormatter, withCalendar calendar: Calendar) -> String {
         if !dateFormatter.calendar.isEqual(calendar) {
             dateFormatter.calendar = calendar
         }
-        return dateFormatter.stringFromDate(date)
+        return dateFormatter.string(from: date)
     }
     
     
@@ -335,7 +335,7 @@ public class ClassScheduleViewCell: UICollectionViewCell {
     ///
     ///  - parameter date:      日期对象
     ///  - parameter calendar:  日历对象
-    public func setDate(date date: NSDate?, calendar: NSCalendar?) {
+    open func setDate(_ date: Date?, calendar: Calendar?) {
         var day = ""
         var accessibilityDay = ""
         
@@ -349,16 +349,16 @@ public class ClassScheduleViewCell: UICollectionViewCell {
         dayLabel.accessibilityLabel = accessibilityDay
         
         ///  若未显示日期文字，则隐藏分割线
-        separatorLine.hidden = (dayLabel.text == "")
+        separatorLine.isHidden = (dayLabel.text == "")
     }
     
     ///  刷新颜色
-    public func refreshCellColors() {
-        setCircleColor(isToday: self.isToday, selected: self.selected)
+    open func refreshCellColors() {
+        setCircleColor(isToday: self.isToday, selected: self.isSelected)
     }
         
     ///  Cell重用准备
-    override public func prepareForReuse() {
+    override open func prepareForReuse() {
         super.prepareForReuse()
         
         date = nil
@@ -373,9 +373,9 @@ public class ClassScheduleViewCell: UICollectionViewCell {
         dayLabel.text = ""
         dayLabel.backgroundColor = circleDefaultColor
         dayLabel.textColor = textDefaultColor
-        dayLabel.layer.borderColor = UIColor.clearColor().CGColor
+        dayLabel.layer.borderColor = UIColor.clear.cgColor
         dayLabel.layer.borderWidth = 0
         
-        courseIndicator.hidden = true
+        courseIndicator.isHidden = true
     }
 }

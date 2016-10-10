@@ -7,6 +7,26 @@
 //
 
 import UIKit
+private func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+private func <= <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l <= r
+  default:
+    return !(rhs < lhs)
+  }
+}
+
 
 class LoginViewController: UIViewController {
     
@@ -21,7 +41,7 @@ class LoginViewController: UIViewController {
     /// 主要布局容器
     private lazy var contentView: UIView = {
         let contentView = UIView()
-        contentView.backgroundColor = UIColor.whiteColor()
+        contentView.backgroundColor = UIColor.white
         return contentView
     }()
     /// 容器顶部装饰线
@@ -50,39 +70,39 @@ class LoginViewController: UIViewController {
     /// [获取验证码] 按钮
     private lazy var codeGetButton: UIButton = {
         let codeGetButton = UIButton()
-        codeGetButton.layer.borderColor = MalaColor_8DBEDF_0.CGColor
+        codeGetButton.layer.borderColor = MalaColor_8DBEDF_0.cgColor
         codeGetButton.layer.borderWidth = 1.0
         codeGetButton.layer.cornerRadius = 3.0
         codeGetButton.layer.masksToBounds = true
-        codeGetButton.setTitle(" 获取验证码 ", forState: .Normal)
-        codeGetButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-        codeGetButton.setTitleColor(MalaColor_8DBEDF_0, forState: .Disabled)
-        codeGetButton.setBackgroundImage(UIImage.withColor(MalaColor_8DBEDF_0), forState: .Normal)
-        codeGetButton.setBackgroundImage(UIImage.withColor(UIColor.whiteColor()), forState: .Disabled)
-        codeGetButton.titleLabel?.font = UIFont.systemFontOfSize(12)
-        codeGetButton.addTarget(self, action: #selector(LoginViewController.codeGetButtonDidTap), forControlEvents: .TouchUpInside)
+        codeGetButton.setTitle(" 获取验证码 ", for: UIControlState())
+        codeGetButton.setTitleColor(UIColor.white, for: UIControlState())
+        codeGetButton.setTitleColor(MalaColor_8DBEDF_0, for: .disabled)
+        codeGetButton.setBackgroundImage(UIImage.withColor(MalaColor_8DBEDF_0), for: UIControlState())
+        codeGetButton.setBackgroundImage(UIImage.withColor(UIColor.white), for: .disabled)
+        codeGetButton.titleLabel?.font = UIFont.systemFont(ofSize: 12)
+        codeGetButton.addTarget(self, action: #selector(LoginViewController.codeGetButtonDidTap), for: .touchUpInside)
         return codeGetButton
     }()
     /// [手机号错误] 提示
     private lazy var phoneError: UIButton = {
         let phoneError = UIButton()
-        phoneError.setImage(UIImage(named: "error"), forState: .Normal)
-        phoneError.setTitleColor(MalaColor_E36A5D_0, forState: .Normal)
-        phoneError.titleLabel?.font = UIFont.systemFontOfSize(11)
-        phoneError.setTitle("手机号错误", forState: .Normal)
+        phoneError.setImage(UIImage(named: "error"), for: UIControlState())
+        phoneError.setTitleColor(MalaColor_E36A5D_0, for: UIControlState())
+        phoneError.titleLabel?.font = UIFont.systemFont(ofSize: 11)
+        phoneError.setTitle("手机号错误", for: UIControlState())
         phoneError.imageEdgeInsets = UIEdgeInsets(top: 0, left: -2, bottom: 0, right: 2)
-        phoneError.hidden = true
+        phoneError.isHidden = true
         return phoneError
     }()
     /// 手机号码输入框
     private lazy var phoneTextField: UITextField = {
         let phoneTextField = UITextField()
-        phoneTextField.keyboardType = .NumberPad
+        phoneTextField.keyboardType = .numberPad
         phoneTextField.placeholder = "请输入手机号"
-        phoneTextField.font = UIFont.systemFontOfSize(14)
+        phoneTextField.font = UIFont.systemFont(ofSize: 14)
         phoneTextField.textColor = MalaColor_6C6C6C_0
-        phoneTextField.addTarget(self, action: #selector(UITextInputDelegate.textDidChange(_:)), forControlEvents: .EditingChanged)
-        phoneTextField.clearButtonMode = .Never
+        phoneTextField.addTarget(self, action: #selector(UITextInputDelegate.textDidChange(_:)), for: .editingChanged)
+        phoneTextField.clearButtonMode = .never
         return phoneTextField
     }()
     /// 验证码图标
@@ -93,22 +113,22 @@ class LoginViewController: UIViewController {
     /// [验证码错误] 提示
     private lazy var codeError: UIButton = {
         let codeError = UIButton()
-        codeError.setImage(UIImage(named: "error"), forState: .Normal)
-        codeError.setTitleColor(MalaColor_E36A5D_0, forState: .Normal)
-        codeError.titleLabel?.font = UIFont.systemFontOfSize(11)
-        codeError.setTitle("验证码错误", forState: .Normal)
+        codeError.setImage(UIImage(named: "error"), for: UIControlState())
+        codeError.setTitleColor(MalaColor_E36A5D_0, for: UIControlState())
+        codeError.titleLabel?.font = UIFont.systemFont(ofSize: 11)
+        codeError.setTitle("验证码错误", for: UIControlState())
         codeError.imageEdgeInsets = UIEdgeInsets(top: 0, left: -2, bottom: 0, right: 2)
-        codeError.hidden = true
+        codeError.isHidden = true
         return codeError
     }()
     /// 验证码输入框
     private lazy var codeTextField: UITextField = {
         let codeTextField = UITextField()
-        codeTextField.keyboardType = .NumberPad
+        codeTextField.keyboardType = .numberPad
         codeTextField.placeholder = "请输入验证码"
         codeTextField.textColor = MalaColor_6C6C6C_0
-        codeTextField.font = UIFont.systemFontOfSize(14)
-        codeTextField.addTarget(self, action: #selector(UITextInputDelegate.textDidChange(_:)), forControlEvents: .EditingChanged)
+        codeTextField.font = UIFont.systemFont(ofSize: 14)
+        codeTextField.addTarget(self, action: #selector(UITextInputDelegate.textDidChange(_:)), for: .editingChanged)
         return codeTextField
     }()
     /// [验证] 按钮
@@ -116,17 +136,17 @@ class LoginViewController: UIViewController {
         let verifyButton = UIButton()
         verifyButton.layer.cornerRadius = 5
         verifyButton.layer.masksToBounds = true
-        verifyButton.setTitle("验证", forState: .Normal)
-        verifyButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-        verifyButton.setBackgroundImage(UIImage.withColor(MalaColor_8DBEDF_0), forState: .Disabled)
-        verifyButton.setBackgroundImage(UIImage.withColor(MalaColor_88BCDE_95), forState: .Normal)
-        verifyButton.addTarget(self, action: #selector(LoginViewController.verifyButtonDidTap), forControlEvents: .TouchUpInside)
+        verifyButton.setTitle("验证", for: UIControlState())
+        verifyButton.setTitleColor(UIColor.white, for: UIControlState())
+        verifyButton.setBackgroundImage(UIImage.withColor(MalaColor_8DBEDF_0), for: .disabled)
+        verifyButton.setBackgroundImage(UIImage.withColor(MalaColor_88BCDE_95), for: UIControlState())
+        verifyButton.addTarget(self, action: #selector(LoginViewController.verifyButtonDidTap), for: .touchUpInside)
         return verifyButton
     }()
     // 协议label
     private lazy var protocolLabel: UILabel = {
         let protocolLabel = UILabel()
-        protocolLabel.font = UIFont.systemFontOfSize(12)
+        protocolLabel.font = UIFont.systemFont(ofSize: 12)
         protocolLabel.textColor = MalaColor_939393_0
         protocolLabel.text = "轻触上面验证按钮即表示你同意"
         return protocolLabel
@@ -134,10 +154,10 @@ class LoginViewController: UIViewController {
     // 协议文字label
     private lazy var protocolString: UILabel = {
         let protocolString = UILabel()
-        protocolString.font = UIFont.systemFontOfSize(12)
+        protocolString.font = UIFont.systemFont(ofSize: 12)
         protocolString.textColor = MalaColor_88BCDE_95
         protocolString.text = "麻辣老师用户协议"
-        protocolString.userInteractionEnabled = true
+        protocolString.isUserInteractionEnabled = true
         protocolString.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(LoginViewController.protocolDidTap)))
         return protocolString
     }()
@@ -163,7 +183,7 @@ class LoginViewController: UIViewController {
         self.view.backgroundColor = MalaColor_EDEDED_0
         let leftBarButtonItem = UIBarButtonItem(customView:UIButton(imageName: "close", target: self, action: #selector(LoginViewController.closeButtonDidClick)))
         navigationItem.leftBarButtonItem = leftBarButtonItem
-        UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.Default
+        UIApplication.shared.statusBarStyle = UIStatusBarStyle.default
         
         // SubView
         view.addSubview(contentView)
@@ -265,7 +285,7 @@ class LoginViewController: UIViewController {
         }
     }
     
-    private func validateMobile(mobile: String) -> Bool {
+    private func validateMobile(_ mobile: String) -> Bool {
         
         // 演示账号处理
         if mobile.subStringToIndex(3) == "000" && mobile.characters.count == 4 {
@@ -275,32 +295,32 @@ class LoginViewController: UIViewController {
         // 正式手机号
         let mobileRegex = "^((13[0-9])|(15[^4,\\D])|(18[0,0-9]))\\d{8}$"
         let mobileTest = NSPredicate(format: "SELF MATCHES %@", mobileRegex)
-        return mobileTest.evaluateWithObject(mobile)
+        return mobileTest.evaluate(with: mobile)
     }
     
     ///  倒计时
     private func countDown() {
         self.callMeInSeconds = MalaConfig.callMeInSeconds()
-        let queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
-        let timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue)
-        dispatch_source_set_timer(timer, dispatch_walltime(nil, 0), UInt64(NSTimeInterval(NSEC_PER_SEC)), 0)
-        dispatch_source_set_event_handler(timer) {[weak self] () -> Void in
+        let queue = DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default)
+        let timer = DispatchSource.makeTimerSource(flags: DispatchSource.TimerFlags(rawValue: UInt(0)), queue: queue)
+        timer.setTimer(start: DispatchWallTime(time: nil), interval: UInt64(TimeInterval(NSEC_PER_SEC)), leeway: 0)
+        timer.setEventHandler {[weak self] () -> Void in
             
             if self?.callMeInSeconds <= 0 { // 倒计时完成
-                dispatch_source_cancel(timer)
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    self?.codeGetButton.setTitle(" 获取验证码 ", forState: .Normal)
-                    self?.codeGetButton.enabled = true
+                timer.cancel()
+                DispatchQueue.main.async(execute: { () -> Void in
+                    self?.codeGetButton.setTitle(" 获取验证码 ", for: UIControlState())
+                    self?.codeGetButton.isEnabled = true
                 })
             }else { // 继续倒计时
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    self?.codeGetButton.setTitle(String(format: " %02ds后获取 ", Int((self?.callMeInSeconds)!)), forState: .Normal)
-                    self?.codeGetButton.enabled = false
+                DispatchQueue.main.async(execute: { () -> Void in
+                    self?.codeGetButton.setTitle(String(format: " %02ds后获取 ", Int((self?.callMeInSeconds)!)), for: .normal)
+                    self?.codeGetButton.isEnabled = false
                 })
                 self?.callMeInSeconds -= 1
             }
         }
-        dispatch_resume(timer)
+        timer.resume()
     }
     
     
@@ -314,19 +334,19 @@ class LoginViewController: UIViewController {
         self.navigationController?.pushViewController(webViewController, animated: true)
     }
     
-    @objc private func textDidChange(textField: UITextField) {
+    @objc private func textDidChange(_ textField: UITextField) {
         // 若当前有错误信息出现，用户开始编辑时移除错误显示
-        if !phoneError.hidden {
-            phoneError.hidden = true
-        }else if !codeError.hidden {
-            codeError.hidden = true
+        if !phoneError.isHidden {
+            phoneError.isHidden = true
+        }else if !codeError.isHidden {
+            codeError.isHidden = true
         }
     }
     
     @objc private func codeGetButtonDidTap() {        
         // 验证手机号
         if !validateMobile(phoneTextField.text ?? "") {
-            self.phoneError.hidden = false
+            self.phoneError.isHidden = false
             self.phoneTextField.text = ""
             self.phoneTextField.becomeFirstResponder()
             return
@@ -348,7 +368,7 @@ class LoginViewController: UIViewController {
         }, completion: { [weak self] bool in
             ThemeHUD.hideActivityIndicator()
             println("send Verifycode -  \(bool)")
-            dispatch_async(dispatch_get_main_queue(), { [weak self] () -> Void in
+            DispatchQueue.main.async(execute: { [weak self] () -> Void in
                 self?.codeTextField.becomeFirstResponder()
             })
         })
@@ -357,13 +377,13 @@ class LoginViewController: UIViewController {
     @objc private func verifyButtonDidTap() {
         // 验证信息
         if !validateMobile(phoneTextField.text ?? "") {
-            self.phoneError.hidden = false
+            self.phoneError.isHidden = false
             self.phoneTextField.text = ""
             self.phoneTextField.becomeFirstResponder()
             return
         }
         if (codeTextField.text ?? "") == "" {
-            self.codeError.hidden = false
+            self.codeError.isHidden = false
             self.codeTextField.text = ""
             self.codeTextField.becomeFirstResponder()
             return
@@ -382,8 +402,8 @@ class LoginViewController: UIViewController {
                 println("LoginViewController - VerifyCode Error \(errorMessage)")
             }
             
-            dispatch_async(dispatch_get_main_queue()) {
-                self?.codeError.hidden = false
+            DispatchQueue.main.async {
+                self?.codeError.isHidden = false
                 self?.codeTextField.text = ""
             }
         }, completion: { [weak self] (loginUser) -> Void in
@@ -395,7 +415,7 @@ class LoginViewController: UIViewController {
             if loginUser.firstLogin == true {
                 self?.switchViewToSaveName()
             }else {
-                self?.dismissViewControllerAnimated(true, completion: nil)
+                self?.dismiss(animated: true, completion: nil)
                 getInfoWhenLoginSuccess()
             }
             
@@ -405,11 +425,11 @@ class LoginViewController: UIViewController {
     
     @objc private func closeButtonDidClick() {
         closeAction?()
-        dismissViewControllerAnimated(true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
     
     func switchViewToSaveName() {
-        dispatch_async(dispatch_get_main_queue()) { [weak self] () -> Void in
+        DispatchQueue.main.async { [weak self] () -> Void in
             let view = SaveNameView()
             view.controller = self
             self?.view = view

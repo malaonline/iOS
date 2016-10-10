@@ -18,25 +18,25 @@ class SaveNameView: UIView, UITextFieldDelegate {
     /// 输入区域背景
     private lazy var inputBackground: UIView = {
         let inputBackground = UIView()
-        inputBackground.backgroundColor = UIColor.whiteColor()
+        inputBackground.backgroundColor = UIColor.white
         return inputBackground
     }()
     /// 输入控件
     private lazy var inputField: UITextField = {
         let inputField = UITextField()
-        inputField.textAlignment = .Center
+        inputField.textAlignment = .center
         inputField.placeholder = "请输入学生姓名"
-        inputField.font = UIFont.systemFontOfSize(14)
+        inputField.font = UIFont.systemFont(ofSize: 14)
         inputField.textColor = MalaColor_636363_0
         inputField.tintColor = MalaColor_82B4D9_0
-        inputField.addTarget(self, action: #selector(SaveNameView.inputFieldDidChange), forControlEvents: .EditingChanged)
+        inputField.addTarget(self, action: #selector(SaveNameView.inputFieldDidChange), for: .editingChanged)
         return inputField
     }()
     /// 描述label
     private lazy var descLabel: UILabel = {
         let descLabel = UILabel()
         descLabel.textColor = MalaColor_939393_0
-        descLabel.font = UIFont.systemFontOfSize(12)
+        descLabel.font = UIFont.systemFont(ofSize: 12)
         descLabel.text = "请填写真实姓名，不得超过4个汉字"
         return descLabel
     }()
@@ -45,12 +45,12 @@ class SaveNameView: UIView, UITextFieldDelegate {
         let finishButton = UIButton()
         finishButton.layer.cornerRadius = 5
         finishButton.layer.masksToBounds = true
-        finishButton.setTitle("完成", forState: .Normal)
-        finishButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-        finishButton.setBackgroundImage(UIImage.withColor(MalaColor_8DBEDF_0), forState: .Disabled)
-        finishButton.setBackgroundImage(UIImage.withColor(MalaColor_88BCDE_95), forState: .Normal)
-        finishButton.addTarget(self, action: #selector(SaveNameView.finishButtonDidTap), forControlEvents: .TouchUpInside)
-        finishButton.enabled = false
+        finishButton.setTitle("完成", for: UIControlState())
+        finishButton.setTitleColor(UIColor.white, for: UIControlState())
+        finishButton.setBackgroundImage(UIImage.withColor(MalaColor_8DBEDF_0), for: .disabled)
+        finishButton.setBackgroundImage(UIImage.withColor(MalaColor_88BCDE_95), for: UIControlState())
+        finishButton.addTarget(self, action: #selector(SaveNameView.finishButtonDidTap), for: .touchUpInside)
+        finishButton.isEnabled = false
         return finishButton
     }()
     
@@ -103,10 +103,10 @@ class SaveNameView: UIView, UITextFieldDelegate {
         }
     }
     
-    private func validateName(name: String) -> Bool {
+    private func validateName(_ name: String) -> Bool {
         let nameRegex = "^[\\u4e00-\\u9fa5]{2,4}$"
         let nameTest = NSPredicate(format: "SELF MATCHES %@", nameRegex)
-        return nameTest.evaluateWithObject(name)
+        return nameTest.evaluate(with: name)
     }
     
     
@@ -115,7 +115,7 @@ class SaveNameView: UIView, UITextFieldDelegate {
         guard let name = inputField.text else {
             return
         }
-        finishButton.enabled = validateName(name)
+        finishButton.isEnabled = validateName(name)
     }
     
     @objc private func finishButtonDidTap() {
@@ -141,6 +141,6 @@ class SaveNameView: UIView, UITextFieldDelegate {
     }
     
     @objc private func closeButtonDidClick() {
-        controller?.dismissViewControllerAnimated(true, completion: nil)
+        controller?.dismiss(animated: true, completion: nil)
     }
 }

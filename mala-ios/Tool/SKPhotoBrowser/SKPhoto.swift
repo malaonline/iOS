@@ -17,13 +17,13 @@ public protocol SKPhotoProtocol: NSObjectProtocol {
 }
 
 // MARK: - SKPhoto
-public class SKPhoto: NSObject, SKPhotoProtocol {
+open class SKPhoto: NSObject, SKPhotoProtocol {
     
-    public var underlyingImage: UIImage!
-    public var photoURL: String!
-    public var shouldCachePhotoURLImage: Bool = false
-    public var caption: String!
-    public var index: Int?
+    open var underlyingImage: UIImage!
+    open var photoURL: String!
+    open var shouldCachePhotoURLImage: Bool = false
+    open var caption: String!
+    open var index: Int?
 
     override init() {
         super.init()
@@ -39,65 +39,65 @@ public class SKPhoto: NSObject, SKPhotoProtocol {
         photoURL = url
     }
     
-    public func checkCache() {
+    open func checkCache() {
         if photoURL != nil && shouldCachePhotoURLImage {
-            if let img = UIImage.sharedSKPhotoCache().objectForKey(photoURL) as? UIImage {
+            if let img = UIImage.sharedSKPhotoCache().object(forKey: photoURL as AnyObject) as? UIImage {
                 underlyingImage = img
             }
         }
     }
     
-    public func loadUnderlyingImageAndNotify() {
+    open func loadUnderlyingImageAndNotify() {
         if underlyingImage != nil {
             loadUnderlyingImageComplete()
         }
         
         if photoURL != nil {
             // Fetch Image
-            let session = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration())
-            if let nsURL = NSURL(string: photoURL) {
-                session.dataTaskWithURL(nsURL, completionHandler: { [weak self](response: NSData?, data: NSURLResponse?, error: NSError?) in
+            let session = URLSession(configuration: URLSessionConfiguration.default)
+            if let nsURL = URL(string: photoURL) {
+                session.dataTask(with: nsURL, completionHandler: { [weak self](response: Data?, data: URLResponse?, error: NSError?) in
                     if let _self = self {
                         if error != nil {
-                            dispatch_async(dispatch_get_main_queue()) {
+                            DispatchQueue.main.asynchronously(DispatchQueue.main) {
                                 _self.loadUnderlyingImageComplete()
                             }
                         }
                         if let res = response, let image = UIImage(data: res) {
                             if _self.shouldCachePhotoURLImage {
-                                UIImage.sharedSKPhotoCache().setObject(image, forKey: _self.photoURL)
+                                UIImage.sharedSKPhotoCache().setObject(image, forKey: _self.photoURL as AnyObject)
                             }
-                            dispatch_async(dispatch_get_main_queue()) {
+                            DispatchQueue.main.asynchronously(DispatchQueue.main) {
                                 _self.underlyingImage = image
                                 _self.loadUnderlyingImageComplete()
                             }
                         }
                         session.finishTasksAndInvalidate()
                     }
-                }).resume()
+                } as! (Data?, URLResponse?, Error?) -> Void).resume()
             }
         }
     }
 
-    public func loadUnderlyingImageComplete() {
-        NSNotificationCenter.defaultCenter().postNotificationName(SKPHOTO_LOADING_DID_END_NOTIFICATION, object: self)
+    open func loadUnderlyingImageComplete() {
+        NotificationCenter.default.post(name: Notification.Name(rawValue: SKPHOTO_LOADING_DID_END_NOTIFICATION), object: self)
     }
     
     // MARK: - class func
-    public class func photoWithImage(image: UIImage) -> SKPhoto {
+    open class func photoWithImage(_ image: UIImage) -> SKPhoto {
         return SKPhoto(image: image)
     }
-    public class func photoWithImageURL(url: String) -> SKPhoto {
+    open class func photoWithImageURL(_ url: String) -> SKPhoto {
         return SKPhoto(url: url)
     }
 }
 
 // MARK: - extension UIImage
 public extension UIImage {
-    private class func sharedSKPhotoCache() -> NSCache! {
+    fileprivate class func sharedSKPhotoCache() -> NSCache<AnyObject, AnyObject>! {
         struct StaticSharedSKPhotoCache {
             static var sharedCache: NSCache? = nil
-            static var onceToken: dispatch_once_t = 0
+            static var onceToken: Int = 0
         }
         dispatch_once(&StaticSharedSKPhotoCache.onceToken) {
             StaticSharedSKPhotoCache.sharedCache = NSCache()

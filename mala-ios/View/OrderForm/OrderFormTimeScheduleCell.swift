@@ -18,7 +18,7 @@ class OrderFormTimeScheduleCell: UITableViewCell {
         }
     }
     /// 上课时间列表
-    var timeSchedules: [[NSTimeInterval]]? {
+    var timeSchedules: [[TimeInterval]]? {
         didSet {
             if (timeSchedules ?? []) != (oldValue ?? []) && timeSchedules != nil {
                 parseTimeSchedules()
@@ -28,7 +28,7 @@ class OrderFormTimeScheduleCell: UITableViewCell {
     /// 是否隐藏时间表（默认隐藏）
     var shouldHiddenTimeSlots: Bool = true {
         didSet {
-            self.timeLineView?.hidden = shouldHiddenTimeSlots
+            self.timeLineView?.isHidden = shouldHiddenTimeSlots
         }
     }
     
@@ -160,7 +160,7 @@ class OrderFormTimeScheduleCell: UITableViewCell {
         
         // 设置UI
         self.timeLineView = ThemeTimeLine(times: result.dates, descs: result.times)
-        timeLineView?.hidden = true
+        timeLineView?.isHidden = true
         
         self.contentView.addSubview(timeLineView!)
         topLayoutView.snp_updateConstraints { (make) in

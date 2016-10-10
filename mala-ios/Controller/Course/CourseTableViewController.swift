@@ -11,20 +11,20 @@ import UIKit
 private let CourseTableViewSectionHeaderViewReuseId = "CourseTableViewSectionHeaderViewReuseId"
 private let CourseTableViewCellReuseId = "CourseTableViewCellReuseId"
 
-public class CourseTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+open class CourseTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     // MARK: - Property
     /// 上课时间表数据模型
     var model: [[[StudentCourseModel]]]? {
         didSet {
-            dispatch_async(dispatch_get_main_queue(), { [weak self] () -> Void in
+            DispatchQueue.main.async(execute: { [weak self] () -> Void in
                 ThemeHUD.hideActivityIndicator()
                 if self?.model?.count == 0 {
-                    self?.defaultView.hidden = false
-                    self?.goTopButton.hidden = true
+                    self?.defaultView.isHidden = false
+                    self?.goTopButton.isHidden = true
                 }else {
-                    self?.defaultView.hidden = true
-                    self?.goTopButton.hidden = false
+                    self?.defaultView.isHidden = true
+                    self?.goTopButton.isHidden = false
                     self?.tableView.reloadData()
                     self?.scrollToToday()
                 }
@@ -32,9 +32,9 @@ public class CourseTableViewController: UIViewController, UITableViewDataSource,
         }
     }
     /// 距当前时间最近的一节未上课程下标
-    var recentlyCourseIndexPath: NSIndexPath?
+    var recentlyCourseIndexPath: IndexPath?
     /// 当前显示年月（用于TitleView显示）
-    var currentDate: NSTimeInterval? {
+    var currentDate: TimeInterval? {
         didSet {
             if currentDate != oldValue {
                 titleLabel.text = getDateTimeString(currentDate ?? 0, format: "yyyy年M月")
@@ -48,13 +48,13 @@ public class CourseTableViewController: UIViewController, UITableViewDataSource,
     /// "跳转最近的未上课程"按钮
     private lazy var goTopButton: UIButton = {
         let button = UIButton()
-        button.setBackgroundImage(UIImage(named: "goTop"), forState: .Normal)
-        button.addTarget(self, action: #selector(CourseTableViewController.scrollToToday), forControlEvents: .TouchUpInside)
-        button.hidden = true
+        button.setBackgroundImage(UIImage(named: "goTop"), for: UIControlState())
+        button.addTarget(self, action: #selector(CourseTableViewController.scrollToToday), for: .touchUpInside)
+        button.isHidden = true
         return button
     }()
     lazy var tableView: UITableView = {
-        let tableView = UITableView(frame: CGRectZero, style: .Grouped)
+        let tableView = UITableView(frame: CGRect.zero, style: .grouped)
         return tableView
     }()
     /// 我的课表缺省面板
@@ -64,7 +64,7 @@ public class CourseTableViewController: UIViewController, UITableViewDataSource,
         view.text = "暂时还没有课程哦"
         view.buttonTitle = "去报名"
         view.addTarget(self, action: #selector(CourseTableViewController.switchToFindTeacher))
-        view.hidden = true
+        view.isHidden = true
         return view
     }()
     /// 我的课表未登录面板
@@ -74,7 +74,7 @@ public class CourseTableViewController: UIViewController, UITableViewDataSource,
         view.text = "您还没有登录"
         view.buttonTitle = "去登录"
         view.addTarget(self, action: #selector(CourseTableViewController.switchToLoginView))
-        view.hidden = true
+        view.isHidden = true
         return view
     }()
     /// 保存按钮
@@ -85,7 +85,7 @@ public class CourseTableViewController: UIViewController, UITableViewDataSource,
             target: self,
             action: #selector(CourseTableViewController.scrollToToday)
         )
-        saveButton.setTitleColor(MalaColor_E0E0E0_95, forState: .Disabled)
+        saveButton.setTitleColor(MalaColor_E0E0E0_95, for: .disabled)
         return saveButton
     }()
     /// 导航栏TitleView
@@ -100,23 +100,23 @@ public class CourseTableViewController: UIViewController, UITableViewDataSource,
     
     
     // MARK: - Life Cycle
-    override public func viewDidLoad() {
+    override open func viewDidLoad() {
         super.viewDidLoad()
         
         configure()
         setupUserInterface()
     }
     
-    override public func didReceiveMemoryWarning() {
+    override open func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
-    override public func viewWillAppear(animated: Bool) {
+    override open func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         loadStudentCourseTable()
     }
     
-    override public func viewDidAppear(animated: Bool) {
+    override open func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         sendScreenTrack(SAMyCourseViewName)
     }
@@ -126,12 +126,12 @@ public class CourseTableViewController: UIViewController, UITableViewDataSource,
         // tableView
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.separatorStyle = .None
-        tableView.backgroundColor = UIColor.whiteColor()
+        tableView.separatorStyle = .none
+        tableView.backgroundColor = UIColor.white
         
         // register
-        tableView.registerClass(CourseTableViewCell.self, forCellReuseIdentifier: CourseTableViewCellReuseId)
-        tableView.registerClass(CourseTableViewSectionHeader.self, forHeaderFooterViewReuseIdentifier: CourseTableViewSectionHeaderViewReuseId)
+        tableView.register(CourseTableViewCell.self, forCellReuseIdentifier: CourseTableViewCellReuseId)
+        tableView.register(CourseTableViewSectionHeader.self, forHeaderFooterViewReuseIdentifier: CourseTableViewSectionHeaderViewReuseId)
     }
     
     private func setupUserInterface() {
@@ -177,7 +177,7 @@ public class CourseTableViewController: UIViewController, UITableViewDataSource,
         // 用户登录后请求数据，否则显示默认页面
         if !MalaUserDefaults.isLogined {
             
-            unLoginDefaultView.hidden = false
+            unLoginDefaultView.isHidden = false
             
             // 若在注销后存在课程数据残留，清除数据并刷新日历
             if model != nil {
@@ -186,7 +186,7 @@ public class CourseTableViewController: UIViewController, UITableViewDataSource,
             }
             return
         }else {
-            unLoginDefaultView.hidden = true
+            unLoginDefaultView.isHidden = true
         }
         ThemeHUD.showActivityIndicator()
         
@@ -208,49 +208,49 @@ public class CourseTableViewController: UIViewController, UITableViewDataSource,
     
     
     // MARK: - DataSource
-    public func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    open func numberOfSections(in tableView: UITableView) -> Int {
         return model?.count ?? 0
     }
-    public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return model?[section].count ?? 0
     }
-    public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(CourseTableViewCellReuseId, forIndexPath: indexPath) as! CourseTableViewCell
-        cell.model = model?[indexPath.section][indexPath.row]
+    open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: CourseTableViewCellReuseId, for: indexPath) as! CourseTableViewCell
+        cell.model = model?[(indexPath as NSIndexPath).section][(indexPath as NSIndexPath).row]
         return cell
     }
     
     
     // MARK: - Delegate
-    public func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = tableView.dequeueReusableHeaderFooterViewWithIdentifier(CourseTableViewSectionHeaderViewReuseId) as! CourseTableViewSectionHeader
+    open func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: CourseTableViewSectionHeaderViewReuseId) as! CourseTableViewSectionHeader
         headerView.timeInterval = model?[section][0][0].end
         return headerView
     }
-    public func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+    open func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         // 实时调整当前第一个显示的Cell日期为导航栏标题日期
         currentDate = (tableView.visibleCells.first as? CourseTableViewCell)?.model?[0].end
         // 当最近一节课程划出屏幕时，显示“回到最近课程”按钮
         if indexPath == recentlyCourseIndexPath {
-            goTopButton.hidden = true
+            goTopButton.isHidden = true
         }
     }
-    public func tableView(tableView: UITableView, didEndDisplayingCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+    open func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         // 当最近一节课程划出屏幕时，显示“回到最近课程”按钮
         if indexPath == recentlyCourseIndexPath {
-            goTopButton.hidden = false
+            goTopButton.isHidden = false
         }
     }
-    public func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    open func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 140
     }
-    public func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+    open func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 20
     }
-    public func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return CGFloat((model?[indexPath.section][indexPath.row].count ?? 0) * 102)
+    open func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return CGFloat((model?[(indexPath as NSIndexPath).section][(indexPath as NSIndexPath).row].count ?? 0) * 102)
     }
-    public func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    open func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
         return false
     }
     
@@ -258,13 +258,13 @@ public class CourseTableViewController: UIViewController, UITableViewDataSource,
     // MARK: - Event Response
     ///  滚动到近日首个未上课程
     @objc private func scrollToToday() {
-        dispatch_async(dispatch_get_main_queue(), { [weak self] () -> Void in
-            self?.tableView.scrollToRowAtIndexPath(self?.recentlyCourseIndexPath ?? NSIndexPath(forRow: 0, inSection: 0), atScrollPosition: .Top, animated: true)
+        DispatchQueue.main.async(execute: { [weak self] () -> Void in
+            self?.tableView.scrollToRow(at: self?.recentlyCourseIndexPath ?? IndexPath(row: 0, section: 0), at: .top, animated: true)
         })
     }
     ///  跳转到挑选老师页面
     @objc private func switchToFindTeacher() {
-        if let appDelegate = UIApplication.sharedApplication().delegate as? AppDelegate {
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
             appDelegate.window?.rootViewController = MainViewController()
             appDelegate.switchTabBarControllerWithIndex(0)
         }
@@ -275,7 +275,7 @@ public class CourseTableViewController: UIViewController, UITableViewDataSource,
         let loginView = LoginViewController()
         loginView.popAction = loadStudentCourseTable
         
-        self.presentViewController(
+        self.present(
             UINavigationController(rootViewController: loginView),
             animated: true,
             completion: { () -> Void in

@@ -22,9 +22,9 @@ class PaymentChannelCell: UITableViewCell {
             channel = model?.channel ?? .Alipay
         }
     }
-    override var selected: Bool {
+    override var isSelected: Bool {
         didSet {
-            selectButton.selected = selected
+            selectButton.isSelected = isSelected
         }
     }
     
@@ -36,24 +36,24 @@ class PaymentChannelCell: UITableViewCell {
     /// 支付方式名称
     private lazy var titleLabel: UILabel = {
         let titleLabel = UILabel()
-        titleLabel.font = UIFont.systemFontOfSize(14)
+        titleLabel.font = UIFont.systemFont(ofSize: 14)
         titleLabel.textColor = MalaColor_333333_0
         return titleLabel
     }()
     /// 支付方式描述
     private lazy var subTitleLabel: UILabel = {
         let subTitleLabel = UILabel()
-        subTitleLabel.font = UIFont.systemFontOfSize(13)
+        subTitleLabel.font = UIFont.systemFont(ofSize: 13)
         subTitleLabel.textColor = MalaColor_6C6C6C_0
         return subTitleLabel
     }()
     /// 选择按钮
     private lazy var selectButton: UIButton = {
         let selectButton = UIButton()
-        selectButton.setBackgroundImage(UIImage(named: "unselected"), forState: .Normal)
-        selectButton.setBackgroundImage(UIImage(named: "selected"), forState: .Selected)
+        selectButton.setBackgroundImage(UIImage(named: "unselected"), for: UIControlState())
+        selectButton.setBackgroundImage(UIImage(named: "selected"), for: .selected)
         // 冻结按钮交互功能，其只作为视觉显示效果使用
-        selectButton.userInteractionEnabled = false
+        selectButton.isUserInteractionEnabled = false
         return selectButton
     }()
     /// 分割线
@@ -74,7 +74,7 @@ class PaymentChannelCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
     }
@@ -122,6 +122,6 @@ class PaymentChannelCell: UITableViewCell {
     }
     
     func hideSeparator() {
-        self.separatorLine.hidden = true
+        self.separatorLine.isHidden = true
     }
 }

@@ -37,13 +37,13 @@ class ThemeShareBoard: UIView {
     }()
     /// 会员服务视图
     private lazy var collectionView: ThemeShareCollectionView = {
-        let view = ThemeShareCollectionView(frame: CGRectZero, collectionViewLayout: ThemeShareFlowLayout(frame: CGRectZero))
+        let view = ThemeShareCollectionView(frame: CGRect.zero, collectionViewLayout: ThemeShareFlowLayout(frame: CGRect.zero))
         return view
     }()
     // 背景视图
     private lazy var backgroundView: UIView = {
         let backgroundView = UIView()
-        backgroundView.backgroundColor = UIColor.blackColor()
+        backgroundView.backgroundColor = UIColor.black
         backgroundView.alpha = 0.4
         backgroundView.tag = 1099
         return backgroundView

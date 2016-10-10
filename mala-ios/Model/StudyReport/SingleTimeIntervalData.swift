@@ -36,7 +36,7 @@ class SingleTimeIntervalData: NSObject {
     
     init(dict: [String: AnyObject]) {
         super.init()
-        setValuesForKeysWithDictionary(dict)
+        setValuesForKeys(dict)
     }
     
     convenience init(totalItem: Int, errorItem: Int, year: Int, month: Int, day: Int) {

@@ -14,11 +14,11 @@ import IQKeyboardManagerSwift
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var deviceToken: NSData?
+    var deviceToken: Data?
     var notRegisteredPush = true
     
 
-    private func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+    private func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [AnyHashable: Any]?) -> Bool {
         
         // Setup Window
         window = UIWindow(frame: UIScreen.main.bounds)
@@ -46,7 +46,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             // 记录启动通知类型
             if let notification = options[UIApplicationLaunchOptionsKey.remoteNotification] as? UILocalNotification,
-                userInfo = notification.userInfo {
+                let userInfo = notification.userInfo {
                     MalaRemoteNotificationHandler().handleRemoteNotification(userInfo)
             }
         }
@@ -92,7 +92,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     
     // MARK: - APNs
-    func registerThirdPartyPushWithDeciveToken(deviceToken: NSData, pusherID: String) {
+    func registerThirdPartyPushWithDeciveToken(_ deviceToken: Data, pusherID: String) {
         
         JPUSHService.registerDeviceToken(deviceToken as Data!)
         JPUSHService.setTags(Set(["iOS"]), alias: pusherID, callbackSelector:nil, object: nil)
@@ -105,7 +105,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if let parentID = MalaUserDefaults.parentID.value {
             if notRegisteredPush {
                 notRegisteredPush = false
-                registerThirdPartyPushWithDeciveToken(deviceToken: deviceToken as NSData, pusherID: String(parentID))
+                registerThirdPartyPushWithDeciveToken((deviceToken as NSData) as Data, pusherID: String(parentID))
             }
         }
         
@@ -113,13 +113,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.deviceToken = deviceToken as NSData?
     }
     
-    private func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject], fetchCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
+    private func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any], fetchCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
         
         println("didReceiveRemoteNotification: - \(userInfo)")
         JPUSHService.handleRemoteNotification(userInfo)
         
         if MalaUserDefaults.isLogined {
-            if MalaRemoteNotificationHandler().handleRemoteNotification(userInfo: userInfo) {
+            if MalaRemoteNotificationHandler().handleRemoteNotification(userInfo: userInfo as [NSObject : AnyObject]) {
                 completionHandler(UIBackgroundFetchResult.newData)
             }
         }
@@ -127,12 +127,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
         
-        println(String(format: "did Fail To Register For Remote Notifications With Error: %@", error as! CVarArg))
+        println(String(format: "did Fail To Register For Remote Notifications With Error: %@", error as CVarArg))
     }
     
     
     // MARK: - openURL
-    private func application(application: UIApplication, openURL url: URL, sourceApplication: String?, annotation: AnyObject) -> Bool {
+    private func application(_ application: UIApplication, openURL url: URL, sourceApplication: String?, annotation: AnyObject) -> Bool {
         
         // 微信,支付宝 回调
         let canHandleURL = Pingpp.handleOpen(url) { (result, error) -> Void in
@@ -143,7 +143,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return canHandleURL
     }
     
-    private func application(app: UIApplication, openURL url: URL, options: [String : AnyObject]) -> Bool {
+    private func application(_ app: UIApplication, openURL url: URL, options: [String : AnyObject]) -> Bool {
         
         // 微信,支付宝 回调
         let canHandleURL = Pingpp.handleOpen(url) { (result, error) -> Void in
@@ -176,20 +176,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // 社会化组件
         ShareSDK.registerApp(MalaShareSDKAppId,
              activePlatforms: [
-                SSDKPlatformType.SubTypeWechatSession.rawValue,
-                SSDKPlatformType.SubTypeWechatTimeline.rawValue],
+                SSDKPlatformType.subTypeWechatSession.rawValue,
+                SSDKPlatformType.subTypeWechatTimeline.rawValue],
              onImport: {(platform: SSDKPlatformType) -> Void in
                 switch platform{
-                case SSDKPlatformType.TypeWechat:
+                case SSDKPlatformType.typeWechat:
                     ShareSDKConnector.connectWeChat(WXApi.classForCoder())
                 default:
                     break
                 }
         },  onConfiguration: {(platform: SSDKPlatformType, appInfo: NSMutableDictionary!) -> Void in
             switch platform {
-            case SSDKPlatformType.TypeWechat:
+            case SSDKPlatformType.typeWechat:
                 //设置微信应用信息
-                appInfo.SSDKSetupWeChatByAppId(MalaWeChatAppId, appSecret: "")
+                appInfo.ssdkSetupWeChat(byAppId: MalaWeChatAppId, appSecret: "")
                 break
             default:
                 break
@@ -238,7 +238,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     ///  切换到TabBarController指定控制器
     ///
     ///  - parameter index: 指定控制器下标
-    func switchTabBarControllerWithIndex(index: Int) {
+    func switchTabBarControllerWithIndex(_ index: Int) {
 
         guard let tabbarController = window?.rootViewController as? MainViewController
             , index <= ((tabbarController.viewControllers?.count ?? 0)-1) && index >= 0 else {

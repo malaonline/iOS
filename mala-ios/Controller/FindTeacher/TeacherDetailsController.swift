@@ -30,7 +30,7 @@ class TeacherDetailsController: BaseViewController, UIGestureRecognizerDelegate,
     var teacherID: Int = 0
     var model: TeacherDetailModel = MalaConfig.defaultTeacherDetail() {
         didSet {
-            dispatch_async(dispatch_get_main_queue(), { [weak self] () -> Void in
+            DispatchQueue.main.async(execute: { [weak self] () -> Void in
                 
                 guard let strongSelf = self else {
                     return
@@ -74,7 +74,7 @@ class TeacherDetailsController: BaseViewController, UIGestureRecognizerDelegate,
     
     // MARK: - Components
     private lazy var tableView: UITableView = {
-        let tableView = UITableView(frame: CGRectZero, style: .Grouped)
+        let tableView = UITableView(frame: CGRect.zero, style: .grouped)
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 8, right: 0)
         return tableView
     }()
@@ -86,7 +86,7 @@ class TeacherDetailsController: BaseViewController, UIGestureRecognizerDelegate,
     /// 顶部背景图
     private lazy var headerBackground: UIImageView = {
         let image = UIImageView(image: UIImage(named: "teacherDetailHeader_placeholder"))
-        image.contentMode = .ScaleAspectFill
+        image.contentMode = .scaleAspectFill
         return image
     }()
     /// 报名按钮
@@ -129,20 +129,20 @@ class TeacherDetailsController: BaseViewController, UIGestureRecognizerDelegate,
         
         // 激活Pop手势识别
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
-        self.navigationController?.interactivePopGestureRecognizer?.enabled = true
+        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = true
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         // 设置 NavigationBar 透明色
         // makeStatusBarWhite()
         sendScreenTrack(SATeacherDetailName)
-        self.navigationController?.navigationBarHidden = false
-        navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
+        self.navigationController?.isNavigationBarHidden = false
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController?.navigationBar.shadowImage = UIImage()
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if isNavigationBarShow {
             showBackground()
@@ -151,12 +151,12 @@ class TeacherDetailsController: BaseViewController, UIGestureRecognizerDelegate,
         }
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        navigationController?.navigationBar.setBackgroundImage(UIImage.withColor(UIColor.whiteColor()), forBarMetrics: .Default)
+        navigationController?.navigationBar.setBackgroundImage(UIImage.withColor(UIColor.white), for: .default)
     }
     
-    override func viewDidDisappear(animated: Bool) {
+    override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         navigationController?.navigationBar.shadowImage = nil
     }
@@ -172,24 +172,24 @@ class TeacherDetailsController: BaseViewController, UIGestureRecognizerDelegate,
         signupView.delegate = self
         tableView.estimatedRowHeight = 240
         tableView.backgroundColor = MalaColor_EDEDED_0
-        tableView.separatorStyle = .None
+        tableView.separatorStyle = .none
         tableView.delegate = self
         tableView.dataSource = self
         tableView.tableHeaderView = tableHeaderView
-        tableView.registerClass(TeacherDetailsSubjectCell.self, forCellReuseIdentifier: TeacherDetailsCellReuseId[0]!)
-        tableView.registerClass(TeacherDetailsTagsCell.self, forCellReuseIdentifier: TeacherDetailsCellReuseId[1]!)
-        tableView.registerClass(TeacherDetailsHighScoreCell.self, forCellReuseIdentifier: TeacherDetailsCellReuseId[2]!)
-        tableView.registerClass(TeacherDetailsPhotosCell.self, forCellReuseIdentifier: TeacherDetailsCellReuseId[3]!)
-        tableView.registerClass(TeacherDetailsCertificateCell.self, forCellReuseIdentifier: TeacherDetailsCellReuseId[4]!)
+        tableView.register(TeacherDetailsSubjectCell.self, forCellReuseIdentifier: TeacherDetailsCellReuseId[0]!)
+        tableView.register(TeacherDetailsTagsCell.self, forCellReuseIdentifier: TeacherDetailsCellReuseId[1]!)
+        tableView.register(TeacherDetailsHighScoreCell.self, forCellReuseIdentifier: TeacherDetailsCellReuseId[2]!)
+        tableView.register(TeacherDetailsPhotosCell.self, forCellReuseIdentifier: TeacherDetailsCellReuseId[3]!)
+        tableView.register(TeacherDetailsCertificateCell.self, forCellReuseIdentifier: TeacherDetailsCellReuseId[4]!)
         
         // leftBarButtonItem
-        let spacer1 = UIBarButtonItem(barButtonSystemItem: .FixedSpace, target: nil, action: nil)
+        let spacer1 = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
         spacer1.width = -2
         let leftBarButtonItem = UIBarButtonItem(customView: leftBarButton)
         navigationItem.leftBarButtonItems = [spacer1, leftBarButtonItem]
         
         // rightBarButtonItem
-        let spacer2 = UIBarButtonItem(barButtonSystemItem: .FixedSpace, target: nil, action: nil)
+        let spacer2 = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
         spacer2.width = -10
         let rightBarButtonItem = UIBarButtonItem(customView: shareButton)
         navigationItem.rightBarButtonItems = [spacer2, rightBarButtonItem]
@@ -198,7 +198,7 @@ class TeacherDetailsController: BaseViewController, UIGestureRecognizerDelegate,
         // SubViews
         view.addSubview(tableView)
         view.addSubview(signupView)
-        tableView.insertSubview(headerBackground, atIndex: 0)
+        tableView.insertSubview(headerBackground, at: 0)
         
         // Autolayout
         tableView.snp_makeConstraints { (make) in
@@ -213,7 +213,7 @@ class TeacherDetailsController: BaseViewController, UIGestureRecognizerDelegate,
             make.right.equalTo(view.snp_right)
             make.height.equalTo(MalaLayout_DetailHeaderContentHeight)
         }
-        signupView.snp_makeConstraints(closure: { (make) -> Void in
+        signupView.snp_makeConstraints({ (make) -> Void in
             make.left.equalTo(view.snp_left)
             make.right.equalTo(view.snp_right)
             make.bottom.equalTo(view.snp_bottom)
@@ -222,14 +222,14 @@ class TeacherDetailsController: BaseViewController, UIGestureRecognizerDelegate,
     }
     
     private func setupNotification() {
-        NSNotificationCenter.defaultCenter().addObserverForName(
-            MalaNotification_PushPhotoBrowser,
+        NotificationCenter.default.addObserver(
+            forName: NSNotification.Name(rawValue: MalaNotification_PushPhotoBrowser),
             object: nil,
             queue: nil
             ) { [weak self] (notification) -> Void in
                 
                 // 相册
-                if let info = notification.object as? String where info == "browser" {
+                if let info = notification.object as? String, info == "browser" {
                     let browser = MalaPhotoBrowser()
                     browser.imageURLs = self?.model.photo_set ?? []
                     self?.navigationController?.pushViewController(browser, animated: true)
@@ -237,11 +237,11 @@ class TeacherDetailsController: BaseViewController, UIGestureRecognizerDelegate,
                 
                 // 特殊成就
                 if let photoBrowser = notification.object as? SKPhotoBrowser {
-                    self?.navigationController?.presentViewController(photoBrowser, animated: true, completion: nil)
+                    self?.navigationController?.present(photoBrowser, animated: true, completion: nil)
                 }
                 
                 // 相册图片
-                if let imageView = notification.object as? UIImageView, originImage = imageView.image {
+                if let imageView = notification.object as? UIImageView, let originImage = imageView.image {
                     
                     var images: [SKPhoto]? = []
                     
@@ -265,8 +265,8 @@ class TeacherDetailsController: BaseViewController, UIGestureRecognizerDelegate,
                     browser.displayDeleteButton = false
                     browser.statusBarStyle = nil
                     browser.bounceAnimation = false
-                    browser.navigationController?.navigationBarHidden = true
-                    self?.navigationController?.presentViewController(browser, animated: true, completion: nil)
+                    browser.navigationController?.isNavigationBarHidden = true
+                    self?.navigationController?.present(browser, animated: true, completion: nil)
                 }
         }
     }
@@ -314,7 +314,7 @@ class TeacherDetailsController: BaseViewController, UIGestureRecognizerDelegate,
     private func showBackground() {
         // makeStatusBarBlack()
         title = model.name
-        navigationController?.navigationBar.setBackgroundImage(UIImage.withColor(UIColor.whiteColor()), forBarMetrics: .Default)
+        navigationController?.navigationBar.setBackgroundImage(UIImage.withColor(UIColor.white), for: .default)
         navigationController?.navigationBar.shadowImage = nil
         turnBackButtonBlack()
         isNavigationBarShow = true
@@ -323,7 +323,7 @@ class TeacherDetailsController: BaseViewController, UIGestureRecognizerDelegate,
     private func hideBackground() {
         // makeStatusBarWhite()
         title = ""
-        navigationController?.navigationBar.setBackgroundImage(UIImage.withColor(UIColor.clearColor()), forBarMetrics: .Default)
+        navigationController?.navigationBar.setBackgroundImage(UIImage.withColor(UIColor.clear), for: .default)
         navigationController?.navigationBar.shadowImage = UIImage()
         turnBackButtonWhite()
         isNavigationBarShow = false
@@ -339,7 +339,7 @@ class TeacherDetailsController: BaseViewController, UIGestureRecognizerDelegate,
     
     // MARK: - Deleagte
     ///［立即报名］点击事件
-    func signupButtonDidTap(sender: UIButton) {
+    func signupButtonDidTap(_ sender: UIButton) {
         
         // 未登陆则进行登陆动作
         if !MalaUserDefaults.isLogined {
@@ -351,7 +351,7 @@ class TeacherDetailsController: BaseViewController, UIGestureRecognizerDelegate,
                 }
             }
             
-            self.presentViewController(
+            self.present(
                 UINavigationController(rootViewController: loginController),
                 animated: true,
                 completion: nil)
@@ -362,7 +362,7 @@ class TeacherDetailsController: BaseViewController, UIGestureRecognizerDelegate,
     }
     
     ///［收藏按钮］点击事件
-    func likeButtonDidTap(sender: DOFavoriteButton) {
+    func likeButtonDidTap(_ sender: DOFavoriteButton) {
         
         // 收藏／取消收藏
         let action = { [weak self] in
@@ -386,7 +386,7 @@ class TeacherDetailsController: BaseViewController, UIGestureRecognizerDelegate,
                 }
             }
             
-            self.presentViewController(
+            self.present(
                 UINavigationController(rootViewController: loginController),
                 animated: true,
                 completion: nil)
@@ -397,12 +397,12 @@ class TeacherDetailsController: BaseViewController, UIGestureRecognizerDelegate,
     }
     
     
-    func scrollViewDidScroll(scrollView: UIScrollView) {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let displacement = scrollView.contentOffset.y
         
         // 向下滑动页面时，使顶部图片跟随放大
         if displacement < -MalaScreenNaviHeight {
-            headerBackground.snp_updateConstraints(closure: { (make) -> Void in
+            headerBackground.snp_updateConstraints({ (make) -> Void in
                 make.top.equalTo(0).offset(displacement)
                 // 1.1为放大速率
                 make.height.equalTo(MalaLayout_DetailHeaderContentHeight + abs(displacement+MalaScreenNaviHeight)*1.1)
@@ -418,34 +418,34 @@ class TeacherDetailsController: BaseViewController, UIGestureRecognizerDelegate,
         }
     }
     
-    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 0.01
     }
     
-    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 0.01
     }
     
-    func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
         return false
     }
     
     
     // MARK: - DataSource
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return TeacherDetailsCellReuseId.count
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let reuseCell = tableView.dequeueReusableCellWithIdentifier(TeacherDetailsCellReuseId[indexPath.section]!, forIndexPath: indexPath)
-        (reuseCell as! MalaBaseCell).titleLabel.text = TeacherDetailsCellTitle[indexPath.section+1]
+        let reuseCell = tableView.dequeueReusableCell(withIdentifier: TeacherDetailsCellReuseId[(indexPath as NSIndexPath).section]!, for: indexPath)
+        (reuseCell as! MalaBaseCell).titleLabel.text = TeacherDetailsCellTitle[(indexPath as NSIndexPath).section+1]
         
-        switch indexPath.section {
+        switch (indexPath as NSIndexPath).section {
         case 0:
             
             let cell = reuseCell as! TeacherDetailsSubjectCell
@@ -488,18 +488,18 @@ class TeacherDetailsController: BaseViewController, UIGestureRecognizerDelegate,
     }
 
     override func turnBackButtonBlack() {
-        leftBarButton.setImage(UIImage(named: "leftArrow_black"), forState: .Normal)
-        shareButton.setImage(UIImage(named: "share_press"), forState: .Normal)
+        leftBarButton.setImage(UIImage(named: "leftArrow_black"), for: UIControlState())
+        shareButton.setImage(UIImage(named: "share_press"), for: UIControlState())
     }
     
     override func turnBackButtonWhite() {
-        leftBarButton.setImage(UIImage(named: "leftArrow_white"), forState: .Normal)
-        shareButton.setImage(UIImage(named: "share_normal"), forState: .Normal)
+        leftBarButton.setImage(UIImage(named: "leftArrow_white"), for: UIControlState())
+        shareButton.setImage(UIImage(named: "share_normal"), for: UIControlState())
     }
     
     deinit {
         println("TeacherDetailController Deinit")
         // 移除观察者
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: MalaNotification_PushPhotoBrowser, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: MalaNotification_PushPhotoBrowser), object: nil)
     }
 }

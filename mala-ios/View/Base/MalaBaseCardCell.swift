@@ -14,7 +14,7 @@ class MalaBaseCardCell: UICollectionViewCell {
     /// 布局视图（卡片）
     lazy var layoutView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor.whiteColor()
+        view.backgroundColor = UIColor.white
         return view
     }()
     /// 标识是否作为样本展示

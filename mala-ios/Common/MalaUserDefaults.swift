@@ -27,7 +27,7 @@ struct Listener<T>: Hashable {
     /// 监听者名称
     let name: String
     /// 触发事件
-    typealias Action = T -> Void
+    typealias Action = (T) -> Void
     let action: Action
     
     var hashValue: Int {
@@ -48,7 +48,7 @@ class Listenable<T> {
     }
     
     /// 触发事件
-    typealias SetterAction = T -> Void
+    typealias SetterAction = (T) -> Void
     var setterAction: SetterAction
     // 监听者数组
     var listenerSet = Set<Listener<T>>()
@@ -59,24 +59,24 @@ class Listenable<T> {
     ///  - parameter action: trigger action
     ///
     ///  - returns: The created listenable.
-    init(_ v: T, setterAction action: SetterAction) {
+    init(_ v: T, setterAction action: @escaping SetterAction) {
         value = v
         setterAction = action
     }
     ///  绑定监听
-    func bindListener(name: String, action: Listener<T>.Action) {
+    func bindListener(_ name: String, action: @escaping Listener<T>.Action) {
         let listener = Listener(name: name, action: action)
         //
         listenerSet.insert(listener)
     }
     ///  绑定监听并执行
-    func bindAndFireListener(name: String, action: Listener<T>.Action) {
+    func bindAndFireListener(_ name: String, action: @escaping Listener<T>.Action) {
         bindListener(name, action: action)
         
         action(value)
     }
     
-    func removeListenerWithName(name: String) {
+    func removeListenerWithName(_ name: String) {
         for listener in listenerSet {
             if listener.name == name {
                 listenerSet.remove(listener)
@@ -86,7 +86,7 @@ class Listenable<T> {
     }
     
     func removeAllListeners() {
-        listenerSet.removeAll(keepCapacity: false)
+        listenerSet.removeAll(keepingCapacity: false)
     }
 }
 
@@ -95,7 +95,7 @@ class Listenable<T> {
 class MalaUserDefaults {
     
     /// 单例
-    static let defaults = NSUserDefaults(suiteName: MalaConfig.appGroupID)!
+    static let defaults = UserDefaults(suiteName: MalaConfig.appGroupID)!
     
     /// 登出标记 - 由于Listenable的Value不可为nil。
     /// 所以每次注销后accessToken仍然会保存用户的Token, 导致isLogined返回结果不正确
@@ -115,62 +115,62 @@ class MalaUserDefaults {
     // MARK: - Login Info
     /// 令牌
     static var userAccessToken: Listenable<String?> = {
-        let userAccessToken = defaults.stringForKey(userAccessTokenKey)
+        let userAccessToken = defaults.string(forKey: userAccessTokenKey)
         
         return Listenable<String?>(userAccessToken) { userAccessToken in
-            defaults.setObject(userAccessToken, forKey: userAccessTokenKey)
+            defaults.set(userAccessToken, forKey: userAccessTokenKey)
             
-            if let appDelegate = UIApplication.sharedApplication().delegate as? AppDelegate {
+            if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
                 
             }
         }
     }()
     /// 用户id
     static var userID: Listenable<Int?> = {
-        let userID = defaults.integerForKey(UserIDKey)
+        let userID = defaults.integer(forKey: UserIDKey)
         
         return Listenable<Int?>(userID) { userID in
-            defaults.setObject(userID, forKey: UserIDKey)
+            defaults.set(userID, forKey: UserIDKey)
         }
     }()
     /// 家长id
     static var parentID: Listenable<Int?> = {
-        let parentID = defaults.integerForKey(ParentIDKey)
+        let parentID = defaults.integer(forKey: ParentIDKey)
         
         return Listenable<Int?>(parentID) { parentID in
-            defaults.setObject(parentID, forKey: ParentIDKey)
+            defaults.set(parentID, forKey: ParentIDKey)
         }
     }()
     /// 个人资料id
     static var profileID: Listenable<Int?> = {
-        let profileID = defaults.integerForKey(ProfileIDKey)
+        let profileID = defaults.integer(forKey: ProfileIDKey)
         
         return Listenable<Int?>(profileID) { profileID in
-            defaults.setObject(profileID, forKey: ProfileIDKey)
+            defaults.set(profileID, forKey: ProfileIDKey)
         }
     }()
     /// 登陆标示（以是否已填写学生姓名区分）
     static var firstLogin: Listenable<Bool?> = {
-        let firstLogin = defaults.boolForKey(FirstLoginKey)
+        let firstLogin = defaults.bool(forKey: FirstLoginKey)
         
         return Listenable<Bool?>(firstLogin) { firstLogin in
-            defaults.setObject(firstLogin, forKey: FirstLoginKey)
+            defaults.set(firstLogin, forKey: FirstLoginKey)
         }
     }()
     
     // MARK: - Profile Info
     static var gender: Listenable<String?> = {
-        let gender = defaults.stringForKey(GenderKey)
+        let gender = defaults.string(forKey: GenderKey)
         
         return Listenable<String?>(gender) { gender in
-            defaults.setObject(gender, forKey: GenderKey)
+            defaults.set(gender, forKey: GenderKey)
         }
     }()
     static var avatar: Listenable<String?> = {
-        let avatar = defaults.stringForKey(AvatarKey)
+        let avatar = defaults.string(forKey: AvatarKey)
         
         return Listenable<String?>(avatar) { avatar in
-            defaults.setObject(avatar, forKey: AvatarKey)
+            defaults.set(avatar, forKey: AvatarKey)
         }
     }()
     
@@ -178,45 +178,45 @@ class MalaUserDefaults {
     // MARK: - Parent Info
     /// 学生姓名
     static var studentName: Listenable<String?> = {
-        let studentName = defaults.stringForKey(StudentNameKey)
+        let studentName = defaults.string(forKey: StudentNameKey)
         
         return Listenable<String?>(studentName) { studentName in
-            defaults.setObject(studentName, forKey: StudentNameKey)
+            defaults.set(studentName, forKey: StudentNameKey)
         }
     }()
     /// 学校信息
     static var schoolName: Listenable<String?> = {
-        let schoolName = defaults.stringForKey(SchoolNameKey)
+        let schoolName = defaults.string(forKey: SchoolNameKey)
         
         return Listenable<String?>(schoolName) { schoolName in
-            defaults.setObject(schoolName, forKey: SchoolNameKey)
+            defaults.set(schoolName, forKey: SchoolNameKey)
         }
     }()
     /// 当前选择城市
     static var currentCity: Listenable<BaseObjectModel?> = {
         var currentCity: BaseObjectModel?
-        if let data = defaults.objectForKey(CurrentCityKey) as? NSData {
-            currentCity = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? BaseObjectModel
+        if let data = defaults.object(forKey: CurrentCityKey) as? Data {
+            currentCity = NSKeyedUnarchiver.unarchiveObject(with: data) as? BaseObjectModel
         }
         
         return Listenable<BaseObjectModel?>(currentCity) { currentCity in
             if let object  = currentCity {
-                let encodedObject = NSKeyedArchiver.archivedDataWithRootObject(object)
-                defaults.setObject(encodedObject, forKey: CurrentCityKey)
+                let encodedObject = NSKeyedArchiver.archivedData(withRootObject: object)
+                defaults.set(encodedObject, forKey: CurrentCityKey)
             }
         }
     }()
     /// 当前选择校区
     static var currentSchool: Listenable<SchoolModel?> = {
         var currentSchool: SchoolModel?
-        if let data = defaults.objectForKey(CurrentSchoolKey) as? NSData {
-            currentSchool = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? SchoolModel
+        if let data = defaults.object(forKey: CurrentSchoolKey) as? Data {
+            currentSchool = NSKeyedUnarchiver.unarchiveObject(with: data) as? SchoolModel
         }
         
         return Listenable<SchoolModel?>(currentSchool) { currentSchool in
             if let object  = currentSchool {
-                let encodedObject = NSKeyedArchiver.archivedDataWithRootObject(object)
-                defaults.setObject(encodedObject, forKey: CurrentSchoolKey)
+                let encodedObject = NSKeyedArchiver.archivedData(withRootObject: object)
+                defaults.set(encodedObject, forKey: CurrentSchoolKey)
             }
         }
     }()
@@ -236,15 +236,15 @@ class MalaUserDefaults {
         gender.removeAllListeners()
         avatar.removeAllListeners()
         
-        defaults.removeObjectForKey(userAccessTokenKey)
-        defaults.removeObjectForKey(UserIDKey)
-        defaults.removeObjectForKey(ParentIDKey)
-        defaults.removeObjectForKey(ProfileIDKey)
-        defaults.removeObjectForKey(FirstLoginKey)
-        defaults.removeObjectForKey(StudentNameKey)
-        defaults.removeObjectForKey(SchoolNameKey)
-        defaults.removeObjectForKey(GenderKey)
-        defaults.removeObjectForKey(AvatarKey)
+        defaults.removeObject(forKey: userAccessTokenKey)
+        defaults.removeObject(forKey: UserIDKey)
+        defaults.removeObject(forKey: ParentIDKey)
+        defaults.removeObject(forKey: ProfileIDKey)
+        defaults.removeObject(forKey: FirstLoginKey)
+        defaults.removeObject(forKey: StudentNameKey)
+        defaults.removeObject(forKey: SchoolNameKey)
+        defaults.removeObject(forKey: GenderKey)
+        defaults.removeObject(forKey: AvatarKey)
         
         // 配置清空成功表示注销成功
         MalaUserDefaults.isLogouted = defaults.synchronize()
@@ -256,7 +256,7 @@ class MalaUserDefaults {
             
             cleanAllUserDefaults()
             
-            if let appDelegate = UIApplication.sharedApplication().delegate as? AppDelegate {
+            if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
                 if let rootViewController = appDelegate.window?.rootViewController {
                     MalaAlert.alert(title: "麻辣老师", message: "用户验证错误，请重新登录！", dismissTitle: "重新登录", inViewController: rootViewController, withDismissAction: {
                         appDelegate.showLoginView()

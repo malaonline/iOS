@@ -34,7 +34,7 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
     /// 顶部背景图
     private lazy var headerBackground: UIImageView = {
         let image = UIImageView(image: UIImage(named: "profile_headerBackground"))
-        image.contentMode = .ScaleAspectFill
+        image.contentMode = .scaleAspectFill
         return image
     }()
     /// [退出登录] 按钮
@@ -43,13 +43,13 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
         button.layer.cornerRadius = 5
         button.layer.masksToBounds = true
         
-        button.setTitle("退  出", forState: .Normal)
-        button.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-        button.setBackgroundImage(UIImage.withColor(MalaColor_82B4D9_0), forState: .Normal)
-        button.setBackgroundImage(UIImage.withColor(UIColor(rgbHexValue: 0x82B4D9, alpha: 0.6)), forState: .Highlighted)
-        button.titleLabel?.font = UIFont.systemFontOfSize(16)
+        button.setTitle("退  出", for: UIControlState())
+        button.setTitleColor(UIColor.white, for: UIControlState())
+        button.setBackgroundImage(UIImage.withColor(MalaColor_82B4D9_0), for: UIControlState())
+        button.setBackgroundImage(UIImage.withColor(UIColor(rgbHexValue: 0x82B4D9, alpha: 0.6)), for: .highlighted)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
         
-        button.addTarget(self, action: #selector(ProfileViewController.logoutButtonDidTap), forControlEvents: .TouchUpInside)
+        button.addTarget(self, action: #selector(ProfileViewController.logoutButtonDidTap), for: .touchUpInside)
         return button
     }()
     /// 照片选择器
@@ -76,7 +76,7 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
         super.didReceiveMemoryWarning()
     }
 
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         // 每次显示[个人]页面时，刷新个人信息
@@ -86,7 +86,7 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
         self.navigationController?.showTabBadgePoint = MalaUnpaidOrderCount > 0
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         sendScreenTrack(SAProfileViewName)
     }
@@ -96,8 +96,8 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
     private func configure() {
                 
         // register
-        tableView.registerClass(ProfileViewCell.self, forCellReuseIdentifier: ProfileViewTableViewCellReuseID)
-        tableView.registerClass(ProfileItemViewCell.self, forCellReuseIdentifier: ProfileViewTableViewItemCellReuseID)
+        tableView.register(ProfileViewCell.self, forCellReuseIdentifier: ProfileViewTableViewCellReuseID)
+        tableView.register(ProfileItemViewCell.self, forCellReuseIdentifier: ProfileViewTableViewItemCellReuseID)
     }
     
     private func setupUserInterface() {
@@ -105,10 +105,10 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
         tableView.tableHeaderView = profileHeaderView
         tableView.tableFooterView = profileFooterView
         tableView.backgroundColor = MalaColor_F2F2F2_0
-        tableView.separatorStyle = .None
+        tableView.separatorStyle = .none
         
         // SubViews
-        tableView.insertSubview(headerBackground, atIndex: 0)
+        tableView.insertSubview(headerBackground, at: 0)
         profileFooterView.addSubview(logoutButton)
         
         
@@ -128,12 +128,12 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
     }
     
     private func setupNotification() {
-        NSNotificationCenter.defaultCenter().addObserverForName(
-            MalaNotification_PushProfileItemController,
+        NotificationCenter.default.addObserver(
+            forName: NSNotification.Name(rawValue: MalaNotification_PushProfileItemController),
             object: nil,
             queue: nil
         ) { [weak self] (notification) -> Void in
-            if let model = notification.object as? ProfileElementModel, type = model.controller as? UIViewController.Type {
+            if let model = notification.object as? ProfileElementModel, let type = model.controller as? UIViewController.Type {
                 
                 // 若对应项被冻结，则点击无效
                 if model.disabled, let message = model.disabledMessage {
@@ -152,7 +152,7 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
     ///  更新本地AvatarView的图片
     ///
     ///  - parameter completion: 完成闭包
-    private func updateAvatar(completion:() -> Void) {
+    private func updateAvatar(_ completion:() -> Void) {
         if let avatarURLString = MalaUserDefaults.avatar.value {
             
             println("avatarURLString: \(avatarURLString)")
@@ -169,30 +169,30 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
     
     
     // MARK: - DataSource
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return model.count
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return section == 0 ? 1 : model[section].count
     }
     
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        switch indexPath.section {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        switch (indexPath as NSIndexPath).section {
         case 0:
             
-            let cell = tableView.dequeueReusableCellWithIdentifier(ProfileViewTableViewItemCellReuseID, forIndexPath: indexPath) as! ProfileItemViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: ProfileViewTableViewItemCellReuseID, for: indexPath) as! ProfileItemViewCell
             cell.model = model[0]
             return cell
             
         default:
             
-            let cell = tableView.dequeueReusableCellWithIdentifier(ProfileViewTableViewCellReuseID, forIndexPath: indexPath) as! ProfileViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: ProfileViewTableViewCellReuseID, for: indexPath) as! ProfileViewCell
             
-            cell.model =  model[indexPath.section][indexPath.row]
+            cell.model =  model[(indexPath as NSIndexPath).section][(indexPath as NSIndexPath).row]
             // Section的最后一个Cell隐藏分割线
-            if (indexPath.row+1) == model[indexPath.section].count {
+            if ((indexPath as NSIndexPath).row+1) == model[(indexPath as NSIndexPath).section].count {
                 cell.hideSeparator()
             }
             return cell
@@ -201,26 +201,26 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
     
     
     // MARK: - Delegate
-    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 8))
         view.backgroundColor = MalaColor_F2F2F2_0
         return view
     }
     
-    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return section == 0 ? 0 : 12
     }
     
-    override func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 0.01
     }
     
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return indexPath.section == 0 ? 114 : 44
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return (indexPath as NSIndexPath).section == 0 ? 114 : 44
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let cell = tableView.cellForRowAtIndexPath(indexPath) as! ProfileViewCell
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath) as! ProfileViewCell
         let model = cell.model
         
         // 若对应项被冻结，则点击无效
@@ -237,12 +237,12 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
         }
     }
 
-    override func scrollViewDidScroll(scrollView: UIScrollView) {
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let displacement = scrollView.contentOffset.y
         
         // 向下滑动页面时，使顶部图片跟随放大
         if displacement < 0 && headerBackground.superview != nil{
-            headerBackground.snp_updateConstraints(closure: { (make) -> Void in
+            headerBackground.snp_updateConstraints({ (make) -> Void in
                 make.top.equalTo(0).offset(displacement)
                 // 1.1为放大速率
                 make.height.equalTo(MalaLayout_ProfileHeaderViewHeight + abs(displacement)*1.1)
@@ -251,7 +251,7 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
     }
     
     ///  HeaderView修改姓名
-    func nameEditButtonDidTap(sender: UIButton) {
+    func nameEditButtonDidTap(_ sender: UIButton) {
         let window = InfoModifyViewWindow(contentView: UIView())
         window.show()
     }
@@ -259,28 +259,28 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
     ///  HeaderView头像点击事件
     ///
     ///  - parameter sender: UIImageView对象
-    func avatarViewDidTap(sender: UIImageView) {
+    func avatarViewDidTap(_ sender: UIImageView) {
         
         // 准备ActionSheet选择[拍照]或[选择照片]
-        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
         // 设置Action - 选择照片
-        let choosePhotoAction: UIAlertAction = UIAlertAction(title: "选择照片", style: .Default) { (action) -> Void in
+        let choosePhotoAction: UIAlertAction = UIAlertAction(title: "选择照片", style: .default) { (action) -> Void in
         
             let openCameraRoll: ProposerAction = { [weak self] in
                 
-                guard UIImagePickerController.isSourceTypeAvailable(.PhotoLibrary) else {
+                guard UIImagePickerController.isSourceTypeAvailable(.photoLibrary) else {
                     self?.alertCanNotAccessCameraRoll()
                     return
                 }
                 
                 if let strongSelf = self {
-                    strongSelf.imagePicker.sourceType = .PhotoLibrary
-                    strongSelf.presentViewController(strongSelf.imagePicker, animated: true, completion: nil)
+                    strongSelf.imagePicker.sourceType = .photoLibrary
+                    strongSelf.present(strongSelf.imagePicker, animated: true, completion: nil)
                 }
             }
             
-            proposeToAccess(.Photos, agreed: openCameraRoll, rejected: {
+            proposeToAccess(.photos, agreed: openCameraRoll, rejected: {
                 self.alertCanNotAccessCameraRoll()
             })
             
@@ -288,22 +288,22 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
         alertController.addAction(choosePhotoAction)
         
         // 设置Action - 拍照
-        let takePhotoAction: UIAlertAction = UIAlertAction(title: "拍照", style: .Default) { (action) -> Void in
+        let takePhotoAction: UIAlertAction = UIAlertAction(title: "拍照", style: .default) { (action) -> Void in
             
             let openCamera: ProposerAction = { [weak self] in
                 
-                guard UIImagePickerController.isSourceTypeAvailable(.Camera) else {
+                guard UIImagePickerController.isSourceTypeAvailable(.camera) else {
                     self?.alertCanNotOpenCamera()
                     return
                 }
                 
                 if let strongSelf = self {
-                    strongSelf.imagePicker.sourceType = .Camera
-                    strongSelf.presentViewController(strongSelf.imagePicker, animated: true, completion: nil)
+                    strongSelf.imagePicker.sourceType = .camera
+                    strongSelf.present(strongSelf.imagePicker, animated: true, completion: nil)
                 }
             }
             
-            proposeToAccess(.Camera, agreed: openCamera, rejected: {
+            proposeToAccess(.camera, agreed: openCamera, rejected: {
                 self.alertCanNotOpenCamera()
             })
             
@@ -311,19 +311,19 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
         alertController.addAction(takePhotoAction)
         
         // 设置Action - 取消
-        let cancelAction: UIAlertAction = UIAlertAction(title: "取消", style: .Cancel) { action -> Void in
-            self.dismissViewControllerAnimated(true, completion: nil)
+        let cancelAction: UIAlertAction = UIAlertAction(title: "取消", style: .cancel) { action -> Void in
+            self.dismiss(animated: true, completion: nil)
         }
         alertController.addAction(cancelAction)
         
         // 弹出ActionSheet
-        self.presentViewController(alertController, animated: true, completion: nil)
+        self.present(alertController, animated: true, completion: nil)
     }
     
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
         
         defer {
-            dismissViewControllerAnimated(true, completion: nil)
+            dismiss(animated: true, completion: nil)
         }
         
         // 开启头像刷新指示器
@@ -339,14 +339,14 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
                 
                 defaultFailureHandler(reason, errorMessage: errorMessage)
                 
-                dispatch_async(dispatch_get_main_queue()) { [weak self] in
+                DispatchQueue.main.async { [weak self] in
                     self?.profileHeaderView.refreshAvatar = false
                 }
                 
                 }, completion: { newAvatarURLString in
-                    dispatch_async(dispatch_get_main_queue()) {
+                    DispatchQueue.main.async {
                         getAndSaveProfileInfo()
-                        dispatch_async(dispatch_get_main_queue()) { [weak self] in
+                        DispatchQueue.main.async { [weak self] in
                             self?.profileHeaderView.avatar = UIImage(data: imageData) ?? UIImage()
                             self?.profileHeaderView.refreshAvatar = false
                         }
@@ -372,7 +372,7 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
                 cleanCaches()
                 MalaUserDefaults.cleanAllUserDefaults()
                 
-                if let appDelegate = UIApplication.sharedApplication().delegate as? AppDelegate {
+                if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
                     appDelegate.switchToStart()
                 }
                 
@@ -381,7 +381,7 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
     }
     
     deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: MalaNotification_PushProfileItemController, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: MalaNotification_PushProfileItemController), object: nil)
     }
 }
 
@@ -398,7 +398,7 @@ class ProfileItemViewCell: UITableViewCell {
     
     // MARK: - Components
     private lazy var collectionView: ProfileItemCollectionView = {
-        let collectionView = ProfileItemCollectionView(frame: CGRect(x: 0, y: 0, width: MalaScreenWidth, height: 114), collectionViewLayout: CommonFlowLayout(type: .ProfileItem))
+        let collectionView = ProfileItemCollectionView(frame: CGRect(x: 0, y: 0, width: MalaScreenWidth, height: 114), collectionViewLayout: CommonFlowLayout(type: .profileItem))
         return collectionView
     }()
     

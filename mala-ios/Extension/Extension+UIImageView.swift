@@ -16,19 +16,19 @@ extension UIImageView {
     ///  - returns: UIImageView
     class func placeHolder() -> UIImageView {
         let placeHolder = UIImageView()
-        placeHolder.contentMode = .ScaleAspectFill
+        placeHolder.contentMode = .scaleAspectFill
         placeHolder.clipsToBounds = true
         return placeHolder
     }
     
     
-    func ma_setImage(URL: NSURL, placeholderImage: Image? = nil, progressBlock: DownloadProgressBlock? = nil, completionHandler: CompletionHandler? = nil) {
+    func ma_setImage(_ URL: Foundation.URL, placeholderImage: Image? = nil, progressBlock: DownloadProgressBlock? = nil, completionHandler: CompletionHandler? = nil) {
         
         // 使用图片绝对路径作为缓存键值
-        guard let splitArray = URL.absoluteString?.componentsSeparatedByString("?") else {
+        guard let splitArray = URL.absoluteString.components(separatedBy: "?") else {
             return
         }
-        guard let pureURL = splitArray.first where !pureURL.isEmpty else {
+        guard let pureURL = splitArray.first, !pureURL.isEmpty else {
             return
         }
         

@@ -41,10 +41,10 @@ class LearningReportTitlePageCell: MalaBaseCardCell {
         let label = UILabel(
             text: "",
             fontSize: 10,
-            textColor: UIColor.whiteColor()
+            textColor: UIColor.white
         )
         label.backgroundColor = MalaColor_FDAF6B_0
-        label.textAlignment = .Center
+        label.textAlignment = .center
         return label
     }()
     /// 文件夹图片

@@ -75,7 +75,7 @@ let MalaErrorDetail_InvalidPage = "Invalid page"
 
 
 // MARK: - Appearance TintColor
-let MalaColor_WhiteColor = UIColor.whiteColor()
+let MalaColor_WhiteColor = UIColor.white
 let MalaColor_6C6C6C_0 = UIColor(rgbHexValue: 0x6C6C6C, alpha: 1.0)
 let MalaColor_EDEDED_0 = UIColor(rgbHexValue: 0xEDEDED, alpha: 1.0)
 let MalaColor_DADADA_0 = UIColor(rgbHexValue: 0xDADADA, alpha: 1.0)
@@ -218,14 +218,14 @@ let MalaLayout_CouponRulesPopupWindowHeight: CGFloat = 500
 
 // MARK: - Device
 let MalaScreenNaviHeight: CGFloat = 64.0
-let MalaScreenWidth = UIScreen.mainScreen().bounds.size.width
-let MalaScreenHeight = UIScreen.mainScreen().bounds.size.height
-let MalaScreenOnePixel = 1/UIScreen.mainScreen().scale
-let MalaScreenScale = UIScreen.mainScreen().scale
+let MalaScreenWidth = UIScreen.main.bounds.size.width
+let MalaScreenHeight = UIScreen.main.bounds.size.height
+let MalaScreenOnePixel = 1/UIScreen.main.scale
+let MalaScreenScale = UIScreen.main.scale
 
 
 // MARK: - Array
 var MalaOtherService = [
-    OtherServiceModel(title: "奖学金", type: .Coupon, price: 0, priceHandleType: .None, viewController: CouponViewController.self),
-    OtherServiceModel(title: MalaCommonString_EvaluationFiling, type: .EvaluationFiling, price: 500, priceHandleType: .Reduce, viewController: EvaluationFilingServiceController.self)
+    OtherServiceModel(title: "奖学金", type: .coupon, price: 0, priceHandleType: .none, viewController: CouponViewController.self),
+    OtherServiceModel(title: MalaCommonString_EvaluationFiling, type: .evaluationFiling, price: 500, priceHandleType: .reduce, viewController: EvaluationFilingServiceController.self)
 ]

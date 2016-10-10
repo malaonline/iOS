@@ -27,15 +27,15 @@ extension UILabel {
     class func subTitleLabel() -> UILabel {
         let label = UILabel()
         label.textColor = MalaColor_939393_0
-        label.font = UIFont.systemFontOfSize(14)
-        label.textAlignment = .Center
+        label.font = UIFont.systemFont(ofSize: 14)
+        label.textAlignment = .center
         return label
     }
     
     convenience init(text: String = "", fontSize: CGFloat, textColor: UIColor) {
         self.init()
         self.text = text
-        self.font = UIFont.systemFontOfSize(fontSize)
+        self.font = UIFont.systemFont(ofSize: fontSize)
         self.textColor = textColor
     }
 }

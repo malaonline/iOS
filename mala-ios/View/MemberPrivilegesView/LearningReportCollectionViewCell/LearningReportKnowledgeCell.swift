@@ -39,7 +39,7 @@ class LearningReportKnowledgeCell: MalaBaseReportCardCell {
             textColor: MalaColor_5E5E5E_0
         )
         label.backgroundColor = MalaColor_E8F2F8_0
-        label.textAlignment = .Center
+        label.textAlignment = .center
         label.layer.cornerRadius = 11
         label.layer.masksToBounds = true
         return label

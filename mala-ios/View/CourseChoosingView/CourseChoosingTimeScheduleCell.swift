@@ -12,7 +12,7 @@ class CourseChoosingTimeScheduleCell: MalaBaseCell {
 
     // MARK: - Property
     /// 上课时间列表
-    var timeSchedules: [[NSTimeInterval]]? {
+    var timeSchedules: [[TimeInterval]]? {
         didSet {            
             if (timeSchedules ?? []) !== (oldValue ?? []) && timeSchedules != nil && isOpen {
                 parseTimeSchedules()
@@ -28,17 +28,17 @@ class CourseChoosingTimeScheduleCell: MalaBaseCell {
             }
             
             if isOpen {
-                timeLineView.hidden = false
+                timeLineView.isHidden = false
                 timeLineView.snp_updateConstraints { (make) -> Void in
                     make.height.equalTo(currentHeight)
                 }
             }else {
-                timeLineView.hidden = true
+                timeLineView.isHidden = true
                 timeLineView.snp_updateConstraints { (make) -> Void in
                     make.height.equalTo(0)
                 }
             }
-            detailButton.selected = isOpen
+            detailButton.isSelected = isOpen
         }
     }
     /// 当前高度
@@ -51,9 +51,9 @@ class CourseChoosingTimeScheduleCell: MalaBaseCell {
     /// 展开按钮
     private lazy var detailButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(named: "dropArrow"), forState: .Normal)
-        button.setImage(UIImage(named: "upArrow"), forState: .Selected)
-        button.addTarget(self, action: #selector(CourseChoosingTimeScheduleCell.detailButtonDidTap), forControlEvents: .TouchUpInside)
+        button.setImage(UIImage(named: "dropArrow"), for: UIControlState())
+        button.setImage(UIImage(named: "upArrow"), for: .selected)
+        button.addTarget(self, action: #selector(CourseChoosingTimeScheduleCell.detailButtonDidTap), for: .touchUpInside)
         return button
     }()
     
@@ -111,6 +111,6 @@ class CourseChoosingTimeScheduleCell: MalaBaseCell {
     
     // MARK: - Override
     @objc func detailButtonDidTap() {
-        NSNotificationCenter.defaultCenter().postNotificationName(MalaNotification_OpenTimeScheduleCell, object: !isOpen)
+        NotificationCenter.default.post(name: Notification.Name(rawValue: MalaNotification_OpenTimeScheduleCell), object: !isOpen)
     }
 }

@@ -41,7 +41,7 @@ class LearningReportViewController: BaseViewController, UICollectionViewDelegate
     /// 轮播视图
     private lazy var collectionView: UICollectionView = {
         let frame = CGRect(x: 0, y: 0, width: MalaScreenWidth, height: MalaScreenHeight-MalaScreenNaviHeight)
-        let collectionView = UICollectionView(frame: CGRectZero, collectionViewLayout: LearningReportFlowLayout(frame: frame))
+        let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: LearningReportFlowLayout(frame: frame))
         return collectionView
     }()
     
@@ -62,20 +62,20 @@ class LearningReportViewController: BaseViewController, UICollectionViewDelegate
     // MARK: - Private method
     private func configure() {
         title = sample ? "学习报告样本" : "学习报告"
-        collectionView.pagingEnabled = true
+        collectionView.isPagingEnabled = true
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.showsVerticalScrollIndicator = false
         collectionView.delegate = self
         collectionView.dataSource = self
-        collectionView.registerClass(LearningReportTitlePageCell.self, forCellWithReuseIdentifier: LearningReportCellReuseId[0]!)
-        collectionView.registerClass(LearningReportHomeworkDataCell.self, forCellWithReuseIdentifier: LearningReportCellReuseId[1]!)
-        collectionView.registerClass(LearningReportTopicDataCell.self, forCellWithReuseIdentifier: LearningReportCellReuseId[2]!)
-        collectionView.registerClass(LearningReportKnowledgeCell.self, forCellWithReuseIdentifier: LearningReportCellReuseId[3]!)
-        collectionView.registerClass(LearningReportAbilityStructureCell.self, forCellWithReuseIdentifier: LearningReportCellReuseId[4]!)
-        collectionView.registerClass(LearningReportAbilityImproveCell.self, forCellWithReuseIdentifier: LearningReportCellReuseId[5]!)
+        collectionView.register(LearningReportTitlePageCell.self, forCellWithReuseIdentifier: LearningReportCellReuseId[0]!)
+        collectionView.register(LearningReportHomeworkDataCell.self, forCellWithReuseIdentifier: LearningReportCellReuseId[1]!)
+        collectionView.register(LearningReportTopicDataCell.self, forCellWithReuseIdentifier: LearningReportCellReuseId[2]!)
+        collectionView.register(LearningReportKnowledgeCell.self, forCellWithReuseIdentifier: LearningReportCellReuseId[3]!)
+        collectionView.register(LearningReportAbilityStructureCell.self, forCellWithReuseIdentifier: LearningReportCellReuseId[4]!)
+        collectionView.register(LearningReportAbilityImproveCell.self, forCellWithReuseIdentifier: LearningReportCellReuseId[5]!)
         
         pageControl.numberOfPages = LearningReportCellReuseId.count
-        pageControl.addTarget(self, action: #selector(ThemeIntroductionView.pageControlDidChangeCurrentPage(_:)), forControlEvents: .ValueChanged)
+        pageControl.addTarget(self, action: #selector(ThemeIntroductionView.pageControlDidChangeCurrentPage(_:)), for: .valueChanged)
     }
     
     private func setupUserInterface() {
@@ -102,15 +102,15 @@ class LearningReportViewController: BaseViewController, UICollectionViewDelegate
     
     
     // MARK: - DataSource
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return LearningReportCellReuseId.count
     }
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let reuseCell = collectionView.dequeueReusableCellWithReuseIdentifier(LearningReportCellReuseId[indexPath.row]!, forIndexPath: indexPath) as! MalaBaseCardCell
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let reuseCell = collectionView.dequeueReusableCell(withReuseIdentifier: LearningReportCellReuseId[(indexPath as NSIndexPath).row]!, for: indexPath) as! MalaBaseCardCell
         reuseCell.asSample = sample
         
-        switch indexPath.row {
+        switch (indexPath as NSIndexPath).row {
         case 0:
             let cell = reuseCell as! LearningReportTitlePageCell
             return cell
@@ -142,12 +142,12 @@ class LearningReportViewController: BaseViewController, UICollectionViewDelegate
     
     
     // MARK: - Event Response
-    func pageControlDidChangeCurrentPage(pageControl: PageControl) {
+    func pageControlDidChangeCurrentPage(_ pageControl: PageControl) {
         collectionView.setContentOffset(CGPoint(x: collectionView.bounds.width * CGFloat(pageControl.currentPage), y: 0), animated: true)
     }
     
-    func scrollViewDidScroll(scrollView: UIScrollView) {
-        if scrollView.dragging || scrollView.decelerating {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.isDragging || scrollView.isDecelerating {
             let page = scrollView.contentOffset.x / scrollView.bounds.width
             pageControl.setCurrentPage(page)
         }
@@ -158,7 +158,7 @@ class LearningReportViewController: BaseViewController, UICollectionViewDelegate
 
 class LearningReportFlowLayout: UICollectionViewFlowLayout {
     
-    private var frame = CGRectZero
+    private var frame = CGRect.zero
     
     
     // MARK: - Instance Method
@@ -175,7 +175,7 @@ class LearningReportFlowLayout: UICollectionViewFlowLayout {
     
     // MARK: - Private Method
     private func configure() {
-        scrollDirection = .Horizontal
+        scrollDirection = .horizontal
         itemSize = frame.size
         minimumInteritemSpacing = 0
         minimumLineSpacing = 0

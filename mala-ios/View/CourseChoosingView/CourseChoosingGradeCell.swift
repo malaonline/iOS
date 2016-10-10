@@ -17,7 +17,7 @@ class CourseChoosingGradeCell: MalaBaseCell {
             var collectionRow = CGFloat(Int(prices?.count ?? 0)/2)
             collectionRow = (prices?.count ?? 0)%2 == 0 ? collectionRow : collectionRow + 1
             let collectionHeight = (MalaLayout_GradeSelectionWidth*0.20) * collectionRow + (14*(collectionRow-1))
-            collectionView.snp_updateConstraints(closure: { (make) -> Void in
+            collectionView.snp_updateConstraints({ (make) -> Void in
                 make.height.equalTo(collectionHeight)
             })
         }
@@ -27,8 +27,8 @@ class CourseChoosingGradeCell: MalaBaseCell {
     // MARK: - Compontents
     private lazy var collectionView: GradeSelectCollectionView = {
         let collectionView = GradeSelectCollectionView(
-            frame: CGRectZero,
-            collectionViewLayout: CommonFlowLayout(type: .GradeSelection)
+            frame: CGRect.zero,
+            collectionViewLayout: CommonFlowLayout(type: .gradeSelection)
         )
         return collectionView
     }()
@@ -57,7 +57,7 @@ class CourseChoosingGradeCell: MalaBaseCell {
         content.snp_updateConstraints { (make) -> Void in
             make.top.equalTo(headerView.snp_bottom).offset(14)
         }
-        collectionView.snp_makeConstraints(closure: { (make) -> Void in
+        collectionView.snp_makeConstraints({ (make) -> Void in
             make.top.equalTo(content.snp_top)
             make.left.equalTo(content.snp_left)
             make.right.equalTo(content.snp_right)
@@ -79,7 +79,7 @@ class GradeSelectCollectionView: UICollectionView, UICollectionViewDelegate, UIC
         }
     }
     /// 当前选择项IndexPath标记
-    private var currentSelectedIndexPath: NSIndexPath = NSIndexPath(forItem: 0, inSection: 0)
+    private var currentSelectedIndexPath: IndexPath = IndexPath(item: 0, section: 0)
     
     
     // MARK: - Constructed
@@ -97,35 +97,35 @@ class GradeSelectCollectionView: UICollectionView, UICollectionViewDelegate, UIC
     private func configure() {
         dataSource = self
         delegate = self
-        backgroundColor = UIColor.whiteColor()
-        scrollEnabled = false
+        backgroundColor = UIColor.white
+        isScrollEnabled = false
         
-        registerClass(GradeSelectionCell.self, forCellWithReuseIdentifier: GradeSelectionCellReuseId)
+        register(GradeSelectionCell.self, forCellWithReuseIdentifier: GradeSelectionCellReuseId)
     }
     
     
     // MARK: - Delegate
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        let cell = collectionView.cellForItemAtIndexPath(indexPath) as! GradeSelectionCell
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath) as! GradeSelectionCell
         
         // 选中当前选择Cell，并取消其他Cell选择
-        cell.selected = true
-        (collectionView.cellForItemAtIndexPath(currentSelectedIndexPath)?.selected = false)
+        cell.isSelected = true
+        (collectionView.cellForItem(at: currentSelectedIndexPath)?.isSelected = false)
         currentSelectedIndexPath = indexPath
     }
     
     
     // MARK: - DataSource
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return prices?.count ?? 0
     }
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(GradeSelectionCellReuseId, forIndexPath: indexPath) as! GradeSelectionCell
-        cell.grade = prices?[indexPath.row]
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GradeSelectionCellReuseId, for: indexPath) as! GradeSelectionCell
+        cell.grade = prices?[(indexPath as NSIndexPath).row]
         // 选中当前选择项
         if indexPath == currentSelectedIndexPath {
-            cell.selected = true
+            cell.isSelected = true
             MalaOrderOverView.gradeName = cell.grade?.name
         }
         return cell
@@ -140,14 +140,14 @@ class GradeSelectionCell: UICollectionViewCell {
     var grade: GradeModel? {
         didSet {
             let title = String(format: "%@  %@/小时", (grade?.name) ?? "", (grade?.prices?[0].price.money) ?? "")
-            self.button.setTitle(title, forState: .Normal)
+            self.button.setTitle(title, for: .normal)
         }
     }
-    override var selected: Bool {
+    override var isSelected: Bool {
         didSet {
-            self.button.selected = selected
-            if selected {
-                NSNotificationCenter.defaultCenter().postNotificationName(MalaNotification_ChoosingGrade, object: self.grade!)
+            self.button.isSelected = isSelected
+            if isSelected {
+                NotificationCenter.default.post(name: Notification.Name(rawValue: MalaNotification_ChoosingGrade), object: self.grade!)
             }
         }
     }
@@ -161,7 +161,7 @@ class GradeSelectionCell: UICollectionViewCell {
             action: nil,
             borderWidth: 1
         )
-        button.userInteractionEnabled = false
+        button.isUserInteractionEnabled = false
         return button
     }()
     
@@ -181,7 +181,7 @@ class GradeSelectionCell: UICollectionViewCell {
         self.contentView.addSubview(button)
         
         // Autolayout
-        button.snp_makeConstraints(closure: { (make) -> Void in
+        button.snp_makeConstraints({ (make) -> Void in
             make.top.equalTo(self.contentView.snp_top)
             make.left.equalTo(self.contentView.snp_left)
             make.right.equalTo(self.contentView.snp_right)

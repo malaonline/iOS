@@ -20,12 +20,12 @@ class ProfileViewCell: UITableViewCell {
             // 新消息样式
             if model.title == "我的订单" {
                 
-                self.infoLabel.hidden = !(MalaUnpaidOrderCount > 0)
+                self.infoLabel.isHidden = !(MalaUnpaidOrderCount > 0)
                 
                 if MalaUnpaidOrderCount > 0 {
                     self.titleLabel.showBadge()
                     self.titleLabel.badgeBgColor = MalaColor_E26254_0
-                    self.titleLabel.badge.snp_makeConstraints(closure: { (make) in
+                    self.titleLabel.badge.snp_makeConstraints({ (make) in
                         make.top.equalTo(titleLabel.snp_top).offset(-1)
                         make.right.equalTo(titleLabel.snp_right).offset(7)
                         make.height.equalTo(7)
@@ -43,14 +43,14 @@ class ProfileViewCell: UITableViewCell {
     /// 标题label
     private lazy var titleLabel: UILabel = {
         let titleLabel = UILabel()
-        titleLabel.font = UIFont.systemFontOfSize(14)
+        titleLabel.font = UIFont.systemFont(ofSize: 14)
         titleLabel.textColor = MalaColor_636363_0
         return titleLabel
     }()
     /// 信息label
     private lazy var infoLabel: UILabel = {
         let infoLabel = UILabel()
-        infoLabel.font = UIFont.systemFontOfSize(13)
+        infoLabel.font = UIFont.systemFont(ofSize: 13)
         infoLabel.textColor = MalaColor_D4D4D4_0
         return infoLabel
     }()
@@ -63,7 +63,7 @@ class ProfileViewCell: UITableViewCell {
 
     // MARK: - Constructed
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-        super.init(style: .Value1, reuseIdentifier: reuseIdentifier)
+        super.init(style: .value1, reuseIdentifier: reuseIdentifier)
         
         setupUserInterface()
     }
@@ -76,8 +76,8 @@ class ProfileViewCell: UITableViewCell {
     // MARK: - Private Method
     private func setupUserInterface() {
         // Style
-        self.accessoryType = .DisclosureIndicator
-        self.selectionStyle = .None
+        self.accessoryType = .disclosureIndicator
+        self.selectionStyle = .none
         self.separatorInset = UIEdgeInsets(top: 0, left: 12, bottom: 0, right: 12)
         
         // SubViews
@@ -105,7 +105,7 @@ class ProfileViewCell: UITableViewCell {
     }
     
     func hideSeparator() {
-        self.separatorLine.hidden = true
+        self.separatorLine.isHidden = true
     }
     
     

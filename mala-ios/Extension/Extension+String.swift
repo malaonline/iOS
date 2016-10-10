@@ -10,30 +10,30 @@ import Foundation
 
 extension String {
     
-    ///  返回文字对应星期在本周的NSDate对象
+    ///  返回文字对应星期在本周的Date对象
     ///  (文字需要符合指定格式,like"周一")
     ///  本周星期范围为周一到周日
     ///
-    ///  - returns: NSDate对象
-    func dateInThisWeek() -> NSDate {
+    ///  - returns: Date对象
+    func dateInThisWeek() -> Date {
         
-        let today = NSDate()
-        let todayWeekInt = weekdayInt(today)
-        let targetWeekInt = (MalaConfig.malaWeekdays().indexOf(self) == 0 ? 7 : MalaConfig.malaWeekdays().indexOf(self))
+        let today = Date()
+        let todayWeekInt = weekdayInt(date: today)
+        let targetWeekInt = (MalaConfig.malaWeekdays().index(of: self) == 0 ? 7 : MalaConfig.malaWeekdays().index(of: self))
         
         // 若指定日期为今天
         if todayWeekInt == targetWeekInt {
             return today
         }
         // 若为今天之前
-        if todayWeekInt > targetWeekInt {
+        if todayWeekInt > targetWeekInt! {
             let days = todayWeekInt - targetWeekInt!
-            return today.dateBySubtractingDays(days)
+            return today.subtractingDays(days)
         }
         // 若为今天之后
-        if todayWeekInt < targetWeekInt {
+        if todayWeekInt < targetWeekInt! {
             let days = targetWeekInt! - todayWeekInt
-            return today.dateByAddingDays(days)
+            return today.addingDays(days)
         }
         return today
     }
@@ -43,24 +43,24 @@ extension String {
     ///  - parameter timeStamp: 时间戳
     ///
     ///  - returns: 字符串
-    init(timeStamp: NSTimeInterval) {
-        let date = NSDate(timeIntervalSince1970: timeStamp)
-        let dateFormatter = NSDateFormatter()
+    init(timeStamp: TimeInterval) {
+        let date = Date(timeIntervalSince1970: timeStamp)
+        let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy.MM.dd"
-        self = dateFormatter.stringFromDate(date)
+        self = dateFormatter.string(from: date)
     }
     
-    func subStringToIndex(index: Int) -> String {
+    func subStringToIndex(_ index: Int) -> String {
         if self.characters.count != 0 {
-            return self.substringToIndex(self.startIndex.advancedBy(index))
+            return self.substring(to: self.characters.index(self.startIndex, offsetBy: index))
         }else {
             return ""
         }
     }
     
-    func subStringFromIndex(index: Int) -> String {
+    func subStringFromIndex(_ index: Int) -> String {
         if self.characters.count != 0 {
-            return self.substringFromIndex(self.startIndex.advancedBy(index))
+            return self.substring(from: self.characters.index(self.startIndex, offsetBy: index))
         }else {
             return ""
         }
@@ -71,10 +71,10 @@ extension String {
     ///  - parameter format: 字符串格式化规则
     ///
     ///  - returns: 日期数据
-    func dateWithFormatter(format: String = "yyyy/MM/dd") -> NSDate? {
-        let formatter = NSDateFormatter()
+    func dateWithFormatter(_ format: String = "yyyy/MM/dd") -> Date? {
+        let formatter = DateFormatter()
         formatter.dateFormat = format
-        return formatter.dateFromString(self)
+        return formatter.date(from: self)
     }
     
     

@@ -54,13 +54,13 @@ class LearningReportAbilityImproveCell: MalaBaseReportCardCell {
         chartView.drawValueAboveBarEnabled = true
         
         let xAxis = chartView.xAxis
-        xAxis.labelFont = UIFont.systemFontOfSize(8)
+        xAxis.labelFont = UIFont.systemFont(ofSize: 8)
         xAxis.labelTextColor = MalaColor_5E5E5E_0
         xAxis.drawGridLinesEnabled = false
         xAxis.labelPosition = .Bottom
         
         let leftAxis = chartView.leftAxis
-        leftAxis.labelFont = UIFont.systemFontOfSize(10)
+        leftAxis.labelFont = UIFont.systemFont(ofSize: 10)
         leftAxis.labelTextColor = MalaColor_5E5E5E_0
         leftAxis.gridLineDashLengths = [2,2]
         leftAxis.gridColor = MalaColor_E6E9EC_0
@@ -69,7 +69,7 @@ class LearningReportAbilityImproveCell: MalaBaseReportCardCell {
         leftAxis.axisMaxValue = 100
         leftAxis.labelCount = 5
         
-        let pFormatter = NSNumberFormatter()
+        let pFormatter = NumberFormatter()
         pFormatter.numberStyle = .PercentStyle
         pFormatter.maximumFractionDigits = 1
         pFormatter.multiplier = 1
@@ -194,7 +194,7 @@ class LearningReportAbilityImproveCell: MalaBaseReportCardCell {
 }
 
 // MARK: - LegendView
-public class CombinedLegendView: UIView {
+open class CombinedLegendView: UIView {
     
     // MARK: - Property
     private var currentButton: UIButton?
@@ -210,16 +210,16 @@ public class CombinedLegendView: UIView {
     }
     
     
-    public func addLegend(image imageName: String, title: String) -> UIButton {
+    open func addLegend(image imageName: String, title: String) -> UIButton {
         let button = UIButton()
         button.adjustsImageWhenHighlighted = false
         
-        button.setImage(UIImage(named: imageName), forState: .Normal)
+        button.setImage(UIImage(named: imageName), for: UIControlState())
         button.imageEdgeInsets = UIEdgeInsets(top: 0, left: -5, bottom: 0, right: 5)
         
-        button.setTitle(title, forState: .Normal)
-        button.titleLabel?.font = UIFont.systemFontOfSize(10)
-        button.setTitleColor(MalaColor_5E5E5E_0, forState: .Normal)
+        button.setTitle(title, for: UIControlState())
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 10)
+        button.setTitleColor(MalaColor_5E5E5E_0, for: UIControlState())
         
         button.sizeToFit()
         self.addSubview(button)

@@ -14,8 +14,8 @@ import UIKit
 ///  - parameter SecIndexPath: Tuple (like (0,0))
 ///
 ///  - returns: Bool
-func ==(FirIndexPath: NSIndexPath, SecIndexPath: (section: Int, row: Int)) -> Bool {
-    return FirIndexPath.section == SecIndexPath.section && FirIndexPath.row == SecIndexPath.row
+func ==(FirIndexPath: IndexPath, SecIndexPath: (section: Int, row: Int)) -> Bool {
+    return (FirIndexPath as NSIndexPath).section == SecIndexPath.section && (FirIndexPath as NSIndexPath).row == SecIndexPath.row
 }
 
 ///  Random Number
@@ -23,9 +23,9 @@ func ==(FirIndexPath: NSIndexPath, SecIndexPath: (section: Int, row: Int)) -> Bo
 ///  - parameter range: range
 ///
 ///  - returns: Int
-func randomInRange(range: Range<Int>) -> Int {
-    let count = UInt32(range.endIndex - range.startIndex)
-    return  Int(arc4random_uniform(count)) + range.startIndex
+func randomInRange(_ range: Range<Int>) -> Int {
+    let count = UInt32(range.upperBound - range.lowerBound)
+    return  Int(arc4random_uniform(count)) + range.lowerBound
 }
 
 func ==<T>(lhs: Listener<T>, rhs: Listener<T>) -> Bool {

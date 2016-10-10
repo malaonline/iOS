@@ -74,7 +74,7 @@ class TeacherDetailsCertificateCell: MalaBaseCell {
     
     // MARK: - Delegate
     ///  标签点击事件
-    func tagDidTap(sender: UITapGestureRecognizer) {
+    func tagDidTap(_ sender: UITapGestureRecognizer) {
         
         /// 图片浏览器
         if let index = sender.view?.tag {
@@ -86,9 +86,9 @@ class TeacherDetailsCertificateCell: MalaBaseCell {
             browser.bounceAnimation = false
             browser.displayDeleteButton = false
             browser.displayBackAndForwardButton = false
-            browser.navigationController?.navigationBarHidden = true
+            browser.navigationController?.isNavigationBarHidden = true
             
-            NSNotificationCenter.defaultCenter().postNotificationName(MalaNotification_PushPhotoBrowser, object: browser)
+            NotificationCenter.default.post(name: Notification.Name(rawValue: MalaNotification_PushPhotoBrowser), object: browser)
         }
     }
 }

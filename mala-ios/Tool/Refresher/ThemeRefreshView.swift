@@ -15,7 +15,7 @@ class ThemeRefreshView: UIView {
     private lazy var imageView: UIImageView = UIImageView(image: UIImage(named: "refreshImage"))
     private lazy var label: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFontOfSize(13)
+        label.font = UIFont.systemFont(ofSize: 13)
         label.textColor = MalaColor_939393_0
         label.text = "下拉可刷新"
         label.sizeToFit()
@@ -80,7 +80,7 @@ class ThemeRefreshView: UIView {
     
     private func setAnimating() {
         if animating {
-            imageView.image = (UIScreen.mainScreen().scale == 3 ? UIImage(named: "refreshImage@3x.gif") : UIImage(named: "refreshImage@2x.gif"))
+            imageView.image = (UIScreen.main.scale == 3 ? UIImage(named: "refreshImage@3x.gif") : UIImage(named: "refreshImage@2x.gif"))
             label.text = "正在加载.."
         }else {
             imageView.image = UIImage(named: "refreshImage")

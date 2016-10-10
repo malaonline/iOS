@@ -41,15 +41,15 @@ class ThemeShareCollectionView: UICollectionView, UICollectionViewDelegate, UICo
     private func configure() {
         delegate = self
         dataSource = self
-        backgroundColor = UIColor.clearColor()
+        backgroundColor = UIColor.clear
         bounces = false
-        scrollEnabled = false
+        isScrollEnabled = false
         
-        registerClass(ThemeShareCollectionViewCell.self, forCellWithReuseIdentifier: ThemeShareCollectionViewCellReuseId)
+        register(ThemeShareCollectionViewCell.self, forCellWithReuseIdentifier: ThemeShareCollectionViewCellReuseId)
     }
     
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        let index = indexPath.section*2+(indexPath.row)
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let index = (indexPath as NSIndexPath).section*2+((indexPath as NSIndexPath).row)
         let model = self.model[index]
         
         ThemeShare.hideShareBoard { 
@@ -61,19 +61,19 @@ class ThemeShareCollectionView: UICollectionView, UICollectionViewDelegate, UICo
         // 创建分享参数
         let shareParames = NSMutableDictionary()
         
-        shareParames.SSDKSetupShareParamsByText(teacherModel?.shareText,
+        shareParames.ssdkSetupShareParams(byText: teacherModel?.shareText,
                                                 images : teacherModel?.avatar,
-                                                url : teacherModel?.shareURL,
+                                                url : teacherModel?.shareURL as URL!,
                                                 title : "我在麻辣老师发现一位好老师！",
-                                                type : SSDKContentType.WebPage)
+                                                type : SSDKContentType.webPage)
         // 进行分享
-        ShareSDK.share(model.sharePlatformType, parameters: shareParames) { (state : SSDKResponseState, userData : [NSObject : AnyObject]!, contentEntity :SSDKContentEntity!, error : NSError!) -> Void in
+        ShareSDK.share(model.sharePlatformType, parameters: shareParames) { (state : SSDKResponseState, userData : [AnyHashable: Any]!, contentEntity :SSDKContentEntity!, error : NSError!) -> Void in
             switch state{
-            case SSDKResponseState.Success:
+            case SSDKResponseState.success:
                 println("分享成功")
-            case SSDKResponseState.Fail:
+            case SSDKResponseState.fail:
                 println("分享失败,错误描述:\(error)")
-            case SSDKResponseState.Cancel:
+            case SSDKResponseState.cancel:
                 println("分享取消")
             default:
                 break
@@ -83,17 +83,17 @@ class ThemeShareCollectionView: UICollectionView, UICollectionViewDelegate, UICo
     
     
     // MARK: - DataSource
-    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
     
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 2
     }
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(ThemeShareCollectionViewCellReuseId, forIndexPath: indexPath) as! ThemeShareCollectionViewCell
-        let index = indexPath.section*2 + (indexPath.row)
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ThemeShareCollectionViewCellReuseId, for: indexPath) as! ThemeShareCollectionViewCell
+        let index = (indexPath as NSIndexPath).section*2 + ((indexPath as NSIndexPath).row)
         if index < model.count {
             cell.model = self.model[index]
         }
@@ -128,12 +128,12 @@ class ThemeShareCollectionViewCell: UICollectionViewCell {
             fontSize: 13,
             textColor: MalaColor_6C6C6C_0
         )
-        label.textAlignment = .Center
+        label.textAlignment = .center
         return label
     }()
     private lazy var background: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor.whiteColor()
+        view.backgroundColor = UIColor.white
         view.layer.cornerRadius = 10
         view.layer.masksToBounds = true
         return view
@@ -155,7 +155,7 @@ class ThemeShareCollectionViewCell: UICollectionViewCell {
     // MARK: - Private Method
     private func setupUserInterface() {
         // Style
-        contentView.backgroundColor = UIColor.clearColor()
+        contentView.backgroundColor = UIColor.clear
         
         // SubViews
         contentView.addSubview(background)
@@ -199,10 +199,10 @@ class ThemeShareFlowLayout: UICollectionViewFlowLayout {
     
     // MARK: - Private Method
     private func configure() {
-        scrollDirection = .Vertical
+        scrollDirection = .vertical
         let itemWidth: CGFloat = MalaLayout_CardCellWidth / 2
         let itemHeight: CGFloat = 78
-        itemSize = CGSizeMake(itemWidth, itemHeight)
+        itemSize = CGSize(width: itemWidth, height: itemHeight)
         headerReferenceSize = CGSize(width: 300, height: MalaScreenOnePixel)
         minimumInteritemSpacing = 0
         minimumLineSpacing = 0

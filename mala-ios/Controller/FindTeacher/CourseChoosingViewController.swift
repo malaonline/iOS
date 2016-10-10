@@ -18,10 +18,10 @@ class CourseChoosingViewController: BaseViewController, CourseChoosingConfirmVie
                 return
             }
             
-            let operationTeacher = NSBlockOperation(block: loadTeacherDetail)
-            let operationTimeSlots = NSBlockOperation(block: loadClassSchedule)
-            let operationEvaluatedStatus = NSBlockOperation(block: loadUserEvaluatedStatus)
-            let operationLoadGradePrices = NSBlockOperation(block: loadGradePrices)
+            let operationTeacher = BlockOperation(block: loadTeacherDetail)
+            let operationTimeSlots = BlockOperation(block: loadClassSchedule)
+            let operationEvaluatedStatus = BlockOperation(block: loadUserEvaluatedStatus)
+            let operationLoadGradePrices = BlockOperation(block: loadGradePrices)
             
             operationTimeSlots.addDependency(operationTeacher)
             operationEvaluatedStatus.addDependency(operationTeacher)
@@ -68,7 +68,7 @@ class CourseChoosingViewController: BaseViewController, CourseChoosingConfirmVie
     /// 是否需要重新获取上课时间表标识
     var isNeedReloadTimeSchedule: Bool = false
     /// 当前上课地点记录下标
-    var selectedSchoolIndexPath: NSIndexPath  = NSIndexPath(forRow: 0, inSection: 0)
+    var selectedSchoolIndexPath: IndexPath  = IndexPath(row: 0, section: 0)
     /// 观察者对象数组
     var observers: [AnyObject] = []
     /// 必要数据加载完成计数
@@ -81,15 +81,15 @@ class CourseChoosingViewController: BaseViewController, CourseChoosingConfirmVie
         }
     }
     /// 队列
-    private var operationQueue: NSOperationQueue = {
-        let queue = NSOperationQueue()
+    private var operationQueue: OperationQueue = {
+        let queue = OperationQueue()
         return queue
     }()
     
     
     // MARK: - Compontents
     private lazy var tableView: CourseChoosingTableView = {
-        let tableView = CourseChoosingTableView(frame: CGRectZero, style: .Grouped)
+        let tableView = CourseChoosingTableView(frame: CGRect.zero, style: .grouped)
         return tableView
     }()
     private lazy var confirmView: CourseChoosingConfirmView = {
@@ -117,10 +117,10 @@ class CourseChoosingViewController: BaseViewController, CourseChoosingConfirmVie
         setupUserInterface()
         setupNotification()
         
-        operationQueue.addOperationWithBlock(loadCoupons)
+        operationQueue.addOperation(loadCoupons)
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         makeStatusBarBlack()
         sendScreenTrack(SACourseChoosingViewName)
@@ -277,8 +277,8 @@ class CourseChoosingViewController: BaseViewController, CourseChoosingConfirmVie
     
     private func setupNotification() {
         // 授课年级选择
-        let observerChoosingGrade = NSNotificationCenter.defaultCenter().addObserverForName(
-            MalaNotification_ChoosingGrade,
+        let observerChoosingGrade = NotificationCenter.default.addObserver(
+            forName: NSNotification.Name(rawValue: MalaNotification_ChoosingGrade),
             object: nil,
             queue: nil) { [weak self] (notification) -> Void in
                 guard let grade = notification.object as? GradeModel else {
@@ -294,16 +294,16 @@ class CourseChoosingViewController: BaseViewController, CourseChoosingConfirmVie
         self.observers.append(observerChoosingGrade)
         
         // 选择上课时间
-        let observerClassScheduleDidTap = NSNotificationCenter.defaultCenter().addObserverForName(
-            MalaNotification_ClassScheduleDidTap,
+        let observerClassScheduleDidTap = NotificationCenter.default.addObserver(
+            forName: NSNotification.Name(rawValue: MalaNotification_ClassScheduleDidTap),
             object: nil,
             queue: nil) { [weak self] (notification) -> Void in
                 let model = notification.object as! ClassScheduleDayModel
                
                 // 判断上课时间是否已经选择
-                if let index = MalaCurrentCourse.selectedTime.indexOf(model) {
+                if let index = MalaCurrentCourse.selectedTime.index(of: model) {
                     // 如果上课时间已经选择，从课程购买模型中移除
-                    MalaCurrentCourse.selectedTime.removeAtIndex(index)
+                    MalaCurrentCourse.selectedTime.remove(at: index)
                 }else {
                     // 如果上课时间尚未选择，加入课程购买模型
                     MalaCurrentCourse.selectedTime.append(model)
@@ -323,7 +323,7 @@ class CourseChoosingViewController: BaseViewController, CourseChoosingConfirmVie
                 }
                 
                 // 课时选择
-                (self?.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 2)) as? CourseChoosingClassPeriodCell)?.updateSetpValue()
+                (self?.tableView.cellForRow(at: IndexPath(row: 0, section: 2)) as? CourseChoosingClassPeriodCell)?.updateSetpValue()
                 self?.calculateCoupon()
                 
                 // 上课时间
@@ -337,8 +337,8 @@ class CourseChoosingViewController: BaseViewController, CourseChoosingConfirmVie
         self.observers.append(observerClassScheduleDidTap)
         
         // 选择课时
-        let observerClassPeriodDidChange = NSNotificationCenter.defaultCenter().addObserverForName(
-            MalaNotification_ClassPeriodDidChange,
+        let observerClassPeriodDidChange = NotificationCenter.default.addObserver(
+            forName: NSNotification.Name(rawValue: MalaNotification_ClassPeriodDidChange),
             object: nil,
             queue: nil) { [weak self] (notification) -> Void in
                 let period = (notification.object as? Double) ?? 2
@@ -355,12 +355,12 @@ class CourseChoosingViewController: BaseViewController, CourseChoosingConfirmVie
         self.observers.append(observerClassPeriodDidChange)
         
         // 展开/收起 上课时间表
-        let observerOpenTimeScheduleCell = NSNotificationCenter.defaultCenter().addObserverForName(
-            MalaNotification_OpenTimeScheduleCell,
+        let observerOpenTimeScheduleCell = NotificationCenter.default.addObserver(
+            forName: NSNotification.Name(rawValue: MalaNotification_OpenTimeScheduleCell),
             object: nil,
             queue: nil) { [weak self] (notification) -> Void in
                 
-                guard let _ = self?.teacherModel?.id where MalaCurrentCourse.classPeriod != 0 else {
+                guard let _ = self?.teacherModel?.id, MalaCurrentCourse.classPeriod != 0 else {
                     return
                 }
                 
@@ -369,9 +369,9 @@ class CourseChoosingViewController: BaseViewController, CourseChoosingConfirmVie
                 }
                 
                 // 若选课或课时已改变则请求上课时间表，并展开cell
-                if let isOpen = self?.tableView.isOpenTimeScheduleCell where isOpen != bool && bool {
+                if let isOpen = self?.tableView.isOpenTimeScheduleCell, isOpen != bool && bool {
                     // 请求上课时间表，并展开cell
-                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    DispatchQueue.main.async(execute: { () -> Void in
                         if bool && self?.isNeedReloadTimeSchedule == true {
                             let array = ThemeDate.dateArray(MalaCurrentCourse.selectedTime, period: Int(MalaCurrentCourse.classPeriod))
                             self?.tableView.timeScheduleResult = array
@@ -412,7 +412,7 @@ class CourseChoosingViewController: BaseViewController, CourseChoosingConfirmVie
     }
     
     private func refreshTableView() {
-        dispatch_async(dispatch_get_main_queue(), { [weak self] () -> Void in
+        DispatchQueue.main.async(execute: { [weak self] () -> Void in
             self?.tableView.reloadData()
         })
     }
@@ -470,8 +470,8 @@ class CourseChoosingViewController: BaseViewController, CourseChoosingConfirmVie
         
         // 移除观察者
         for observer in observers {
-            NSNotificationCenter.defaultCenter().removeObserver(observer)
-            self.observers.removeAtIndex(0)
+            NotificationCenter.default.removeObserver(observer)
+            self.observers.remove(at: 0)
         }
     }
 }

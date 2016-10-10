@@ -39,17 +39,17 @@ class MemberSerivceCollectionView: UICollectionView, UICollectionViewDelegate, U
     private func configure() {
         delegate = self
         dataSource = self
-        backgroundColor = UIColor.whiteColor()
+        backgroundColor = UIColor.white
         bounces = false
-        scrollEnabled = false
+        isScrollEnabled = false
         
-        registerClass(MemberSerivceCollectionViewCell.self, forCellWithReuseIdentifier: MemberSerivceCollectionViewCellReuseId)
-        registerClass(
+        register(MemberSerivceCollectionViewCell.self, forCellWithReuseIdentifier: MemberSerivceCollectionViewCellReuseId)
+        register(
             MemberSerivceCollectionViewSectionHeader.self,
             forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
             withReuseIdentifier: MemberSerivceCollectionViewSectionHeaderReuseId
         )
-        registerClass(
+        register(
             MemberSerivceCollectionViewSectionHeader.self,
             forSupplementaryViewOfKind: UICollectionElementKindSectionFooter,
             withReuseIdentifier: MemberSerivceCollectionViewSectionFooterReuseId
@@ -58,47 +58,47 @@ class MemberSerivceCollectionView: UICollectionView, UICollectionViewDelegate, U
     
     
     // MARK: - Delegate
-    func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         
         // Section 头部视图
         if kind == UICollectionElementKindSectionHeader {
-            let sectionHeaderView = collectionView.dequeueReusableSupplementaryViewOfKind(
-                UICollectionElementKindSectionHeader,
+            let sectionHeaderView = collectionView.dequeueReusableSupplementaryView(
+                ofKind: UICollectionElementKindSectionHeader,
                 withReuseIdentifier: MemberSerivceCollectionViewSectionHeaderReuseId,
-                forIndexPath: indexPath
+                for: indexPath
                 ) as! MemberSerivceCollectionViewSectionHeader
             return sectionHeaderView
         }
         return UICollectionReusableView()
     }
     
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         // 所有操作结束弹栈时，取消选中项
         defer {
-            collectionView.deselectItemAtIndexPath(indexPath, animated: true)
+            collectionView.deselectItem(at: indexPath, animated: true)
         }
-        NSNotificationCenter.defaultCenter().postNotificationName(MalaNotification_PushIntroduction, object: (indexPath.section*4+(indexPath.row)))
+        NotificationCenter.default.post(name: Notification.Name(rawValue: MalaNotification_PushIntroduction), object: ((indexPath as NSIndexPath).section*4+((indexPath as NSIndexPath).row)))
     }
     
-    func collectionView(collectionView: UICollectionView, shouldHighlightItemAtIndexPath indexPath: NSIndexPath) -> Bool {
+    func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
         return true
     }
     
     
     // MARK: - DataSource
-    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 2
     }
     
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 4
     }
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(MemberSerivceCollectionViewCellReuseId, forIndexPath: indexPath) as! MemberSerivceCollectionViewCell
-        let index = indexPath.section*4 + (indexPath.row)
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MemberSerivceCollectionViewCellReuseId, for: indexPath) as! MemberSerivceCollectionViewCell
+        let index = (indexPath as NSIndexPath).section*4 + ((indexPath as NSIndexPath).row)
         cell.model = self.model[index]
-        if indexPath.row == 0 {
+        if (indexPath as NSIndexPath).row == 0 {
             cell.hideSeparator(true)
         }
         return cell
@@ -138,12 +138,12 @@ class MemberSerivceCollectionViewCell: UICollectionViewCell {
         }
     }
     /// 选中状态
-    override internal var selected: Bool {
+    override internal var isSelected: Bool {
         didSet {
-            if selected {
+            if isSelected {
                 contentView.backgroundColor = MalaColor_E5E5E5_0
             }else {
-                contentView.backgroundColor = UIColor.whiteColor()
+                contentView.backgroundColor = UIColor.white
             }
         }
     }
@@ -162,7 +162,7 @@ class MemberSerivceCollectionViewCell: UICollectionViewCell {
             fontSize: 13,
             textColor: MalaColor_636363_0
         )
-        label.textAlignment = .Center
+        label.textAlignment = .center
         return label
     }()
     /// 侧分割线
@@ -213,8 +213,8 @@ class MemberSerivceCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    func hideSeparator(hide: Bool) {
-        separator.hidden = hide
+    func hideSeparator(_ hide: Bool) {
+        separator.isHidden = hide
     }
 }
 
@@ -234,10 +234,10 @@ class MemberSerivceFlowLayout: UICollectionViewFlowLayout {
     
     // MARK: - Private Method
     private func configure() {
-        scrollDirection = .Vertical
+        scrollDirection = .vertical
         let itemWidth: CGFloat = MalaLayout_CardCellWidth / 4
         let itemHeight: CGFloat = 91
-        itemSize = CGSizeMake(itemWidth, itemHeight)
+        itemSize = CGSize(width: itemWidth, height: itemHeight)
         headerReferenceSize = CGSize(width: 300, height: MalaScreenOnePixel)
         minimumInteritemSpacing = 0
         minimumLineSpacing = 0

@@ -13,9 +13,9 @@ class ThemeReloadView: UITableViewCell {
     // MARK: - Components
     /// 加载指示器
     lazy var activityIndicator: UIActivityIndicatorView = {
-        let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
+        let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
         activityIndicator.hidesWhenStopped = true
-        activityIndicator.color = UIColor.lightGrayColor()
+        activityIndicator.color = UIColor.lightGray
         return activityIndicator
     }()
     
@@ -35,8 +35,8 @@ class ThemeReloadView: UITableViewCell {
     // MARK: - Private Method
     private func setupUserInterface() {
         // Style
-        self.backgroundColor = UIColor.clearColor()
-        contentView.backgroundColor = UIColor.clearColor()
+        self.backgroundColor = UIColor.clear
+        contentView.backgroundColor = UIColor.clear
         
         // SubViews
         addSubview(activityIndicator)

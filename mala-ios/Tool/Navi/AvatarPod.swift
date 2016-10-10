@@ -12,19 +12,19 @@ func ==(lhs: AvatarPod.Request, rhs: AvatarPod.Request) -> Bool {
     return lhs.key == rhs.key
 }
 
-public class AvatarPod {
+open class AvatarPod {
 
     static let sharedInstance = AvatarPod()
 
     let cache = NSCache()
 
     public enum CacheType {
-        case Memory
-        case Disk
-        case Cloud
+        case memory
+        case disk
+        case cloud
     }
 
-    public typealias Completion = (finished: Bool, image: UIImage, cacheType: CacheType) -> Void
+    public typealias Completion = (_ finished: Bool, _ image: UIImage, _ cacheType: CacheType) -> Void
 
     struct Request: Equatable {
 
@@ -45,23 +45,23 @@ public class AvatarPod {
             self.requests = [Request]()
         }
 
-        mutating func addRequest(request: Request) {
+        mutating func addRequest(_ request: Request) {
 
             requests.append(request)
         }
 
-        func requestsWithURL(URL: NSURL) -> [Request] {
+        func requestsWithURL(_ URL: Foundation.URL) -> [Request] {
 
             return requests.filter({ $0.avatar.URL == URL })
         }
 
-        mutating func removeRequestsWithURL(URL: NSURL) {
+        mutating func removeRequestsWithURL(_ URL: Foundation.URL) {
 
             let requestsToRemove = requests.filter({ $0.avatar.URL == URL })
 
             requestsToRemove.forEach({
-                if let index = requests.indexOf($0) {
-                    requests.removeAtIndex(index)
+                if let index = requests.index(of: $0) {
+                    requests.remove(at: index)
                 }
             })
         }
@@ -73,26 +73,26 @@ public class AvatarPod {
 
     private var requestPool = RequestPool()
 
-    private func completeRequest(request: Request, withStyledImage styledImage: UIImage, cacheType: CacheType) {
+    private func completeRequest(_ request: Request, withStyledImage styledImage: UIImage, cacheType: CacheType) {
 
-        dispatch_async(dispatch_get_main_queue()) {
-            request.completion(finished: true, image: styledImage, cacheType: cacheType)
+        DispatchQueue.main.async {
+            request.completion(true, styledImage, cacheType)
         }
 
         cache.setObject(styledImage, forKey: request.key)
     }
 
-    private let cacheQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)
+    private let cacheQueue = DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.high)
 
-    private func completeRequestsWithURL(URL: NSURL, image: UIImage, cacheType: CacheType) {
+    private func completeRequestsWithURL(_ URL: Foundation.URL, image: UIImage, cacheType: CacheType) {
 
-        dispatch_async(dispatch_get_main_queue()) {
+        DispatchQueue.main.async {
 
             let requests = self.requestPool.requestsWithURL(URL)
 
             requests.forEach({ request in
 
-                dispatch_async(self.cacheQueue) {
+                self.cacheQueue.async {
 
                     let styledImage = image.navi_avatarImageWithStyle(request.avatar.style)
 
@@ -110,11 +110,11 @@ public class AvatarPod {
 
     // MARK: - API
 
-    public class func wakeAvatar(avatar: Avatar, completion: Completion) {
+    open class func wakeAvatar(_ avatar: Avatar, completion: @escaping Completion) {
 
         guard let URL = avatar.URL else {
 
-            completion(finished: false, image: avatar.placeholderImage ?? UIImage(), cacheType: .Memory)
+            completion(false, avatar.placeholderImage ?? UIImage(), .memory)
 
             return
         }
@@ -123,40 +123,40 @@ public class AvatarPod {
 
         let key = request.key
 
-        if let image = sharedInstance.cache.objectForKey(key) as? UIImage {
-            completion(finished: true, image: image, cacheType: .Memory)
+        if let image = sharedInstance.cache.object(forKey: key) as? UIImage {
+            completion(finished: true, image: image, cacheType: .memory)
 
         } else {
             if let placeholderImage = avatar.placeholderImage {
-                completion(finished: false, image: placeholderImage, cacheType: .Memory)
+                completion(false, placeholderImage, .memory)
             }
 
-            dispatch_async(sharedInstance.cacheQueue) {
+            sharedInstance.cacheQueue.async {
 
                 if let styledImage = avatar.localStyledImage {
-                    sharedInstance.completeRequest(request, withStyledImage: styledImage, cacheType: .Disk)
+                    sharedInstance.completeRequest(request, withStyledImage: styledImage, cacheType: .disk)
 
                 } else {
-                    dispatch_async(dispatch_get_main_queue()) {
+                    DispatchQueue.main.async {
 
                         sharedInstance.requestPool.addRequest(request)
 
-                        if sharedInstance.requestPool.requestsWithURL(URL).count > 1 {
+                        if sharedInstance.requestPool.requestsWithURL(URL as URL).count > 1 {
                             // do nothing
 
                         } else {
-                            dispatch_async(sharedInstance.cacheQueue) {
+                            sharedInstance.cacheQueue.async {
 
                                 if let image = avatar.localOriginalImage {
-                                    sharedInstance.completeRequestsWithURL(URL, image: image, cacheType: .Disk)
+                                    sharedInstance.completeRequestsWithURL(URL as URL, image: image, cacheType: .disk)
 
                                 } else {
-                                    if let data = NSData(contentsOfURL: URL), image = UIImage(data: data) {
-                                        sharedInstance.completeRequestsWithURL(URL, image: image, cacheType: .Cloud)
+                                    if let data = try? Data(contentsOf: URL as URL), let image = UIImage(data: data) {
+                                        sharedInstance.completeRequestsWithURL(URL as URL, image: image, cacheType: .cloud)
 
                                     } else {
-                                        dispatch_async(dispatch_get_main_queue()) {
-                                            sharedInstance.requestPool.removeRequestsWithURL(URL)
+                                        DispatchQueue.main.async {
+                                            sharedInstance.requestPool.removeRequestsWithURL(URL as URL)
                                         }
                                     }
                                 }
@@ -168,7 +168,7 @@ public class AvatarPod {
         }
     }
     
-    public class func clear() {
+    open class func clear() {
         
         sharedInstance.requestPool.removeAllRequests()
         

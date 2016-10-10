@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class BaseObjectModel: NSObject, NSCoding {
+open class BaseObjectModel: NSObject, NSCoding {
 
     // MARK: - Property
     var id: Int = 0
@@ -38,19 +38,19 @@ public class BaseObjectModel: NSObject, NSCoding {
     
     
     // MARK: - Override
-    public override func setValue(_ value: Any?, forUndefinedKey key: String) {
+    open override func setValue(_ value: Any?, forUndefinedKey key: String) {
         println("BaseObjectModel - Set for UndefinedKey: \(key)")
     }
     
     // MARK: - Coding
-    public func encode(with aCoder: NSCoder) {
+    open func encode(with aCoder: NSCoder) {
         aCoder.encode(id, forKey: "id")
         aCoder.encode(name, forKey: "name")
     }
     
     
     // MARK: - Description
-    override public var description: String {
+    override open var description: String {
         let keys = ["id", "name"]
         return dictionaryWithValues(forKeys: keys).description
     }

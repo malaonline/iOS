@@ -14,8 +14,8 @@ private let TeacherTableViewLoadmoreCellReusedId = "TeacherTableViewLoadmoreCell
 class TeacherTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
     
     private enum Section: Int {
-        case Teacher
-        case LoadMore
+        case teacher
+        case loadMore
     }
     
     // MARK: - Property
@@ -56,21 +56,21 @@ class TeacherTableView: UITableView, UITableViewDelegate, UITableViewDataSource 
         dataSource = self
         backgroundColor = MalaColor_EDEDED_0
         estimatedRowHeight = 200
-        separatorStyle = .None
+        separatorStyle = .none
         contentInset = UIEdgeInsets(top: 12, left: 0, bottom: 12, right: 0)
         
-        registerClass(TeacherTableViewCell.self, forCellReuseIdentifier: TeacherTableViewCellReusedId)
-        registerClass(ThemeReloadView.self, forCellReuseIdentifier: TeacherTableViewLoadmoreCellReusedId)
+        register(TeacherTableViewCell.self, forCellReuseIdentifier: TeacherTableViewCellReusedId)
+        register(ThemeReloadView.self, forCellReuseIdentifier: TeacherTableViewLoadmoreCellReusedId)
     }
     
     
     // MARK: - Delegate
-    func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
         return true
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let teacherId = (tableView.cellForRowAtIndexPath(indexPath) as! TeacherTableViewCell).model!.id
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let teacherId = (tableView.cellForRow(at: indexPath) as! TeacherTableViewCell).model!.id
         let viewController = TeacherDetailsController()
         viewController.teacherID = teacherId
         viewController.hidesBottomBarWhenPushed = true
@@ -79,17 +79,17 @@ class TeacherTableView: UITableView, UITableViewDelegate, UITableViewDataSource 
     
     
     // MARK: - DataSource
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
             
-        case Section.Teacher.rawValue:
+        case Section.teacher.rawValue:
             return teachers.count ?? 0
             
-        case Section.LoadMore.rawValue:
+        case Section.loadMore.rawValue:
             if (controller as? FindTeacherViewController)?.allTeacherCount == teachers.count {
                 return 0
             }else if (controller as? FilterResultController)?.allTeacherCount == teachers.count {
@@ -103,17 +103,17 @@ class TeacherTableView: UITableView, UITableViewDelegate, UITableViewDataSource 
         }
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        switch indexPath.section {
+        switch (indexPath as NSIndexPath).section {
 
-        case Section.Teacher.rawValue:
-            let cell = tableView.dequeueReusableCellWithIdentifier(TeacherTableViewCellReusedId, forIndexPath: indexPath) as! TeacherTableViewCell
-            cell.model = teachers[indexPath.row]
+        case Section.teacher.rawValue:
+            let cell = tableView.dequeueReusableCell(withIdentifier: TeacherTableViewCellReusedId, for: indexPath) as! TeacherTableViewCell
+            cell.model = teachers[(indexPath as NSIndexPath).row]
             return cell
             
-        case Section.LoadMore.rawValue:
-            let cell = tableView.dequeueReusableCellWithIdentifier(TeacherTableViewLoadmoreCellReusedId, forIndexPath: indexPath) as! ThemeReloadView
+        case Section.loadMore.rawValue:
+            let cell = tableView.dequeueReusableCell(withIdentifier: TeacherTableViewLoadmoreCellReusedId, for: indexPath) as! ThemeReloadView
             return cell
             
         default:
@@ -121,18 +121,18 @@ class TeacherTableView: UITableView, UITableViewDelegate, UITableViewDataSource 
         }
     }
     
-    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         
-        switch indexPath.section {
+        switch (indexPath as NSIndexPath).section {
             
-        case Section.Teacher.rawValue:
+        case Section.teacher.rawValue:
             break
             
-        case Section.LoadMore.rawValue:
+        case Section.loadMore.rawValue:
             if let cell = cell as? ThemeReloadView {
                 println("load more Teacher info")
                 
-                if !cell.activityIndicator.isAnimating() {
+                if !cell.activityIndicator.isAnimating {
                     cell.activityIndicator.startAnimating()
                 }
                 
@@ -156,7 +156,7 @@ class TeacherTableView: UITableView, UITableViewDelegate, UITableViewDataSource 
     
     // MARK: - override
     override func reloadData() {
-        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+        DispatchQueue.main.async(execute: { () -> Void in
             super.reloadData()
         })
         self.stopPullToRefresh()

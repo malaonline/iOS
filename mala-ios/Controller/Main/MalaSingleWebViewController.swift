@@ -58,7 +58,7 @@ class MalaSingleWebViewController: UIViewController, WKNavigationDelegate, WKUID
     // MARK: - Private Method
     private func configure() {
         webView.navigationDelegate = self
-        webView.UIDelegate = self
+        webView.uiDelegate = self
         
         // webView.addObserver(self, forKeyPath: "loading", options: .New, context: nil)
         // webView.addObserver(self, forKeyPath: "title", options: .New, context: nil)
@@ -88,7 +88,7 @@ class MalaSingleWebViewController: UIViewController, WKNavigationDelegate, WKUID
             }
         }, completion: { [weak self] (string) -> Void in
             
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            DispatchQueue.main.async(execute: { () -> Void in
                 if let htmlString = string {
                     self?.HTMLString = htmlString
                 }else {
@@ -99,12 +99,12 @@ class MalaSingleWebViewController: UIViewController, WKNavigationDelegate, WKUID
     }
     
     private func showHTML() {
-        webView.loadHTMLString(HTMLString, baseURL: MalaBaseURL)
+        webView.loadHTMLString(HTMLString, baseURL: MalaBaseURL as URL)
     }
     
     
     // MARK: - KVO
-    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         
         guard keyPath != nil else {
             return

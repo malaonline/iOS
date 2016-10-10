@@ -59,7 +59,7 @@ class CourseChoosingClassPeriodCell: MalaBaseCell {
 }
 
 
-public class PeriodStepper: UIView, UITextFieldDelegate {
+open class PeriodStepper: UIView, UITextFieldDelegate {
   
     // MARK: - Compontents
     /// 计数器
@@ -68,21 +68,21 @@ public class PeriodStepper: UIView, UITextFieldDelegate {
     private lazy var textField: UITextField = {
         let textField = UITextField()
         textField.text = String(format: "%d", Int(MalaClassPeriod_StepValue))
-        textField.textAlignment = .Center
+        textField.textAlignment = .center
         return textField
     }()
     /// 计数器减按钮
     private lazy  var decrementButton: UIButton = {
         let decrementButton = UIButton()
-        decrementButton.setImage(UIImage(named: "minus"), forState: .Normal)
-        decrementButton.setBackgroundImage(UIImage(named: "grayBackground"), forState: .Normal)
+        decrementButton.setImage(UIImage(named: "minus"), for: UIControlState())
+        decrementButton.setBackgroundImage(UIImage(named: "grayBackground"), for: UIControlState())
         return decrementButton
     }()
     /// 计数器加按钮
     private lazy var incrementButton: UIButton = {
         let incrementButton = UIButton()
-        incrementButton.setImage(UIImage(named: "plus"), forState: .Normal)
-        incrementButton.setBackgroundImage(UIImage(named: "grayBackground"), forState: .Normal)
+        incrementButton.setImage(UIImage(named: "plus"), for: UIControlState())
+        incrementButton.setBackgroundImage(UIImage(named: "grayBackground"), for: UIControlState())
         return incrementButton
     }()
     
@@ -101,7 +101,7 @@ public class PeriodStepper: UIView, UITextFieldDelegate {
     
     
     // MARK: - Public Method
-    public func updateStepValue() {
+    open func updateStepValue() {
         stepper.value = Double(MalaCurrentCourse.classPeriod)
         stepper.minimumValue = Double(MalaCurrentCourse.selectedTime.count*2)
     }
@@ -121,11 +121,11 @@ public class PeriodStepper: UIView, UITextFieldDelegate {
         // 计数器数值changed回调闭包
         stepper.valueChangedCallback = {
             self.textField.text = String(format: "%d", Int(self.stepper.value))
-            NSNotificationCenter.defaultCenter().postNotificationName(MalaNotification_ClassPeriodDidChange, object: self.stepper.value)
+            NotificationCenter.default.post(name: Notification.Name(rawValue: MalaNotification_ClassPeriodDidChange), object: self.stepper.value)
         }
         
         textField.delegate = self
-        textField.keyboardType = .NumberPad
+        textField.keyboardType = .numberPad
     }
     
     private func setupUserInterface() {
@@ -157,7 +157,7 @@ public class PeriodStepper: UIView, UITextFieldDelegate {
     
     
     // MARK: - Delegate
-    public func textFieldDidEndEditing(textField: UITextField) {
+    open func textFieldDidEndEditing(_ textField: UITextField) {
         // 限制输入值最大为100
         var value = Int(textField.text ?? "") ?? 0
         value = value > 100 ? 100 : value

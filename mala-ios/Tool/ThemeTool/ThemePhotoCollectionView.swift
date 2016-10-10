@@ -37,26 +37,26 @@ class ThemePhotoCollectionView: UICollectionView, UICollectionViewDelegate, UICo
         dataSource = self
         showsVerticalScrollIndicator = false
         showsHorizontalScrollIndicator = false
-        backgroundColor = UIColor.whiteColor()
-        registerClass(ThemePhotoCollectionViewCell.self, forCellWithReuseIdentifier: ThemePhotoCollectionViewCellReuseId)
+        backgroundColor = UIColor.white
+        register(ThemePhotoCollectionViewCell.self, forCellWithReuseIdentifier: ThemePhotoCollectionViewCellReuseId)
     }
     
     // MARK: - DataSource
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return urls.count
     }
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(ThemePhotoCollectionViewCellReuseId, forIndexPath: indexPath) as! ThemePhotoCollectionViewCell
-        cell.url = urls[indexPath.row]
-        cell.imageView.tag = indexPath.row
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ThemePhotoCollectionViewCellReuseId, for: indexPath) as! ThemePhotoCollectionViewCell
+        cell.url = urls[(indexPath as NSIndexPath).row]
+        cell.imageView.tag = (indexPath as NSIndexPath).row
         return cell
     }
     
     // MARK: - Delegate
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        let cell = collectionView.cellForItemAtIndexPath(indexPath) as! ThemePhotoCollectionViewCell
-        NSNotificationCenter.defaultCenter().postNotificationName(MalaNotification_PushPhotoBrowser, object: cell.imageView)
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath) as! ThemePhotoCollectionViewCell
+        NotificationCenter.default.post(name: Notification.Name(rawValue: MalaNotification_PushPhotoBrowser), object: cell.imageView)
     }
 }
 
@@ -67,7 +67,7 @@ class ThemePhotoCollectionViewCell: UICollectionViewCell {
     /// 图片URL
     var url: String = "" {
         didSet {
-            imageView.ma_setImage((NSURL(string: url) ?? NSURL()))
+            imageView.ma_setImage((URL(string: url) ?? URL()))
         }
     }
     

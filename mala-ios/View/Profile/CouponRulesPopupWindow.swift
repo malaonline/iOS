@@ -9,7 +9,7 @@
 import UIKit
 
 
-public class CouponRulesPopupWindow: UIViewController, UITextViewDelegate {
+open class CouponRulesPopupWindow: UIViewController, UITextViewDelegate {
     
     // MARK: - Property
     /// 自身强引用
@@ -39,9 +39,9 @@ public class CouponRulesPopupWindow: UIViewController, UITextViewDelegate {
     /// 描述label
     private lazy var descTextView: UITextView = {
         let textView = UITextView()
-        textView.font = UIFont.systemFontOfSize(13)
+        textView.font = UIFont.systemFont(ofSize: 13)
         textView.textColor = MalaColor_939393_0
-        textView.editable = false
+        textView.isEditable = false
         return textView
     }()
     /// 提交按钮装饰线
@@ -53,13 +53,13 @@ public class CouponRulesPopupWindow: UIViewController, UITextViewDelegate {
     /// 提交按钮
     private lazy var confirmButton: UIButton = {
         let button = UIButton()
-        button.setTitle("知道了", forState: .Normal)
-        button.setTitleColor(MalaColor_8FBCDD_0, forState: .Normal)
-        button.setTitleColor(MalaColor_B7B7B7_0, forState: .Disabled)
-        button.setBackgroundImage(UIImage.withColor(MalaColor_FFFFFF_9), forState: .Normal)
-        button.setBackgroundImage(UIImage.withColor(MalaColor_F8F8F8_0), forState: .Highlighted)
-        button.titleLabel?.font = UIFont.systemFontOfSize(15)
-        button.addTarget(self, action: #selector(CouponRulesPopupWindow.animateDismiss), forControlEvents: .TouchUpInside)
+        button.setTitle("知道了", for: UIControlState())
+        button.setTitleColor(MalaColor_8FBCDD_0, for: UIControlState())
+        button.setTitleColor(MalaColor_B7B7B7_0, for: .disabled)
+        button.setBackgroundImage(UIImage.withColor(MalaColor_FFFFFF_9), for: UIControlState())
+        button.setBackgroundImage(UIImage.withColor(MalaColor_F8F8F8_0), for: .highlighted)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 15)
+        button.addTarget(self, action: #selector(CouponRulesPopupWindow.animateDismiss), for: .touchUpInside)
         return button
     }()
     
@@ -67,7 +67,7 @@ public class CouponRulesPopupWindow: UIViewController, UITextViewDelegate {
     // MARK: - Constructed
     init() {
         super.init(nibName: nil, bundle: nil)
-        view.frame = UIScreen.mainScreen().bounds
+        view.frame = UIScreen.main.bounds
         setupUserInterface()
         
         // 持有自己强引用，使自己在外界没有强引用时依然存在。
@@ -91,9 +91,9 @@ public class CouponRulesPopupWindow: UIViewController, UITextViewDelegate {
         self.view.alpha = 0
         
         // 显示Window
-        let window: UIWindow = UIApplication.sharedApplication().keyWindow!
+        let window: UIWindow = UIApplication.shared.keyWindow!
         window.addSubview(view)
-        window.bringSubviewToFront(view)
+        window.bringSubview(toFront: view)
         view.frame = window.bounds
         // 设置属性
         self.contentView = contentView
@@ -105,33 +105,33 @@ public class CouponRulesPopupWindow: UIViewController, UITextViewDelegate {
     
     
     // MARK: - Life Cycle
-    override public func viewDidLoad() {
+    override open func viewDidLoad() {
         super.viewDidLoad()
     }
     
-    override public func didReceiveMemoryWarning() {
+    override open func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
     
     // MARK: - Override
-    public override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    open override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if closeWhenTap {
             // 若触摸点不位于Window视图，关闭弹窗
             if let point = touches.first?.location(in: window), !window.point(inside: point, with: nil) {
-                closeAlert(buttonIndex: 0)
+                closeAlert(0)
             }
         }
     }
     
     
     // MARK: - API
-    public func show() {
+    open func show() {
         animateAlert()
     }
     
-    public func close() {
+    open func close() {
         closeAlert(0)
     }
     
@@ -140,7 +140,7 @@ public class CouponRulesPopupWindow: UIViewController, UITextViewDelegate {
     private func setupUserInterface() {
         // Style
         view.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: tBakcgroundTansperancy)
-        window.backgroundColor = UIColor.whiteColor()
+        window.backgroundColor = UIColor.white
         
         // SubViews
         view.addSubview(window)
@@ -193,14 +193,14 @@ public class CouponRulesPopupWindow: UIViewController, UITextViewDelegate {
         let originTransform = self.window.transform
         self.window.layer.transform = CATransform3DMakeScale(0.7, 0.7, 0.0);
         
-        UIView.animateWithDuration(0.35) { () -> Void in
+        UIView.animate(withDuration: 0.35, animations: { () -> Void in
             self.view.alpha = 1.0
             self.window.transform = originTransform
-        }
+        }) 
     }
     
     @objc private func animateDismiss() {
-        UIView.animateWithDuration(0.35, animations: { () -> Void in
+        UIView.animate(withDuration: 0.35, animations: { () -> Void in
             
             self.view.alpha = 0
             self.window.transform = CGAffineTransform()
@@ -210,7 +210,7 @@ public class CouponRulesPopupWindow: UIViewController, UITextViewDelegate {
             })
     }
     
-    private func closeAlert(buttonIndex: Int) {
+    private func closeAlert(_ buttonIndex: Int) {
         self.view.removeFromSuperview()
         // 释放自身强引用
         self.strongSelf = nil
@@ -218,7 +218,7 @@ public class CouponRulesPopupWindow: UIViewController, UITextViewDelegate {
     
     
     // MARK: - Event Response
-    @objc private func pressed(sender: UIButton!) {
+    @objc private func pressed(_ sender: UIButton!) {
         self.closeAlert(sender.tag)
     }
     

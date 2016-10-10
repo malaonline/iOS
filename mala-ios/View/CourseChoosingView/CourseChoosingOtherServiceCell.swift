@@ -21,7 +21,7 @@ class CourseChoosingOtherServiceCell: MalaBaseCell {
     
     // MARK: - Components
     private lazy var tableView: CourseChoosingServiceTableView = {
-        let tableView = CourseChoosingServiceTableView(frame: CGRectZero, style: .Plain)
+        let tableView = CourseChoosingServiceTableView(frame: CGRect.zero, style: .plain)
         return tableView
     }()
     private lazy var priceView: PriceResultView = {
@@ -88,7 +88,7 @@ class PriceResultView: UIView {
     private lazy var stringLabel: UILabel = {
         let stringLabel = UILabel()
         stringLabel.textColor = MalaColor_333333_0
-        stringLabel.font = UIFont.systemFontOfSize(14)
+        stringLabel.font = UIFont.systemFont(ofSize: 14)
         stringLabel.text = "原价:"
         return stringLabel
     }()
@@ -96,7 +96,7 @@ class PriceResultView: UIView {
     private lazy var priceLabel: UILabel = {
         let priceLabel = UILabel()
         priceLabel.textColor = MalaColor_E36A5D_0
-        priceLabel.font = UIFont.systemFontOfSize(14)
+        priceLabel.font = UIFont.systemFont(ofSize: 14)
         priceLabel.text = "￥0.00"
         return priceLabel
     }()
@@ -116,7 +116,7 @@ class PriceResultView: UIView {
     
     
     // MARK: - Override
-    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         // 当选课条件改变时，更新总价
         self.price = MalaCurrentCourse.originalPrice
     }
@@ -125,7 +125,7 @@ class PriceResultView: UIView {
     // MARK: - Private Method
     private func setupUserInterface() {
         // Style
-        self.backgroundColor = UIColor.whiteColor()
+        self.backgroundColor = UIColor.white
         
         // SubViews
         addSubview(stringLabel)
@@ -145,7 +145,7 @@ class PriceResultView: UIView {
     }
     
     private func configure() {
-        MalaCurrentCourse.addObserver(self, forKeyPath: "originalPrice", options: .New, context: &myContext)
+        MalaCurrentCourse.addObserver(self, forKeyPath: "originalPrice", options: .new, context: &myContext)
     }
     
     

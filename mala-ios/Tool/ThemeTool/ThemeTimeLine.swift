@@ -7,6 +7,26 @@
 //
 
 import UIKit
+private func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+private func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l > r
+  default:
+    return rhs < lhs
+  }
+}
+
 
 class ThemeTimeLine: UIView, CAAnimationDelegate {
 
@@ -64,10 +84,10 @@ class ThemeTimeLine: UIView, CAAnimationDelegate {
     }
 
     
-    private func addTimeDescriptionLabels(descs: [String], times: [String], currentStatus: Int) {
+    private func addTimeDescriptionLabels(_ descs: [String], times: [String], currentStatus: Int) {
         var betweenLabelOffset: CGFloat = 0
         var totalHeight: CGFloat = 6
-        let fittingSize: CGSize = CGSizeZero
+        let fittingSize: CGSize = CGSize.zero
         
         var lastLabel = UILabel(frame: self.progressDescriptionViewContainer.frame)
         self.progressDescriptionViewContainer.addSubview(lastLabel)
@@ -80,14 +100,14 @@ class ThemeTimeLine: UIView, CAAnimationDelegate {
             label.numberOfLines = 0
             label.textColor = MalaColor_6C6C6C_0
 //            label.textColor = i < currentStatus ? MalaColor_6C6C6C_0 : MalaColor_E5E5E5_0
-            label.textAlignment = .Left
-            label.font = UIFont.systemFontOfSize(14)
+            label.textAlignment = .left
+            label.font = UIFont.systemFont(ofSize: 14)
             self.progressDescriptionViewContainer.addSubview(label)
             
             // 日期label与上一组数据高度最大的内容底部保持20的距离
             let bottomMargin = i >= 1 ? (descs[i-1].characters.count > 26 ? betweenLabelOffset : betweenLabelOffset+12) : (betweenLabelOffset)
  
-            label.snp_makeConstraints(closure: { (make) in
+            label.snp_makeConstraints({ (make) in
                 make.left.equalTo(self.progressDescriptionViewContainer).offset(7)
                 make.width.equalTo(leftWidth)
                 make.top.equalTo(lastLabel.snp_bottom).offset(bottomMargin)
@@ -96,7 +116,7 @@ class ThemeTimeLine: UIView, CAAnimationDelegate {
             
             label.preferredMaxLayoutWidth = leftWidth
             label.sizeToFit()
-            let fittingSize = label.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize)
+            let fittingSize = label.systemLayoutSizeFitting(UILayoutFittingCompressedSize)
             betweenLabelOffset = BettweenLabelOffset
             totalHeight += (fittingSize.height + betweenLabelOffset)
             lastLabel = label
@@ -110,7 +130,7 @@ class ThemeTimeLine: UIView, CAAnimationDelegate {
         self.updateConstraintsIfNeeded()
     }
     
-    private func addProgressBasedOnLabels(labels: [UILabel], currentStatus: Int) {
+    private func addProgressBasedOnLabels(_ labels: [UILabel], currentStatus: Int) {
         var i = 0
         
         for label in labels {
@@ -121,7 +141,7 @@ class ThemeTimeLine: UIView, CAAnimationDelegate {
             /// 最后一个时间点
             if i == (self.dataCount-1) {
                 line.image = UIImage(named: "time_point")
-                line.snp_makeConstraints(closure: { (make) in
+                line.snp_makeConstraints({ (make) in
                     make.centerX.equalTo(progressViewContainer)
                     make.width.equalTo(9)
                     make.top.equalTo(label.snp_top).offset(4)
@@ -129,7 +149,7 @@ class ThemeTimeLine: UIView, CAAnimationDelegate {
                 })
             /// 描述字数多于一行的，下一个时间点以描述label为基准
             }else if label.text?.characters.count > 26 {
-                line.snp_makeConstraints(closure: { (make) in
+                line.snp_makeConstraints({ (make) in
                     make.centerX.equalTo(progressViewContainer)
                     make.width.equalTo(9)
                     make.top.equalTo(label.snp_top).offset(2)
@@ -137,7 +157,7 @@ class ThemeTimeLine: UIView, CAAnimationDelegate {
                 })
             /// 描述字数少于一行的，下一个时间点以时间label为基准
             }else {
-                line.snp_makeConstraints(closure: { (make) in
+                line.snp_makeConstraints({ (make) in
                     make.centerX.equalTo(progressViewContainer)
                     make.width.equalTo(9)
                     make.top.equalTo(label.snp_top).offset(2)
@@ -149,7 +169,7 @@ class ThemeTimeLine: UIView, CAAnimationDelegate {
         self.startAnimatingLayer(circleLayers, currentStatus: currentStatus)
     }
     
-    private func addTimeLabels(times: [String], currentStatus: Int) {
+    private func addTimeLabels(_ times: [String], currentStatus: Int) {
         var betweenLabelOffset: CGFloat = 0
         var totalHeight: CGFloat = 6
         var i = 0
@@ -160,19 +180,19 @@ class ThemeTimeLine: UIView, CAAnimationDelegate {
             label.numberOfLines = 0
             label.textColor = MalaColor_333333_0
 //            label.textColor = i < currentStatus ? MalaColor_82B4D9_0 : MalaColor_E5E5E5_0
-            label.textAlignment = .Right
-            label.font = UIFont.systemFontOfSize(12)
+            label.textAlignment = .right
+            label.font = UIFont.systemFont(ofSize: 12)
             self.timeViewContainer.addSubview(label)
             
             let descLabel = self.labelDscriptionsArray[i]
             
-            label.snp_makeConstraints(closure: { (make) in
+            label.snp_makeConstraints({ (make) in
                 make.height.equalTo(32)
                 make.left.equalTo(timeViewContainer)
                 make.width.equalTo(timeViewContainer)
                 make.top.equalTo(descLabel.snp_top)
             })
-            let fittingSize = label.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize)
+            let fittingSize = label.systemLayoutSizeFitting(UILayoutFittingCompressedSize)
             betweenLabelOffset = BettweenLabelOffset
             totalHeight += (fittingSize.height + betweenLabelOffset)
             self.labelDscriptionsArray.append(label)
@@ -186,48 +206,48 @@ class ThemeTimeLine: UIView, CAAnimationDelegate {
     
     
     // MARK: - Support Method
-    private func configureBezierCircle(circle: UIBezierPath, centerY: CGFloat) {
-        circle.addArcWithCenter(CGPoint(x: self.progressViewContainer.center.x + CircleRadius + InitProgressContainerWidth/2, y: centerY),
+    private func configureBezierCircle(_ circle: UIBezierPath, centerY: CGFloat) {
+        circle.addArc(withCenter: CGPoint(x: self.progressViewContainer.center.x + CircleRadius + InitProgressContainerWidth/2, y: centerY),
                                 radius: CircleRadius,
                                 startAngle: CGFloat(M_PI_2),
                                 endAngle: CGFloat(-M_PI_2),
                                 clockwise: true)
-        circle.addArcWithCenter(CGPoint(x: self.progressViewContainer.center.x + CircleRadius + InitProgressContainerWidth/2, y: centerY),
+        circle.addArc(withCenter: CGPoint(x: self.progressViewContainer.center.x + CircleRadius + InitProgressContainerWidth/2, y: centerY),
                                 radius: CircleRadius,
                                 startAngle: CGFloat(-M_PI_2),
                                 endAngle: CGFloat(M_PI_2),
                                 clockwise: true)
     }
     
-    private func getLayerWithCircle(circle: UIBezierPath, strokeColor: UIColor) -> CAShapeLayer {
+    private func getLayerWithCircle(_ circle: UIBezierPath, strokeColor: UIColor) -> CAShapeLayer {
         let circleLayer = CAShapeLayer()
         circleLayer.frame = self.progressViewContainer.bounds
-        circleLayer.path = circle.CGPath
+        circleLayer.path = circle.cgPath
         
-        circleLayer.strokeColor = strokeColor.CGColor
+        circleLayer.strokeColor = strokeColor.cgColor
         circleLayer.fillColor = nil
         circleLayer.lineWidth = LineWidth
         circleLayer.lineJoin = kCALineJoinBevel
         return circleLayer
     }
     
-    private func getLayerWithLine(line: UIBezierPath, strokeColor: UIColor) -> CAShapeLayer {
+    private func getLayerWithLine(_ line: UIBezierPath, strokeColor: UIColor) -> CAShapeLayer {
         let lineLayer = CAShapeLayer()
-        lineLayer.path = line.CGPath
-        lineLayer.strokeColor = strokeColor.CGColor
+        lineLayer.path = line.cgPath
+        lineLayer.strokeColor = strokeColor.cgColor
         lineLayer.fillColor = nil
         lineLayer.lineWidth = LineWidth
         return lineLayer
     }
     
-    private func getLineWithStartPoint(start: CGPoint, end: CGPoint) -> UIBezierPath {
+    private func getLineWithStartPoint(_ start: CGPoint, end: CGPoint) -> UIBezierPath {
         let line = UIBezierPath()
-        line.moveToPoint(start)
-        line.addLineToPoint(end)
+        line.move(to: start)
+        line.addLine(to: end)
         return line
     }
     
-    private func startAnimatingLayer(layersToAnimate: [CAShapeLayer], currentStatus: Int) {
+    private func startAnimatingLayer(_ layersToAnimate: [CAShapeLayer], currentStatus: Int) {
         var circleTimeOffset: Double = 1
         var i = 0
         
@@ -244,23 +264,23 @@ class ThemeTimeLine: UIView, CAAnimationDelegate {
                 
                 let animation = CABasicAnimation(keyPath: "strokeEnd")
                 animation.duration = 0.2
-                animation.beginTime = circleLayer.convertTime(CACurrentMediaTime(), toLayer: nil) + circleTimeOffset
+                animation.beginTime = circleLayer.convertTime(CACurrentMediaTime(), to: nil) + circleTimeOffset
                 animation.fromValue = 0
                 animation.toValue = 1
                 animation.fillMode = kCAFillModeForwards
                 animation.delegate = self
                 circleTimeOffset += 0.4
-                circleLayer.hidden = true
-                circleLayer.addAnimation(animation, forKey: "strokeCircleAnimation")
+                circleLayer.isHidden = true
+                circleLayer.add(animation, forKey: "strokeCircleAnimation")
                 
                 if i == currentStatus && i != layersToAnimate.count {
                    let strokeAnim = CABasicAnimation(keyPath: "strokeColor")
-                    strokeAnim.fromValue = UIColor.orangeColor().CGColor
-                    strokeAnim.toValue = UIColor.clearColor().CGColor
+                    strokeAnim.fromValue = UIColor.orange.cgColor
+                    strokeAnim.toValue = UIColor.clear.cgColor
                     strokeAnim.duration = 1
                     strokeAnim.repeatCount = MAXFLOAT
                     strokeAnim.autoreverses = false
-                    circleLayer.addAnimation(strokeAnim, forKey: "animateStrokeColor")
+                    circleLayer.add(strokeAnim, forKey: "animateStrokeColor")
                 }
                 i += 1
             }

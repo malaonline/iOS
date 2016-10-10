@@ -19,14 +19,14 @@ class TeacherTableViewCell: UITableViewCell {
                 return
             }
             
-            courseLabel.setTitle((model.grades_shortname ?? "")+" • "+(model.subject ?? ""), forState: .Normal)
+            courseLabel.setTitle((model.grades_shortname ?? "")+" • "+(model.subject ?? ""), for: UIControlState())
             nameLabel.text = model.name
             levelLabel.text = String(format: "  T%d  ", model.level)
-            avatarView.ma_setImage((model.avatar ?? NSURL()), placeholderImage: UIImage(named: "avatar_placeholder"))
+            avatarView.ma_setImage((model.avatar ?? URL()), placeholderImage: UIImage(named: "avatar_placeholder"))
             
             let string = String(MinPrice: model.min_price.money, MaxPrice: model.max_price.money)
             let attrString: NSMutableAttributedString = NSMutableAttributedString(string: string)
-            let rangeLocation = (string as NSString).rangeOfString("元").location
+            let rangeLocation = (string as NSString).range(of: "元").location
             attrString.addAttribute(
                 NSForegroundColorAttributeName,
                 value: MalaColor_82B4D9_0,
@@ -34,7 +34,7 @@ class TeacherTableViewCell: UITableViewCell {
             )
             attrString.addAttribute(
                 NSFontAttributeName,
-                value: UIFont.systemFontOfSize(14),
+                value: UIFont.systemFont(ofSize: 14),
                 range: NSMakeRange(0, rangeLocation)
             )
             attrString.addAttribute(
@@ -44,12 +44,12 @@ class TeacherTableViewCell: UITableViewCell {
             )
             attrString.addAttribute(
                 NSFontAttributeName,
-                value: UIFont.systemFontOfSize(12),
+                value: UIFont.systemFont(ofSize: 12),
                 range: NSMakeRange(rangeLocation, 4)
             )
             priceLabel.attributedText = attrString
             
-            tagsLabel.text = model.tags?.joinWithSeparator("｜")
+            tagsLabel.text = model.tags?.joined(separator: "｜")
         }
     }
     
@@ -58,16 +58,16 @@ class TeacherTableViewCell: UITableViewCell {
     /// 布局视图（卡片式Cell白色背景）
     private lazy var content: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor.whiteColor()
+        view.backgroundColor = UIColor.white
         return view
     }()
     /// 授课年级及科目label
     private lazy var courseLabel: UIButton = {
         let courseLabel = UIButton()
-        courseLabel.setBackgroundImage(UIImage(named: "tagsTitle"), forState: .Normal)
-        courseLabel.titleLabel?.font = UIFont.systemFontOfSize(11)
+        courseLabel.setBackgroundImage(UIImage(named: "tagsTitle"), for: UIControlState())
+        courseLabel.titleLabel?.font = UIFont.systemFont(ofSize: 11)
         courseLabel.titleEdgeInsets = UIEdgeInsets(top: -1, left: 0, bottom: 1, right: 0)
-        courseLabel.userInteractionEnabled = false
+        courseLabel.isUserInteractionEnabled = false
         return courseLabel
     }()
     /// 老师姓名label
@@ -81,7 +81,7 @@ class TeacherTableViewCell: UITableViewCell {
     private lazy var levelLabel: UILabel = {
         let levelLabel = UILabel()
         levelLabel.font = UIFont(name: "HelveticaNeue-Thin", size: 13)
-        levelLabel.backgroundColor = UIColor.whiteColor()
+        levelLabel.backgroundColor = UIColor.white
         levelLabel.textColor = MalaColor_E26254_0
         return levelLabel
     }()
@@ -98,13 +98,13 @@ class TeacherTableViewCell: UITableViewCell {
         avatarView.layer.cornerRadius = MalaLayout_AvatarSize * 0.5
         avatarView.layer.masksToBounds = true
         avatarView.image = UIImage(named: "avatar_placeholder")
-        avatarView.contentMode = .ScaleAspectFill
+        avatarView.contentMode = .scaleAspectFill
         return avatarView
     }()
     /// 授课价格label
     private lazy var priceLabel: UILabel = {
         let priceLabel = UILabel()
-        priceLabel.font = UIFont.systemFontOfSize(14)
+        priceLabel.font = UIFont.systemFont(ofSize: 14)
         priceLabel.textColor = MalaColor_6C6C6C_0
         return priceLabel
     }()
@@ -132,7 +132,7 @@ class TeacherTableViewCell: UITableViewCell {
     private func setupUserInterface() {
         // Style
         contentView.backgroundColor = MalaColor_EDEDED_0
-        selectionStyle = .None
+        selectionStyle = .none
         
         // SubViews
         contentView.addSubview(content)

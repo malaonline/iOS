@@ -28,7 +28,7 @@ class RegionUnitCell: UITableViewCell {
     /// 标题label
     private lazy var titleLabel: UILabel = {
         let titleLabel = UILabel()
-        titleLabel.font = UIFont.systemFontOfSize(14)
+        titleLabel.font = UIFont.systemFont(ofSize: 14)
         titleLabel.textColor = MalaColor_636363_0
         return titleLabel
     }()
@@ -53,7 +53,7 @@ class RegionUnitCell: UITableViewCell {
     // MARK: - Private Method
     private func setupUserInterface() {
         // Style
-        selectionStyle = .None
+        selectionStyle = .none
         separatorInset = UIEdgeInsets(top: 0, left: 12, bottom: 0, right: 12)
         
         // SubViews
@@ -75,11 +75,11 @@ class RegionUnitCell: UITableViewCell {
     }
     
     func hideSeparator() {
-        separatorLine.hidden = true
+        separatorLine.isHidden = true
     }
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        separatorLine.hidden = false
+        separatorLine.isHidden = false
     }
 }

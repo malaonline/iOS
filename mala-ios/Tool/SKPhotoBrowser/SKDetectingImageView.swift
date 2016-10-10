@@ -9,8 +9,8 @@
 import UIKit
 
 @objc protocol SKDetectingImageViewDelegate {
-    func handleImageViewSingleTap(view: UIImageView, touch: UITouch)
-    func handleImageViewDoubleTap(view: UIImageView, touch: UITouch)
+    func handleImageViewSingleTap(_ view: UIImageView, touch: UITouch)
+    func handleImageViewDoubleTap(_ view: UIImageView, touch: UITouch)
 }
 
 class SKDetectingImageView: UIImageView {
@@ -22,11 +22,11 @@ class SKDetectingImageView: UIImageView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        userInteractionEnabled = true
+        isUserInteractionEnabled = true
     }
     
-    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        super.touchesEnded(touches, withEvent: event)
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesEnded(touches, with: event)
         
         let touch = touches.first!
         switch touch.tapCount {
@@ -34,13 +34,13 @@ class SKDetectingImageView: UIImageView {
         case 2 : handleDoubleTap(touch)
         default: break
         }
-        nextResponder()
+        next
     }
     
-    func handleSingleTap(touch: UITouch) {
+    func handleSingleTap(_ touch: UITouch) {
         delegate?.handleImageViewSingleTap(self, touch: touch)
     }
-    func handleDoubleTap(touch: UITouch) {
+    func handleDoubleTap(_ touch: UITouch) {
         delegate?.handleImageViewDoubleTap(self, touch: touch)
     }
 }

@@ -32,9 +32,9 @@ class TagListView:UIScrollView
     /// 文字左右边界间隔
     var tagCombinedMargin: CGFloat = 10.0
     /// 默认标签背景色
-    var labelBackgroundColor: UIColor = UIColor.lightGrayColor()
+    var labelBackgroundColor: UIColor = UIColor.lightGray
     /// 默认文字颜色
-    var textColor: UIColor = UIColor.whiteColor()
+    var textColor: UIColor = UIColor.white
     /// 图标名称
     var iconName: String?
     /// 公共触发事件
@@ -47,7 +47,7 @@ class TagListView:UIScrollView
         super.init(frame: frame)
         numberOfRows = Int(frame.height / rowHeight)
         self.showsVerticalScrollIndicator = false
-        self.scrollEnabled = true
+        self.isScrollEnabled = true
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -65,26 +65,26 @@ class TagListView:UIScrollView
         }
     }
     
-    func addTag(text: String, target: AnyObject? = nil, tapAction: Selector? = nil, longPressAction: Selector? = nil, backgroundColor: UIColor? = nil, color: UIColor? = nil) {
+    func addTag(_ text: String, target: AnyObject? = nil, tapAction: Selector? = nil, longPressAction: Selector? = nil, backgroundColor: UIColor? = nil, color: UIColor? = nil) {
         
         // 初始化标签控件（自定义属性）
         let label = UILabel()
         label.layer.cornerRadius = 3
         label.clipsToBounds = true
-        label.textColor = UIColor.whiteColor()
+        label.textColor = UIColor.white
         label.backgroundColor = backgroundColor ?? labelBackgroundColor
         label.text = text
         label.textColor = color ?? textColor
-        label.font = UIFont.systemFontOfSize(14)
+        label.font = UIFont.systemFont(ofSize: 14)
         label.sizeToFit()
-        label.textAlignment = .Center
+        label.textAlignment = .center
         self.tags.append(label)
         label.layer.shouldRasterize = true
-        label.layer.rasterizationScale = UIScreen.mainScreen().scale
+        label.layer.rasterizationScale = UIScreen.main.scale
         
         // 图标
         if iconName != nil {
-            label.textAlignment = .Left
+            label.textAlignment = .left
             let imageView = UIImageView(image: UIImage(named: iconName!))
             label.addSubview(imageView)
             
@@ -99,7 +99,7 @@ class TagListView:UIScrollView
         // 点击事件
         if tapAction != nil {
             let tap = UITapGestureRecognizer(target: target, action: tapAction!)
-            label.userInteractionEnabled = true
+            label.isUserInteractionEnabled = true
             label.addGestureRecognizer(tap)
         }
         
@@ -107,10 +107,10 @@ class TagListView:UIScrollView
         if commonTarget != nil && commonAction != nil {
             let tap = UITapGestureRecognizer(target: commonTarget, action: commonAction!)
             // 若由labels数据生成标签，则将标签下标分配为tag
-            if labels.count != 0, let index = labels.indexOf(text) {
+            if labels.count != 0, let index = labels.index(of: text) {
                 label.tag = index
             }
-            label.userInteractionEnabled = true
+            label.isUserInteractionEnabled = true
             label.addGestureRecognizer(tap)
         }
         
@@ -122,9 +122,9 @@ class TagListView:UIScrollView
         
         // 计算frame
         let iconPadding: CGFloat = (iconName == nil) ? 0 : (14+3)
-        label.frame = CGRectMake(label.frame.origin.x, label.frame.origin.y, label.frame.width + tagCombinedMargin + iconPadding, rowHeight - tagVerticalPadding)
+        label.frame = CGRect(x: label.frame.origin.x, y: label.frame.origin.y, width: label.frame.width + tagCombinedMargin + iconPadding, height: rowHeight - tagVerticalPadding)
         if self.tags.count == 0 {
-            label.frame = CGRectMake(hashtagsOffset.left, hashtagsOffset.top, label.frame.width, label.frame.height)
+            label.frame = CGRect(x: hashtagsOffset.left, y: hashtagsOffset.top, width: label.frame.width, height: label.frame.height)
             self.addSubview(label)
             
         } else {
@@ -133,10 +133,10 @@ class TagListView:UIScrollView
         }
     }
     
-    private func isOutofBounds(newPoint:CGPoint,labelFrame:CGRect) {
+    private func isOutofBounds(_ newPoint:CGPoint,labelFrame:CGRect) {
         let bottomYLimit = newPoint.y + labelFrame.height
         if bottomYLimit > self.contentSize.height {
-            self.contentSize = CGSizeMake(self.contentSize.width, self.contentSize.height + rowHeight - tagVerticalPadding)
+            self.contentSize = CGSize(width: self.contentSize.width, height: self.contentSize.height + rowHeight - tagVerticalPadding)
         }
     }
     
@@ -144,39 +144,39 @@ class TagListView:UIScrollView
         return getPositionForIndex(tags.count-1, rowNumber: self.currentRow)
     }
     
-    func getPositionForIndex(index:Int,rowNumber:Int) -> CGPoint {
+    func getPositionForIndex(_ index:Int,rowNumber:Int) -> CGPoint {
         if index == 0 {
-            return CGPointMake(hashtagsOffset.left, hashtagsOffset.top)
+            return CGPoint(x: hashtagsOffset.left, y: hashtagsOffset.top)
         }
         let y = CGFloat(rowNumber) * self.rowHeight + hashtagsOffset.top
         let lastTagFrame = tags[index-1].frame
         let x = lastTagFrame.origin.x + lastTagFrame.width + tagHorizontalPadding
-        return CGPointMake(x, y)
+        return CGPoint(x: x, y: y)
     }
     
-    func removeTagWithName(name:String) {
-        for (index,tag) in tags.enumerate() {
+    func removeTagWithName(_ name:String) {
+        for (index,tag) in tags.enumerated() {
             if tag.text! == name {
                 removeTagWithIndex(index)
             }
         }
     }
     
-    func removeTagWithIndex(index:Int) {
+    func removeTagWithIndex(_ index:Int) {
         if index > tags.count - 1 {
             print("ERROR: Tag Index \(index) Out of Bounds")
             return
         }
         tags[index].removeFromSuperview()
-        tags.removeAtIndex(index)
+        tags.remove(at: index)
         layoutTagsFromIndex(index)
     }
     
-    private func getRowNumber(index:Int) -> Int {
+    private func getRowNumber(_ index:Int) -> Int {
         return Int((tags[index].frame.origin.y - hashtagsOffset.top)/rowHeight)
     }
     
-    private func layoutTagsFromIndex(index:Int,animated:Bool = true) {
+    private func layoutTagsFromIndex(_ index:Int,animated:Bool = true) {
         if tags.count == 0 {
             return
         }
@@ -186,28 +186,28 @@ class TagListView:UIScrollView
                 self.tags[i].frame = self.generateFrameAtIndex(i, rowNumber: &rowNumber)
             }
         }
-        UIView.animateWithDuration(0.3, animations: animation)
+        UIView.animate(withDuration: 0.3, animations: animation)
     }
     
-    private func generateFrameAtIndex(index:Int,inout rowNumber: Int) -> CGRect {
+    private func generateFrameAtIndex(_ index:Int, rowNumber: inout Int) -> CGRect {
         var newPoint = self.getPositionForIndex(index, rowNumber: rowNumber)
         if (newPoint.x + self.tags[index].frame.width) >= self.frame.width {
             rowNumber += 1
-            newPoint = CGPointMake(self.hashtagsOffset.left, CGFloat(rowNumber) * rowHeight + self.hashtagsOffset.top)
+            newPoint = CGPoint(x: self.hashtagsOffset.left, y: CGFloat(rowNumber) * rowHeight + self.hashtagsOffset.top)
         }
         self.isOutofBounds(newPoint,labelFrame: self.tags[index].frame)
-        return CGRectMake(newPoint.x, newPoint.y, self.tags[index].frame.width, self.tags[index].frame.height)
+        return CGRect(x: newPoint.x, y: newPoint.y, width: self.tags[index].frame.width, height: self.tags[index].frame.height)
     }
     
-    func removeMultipleTagsWithIndices(indexSet:Set<Int>) {
-        let sortedArray = Array(indexSet).sort()
+    func removeMultipleTagsWithIndices(_ indexSet:Set<Int>) {
+        let sortedArray = Array(indexSet).sorted()
         for index in sortedArray {
             if index > tags.count - 1 {
                 print("ERROR: Tag Index \(index) Out of Bounds")
                 continue
             }
             tags[index].removeFromSuperview()
-            tags.removeAtIndex(index)
+            tags.remove(at: index)
         }
         layoutTagsFromIndex(sortedArray.first!)
     }

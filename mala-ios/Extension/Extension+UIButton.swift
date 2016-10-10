@@ -21,16 +21,16 @@ extension UIButton {
      ///  - returns: UIButton
     convenience init(title: String? = nil, imageName: String? = nil, highlightImageName: String? = nil, target: AnyObject? = nil, action:Selector) {
         self.init()
-        titleLabel?.font = UIFont.systemFontOfSize(15)
-        setTitle(title, forState: .Normal)
-        setTitleColor(MalaColor_6C6C6C_0, forState: .Normal)
+        titleLabel?.font = UIFont.systemFont(ofSize: 15)
+        setTitle(title, for: .normal)
+        setTitleColor(MalaColor_6C6C6C_0, for: .normal)
         if imageName != nil {
-            setImage(UIImage(named: imageName!), forState: .Normal)
+            setImage(UIImage(named: imageName!), for: .normal)
         }
         if highlightImageName != nil {
-            setImage(UIImage(named: highlightImageName!), forState: .Highlighted)
+            setImage(UIImage(named: highlightImageName!), for: .highlighted)
         }
-        addTarget(target, action: action, forControlEvents: .TouchUpInside)
+        addTarget(target, action: action, for: .touchUpInside)
         sizeToFit()
     }
     
@@ -43,14 +43,14 @@ extension UIButton {
     ///  - parameter selectedBgColor:    UIColor for BackgroundColor in SelectedState
     ///
     ///  - returns: UIButton
-    convenience init(title: String, titleColor: UIColor? = nil, selectedTitleColor: UIColor? = nil, bgColor: UIColor = UIColor.whiteColor(), selectedBgColor: UIColor = UIColor.whiteColor()) {
+    convenience init(title: String, titleColor: UIColor? = nil, selectedTitleColor: UIColor? = nil, bgColor: UIColor = UIColor.white, selectedBgColor: UIColor = UIColor.white) {
         self.init()
-        setTitle(title, forState: .Normal)
-        titleLabel?.font = UIFont.systemFontOfSize(14)
-        setTitleColor(titleColor, forState: .Normal)
-        setTitleColor(selectedTitleColor, forState: .Selected)
-        setBackgroundImage(UIImage.withColor(bgColor), forState: .Normal)
-        setBackgroundImage(UIImage.withColor(selectedBgColor), forState: .Selected)
+        setTitle(title, for: .normal)
+        titleLabel?.font = UIFont.systemFont(ofSize: 14)
+        setTitleColor(titleColor, for: .normal)
+        setTitleColor(selectedTitleColor, for: .selected)
+        setBackgroundImage(UIImage.withColor(color: bgColor), for: .normal)
+        setBackgroundImage(UIImage.withColor(color: selectedBgColor), for: .selected)
         sizeToFit()
     }
     
@@ -64,14 +64,14 @@ extension UIButton {
     ///  - returns: UIButton
     convenience init(title: String, titleColor: UIColor? = nil, backgroundColor: UIColor? = nil) {
         self.init()
-        setTitle(title, forState: .Normal)
-        titleLabel?.font = UIFont.systemFontOfSize(16)
-        setTitleColor(titleColor, forState: .Normal)
+        setTitle(title, for: .normal)
+        titleLabel?.font = UIFont.systemFont(ofSize: 16)
+        setTitleColor(titleColor, for: .normal)
         self.backgroundColor = backgroundColor
         sizeToFit()
     }
     
-    func exchangeImageAndLabel(padding: CGFloat) {
+    func exchangeImageAndLabel(_ padding: CGFloat) {
         self.imageEdgeInsets = UIEdgeInsets(top: 0, left: titleLabel!.frame.width + padding, bottom: 0, right: -titleLabel!.frame.width + padding)
         self.titleEdgeInsets = UIEdgeInsets(top: 0, left: -imageView!.frame.width, bottom: 0, right: imageView!.frame.width)
     }
@@ -85,23 +85,23 @@ extension UIButton {
     convenience init(title: String, borderColor: UIColor, target: AnyObject?, action: Selector? = nil, borderWidth: CGFloat = MalaScreenOnePixel) {
         self.init()
         // 文字及其状态颜色
-        self.titleLabel?.font = UIFont.systemFontOfSize(13)
-        self.setTitle(title, forState: .Normal)
-        self.setTitleColor(borderColor, forState: .Normal)
-        self.setTitleColor(UIColor.whiteColor(), forState: .Highlighted)
-        self.setTitleColor(UIColor.whiteColor(), forState: .Selected)
+        self.titleLabel?.font = UIFont.systemFont(ofSize: 13)
+        self.setTitle(title, for: .normal)
+        self.setTitleColor(borderColor, for: .normal)
+        self.setTitleColor(UIColor.white, for: .highlighted)
+        self.setTitleColor(UIColor.white, for: .selected)
         // 背景状态颜色
-        self.setBackgroundImage(UIImage.withColor(UIColor.whiteColor()), forState: .Normal)
-        self.setBackgroundImage(UIImage.withColor(borderColor), forState: .Highlighted)
-        self.setBackgroundImage(UIImage.withColor(borderColor), forState: .Selected)
+        self.setBackgroundImage(UIImage.withColor(color: UIColor.white), for: .normal)
+        self.setBackgroundImage(UIImage.withColor(color: borderColor), for: .highlighted)
+        self.setBackgroundImage(UIImage.withColor(color: borderColor), for: .selected)
         // 圆角和边框
         self.layer.cornerRadius = 5
         self.layer.masksToBounds = true
-        self.layer.borderColor = borderColor.CGColor
+        self.layer.borderColor = borderColor.cgColor
         self.layer.borderWidth = borderWidth
         
         if let selector = action {
-            self.addTarget(target, action: selector, forControlEvents: .TouchUpInside)
+            self.addTarget(target, action: selector, for: .touchUpInside)
         }
     }
     
@@ -116,11 +116,11 @@ extension UIButton {
     convenience init(title: String, titleColor: UIColor, target: AnyObject?, action: Selector) {
         self.init()
         // 文字及其状态颜色
-        self.titleLabel?.font = UIFont.systemFontOfSize(14)
-        self.setTitle(title, forState: .Normal)
-        self.setTitleColor(titleColor, forState: .Normal)
-        self.setTitleColor(titleColor, forState: .Highlighted)
-        self.addTarget(target, action: action, forControlEvents: .TouchUpInside)
+        self.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+        self.setTitle(title, for: .normal)
+        self.setTitleColor(titleColor, for: .normal)
+        self.setTitleColor(titleColor, for: .highlighted)
+        self.addTarget(target, action: action, for: .touchUpInside)
         self.sizeToFit()
     }
 }

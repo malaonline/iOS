@@ -33,7 +33,7 @@ class LearningReportCell: UITableViewCell {
     /// 学习报告状态
     var reportStatus: MalaLearningReportStatus = .LoggingIn {
         didSet {
-            dispatch_async(dispatch_get_main_queue(), { [weak self] () -> Void in
+            DispatchQueue.main.async(execute: { [weak self] () -> Void in
                 self?.changeDisplayMode()
             })
         }
@@ -50,9 +50,9 @@ class LearningReportCell: UITableViewCell {
         let button = UIButton()
         
         button.backgroundColor = MalaColor_8DC1DE_0
-        button.titleLabel?.font = UIFont.systemFontOfSize(16)
-        button.setTitle("查看我的学习报告", forState: .Normal)
-        button.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
+        button.setTitle("查看我的学习报告", for: UIControlState())
+        button.setTitleColor(UIColor.white, for: UIControlState())
         
         button.layer.cornerRadius = 5
         button.layer.masksToBounds = true
@@ -61,11 +61,11 @@ class LearningReportCell: UITableViewCell {
     /// 学科标签
     private lazy var subjectLabel: UIButton = {
         let button = UIButton()
-        button.setBackgroundImage(UIImage(named:"subject_background"), forState: .Normal)
-        button.setTitle("数学", forState: .Normal)
-        button.titleLabel?.font = UIFont.systemFontOfSize(12)
+        button.setBackgroundImage(UIImage(named:"subject_background"), for: UIControlState())
+        button.setTitle("数学", for: UIControlState())
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 12)
         button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 2, bottom: 0, right: -2)
-        button.userInteractionEnabled = false
+        button.isUserInteractionEnabled = false
         return button
     }()
     /// 标题标签
@@ -89,7 +89,7 @@ class LearningReportCell: UITableViewCell {
             fontSize: 35,
             textColor: MalaColor_333333_0
         )
-        label.textAlignment = .Center
+        label.textAlignment = .center
         return label
     }()
     /// 正确率标签
@@ -99,33 +99,33 @@ class LearningReportCell: UITableViewCell {
             fontSize: 35,
             textColor: MalaColor_333333_0
         )
-        label.textAlignment = .Center
+        label.textAlignment = .center
         return label
     }()
     /// 答题数图例
     private lazy var answerNumberLegend: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(named: "answerNumber"), forState: .Normal)
-        button.setTitle("答题数", forState: .Normal)
-        button.titleLabel?.font = UIFont.systemFontOfSize(13)
-        button.setTitleColor(MalaColor_636363_0, forState: .Normal)
+        button.setImage(UIImage(named: "answerNumber"), for: UIControlState())
+        button.setTitle("答题数", for: UIControlState())
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 13)
+        button.setTitleColor(MalaColor_636363_0, for: UIControlState())
         button.imageEdgeInsets = UIEdgeInsets(top: 0, left: -6, bottom: 0, right: 6)
         return button
     }()
     /// 正确率图例
     private lazy var correctRateLegend: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(named: "correctRate"), forState: .Normal)
-        button.setTitle("正确率", forState: .Normal)
-        button.titleLabel?.font = UIFont.systemFontOfSize(13)
-        button.setTitleColor(MalaColor_636363_0, forState: .Normal)
+        button.setImage(UIImage(named: "correctRate"), for: UIControlState())
+        button.setTitle("正确率", for: UIControlState())
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 13)
+        button.setTitleColor(MalaColor_636363_0, for: UIControlState())
         button.imageEdgeInsets = UIEdgeInsets(top: 0, left: -6, bottom: 0, right: 6)
         return button
     }()
     /// 遮罩层（无数学学习报告样式）
     private lazy var layerView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor.whiteColor()
+        view.backgroundColor = UIColor.white
         return view
     }()
     /// 遮罩层图片
@@ -144,7 +144,7 @@ class LearningReportCell: UITableViewCell {
     }()
     /// loading指示器
     private lazy var loadingView: UIActivityIndicatorView = {
-        let view = UIActivityIndicatorView(activityIndicatorStyle: .White)
+        let view = UIActivityIndicatorView(activityIndicatorStyle: .white)
         view.startAnimating()
         view.hidesWhenStopped = true
         return view
@@ -167,7 +167,7 @@ class LearningReportCell: UITableViewCell {
     private func setupUserInterface() {
         // Style
         contentView.backgroundColor = MalaColor_EDEDED_0
-        content.backgroundColor = UIColor.whiteColor()
+        content.backgroundColor = UIColor.white
         
         // SubViews
         contentView.addSubview(content)
@@ -266,89 +266,89 @@ class LearningReportCell: UITableViewCell {
         println("渲染对应UI样式:")
         
         // 解除绑定事件
-        button.removeTarget(self, action: #selector(LearningReportCell.login), forControlEvents: .TouchUpInside)
-        button.removeTarget(self, action: #selector(LearningReportCell.showReportDemo), forControlEvents: .TouchUpInside)
-        button.removeTarget(self, action: #selector(LearningReportCell.showMyReport), forControlEvents: .TouchUpInside)
-        button.removeTarget(self, action: #selector(LearningReportCell.reloadStatus), forControlEvents: .TouchUpInside)
+        button.removeTarget(self, action: #selector(LearningReportCell.login), for: .touchUpInside)
+        button.removeTarget(self, action: #selector(LearningReportCell.showReportDemo), for: .touchUpInside)
+        button.removeTarget(self, action: #selector(LearningReportCell.showMyReport), for: .touchUpInside)
+        button.removeTarget(self, action: #selector(LearningReportCell.reloadStatus), for: .touchUpInside)
         
         /// 渲染UI样式
         switch  self.reportStatus {
         case .Error:
             
             // 数据获取错误
-            titleLabel.hidden = true
-            subjectLabel.hidden = true
-            layerView.hidden = false
-            loadingView.hidden = false
+            titleLabel.isHidden = true
+            subjectLabel.isHidden = true
+            layerView.isHidden = false
+            loadingView.isHidden = false
             loadingView.stopAnimating()
             
             layerLabel.text = "学习报告数据获取失败"
-            button.setTitle("重新获取", forState: .Normal)
-            button.addTarget(self, action: #selector(LearningReportCell.reloadStatus), forControlEvents: .TouchUpInside)
+            button.setTitle("重新获取", for: UIControlState())
+            button.addTarget(self, action: #selector(LearningReportCell.reloadStatus), for: .touchUpInside)
             break
            
         case .LoggingIn:
             
             // 登录中
-            titleLabel.hidden = true
-            subjectLabel.hidden = true
-            layerView.hidden = false
-            loadingView.hidden = false
+            titleLabel.isHidden = true
+            subjectLabel.isHidden = true
+            layerView.isHidden = false
+            loadingView.isHidden = false
             loadingView.startAnimating()
             
             layerLabel.text = "正在获取学习报告数据..."
-            button.setTitle("获取状态中", forState: .Normal)
+            button.setTitle("获取状态中", for: UIControlState())
             break
             
         case .UnLogged:
             
             // 未登录
-            titleLabel.hidden = true
-            subjectLabel.hidden = true
-            layerView.hidden = false
+            titleLabel.isHidden = true
+            subjectLabel.isHidden = true
+            layerView.isHidden = false
             loadingView.stopAnimating()
             
             layerLabel.text = "登录可查看专属学习报告哦"
-            button.setTitle("登录", forState: .Normal)
-            button.addTarget(self, action: #selector(LearningReportCell.login), forControlEvents: .TouchUpInside)
+            button.setTitle("登录", for: UIControlState())
+            button.addTarget(self, action: #selector(LearningReportCell.login), for: .touchUpInside)
             break
             
         case .UnSigned:
             
             // 未报名
-            titleLabel.hidden = true
-            subjectLabel.hidden = true
-            layerView.hidden = false
+            titleLabel.isHidden = true
+            subjectLabel.isHidden = true
+            layerView.isHidden = false
             loadingView.stopAnimating()
             
             layerLabel.text = "学习报告目前只支持数学科目"
-            button.setTitle("查看学习报告样本", forState: .Normal)
-            button.addTarget(self, action: #selector(LearningReportCell.showReportDemo), forControlEvents: .TouchUpInside)
+            button.setTitle("查看学习报告样本", for: UIControlState())
+            button.addTarget(self, action: #selector(LearningReportCell.showReportDemo), for: .touchUpInside)
             break
             
         case .UnSignedMath:
             
             // 未报名数学
-            titleLabel.hidden = true
-            subjectLabel.hidden = true
-            layerView.hidden = false
+            titleLabel.isHidden = true
+            subjectLabel.isHidden = true
+            layerView.isHidden = false
             loadingView.stopAnimating()
             
             layerLabel.text = "学习报告目前只支持数学科目"
-            button.setTitle("查看学习报告样本", forState: .Normal)
-            button.addTarget(self, action: #selector(LearningReportCell.showReportDemo), forControlEvents: .TouchUpInside)
+            button.setTitle("查看学习报告样本", for: UIControlState())
+            button.addTarget(self, action: #selector(LearningReportCell.showReportDemo), for: .touchUpInside)
             break
             
         case .MathSigned:
             
             // 报名数学
-            titleLabel.hidden = false
-            subjectLabel.hidden = false
-            layerView.hidden = true
+            titleLabel.isHidden = false
+            subjectLabel.isHidden = false
+            layerView.isHidden = true
             loadingView.stopAnimating()
             
-            button.setTitle("查看我的学习报告 ", forState: .Normal)
-            button.addTarget(self, action: #selector(LearningReportCell.showMyReport), forControlEvents: .TouchUpInside)
+            button.setTitle("查看我的学习报告 ", for: UIControlState())
+            button.addTarget(self, action: #selector(LearningReportCell.showMyReport), for: .touchUpInside)
             break
         }
     }
@@ -358,21 +358,21 @@ class LearningReportCell: UITableViewCell {
     /// 登录
     @objc private func login() {
         println("登录")
-        NSNotificationCenter.defaultCenter().postNotificationName(MalaNotification_ShowLearningReport, object: -1)
+        NotificationCenter.default.post(name: Notification.Name(rawValue: MalaNotification_ShowLearningReport), object: -1)
     }
     /// 显示学习报告样本
     @objc private func showReportDemo() {
         println("样本")
-        NSNotificationCenter.defaultCenter().postNotificationName(MalaNotification_ShowLearningReport, object: 0)
+        NotificationCenter.default.post(name: Notification.Name(rawValue: MalaNotification_ShowLearningReport), object: 0)
     }
     /// 显示我的学习报告
     @objc private func showMyReport() {
         println("报告")
-        NSNotificationCenter.defaultCenter().postNotificationName(MalaNotification_ShowLearningReport, object: 1)
+        NotificationCenter.default.post(name: Notification.Name(rawValue: MalaNotification_ShowLearningReport), object: 1)
     }
     /// 重新获取学习报告
     @objc private func reloadStatus() {
         println("重新获取")
-        NSNotificationCenter.defaultCenter().postNotificationName(MalaNotification_ReloadLearningReport, object: nil)
+        NotificationCenter.default.post(name: Notification.Name(rawValue: MalaNotification_ReloadLearningReport), object: nil)
     }
 }

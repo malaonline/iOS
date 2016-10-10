@@ -17,12 +17,12 @@ class ThemeDate {
     ///  - parameter Period: 课时数量（基数应为[课表对象]数量）
     ///
     ///  - returns: 上课时间表（字符串数组）
-    class func dateArray(days: [ClassScheduleDayModel], period: Int) -> [[NSTimeInterval]] {
+    class func dateArray(_ days: [ClassScheduleDayModel], period: Int) -> [[TimeInterval]] {
         
         /// 上课时间表字符串数组
-        var timeSchedule: [[NSTimeInterval]] = [[NSTimeInterval]]()
+        var timeSchedule: [[TimeInterval]] = [[TimeInterval]]()
         /// 课表数组排序
-        let sortDays = days.sort { (model0, model1) -> Bool in
+        let sortDays = days.sorted { (model0, model1) -> Bool in
             return (model0.weekID == 0 ? 7 : model0.weekID) < (model1.weekID == 0 ? 7 : model1.weekID)
         }
         /// 课时数
@@ -58,10 +58,10 @@ class ThemeDate {
     ///  - parameter timeSlot: 上课时间模型
     ///
     ///  - returns: 首个有效开始上课时间
-    private func getFirstAvailableDate(timeSlot: ClassScheduleDayModel) -> NSDate {
+    private func getFirstAvailableDate(_ timeSlot: ClassScheduleDayModel) -> Date {
         
         if let lastDateTimeInterval = timeSlot.last_occupied_end {
-            var lastDate = NSDate(timeIntervalSince1970: lastDateTimeInterval.doubleValue)
+            var lastDate = Date(timeIntervalSince1970: lastDateTimeInterval.doubleValue)
             // 下一周的课程开始时间
             lastDate = lastDate.dateByAddingWeeks(1)
             lastDate = lastDate.dateBySubtractingHours(2)
@@ -89,7 +89,7 @@ class ThemeDate {
     ///  - parameter timeSlot: 上课时间模型
     ///
     ///  - returns: 可否上课结果
-    private func couldStartInThisWeek(timeSlot: ClassScheduleDayModel) -> Bool {
+    private func couldStartInThisWeek(_ timeSlot: ClassScheduleDayModel) -> Bool {
         
         /// 若首次购课，则[计算上课时间]需要间隔两天，以用于用户安排[建档测评服务]
         let intervals = MalaIsHasBeenEvaluatedThisSubject == true ? 2 : 0
@@ -97,7 +97,7 @@ class ThemeDate {
         let date = MalaConfig.malaWeekdays()[timeSlot.weekID].dateInThisWeek()
         
         /// 若首次购课
-        if weekId < (weekdayInt(NSDate())+intervals) {
+        if weekId < (weekdayInt(Date())+intervals) {
             return false
         }
         
@@ -105,7 +105,7 @@ class ThemeDate {
         let selectedDate = dateString.dateWithFormatter("yyyy-MM-dd HH:mm")!
         
         // 若所选时间与当前时间相距不足1小时，则从下周开始计算
-        if selectedDate.hoursFrom(NSDate()) < 1 {
+        if selectedDate.hoursFrom(Date()) < 1 {
             return false
         }
         return true

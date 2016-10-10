@@ -40,20 +40,20 @@ public enum ContentType: String {
 ///  - NoSuccessStatusCode: 状态码异常
 ///  - Other:               其他
 public enum Reason: CustomStringConvertible {
-    case CouldNotParseJSON
-    case NoData
-    case NoSuccessStatusCode(statusCode: Int)
-    case Other(NSError?)
+    case couldNotParseJSON
+    case noData
+    case noSuccessStatusCode(statusCode: Int)
+    case other(NSError?)
     
     public var description: String {
         switch self {
-        case .CouldNotParseJSON:
+        case .couldNotParseJSON:
             return "CouldNotParseJSON"
-        case .NoData:
+        case .noData:
             return "NoData"
-        case .NoSuccessStatusCode(let statusCode):
+        case .noSuccessStatusCode(let statusCode):
             return "NoSuccessStatusCode: \(statusCode)"
-        case .Other(let error):
+        case .other(let error):
             return "Other, Error: \(error?.description)"
         }
     }
@@ -63,7 +63,7 @@ public enum Reason: CustomStringConvertible {
 /// 网络请求次数
 var MalaNetworkActivityCount = 0 {
     didSet {
-        UIApplication.sharedApplication().networkActivityIndicatorVisible = (MalaNetworkActivityCount > 0)
+        UIApplication.shared.isNetworkActivityIndicatorVisible = (MalaNetworkActivityCount > 0)
     }
 }
 
@@ -72,9 +72,9 @@ var MalaNetworkActivityCount = 0 {
 public struct Resource<A>: CustomStringConvertible {
     let path: String
     let method: Method
-    let requestBody: NSData?
+    let requestBody: Data?
     let headers: [String:String]
-    let parse: NSData -> A?
+    let parse: (Data) -> A?
     
     public var description: String {
         let decodeRequestBody: [String: AnyObject]
@@ -93,7 +93,7 @@ public struct Resource<A>: CustomStringConvertible {
 ///
 ///  - parameter reason:       错误原因
 ///  - parameter errorMessage: 错误信息
-func defaultFailureHandler(reason: Reason, errorMessage: String?) {
+func defaultFailureHandler(_ reason: Reason, errorMessage: String?) {
     println("\n***************************** MalaNetworking Failure *****************************")
     println("Reason: \(reason)")
     if let errorMessage = errorMessage {
@@ -106,7 +106,7 @@ func defaultFailureHandler(reason: Reason, errorMessage: String?) {
 ///  - parameter data: NSData对象
 ///
 ///  - returns: error字符串信息
-func errorMessageInData(data: NSData?) -> String? {
+func errorMessageInData(_ data: Data?) -> String? {
     if let data = data {
         if let json = decodeJSON(data) {
             if let errorMessage = json["error"] as? String {
@@ -117,22 +117,22 @@ func errorMessageInData(data: NSData?) -> String? {
     return nil
 }
 
-public func apiRequest<A>(modifyRequest: NSMutableURLRequest -> (), baseURL: NSURL, resource: Resource<A>, failure: (Reason, String?) -> Void, completion: A -> Void) {
+public func apiRequest<A>(_ modifyRequest: (NSMutableURLRequest) -> (), baseURL: URL, resource: Resource<A>, failure: @escaping (Reason, String?) -> Void, completion: @escaping (A) -> Void) {
     #if STAGING
         let sessionConfig = NSURLSessionConfiguration.defaultSessionConfiguration()
-        let session = NSURLSession(configuration: sessionConfig, delegate: _sessionDelegate, delegateQueue: nil)
+        let session = URLSession(configuration: sessionConfig, delegate: _sessionDelegate, delegateQueue: nil)
     #else
-        let session = NSURLSession.sharedSession()
+        let session = URLSession.shared
     #endif
     
     var request = NSMutableURLRequest()
-    if let url = baseURL.URLByAppendingPathComponent(resource.path) {
-        request = NSMutableURLRequest(URL: url)
+    if let url = baseURL.appendingPathComponent(resource.path) {
+        request = NSMutableURLRequest(url: url)
     }
-    request.HTTPMethod = resource.method.rawValue
+    request.httpMethod = resource.method.rawValue
     
     
-    func needEncodesParametersForMethod(method: Method) -> Bool {
+    func needEncodesParametersForMethod(_ method: Method) -> Bool {
         switch method {
         case .GET, .HEAD, .DELETE:
             return true
@@ -141,26 +141,26 @@ public func apiRequest<A>(modifyRequest: NSMutableURLRequest -> (), baseURL: NSU
         }
     }
     
-    func query(parameters: [String: AnyObject]) -> String {
+    func query(_ parameters: [String: AnyObject]) -> String {
         var components: [(String, String)] = []
-        for key in Array(parameters.keys).sort(<) {
+        for key in Array(parameters.keys).sorted(by: <) {
             let value: AnyObject! = parameters[key]
             components += queryComponents(key, value: value)
         }
         
-        return (components.map{"\($0)=\($1)"} as [String]).joinWithSeparator("&")
+        return (components.map{"\($0)=\($1)"} as [String]).joined(separator: "&")
     }
     
     if needEncodesParametersForMethod(resource.method) {
         if let requestBody = resource.requestBody {
-            if let URLComponents = NSURLComponents(URL: request.URL!, resolvingAgainstBaseURL: false) {
-                URLComponents.percentEncodedQuery = (URLComponents.percentEncodedQuery != nil ? URLComponents.percentEncodedQuery! + "&" : "") + query(decodeJSON(requestBody)!)
-                request.URL = URLComponents.URL
+            if let URLComponents = URLComponents(url: request.url!, resolvingAgainstBaseURL: false) {
+                URLComponents.percentEncodedQuery = (URLComponents.percentEncodedQuery != nil ? URLComponents.percentEncodedQuery! + "&" : "") + query(parameters: decodeJSON(data: requestBody)!)
+                request.url = URLComponents.url
             }
         }
         
     } else {
-        request.HTTPBody = resource.requestBody
+        request.httpBody = resource.requestBody as Data?
     }
     
     modifyRequest(request)
@@ -169,11 +169,11 @@ public func apiRequest<A>(modifyRequest: NSMutableURLRequest -> (), baseURL: NSU
         request.setValue(value, forHTTPHeaderField: key)
     }
     
-    let task = session.dataTaskWithRequest(request) { (data, response, error) -> Void in
+    let task = session.dataTask(with: request as URLRequest) { (data, response, error) -> Void in
         
-        println("RequestURL@Malalaoshi - \(request.URLString)")
+        // println("RequestURL@Malalaoshi - \(request.URLString)")
         
-        if let httpResponse = response as? NSHTTPURLResponse {
+        if let httpResponse = response as? HTTPURLResponse {
             
             // 识别StatusCode并处理
             switch httpResponse.statusCode {
@@ -185,16 +185,16 @@ public func apiRequest<A>(modifyRequest: NSMutableURLRequest -> (), baseURL: NSU
                         completion(result)
                         
                     } else {
-                        let dataString = NSString(data: responseData, encoding: NSUTF8StringEncoding)
+                        let dataString = NSString(data: responseData, encoding: String.Encoding.utf8.rawValue)
                         println(dataString)
                         
-                        failure(Reason.CouldNotParseJSON, errorMessageInData(data))
+                        failure(Reason.CouldNotParseJSON, errorMessageInData(data: data as NSData?))
                         println("\(resource)\n")
                         println(request.cURLString)
                     }
                     
                 } else {
-                    failure(Reason.NoData, errorMessageInData(data))
+                    failure(Reason.NoData, errorMessageInData(data: data as NSData?))
                     println("\(resource)\n")
                     println(request.cURLString)
                 }
@@ -202,7 +202,7 @@ public func apiRequest<A>(modifyRequest: NSMutableURLRequest -> (), baseURL: NSU
                 
             // 失败, 其他
             default:
-                failure(Reason.NoSuccessStatusCode(statusCode: httpResponse.statusCode), errorMessageInData(data))
+                failure(Reason.NoSuccessStatusCode(statusCode: httpResponse.statusCode), errorMessageInData(data: data as NSData?))
                 println("\(resource)\n")
                 println(request.cURLString)
                 
@@ -211,8 +211,9 @@ public func apiRequest<A>(modifyRequest: NSMutableURLRequest -> (), baseURL: NSU
                 if httpResponse.statusCode == 401 || httpResponse.statusCode == 403 {
                     
                     // 确保是自家服务
-                    if let requestHost = request.URL?.host where requestHost == NSURL(string: MalaBaseUrl)!.host {
-                        dispatch_async(dispatch_get_main_queue()) {
+                    if let requestHost = request.url?.host, requestHost == NSURL(string: MalaBaseUrl)!.host {
+                        
+                        DispatchQueue.main.async {
                             // 重新登陆
                             MalaUserDefaults.userNeedRelogin()
                         }
@@ -222,13 +223,13 @@ public func apiRequest<A>(modifyRequest: NSMutableURLRequest -> (), baseURL: NSU
             }
         } else {
             // 请求无响应, 错误处理
-            failure(Reason.Other(error), errorMessageInData(data))
+            failure(Reason.Other(error as NSError?), errorMessageInData(data: data as NSData?))
             println("\(resource)")
             println(request.cURLString)
         }
         
         ///  开启网络请求指示器
-        dispatch_async(dispatch_get_main_queue()) {
+        DispatchQueue.main.async {
             MalaNetworkActivityCount -= 1
         }
     }
@@ -237,16 +238,16 @@ public func apiRequest<A>(modifyRequest: NSMutableURLRequest -> (), baseURL: NSU
     task.resume()
     
     ///  关闭网络请求指示器
-    dispatch_async(dispatch_get_main_queue()) {
+    DispatchQueue.main.async {
         MalaNetworkActivityCount += 1
     }
 }
 
 
-func queryComponents(key: String, value: AnyObject) -> [(String, String)] {
-    func escape(string: String) -> String {
-        let legalURLCharactersToBeEscaped: CFStringRef = ":/?&=;+!@#$()',*"
-        return CFURLCreateStringByAddingPercentEscapes(nil, string, nil, legalURLCharactersToBeEscaped, CFStringBuiltInEncodings.UTF8.rawValue) as String
+func queryComponents(_ key: String, value: AnyObject) -> [(String, String)] {
+    func escape(_ string: String) -> String {
+        let legalURLCharactersToBeEscaped: CFString = ":/?&=;+!@#$()',*" as CFString
+        return CFURLCreateStringByAddingPercentEscapes(nil, string as CFString!, nil, legalURLCharactersToBeEscaped, CFStringBuiltInEncodings.UTF8.rawValue) as String
     }
     
     var components: [(String, String)] = []
@@ -259,7 +260,7 @@ func queryComponents(key: String, value: AnyObject) -> [(String, String)] {
             components += queryComponents("\(key)[]", value: value)
         }
     } else {
-        components.appendContentsOf([(escape(key), escape("\(value)"))])
+        components.append([(escape(string: key), escape(string: "\(value)"))])
     }
     
     return components
@@ -275,16 +276,16 @@ public typealias JSONDictionary = [String: AnyObject]
 ///  - parameter data: NSData
 ///
 ///  - returns: JSONDictionary
-func decodeJSON(data: NSData) -> JSONDictionary? {
-    if data.length > 0 {
-        guard let result = try? NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions()) else {
+func decodeJSON(_ data: Data) -> JSONDictionary? {
+    if data.count > 0 {
+        guard let result = try? JSONSerialization.jsonObject(with: data as Data, options: JSONSerialization.ReadingOptions()) else {
             return JSONDictionary()
         }
         
         if let dictionary = result as? JSONDictionary {
             return dictionary
         } else if let array = result as? [JSONDictionary] {
-            return ["data": array]
+            return ["data": array as AnyObject]
         } else {
             return JSONDictionary()
         }
@@ -299,8 +300,8 @@ func decodeJSON(data: NSData) -> JSONDictionary? {
 ///  - parameter dict: JSONDictionary
 ///
 ///  - returns: NSData
-func encodeJSON(dict: JSONDictionary) -> NSData? {
-    return dict.count > 0 ? (try? NSJSONSerialization.dataWithJSONObject(dict, options: NSJSONWritingOptions())) : nil
+func encodeJSON(_ dict: JSONDictionary) -> Data? {
+    return dict.count > 0 ? (try? JSONSerialization.data(withJSONObject: dict, options: JSONSerialization.WritingOptions())) : nil
 }
 
 ///  根据请求数据返回对应的Resource结构体（无Token）
@@ -311,8 +312,8 @@ func encodeJSON(dict: JSONDictionary) -> NSData? {
 ///  - parameter parse:             JSON解析器
 ///
 ///  - returns: Resource结构体
-public func jsonResource<A>(path path: String, method: Method, requestParameters: JSONDictionary, parse: JSONDictionary -> A?) -> Resource<A> {
-    return jsonResource(token: nil, path: path, method: method, requestParameters: requestParameters, parse: parse)
+public func jsonResource<A>(_ path: String, method: Method, requestParameters: JSONDictionary, parse: @escaping (JSONDictionary) -> A?) -> Resource<A> {
+    return jsonResource(nil, path: path, method: method, requestParameters: requestParameters, parse: parse)
 }
 
 ///  根据请求数据返回对应的Resource结构体（有Token）
@@ -323,9 +324,9 @@ public func jsonResource<A>(path path: String, method: Method, requestParameters
 ///  - parameter parse:             JSON解析器
 ///
 ///  - returns: Resource结构体
-public func authJsonResource<A>(path path: String, method: Method, requestParameters: JSONDictionary, parse: JSONDictionary -> A?) -> Resource<A> {
+public func authJsonResource<A>(_ path: String, method: Method, requestParameters: JSONDictionary, parse: @escaping (JSONDictionary) -> A?) -> Resource<A> {
     let token = MalaUserDefaults.userAccessToken.value
-    return jsonResource(token: token, path: path, method: method, requestParameters: requestParameters, parse: parse)
+    return jsonResource(token, path: path, method: method, requestParameters: requestParameters, parse: parse)
 }
 
 ///  根据请求数据返回对应的Resource结构体
@@ -337,10 +338,10 @@ public func authJsonResource<A>(path path: String, method: Method, requestParame
 ///  - parameter parse:             JSON解析器
 ///
 ///  - returns: Resource结构体
-public func jsonResource<A>(token token: String?, path: String, method: Method, requestParameters: JSONDictionary, parse: JSONDictionary -> A?) -> Resource<A> {
+public func jsonResource<A>(_ token: String?, path: String, method: Method, requestParameters: JSONDictionary, parse: @escaping (JSONDictionary) -> A?) -> Resource<A> {
     /// JSON解析器
-    let jsonParse: NSData -> A? = { data in
-        if let json = decodeJSON(data) {
+    let jsonParse: (Data) -> A? = { data in
+        if let json = decodeJSON((data as NSData) as Data) {
             return parse(json)
         }
         return nil
@@ -349,10 +350,10 @@ public func jsonResource<A>(token token: String?, path: String, method: Method, 
     var headers = [
         "Content-Type": "application/json",
     ]
-    let locale = NSLocale.autoupdatingCurrentLocale()
+    let locale = Locale.autoupdatingCurrent
     if let
-        languageCode = locale.objectForKey(NSLocaleLanguageCode) as? String,
-        countryCode = locale.objectForKey(NSLocaleCountryCode) as? String {
+        languageCode = locale.objectForKey(NSLocale.Key.languageCode) as? String,
+        let countryCode = locale.objectForKey(NSLocale.Key.countryCode) as? String {
             headers["Accept-Language"] = languageCode + "-" + countryCode
     }
     /// 请求体
@@ -375,7 +376,7 @@ public func jsonResource<A>(token token: String?, path: String, method: Method, 
 
 
 // Result Closure
-typealias RequestCallBack = (result: AnyObject?, error: NSError?)->()
+typealias RequestCallBack = (_ result: AnyObject?, _ error: NSError?)->()
 
 class MalaNetworking {
     // Singleton
@@ -390,28 +391,28 @@ extension MalaNetworking {
     ///  Request for GradeList
     ///
     ///  - parameter finished: Closure for Finished
-    func loadGrades(finished: RequestCallBack) {
+    func loadGrades(_ finished: RequestCallBack) {
         request(.GET, URLString: MalaBaseUrl+gradeList, parameters: nil, finished: finished)
     }
     
     ///  Request for SubjectList
     ///
     ///  - parameter finished: Closure for Finished
-    func loadSubjects(finished: RequestCallBack) {
+    func loadSubjects(_ finished: RequestCallBack) {
         request(.GET, URLString: MalaBaseUrl+subjectList, parameters: nil, finished: finished)
     }
     
     ///  Request for TagList
     ///
     ///  - parameter finished: Closure for Finished
-    func loadTags(finished: RequestCallBack) {
+    func loadTags(_ finished: RequestCallBack) {
         request(.GET, URLString: MalaBaseUrl+tagList, parameters: nil, finished: finished)
     }
     
     ///  Request for MemberserviceList
     ///
     ///  - parameter finished: Closure for Finished
-    func loadMemberServices(finished: RequestCallBack) {
+    func loadMemberServices(_ finished: RequestCallBack) {
         request(.GET, URLString: MalaBaseUrl+memberServiceList, parameters: nil, finished: finished)
     }
     
@@ -420,14 +421,14 @@ extension MalaNetworking {
     ///  - parameter parameters: Filter Dict
     ///  - parameter page:       page number
     ///  - parameter finished:   Closure for Finished
-    func loadTeachers(parameters: [String: AnyObject]?, page: Int = 1, finished: RequestCallBack) {
+    func loadTeachers(_ parameters: [String: AnyObject]?, page: Int = 1, finished: RequestCallBack) {
         var params = parameters ?? [String: AnyObject]()
-        params["page"] = page
+        params["page"] = page as AnyObject?
         if let city = MalaCurrentCity {
-            params["region"] = city.id
+            params["region"] = city.id as AnyObject?
         }
         if let school = MalaCurrentSchool {
-            params["school"] = school.id
+            params["school"] = school.id as AnyObject?
         }
         request(.GET, URLString: MalaBaseUrl+teacherList, parameters: params, finished: finished)
     }
@@ -436,7 +437,7 @@ extension MalaNetworking {
     ///
     ///  - parameter id:       id of teacher
     ///  - parameter finished: Closure for Finished
-    func loadTeacherDetail(id: Int, finished: RequestCallBack) {
+    func loadTeacherDetail(_ id: Int, finished: RequestCallBack) {
         request(.GET, URLString: MalaBaseUrl+teacherList+"/"+String(id), parameters: nil, finished: finished)
     }
     
@@ -445,18 +446,18 @@ extension MalaNetworking {
     ///  - parameter number:   string for phone number
     ///  - parameter code:     string for verify code
     ///  - parameter finished: Closure for Finished
-    func verifySMS(number: String, code: String, finished: RequestCallBack) {
+    func verifySMS(_ number: String, code: String, finished: RequestCallBack) {
         var params = [String: AnyObject]()
-        params["action"] = "verify"
-        params["phone"] = number
-        params["code"] = code
+        params["action"] = "verify" as AnyObject?
+        params["phone"] = number as AnyObject?
+        params["code"] = code as AnyObject?
         request(.POST, URLString: MalaBaseUrl+sms, parameters: params, finished: finished)
     }
     
     ///  Request for SchoolList
     ///
     ///  - parameter finished: Closure for Finished
-    func loadSchools(finished: RequestCallBack) {
+    func loadSchools(_ finished: RequestCallBack) {
         request(.GET, URLString: MalaBaseUrl+schools, parameters: nil, finished: finished)
     }
 }
@@ -471,9 +472,9 @@ extension MalaNetworking {
     ///  - parameter URLString:  String for URL
     ///  - parameter parameters: Dictionary for Parameters
     ///  - parameter finished:   Closure for Finished
-    private func request(method: Alamofire.Method, URLString: String, parameters: [String: AnyObject]?, finished: RequestCallBack) {
+    private func request(_ method: Alamofire.Method, URLString: String, parameters: [String: AnyObject]?, finished: @escaping RequestCallBack) {
         // Show Networking Symbol
-        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
         
         // Request
         Alamofire.request(method, URLString, parameters: parameters).responseJSON { (response) -> Void in

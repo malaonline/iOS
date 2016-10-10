@@ -42,10 +42,10 @@ class LearningReportTopicDataCell: MalaBaseReportCardCell {
         lineChartView.drawGridBackgroundEnabled = true
         lineChartView.pinchZoomEnabled = false
         lineChartView.rightAxis.enabled = false
-        lineChartView.gridBackgroundColor = UIColor.whiteColor()
+        lineChartView.gridBackgroundColor = UIColor.white
         
         let xAxis = lineChartView.xAxis
-        xAxis.labelFont = UIFont.systemFontOfSize(10)
+        xAxis.labelFont = UIFont.systemFont(ofSize: 10)
         xAxis.labelTextColor = MalaColor_5E5E5E_0
         xAxis.drawGridLinesEnabled = false
         xAxis.spaceBetweenLabels = 1
@@ -55,7 +55,7 @@ class LearningReportTopicDataCell: MalaBaseReportCardCell {
         xAxis.drawGridLinesEnabled = true
         
         let leftAxis = lineChartView.leftAxis
-        leftAxis.labelFont = UIFont.systemFontOfSize(9)
+        leftAxis.labelFont = UIFont.systemFont(ofSize: 9)
         leftAxis.labelTextColor = MalaColor_939393_0
         leftAxis.gridLineDashLengths = [2,2]
         leftAxis.gridColor = MalaColor_E6E9EC_0
@@ -66,7 +66,7 @@ class LearningReportTopicDataCell: MalaBaseReportCardCell {
         lineChartView.legend.enabled = true
         lineChartView.legend.form = .Circle
         lineChartView.legend.formSize = 8
-        lineChartView.legend.font = NSUIFont.systemFontOfSize(10)
+        lineChartView.legend.font = NSUIFont.systemFont(ofSize: 10)
         lineChartView.legend.textColor = MalaColor_5E5E5E_0
         lineChartView.legend.horizontalAlignment = .Right
         lineChartView.legend.verticalAlignment = .Top
@@ -115,7 +115,7 @@ class LearningReportTopicDataCell: MalaBaseReportCardCell {
         var rightIndex = 0
         
         // 总练习数据
-        var yValsTotal = model.reverse().map { (data) -> ChartDataEntry in
+        var yValsTotal = model.reversed().map { (data) -> ChartDataEntry in
             totalIndex += 1
             return ChartDataEntry(value: Double(data.total_item), xIndex: totalIndex)
         }
@@ -131,7 +131,7 @@ class LearningReportTopicDataCell: MalaBaseReportCardCell {
         totalSet.drawFilledEnabled = true
         
         // 正确练习数据
-        var yValsRight = model.reverse().map { (data) -> ChartDataEntry in
+        var yValsRight = model.reversed().map { (data) -> ChartDataEntry in
             rightIndex += 1
             return ChartDataEntry(value: Double(data.total_item-data.error_item), xIndex: rightIndex)
         }
@@ -148,7 +148,7 @@ class LearningReportTopicDataCell: MalaBaseReportCardCell {
         
         let data = LineChartData(xVals: getXVals(), dataSets: [totalSet, rightSet])
         data.setValueTextColor(MalaColor_5E5E5E_0)
-        data.setValueFont(UIFont.systemFontOfSize(10))
+        data.setValueFont(UIFont.systemFont(ofSize: 10))
         lineChartView.data = data
     }
     
@@ -158,8 +158,8 @@ class LearningReportTopicDataCell: MalaBaseReportCardCell {
     }
     
     // 包装数据（在数据首尾分别添加空数据，以保持折线图美观性）
-    private func packageData(inout data: [ChartDataEntry]) {
-        data.insert(ChartDataEntry(value: 0, xIndex: 0), atIndex: 0)
+    private func packageData(_ data: inout [ChartDataEntry]) {
+        data.insert(ChartDataEntry(value: 0, xIndex: 0), at: 0)
         data.append(ChartDataEntry(value: 0, xIndex: data.count))
     }
     
@@ -168,8 +168,8 @@ class LearningReportTopicDataCell: MalaBaseReportCardCell {
         var xVals = model.map { (data) -> String in
             return String(format: "%d月%@", data.month, data.periodString)
         }
-        xVals = xVals.reverse()
-        xVals.insert("", atIndex: 0)
+        xVals = xVals.reversed()
+        xVals.insert("", at: 0)
         xVals.append("")
         return xVals
     }

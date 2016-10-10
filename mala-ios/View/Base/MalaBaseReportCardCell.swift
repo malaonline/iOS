@@ -29,7 +29,7 @@ class MalaBaseReportCardCell: MalaBaseCardCell {
     lazy var descView: UIView = {
         let view = UIView.separator(MalaColor_F8FAFD_0)
         view.layer.shadowOffset = CGSize(width: 0, height: MalaScreenOnePixel)
-        view.layer.shadowColor = MalaColor_D7D7D7_0.CGColor
+        view.layer.shadowColor = MalaColor_D7D7D7_0.cgColor
         view.layer.shadowOpacity = 1
         return view
     }()

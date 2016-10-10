@@ -24,7 +24,7 @@ class AboutTitleView: UIView {
     /// 标题
     private var titleLabel: UILabel = {
         let titleLabel = UILabel()
-        titleLabel.font = UIFont.systemFontOfSize(14)
+        titleLabel.font = UIFont.systemFont(ofSize: 14)
         titleLabel.textColor = MalaColor_6C6C6C_0
         return titleLabel
     }()

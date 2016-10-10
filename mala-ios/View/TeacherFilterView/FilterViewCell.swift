@@ -8,22 +8,22 @@
 
 import UIKit
 
-public class FilterViewCell: UICollectionViewCell {
+open class FilterViewCell: UICollectionViewCell {
     
     // MARK: - Property
     /// Cell所属indexPath
-    var indexPath = NSIndexPath(forItem: 0, inSection: 0)
+    var indexPath = IndexPath(item: 0, section: 0)
     /// 筛选条件数据模型
     var model: GradeModel = GradeModel() {
         didSet{
-            self.button.setTitle(model.name, forState: .Normal)
+            self.button.setTitle(model.name, for: UIControlState())
             self.tag = model.id
         }
     }
     /// 选中状态
-    override public var selected: Bool {
+    override open var isSelected: Bool {
         didSet {
-            button.selected = selected
+            button.isSelected = isSelected
         }
     }
     
@@ -31,16 +31,16 @@ public class FilterViewCell: UICollectionViewCell {
     // MARK: - Components
     private lazy var button: UIButton = {
         let button = UIButton()
-        button.titleLabel?.font = UIFont.systemFontOfSize(13)
-        button.titleLabel?.textAlignment = .Center
-        button.setTitleColor(MalaColor_939393_0, forState: .Normal)
-        button.setTitle("小学一年级", forState: .Normal)
-        button.setImage(UIImage(named: "radioButton_normal"), forState: .Normal)
-        button.setImage(UIImage(named: "radioButton_selected"), forState: .Selected)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 13)
+        button.titleLabel?.textAlignment = .center
+        button.setTitleColor(MalaColor_939393_0, for: UIControlState())
+        button.setTitle("小学一年级", for: UIControlState())
+        button.setImage(UIImage(named: "radioButton_normal"), for: UIControlState())
+        button.setImage(UIImage(named: "radioButton_selected"), for: .selected)
         button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 12, bottom: 0, right: -12)
         button.sizeToFit()
         // 冻结按钮交互功能，其只作为视觉显示效果使用
-        button.userInteractionEnabled = false
+        button.isUserInteractionEnabled = false
         return button
     }()
 

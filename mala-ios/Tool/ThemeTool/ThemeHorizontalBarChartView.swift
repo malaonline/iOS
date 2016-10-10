@@ -8,13 +8,13 @@
 
 import UIKit
 
-public class ThemeHorizontalBarChartView: UIView {
+open class ThemeHorizontalBarChartView: UIView {
 
     // MARK: - Property
     /// 数据
     var vals: [ThemeHorizontalBarData] = [] {
         didSet{
-            dispatch_async(dispatch_get_main_queue(), { [weak self] () -> Void in
+            DispatchQueue.main.async(execute: { [weak self] () -> Void in
                 self?.setupData()
             })
         }
@@ -40,12 +40,12 @@ public class ThemeHorizontalBarChartView: UIView {
     // MARK: - Private Method
     private func setupData() {
         
-        for (index, data) in vals.enumerate() {
+        for (index, data) in vals.enumerated() {
            
             let bar = ThemeHorizontalBar()
             self.addSubview(bar)
             
-            bar.snp_makeConstraints(closure: { (make) in
+            bar.snp_makeConstraints({ (make) in
                 make.height.equalTo(16)//self.snp_height).multipliedBy(1/count*2)
                 make.top.equalTo(self.snp_top).offset(((index*2)+1)*16)
                 make.left.equalTo(self.snp_left)
@@ -66,7 +66,7 @@ public class ThemeHorizontalBarChartView: UIView {
 }
 
 
-public class ThemeHorizontalBar: UIView {
+open class ThemeHorizontalBar: UIView {
     
     // MARK: - Property
     /// 数据
@@ -100,9 +100,9 @@ public class ThemeHorizontalBar: UIView {
     /// 条形图
     private lazy var progressBar: YLProgressBar = {
         let bar = YLProgressBar()
-        bar.indicatorTextDisplayMode = .Progress
-        bar.behavior = .Indeterminate
-        bar.stripesOrientation = .Left
+        bar.indicatorTextDisplayMode = .progress
+        bar.behavior = .indeterminate
+        bar.stripesOrientation = .left
         bar.progressTintColor = MalaColor_E5E5E5_0
         bar.trackTintColor = MalaColor_E5E5E5_0
         bar.stripesColor = MalaColor_E5E5E5_0
@@ -118,7 +118,7 @@ public class ThemeHorizontalBar: UIView {
             fontSize: 10,
             textColor: MalaColor_97A8BB_0
         )
-        label.textAlignment = .Right
+        label.textAlignment = .right
         return label
     }()
     
@@ -166,11 +166,11 @@ public class ThemeHorizontalBar: UIView {
 }
 
 
-public class ThemeHorizontalBarData: NSObject {
+open class ThemeHorizontalBarData: NSObject {
     
     // MARK: - Property
     var title: String = ""
-    var color: UIColor = UIColor.whiteColor()
+    var color: UIColor = UIColor.white
     var rightNum: Int = 0
     var totalNum: Int = 0
     

@@ -30,7 +30,7 @@ class OrderFormOperatingView: UIView {
     /// 订单状态
     var orderStatus: MalaOrderStatus = .Canceled {
         didSet {
-            dispatch_async(dispatch_get_main_queue(), { [weak self] () -> Void in
+            DispatchQueue.main.async(execute: { [weak self] () -> Void in
                 self?.changeDisplayMode()
             })
         }
@@ -39,7 +39,7 @@ class OrderFormOperatingView: UIView {
     var isTeacherPublished: Bool? {
         didSet {
             // 设置老师下架状态
-            disabledLabel.hidden = !(isTeacherPublished == false)
+            disabledLabel.isHidden = !(isTeacherPublished == false)
         }
     }
     weak var delegate: OrderFormOperatingViewDelegate?
@@ -48,14 +48,14 @@ class OrderFormOperatingView: UIView {
     // MARK: - Components
     private lazy var topLine: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor.blackColor()
+        view.backgroundColor = UIColor.black
         view.alpha = 0.4
         return view
     }()
     /// 价格说明标签
     private lazy var stringLabel: UILabel = {
         let stringLabel = UILabel()
-        stringLabel.font = UIFont.systemFontOfSize(14)
+        stringLabel.font = UIFont.systemFont(ofSize: 14)
         stringLabel.textColor = MalaColor_333333_0
         stringLabel.text = "合计:"
         return stringLabel
@@ -63,9 +63,9 @@ class OrderFormOperatingView: UIView {
     /// 金额标签
     private lazy var priceLabel: UILabel = {
         let priceLabel = UILabel()
-        priceLabel.font = UIFont.systemFontOfSize(14)
+        priceLabel.font = UIFont.systemFont(ofSize: 14)
         priceLabel.textColor = MalaColor_E26254_0
-        priceLabel.textAlignment = .Left
+        priceLabel.textAlignment = .left
         priceLabel.text = "￥0.00"
         return priceLabel
     }()
@@ -73,30 +73,30 @@ class OrderFormOperatingView: UIView {
     private lazy var confirmButton: UIButton = {
         let button = UIButton()
         
-        button.layer.borderColor = MalaColor_E26254_0.CGColor
+        button.layer.borderColor = MalaColor_E26254_0.cgColor
         button.layer.borderWidth = MalaScreenOnePixel
         button.layer.cornerRadius = 3
         button.layer.masksToBounds = true
         
-        button.titleLabel?.font = UIFont.systemFontOfSize(12)
-        button.setTitle("再次购买", forState: .Normal)
-        button.setTitleColor(MalaColor_E26254_0, forState: .Normal)
-        button.addTarget(self, action: #selector(OrderFormOperatingView.buyAgain), forControlEvents: .TouchUpInside)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 12)
+        button.setTitle("再次购买", for: UIControlState())
+        button.setTitleColor(MalaColor_E26254_0, for: UIControlState())
+        button.addTarget(self, action: #selector(OrderFormOperatingView.buyAgain), for: .touchUpInside)
         return button
     }()
     /// 取消按钮（取消订单）
     private lazy var cancelButton: UIButton = {
         let button = UIButton()
         
-        button.layer.borderColor = MalaColor_939393_0.CGColor
+        button.layer.borderColor = MalaColor_939393_0.cgColor
         button.layer.borderWidth = MalaScreenOnePixel
         button.layer.cornerRadius = 3
         button.layer.masksToBounds = true
         
-        button.titleLabel?.font = UIFont.systemFontOfSize(12)
-        button.setTitle("取消订单", forState: .Normal)
-        button.setTitleColor(MalaColor_939393_0, forState: .Normal)
-        button.addTarget(self, action: #selector(OrderFormOperatingView.cancelOrderForm), forControlEvents: .TouchUpInside)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 12)
+        button.setTitle("取消订单", for: UIControlState())
+        button.setTitleColor(MalaColor_939393_0, for: UIControlState())
+        button.addTarget(self, action: #selector(OrderFormOperatingView.cancelOrderForm), for: .touchUpInside)
         return button
     }()
     /// 老师已下架样式
@@ -106,7 +106,7 @@ class OrderFormOperatingView: UIView {
             fontSize: 12,
             textColor: MalaColor_939393_0
         )
-        label.hidden = true
+        label.isHidden = true
         return label
     }()
     
@@ -126,7 +126,7 @@ class OrderFormOperatingView: UIView {
     // MARK: - Private method
     private func setupUserInterface() {
         // Style
-        self.backgroundColor = UIColor.whiteColor()
+        self.backgroundColor = UIColor.white
         
         // SubViews
         addSubview(topLine)
@@ -137,7 +137,7 @@ class OrderFormOperatingView: UIView {
         addSubview(disabledLabel)
         
         // Autolayout
-        topLine.snp_makeConstraints(closure: { (make) -> Void in
+        topLine.snp_makeConstraints({ (make) -> Void in
             make.top.equalTo(self.snp_top)
             make.left.equalTo(self.snp_left)
             make.right.equalTo(self.snp_right)
@@ -175,76 +175,76 @@ class OrderFormOperatingView: UIView {
     private func changeDisplayMode() {
         
         // 解除绑定事件
-        cancelButton.removeTarget(self, action: #selector(OrderFormOperatingView.cancelOrderForm), forControlEvents: .TouchUpInside)
-        confirmButton.removeTarget(self, action: #selector(OrderFormOperatingView.pay), forControlEvents: .TouchUpInside)
-        confirmButton.removeTarget(self, action: #selector(OrderFormOperatingView.buyAgain), forControlEvents: .TouchUpInside)
+        cancelButton.removeTarget(self, action: #selector(OrderFormOperatingView.cancelOrderForm), for: .touchUpInside)
+        confirmButton.removeTarget(self, action: #selector(OrderFormOperatingView.pay), for: .touchUpInside)
+        confirmButton.removeTarget(self, action: #selector(OrderFormOperatingView.buyAgain), for: .touchUpInside)
         
         // 渲染UI样式
         switch orderStatus {
         case .Penging:
             
             // 待付款
-            cancelButton.hidden = false
-            confirmButton.hidden = false
+            cancelButton.isHidden = false
+            confirmButton.isHidden = false
             
-            confirmButton.setTitleColor(MalaColor_E26254_0, forState: .Normal)
+            confirmButton.setTitleColor(MalaColor_E26254_0, for: UIControlState())
             
-            confirmButton.setTitle("立即支付", forState: .Normal)
-            confirmButton.setBackgroundImage(UIImage.withColor(MalaColor_E26254_0), forState: .Normal)
-            confirmButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+            confirmButton.setTitle("立即支付", for: UIControlState())
+            confirmButton.setBackgroundImage(UIImage.withColor(MalaColor_E26254_0), for: UIControlState())
+            confirmButton.setTitleColor(UIColor.white, for: UIControlState())
             
-            cancelButton.addTarget(self, action: #selector(OrderFormOperatingView.cancelOrderForm), forControlEvents: .TouchUpInside)
-            confirmButton.addTarget(self, action: #selector(OrderFormOperatingView.pay), forControlEvents: .TouchUpInside)
+            cancelButton.addTarget(self, action: #selector(OrderFormOperatingView.cancelOrderForm), for: .touchUpInside)
+            confirmButton.addTarget(self, action: #selector(OrderFormOperatingView.pay), for: .touchUpInside)
             break
             
         case .Paid:
             
             // 已付款
-            cancelButton.hidden = true
-            confirmButton.hidden = false
+            cancelButton.isHidden = true
+            confirmButton.isHidden = false
             
-            confirmButton.setTitle("再次购买", forState: .Normal)
-            confirmButton.setBackgroundImage(UIImage.withColor(UIColor.whiteColor()), forState: .Normal)
-            confirmButton.setTitleColor(MalaColor_E26254_0, forState: .Normal)
+            confirmButton.setTitle("再次购买", for: UIControlState())
+            confirmButton.setBackgroundImage(UIImage.withColor(UIColor.white), for: UIControlState())
+            confirmButton.setTitleColor(MalaColor_E26254_0, for: UIControlState())
             
-            confirmButton.addTarget(self, action: #selector(OrderFormOperatingView.buyAgain), forControlEvents: .TouchUpInside)
+            confirmButton.addTarget(self, action: #selector(OrderFormOperatingView.buyAgain), for: .touchUpInside)
             break
             
         case .Canceled:
             
             // 已取消
-            cancelButton.hidden = true
-            confirmButton.hidden = false
+            cancelButton.isHidden = true
+            confirmButton.isHidden = false
             
-            confirmButton.setTitle("再次购买", forState: .Normal)
-            confirmButton.setBackgroundImage(UIImage.withColor(UIColor.whiteColor()), forState: .Normal)
-            confirmButton.setTitleColor(MalaColor_E26254_0, forState: .Normal)
+            confirmButton.setTitle("再次购买", for: UIControlState())
+            confirmButton.setBackgroundImage(UIImage.withColor(UIColor.white), for: UIControlState())
+            confirmButton.setTitleColor(MalaColor_E26254_0, for: UIControlState())
             
-            confirmButton.addTarget(self, action: #selector(OrderFormOperatingView.buyAgain), forControlEvents: .TouchUpInside)
+            confirmButton.addTarget(self, action: #selector(OrderFormOperatingView.buyAgain), for: .touchUpInside)
             break
             
         case .Refund:
             
             // 已退款
-            cancelButton.hidden = true
-            confirmButton.hidden = true
+            cancelButton.isHidden = true
+            confirmButton.isHidden = true
             break
             
         case .Confirm:
             
             // 确认订单
-            cancelButton.hidden = true
-            confirmButton.hidden = false
+            cancelButton.isHidden = true
+            confirmButton.isHidden = false
             
-            confirmButton.setTitle("提交订单", forState: .Normal)
-            confirmButton.setTitleColor(MalaColor_E26254_0, forState: .Normal)
-            confirmButton.addTarget(self, action: #selector(OrderFormOperatingView.pay), forControlEvents: .TouchUpInside)
+            confirmButton.setTitle("提交订单", for: UIControlState())
+            confirmButton.setTitleColor(MalaColor_E26254_0, for: UIControlState())
+            confirmButton.addTarget(self, action: #selector(OrderFormOperatingView.pay), for: .touchUpInside)
             break
         }
         
         if isTeacherPublished == false {
-            cancelButton.hidden = true
-            confirmButton.hidden = true
+            cancelButton.isHidden = true
+            confirmButton.isHidden = true
         }
     }
     

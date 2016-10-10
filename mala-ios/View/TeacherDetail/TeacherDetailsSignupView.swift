@@ -10,8 +10,8 @@ import UIKit
 
 // MARK: - SignupButtonDelegate
 protocol SignupButtonDelegate: class, NSObjectProtocol {
-    func signupButtonDidTap(sender: UIButton)
-    func likeButtonDidTap(sender: DOFavoriteButton)
+    func signupButtonDidTap(_ sender: UIButton)
+    func likeButtonDidTap(_ sender: DOFavoriteButton)
 }
 
 // MARK: - TeacherDetailsSignupView
@@ -39,7 +39,7 @@ class TeacherDetailsSignupView: UIView {
     /// 装饰线
     private lazy var topLine: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor.blackColor()
+        view.backgroundColor = UIColor.black
         view.alpha = 0.25
         return view
     }()
@@ -53,34 +53,34 @@ class TeacherDetailsSignupView: UIView {
     /// 收藏文字描述
     private lazy var likeString: UIButton = {
         let button = UIButton()
-        button.setTitle("收藏", forState: .Normal)
-        button.setTitle("已收藏", forState: .Selected)
-        button.titleLabel?.font = UIFont.systemFontOfSize(10)
-        button.setTitleColor(MalaColor_6C6C6C_0, forState: .Normal)
-        button.userInteractionEnabled = false
+        button.setTitle("收藏", for: UIControlState())
+        button.setTitle("已收藏", for: .selected)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 10)
+        button.setTitleColor(MalaColor_6C6C6C_0, for: UIControlState())
+        button.isUserInteractionEnabled = false
         return button
     }()
     /// 收藏按钮
     private lazy var likeButton: DOFavoriteButton = {
-        let button = DOFavoriteButton(frame: CGRectMake(0, 0, 44, 44), image: UIImage(named: "heart"))
+        let button = DOFavoriteButton(frame: CGRect(x: 0, y: 0, width: 44, height: 44), image: UIImage(named: "heart"))
         button.imageColorOn = MalaColor_F76E6D_0
         button.circleColor = MalaColor_F76E6D_0
         button.lineColor = MalaColor_F76E6D_0
-        button.addTarget(self, action: #selector(TeacherDetailsSignupView.likeButtonDidTap(_:)), forControlEvents: .TouchUpInside)
+        button.addTarget(self, action: #selector(TeacherDetailsSignupView.likeButtonDidTap(_:)), for: .touchUpInside)
         // TODO: temp disable likeButton
-        button.userInteractionEnabled = false
+        button.isUserInteractionEnabled = false
         return  button
     }()
     /// 报名按钮
     private lazy var button: UIButton = {
         let button = UIButton()
-        button.setTitle("马上报名", forState: .Normal)
-        button.setTitle("该老师已下架", forState: .Disabled)
-        button.setTitleColor(MalaColor_FFFFFF_9, forState: .Normal)
-        button.setBackgroundImage(UIImage.withColor(MalaColor_7FB4DC_0), forState: .Normal)
-        button.setBackgroundImage(UIImage.withColor(MalaColor_E0E0E0_0), forState: .Disabled)
-        button.setBackgroundImage(UIImage.withColor(MalaColor_B2CDE1_0), forState: .Highlighted)
-        button.addTarget(self, action: #selector(TeacherDetailsSignupView.signupButtonDidTap(_:)), forControlEvents: .TouchUpInside)
+        button.setTitle("马上报名", for: UIControlState())
+        button.setTitle("该老师已下架", for: .disabled)
+        button.setTitleColor(MalaColor_FFFFFF_9, for: UIControlState())
+        button.setBackgroundImage(UIImage.withColor(MalaColor_7FB4DC_0), for: UIControlState())
+        button.setBackgroundImage(UIImage.withColor(MalaColor_E0E0E0_0), for: .disabled)
+        button.setBackgroundImage(UIImage.withColor(MalaColor_B2CDE1_0), for: .highlighted)
+        button.addTarget(self, action: #selector(TeacherDetailsSignupView.signupButtonDidTap(_:)), for: .touchUpInside)
         return button
     }()
     
@@ -109,31 +109,31 @@ class TeacherDetailsSignupView: UIView {
         addSubview(button)
         
         // Autolayout
-        topLine.snp_makeConstraints(closure: { (make) -> Void in
+        topLine.snp_makeConstraints({ (make) -> Void in
             make.left.equalTo(0)
             make.width.equalTo(MalaScreenWidth)
             make.top.equalTo(self.snp_top)
             make.height.equalTo(MalaScreenOnePixel)
         })
-        likeView.snp_makeConstraints(closure: { (make) -> Void in
+        likeView.snp_makeConstraints({ (make) -> Void in
             make.top.equalTo(topLine.snp_bottom)
             make.left.equalTo(self.snp_left)
             make.bottom.equalTo(self.snp_bottom)
             make.right.equalTo(self.snp_right).multipliedBy(0.422)
         })
-        likeButton.snp_makeConstraints(closure: { (make) -> Void in
+        likeButton.snp_makeConstraints({ (make) -> Void in
             make.centerX.equalTo(likeView.snp_centerX)
             make.centerY.equalTo(likeView.snp_centerY).offset(-8)
             make.height.equalTo(44)
             make.width.equalTo(44)
         })
-        likeString.snp_makeConstraints(closure: { (make) -> Void in
+        likeString.snp_makeConstraints({ (make) -> Void in
             make.centerX.equalTo(likeView.snp_centerX)
             make.centerY.equalTo(likeView.snp_centerY).offset(10)
             make.height.equalTo(10)
             make.width.equalTo(40)
         })
-        button.snp_makeConstraints(closure: { (make) -> Void in
+        button.snp_makeConstraints({ (make) -> Void in
             make.top.equalTo(topLine.snp_bottom)
             make.left.equalTo(likeView.snp_right)
             make.bottom.equalTo(self.snp_bottom)
@@ -144,35 +144,35 @@ class TeacherDetailsSignupView: UIView {
     ///  根据上架情况调整UI
     private func adjustUIWithPublished() {
         if isPublished {
-            button.enabled = true
-            button.userInteractionEnabled = true
+            button.isEnabled = true
+            button.isUserInteractionEnabled = true
         }else {
-            button.enabled = false
-            button.userInteractionEnabled = false
+            button.isEnabled = false
+            button.isUserInteractionEnabled = false
         }
     }
     
     ///  根据收藏情况调整UI
     private func adjustUIWithFavorite() {
-        likeButton.selected = isFavorite
-        if likeButton.selected  {
+        likeButton.isSelected = isFavorite
+        if likeButton.isSelected  {
             likeButton.select()
         }else {
             likeButton.deselect()
         }
-        likeString.selected = isFavorite
+        likeString.isSelected = isFavorite
     }
     
     
     // MARK: - Event Response
-    @objc private func signupButtonDidTap(sender: UIButton) {
+    @objc private func signupButtonDidTap(_ sender: UIButton) {
         delegate?.signupButtonDidTap(sender)
     }
  
-    @objc private func likeButtonDidTap(sender: DOFavoriteButton) {
+    @objc private func likeButtonDidTap(_ sender: DOFavoriteButton) {
         
         // 屏蔽1.25秒内操作，防止连续点击
-        likeButton.userInteractionEnabled = false
+        likeButton.isUserInteractionEnabled = false
         delay(1.25) {
             self.likeButton.userInteractionEnabled = true
         }

@@ -14,11 +14,11 @@ class OtherServiceModel: NSObject {
     /// 标题
     var title: String?
     /// 服务类型
-    var type: OtherServiceType = .Coupon
+    var type: OtherServiceType = .coupon
     /// 价格
     var price: Int?
     /// 价格处理类型
-    var priceHandleType: PriceHandleType = .None
+    var priceHandleType: PriceHandleType = .none
     /// 跳转控制器类型
     var viewController: AnyClass?
     

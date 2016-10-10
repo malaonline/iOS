@@ -14,15 +14,15 @@ private let OrderFormViewLoadmoreCellReusedId = "OrderFormViewLoadmoreCellReused
 class OrderFormViewController: BaseTableViewController {
     
     private enum Section: Int {
-        case Teacher
-        case LoadMore
+        case teacher
+        case loadMore
     }
     
     // MARK: - Property
     /// 优惠券模型数组
     var models: [OrderForm] = [] {
         didSet {
-            dispatch_async(dispatch_get_main_queue(), { [weak self] () -> Void in
+            DispatchQueue.main.async(execute: { [weak self] () -> Void in
                 if self?.models.count == 0 {
                     self?.showDefaultView()
                 }else {
@@ -34,7 +34,7 @@ class OrderFormViewController: BaseTableViewController {
     }
     /// 当前选择项IndexPath标记
     /// 缺省值为不存在的indexPath，有效的初始值将会在CellForRow方法中设置
-    private var currentSelectedIndexPath: NSIndexPath = NSIndexPath(forItem: 0, inSection: 1)
+    private var currentSelectedIndexPath: IndexPath = IndexPath(item: 0, section: 1)
     /// 是否仅用于展示（例如[个人中心]）
     var justShow: Bool = true
     /// 是否正在拉取数据
@@ -51,7 +51,7 @@ class OrderFormViewController: BaseTableViewController {
     /// 下拉刷新视图
     private lazy var refresher: UIRefreshControl = {
         let refresher = UIRefreshControl()
-        refresher.addTarget(self, action: #selector(OrderFormViewController.loadOrderForm), forControlEvents: .ValueChanged)
+        refresher.addTarget(self, action: #selector(OrderFormViewController.loadOrderForm), for: .valueChanged)
         return refresher
     }()
     
@@ -68,12 +68,12 @@ class OrderFormViewController: BaseTableViewController {
         super.didReceiveMemoryWarning()
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         loadOrderForm()
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         sendScreenTrack(SAMyOrdersViewName)
     }
@@ -86,15 +86,15 @@ class OrderFormViewController: BaseTableViewController {
         defaultView.text = "没有订单"
         
         tableView.backgroundColor = MalaColor_EDEDED_0
-        tableView.separatorStyle = .None
+        tableView.separatorStyle = .none
         refreshControl = refresher
         
-        tableView.registerClass(OrderFormViewCell.self, forCellReuseIdentifier: OrderFormViewCellReuseId)
-        tableView.registerClass(ThemeReloadView.self, forCellReuseIdentifier: OrderFormViewLoadmoreCellReusedId)
+        tableView.register(OrderFormViewCell.self, forCellReuseIdentifier: OrderFormViewCellReuseId)
+        tableView.register(ThemeReloadView.self, forCellReuseIdentifier: OrderFormViewLoadmoreCellReusedId)
     }
     
     ///  获取用户订单列表
-    @objc private func loadOrderForm(page: Int = 1, isLoadMore: Bool = false, finish: (()->())? = nil) {
+    @objc private func loadOrderForm(_ page: Int = 1, isLoadMore: Bool = false, finish: (()->())? = nil) {
         
         // 屏蔽[正在刷新]时的操作
         guard isFetching == false else {
@@ -117,7 +117,7 @@ class OrderFormViewController: BaseTableViewController {
             if let errorMessage = errorMessage {
                 println("OrderFormViewController - loadOrderForm Error \(errorMessage)")
             }
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            DispatchQueue.main.async(execute: { () -> Void in
                 self?.refreshControl?.endRefreshing()
                 self?.isFetching = false
             })
@@ -138,7 +138,7 @@ class OrderFormViewController: BaseTableViewController {
                 self?.models = orderList
             }
             
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            DispatchQueue.main.async(execute: { () -> Void in
                 finish?()
                 self?.refreshControl?.endRefreshing()
                 self?.isFetching = false
@@ -148,8 +148,8 @@ class OrderFormViewController: BaseTableViewController {
     
     private func setupNotification() {
         
-        NSNotificationCenter.defaultCenter().addObserverForName(
-            MalaNotification_PushToPayment,
+        NotificationCenter.default.addObserver(
+            forName: NSNotification.Name(rawValue: MalaNotification_PushToPayment),
             object: nil,
             queue: nil
         ) { [weak self] (notification) -> Void in
@@ -161,8 +161,8 @@ class OrderFormViewController: BaseTableViewController {
             
         }
         
-        NSNotificationCenter.defaultCenter().addObserverForName(
-            MalaNotification_PushTeacherDetailView,
+        NotificationCenter.default.addObserver(
+            forName: NSNotification.Name(rawValue: MalaNotification_PushTeacherDetailView),
             object: nil,
             queue: nil
         ) { [weak self] (notification) -> Void in
@@ -178,8 +178,8 @@ class OrderFormViewController: BaseTableViewController {
             }
         }
         
-        NSNotificationCenter.defaultCenter().addObserverForName(
-            MalaNotification_CancelOrderForm,
+        NotificationCenter.default.addObserver(
+            forName: NSNotification.Name(rawValue: MalaNotification_CancelOrderForm),
             object: nil,
             queue: nil
         ) { [weak self] (notification) -> Void in
@@ -203,7 +203,7 @@ class OrderFormViewController: BaseTableViewController {
         }
     }
     
-    private func cancelOrder(orderId: Int) {
+    private func cancelOrder(_ orderId: Int) {
         
         println("取消订单")
         ThemeHUD.showActivityIndicator()
@@ -219,7 +219,7 @@ class OrderFormViewController: BaseTableViewController {
             }, completion:{ [weak self] (result) in
                 ThemeHUD.hideActivityIndicator()
                 println("取消订单结果 - \(result)")
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                DispatchQueue.main.async(execute: { () -> Void in
                     if result {
                         MalaUnpaidOrderCount -= 1
                         self?.ShowTost("订单取消成功")
@@ -244,22 +244,22 @@ class OrderFormViewController: BaseTableViewController {
     
     
     // MARK: - Delegate
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return MalaLayout_CardCellWidth*0.6
     }
     
-    override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         
-        switch indexPath.section {
+        switch (indexPath as NSIndexPath).section {
             
-        case Section.Teacher.rawValue:
+        case Section.teacher.rawValue:
             break
             
-        case Section.LoadMore.rawValue:
+        case Section.loadMore.rawValue:
             if let cell = cell as? ThemeReloadView {
                 println("load more orderForm")
                 
-                if !cell.activityIndicator.isAnimating() {
+                if !cell.activityIndicator.isAnimating {
                     cell.activityIndicator.startAnimating()
                 }
                 
@@ -273,27 +273,27 @@ class OrderFormViewController: BaseTableViewController {
         }
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let viewController = OrderFormInfoViewController()
-        let model = models[indexPath.row]
+        let model = models[(indexPath as NSIndexPath).row]
         viewController.id = model.id
         self.navigationController?.pushViewController(viewController, animated: true)
     }
     
     
     // MARK: - DataSource
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         switch section {
             
-        case Section.Teacher.rawValue:
+        case Section.teacher.rawValue:
             return models.count ?? 0
             
-        case Section.LoadMore.rawValue:
+        case Section.loadMore.rawValue:
             if allOrderFormCount == models.count {
                 return 0
             }else {
@@ -305,18 +305,18 @@ class OrderFormViewController: BaseTableViewController {
         }
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        switch indexPath.section {
+        switch (indexPath as NSIndexPath).section {
             
-        case Section.Teacher.rawValue:
-            let cell = tableView.dequeueReusableCellWithIdentifier(OrderFormViewCellReuseId, forIndexPath: indexPath) as! OrderFormViewCell
-            cell.selectionStyle = .None
-            cell.model = self.models[indexPath.row]
+        case Section.teacher.rawValue:
+            let cell = tableView.dequeueReusableCell(withIdentifier: OrderFormViewCellReuseId, for: indexPath) as! OrderFormViewCell
+            cell.selectionStyle = .none
+            cell.model = self.models[(indexPath as NSIndexPath).row]
             return cell
             
-        case Section.LoadMore.rawValue:
-            let cell = tableView.dequeueReusableCellWithIdentifier(OrderFormViewLoadmoreCellReusedId, forIndexPath: indexPath) as! ThemeReloadView
+        case Section.loadMore.rawValue:
+            let cell = tableView.dequeueReusableCell(withIdentifier: OrderFormViewLoadmoreCellReusedId, for: indexPath) as! ThemeReloadView
             return cell
             
         default:
@@ -326,8 +326,8 @@ class OrderFormViewController: BaseTableViewController {
     
     
     deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: MalaNotification_PushToPayment, object: nil)
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: MalaNotification_PushTeacherDetailView, object: nil)
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: MalaNotification_CancelOrderForm, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: MalaNotification_PushToPayment), object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: MalaNotification_PushTeacherDetailView), object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: MalaNotification_CancelOrderForm), object: nil)
     }
 }

@@ -48,7 +48,7 @@ class ConditionObject: NSObject {
             format: "grade: %@, subject: %@ , tags: %@",
             self.grade.name ?? "",
             self.subject.name ?? "",
-            tagsString.joinWithSeparator(" • ")
+            tagsString.joined(separator: " • ")
         )
         return string
     }

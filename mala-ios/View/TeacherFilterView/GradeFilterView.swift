@@ -29,19 +29,19 @@ class GradeFilterView: BaseFilterView {
     
     
     // MARK: - Override
-    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = super.collectionView(collectionView, cellForItemAtIndexPath: indexPath)
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = super.collectionView(collectionView, cellForItemAt: indexPath)
         
-        if indexPath == MalaFilterIndexObject.gradeIndexPath {
-            cell.selected = true
+        if indexPath == MalaFilterIndexObject.gradeIndexPath as IndexPath {
+            cell.isSelected = true
         }
 
         return cell
     }
     
-    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        super.collectionView(collectionView, didSelectItemAtIndexPath: indexPath)
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        super.collectionView(collectionView, didSelectItemAt: indexPath)
         MalaFilterIndexObject.gradeIndexPath = indexPath
-        didTapCallBack?(model: self.gradeModel(indexPath.section, row: indexPath.row)!)
+        didTapCallBack?(self.gradeModel((indexPath as NSIndexPath).section, row: (indexPath as NSIndexPath).row)!)
     }
 }

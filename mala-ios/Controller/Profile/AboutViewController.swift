@@ -13,8 +13,8 @@ class AboutViewController: BaseViewController, UIScrollViewDelegate {
     // MARK: - Components
     /// 容器
     private lazy var scrollView: UIScrollView = {
-        let scrollView = UIScrollView(frame: UIScreen.mainScreen().bounds)
-        scrollView.scrollEnabled = true
+        let scrollView = UIScrollView(frame: UIScreen.main.bounds)
+        scrollView.isScrollEnabled = true
         return scrollView
     }()
     /// 应用logoView
@@ -26,7 +26,7 @@ class AboutViewController: BaseViewController, UIScrollViewDelegate {
     /// 应用版本号label
     private lazy var appVersionLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFontOfSize(14)
+        label.font = UIFont.systemFont(ofSize: 14)
         label.textColor = MalaColor_333333_0
         label.text = MalaConfig.aboutAPPVersion()
         return label
@@ -34,9 +34,9 @@ class AboutViewController: BaseViewController, UIScrollViewDelegate {
     /// 版权信息label
     private lazy var copyrightLabel: UILabel = {
         let label = UILabel()
-        label.textAlignment = .Center
+        label.textAlignment = .center
         label.numberOfLines = 2
-        label.font = UIFont.systemFontOfSize(12)
+        label.font = UIFont.systemFont(ofSize: 12)
         label.textColor = MalaColor_939393_0
         label.text = MalaConfig.aboutCopyRightString()
         return label
@@ -56,7 +56,7 @@ class AboutViewController: BaseViewController, UIScrollViewDelegate {
     private lazy var aboutTextView: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-        label.font = UIFont.systemFontOfSize(13)
+        label.font = UIFont.systemFont(ofSize: 13)
         label.textColor = MalaColor_939393_0
         label.text = MalaConfig.aboutDescriptionHTMLString()
         label.backgroundColor = MalaColor_F2F2F2_0
@@ -135,12 +135,12 @@ class AboutViewController: BaseViewController, UIScrollViewDelegate {
     }
     
     private func upateContentSize() {
-        scrollView.contentSize = CGSize(width: 0, height: CGRectGetMaxY(aboutTextView.frame))
+        scrollView.contentSize = CGSize(width: 0, height: aboutTextView.frame.maxY)
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        scrollView.frame = UIScreen.mainScreen().bounds
-        scrollView.contentSize = CGSize(width: 0, height: CGRectGetMaxY(aboutTextView.frame))
+        scrollView.frame = UIScreen.main.bounds
+        scrollView.contentSize = CGSize(width: 0, height: aboutTextView.frame.maxY)
     }
 }

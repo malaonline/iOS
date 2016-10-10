@@ -26,7 +26,7 @@ class HandlePingppBehaviour: NSObject {
     ///  - parameter result:                支付结果: success, fail, cancel, invalid
     ///  - parameter error:                 PingppError对象
     ///  - parameter currentViewController: 当前视图控制器
-    func handleResult(result: String?, error: PingppError?, currentViewController: UIViewController?) {
+    func handleResult(_ result: String?, error: PingppError?, currentViewController: UIViewController?) {
         
         guard currentViewController != nil else {
             ThemeHUD.hideActivityIndicator()
@@ -43,14 +43,14 @@ class HandlePingppBehaviour: NSObject {
         }
         
         switch result {
-        case "success":
+        case ?"success":
             // 支付成功后，向服务端验证支付结果
             validateOrderStatus()
             
-        case "cancel":
+        case ?"cancel":
             showCancelAlert()
             
-        case "fail":
+        case ?"fail":
             showFailAlert()
             
         default:
@@ -65,7 +65,7 @@ class HandlePingppBehaviour: NSObject {
     func validateOrderStatus() {
 
         currentRetry += 1
-        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+        DispatchQueue.main.async(execute: { () -> Void in
             ThemeHUD.showActivityIndicator()
         })
         
@@ -82,7 +82,7 @@ class HandlePingppBehaviour: NSObject {
             println("订单状态获取成功 \(order.status)")
             
             // 根据[订单状态]和[课程是否被抢占标记]来判断支付结果
-            dispatch_async(dispatch_get_main_queue()) { () -> Void in
+            DispatchQueue.main.async { () -> Void in
                 
                 // 判断订单状态
                 if order.status == MalaOrderStatus.Paid.rawValue {
@@ -103,7 +103,7 @@ class HandlePingppBehaviour: NSObject {
                         self.showFailAlert()
                     }else {
                         // 重新获取订单状态
-                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        DispatchQueue.main.async(execute: { () -> Void in
                             self.validateOrderStatus()
                         })
                     }
@@ -235,6 +235,6 @@ class HandlePingppBehaviour: NSObject {
         guard self.currentViewController != nil else {
             return
         }
-        currentViewController!.navigationController?.popViewControllerAnimated(true)
+        currentViewController!.navigationController?.popViewController(animated: true)
     }
 }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class InfoModifyViewWindow: UIViewController, UITextViewDelegate {
+open class InfoModifyViewWindow: UIViewController, UITextViewDelegate {
     
     // MARK: - Property
     /// 姓名文字
@@ -29,27 +29,27 @@ public class InfoModifyViewWindow: UIViewController, UITextViewDelegate {
     /// 取消按钮.[取消]
     private lazy var cancelButton: UIButton = {
         let button = UIButton()
-        button.setTitle("取消", forState: .Normal)
+        button.setTitle("取消", for: UIControlState())
         // cancelButton.setTitleColor(MalaColor_8FBCDD_0, forState: .Normal)
-        button.setTitleColor(MalaColor_B7B7B7_0, forState: .Normal)
-        button.setBackgroundImage(UIImage.withColor(MalaColor_FFFFFF_9), forState: .Normal)
-        button.setBackgroundImage(UIImage.withColor(MalaColor_F8F8F8_0), forState: .Highlighted)
-        button.titleLabel?.font = UIFont.systemFontOfSize(15)
-        button.addTarget(self, action: #selector(InfoModifyViewWindow.cancelButtonDidTap), forControlEvents: .TouchUpInside)
+        button.setTitleColor(MalaColor_B7B7B7_0, for: UIControlState())
+        button.setBackgroundImage(UIImage.withColor(MalaColor_FFFFFF_9), for: UIControlState())
+        button.setBackgroundImage(UIImage.withColor(MalaColor_F8F8F8_0), for: .highlighted)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 15)
+        button.addTarget(self, action: #selector(InfoModifyViewWindow.cancelButtonDidTap), for: .touchUpInside)
         return button
     }()
     /// 确认按钮.[去评价]
     private lazy var saveButton: UIButton = {
         let button = UIButton()
-        button.setTitle("保存", forState: .Normal)
-        button.setTitleColor(MalaColor_8FBCDD_0, forState: .Normal)
-        button.setTitleColor(MalaColor_B7B7B7_0, forState: .Highlighted)
-        button.setTitleColor(MalaColor_B7B7B7_0, forState: .Disabled)
-        button.setBackgroundImage(UIImage.withColor(MalaColor_FFFFFF_9), forState: .Normal)
-        button.setBackgroundImage(UIImage.withColor(MalaColor_F8F8F8_0), forState: .Highlighted)
-        button.setBackgroundImage(UIImage.withColor(MalaColor_F8F8F8_0), forState: .Disabled)
-        button.titleLabel?.font = UIFont.systemFontOfSize(15)
-        button.addTarget(self, action: #selector(InfoModifyViewWindow.saveButtonDidTap), forControlEvents: .TouchUpInside)
+        button.setTitle("保存", for: UIControlState())
+        button.setTitleColor(MalaColor_8FBCDD_0, for: UIControlState())
+        button.setTitleColor(MalaColor_B7B7B7_0, for: .highlighted)
+        button.setTitleColor(MalaColor_B7B7B7_0, for: .disabled)
+        button.setBackgroundImage(UIImage.withColor(MalaColor_FFFFFF_9), for: UIControlState())
+        button.setBackgroundImage(UIImage.withColor(MalaColor_F8F8F8_0), for: .highlighted)
+        button.setBackgroundImage(UIImage.withColor(MalaColor_F8F8F8_0), for: .disabled)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 15)
+        button.addTarget(self, action: #selector(InfoModifyViewWindow.saveButtonDidTap), for: .touchUpInside)
         return button
     }()
     private lazy var contentContainer: UIView = {
@@ -71,12 +71,12 @@ public class InfoModifyViewWindow: UIViewController, UITextViewDelegate {
     /// 姓名文本框
     private lazy var nameLabel: UITextField = {
         let textField = UITextField()
-        textField.textAlignment = .Center
+        textField.textAlignment = .center
         textField.textColor = MalaColor_636363_0
         textField.tintColor = MalaColor_82B4D9_0
         textField.text = self.nameString
-        textField.font = UIFont.systemFontOfSize(14)
-        textField.addTarget(self, action: #selector(InfoModifyViewWindow.inputFieldDidChange), forControlEvents: .EditingChanged)
+        textField.font = UIFont.systemFont(ofSize: 14)
+        textField.addTarget(self, action: #selector(InfoModifyViewWindow.inputFieldDidChange), for: .editingChanged)
         return textField
     }()
     /// 姓名底部装饰线
@@ -98,7 +98,7 @@ public class InfoModifyViewWindow: UIViewController, UITextViewDelegate {
     // MARK: - Constructed
     init() {
         super.init(nibName: nil, bundle: nil)
-        view.frame = UIScreen.mainScreen().bounds
+        view.frame = UIScreen.main.bounds
         setupUserInterface()
         
         // 持有自己强引用，使自己在外界没有强引用时依然存在。
@@ -110,9 +110,9 @@ public class InfoModifyViewWindow: UIViewController, UITextViewDelegate {
         self.view.alpha = 0
         
         // 显示Window
-        let window: UIWindow = UIApplication.sharedApplication().keyWindow!
+        let window: UIWindow = UIApplication.shared.keyWindow!
         window.addSubview(view)
-        window.bringSubviewToFront(view)
+        window.bringSubview(toFront: view)
         view.frame = window.bounds
     }
     
@@ -122,22 +122,22 @@ public class InfoModifyViewWindow: UIViewController, UITextViewDelegate {
     
     
     // MARK: - Life Cycle
-    override public func viewDidLoad() {
+    override open func viewDidLoad() {
         super.viewDidLoad()
     }
     
-    override public func didReceiveMemoryWarning() {
+    override open func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
     
     // MARK: - API
-    public func show() {
+    open func show() {
         animateAlert()
     }
     
-    public func close() {
+    open func close() {
         closeAlert(0)
     }
     
@@ -147,7 +147,7 @@ public class InfoModifyViewWindow: UIViewController, UITextViewDelegate {
         // Style
         view.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: tBakcgroundTansperancy)
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(InfoModifyViewWindow.backgroundDidTap)))
-        window.backgroundColor = UIColor.whiteColor()
+        window.backgroundColor = UIColor.white
         
         // SubViews
         view.addSubview(window)
@@ -219,14 +219,14 @@ public class InfoModifyViewWindow: UIViewController, UITextViewDelegate {
         let originTransform = self.window.transform
         self.window.layer.transform = CATransform3DMakeScale(0.7, 0.7, 0.0);
         
-        UIView.animateWithDuration(0.35) { () -> Void in
+        UIView.animate(withDuration: 0.35, animations: { () -> Void in
             self.view.alpha = 1.0
             self.window.transform = originTransform
-        }
+        }) 
     }
     
     private func animateDismiss() {
-        UIView.animateWithDuration(0.35, animations: { () -> Void in
+        UIView.animate(withDuration: 0.35, animations: { () -> Void in
             
             self.view.alpha = 0
             self.window.transform = CGAffineTransform()
@@ -236,7 +236,7 @@ public class InfoModifyViewWindow: UIViewController, UITextViewDelegate {
             })
     }
     
-    private func closeAlert(buttonIndex: Int) {
+    private func closeAlert(_ buttonIndex: Int) {
         self.view.removeFromSuperview()
         // 释放自身强引用
         self.strongSelf = nil
@@ -259,10 +259,10 @@ public class InfoModifyViewWindow: UIViewController, UITextViewDelegate {
             println("学生姓名保存 - \(bool)")
             
             MalaUserDefaults.studentName.value = name
-            NSNotificationCenter.defaultCenter().postNotificationName(MalaNotification_RefreshStudentName, object: nil)
+            NotificationCenter.default.post(name: Notification.Name(rawValue: MalaNotification_RefreshStudentName), object: nil)
             
             ThemeHUD.hideActivityIndicator()
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            DispatchQueue.main.async(execute: { () -> Void in
                 self?.animateDismiss()
             })
         })
@@ -270,11 +270,11 @@ public class InfoModifyViewWindow: UIViewController, UITextViewDelegate {
     
     
     // MARK: - Event Response
-    @objc private func pressed(sender: UIButton!) {
+    @objc private func pressed(_ sender: UIButton!) {
         self.closeAlert(sender.tag)
     }
     
-    @objc public  func backgroundDidTap() {
+    @objc open  func backgroundDidTap() {
         if closeWhenTap {
             closeAlert(0)
         }
@@ -285,10 +285,10 @@ public class InfoModifyViewWindow: UIViewController, UITextViewDelegate {
     }
     
     ///  验证姓名字符是否合规
-    private func validateName(name: String) -> Bool {
+    private func validateName(_ name: String) -> Bool {
         let nameRegex = "^[\\u4e00-\\u9fa5]{2,4}$"
         let nameTest = NSPredicate(format: "SELF MATCHES %@", nameRegex)
-        return nameTest.evaluateWithObject(name)
+        return nameTest.evaluate(with: name)
     }
     
     ///  用户输入事件
@@ -296,7 +296,7 @@ public class InfoModifyViewWindow: UIViewController, UITextViewDelegate {
         guard let name = nameLabel.text else {
             return
         }
-        saveButton.enabled = validateName(name)
+        saveButton.isEnabled = validateName(name)
     }
     
     ///  保存按钮点击事件

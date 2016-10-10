@@ -60,7 +60,7 @@ class LearningReportHomeworkDataCell: MalaBaseCardCell {
             textColor: MalaColor_5E5E5E_0
         )
         label.backgroundColor = MalaColor_E8F2F8_0
-        label.textAlignment = .Center
+        label.textAlignment = .center
         label.layer.cornerRadius = 11
         label.layer.masksToBounds = true
         return label
@@ -124,7 +124,7 @@ class LearningReportHomeworkDataCell: MalaBaseCardCell {
         
         // 加载图例
         legendView.removeAllLegend()
-        for (index, string) in xVals.enumerate() {
+        for (index, string) in xVals.enumerated() {
             legendView.addLegend(color: MalaConfig.chartsColor()[index], title: string)
         }
     }
@@ -215,14 +215,14 @@ class LearningReportHomeworkDataCell: MalaBaseCardCell {
         let data = PieChartData(xVals: xVals, dataSet: dataSet)
         
         // 设置数据显示格式
-        let pFormatter = NSNumberFormatter()
-        pFormatter.numberStyle = .PercentStyle
+        let pFormatter = NumberFormatter()
+        pFormatter.numberStyle = .percent
         pFormatter.maximumFractionDigits = 1
         pFormatter.multiplier = 1
         pFormatter.percentSymbol = "%"
         data.setValueFormatter(pFormatter)
-        data.setValueFont(UIFont.systemFontOfSize(11))
-        data.setValueTextColor(UIColor.whiteColor())
+        data.setValueFont(UIFont.systemFont(ofSize: 11))
+        data.setValueTextColor(UIColor.white)
         pieChartView.data = data
     }
     
@@ -242,7 +242,7 @@ class LearningReportHomeworkDataCell: MalaBaseCardCell {
 
 
 // MARK: - LegendView
-public class PieLegendView: UIView {
+open class PieLegendView: UIView {
     
     // MARK: - Property
     private var currentX: CGFloat = 6
@@ -267,19 +267,19 @@ public class PieLegendView: UIView {
     }
     
     
-    public func addLegend(color color: UIColor, title: String) -> UIButton {
+    open func addLegend(color: UIColor, title: String) -> UIButton {
         let button = UIButton()
         button.adjustsImageWhenHighlighted = false
         
         let image = UIImage.withColor(color, bounds: CGRect(x: 0, y: 0, width: 10, height: 10))
-        button.setImage(image, forState: .Normal)
+        button.setImage(image, for: UIControlState())
         button.imageView?.layer.cornerRadius = 5
         button.imageView?.layer.masksToBounds = true
         button.imageEdgeInsets = UIEdgeInsets(top: 0, left: -6, bottom: 0, right: 6)
         
-        button.setTitle(title, forState: .Normal)
-        button.titleLabel?.font = UIFont.systemFontOfSize(12)
-        button.setTitleColor(MalaColor_939393_0, forState: .Normal)
+        button.setTitle(title, for: UIControlState())
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 12)
+        button.setTitleColor(MalaColor_939393_0, for: UIControlState())
         
         button.sizeToFit()
         currentY = CGFloat(Int(Int(self.viewCount)/3)*20)
@@ -289,13 +289,13 @@ public class PieLegendView: UIView {
         
         addSubview(button)
         viewCount += 1
-        currentX = CGRectGetMaxX(button.frame)
+        currentX = button.frame.maxX
         legends.append(button)
         
         return button
     }
     
-    public func removeAllLegend() {
+    open func removeAllLegend() {
         currentX = 0
         currentY = 0
         viewCount = 0

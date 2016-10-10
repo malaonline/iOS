@@ -21,7 +21,7 @@ class CommentViewCell: UITableViewCell {
             schoolLabel.text = model?.school
             
             // 老师头像
-            avatarView.ma_setImage(model?.teacher?.avatar ?? NSURL(), placeholderImage: UIImage(named: "profileAvatar_placeholder"))
+            avatarView.ma_setImage(model?.teacher?.avatar ?? URL(), placeholderImage: UIImage(named: "profileAvatar_placeholder"))
             
             // 课程评价状态
             if model?.comment != nil {
@@ -42,9 +42,9 @@ class CommentViewCell: UITableViewCell {
     // MARK: - Components
     /// 主要布局容器
     private lazy var content: UIView = {
-        let view = UIView.separator(UIColor.whiteColor())
+        let view = UIView.separator(UIColor.white)
         view.layer.shadowOffset = CGSize(width: 0, height: MalaScreenOnePixel)
-        view.layer.shadowColor = MalaColor_D7D7D7_0.CGColor
+        view.layer.shadowColor = MalaColor_D7D7D7_0.cgColor
         view.layer.shadowOpacity = 1
         return view
     }()
@@ -56,20 +56,20 @@ class CommentViewCell: UITableViewCell {
     /// 课程评价状态标示
     private lazy var statusIcon: UIButton = {
         let button = UIButton()
-        button.setBackgroundImage(UIImage(named: "uncomment"), forState: .Normal)
-        button.setBackgroundImage(UIImage(named: "commented"), forState: .Highlighted)
-        button.setBackgroundImage(UIImage(named: "comment_expired"), forState: .Disabled)
-        button.setTitle("待 评", forState: .Normal)
-        button.setTitle("已 评", forState: .Highlighted)
-        button.setTitle("过 期", forState: .Disabled)
-        button.titleLabel?.font = UIFont.systemFontOfSize(12)
-        button.userInteractionEnabled = false
+        button.setBackgroundImage(UIImage(named: "uncomment"), for: UIControlState())
+        button.setBackgroundImage(UIImage(named: "commented"), for: .highlighted)
+        button.setBackgroundImage(UIImage(named: "comment_expired"), for: .disabled)
+        button.setTitle("待 评", for: UIControlState())
+        button.setTitle("已 评", for: .highlighted)
+        button.setTitle("过 期", for: .disabled)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 12)
+        button.isUserInteractionEnabled = false
         return button
     }()
     /// 老师头像
     private lazy var avatarView: UIImageView = {
         let imageView = UIImageView(image: UIImage(named: "profileAvatar_placeholder"))
-        imageView.contentMode = .ScaleAspectFill
+        imageView.contentMode = .scaleAspectFill
         imageView.layer.cornerRadius = 55/2
         imageView.layer.masksToBounds = true
         return imageView
@@ -147,7 +147,7 @@ class CommentViewCell: UITableViewCell {
     /// 评分面板
     private lazy var floatRating: FloatRatingView = {
         let floatRating = FloatRatingView()
-        floatRating.backgroundColor = UIColor.whiteColor()
+        floatRating.backgroundColor = UIColor.white
         floatRating.editable = false
         return floatRating
     }()
@@ -168,35 +168,35 @@ class CommentViewCell: UITableViewCell {
     /// 评论按钮
     private lazy var commentButton: UIButton = {
         let button = UIButton()
-        button.layer.borderColor = MalaColor_E26254_0.CGColor
+        button.layer.borderColor = MalaColor_E26254_0.cgColor
         button.layer.borderWidth = MalaScreenOnePixel
         button.layer.cornerRadius = 3
         button.layer.masksToBounds = true
         
-        button.setBackgroundImage(UIImage.withColor(UIColor.whiteColor()), forState: .Normal)
-        button.setBackgroundImage(UIImage.withColor(MalaColor_FFF0EE_0), forState: .Highlighted)
-        button.setTitle("去评价", forState: .Normal)
-        button.setTitleColor(MalaColor_E26254_0, forState: .Normal)
-        button.titleLabel?.font = UIFont.systemFontOfSize(12)
-        button.addTarget(self, action: #selector(CommentViewCell.toComment), forControlEvents: .TouchUpInside)
-        button.hidden = true
+        button.setBackgroundImage(UIImage.withColor(UIColor.white), for: UIControlState())
+        button.setBackgroundImage(UIImage.withColor(MalaColor_FFF0EE_0), for: .highlighted)
+        button.setTitle("去评价", for: UIControlState())
+        button.setTitleColor(MalaColor_E26254_0, for: UIControlState())
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 12)
+        button.addTarget(self, action: #selector(CommentViewCell.toComment), for: .touchUpInside)
+        button.isHidden = true
         return button
     }()
     /// 查看评论按钮
     private lazy var showCommentButton: UIButton = {
         let button = UIButton()
-        button.layer.borderColor = MalaColor_82B4D9_0.CGColor
+        button.layer.borderColor = MalaColor_82B4D9_0.cgColor
         button.layer.borderWidth = MalaScreenOnePixel
         button.layer.cornerRadius = 3
         button.layer.masksToBounds = true
         
-        button.setBackgroundImage(UIImage.withColor(UIColor.whiteColor()), forState: .Normal)
-        button.setBackgroundImage(UIImage.withColor(MalaColor_E6F1FC_0), forState: .Highlighted)
-        button.setTitle("查看评价", forState: .Normal)
-        button.setTitleColor(MalaColor_82B4D9_0, forState: .Normal)
-        button.titleLabel?.font = UIFont.systemFontOfSize(12)
-        button.addTarget(self, action: #selector(CommentViewCell.showComment), forControlEvents: .TouchUpInside)
-        button.hidden = true
+        button.setBackgroundImage(UIImage.withColor(UIColor.white), for: UIControlState())
+        button.setBackgroundImage(UIImage.withColor(MalaColor_E6F1FC_0), for: .highlighted)
+        button.setTitle("查看评价", for: UIControlState())
+        button.setTitleColor(MalaColor_82B4D9_0, for: UIControlState())
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 12)
+        button.addTarget(self, action: #selector(CommentViewCell.showComment), for: .touchUpInside)
+        button.isHidden = true
         return button
     }()
     
@@ -358,7 +358,7 @@ class CommentViewCell: UITableViewCell {
         
         let dateString = getDateString(start, format: "yyyy-MM-dd")
         let startString = getDateString(start, format: "HH:mm")
-        let endString = getDateString(date: NSDate(timeIntervalSince1970: start).dateByAddingHours(2), format: "HH:mm")
+        let endString = getDateString(date: Date(timeIntervalSince1970: start).dateByAddingHours(2), format: "HH:mm")
         
         timeSlotLabel.text = String(format: "%@", dateString)
         timeLabel.text = String(format: "%@-%@", startString, endString)
@@ -368,26 +368,26 @@ class CommentViewCell: UITableViewCell {
     private func setStyleExpired() {
         println("课程评价状态 - 过期")
         
-        showCommentButton.hidden = true
-        commentButton.hidden = true
+        showCommentButton.isHidden = true
+        commentButton.isHidden = true
         
-        statusIcon.highlighted = false
-        statusIcon.enabled = false
-        expiredLabel.hidden = false
-        floatRating.hidden = true
+        statusIcon.isHighlighted = false
+        statusIcon.isEnabled = false
+        expiredLabel.isHidden = false
+        floatRating.isHidden = true
     }
     
     ///  设置已评论样式
     private func setStyleCommented() {
         println("课程评价状态 - 已评价")
         
-        commentButton.hidden = true
-        showCommentButton.hidden = false
+        commentButton.isHidden = true
+        showCommentButton.isHidden = false
         
-        statusIcon.enabled = true
-        statusIcon.highlighted = true
-        expiredLabel.hidden = true
-        floatRating.hidden = false
+        statusIcon.isEnabled = true
+        statusIcon.isHighlighted = true
+        expiredLabel.isHidden = true
+        floatRating.isHidden = false
         floatRating.rating = Float((model?.comment?.score) ?? 0)
     }
     
@@ -395,13 +395,13 @@ class CommentViewCell: UITableViewCell {
     private func setStyleNoComments() {
         println("课程评价状态 - 待评价")
         
-        commentButton.hidden = false
-        showCommentButton.hidden = true
+        commentButton.isHidden = false
+        showCommentButton.isHidden = true
         
-        statusIcon.highlighted = false
-        statusIcon.enabled = true
-        expiredLabel.hidden = true
-        floatRating.hidden = true
+        statusIcon.isHighlighted = false
+        statusIcon.isEnabled = true
+        expiredLabel.isHidden = true
+        floatRating.isHidden = true
     }
     
     
@@ -428,7 +428,7 @@ class CommentViewCell: UITableViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        statusIcon.highlighted = false
-        statusIcon.enabled = true
+        statusIcon.isHighlighted = false
+        statusIcon.isEnabled = true
     }
 }

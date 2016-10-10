@@ -16,8 +16,8 @@ class OrderFormStatusCell: UITableViewCell {
         didSet {
             /// 老师头像
             
-            if let urlString = model?.avatarURL, url = NSURL(string: (urlString)) {
-                self.avatarView.ma_setImage(url, placeholderImage: UIImage(named: "profileAvatar_placeholder"))
+            if let urlString = model?.avatarURL, let url = URL(string: (urlString)) {
+                self.avatarView.ma_setImage(URL: url, placeholderImage: UIImage(named: "profileAvatar_placeholder"))
             }
             
             /// 订单状态
@@ -121,7 +121,7 @@ class OrderFormStatusCell: UITableViewCell {
     /// 老师头像
     private lazy var avatarView: UIImageView = {
         let imageView = UIImageView(image: UIImage(named: "profileAvatar_placeholder"))
-        imageView.contentMode = .ScaleAspectFill
+        imageView.contentMode = .scaleAspectFill
         imageView.layer.cornerRadius = 55/2
         imageView.layer.masksToBounds = true
         return imageView

@@ -34,7 +34,7 @@ class JSSAlertView: UIViewController {
     var isAlertOpen:Bool = false
     
     enum FontType {
-        case Title, Text, Button
+        case title, text, button
     }
     var titleFont = "HelveticaNeue-Light"
     var textFont = "HelveticaNeue"
@@ -43,13 +43,13 @@ class JSSAlertView: UIViewController {
     var defaultColor = UIColorFromHex(0xF2F4F4, alpha: 1)
     
     enum TextColorTheme {
-        case Dark, Light
+        case dark, light
     }
     var darkTextColor = UIColorFromHex(0x939393, alpha: 0.85)
     var lightTextColor = UIColorFromHex(0x939393, alpha: 1.0)
     
     enum ActionType {
-        case Close, Cancel
+        case close, cancel
     }
     
     let baseHeight:CGFloat = 187.0
@@ -68,27 +68,27 @@ class JSSAlertView: UIViewController {
             self.alertview = alertview
         }
         
-        func addAction(action: ()->Void) {
+        func addAction(_ action: @escaping ()->Void) {
             self.alertview.addAction(action)
         }
         
-        func addCancelAction(action: ()->Void) {
+        func addCancelAction(_ action: @escaping ()->Void) {
             self.alertview.addCancelAction(action)
         }
         
-        func setTitleFont(fontStr: String) {
-            self.alertview.setFont(fontStr, type: .Title)
+        func setTitleFont(_ fontStr: String) {
+            self.alertview.setFont(fontStr, type: .title)
         }
         
-        func setTextFont(fontStr: String) {
-            self.alertview.setFont(fontStr, type: .Text)
+        func setTextFont(_ fontStr: String) {
+            self.alertview.setFont(fontStr, type: .text)
         }
         
-        func setButtonFont(fontStr: String) {
-            self.alertview.setFont(fontStr, type: .Button)
+        func setButtonFont(_ fontStr: String) {
+            self.alertview.setFont(fontStr, type: .button)
         }
         
-        func setTextTheme(theme: TextColorTheme) {
+        func setTextTheme(_ theme: TextColorTheme) {
             self.alertview.setTextTheme(theme)
         }
         
@@ -97,46 +97,46 @@ class JSSAlertView: UIViewController {
         }
     }
     
-    func setFont(fontStr: String, type: FontType) {
+    func setFont(_ fontStr: String, type: FontType) {
         switch type {
-        case .Title:
+        case .title:
             self.titleFont = fontStr
             if let font = UIFont(name: self.titleFont, size: 24) {
                 self.titleLabel.font = font
             } else {
-                self.titleLabel.font = UIFont.systemFontOfSize(24)
+                self.titleLabel.font = UIFont.systemFont(ofSize: 24)
             }
-        case .Text:
+        case .text:
             if self.textView != nil {
                 self.textFont = fontStr
                 if let font = UIFont(name: self.textFont, size: 16) {
                     self.textView.font = font
                 } else {
-                    self.textView.font = UIFont.systemFontOfSize(16)
+                    self.textView.font = UIFont.systemFont(ofSize: 16)
                 }
             }
-        case .Button:
+        case .button:
             self.buttonFont = fontStr
             if let font = UIFont(name: self.buttonFont, size: 15) {
                 self.buttonLabel.font = font
             } else {
-                self.buttonLabel.font = UIFont.systemFontOfSize(15)
+                self.buttonLabel.font = UIFont.systemFont(ofSize: 15)
             }
         }
         // relayout to account for size changes
         self.viewDidLayoutSubviews()
     }
     
-    func setTextTheme(theme: TextColorTheme) {
+    func setTextTheme(_ theme: TextColorTheme) {
         switch theme {
-        case .Light:
+        case .light:
             recolorText(lightTextColor)
-        case .Dark:
+        case .dark:
             recolorText(darkTextColor)
         }
     }
     
-    func recolorText(color: UIColor) {
+    func recolorText(_ color: UIColor) {
         titleLabel.textColor = color
         if textView != nil {
             textView.textColor = color
@@ -153,7 +153,7 @@ class JSSAlertView: UIViewController {
         fatalError("NSCoding not supported")
     }
     
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName:nibNameOrNil, bundle:nibBundleOrNil)
     }
     
@@ -183,7 +183,7 @@ class JSSAlertView: UIViewController {
         let titleString = titleLabel.text! as NSString
         let titleAttr = [NSFontAttributeName:titleLabel.font]
         let titleSize = CGSize(width: contentWidth, height: 90)
-        let titleRect = titleString.boundingRectWithSize(titleSize, options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: titleAttr, context: nil)
+        let titleRect = titleString.boundingRect(with: titleSize, options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: titleAttr, context: nil)
         yPos += padding
         self.titleLabel.frame = CGRect(x: self.padding, y: yPos, width: self.alertWidth - (self.padding*2), height: ceil(titleRect.size.height))
         yPos += ceil(titleRect.size.height)
@@ -192,10 +192,10 @@ class JSSAlertView: UIViewController {
         // position text
         if self.textView != nil {
             let textString = textView.text! as NSString
-            let textAttr = [NSFontAttributeName:textView.font as! AnyObject]
-            let realSize = textView.sizeThatFits(CGSizeMake(contentWidth, CGFloat.max))
+            let textAttr = [NSFontAttributeName:textView.font as AnyObject]
+            let realSize = textView.sizeThatFits(CGSize(width: contentWidth, height: CGFloat.greatestFiniteMagnitude))
             let textSize = CGSize(width: contentWidth, height: CGFloat(fmaxf(Float(90.0), Float(realSize.height))))
-            let textRect = textString.boundingRectWithSize(textSize, options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: textAttr, context: nil)
+            let textRect = textString.boundingRect(with: textSize, options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: textAttr, context: nil)
             self.textView.frame = CGRect(x: self.padding, y: yPos, width: self.alertWidth - (self.padding*2), height: ceil(textRect.size.height)*2)
             yPos += ceil(textRect.size.height) + padding/2
         }
@@ -241,27 +241,27 @@ class JSSAlertView: UIViewController {
     
     
     
-    func info(viewController: UIViewController, title: String, text: String?=nil, buttonText: String?=nil, cancelButtonText: String?=nil) -> JSSAlertViewResponder {
+    func info(_ viewController: UIViewController, title: String, text: String?=nil, buttonText: String?=nil, cancelButtonText: String?=nil) -> JSSAlertViewResponder {
         let alertview = self.show(viewController, title: title, text: text, buttonText: buttonText, cancelButtonText: cancelButtonText, color: UIColorFromHex(0x3498db, alpha: 1))
-        alertview.setTextTheme(.Light)
+        alertview.setTextTheme(.light)
         return alertview
     }
     
-    func success(viewController: UIViewController, title: String, text: String?=nil, buttonText: String?=nil, cancelButtonText: String?=nil) -> JSSAlertViewResponder {
+    func success(_ viewController: UIViewController, title: String, text: String?=nil, buttonText: String?=nil, cancelButtonText: String?=nil) -> JSSAlertViewResponder {
         return self.show(viewController, title: title, text: text, buttonText: buttonText, cancelButtonText: cancelButtonText, color: UIColorFromHex(0x2ecc71, alpha: 1))
     }
     
-    func warning(viewController: UIViewController, title: String, text: String?=nil, buttonText: String?=nil, cancelButtonText: String?=nil) -> JSSAlertViewResponder {
+    func warning(_ viewController: UIViewController, title: String, text: String?=nil, buttonText: String?=nil, cancelButtonText: String?=nil) -> JSSAlertViewResponder {
         return self.show(viewController, title: title, text: text, buttonText: buttonText, cancelButtonText: cancelButtonText, color: UIColorFromHex(0xf1c40f, alpha: 1))
     }
     
-    func danger(viewController: UIViewController, title: String, text: String?=nil, buttonText: String?=nil, cancelButtonText: String?=nil) -> JSSAlertViewResponder {
+    func danger(_ viewController: UIViewController, title: String, text: String?=nil, buttonText: String?=nil, cancelButtonText: String?=nil) -> JSSAlertViewResponder {
         let alertview = self.show(viewController, title: title, text: text, buttonText: buttonText, cancelButtonText: cancelButtonText, color: UIColorFromHex(0xe74c3c, alpha: 1))
-        alertview.setTextTheme(.Light)
+        alertview.setTextTheme(.light)
         return alertview
     }
     
-    func show(viewController: UIViewController, title: String, text: String?=nil, buttonText: String?=nil, cancelButtonText: String?=nil, color: UIColor?=UIColor.whiteColor(), iconImage: UIImage?=nil) -> JSSAlertViewResponder {
+    func show(_ viewController: UIViewController, title: String, text: String?=nil, buttonText: String?=nil, cancelButtonText: String?=nil, color: UIColor?=UIColor.white, iconImage: UIImage?=nil) -> JSSAlertViewResponder {
         
         self.rootViewController = viewController.view.window!.rootViewController
         self.rootViewController.addChildViewController(self)
@@ -305,7 +305,7 @@ class JSSAlertView: UIViewController {
         self.titleLabel = UILabel()
         titleLabel.textColor = MalaColor_939393_0
         titleLabel.numberOfLines = 0
-        titleLabel.textAlignment = title.characters.count > 10 ? .Left : .Center
+        titleLabel.textAlignment = title.characters.count > 10 ? .left : .center
         titleLabel.font = UIFont(name: self.titleFont, size: 13)
         titleLabel.text = title
         self.containerView.addSubview(titleLabel)
@@ -313,12 +313,12 @@ class JSSAlertView: UIViewController {
         // View text
         if let text = text {
             self.textView = UITextView()
-            self.textView.userInteractionEnabled = false
-            textView.editable = false
+            self.textView.isUserInteractionEnabled = false
+            textView.isEditable = false
             textView.textColor = textColor
             // textView.textAlignment = .Center
             textView.font = UIFont(name: self.textFont, size: 13)
-            textView.backgroundColor = UIColor.clearColor()
+            textView.backgroundColor = UIColor.clear
             textView.text = text
             self.containerView.addSubview(textView)
         }
@@ -330,11 +330,11 @@ class JSSAlertView: UIViewController {
         
         // Button
         self.dismissButton = UIButton()
-        let buttonColor = UIImage.withColor(UIColor.whiteColor())
+        let buttonColor = UIImage.withColor(UIColor.white)
         let buttonHighlightColor = UIImage.withColor(UIColorFromHex(0xF8F8F8))
-        dismissButton.setBackgroundImage(buttonColor, forState: .Normal)
-        dismissButton.setBackgroundImage(buttonHighlightColor, forState: .Highlighted)
-        dismissButton.addTarget(self, action: #selector(JSSAlertView.buttonTap), forControlEvents: .TouchUpInside)
+        dismissButton.setBackgroundImage(buttonColor, for: UIControlState())
+        dismissButton.setBackgroundImage(buttonHighlightColor, for: .highlighted)
+        dismissButton.addTarget(self, action: #selector(JSSAlertView.buttonTap), for: .touchUpInside)
         dismissButton.clipsToBounds = false
         alertBackgroundView!.addSubview(dismissButton)
         
@@ -342,7 +342,7 @@ class JSSAlertView: UIViewController {
         self.buttonLabel = UILabel()
         buttonLabel.textColor = buttonTextColor
         buttonLabel.numberOfLines = 1
-        buttonLabel.textAlignment = .Center
+        buttonLabel.textAlignment = .center
         if let text = buttonText {
             buttonLabel.text = text
         } else {
@@ -359,18 +359,18 @@ class JSSAlertView: UIViewController {
         // Second cancel button
         if let _ = cancelButtonText {
             self.cancelButton = UIButton()
-            let buttonColor = UIImage.withColor(UIColor.whiteColor())
+            let buttonColor = UIImage.withColor(UIColor.white)
             let buttonHighlightColor = UIImage.withColor(UIColorFromHex(0xF8F8F8))
-            cancelButton.setBackgroundImage(buttonColor, forState: .Normal)
-            cancelButton.setBackgroundImage(buttonHighlightColor, forState: .Highlighted)
-            cancelButton.addTarget(self, action: #selector(JSSAlertView.cancelButtonTap), forControlEvents: .TouchUpInside)
+            cancelButton.setBackgroundImage(buttonColor, for: UIControlState())
+            cancelButton.setBackgroundImage(buttonHighlightColor, for: .highlighted)
+            cancelButton.addTarget(self, action: #selector(JSSAlertView.cancelButtonTap), for: .touchUpInside)
             alertBackgroundView!.addSubview(cancelButton)
             // Button text
             self.cancelButtonLabel = UILabel()
             cancelButtonLabel.alpha = 0.7
             cancelButtonLabel.textColor = buttonTextColor
             cancelButtonLabel.numberOfLines = 1
-            cancelButtonLabel.textAlignment = .Center
+            cancelButtonLabel.textAlignment = .center
             if let text = cancelButtonText {
                 cancelButtonLabel.text = text
             }
@@ -386,49 +386,49 @@ class JSSAlertView: UIViewController {
         let originTransform = self.containerView.transform
         self.containerView.layer.transform = CATransform3DMakeScale(0.7, 0.7, 0.0);
         
-        UIView.animateWithDuration(0.35) { () -> Void in
+        UIView.animate(withDuration: 0.35, animations: { () -> Void in
             self.view.alpha = 1.0
             self.containerView.transform = originTransform
-        }
+        }) 
         
         isAlertOpen = true
         return JSSAlertViewResponder(alertview: self)
     }
     
-    func addAction(action: ()->Void) {
+    func addAction(_ action: @escaping ()->Void) {
         self.closeAction = action
     }
     
     func buttonTap() {
-        closeView(true, source: .Close);
+        closeView(true, source: .close);
     }
     
-    func addCancelAction(action: ()->Void) {
+    func addCancelAction(_ action: @escaping ()->Void) {
         self.cancelAction = action
     }
     
     func cancelButtonTap() {
-        closeView(true, source: .Cancel);
+        closeView(true, source: .cancel);
     }
     
-    func closeView(withCallback:Bool, source:ActionType = .Close) {
+    func closeView(_ withCallback:Bool, source:ActionType = .close) {
         
         // Animate close it
-        UIView.animateWithDuration(0.2, animations: {
+        UIView.animate(withDuration: 0.2, animations: {
             self.view.alpha = 0
         })
         
-        UIView.animateWithDuration(0.5, delay: 0.05, usingSpringWithDamping: 0.9, initialSpringVelocity: 0.5, options: [], animations: {
-            self.containerView.frame.size = CGSizeZero
+        UIView.animate(withDuration: 0.5, delay: 0.05, usingSpringWithDamping: 0.9, initialSpringVelocity: 0.5, options: [], animations: {
+            self.containerView.frame.size = CGSize.zero
             }, completion: { finished in
-                UIView.animateWithDuration(0.1, animations: {
+                UIView.animate(withDuration: 0.1, animations: {
                     self.view.alpha = 0
                     }, completion: { finished in
                         if withCallback {
-                            if let action = self.closeAction where source == .Close {
+                            if let action = self.closeAction, source == .close {
                                 action()
                             }
-                            else if let action = self.cancelAction where source == .Cancel {
+                            else if let action = self.cancelAction, source == .cancel {
                                 action()
                             }
                         }
@@ -445,9 +445,9 @@ class JSSAlertView: UIViewController {
     
     
     func screenSize() -> CGSize {
-        let screenSize = UIScreen.mainScreen().bounds.size
-        if (NSFoundationVersionNumber <= NSFoundationVersionNumber_iOS_7_1) && UIInterfaceOrientationIsLandscape(UIApplication.sharedApplication().statusBarOrientation) {
-            return CGSizeMake(screenSize.height, screenSize.width)
+        let screenSize = UIScreen.main.bounds.size
+        if (NSFoundationVersionNumber <= NSFoundationVersionNumber_iOS_7_1) && UIInterfaceOrientationIsLandscape(UIApplication.shared.statusBarOrientation) {
+            return CGSize(width: screenSize.height, height: screenSize.width)
         }
         return screenSize
     }
@@ -457,7 +457,7 @@ class JSSAlertView: UIViewController {
 
 // For any hex code 0xXXXXXX and alpha value,
 // return a matching UIColor
-func UIColorFromHex(rgbValue:UInt32, alpha:Double=1.0)->UIColor {
+func UIColorFromHex(_ rgbValue:UInt32, alpha:Double=1.0)->UIColor {
     let red = CGFloat((rgbValue & 0xFF0000) >> 16)/256.0
     let green = CGFloat((rgbValue & 0xFF00) >> 8)/256.0
     let blue = CGFloat(rgbValue & 0xFF)/256.0
@@ -469,7 +469,7 @@ func UIColorFromHex(rgbValue:UInt32, alpha:Double=1.0)->UIColor {
 // and lighter (>1) return an altered UIColor.
 //
 // See: http://a2apps.com.au/lighten-or-darken-a-uicolor/
-func adjustBrightness(color:UIColor, amount:CGFloat) -> UIColor {
+func adjustBrightness(_ color:UIColor, amount:CGFloat) -> UIColor {
     var hue:CGFloat = 0
     var saturation:CGFloat = 0
     var brightness:CGFloat = 0
