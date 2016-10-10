@@ -108,7 +108,7 @@ public func MalaRandomColor() -> UIColor {
 ///  - parameter date: Date对象
 ///
 ///  - returns: 星期数（0~6, 对应星期日~星期六）
-public func weekdayInt(date: Date) -> Int {
+public func weekdayInt(_ date: Date) -> Int {
     let calendar = Calendar.currentCalendar()
     let components: DateComponents = calendar.components(CalendarUnit.Weekday, fromDate: date)
     return components.weekday!-1
@@ -117,7 +117,7 @@ public func weekdayInt(date: Date) -> Int {
 ///  解析学生上课时间表
 ///
 ///  - returns: [我的课表]页面课表数据
-func parseStudentCourseTable(courseTable: [StudentCourseModel]) -> (model: [[[StudentCourseModel]]], recently: NSIndexPath) {
+func parseStudentCourseTable(_ courseTable: [StudentCourseModel]) -> (model: [[[StudentCourseModel]]], recently: NSIndexPath) {
     
     let courseList = [StudentCourseModel](courseTable.reversed())
     var datas = [[[StudentCourseModel]]]()
@@ -198,7 +198,7 @@ func parseStudentCourseTable(courseTable: [StudentCourseModel]) -> (model: [[[St
 ///  - parameter timeStamp: 时间戳
 ///
 ///  - returns: 时间字符串
-func getTimeString(timeStamp: TimeInterval, format: String = "HH:mm") -> String {
+func getTimeString(_ timeStamp: TimeInterval, format: String = "HH:mm") -> String {
     return Date(timeIntervalSince1970: timeStamp).formattedDateWithFormat(format)
 }
 
@@ -207,7 +207,7 @@ func getTimeString(timeStamp: TimeInterval, format: String = "HH:mm") -> String 
 ///  - parameter timeStamp: 时间戳
 ///
 ///  - returns: 时间字符串
-func getDateString(timeStamp: TimeInterval? = nil, date: Date? = nil, format: String = "yyyy/MM/dd") -> String {
+func getDateString(_ timeStamp: TimeInterval? = nil, date: Date? = nil, format: String = "yyyy/MM/dd") -> String {
     if timeStamp != nil {
         return Date(timeIntervalSince1970: timeStamp!).formattedDateWithFormat(format)
     }else if date != nil {
@@ -222,7 +222,7 @@ func getDateString(timeStamp: TimeInterval? = nil, date: Date? = nil, format: St
 ///  - parameter timeStamp: 时间戳
 ///
 ///  - returns: 时间字符串
-func getDateTimeString(timeStamp: TimeInterval, format: String = "yyyy-MM-dd HH:mm:ss") -> String {
+func getDateTimeString(_ timeStamp: TimeInterval, format: String = "yyyy-MM-dd HH:mm:ss") -> String {
     return Date(timeIntervalSince1970: timeStamp).formattedDateWithFormat(format)
 }
 
@@ -232,7 +232,7 @@ func getDateTimeString(timeStamp: TimeInterval, format: String = "yyyy-MM-dd HH:
 ///  - parameter string: 文字
 ///
 ///  - returns: 文本样式
-func getLineSpacingAttrString(string: String, lineSpace: CGFloat) -> NSAttributedString {
+func getLineSpacingAttrString(_ string: String, lineSpace: CGFloat) -> NSAttributedString {
     let attrString = NSMutableAttributedString(string: string)
     let paragraphStyle = NSMutableParagraphStyle()
     paragraphStyle.lineSpacing = lineSpace
@@ -286,7 +286,7 @@ func getActivityViewController() -> UIViewController? {
 ///  - parameter timeIntervals: 一组成对的时间戳（分别代表上课和结束的时间）
 ///
 ///  - returns: 文本样式
-func getTimeSchedule(timeIntervals timeStamps: [[TimeInterval]]) -> [String] {
+func getTimeSchedule(_ timeIntervals timeStamps: [[TimeInterval]]) -> [String] {
     
     var timeSchedule: [String] = []
     
@@ -308,7 +308,7 @@ func getTimeSchedule(timeIntervals timeStamps: [[TimeInterval]]) -> [String] {
 ///  - parameter date:      日期对象
 ///
 ///  - returns: 星期字符串
-func getWeekString(timeStamp: TimeInterval? = nil, date: Date? = nil) -> String {
+func getWeekString(_ timeStamp: TimeInterval? = nil, date: Date? = nil) -> String {
     
     var weekInt = 0
     
@@ -329,7 +329,7 @@ func getWeekString(timeStamp: TimeInterval? = nil, date: Date? = nil) -> String 
 ///  dates:     日期字符串
 ///  times:     上课时间字符串
 ///  height:    所需高度
-func parseTimeSlots(timeSchedule: [[TimeInterval]]) -> (dates: [String], times: [String], height: CGFloat) {
+func parseTimeSlots(_ timeSchedule: [[TimeInterval]]) -> (dates: [String], times: [String], height: CGFloat) {
     
     var dateStrings = [String]()
     var timeStrings = [String]()
@@ -401,7 +401,7 @@ func parseTimeSlots(timeSchedule: [[TimeInterval]]) -> (dates: [String], times: 
 ///  - parameter coupons: 奖学金列表数据
 ///
 ///  - returns: 奖学金列表数据
-func parseCouponlist(coupons: [CouponModel]) -> [CouponModel] {
+func parseCouponlist(_ coupons: [CouponModel]) -> [CouponModel] {
     
     var result = coupons
     // 当前用户选课价格
@@ -432,7 +432,7 @@ func parseCouponlist(coupons: [CouponModel]) -> [CouponModel] {
 ///  - parameter schools: 学校模型列表
 ///
 ///  - returns: 学校模型列表
-func sortSchoolsByDistance(schools: [SchoolModel]) -> [SchoolModel] {
+func sortSchoolsByDistance(_ schools: [SchoolModel]) -> [SchoolModel] {
     return schools.sorted { (school1, school2) -> Bool in
         return school1.distance < school2.distance
     }
@@ -460,7 +460,7 @@ func adjustHomeworkData(_ data: [SingleHomeworkData]) -> [SingleHomeworkData] {
     return sortData
 }
 
-func adjustTopicData(data: [SingleTopicData]) -> [SingleTopicData] {
+func adjustTopicData(_ data: [SingleTopicData]) -> [SingleTopicData] {
     /// 排序
     var sortData = data.sorted { (data1, data2) -> Bool in
         return data1.rightRate > data2.rightRate
@@ -479,7 +479,7 @@ func adjustTopicData(data: [SingleTopicData]) -> [SingleTopicData] {
     sortData.append(SingleTopicData(id: "9999", name: "其它", totalItem: totalItem, rightItem: rightItem))
     return sortData
 }
-func adjustTopicScoreData(data: [SingleTopicScoreData]) -> [SingleTopicScoreData] {
+func adjustTopicScoreData(_ data: [SingleTopicScoreData]) -> [SingleTopicScoreData] {
     /// 排序
     var sortData = data.sorted { (data1, data2) -> Bool in
         return data1.my_score.doubleValue > data2.my_score.doubleValue
@@ -503,7 +503,7 @@ func adjustTopicScoreData(data: [SingleTopicScoreData]) -> [SingleTopicScoreData
 ///  发送屏幕浏览信息（用于GoogleAnalytics屏幕浏览量数据分析）
 ///
 ///  - parameter value: 屏幕名称
-func sendScreenTrack(value: String? = "其它页面") {
+func sendScreenTrack(_ value: String? = "其它页面") {
     #if USE_PRD_SERVER
         let tracker = GAI.sharedInstance().defaultTracker
         tracker.set(kGAIScreenName, value: value)
