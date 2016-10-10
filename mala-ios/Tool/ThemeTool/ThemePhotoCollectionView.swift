@@ -67,7 +67,7 @@ class ThemePhotoCollectionViewCell: UICollectionViewCell {
     /// 图片URL
     var url: String = "" {
         didSet {
-            imageView.ma_setImage((URL(string: url) ?? URL()))
+            imageView.ma_setImage(URL(string: url))
         }
     }
     

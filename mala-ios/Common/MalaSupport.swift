@@ -286,7 +286,7 @@ func getActivityViewController() -> UIViewController? {
 ///  - parameter timeIntervals: 一组成对的时间戳（分别代表上课和结束的时间）
 ///
 ///  - returns: 文本样式
-func getTimeSchedule(_ timeIntervals timeStamps: [[TimeInterval]]) -> [String] {
+func getTimeSchedule(_ timeStamps: [[TimeInterval]]) -> [String] {
     
     var timeSchedule: [String] = []
     

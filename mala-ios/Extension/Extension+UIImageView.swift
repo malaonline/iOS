@@ -22,7 +22,7 @@ extension UIImageView {
     }
     
     
-    func ma_setImage(_ URL: Foundation.URL, placeholderImage: Image? = nil, progressBlock: DownloadProgressBlock? = nil, completionHandler: CompletionHandler? = nil) {
+    func ma_setImage(_ URL: URL? = nil, placeholderImage: Image? = nil, progressBlock: DownloadProgressBlock? = nil, completionHandler: CompletionHandler? = nil) {
         
         // 使用图片绝对路径作为缓存键值
         guard let splitArray = URL.absoluteString.components(separatedBy: "?") else {

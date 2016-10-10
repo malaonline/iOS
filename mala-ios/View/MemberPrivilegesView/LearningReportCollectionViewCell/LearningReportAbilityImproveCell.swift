@@ -42,8 +42,8 @@ class LearningReportAbilityImproveCell: MalaBaseReportCardCell {
         let chartView = CombinedChartView()
         chartView.animate(xAxisDuration: 0.65)
         chartView.drawOrder = [
-            CombinedChartView.DrawOrder.Bar.rawValue,
-            CombinedChartView.DrawOrder.Line.rawValue
+            CombinedChartView.DrawOrder.bar.rawValue,
+            CombinedChartView.DrawOrder.line.rawValue
         ]
         
         chartView.descriptionText = ""
@@ -146,7 +146,7 @@ class LearningReportAbilityImproveCell: MalaBaseReportCardCell {
         lineDataSet.setColor(MalaColor_82C9F9_0)
         lineDataSet.fillAlpha = 1
         lineDataSet.circleRadius = 6
-        lineDataSet.mode = .CubicBezier
+        lineDataSet.mode = .cubicBezier
         lineDataSet.drawValuesEnabled = true
         lineDataSet.setDrawHighlightIndicators(false)
         let lineData = LineChartData()

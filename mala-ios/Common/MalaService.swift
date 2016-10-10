@@ -157,7 +157,7 @@ func saveParentInfoToUserDefaults(_ parent: parentInfo) {
 ///  - parameter mobile:         手机号码
 ///  - parameter failureHandler: 失败处理闭包
 ///  - parameter completion:     成功处理闭包
-func sendVerifyCodeOfMobile(_ mobile: String, failureHandler: ((Reason, String?) -> Void)?, completion: (Bool) -> Void) {
+func sendVerifyCodeOfMobile(_ mobile: String, failureHandler: ((Reason, String?) -> Void)?, completion: @escaping (Bool) -> Void) {
     /// 参数字典
     let requestParameters = [
         "action": VerifyCodeMethod.Send.rawValue,
@@ -189,7 +189,7 @@ func sendVerifyCodeOfMobile(_ mobile: String, failureHandler: ((Reason, String?)
 ///  - parameter verifyCode:     验证码
 ///  - parameter failureHandler: 失败处理闭包
 ///  - parameter completion:     成功处理闭包
-func verifyMobile(_ mobile: String, verifyCode: String, failureHandler: ((Reason, String?) -> Void)?, completion: (LoginUser) -> Void) {
+func verifyMobile(_ mobile: String, verifyCode: String, failureHandler: ((Reason, String?) -> Void)?, completion: @escaping (LoginUser) -> Void) {
     let requestParameters = [
         "action": VerifyCodeMethod.Verify.rawValue,
         "phone": mobile,
@@ -214,7 +214,7 @@ func verifyMobile(_ mobile: String, verifyCode: String, failureHandler: ((Reason
 ///  - parameter parentID:       个人
 ///  - parameter failureHandler: 失败处理闭包
 ///  - parameter completion:     成功处理闭包
-func getProfileInfo(_ profileID: Int, failureHandler: ((Reason, String?) -> Void)?, completion: (profileInfo) -> Void) {
+func getProfileInfo(_ profileID: Int, failureHandler: ((Reason, String?) -> Void)?, completion: @escaping (profileInfo) -> Void) {
     let parse: (JSONDictionary) -> profileInfo? = { data in
         return parseProfile(data)
     }
@@ -233,7 +233,7 @@ func getProfileInfo(_ profileID: Int, failureHandler: ((Reason, String?) -> Void
 ///  - parameter parentID:       家长id
 ///  - parameter failureHandler: 失败处理闭包
 ///  - parameter completion:     成功处理闭包
-func getParentInfo(_ parentID: Int, failureHandler: ((Reason, String?) -> Void)?, completion: (parentInfo) -> Void) {
+func getParentInfo(_ parentID: Int, failureHandler: ((Reason, String?) -> Void)?, completion: @escaping (parentInfo) -> Void) {
     let parse: (JSONDictionary) -> parentInfo? = { data in
         return parseParent(data)
     }
@@ -305,7 +305,7 @@ func updateAvatarWithImageData(_ imageData: Data, failureHandler: ((Reason, Stri
 ///  - parameter name:           姓名
 ///  - parameter failureHandler: 失败处理闭包
 ///  - parameter completion:     成功处理闭包
-func saveStudentName(_ name: String, failureHandler: ((Reason, String?) -> Void)?, completion: (Bool) -> Void) {
+func saveStudentName(_ name: String, failureHandler: ((Reason, String?) -> Void)?, completion: @escaping (Bool) -> Void) {
     
     guard let parentID = MalaUserDefaults.parentID.value else {
         println("saveStudentSchoolName error - no profileID")
@@ -338,7 +338,7 @@ func saveStudentName(_ name: String, failureHandler: ((Reason, String?) -> Void)
 ///  - parameter name:           学校名称
 ///  - parameter failureHandler: 失败处理闭包
 ///  - parameter completion:     成功处理闭包
-func saveStudentSchoolName(_ name: String, failureHandler: ((Reason, String?) -> Void)?, completion: (Bool) -> Void) {
+func saveStudentSchoolName(_ name: String, failureHandler: ((Reason, String?) -> Void)?, completion: @escaping (Bool) -> Void) {
     
     guard let parentID = MalaUserDefaults.parentID.value else {
         println("saveStudentSchoolName error - no profileID")
@@ -370,7 +370,7 @@ func saveStudentSchoolName(_ name: String, failureHandler: ((Reason, String?) ->
 ///  - parameter onlyValid:      是否只返回可用奖学金
 ///  - parameter failureHandler: 失败处理闭包
 ///  - parameter completion:     成功处理闭包
-func getCouponList(_ onlyValid: Bool = false, failureHandler: ((Reason, String?) -> Void)?, completion: ([CouponModel]) -> Void) {
+func getCouponList(_ onlyValid: Bool = false, failureHandler: ((Reason, String?) -> Void)?, completion: @escaping ([CouponModel]) -> Void) {
 
     let parse: ([JSONDictionary]) -> [CouponModel] = { couponData in
         /// 解析优惠券JSON数组
@@ -399,7 +399,7 @@ func getCouponList(_ onlyValid: Bool = false, failureHandler: ((Reason, String?)
 ///  - parameter onlyValid:      是否只返回可用奖学金
 ///  - parameter failureHandler: 失败处理闭包
 ///  - parameter completion:     成功处理闭包
-func headBlockedCoupons(_ onlyValid: Bool = false, failureHandler: ((Reason, String?) -> Void)?, completion: (JSONDictionary) -> Void) {
+func headBlockedCoupons(_ onlyValid: Bool = false, failureHandler: ((Reason, String?) -> Void)?, completion: @escaping (JSONDictionary) -> Void) {
     
     let parse: (JSONDictionary) -> JSONDictionary? = { data in
         return data
@@ -414,7 +414,7 @@ func headBlockedCoupons(_ onlyValid: Bool = false, failureHandler: ((Reason, Str
 ///  - parameter subjectID:      学科id
 ///  - parameter failureHandler: 失败处理闭包
 ///  - parameter completion:     成功处理闭包
-func isHasBeenEvaluatedWithSubject(_ subjectID: Int, failureHandler: ((Reason, String?) -> Void)?, completion: (Bool) -> Void) {
+func isHasBeenEvaluatedWithSubject(_ subjectID: Int, failureHandler: ((Reason, String?) -> Void)?, completion: @escaping (Bool) -> Void) {
 
     let parse: (JSONDictionary) -> Bool = { data in
         if let result = data["evaluated"] as? Bool {
@@ -439,7 +439,7 @@ func isHasBeenEvaluatedWithSubject(_ subjectID: Int, failureHandler: ((Reason, S
 ///  - parameter page:           页数
 ///  - parameter failureHandler: 失败处理闭包
 ///  - parameter completion:     成功处理闭包
-func getStudentCourseTable(_ onlyPassed: Bool = false, page: Int = 1, failureHandler: ((Reason, String?) -> Void)?, completion: ([StudentCourseModel]) -> Void) {
+func getStudentCourseTable(_ onlyPassed: Bool = false, page: Int = 1, failureHandler: ((Reason, String?) -> Void)?, completion: @escaping ([StudentCourseModel]) -> Void) {
     
     let parse: (JSONDictionary) -> [StudentCourseModel] = { data in
         return parseStudentCourse(data)
@@ -458,7 +458,7 @@ func getStudentCourseTable(_ onlyPassed: Bool = false, page: Int = 1, failureHan
 ///
 ///  - parameter failureHandler: 失败处理闭包
 ///  - parameter completion:     成功处理闭包
-func getOrderList(_ page: Int = 1, failureHandler: ((Reason, String?) -> Void)?, completion: ([OrderForm], Int) -> Void) {
+func getOrderList(_ page: Int = 1, failureHandler: ((Reason, String?) -> Void)?, completion: @escaping ([OrderForm], Int) -> Void) {
     
     let requestParameters: JSONDictionary = [
         "page": page as AnyObject,
@@ -481,7 +481,7 @@ func getOrderList(_ page: Int = 1, failureHandler: ((Reason, String?) -> Void)?,
 ///
 ///  - parameter failureHandler: 失败处理闭包
 ///  - parameter completion:     成功处理闭包
-func getUserNewMessageCount(_ failureHandler: ((Reason, String?) -> Void)?, completion: (_ order: Int, _ comment: Int) -> Void) {
+func getUserNewMessageCount(_ failureHandler: ((Reason, String?) -> Void)?, completion: @escaping (_ order: Int, _ comment: Int) -> Void) {
     
     let parse: (JSONDictionary) -> (order: Int, comment: Int) = { data in
         if
@@ -506,7 +506,7 @@ func getUserNewMessageCount(_ failureHandler: ((Reason, String?) -> Void)?, comp
 ///
 ///  - parameter failureHandler: 失败处理闭包
 ///  - parameter completion:     成功处理闭包
-func getFavoriteTeachers(_ page: Int = 1, failureHandler: ((Reason, String?) -> Void)?, completion: ([TeacherModel], Int) -> Void) {
+func getFavoriteTeachers(_ page: Int = 1, failureHandler: ((Reason, String?) -> Void)?, completion: @escaping ([TeacherModel], Int) -> Void) {
     
     let requestParameters = [
         "page": page,
@@ -530,7 +530,7 @@ func getFavoriteTeachers(_ page: Int = 1, failureHandler: ((Reason, String?) -> 
 ///  - parameter id:             老师id
 ///  - parameter failureHandler: 失败处理闭包
 ///  - parameter completion:     成功处理闭包
-func addFavoriteTeacher(_ id: Int, failureHandler: ((Reason, String?) -> Void)?, completion: (Bool) -> Void) {
+func addFavoriteTeacher(_ id: Int, failureHandler: ((Reason, String?) -> Void)?, completion: @escaping (Bool) -> Void) {
     
     let requestParameters = [
         "teacher": id,
@@ -554,7 +554,7 @@ func addFavoriteTeacher(_ id: Int, failureHandler: ((Reason, String?) -> Void)?,
 ///  - parameter id:             老师id
 ///  - parameter failureHandler: 失败处理闭包
 ///  - parameter completion:     成功处理闭包
-func removeFavoriteTeacher(_ id: Int, failureHandler: ((Reason, String?) -> Void)?, completion: (Bool) -> Void) {
+func removeFavoriteTeacher(_ id: Int, failureHandler: ((Reason, String?) -> Void)?, completion: @escaping (Bool) -> Void) {
     let parse: (JSONDictionary) -> Bool = { data in
         return true
     }
@@ -575,7 +575,7 @@ func removeFavoriteTeacher(_ id: Int, failureHandler: ((Reason, String?) -> Void
 ///  - parameter id:             老师id
 ///  - parameter failureHandler: 失败处理闭包
 ///  - parameter completion:     成功处理闭包
-func loadTeacherDetailData(_ id: Int, failureHandler: ((Reason, String?) -> Void)?, completion: (TeacherDetailModel?) -> Void) {
+func loadTeacherDetailData(_ id: Int, failureHandler: ((Reason, String?) -> Void)?, completion: @escaping (TeacherDetailModel?) -> Void) {
     
     let parse: (JSONDictionary) -> TeacherDetailModel? = { data in
         let model: TeacherDetailModel?
@@ -603,7 +603,7 @@ func loadTeacherDetailData(_ id: Int, failureHandler: ((Reason, String?) -> Void
 ///  - parameter schoolId:       上课地点id
 ///  - parameter failureHandler: 失败处理闭包
 ///  - parameter completion:     成功处理闭包
-func getTeacherAvailableTimeInSchool(_ teacherId: Int, schoolId: Int, failureHandler: ((Reason, String?) -> Void)?, completion: ([[ClassScheduleDayModel]]) -> Void) {
+func getTeacherAvailableTimeInSchool(_ teacherId: Int, schoolId: Int, failureHandler: ((Reason, String?) -> Void)?, completion: @escaping ([[ClassScheduleDayModel]]) -> Void) {
     
     let requestParameters = [
         "school_id": schoolId,
@@ -627,7 +627,7 @@ func getTeacherAvailableTimeInSchool(_ teacherId: Int, schoolId: Int, failureHan
 ///  - parameter schoolID:       上课地点id
 ///  - parameter failureHandler: 失败处理闭包
 ///  - parameter completion:     成功处理闭包
-func getTeacherGradePrice(_ teacherId: Int, schoolId: Int, failureHandler: ((Reason, String?) -> Void)?, completion: ([GradeModel]) -> Void) {
+func getTeacherGradePrice(_ teacherId: Int, schoolId: Int, failureHandler: ((Reason, String?) -> Void)?, completion: @escaping ([GradeModel]) -> Void) {
     
     let parse: (JSONDictionary) -> [GradeModel] = { data in
         return parseTeacherGradePrice(data)
@@ -652,7 +652,7 @@ func loadTeachersWithConditions(_ conditions: JSONDictionary?, failureHandler: (
 ///  - parameter id:             课程id
 ///  - parameter failureHandler: 失败处理闭包
 ///  - parameter completion:     成功处理闭包
-func getCourseInfo(_ id: Int, failureHandler: ((Reason, String?) -> Void)?, completion: (CourseModel) -> Void) {
+func getCourseInfo(_ id: Int, failureHandler: ((Reason, String?) -> Void)?, completion: @escaping (CourseModel) -> Void) {
     
     let parse: (JSONDictionary) -> CourseModel? = { data in
         return parseCourseInfo(data)
@@ -674,7 +674,7 @@ func getCourseInfo(_ id: Int, failureHandler: ((Reason, String?) -> Void)?, comp
 ///  - parameter timeSlots:      所选上课时间
 ///  - parameter failureHandler: 失败处理闭包
 ///  - parameter completion:     成功处理闭包
-func getConcreteTimeslots(_ teacherID: Int, hours: Int, timeSlots: [Int], failureHandler: ((Reason, String?) -> Void)?, completion: ([[TimeInterval]]?) -> Void) {
+func getConcreteTimeslots(_ teacherID: Int, hours: Int, timeSlots: [Int], failureHandler: ((Reason, String?) -> Void)?, completion: @escaping ([[TimeInterval]]?) -> Void) {
     
     guard timeSlots.count != 0 else {
         ThemeHUD.hideActivityIndicator()
@@ -711,7 +711,7 @@ func getConcreteTimeslots(_ teacherID: Int, hours: Int, timeSlots: [Int], failur
 ///  - parameter comment:        评价对象
 ///  - parameter failureHandler: 失败处理闭包
 ///  - parameter completion:     成功处理闭包
-func createComment(_ comment: CommentModel, failureHandler: ((Reason, String?) -> Void)?, completion: (Bool) -> Void) {
+func createComment(_ comment: CommentModel, failureHandler: ((Reason, String?) -> Void)?, completion: @escaping (Bool) -> Void) {
     
     let requestParameters = [
         "timeslot": comment.timeslot,
@@ -737,7 +737,7 @@ func createComment(_ comment: CommentModel, failureHandler: ((Reason, String?) -
 ///  - parameter id:             评价id
 ///  - parameter failureHandler: 失败处理闭包
 ///  - parameter completion:     成功处理闭包
-func getCommentInfo(_ id: Int, failureHandler: ((Reason, String?) -> Void)?, completion: (CommentModel) -> Void) {
+func getCommentInfo(_ id: Int, failureHandler: ((Reason, String?) -> Void)?, completion: @escaping (CommentModel) -> Void) {
     
     let parse: (JSONDictionary) -> CommentModel? = { data in
         return parseCommentInfo(data)
@@ -759,7 +759,7 @@ func getCommentInfo(_ id: Int, failureHandler: ((Reason, String?) -> Void)?, com
 ///  - parameter orderForm:      订单对象字典
 ///  - parameter failureHandler: 失败处理闭包
 ///  - parameter completion:     成功处理闭包
-func createOrderWithForm(_ orderForm: JSONDictionary, failureHandler: ((Reason, String?) -> Void)?, completion: (OrderForm) -> Void) {
+func createOrderWithForm(_ orderForm: JSONDictionary, failureHandler: ((Reason, String?) -> Void)?, completion: @escaping (OrderForm) -> Void) {
     // teacher              老师id
     // school               上课地点id
     // grade                年级(&价格)id
@@ -788,7 +788,7 @@ func createOrderWithForm(_ orderForm: JSONDictionary, failureHandler: ((Reason, 
 ///  - parameter orderID:        订单id
 ///  - parameter failureHandler: 失败处理闭包
 ///  - parameter completion:     成功处理闭包
-func getChargeTokenWithChannel(_ channel: MalaPaymentChannel, orderID: Int, failureHandler: ((Reason, String?) -> Void)?, completion: (JSONDictionary?) -> Void) {
+func getChargeTokenWithChannel(_ channel: MalaPaymentChannel, orderID: Int, failureHandler: ((Reason, String?) -> Void)?, completion: @escaping (JSONDictionary?) -> Void) {
     let requestParameters = [
         "action": PaymentMethod.Pay.rawValue,
         "channel": channel.rawValue
@@ -812,7 +812,7 @@ func getChargeTokenWithChannel(_ channel: MalaPaymentChannel, orderID: Int, fail
 ///  - parameter orderID:        订单id
 ///  - parameter failureHandler: 失败处理闭包
 ///  - parameter completion:     成功处理闭包
-func getOrderInfo(_ orderID: Int, failureHandler: ((Reason, String?) -> Void)?, completion: (OrderForm) -> Void) {
+func getOrderInfo(_ orderID: Int, failureHandler: ((Reason, String?) -> Void)?, completion: @escaping (OrderForm) -> Void) {
     /// 返回值解析器
     let parse: (JSONDictionary) -> OrderForm? = { data in
         return parseOrderFormInfo(data)
@@ -832,7 +832,7 @@ func getOrderInfo(_ orderID: Int, failureHandler: ((Reason, String?) -> Void)?, 
 ///  - parameter orderID:        订单id
 ///  - parameter failureHandler: 失败处理闭包
 ///  - parameter completion:     成功处理闭包
-func cancelOrderWithId(_ orderID: Int, failureHandler: ((Reason, String?) -> Void)?, completion: (Bool) -> Void) {
+func cancelOrderWithId(_ orderID: Int, failureHandler: ((Reason, String?) -> Void)?, completion: @escaping (Bool) -> Void) {
     /// 返回值解析器
     let parse: (JSONDictionary) -> Bool = { data in
         if let result = data["ok"] as? Bool {
@@ -857,7 +857,7 @@ func cancelOrderWithId(_ orderID: Int, failureHandler: ((Reason, String?) -> Voi
 ///
 ///  - parameter failureHandler: 失败处理闭包
 ///  - parameter completion:     成功处理闭包
-func getStudyReportOverview(_ failureHandler: ((Reason, String?) -> Void)?, completion: ([SimpleReportResultModel]) -> Void) {
+func getStudyReportOverview(_ failureHandler: ((Reason, String?) -> Void)?, completion: @escaping ([SimpleReportResultModel]) -> Void) {
     /// 返回值解析器
     let parse: (JSONDictionary) -> [SimpleReportResultModel] = { data in
         return parseStudyReportResult(data)
@@ -877,7 +877,7 @@ func getStudyReportOverview(_ failureHandler: ((Reason, String?) -> Void)?, comp
 ///  - parameter id: 学科id
 ///  - parameter failureHandler: 失败处理闭包
 ///  - parameter completion:     成功处理闭包
-func getSubjectReport(_ id: Int, failureHandler: ((Reason, String?) -> Void)?, completion: (SubjectReport) -> Void) {
+func getSubjectReport(_ id: Int, failureHandler: ((Reason, String?) -> Void)?, completion: @escaping (SubjectReport) -> Void) {
     /// 返回值解析器
     let parse: (JSONDictionary) -> SubjectReport = { data in
         return parseStudyReport(data)
@@ -898,7 +898,7 @@ func getSubjectReport(_ id: Int, failureHandler: ((Reason, String?) -> Void)?, c
 ///
 ///  - parameter failureHandler: 失败处理闭包
 ///  - parameter completion:     成功处理闭包
-func loadRegions(_ failureHandler: ((Reason, String?) -> Void)?, completion: ([BaseObjectModel]) -> Void) {
+func loadRegions(_ failureHandler: ((Reason, String?) -> Void)?, completion: @escaping ([BaseObjectModel]) -> Void) {
     let parse: (JSONDictionary) -> [BaseObjectModel] = { data in
         return parseCitiesResult(data)
     }
@@ -918,7 +918,7 @@ func loadRegions(_ failureHandler: ((Reason, String?) -> Void)?, completion: ([B
 ///  - parameter teacher: 老师id（传入即为筛选该老师指定的上课地点）
 ///  - parameter failureHandler: 失败处理闭包
 ///  - parameter completion:     成功处理闭包
-func getSchools(_ cityId: Int? = nil, teacher: Int? = nil, failureHandler: ((Reason, String?) -> Void)?, completion: ([SchoolModel]) -> Void) {
+func getSchools(_ cityId: Int? = nil, teacher: Int? = nil, failureHandler: ((Reason, String?) -> Void)?, completion: @escaping ([SchoolModel]) -> Void) {
     
     let parse: (JSONDictionary) -> [SchoolModel] = { data in
         return sortSchoolsByDistance(parseSchoolsResult(data))
@@ -948,7 +948,7 @@ func getSchools(_ cityId: Int? = nil, teacher: Int? = nil, failureHandler: ((Rea
 ///
 ///  - parameter failureHandler: 失败处理闭包
 ///  - parameter completion:     成功处理闭包
-func getUserProtocolHTML(_ failureHandler: ((Reason, String?) -> Void)?, completion: (String?) -> Void) {
+func getUserProtocolHTML(_ failureHandler: ((Reason, String?) -> Void)?, completion: @escaping (String?) -> Void) {
     
     let parse: (JSONDictionary) -> String? = { data in
         return parseUserProtocolHTML(data)

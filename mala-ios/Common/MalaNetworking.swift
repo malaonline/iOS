@@ -312,7 +312,7 @@ func encodeJSON(_ dict: JSONDictionary) -> Data? {
 ///  - parameter parse:             JSON解析器
 ///
 ///  - returns: Resource结构体
-public func jsonResource<A>(_ path: String, method: Method, requestParameters: JSONDictionary, parse: @escaping (JSONDictionary) -> A?) -> Resource<A> {
+public func jsonResource<A>(path: String, method: Method, requestParameters: JSONDictionary, parse: @escaping (JSONDictionary) -> A?) -> Resource<A> {
     return jsonResource(nil, path: path, method: method, requestParameters: requestParameters, parse: parse)
 }
 
@@ -324,7 +324,7 @@ public func jsonResource<A>(_ path: String, method: Method, requestParameters: J
 ///  - parameter parse:             JSON解析器
 ///
 ///  - returns: Resource结构体
-public func authJsonResource<A>(_ path: String, method: Method, requestParameters: JSONDictionary, parse: @escaping (JSONDictionary) -> A?) -> Resource<A> {
+public func authJsonResource<A>(path: String, method: Method, requestParameters: JSONDictionary, parse: @escaping (JSONDictionary) -> A?) -> Resource<A> {
     let token = MalaUserDefaults.userAccessToken.value
     return jsonResource(token, path: path, method: method, requestParameters: requestParameters, parse: parse)
 }
