@@ -78,16 +78,16 @@ class TeacherDetailsCertificateCell: MalaBaseCell {
         
         /// 图片浏览器
         if let index = sender.view?.tag {
+            SKPhotoBrowserOptions.displayStatusbar = false
+            SKPhotoBrowserOptions.enableSingleTapDismiss = true
+            SKPhotoBrowserOptions.displayAction = false
+            SKPhotoBrowserOptions.bounceAnimation = false
+            SKPhotoBrowserOptions.displayDeleteButton = false
+            SKPhotoBrowserOptions.displayBackAndForwardButton = false
+            
             let browser = SKPhotoBrowser(photos: images)
             browser.initializePageIndex(index)
-            browser.statusBarStyle = nil
-            browser.forceDismiss = true
-            browser.displayAction = false
-            browser.bounceAnimation = false
-            browser.displayDeleteButton = false
-            browser.displayBackAndForwardButton = false
             browser.navigationController?.isNavigationBarHidden = true
-            
             NotificationCenter.default.post(name: Notification.Name(rawValue: MalaNotification_PushPhotoBrowser), object: browser)
         }
     }

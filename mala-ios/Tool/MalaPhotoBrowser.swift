@@ -95,15 +95,15 @@ open class MalaPhotoBrowser: BaseViewController, UICollectionViewDataSource, UIC
         }
         
         /// 图片浏览器
+        SKPhotoBrowserOptions.displayStatusbar = false
+        SKPhotoBrowserOptions.displayAction = false
+        SKPhotoBrowserOptions.bounceAnimation = false
+        SKPhotoBrowserOptions.displayDeleteButton = false
+        SKPhotoBrowserOptions.displayBackAndForwardButton = false
+        
         let browser = SKPhotoBrowser(originImage: originImage, photos: images, animatedFromView: cell)
         browser.initializePageIndex((indexPath as NSIndexPath).row)
         browser.delegate = self
-        browser.statusBarStyle = nil
-        browser.displayAction = false
-        browser.bounceAnimation = false
-        browser.displayDeleteButton = false
-        browser.displayBackAndForwardButton = false
-        
         present(browser, animated: true, completion: {})
     }
 
