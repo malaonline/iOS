@@ -125,9 +125,9 @@ class MainViewController: UITabBarController, UITabBarControllerDelegate {
             MalaToCommentCount = comment
             
             if order != 0, let viewController = getActivityViewController() {
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                DispatchQueue.main.async {
                     self?.popAlert(viewController)
-                })
+                }
             }
             self?.profileViewController.showTabBadgePoint = (MalaUnpaidOrderCount > 0 || MalaToCommentCount > 0)
         })

@@ -158,8 +158,8 @@ open class ClassScheduleViewCell: UICollectionViewCell {
     /// 辅助性日期格式化组件
     static let accessibilityDateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .longStyle
-        dateFormatter.timeStyle = .noStyle
+        dateFormatter.dateStyle = .long
+        dateFormatter.timeStyle = .none
         return dateFormatter
     }()
 
@@ -323,7 +323,8 @@ open class ClassScheduleViewCell: UICollectionViewCell {
     
     
     class func stringFromDate(_ date: Date, withDateFormatter dateFormatter: DateFormatter, withCalendar calendar: Calendar) -> String {
-        if !dateFormatter.calendar.isEqual(calendar) {
+        
+        if !(dateFormatter.calendar == calendar) {
             dateFormatter.calendar = calendar
         }
         return dateFormatter.string(from: date)

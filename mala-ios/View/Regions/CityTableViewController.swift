@@ -156,7 +156,7 @@ class CityTableViewController: UIViewController, UITableViewDelegate, UITableVie
     
     // MARK: - Events Response
     func pop() {
-        navigationController?.popViewController(animated: true)
+        _ = navigationController?.popViewController(animated: true)
     }
     
     

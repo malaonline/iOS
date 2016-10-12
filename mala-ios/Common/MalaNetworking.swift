@@ -125,10 +125,7 @@ public func apiRequest<A>(_ modifyRequest: (NSMutableURLRequest) -> (), baseURL:
         let session = URLSession.shared
     #endif
     
-    var request = NSMutableURLRequest()
-    if let url = baseURL.appendingPathComponent(resource.path) {
-        request = NSMutableURLRequest(url: url)
-    }
+    var request = NSMutableURLRequest(url: baseURL.appendingPathComponent(resource.path))
     request.httpMethod = resource.method.rawValue
     
     
@@ -188,13 +185,13 @@ public func apiRequest<A>(_ modifyRequest: (NSMutableURLRequest) -> (), baseURL:
                         let dataString = NSString(data: responseData, encoding: String.Encoding.utf8.rawValue)
                         println(dataString)
                         
-                        failure(Reason.CouldNotParseJSON, errorMessageInData(data: data as NSData?))
+                        failure(Reason.couldNotParseJSON, errorMessageInData(data))
                         println("\(resource)\n")
                         println(request.cURLString)
                     }
                     
                 } else {
-                    failure(Reason.NoData, errorMessageInData(data: data as NSData?))
+                    failure(Reason.noData, errorMessageInData(data))
                     println("\(resource)\n")
                     println(request.cURLString)
                 }
@@ -202,7 +199,7 @@ public func apiRequest<A>(_ modifyRequest: (NSMutableURLRequest) -> (), baseURL:
                 
             // 失败, 其他
             default:
-                failure(Reason.NoSuccessStatusCode(statusCode: httpResponse.statusCode), errorMessageInData(data: data as NSData?))
+                failure(Reason.noSuccessStatusCode(statusCode: httpResponse.statusCode), errorMessageInData(data))
                 println("\(resource)\n")
                 println(request.cURLString)
                 
@@ -223,7 +220,7 @@ public func apiRequest<A>(_ modifyRequest: (NSMutableURLRequest) -> (), baseURL:
             }
         } else {
             // 请求无响应, 错误处理
-            failure(Reason.Other(error as NSError?), errorMessageInData(data: data as NSData?))
+            failure(Reason.other(error as NSError?), errorMessageInData(data))
             println("\(resource)")
             println(request.cURLString)
         }
@@ -341,7 +338,7 @@ public func authJsonResource<A>(path: String, method: Method, requestParameters:
 public func jsonResource<A>(_ token: String?, path: String, method: Method, requestParameters: JSONDictionary, parse: @escaping (JSONDictionary) -> A?) -> Resource<A> {
     /// JSON解析器
     let jsonParse: (Data) -> A? = { data in
-        if let json = decodeJSON((data as NSData) as Data) {
+        if let json = decodeJSON(data) {
             return parse(json)
         }
         return nil
@@ -350,10 +347,10 @@ public func jsonResource<A>(_ token: String?, path: String, method: Method, requ
     var headers = [
         "Content-Type": "application/json",
     ]
-    let locale = Locale.autoupdatingCurrent
+    let locale = Locale.current as NSLocale
     if let
-        languageCode = locale.objectForKey(NSLocale.Key.languageCode) as? String,
-        let countryCode = locale.objectForKey(NSLocale.Key.countryCode) as? String {
+        languageCode = locale.object(forKey: .languageCode) as? String,
+        let countryCode = locale.object(forKey: .countryCode) as? String {
             headers["Accept-Language"] = languageCode + "-" + countryCode
     }
     /// 请求体
@@ -391,29 +388,29 @@ extension MalaNetworking {
     ///  Request for GradeList
     ///
     ///  - parameter finished: Closure for Finished
-    func loadGrades(_ finished: RequestCallBack) {
-        request(.GET, URLString: MalaBaseUrl+gradeList, parameters: nil, finished: finished)
+    func loadGrades(_ finished: @escaping RequestCallBack) {
+        request(MalaBaseUrl+gradeList, parameters: nil, finished: finished)
     }
     
     ///  Request for SubjectList
     ///
     ///  - parameter finished: Closure for Finished
-    func loadSubjects(_ finished: RequestCallBack) {
-        request(.GET, URLString: MalaBaseUrl+subjectList, parameters: nil, finished: finished)
+    func loadSubjects(_ finished: @escaping RequestCallBack) {
+        request(MalaBaseUrl+subjectList, parameters: nil, finished: finished)
     }
     
     ///  Request for TagList
     ///
     ///  - parameter finished: Closure for Finished
-    func loadTags(_ finished: RequestCallBack) {
-        request(.GET, URLString: MalaBaseUrl+tagList, parameters: nil, finished: finished)
+    func loadTags(_ finished: @escaping RequestCallBack) {
+        request(MalaBaseUrl+tagList, parameters: nil, finished: finished)
     }
     
     ///  Request for MemberserviceList
     ///
     ///  - parameter finished: Closure for Finished
-    func loadMemberServices(_ finished: RequestCallBack) {
-        request(.GET, URLString: MalaBaseUrl+memberServiceList, parameters: nil, finished: finished)
+    func loadMemberServices(_ finished: @escaping RequestCallBack) {
+        request(MalaBaseUrl+memberServiceList, parameters: nil, finished: finished)
     }
     
     ///  Request for TeacherList
@@ -421,7 +418,7 @@ extension MalaNetworking {
     ///  - parameter parameters: Filter Dict
     ///  - parameter page:       page number
     ///  - parameter finished:   Closure for Finished
-    func loadTeachers(_ parameters: [String: AnyObject]?, page: Int = 1, finished: RequestCallBack) {
+    func loadTeachers(_ parameters: [String: AnyObject]?, page: Int = 1, finished: @escaping RequestCallBack) {
         var params = parameters ?? [String: AnyObject]()
         params["page"] = page as AnyObject?
         if let city = MalaCurrentCity {
@@ -430,15 +427,15 @@ extension MalaNetworking {
         if let school = MalaCurrentSchool {
             params["school"] = school.id as AnyObject?
         }
-        request(.GET, URLString: MalaBaseUrl+teacherList, parameters: params, finished: finished)
+        request(MalaBaseUrl+teacherList, parameters: params, finished: finished)
     }
     
     ///  Request for Teacher Detail
     ///
     ///  - parameter id:       id of teacher
     ///  - parameter finished: Closure for Finished
-    func loadTeacherDetail(_ id: Int, finished: RequestCallBack) {
-        request(.GET, URLString: MalaBaseUrl+teacherList+"/"+String(id), parameters: nil, finished: finished)
+    func loadTeacherDetail(_ id: Int, finished: @escaping RequestCallBack) {
+        request(MalaBaseUrl+teacherList+"/"+String(id), parameters: nil, finished: finished)
     }
     
     ///  Request for verify SMS
@@ -446,19 +443,19 @@ extension MalaNetworking {
     ///  - parameter number:   string for phone number
     ///  - parameter code:     string for verify code
     ///  - parameter finished: Closure for Finished
-    func verifySMS(_ number: String, code: String, finished: RequestCallBack) {
+    func verifySMS(_ number: String, code: String, finished: @escaping RequestCallBack) {
         var params = [String: AnyObject]()
         params["action"] = "verify" as AnyObject?
         params["phone"] = number as AnyObject?
         params["code"] = code as AnyObject?
-        request(.POST, URLString: MalaBaseUrl+sms, parameters: params, finished: finished)
+        request(MalaBaseUrl+sms, method: .post, parameters: params, finished: finished)
     }
     
     ///  Request for SchoolList
     ///
     ///  - parameter finished: Closure for Finished
-    func loadSchools(_ finished: RequestCallBack) {
-        request(.GET, URLString: MalaBaseUrl+schools, parameters: nil, finished: finished)
+    func loadSchools(_ finished: @escaping RequestCallBack) {
+        request(MalaBaseUrl+schools, parameters: nil, finished: finished)
     }
 }
 
@@ -472,22 +469,23 @@ extension MalaNetworking {
     ///  - parameter URLString:  String for URL
     ///  - parameter parameters: Dictionary for Parameters
     ///  - parameter finished:   Closure for Finished
-    private func request(_ method: Alamofire.Method, URLString: String, parameters: [String: AnyObject]?, finished: @escaping RequestCallBack) {
+    fileprivate func request(_ URLString: URLConvertible, method: HTTPMethod = .get, parameters: Parameters?, finished: @escaping RequestCallBack) {
+        
         // Show Networking Symbol
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         
         // Request
-        Alamofire.request(method, URLString, parameters: parameters).responseJSON { (response) -> Void in
+        Alamofire.request(URLString, method: method, parameters: parameters).responseJSON { (response) in
             
             // hide Networking Symbol
-            UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+            UIApplication.shared.isNetworkActivityIndicatorVisible = false
             
             println(response.request!.cURLString)
             if response.result.isFailure {
                 println("Network Request Failure - \(response.result.error)")
             }
             // Finished
-            finished(result: response.result.value, error: response.result.error)
+            finished(response.result.value as AnyObject?, response.result.error as NSError?)
         }
     }
 }

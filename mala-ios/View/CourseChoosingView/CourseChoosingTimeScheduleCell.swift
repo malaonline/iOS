@@ -13,8 +13,8 @@ class CourseChoosingTimeScheduleCell: MalaBaseCell {
     // MARK: - Property
     /// 上课时间列表
     var timeSchedules: [[TimeInterval]]? {
-        didSet {            
-            if (timeSchedules ?? []) !== (oldValue ?? []) && timeSchedules != nil && isOpen {
+        didSet {
+            if timeSchedules != nil && isOpen {
                 parseTimeSchedules()
             }
         }

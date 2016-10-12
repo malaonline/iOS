@@ -19,6 +19,7 @@ typealias CancelableTask = (_ cancel: Bool) -> Void
 ///  - parameter work: 任务闭包
 ///
 ///  - returns: 任务对象闭包
+@discardableResult
 func delay(_ time: TimeInterval, work: @escaping ()->()) -> CancelableTask? {
     
     var finalTask: CancelableTask?
@@ -34,9 +35,9 @@ func delay(_ time: TimeInterval, work: @escaping ()->()) -> CancelableTask? {
     
     finalTask = cancelableTask
     
-    (DispatchQueue.main).asyncAfter(deadline: DispatchTime(uptimeNanoseconds: DispatchTime.now) + Double(Int64(time * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)) {
+    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(Int64(time * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)) {
         if let task = finalTask {
-            task(cancel: false)
+            task(false)
         }
     }
     
@@ -60,9 +61,9 @@ func unregisterThirdPartyPush() {
 
 ///  清空缓存
 func cleanCaches() {
-    KingfisherManager.sharedManager.cache.clearDiskCache()
-    KingfisherManager.sharedManager.cache.clearMemoryCache()
-    KingfisherManager.sharedManager.cache.cleanExpiredDiskCache()
+    KingfisherManager.shared.cache.clearDiskCache()
+    KingfisherManager.shared.cache.clearMemoryCache()
+    KingfisherManager.shared.cache.cleanExpiredDiskCache()
 }
 
 
@@ -100,7 +101,8 @@ public func makeStatusBarWhite() {
 }
 
 public func MalaRandomColor() -> UIColor {
-    return MalaConfig.malaTagColors()[randomInRange(range: 0...MalaConfig.malaTagColors().count-1)]
+    return MalaConfig.malaTagColors()[randomInRange(Range(uncheckedBounds: (lower: 0, upper: MalaConfig.malaTagColors().count-1)))]
+//    return MalaConfig.malaTagColors()[randomInRange(0...MalaConfig.malaTagColors().count-1)]
 }
 
 ///  根据Date获取星期数
@@ -108,16 +110,16 @@ public func MalaRandomColor() -> UIColor {
 ///  - parameter date: Date对象
 ///
 ///  - returns: 星期数（0~6, 对应星期日~星期六）
-public func weekdayInt(_ date: Date) -> Int {
-    let calendar = Calendar.currentCalendar()
-    let components: DateComponents = calendar.components(CalendarUnit.Weekday, fromDate: date)
+public func weekdayInt(_ date: NSDate) -> Int {
+    let calendar = Calendar.current
+    let components: DateComponents = calendar.dateComponents([.weekday], from: date as Date)
     return components.weekday!-1
 }
 
 ///  解析学生上课时间表
 ///
 ///  - returns: [我的课表]页面课表数据
-func parseStudentCourseTable(_ courseTable: [StudentCourseModel]) -> (model: [[[StudentCourseModel]]], recently: NSIndexPath) {
+func parseStudentCourseTable(_ courseTable: [StudentCourseModel]) -> (model: [[[StudentCourseModel]]], recently: IndexPath) {
     
     let courseList = [StudentCourseModel](courseTable.reversed())
     var datas = [[[StudentCourseModel]]]()
@@ -161,12 +163,12 @@ func parseStudentCourseTable(_ courseTable: [StudentCourseModel]) -> (model: [[[
                 if courseDay == previousCourse.date.day() {
                     // 同年同月同日
                     datas[currentMonthsIndex][currentDaysIndex].append(course)
-                    validate(course)
+                    validate(course: course)
                 }else {
                     // 同年同月
                     datas[currentMonthsIndex].append([course])
                     currentDaysIndex += 1
-                    validate(course)
+                    validate(course: course)
                 }
             }else {
                 // 非同年同月
@@ -190,7 +192,7 @@ func parseStudentCourseTable(_ courseTable: [StudentCourseModel]) -> (model: [[[
         let row = datas[section].count-1
         indexPath = (section, row)
     }
-    return (datas, NSIndexPath(forRow: indexPath.row, inSection: indexPath.section))
+    return (datas, IndexPath(row: indexPath.row, section: indexPath.section))
 }
 
 ///  根据时间戳获取时间字符串（例如12:00）
@@ -199,7 +201,7 @@ func parseStudentCourseTable(_ courseTable: [StudentCourseModel]) -> (model: [[[
 ///
 ///  - returns: 时间字符串
 func getTimeString(_ timeStamp: TimeInterval, format: String = "HH:mm") -> String {
-    return Date(timeIntervalSince1970: timeStamp).formattedDateWithFormat(format)
+    return NSDate(timeIntervalSince1970: timeStamp).formattedDate(withFormat: format)
 }
 
 ///  根据时间戳获取时间字符串（例如2000/10/10）
@@ -207,13 +209,13 @@ func getTimeString(_ timeStamp: TimeInterval, format: String = "HH:mm") -> Strin
 ///  - parameter timeStamp: 时间戳
 ///
 ///  - returns: 时间字符串
-func getDateString(_ timeStamp: TimeInterval? = nil, date: Date? = nil, format: String = "yyyy/MM/dd") -> String {
+func getDateString(_ timeStamp: TimeInterval? = nil, date: NSDate? = nil, format: String = "yyyy/MM/dd") -> String {
     if timeStamp != nil {
-        return Date(timeIntervalSince1970: timeStamp!).formattedDateWithFormat(format)
+        return NSDate(timeIntervalSince1970: timeStamp!).formattedDate(withFormat: format)
     }else if date != nil {
-        return date!.formattedDateWithFormat(format)
+        return date!.formattedDate(withFormat: format)
     }else {
-        return Date().formattedDateWithFormat(format)
+        return NSDate().formattedDate(withFormat: format)
     }
 }
 
@@ -223,7 +225,7 @@ func getDateString(_ timeStamp: TimeInterval? = nil, date: Date? = nil, format: 
 ///
 ///  - returns: 时间字符串
 func getDateTimeString(_ timeStamp: TimeInterval, format: String = "yyyy-MM-dd HH:mm:ss") -> String {
-    return Date(timeIntervalSince1970: timeStamp).formattedDateWithFormat(format)
+    return NSDate(timeIntervalSince1970: timeStamp).formattedDate(withFormat: format)
 }
 
 
@@ -308,12 +310,12 @@ func getTimeSchedule(_ timeStamps: [[TimeInterval]]) -> [String] {
 ///  - parameter date:      日期对象
 ///
 ///  - returns: 星期字符串
-func getWeekString(_ timeStamp: TimeInterval? = nil, date: Date? = nil) -> String {
+func getWeekString(_ timeStamp: TimeInterval? = nil, date: NSDate? = nil) -> String {
     
     var weekInt = 0
     
     if let timeStamp = timeStamp {
-        weekInt = Date(timeIntervalSince1970: timeStamp).weekday()
+        weekInt = NSDate(timeIntervalSince1970: timeStamp).weekday()
     }else if let date = date {
         weekInt = date.weekday()
     }
@@ -341,14 +343,14 @@ func parseTimeSlots(_ timeSchedule: [[TimeInterval]]) -> (dates: [String], times
     
     for singleTime in sortTimeSlots {
         
-        let currentStartDate = Date(timeIntervalSince1970: singleTime[0])
-        let currentEndDate = Date(timeIntervalSince1970: singleTime[1])
+        let currentStartDate = NSDate(timeIntervalSince1970: singleTime[0])
+        let currentEndDate = NSDate(timeIntervalSince1970: singleTime[1])
         
         var appendedDate: TimeScheduleModel?
         
         // 判断此日期是否已存在于数组中
         for dateResult in list {
-            if currentStartDate.isSameDay(dateResult.date) {
+            if currentStartDate.isSameDay(dateResult.date as Date!) {
                 appendedDate = dateResult
                 break
             }
@@ -411,13 +413,13 @@ func parseCouponlist(_ coupons: [CouponModel]) -> [CouponModel] {
         
         // 冻结尚未满足要求的奖学金
         if coupon.minPrice > currentPrice {
-            coupon.status = .Disabled
+            coupon.status = .disabled
         }
   
     }
     
     result.sort { (coupon1, coupon2) -> Bool in
-        if coupon2.status == .Disabled {
+        if coupon2.status == .disabled {
             return true
         }else {
             return false

@@ -39,7 +39,7 @@ open class MalaConfig {
     ///  app版本号
     class func aboutAPPVersion() -> String {
         let version = String(describing: Bundle.main.infoDictionary!["CFBundleShortVersionString"]!)
-        return String(format: "版本 V%@", version ?? "1.0")
+        return String(format: "版本 V%@", version)
     }
     ///  版权信息
     class func aboutCopyRightString() -> String {

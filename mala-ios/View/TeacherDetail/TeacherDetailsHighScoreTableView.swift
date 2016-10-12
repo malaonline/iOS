@@ -85,7 +85,7 @@ class TeacherDetailsHighScoreTableViewCell: UITableViewCell {
     var model: HighScoreModel? {
         didSet {
             nameLabel.text = model!.name
-            scoresLabel.text = String(format: "%d", model!.increased_scores ?? 0)
+            scoresLabel.text = String(format: "%d", model!.increased_scores)
             schoolLabel.text = model!.school_name
             admittedLabel.text = model!.admitted_to
         }

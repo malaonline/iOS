@@ -165,7 +165,7 @@ class OrderFormInfoViewController: BaseViewController, OrderFormOperatingViewDel
             MalaOrderOverView.schoolName = (self?.school != nil) ? self?.school!.name : (MalaCurrentSchool?.name)
             MalaOrderOverView.status = "c"
             
-            DispatchQueue.async(DispatchQueue.main) { [weak self] in
+            DispatchQueue.main.async { [weak self] in
                 self?.model = MalaOrderOverView
             }
         })
@@ -232,7 +232,7 @@ class OrderFormInfoViewController: BaseViewController, OrderFormOperatingViewDel
                     }else if errorCode == -2 {
                         DispatchQueue.main.async(execute: { () -> Void in
                             self?.ShowTost("奖学金使用信息有误，请重新选择")
-                            self?.navigationController?.popViewController(animated: true)
+                            _ = self?.navigationController?.popViewController(animated: true)
                         })
                     }
                 }else {

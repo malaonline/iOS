@@ -159,6 +159,6 @@ class TeacherTableView: UITableView, UITableViewDelegate, UITableViewDataSource 
         DispatchQueue.main.async(execute: { () -> Void in
             super.reloadData()
         })
-        self.stopPullToRefresh()
+        self.stopPullRefreshEver()
     }
 }

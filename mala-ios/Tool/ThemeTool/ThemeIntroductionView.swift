@@ -44,7 +44,7 @@ class ThemeIntroductionView: BaseViewController, UICollectionViewDelegate, UICol
         configure()
         delay(0.05) {
             if let i = self.index {
-                self.collectionView.scrollToItemAtIndexPath(NSIndexPath(forItem: i, inSection: 0), atScrollPosition: .None, animated: false)
+                self.collectionView.scrollToItem(at: IndexPath(item: i, section: 0), at: [], animated: false)
                 self.pageControl.setCurrentPage(CGFloat(i), animated: false)
             }
         }

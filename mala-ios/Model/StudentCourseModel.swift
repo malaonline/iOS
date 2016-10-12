@@ -33,9 +33,9 @@ open class StudentCourseModel: BaseObjectModel {
     /// 是否评价标记
     var is_commented: Bool? = false
     /// 日期对象
-    var date: Date {
+    var date: NSDate {
         get {
-            return Date(timeIntervalSince1970: end)
+            return NSDate(timeIntervalSince1970: end)
         }
     }
     /// 课程状态

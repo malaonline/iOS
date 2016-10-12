@@ -16,7 +16,7 @@ class CourseTableViewSectionHeader: UITableViewHeaderFooterView {
     var timeInterval: TimeInterval? = 0 {
         didSet {
             /// 同年日期仅显示月份，否则显示年月
-            let formatter = Date(timeIntervalSince1970: timeInterval ?? 0).year() == Date().year() ? "M月" : "yyyy年M月"
+            let formatter = NSDate(timeIntervalSince1970: timeInterval ?? 0).year() == NSDate().year() ? "M月" : "yyyy年M月"
             dateLabel.text = getDateString(timeInterval, format: formatter)
         }
     }
@@ -142,7 +142,7 @@ class CourseTableViewSectionHeader: UITableViewHeaderFooterView {
     private func updateParallaxOffset() {
 
         let contentOffset = defaultOffset + (parentTableView?.contentOffset.y ?? 0) - offset
-        let cellOffset = contentView.frame.origin.y - (contentOffset ?? 0)
+        let cellOffset = contentView.frame.origin.y - (contentOffset)
         let contentViewHeight: CGFloat = 140
 
         let percent = (cellOffset + contentViewHeight)/((parentTableView?.frame.size.height ?? (MalaScreenHeight-64)) + contentViewHeight)
@@ -162,7 +162,7 @@ class CourseTableViewSectionHeader: UITableViewHeaderFooterView {
         offset = parentTableView?.contentOffset.y ?? 0
         
         let contentOffset = defaultOffset + (parentTableView?.contentOffset.y ?? 0) - offset
-        let cellOffset = contentView.frame.origin.y - (contentOffset ?? 0)
+        let cellOffset = contentView.frame.origin.y - (contentOffset)
         let percent = (cellOffset + contentView.frame.size.height)/((parentTableView?.frame.size.height ?? 1) + contentView.frame.size.height)
         let extraHeight = contentView.frame.size.height*(parallaxRatio-1)
         parallaxImage.frame.origin.y = -extraHeight*percent-210

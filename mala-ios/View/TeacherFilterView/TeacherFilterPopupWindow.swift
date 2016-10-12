@@ -167,7 +167,7 @@ open class TeacherFilterPopupWindow: UIViewController {
         animateAlert()
     }
     
-    open func setButtonStatus(_ showClose: Bool, showCancel: Bool, showConfirm: Bool) {
+    open func setButtonStatus(showClose: Bool, showCancel: Bool, showConfirm: Bool) {
         closeButton.isHidden = !showClose
         cancelButton.isHidden = !showCancel
         confirmButton.isHidden = !showConfirm

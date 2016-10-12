@@ -301,11 +301,10 @@ class LoginViewController: UIViewController {
     ///  倒计时
     private func countDown() {
         self.callMeInSeconds = MalaConfig.callMeInSeconds()
-        let queue = DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default)
-        let timer = DispatchSource.makeTimerSource(flags: DispatchSource.TimerFlags(rawValue: UInt(0)), queue: queue)
-        timer.setTimer(start: DispatchWallTime(time: nil), interval: UInt64(TimeInterval(NSEC_PER_SEC)), leeway: 0)
-        timer.setEventHandler {[weak self] () -> Void in
-            
+        let timer = DispatchSource.makeTimerSource(queue: DispatchQueue.global(qos: .default))
+        
+        timer.scheduleRepeating(deadline: .now(), interval: 1)
+        timer.setEventHandler { [weak self] in
             if self?.callMeInSeconds <= 0 { // 倒计时完成
                 timer.cancel()
                 DispatchQueue.main.async(execute: { () -> Void in

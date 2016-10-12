@@ -52,8 +52,8 @@ class FilterView: UIScrollView, UIScrollViewDelegate {
                     // 根据所选年级，加载对应的科目
                     self?.subjects = model!.subjects.map({ (i: NSNumber) -> GradeModel in
                         let subject = GradeModel()
-                        subject.id = i.integerValue
-                        subject.name = MalaConfig.malaSubject()[i.integerValue]
+                        subject.id = i.intValue
+                        subject.name = MalaConfig.malaSubject()[i.intValue]
                         return subject
                     })
                 }else {

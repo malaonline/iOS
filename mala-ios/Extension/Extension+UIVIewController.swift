@@ -116,7 +116,7 @@ extension UIViewController {
                 return NSNotFound
             }
             let obj = objc_getAssociatedObject(self, &AssociatedKeys.tabIndexAssociatedKey)
-            return obj.intValue
+            return (obj as! Int)
         }
         set {
             objc_setAssociatedObject(self, &AssociatedKeys.tabIndexAssociatedKey, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)

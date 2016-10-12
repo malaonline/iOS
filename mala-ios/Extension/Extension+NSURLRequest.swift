@@ -65,7 +65,7 @@ extension URLRequest {
                 let cookies = cookieStorage.cookies(for: URL!), !cookies.isEmpty
             {
                 let string = cookies.reduce("") { $0 + "\($1.name)=\($1.value);" }
-                components.append("-b \"\(string.substring(to: string.endIndex.predecessor()))\"")
+                components.append("-b \"\(string.substring(to: string.index(before: string.endIndex)))\"")
             }
         }
         
@@ -83,7 +83,7 @@ extension URLRequest {
         if let additionalHeaders = session?.configuration.httpAdditionalHeaders {
             for (field, value) in additionalHeaders {
                 switch field {
-                case "Cookie":
+                case AnyHashable("Cookie"):
                     continue
                 default:
                     components.append("-H \"\(field): \(value)\"")

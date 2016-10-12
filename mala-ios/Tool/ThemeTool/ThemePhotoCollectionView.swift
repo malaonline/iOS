@@ -74,7 +74,7 @@ class ThemePhotoCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Components
     /// 图片视图
-    private lazy var imageView: UIImageView = {
+    lazy var imageView: UIImageView = {
         let imageView = UIImageView.placeHolder()
         return imageView
     }()

@@ -148,10 +148,10 @@ open class DOFavoriteButton: UIButton {
             line.miterLimit = 1.25
             line.path = {
                 let path = CGMutablePath()
-                CGPathMoveToPoint(path, nil, lineFrame.midX, lineFrame.midY)
-                CGPathAddLineToPoint(path, nil, lineFrame.origin.x + lineFrame.width / 2, lineFrame.origin.y)
+                path.move(to: CGPoint(x: lineFrame.midX, y: lineFrame.midY), transform: CGAffineTransform())
+                path.addLine(to: CGPoint(x: lineFrame.origin.x + lineFrame.width / 2, y: lineFrame.origin.y), transform: CGAffineTransform())
                 return path
-                }()
+            }()
             line.lineCap = kCALineCapRound
             line.lineJoin = kCALineJoinRound
             line.strokeStart = 0.0

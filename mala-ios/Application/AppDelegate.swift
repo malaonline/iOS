@@ -8,6 +8,7 @@
 
 import UIKit
 import IQKeyboardManagerSwift
+import Google
 
 
 @UIApplicationMain
@@ -17,9 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var deviceToken: Data?
     var notRegisteredPush = true
     
-
-    private func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [AnyHashable: Any]?) -> Bool {
-        
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
+        println("start")
         // Setup Window
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.backgroundColor = UIColor.white
@@ -27,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         MalaMainViewController = mainViewController
         window?.rootViewController = mainViewController
         window?.makeKeyAndVisible()
-        
+        println("end")
         // 全局的外观自定义
         customAppearance()
         registerThirdParty()
@@ -47,10 +47,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // 记录启动通知类型
             if let notification = options[UIApplicationLaunchOptionsKey.remoteNotification] as? UILocalNotification,
                 let userInfo = notification.userInfo {
-                    MalaRemoteNotificationHandler().handleRemoteNotification(userInfo)
+                _ = MalaRemoteNotificationHandler().handleRemoteNotification(userInfo)
             }
         }
-
+        
         return true
     }
 
@@ -64,7 +64,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         ThemeHUD.hideActivityIndicator()
         UIApplication.shared.applicationIconBadgeNumber = 0
     }
-
+    
     func applicationDidEnterBackground(_ application: UIApplication) {
         
         println("Did Enter Background")
@@ -110,7 +110,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         // 纪录设备token，用于初次登录或注册有 pusherID 后，或“注销再登录”
-        self.deviceToken = deviceToken as NSData?
+        self.deviceToken = deviceToken
     }
     
     private func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any], fetchCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
@@ -119,7 +119,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         JPUSHService.handleRemoteNotification(userInfo)
         
         if MalaUserDefaults.isLogined {
-            if MalaRemoteNotificationHandler().handleRemoteNotification(userInfo: userInfo as [NSObject : AnyObject]) {
+            if MalaRemoteNotificationHandler().handleRemoteNotification(userInfo as [NSObject : AnyObject]) {
                 completionHandler(UIBackgroundFetchResult.newData)
             }
         }
@@ -138,7 +138,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let canHandleURL = Pingpp.handleOpen(url) { (result, error) -> Void in
             // 处理Ping++回调
             let handler = HandlePingppBehaviour()
-            handler.handleResult(result: result, error: error, currentViewController: MalaPaymentController)
+            handler.handleResult(result, error: error, currentViewController: MalaPaymentController)
         }
         return canHandleURL
     }
@@ -149,7 +149,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let canHandleURL = Pingpp.handleOpen(url) { (result, error) -> Void in
             // 处理Ping++回调
             let handler = HandlePingppBehaviour()
-            handler.handleResult(result: result, error: error, currentViewController: MalaPaymentController)
+            handler.handleResult(result, error: error, currentViewController: MalaPaymentController)
         }
         return canHandleURL
     }
@@ -175,25 +175,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // 社会化组件
         ShareSDK.registerApp(MalaShareSDKAppId,
-             activePlatforms: [
+            activePlatforms: [
                 SSDKPlatformType.subTypeWechatSession.rawValue,
-                SSDKPlatformType.subTypeWechatTimeline.rawValue],
-             onImport: {(platform: SSDKPlatformType) -> Void in
-                switch platform{
-                case SSDKPlatformType.typeWechat:
+                SSDKPlatformType.subTypeWechatTimeline.rawValue
+            ],
+            onImport: { (platformType) in
+                switch platformType{
+                case .typeWechat:
                     ShareSDKConnector.connectWeChat(WXApi.classForCoder())
                 default:
                     break
                 }
-        },  onConfiguration: {(platform: SSDKPlatformType, appInfo: NSMutableDictionary!) -> Void in
-            switch platform {
-            case SSDKPlatformType.typeWechat:
-                //设置微信应用信息
-                appInfo.ssdkSetupWeChat(byAppId: MalaWeChatAppId, appSecret: "")
-                break
-            default:
-                break
-            }
+            }, onConfiguration: { (platformType, appInfo) in
+                switch platformType {
+                case .typeWechat:
+                    //设置微信应用信息
+                    appInfo?.ssdkSetupWeChat(byAppId: MalaWeChatAppId, appSecret: "")
+                    break
+                default:
+                    break
+                }
         })
         
         // 开启键盘自动管理
@@ -207,7 +208,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // NavigationBar
         UINavigationBar.appearance().tintColor = MalaColor_6C6C6C_0
-        UINavigationBar.appearance().setBackgroundImage(UIImage.withColor(color: UIColor.white), for: .default)
+        UINavigationBar.appearance().setBackgroundImage(UIImage.withColor(UIColor.white), for: .default)
         
         // TabBar
         UITabBar.appearance().tintColor = MalaColor_82B4D9_0

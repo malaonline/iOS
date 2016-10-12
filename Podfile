@@ -11,7 +11,7 @@ def pods
   pod 'Kingfisher'
   pod 'IQKeyboardManagerSwift'
   pod 'Charts', :git => 'https://github.com/danielgindi/Charts.git', :branch => 'Chart2.2.5-Swift3.0'
-  pod 'Google'
+  pod 'Google/Analytics'
   pod 'Pingpp/Alipay'
   pod 'Pingpp/Wx'
   pod 'MOBFoundation'

@@ -14,8 +14,22 @@ import UIKit
 ///  - parameter SecIndexPath: Tuple (like (0,0))
 ///
 ///  - returns: Bool
-func ==(FirIndexPath: IndexPath, SecIndexPath: (section: Int, row: Int)) -> Bool {
-    return (FirIndexPath as NSIndexPath).section == SecIndexPath.section && (FirIndexPath as NSIndexPath).row == SecIndexPath.row
+func ==(firIndexPath: IndexPath, secIndexPath: (section: Int, row: Int)) -> Bool {
+    return (firIndexPath as NSIndexPath).section == secIndexPath.section && (firIndexPath as NSIndexPath).row == secIndexPath.row
+}
+
+
+/// Compare Custom Array With Empty Array
+///
+/// - parameter FirArray: Custom Model Array
+/// - parameter SecArray: Empty Array
+///
+/// - returns: Bool
+func !=(firArray: [[ClassScheduleDayModel]], secArray: [Any]) -> Bool {
+    if firArray.count == 0 {
+        return false
+    }
+    return true
 }
 
 ///  Random Number

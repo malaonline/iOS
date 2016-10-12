@@ -107,7 +107,7 @@ open class LegendView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
- 
+    @discardableResult
     open func addLegend(image imageName: String, title: String? = nil, offset: CGFloat? = 12) -> UIButton {
         let button = UIButton()
         button.adjustsImageWhenHighlighted = false

@@ -266,7 +266,7 @@ open class PieLegendView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
+    @discardableResult
     open func addLegend(color: UIColor, title: String) -> UIButton {
         let button = UIButton()
         button.adjustsImageWhenHighlighted = false

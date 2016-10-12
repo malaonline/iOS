@@ -124,7 +124,7 @@ class ThemeClassSchedule: UICollectionView, UICollectionViewDelegate, UICollecti
         // 不可点击表头、行头
         if (indexPath as NSIndexPath).section > 0 && (indexPath as NSIndexPath).row > 0 {
             if let itemModel = model?[(indexPath as NSIndexPath).row-1][(indexPath as NSIndexPath).section-1] {
-                return itemModel.available ?? false
+                return itemModel.available
             }else {
                 return false
             }

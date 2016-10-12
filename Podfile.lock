@@ -13,10 +13,12 @@ PODS:
     - GoogleInterchangeUtilities (~> 1.2)
     - GoogleUtilities (~> 1.2)
   - FirebaseInstanceID (1.0.8)
-  - Google (3.0.3):
-    - Google/Core (= 3.0.3)
+  - Google/Analytics (3.0.3):
+    - Google/Core
+    - GoogleAnalytics (~> 3.12)
   - Google/Core (3.0.3):
     - FirebaseAnalytics (~> 3.2)
+  - GoogleAnalytics (3.17.0)
   - GoogleInterchangeUtilities (1.2.2):
     - GoogleSymbolUtilities (~> 1.1)
   - GoogleSymbolUtilities (1.1.2)
@@ -42,7 +44,7 @@ DEPENDENCIES:
   - Alamofire (~> 4.0.1)
   - Charts (from `https://github.com/danielgindi/Charts.git`, branch `Chart2.2.5-Swift3.0`)
   - DateTools
-  - Google
+  - Google/Analytics
   - IQKeyboardManagerSwift
   - Kingfisher
   - MOBFoundation
@@ -70,6 +72,7 @@ SPEC CHECKSUMS:
   FirebaseCore: 5a885548bbc5f0c410b04f8e9ac9d73ff1221907
   FirebaseInstanceID: ba1e640935235e5fac39dfa816fe7660e72e1a8a
   Google: 813c467362eabc11385f5a5cc9ad0cb651a58f4e
+  GoogleAnalytics: f42cc53a87a51fe94334821868d9c8481ff47a7b
   GoogleInterchangeUtilities: d5bc4d88d5b661ab72f9d70c58d02ca8c27ad1f7
   GoogleSymbolUtilities: 631ee17048aa5e9ab133470d768ea997a5ef9b96
   GoogleUtilities: 8bbc733218aad26306f9d4a253823986110e3358
@@ -80,6 +83,6 @@ SPEC CHECKSUMS:
   ShareSDK3: e7bcdfeb95338f89efd6fff82b4793d2bfee76f8
   SnapKit: 2e456761aa92d4d4067a7a5594c18769d451a8ad
 
-PODFILE CHECKSUM: a5a7465ecc8c7d1031dc87bbccd4ab50f3feb19b
+PODFILE CHECKSUM: 055a9460ee80675328d93ffcfd8f59e5350c97df
 
 COCOAPODS: 1.1.0.rc.2

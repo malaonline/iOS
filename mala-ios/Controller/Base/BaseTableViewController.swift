@@ -28,7 +28,7 @@ open class BaseTableViewController: UITableViewController {
     
     override open func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        KingfisherManager.sharedManager.cache.clearMemoryCache()
+        KingfisherManager.shared.cache.clearMemoryCache()
     }
     
     
@@ -67,7 +67,7 @@ open class BaseTableViewController: UITableViewController {
     
     // MARK: - Event Response
     @objc func popSelf() {
-        self.navigationController?.popViewController(animated: true)
+        _ = self.navigationController?.popViewController(animated: true)
     }
     
     

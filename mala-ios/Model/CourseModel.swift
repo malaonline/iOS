@@ -71,7 +71,7 @@ open class CourseModel: BaseObjectModel {
         super.setValue(value, forKey: key)
     }
     
-    override public func setValue(_ value: Any?, forUndefinedKey key: String) {
+    override open func setValue(_ value: Any?, forUndefinedKey key: String) {
         println("StudentCourseModel - Set for UndefinedKey: \(key)")
     }
     

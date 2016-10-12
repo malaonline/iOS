@@ -142,6 +142,6 @@ class SchoolTableViewController: UIViewController, UITableViewDelegate, UITableV
     
     // MARK: - Events Response
     func pop() {
-        navigationController?.popViewController(animated: true)
+        _ = navigationController?.popViewController(animated: true)
     }
 }

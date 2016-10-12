@@ -159,7 +159,7 @@ class CouponViewController: BaseTableViewController {
             currentSelectedIndexPath = indexPath
             MalaCurrentCourse.coupon = cell?.model
         }
-        navigationController?.popViewController(animated: true)
+        _ = navigationController?.popViewController(animated: true)
     }
 
     

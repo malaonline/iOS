@@ -17,13 +17,13 @@ extension String {
     ///  - returns: Date对象
     func dateInThisWeek() -> Date {
         
-        let today = Date()
-        let todayWeekInt = weekdayInt(date: today)
+        let today = NSDate()
+        let todayWeekInt = weekdayInt(today)
         let targetWeekInt = (MalaConfig.malaWeekdays().index(of: self) == 0 ? 7 : MalaConfig.malaWeekdays().index(of: self))
         
         // 若指定日期为今天
         if todayWeekInt == targetWeekInt {
-            return today
+            return today as Date
         }
         // 若为今天之前
         if todayWeekInt > targetWeekInt! {
@@ -35,7 +35,7 @@ extension String {
             let days = targetWeekInt! - todayWeekInt
             return today.addingDays(days)
         }
-        return today
+        return today as Date
     }
     
     ///  根据时间戳返回对应字符串（"yyyy.MM.dd"）

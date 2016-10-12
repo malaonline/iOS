@@ -70,7 +70,7 @@ class LearningReportAbilityImproveCell: MalaBaseReportCardCell {
         leftAxis.labelCount = 5
         
         let pFormatter = NumberFormatter()
-        pFormatter.numberStyle = .percentStyle
+        pFormatter.numberStyle = .percent
         pFormatter.maximumFractionDigits = 1
         pFormatter.multiplier = 1
         pFormatter.percentSymbol = "%"
@@ -209,7 +209,7 @@ open class CombinedLegendView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
+    @discardableResult
     open func addLegend(image imageName: String, title: String) -> UIButton {
         let button = UIButton()
         button.adjustsImageWhenHighlighted = false

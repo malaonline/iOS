@@ -150,7 +150,7 @@ class CourseChoosingTableView: UITableView, UITableViewDelegate, UITableViewData
             
         case 4:
             let cell = reuseCell as! CourseChoosingOtherServiceCell
-            cell.price = MalaCurrentCourse.getOriginalPrice() ?? 0
+            cell.price = MalaCurrentCourse.getOriginalPrice()
             return cell
             
         default:

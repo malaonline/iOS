@@ -12,9 +12,9 @@ class TimeScheduleModel: NSObject {
     
     // MARK: - Property
     /// 日期（粒度为天）
-    var date: Date = Date()
+    var date: NSDate = NSDate()
     /// 一组上课时间（［开始时间, 结束时间］）
-    var times: [[Date]] = []
+    var times: [[NSDate]] = []
     
     
     // MARK: - Constructed

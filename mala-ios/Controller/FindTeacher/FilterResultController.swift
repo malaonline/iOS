@@ -118,12 +118,12 @@ class FilterResultController: BaseViewController {
             
             /// 记录数据量
             if let count = resultModel.count, count != 0 {
-                self?.allTeacherCount = count.integerValue
+                self?.allTeacherCount = count.intValue
             }
             
             /// 若请求数达到最大, 执行return
-            if let detail = resultModel.detail, (detail as NSString).containsString(MalaErrorDetail_InvalidPage) {
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            if let detail = resultModel.detail, (detail as NSString).contains(MalaErrorDetail_InvalidPage) {
+                DispatchQueue.main.async(execute: { () -> Void in
                     finish?()
                 })
                 return
@@ -154,10 +154,10 @@ class FilterResultController: BaseViewController {
                 self?.tableView.reloadData()
             }
             
-            dispatch_async(dispatch_get_main_queue(), { [weak self] () -> Void in
+            DispatchQueue.main.async { [weak self] () -> Void in
                 self?.showDefatultViewWhenModelIsEmpty()
                 finish?()
-            })
+            }
         }
     }
     

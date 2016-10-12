@@ -255,49 +255,32 @@ func getParentInfo(_ parentID: Int, failureHandler: ((Reason, String?) -> Void)?
 func updateAvatarWithImageData(_ imageData: Data, failureHandler: ((Reason, String?) -> Void)?, completion: @escaping (Bool) -> Void) {
     
     guard let token = MalaUserDefaults.userAccessToken.value else {
-        println("updateAvatarWithImageData error - no token")
+        println("updateAvatar error - no token")
         return
     }
     
     guard let profileID = MalaUserDefaults.profileID.value else {
-        println("updateAvatarWithImageData error - no profileID")
+        println("updateAvatar error - no profileID")
         return
     }
-     
-    let parameters: [String: String] = [
-        "Authorization": "Token \(token)",
-    ]
     
-    let fileName = "avatar.jpg"
+    let headers: HTTPHeaders = ["Authorization": "Token \(token)"]
+    let url: URLConvertible = MalaBaseUrl + "/profiles/\(profileID)"
     
-    Alamofire.upload(.PATCH, MalaBaseUrl + "/profiles/\(profileID)", headers: parameters, multipartFormData: { multipartFormData in
+    Alamofire.upload(imageData, to: url, method: .patch, headers: headers).responseJSON { (response) in
         
-        multipartFormData.appendBodyPart(data: imageData, name: "avatar", fileName: fileName, mimeType: "image/jpeg")
+        println("upload - response: \(response)")
         
-        }, encodingCompletion: { encodingResult in
-            println("encodingResult: \(encodingResult)")
-            
-            switch encodingResult {
-                
-            case .Success(let upload, _, _):
-                
-                upload.responseJSON(completionHandler: { response in
-                    
-                    guard let data = response.data,
-                        let json = decodeJSON(data),
-                        let uploadResult = json["done"] as? String else {
-                            failureHandler?(.CouldNotParseJSON, nil)
-                            return
-                    }
-                    let result = (uploadResult == "true" ? true : false)
-                    completion(result)
-                })
-                
-            case .Failure(let encodingError):
-                
-                failureHandler?(.Other(nil), "\(encodingError)")
-            }
-    })
+        guard
+            let data = response.data,
+            let json = decodeJSON(data),
+            let uploadResult = json["done"] as? String else {
+                failureHandler?(.couldNotParseJSON, nil)
+                return
+        }
+        let result = (uploadResult == "true" ? true : false)
+        completion(result)
+    }
 }
 
 ///  保存学生姓名
@@ -720,7 +703,7 @@ func createComment(_ comment: CommentModel, failureHandler: ((Reason, String?) -
     ] as [String : Any]
     
     let parse: (JSONDictionary) -> Bool = { data in
-        return (data != nil)
+        return true //(data != nil)
     }
     
     let resource = authJsonResource(path: "comments", method: .POST, requestParameters: (requestParameters as JSONDictionary), parse: parse)

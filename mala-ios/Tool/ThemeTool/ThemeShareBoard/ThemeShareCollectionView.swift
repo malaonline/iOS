@@ -67,13 +67,13 @@ class ThemeShareCollectionView: UICollectionView, UICollectionViewDelegate, UICo
                                                 title : "我在麻辣老师发现一位好老师！",
                                                 type : SSDKContentType.webPage)
         // 进行分享
-        ShareSDK.share(model.sharePlatformType, parameters: shareParames) { (state : SSDKResponseState, userData : [AnyHashable: Any]!, contentEntity :SSDKContentEntity!, error : NSError!) -> Void in
+        ShareSDK.share(model.sharePlatformType, parameters: shareParames) { (state, userDate, entity, error) in
             switch state{
-            case SSDKResponseState.success:
+            case .success:
                 println("分享成功")
-            case SSDKResponseState.fail:
+            case .fail:
                 println("分享失败,错误描述:\(error)")
-            case SSDKResponseState.cancel:
+            case .cancel:
                 println("分享取消")
             default:
                 break

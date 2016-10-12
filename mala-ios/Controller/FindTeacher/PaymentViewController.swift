@@ -101,7 +101,7 @@ class PaymentViewController: BaseViewController, PaymentBottomViewDelegate {
             ThemeHUD.hideActivityIndicator()
             println("取消订单结果 - \(result)")
             DispatchQueue.main.async(execute: { () -> Void in
-                self?.navigationController?.popViewController(animated: true)
+                _ = self?.navigationController?.popViewController(animated: true)
             })
         })
     }
@@ -125,7 +125,7 @@ class PaymentViewController: BaseViewController, PaymentBottomViewDelegate {
     
     @objc private func forcePop() {
         cancelOrder()
-        navigationController?.popViewController(animated: true)
+        _ = navigationController?.popViewController(animated: true)
     }
 
     

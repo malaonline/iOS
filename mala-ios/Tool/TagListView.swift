@@ -60,7 +60,7 @@ class TagListView:UIScrollView
         for string in labels {
             self.addTag(string)
         }
-        self.snp.updateConstraints { (maker) -> Void in
+        self.snp.makeConstraints { (maker) -> Void in
             maker.height.equalTo(Int((currentRow+1)*30))
         }
     }
