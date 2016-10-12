@@ -150,8 +150,8 @@ public func apiRequest<A>(_ modifyRequest: (NSMutableURLRequest) -> (), baseURL:
     
     if needEncodesParametersForMethod(resource.method) {
         if let requestBody = resource.requestBody {
-            if let URLComponents = URLComponents(url: request.url!, resolvingAgainstBaseURL: false) {
-                URLComponents.percentEncodedQuery = (URLComponents.percentEncodedQuery != nil ? URLComponents.percentEncodedQuery! + "&" : "") + query(parameters: decodeJSON(data: requestBody)!)
+            if var URLComponents = URLComponents(url: request.url!, resolvingAgainstBaseURL: false) {
+                URLComponents.percentEncodedQuery = (URLComponents.percentEncodedQuery != nil ? URLComponents.percentEncodedQuery! + "&" : "") + query(decodeJSON(requestBody)!)
                 request.url = URLComponents.url
             }
         }
@@ -180,20 +180,19 @@ public func apiRequest<A>(_ modifyRequest: (NSMutableURLRequest) -> (), baseURL:
                     
                     if let result = resource.parse(responseData) {
                         completion(result)
-                        
                     } else {
                         let dataString = NSString(data: responseData, encoding: String.Encoding.utf8.rawValue)
                         println(dataString)
                         
                         failure(Reason.couldNotParseJSON, errorMessageInData(data))
                         println("\(resource)\n")
-                        println(request.cURLString)
+                        // println(request.cURLString)
                     }
                     
                 } else {
                     failure(Reason.noData, errorMessageInData(data))
                     println("\(resource)\n")
-                    println(request.cURLString)
+                    // println(request.cURLString)
                 }
                 break
                 
@@ -201,7 +200,7 @@ public func apiRequest<A>(_ modifyRequest: (NSMutableURLRequest) -> (), baseURL:
             default:
                 failure(Reason.noSuccessStatusCode(statusCode: httpResponse.statusCode), errorMessageInData(data))
                 println("\(resource)\n")
-                println(request.cURLString)
+                // println(request.cURLString)
                 
                 // 对于 401: errorMessage: >>>HTTP Token: Access denied<<<
                 // 用户需要重新登录，所以
@@ -222,7 +221,7 @@ public func apiRequest<A>(_ modifyRequest: (NSMutableURLRequest) -> (), baseURL:
             // 请求无响应, 错误处理
             failure(Reason.other(error as NSError?), errorMessageInData(data))
             println("\(resource)")
-            println(request.cURLString)
+            // println(request.cURLString)
         }
         
         ///  开启网络请求指示器
@@ -243,8 +242,8 @@ public func apiRequest<A>(_ modifyRequest: (NSMutableURLRequest) -> (), baseURL:
 
 func queryComponents(_ key: String, value: AnyObject) -> [(String, String)] {
     func escape(_ string: String) -> String {
-        let legalURLCharactersToBeEscaped: CFString = ":/?&=;+!@#$()',*" as CFString
-        return CFURLCreateStringByAddingPercentEscapes(nil, string as CFString!, nil, legalURLCharactersToBeEscaped, CFStringBuiltInEncodings.UTF8.rawValue) as String
+        let legalURLCharactersToBeEscaped: CharacterSet = [":", "/", "?", "&", "=", ";", "+", "!", "@", "#", "$", "(", ")", "'", ",", "*"]
+        return (string as NSString).addingPercentEncoding(withAllowedCharacters: legalURLCharactersToBeEscaped) ?? ""
     }
     
     var components: [(String, String)] = []
@@ -257,7 +256,7 @@ func queryComponents(_ key: String, value: AnyObject) -> [(String, String)] {
             components += queryComponents("\(key)[]", value: value)
         }
     } else {
-        components.append([(escape(string: key), escape(string: "\(value)"))])
+        components.append((escape(key), escape("\(value)")))
     }
     
     return components

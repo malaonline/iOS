@@ -66,11 +66,21 @@ class TeacherTableView: UITableView, UITableViewDelegate, UITableViewDataSource 
     
     // MARK: - Delegate
     func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
-        return true
+        switch indexPath.section {
+        case Section.teacher.rawValue:
+            return true
+        case Section.loadMore.rawValue:
+            return false
+        default:
+            return true
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let teacherId = (tableView.cellForRow(at: indexPath) as! TeacherTableViewCell).model!.id
+        guard let teacherId = (tableView.cellForRow(at: indexPath) as? TeacherTableViewCell)?.model?.id else {
+            return
+        }
+        
         let viewController = TeacherDetailsController()
         viewController.teacherID = teacherId
         viewController.hidesBottomBarWhenPushed = true

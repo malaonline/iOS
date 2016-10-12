@@ -37,7 +37,7 @@ public enum PrivateResource {
         case .microphone:
             return AVAudioSession.sharedInstance().recordPermission() == .undetermined
         case .contacts:
-            return ABAddressBookGetAuthorizationStatus() == .notDetermined
+            return CNContactStore.authorizationStatus(for: .contacts) == .notDetermined
         case .reminders:
             return EKEventStore.authorizationStatus(for: .reminder) == .notDetermined
         case .calendar:
@@ -56,7 +56,7 @@ public enum PrivateResource {
         case .microphone:
             return AVAudioSession.sharedInstance().recordPermission() == .granted
         case .contacts:
-            return ABAddressBookGetAuthorizationStatus() == .authorized
+            return CNContactStore.authorizationStatus(for: .contacts) == .authorized
         case .reminders:
             return EKEventStore.authorizationStatus(for: .reminder) == .authorized
         case .calendar:

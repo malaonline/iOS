@@ -47,10 +47,6 @@ class TeacherDetailsSubjectCell: MalaBaseCell {
                     }
                 }
                 
-                println("小学年级数据 -> \(elementarySchools) \n")
-                println("初中年级数据 -> \(juniorSchools) \n")
-                println("高中年级数据 -> \(seniorSchools) \n")
-                
                 // 添加label
                 self.setupTags(elementarySchool, strings: &elementarySchools)
                 

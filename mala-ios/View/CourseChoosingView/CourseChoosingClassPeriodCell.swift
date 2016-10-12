@@ -44,7 +44,7 @@ class CourseChoosingClassPeriodCell: MalaBaseCell {
         contentView.addSubview(legendView)
         
         // Autolayout
-        headerView.snp.updateConstraints { (maker) -> Void in
+        headerView.snp.makeConstraints { (maker) -> Void in
             maker.bottom.equalTo(self.contentView.snp.bottom).offset(-16)
         }
 

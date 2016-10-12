@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var notRegisteredPush = true
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
-        println("start")
+        
         // Setup Window
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.backgroundColor = UIColor.white
@@ -27,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         MalaMainViewController = mainViewController
         window?.rootViewController = mainViewController
         window?.makeKeyAndVisible()
-        println("end")
+
         // 全局的外观自定义
         customAppearance()
         registerThirdParty()

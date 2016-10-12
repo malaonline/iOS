@@ -14,8 +14,8 @@ class TeacherDetailsHighScoreCell: MalaBaseCell {
     var model: [HighScoreModel?] = [] {
         didSet {
             // 设置数据模型后，刷新TableView高度
-            tableView.models = model
-            tableView.snp.makeConstraints { (maker) in
+            tableView.models = model            
+            tableView.snp.updateConstraints { (maker) in
                 maker.height.equalTo(Int(MalaLayout_DeatilHighScoreTableViewCellHeight) * (model.count+1))
             }
         }
@@ -51,6 +51,7 @@ class TeacherDetailsHighScoreCell: MalaBaseCell {
             maker.left.equalTo(self.content.snp.left)
             maker.bottom.equalTo(self.content.snp.bottom)
             maker.right.equalTo(self.content.snp.right)
+            maker.height.equalTo(MalaLayout_DeatilHighScoreTableViewCellHeight)
         }
     }
 }

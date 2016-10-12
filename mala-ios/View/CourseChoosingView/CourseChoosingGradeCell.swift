@@ -62,6 +62,7 @@ class CourseChoosingGradeCell: MalaBaseCell {
             maker.left.equalTo(content.snp.left)
             maker.right.equalTo(content.snp.right)
             maker.bottom.equalTo(content.snp.bottom)
+            maker.height.equalTo(10)
         })
     }
 }

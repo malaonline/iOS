@@ -241,7 +241,7 @@ class LoginViewController: UIViewController {
         phoneError.snp.makeConstraints { (maker) -> Void in
             maker.centerY.equalTo(self.codeGetButton)
             maker.right.equalTo(self.codeGetButton.snp.left).offset(-4)
-            maker.width.equalTo(67)
+            maker.width.equalTo(70)
             maker.height.equalTo(15)
         }
         phoneTextField.snp.makeConstraints { (maker) -> Void in
@@ -257,7 +257,7 @@ class LoginViewController: UIViewController {
         codeError.snp.makeConstraints { (maker) -> Void in
             maker.bottom.equalTo(self.contentView.snp.bottom).offset(-9)
             maker.right.equalTo(self.contentView.snp.right).offset(-12)
-            maker.width.equalTo(67)
+            maker.width.equalTo(70)
             maker.height.equalTo(27)
         }
         codeTextField.snp.makeConstraints { (maker) -> Void in
