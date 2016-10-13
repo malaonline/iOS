@@ -19,7 +19,7 @@ class SubjectFilterView: BaseFilterView {
     
     
     // MARK: - Constructed
-    override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout, didTapCallBack: FilterDidTapCallBack) {
+    override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout, didTapCallBack: @escaping FilterDidTapCallBack) {
         super.init(frame: frame, collectionViewLayout: layout, didTapCallBack: didTapCallBack)
     }
     
@@ -29,33 +29,33 @@ class SubjectFilterView: BaseFilterView {
 
     
     // MARK: - Delegate
-    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        super.collectionView(collectionView, didSelectItemAtIndexPath: indexPath)
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        super.collectionView(collectionView, didSelectItemAt: indexPath)
         MalaFilterIndexObject.subjectIndexPath = indexPath
-        didTapCallBack?(model: self.subjects![indexPath.row])
+        didTapCallBack?(self.subjects![(indexPath as NSIndexPath).row])
     }
     
     
     // MARK: - DataSource
-    override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
     
-    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.subjects?.count ?? 0
     }
     
-    override func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
-        let sectionFooterView = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionFooter, withReuseIdentifier: FilterViewSectionFooterReusedId, forIndexPath: indexPath)
+    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        let sectionFooterView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionFooter, withReuseIdentifier: FilterViewSectionFooterReusedId, for: indexPath)
         return sectionFooterView
     }
     
-    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(FilterViewCellReusedId, forIndexPath: indexPath) as! FilterViewCell
-        cell.model = subjects![indexPath.row]
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FilterViewCellReusedId, for: indexPath) as! FilterViewCell
+        cell.model = subjects![(indexPath as NSIndexPath).row]
         
-        if indexPath == MalaFilterIndexObject.subjectIndexPath {
-            cell.selected = true
+        if indexPath == MalaFilterIndexObject.subjectIndexPath as IndexPath {
+            cell.isSelected = true
         }
         
         return cell

@@ -11,28 +11,28 @@ import UIKit
 // ref http://vocaro.com/trevor/blog/2009/10/12/resize-a-uiimage-the-right-way/
 // but with better scale logic
 
-private let screenScale = UIScreen.mainScreen().scale
+private let screenScale = UIScreen.main.scale
 
 // MARK: - API
 
 public extension UIImage {
 
-    public func navi_avatarImageWithStyle(avatarStyle: AvatarStyle) -> UIImage {
+    public func navi_avatarImageWithStyle(_ avatarStyle: AvatarStyle) -> UIImage {
 
         var avatarImage: UIImage?
 
         switch avatarStyle {
 
-        case .Original:
+        case .original:
             return self
 
-        case .Rectangle(let size):
+        case .rectangle(let size):
             avatarImage = navi_centerCropWithSize(size)
 
-        case .RoundedRectangle(let size, let cornerRadius, let borderWidth):
+        case .roundedRectangle(let size, let cornerRadius, let borderWidth):
             avatarImage = navi_centerCropWithSize(size)?.navi_roundWithCornerRadius(cornerRadius, borderWidth: borderWidth)
 
-        case .Free(_, let transform):
+        case .freeform(_, let transform):
             avatarImage = transform(self)
         }
 
@@ -44,46 +44,54 @@ public extension UIImage {
 
 public extension UIImage {
 
-    public func navi_resizeToSize(size: CGSize, withTransform transform: CGAffineTransform, drawTransposed: Bool, interpolationQuality: CGInterpolationQuality) -> UIImage? {
+    public func navi_resizeToSize(_ size: CGSize, withTransform transform: CGAffineTransform, drawTransposed: Bool, interpolationQuality: CGInterpolationQuality) -> UIImage? {
 
         let pixelSize = CGSize(width: size.width * screenScale, height: size.height * screenScale)
 
-        let newRect = CGRectIntegral(CGRect(origin: CGPointZero, size: pixelSize))
-        let transposedRect = CGRect(origin: CGPointZero, size: CGSize(width: pixelSize.height, height: pixelSize.width))
+        let newRect = CGRect(origin: CGPoint.zero, size: pixelSize).integral
+        let transposedRect = CGRect(origin: CGPoint.zero, size: CGSize(width: pixelSize.height, height: pixelSize.width))
 
-        let bitmapContext = CGBitmapContextCreate(nil, Int(newRect.width), Int(newRect.height), CGImageGetBitsPerComponent(CGImage!), 0, CGImageGetColorSpace(CGImage!)!, CGImageGetBitmapInfo(CGImage!).rawValue)!
-
-        CGContextConcatCTM(bitmapContext, transform)
-
-        CGContextSetInterpolationQuality(bitmapContext, interpolationQuality)
-
-        CGContextDrawImage(bitmapContext, drawTransposed ? transposedRect : newRect, CGImage!)
-
-        if let newCGImage = CGBitmapContextCreateImage(bitmapContext) {
-            let image = UIImage(CGImage: newCGImage, scale: screenScale, orientation: imageOrientation)
-            return image
+        guard let cgImage = cgImage else {
+            return nil
+        }
+        guard let colorSpace = cgImage.colorSpace else {
+            return nil
+        }
+        guard let bitmapContext = CGContext(data: nil, width: Int(newRect.width), height: Int(newRect.height), bitsPerComponent: cgImage.bitsPerComponent, bytesPerRow: 0, space: colorSpace, bitmapInfo: cgImage.bitmapInfo.rawValue) else {
+            return nil
         }
 
-        return nil
+        bitmapContext.concatenate(transform)
+
+        bitmapContext.interpolationQuality = interpolationQuality
+
+        bitmapContext.draw(cgImage, in: drawTransposed ? transposedRect : newRect)
+
+        guard let newCGImage = bitmapContext.makeImage() else {
+            return nil
+        }
+
+        let image = UIImage(cgImage: newCGImage, scale: screenScale, orientation: imageOrientation)
+        return image
     }
 
-    public func navi_transformForOrientationWithSize(size: CGSize) -> CGAffineTransform {
+    public func navi_transformForOrientationWithSize(_ size: CGSize) -> CGAffineTransform {
 
-        var transform = CGAffineTransformIdentity
+        var transform = CGAffineTransform.identity
 
         switch imageOrientation {
 
-        case .Down, .DownMirrored:
-            transform = CGAffineTransformTranslate(transform, size.width, size.height)
-            transform = CGAffineTransformRotate(transform, CGFloat(M_PI))
+        case .down, .downMirrored:
+            transform = transform.translatedBy(x: size.width, y: size.height)
+            transform = transform.rotated(by: CGFloat(M_PI))
 
-        case .Left, .LeftMirrored:
-            transform = CGAffineTransformTranslate(transform, size.width, 0)
-            transform = CGAffineTransformRotate(transform, CGFloat(M_PI_2))
+        case .left, .leftMirrored:
+            transform = transform.translatedBy(x: size.width, y: 0)
+            transform = transform.rotated(by: CGFloat(M_PI_2))
 
-        case .Right, .RightMirrored:
-            transform = CGAffineTransformTranslate(transform, 0, size.height)
-            transform = CGAffineTransformRotate(transform, CGFloat(-M_PI_2))
+        case .right, .rightMirrored:
+            transform = transform.translatedBy(x: 0, y: size.height)
+            transform = transform.rotated(by: CGFloat(-M_PI_2))
 
         default:
             break
@@ -91,13 +99,13 @@ public extension UIImage {
 
         switch imageOrientation {
 
-        case .UpMirrored, .DownMirrored:
-            transform = CGAffineTransformTranslate(transform, size.width, 0)
-            transform = CGAffineTransformScale(transform, -1, 1)
+        case .upMirrored, .downMirrored:
+            transform = transform.translatedBy(x: size.width, y: 0)
+            transform = transform.scaledBy(x: -1, y: 1)
 
-        case .LeftMirrored, .RightMirrored:
-            transform = CGAffineTransformTranslate(transform, size.height, 0)
-            transform = CGAffineTransformScale(transform, -1, 1)
+        case .leftMirrored, .rightMirrored:
+            transform = transform.translatedBy(x: size.height, y: 0)
+            transform = transform.scaledBy(x: -1, y: 1)
 
         default:
             break
@@ -106,12 +114,12 @@ public extension UIImage {
         return transform
     }
 
-    public func navi_resizeToSize(size: CGSize, withInterpolationQuality interpolationQuality: CGInterpolationQuality) -> UIImage? {
+    public func navi_resizeToSize(_ size: CGSize, withInterpolationQuality interpolationQuality: CGInterpolationQuality) -> UIImage? {
 
         let drawTransposed: Bool
 
         switch imageOrientation {
-        case .Left, .LeftMirrored, .Right, .RightMirrored:
+        case .left, .leftMirrored, .right, .rightMirrored:
             drawTransposed = true
         default:
             drawTransposed = false
@@ -121,17 +129,21 @@ public extension UIImage {
         return image
     }
 
-    public func navi_cropWithBounds(bounds: CGRect) -> UIImage? {
+    public func navi_cropWithBounds(_ bounds: CGRect) -> UIImage? {
 
-        if let newCGImage = CGImageCreateWithImageInRect(CGImage!, bounds) {
-            let image = UIImage(CGImage: newCGImage, scale: screenScale, orientation: imageOrientation)
-            return image
+        guard let cgImage = cgImage else {
+            return nil
+        }
+        guard let newCGImage = cgImage.cropping(to: bounds) else {
+            return nil
+
         }
 
-        return nil
+        let image = UIImage(cgImage: newCGImage, scale: screenScale, orientation: imageOrientation)
+        return image
     }
 
-    public func navi_centerCropWithSize(size: CGSize) -> UIImage? {
+    public func navi_centerCropWithSize(_ size: CGSize) -> UIImage? {
 
         let pixelSize = CGSize(width: size.width * screenScale, height: size.height * screenScale)
 
@@ -158,7 +170,7 @@ public extension UIImage {
 
         let bounds = CGRect(x: originalX, y: originalY, width: pixelSize.width / ratio, height: pixelSize.height / ratio)
 
-        let image = navi_cropWithBounds(bounds)?.navi_resizeToSize(size, withInterpolationQuality: .Default)
+        let image = navi_cropWithBounds(bounds)?.navi_resizeToSize(size, withInterpolationQuality: .default)
         return image
     }
 }
@@ -167,33 +179,33 @@ public extension UIImage {
 
 public extension UIImage {
 
-    private func navi_CGContextAddRoundedRect(context: CGContext, rect: CGRect, ovalWidth: CGFloat, ovalHeight: CGFloat) {
+    fileprivate func navi_cgContextAddRoundedRect(_ context: CGContext, rect: CGRect, ovalWidth: CGFloat, ovalHeight: CGFloat) {
 
         if ovalWidth <= 0 || ovalHeight <= 0 {
-            CGContextAddRect(context, rect)
+            context.addRect(rect)
 
         } else {
-            CGContextSaveGState(context)
+            context.saveGState()
 
-            CGContextTranslateCTM(context, CGRectGetMinX(rect), CGRectGetMinY(rect))
+            context.translateBy(x: rect.minX, y: rect.minY)
 
-            CGContextScaleCTM(context, ovalWidth, ovalHeight)
+            context.scaleBy(x: ovalWidth, y: ovalHeight)
 
-            let fw = CGRectGetWidth(rect) / ovalWidth
-            let fh = CGRectGetHeight(rect) / ovalHeight
+            let fw = rect.width / ovalWidth
+            let fh = rect.height / ovalHeight
 
-            CGContextMoveToPoint(context, fw, fh/2)
-            CGContextAddArcToPoint(context, fw, fh, fw/2, fh, 1)
-            CGContextAddArcToPoint(context, 0, fh, 0, fh/2, 1)
-            CGContextAddArcToPoint(context, 0, 0, fw/2, 0, 1)
-            CGContextAddArcToPoint(context, fw, 0, fw, fh/2, 1)
-            CGContextClosePath(context)
+            context.move(to: CGPoint(x: fw, y: fh/2))
+            context.addArc(tangent1End: CGPoint(x: fw, y: fh), tangent2End: CGPoint(x: fw/2, y: fh), radius: 1)
+            context.addArc(tangent1End: CGPoint(x: 0, y: fh), tangent2End: CGPoint(x: 0, y: fh/2), radius: 1)
+            context.addArc(tangent1End: CGPoint(x: 0, y: 0), tangent2End: CGPoint(x: fw/2, y: 0), radius: 1)
+            context.addArc(tangent1End: CGPoint(x: fw, y: 0), tangent2End: CGPoint(x: fw, y: fh/2), radius: 1)
+            context.closePath()
 
-            CGContextRestoreGState(context)
+            context.restoreGState()
         }
     }
 
-    public func navi_roundWithCornerRadius(cornerRadius: CGFloat, borderWidth: CGFloat) -> UIImage? {
+    public func navi_roundWithCornerRadius(_ cornerRadius: CGFloat, borderWidth: CGFloat) -> UIImage? {
 
         let image = navi_imageWithAlpha()
 
@@ -202,24 +214,30 @@ public extension UIImage {
 
         let pixelSize = CGSize(width: image.size.width * screenScale, height: image.size.height * screenScale)
 
-        guard let bitmapContext = CGBitmapContextCreate(nil, Int(pixelSize.width), Int(pixelSize.height), CGImageGetBitsPerComponent(image.CGImage!), 0, CGImageGetColorSpace(image.CGImage!)!, CGImageGetBitmapInfo(image.CGImage!).rawValue) else {
+        guard let cgImage = image.cgImage else {
+            return nil
+        }
+        guard let colorSpace = cgImage.colorSpace else {
+            return nil
+        }
+        guard let bitmapContext = CGContext(data: nil, width: Int(pixelSize.width), height: Int(pixelSize.height), bitsPerComponent: cgImage.bitsPerComponent, bytesPerRow: 0, space: colorSpace, bitmapInfo: cgImage.bitmapInfo.rawValue) else {
             return nil
         }
 
-        CGContextBeginPath(bitmapContext)
+        bitmapContext.beginPath()
 
         let rect = CGRect(x: borderWidth, y: borderWidth, width: pixelSize.width - borderWidth * 2, height: pixelSize.height - borderWidth * 2)
-        navi_CGContextAddRoundedRect(bitmapContext, rect: rect, ovalWidth: cornerRadius, ovalHeight: cornerRadius)
+        navi_cgContextAddRoundedRect(bitmapContext, rect: rect, ovalWidth: cornerRadius, ovalHeight: cornerRadius)
 
-        CGContextClosePath(bitmapContext)
+        bitmapContext.closePath()
 
-        CGContextClip(bitmapContext)
+        bitmapContext.clip()
 
-        let imageRect = CGRect(origin: CGPointZero, size: pixelSize)
-        CGContextDrawImage(bitmapContext, imageRect, image.CGImage!)
+        let imageRect = CGRect(origin: CGPoint.zero, size: pixelSize)
+        bitmapContext.draw(cgImage, in: imageRect)
 
-        if let newCGImage = CGBitmapContextCreateImage(bitmapContext) {
-            let image = UIImage(CGImage: newCGImage, scale: screenScale, orientation: imageOrientation)
+        if let newCGImage = bitmapContext.makeImage() {
+            let image = UIImage(cgImage: newCGImage, scale: screenScale, orientation: imageOrientation)
             return image
         }
 
@@ -233,11 +251,15 @@ public extension UIImage {
 
     public func navi_hasAlpha() -> Bool {
 
-        let alpha = CGImageGetAlphaInfo(CGImage!)
+        guard let cgImage = cgImage else {
+            return false
+        }
+
+        let alpha = cgImage.alphaInfo
 
         switch alpha {
 
-        case .First, .Last, .PremultipliedFirst, .PremultipliedLast:
+        case .first, .last, .premultipliedFirst, .premultipliedLast:
             return true
 
         default:
@@ -251,16 +273,22 @@ public extension UIImage {
             return self
         }
 
+        guard let cgImage = cgImage else {
+            return self
+        }
+
         let pixelSize = CGSize(width: self.size.width * screenScale, height: self.size.height * screenScale)
 
-        let bitmapInfo = CGBitmapInfo(rawValue: CGBitmapInfo.ByteOrderDefault.rawValue | CGImageAlphaInfo.PremultipliedFirst.rawValue)
+        let bitmapInfo = CGBitmapInfo(rawValue: CGBitmapInfo().rawValue | CGImageAlphaInfo.premultipliedFirst.rawValue)
 
-        let offscreenContext = CGBitmapContextCreate(nil, Int(pixelSize.width), Int(pixelSize.height), CGImageGetBitsPerComponent(CGImage!), 0, CGColorSpaceCreateDeviceRGB(), bitmapInfo.rawValue)!
+        guard let offscreenContext = CGContext(data: nil, width: Int(pixelSize.width), height: Int(pixelSize.height), bitsPerComponent: cgImage.bitsPerComponent, bytesPerRow: 0, space: CGColorSpaceCreateDeviceRGB(), bitmapInfo: bitmapInfo.rawValue) else {
+            return self
+        }
         
-        CGContextDrawImage(offscreenContext, CGRect(origin: CGPointZero, size: pixelSize), CGImage!)
+        offscreenContext.draw(cgImage, in: CGRect(origin: CGPoint.zero, size: pixelSize))
         
-        if let alphaCGImage = CGBitmapContextCreateImage(offscreenContext) {
-            let image = UIImage(CGImage: alphaCGImage, scale: screenScale, orientation: imageOrientation)
+        if let alphaCGImage = offscreenContext.makeImage() {
+            let image = UIImage(cgImage: alphaCGImage, scale: screenScale, orientation: imageOrientation)
             return image
 
         } else {

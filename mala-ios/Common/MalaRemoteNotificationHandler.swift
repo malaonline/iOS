@@ -9,14 +9,14 @@
 import UIKit
 
 
-public class MalaRemoteNotificationHandler: NSObject {
+open class MalaRemoteNotificationHandler: NSObject {
 
     // MARK: - Property
     
     /// 通知类型键
-    public let kNotificationType = "type"
+    open let kNotificationType = "type"
     /// 附带参数键（暂时仅当type为2时，附带code为订单号）
-    public let kNotificationCode = "code"
+    open let kNotificationCode = "code"
     
     ///  通知类型
     ///
@@ -27,23 +27,22 @@ public class MalaRemoteNotificationHandler: NSObject {
     ///  - Maturity:    奖学金到期 -> 我的奖学金
     ///  - Evaluation:  测评建档 -> 课表
     public enum RemoteNotificationType: Int {
-        case Changed = 1
-        case Refunds = 2
-        case Finished = 3
-        case Starting = 4
-        case Maturity = 5
-        case Evaluation = 6
+        case changed = 1
+        case refunds = 2
+        case finished = 3
+        case starting = 4
+        case maturity = 5
+        case evaluation = 6
     }
     
     /// 远程推送通知处理对象
     private var remoteNotificationTypeHandler: RemoteNotificationType? {
         willSet {
             println("远程推送通知处理对象 - \(newValue)")
-            if let
-                type = newValue,
-                appDelegate = UIApplication.sharedApplication().delegate as? AppDelegate,
-                apsInfo = notificationInfo["aps"] as? [NSObject : AnyObject],
-                message = apsInfo["alert"] as? String {
+            if let type = newValue,
+                let appDelegate = UIApplication.shared.delegate as? AppDelegate,
+                let apsInfo = notificationInfo["aps"] as? [AnyHashable: Any],
+                let message = apsInfo["alert"] as? String {
                 
                 // 提示信息
                 var title: String = ""
@@ -56,10 +55,10 @@ public class MalaRemoteNotificationHandler: NSObject {
                 ///  匹配信息类型
                 switch type {
                     
-                case .Changed:
+                case .changed:
                     title = "课程变动"
                     
-                case .Refunds:
+                case .refunds:
                     title = "退费成功"
                     action = {
                         /// 订单详情页
@@ -71,7 +70,7 @@ public class MalaRemoteNotificationHandler: NSObject {
                         }
                     }
             
-                case .Finished:
+                case .finished:
                     title = "完课评价"
                     action = {
                         /// 我的评价
@@ -82,10 +81,10 @@ public class MalaRemoteNotificationHandler: NSObject {
                         }
                     }
                 
-                case .Starting:
+                case .starting:
                     title = "课前通知"
                     
-                case .Maturity:
+                case .maturity:
                     title = "奖学金即将到期"
                     action = {
                         /// 我的奖学金
@@ -96,7 +95,7 @@ public class MalaRemoteNotificationHandler: NSObject {
                         }
                     }
                     
-                case .Evaluation:
+                case .evaluation:
                     title = "测评建档"
                 }
                 
@@ -121,7 +120,7 @@ public class MalaRemoteNotificationHandler: NSObject {
     }
     
     /// 通知信息字典
-    private var notificationInfo: [NSObject : AnyObject] = [NSObject : AnyObject]()
+    private var notificationInfo: [AnyHashable: Any] = [AnyHashable: Any]()
     /// 附带参数（订单号）
     private var code: Int = 0 {
         didSet {
@@ -134,10 +133,9 @@ public class MalaRemoteNotificationHandler: NSObject {
     ///  处理APNs
     ///
     ///  - parameter userInfo: 通知信息字典
-    public func handleRemoteNotification(userInfo: [NSObject : AnyObject]) -> Bool {
-        if let
-            type = Int(userInfo[kNotificationType] as? String ?? "0"),
-            remoteNotificationType = RemoteNotificationType(rawValue: type) {
+    open func handleRemoteNotification(_ userInfo: [AnyHashable: Any]) -> Bool {
+        if let type = Int(userInfo[kNotificationType] as? String ?? "0"),
+            let remoteNotificationType = RemoteNotificationType(rawValue: type) {
             
             if let code = Int(userInfo[kNotificationCode] as? String ?? "0") {
                 self.code = code

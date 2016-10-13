@@ -42,8 +42,8 @@ class LearningReportAbilityImproveCell: MalaBaseReportCardCell {
         let chartView = CombinedChartView()
         chartView.animate(xAxisDuration: 0.65)
         chartView.drawOrder = [
-            CombinedChartView.DrawOrder.Bar.rawValue,
-            CombinedChartView.DrawOrder.Line.rawValue
+            CombinedChartView.DrawOrder.bar.rawValue,
+            CombinedChartView.DrawOrder.line.rawValue
         ]
         
         chartView.descriptionText = ""
@@ -54,13 +54,13 @@ class LearningReportAbilityImproveCell: MalaBaseReportCardCell {
         chartView.drawValueAboveBarEnabled = true
         
         let xAxis = chartView.xAxis
-        xAxis.labelFont = UIFont.systemFontOfSize(8)
+        xAxis.labelFont = UIFont.systemFont(ofSize: 8)
         xAxis.labelTextColor = MalaColor_5E5E5E_0
         xAxis.drawGridLinesEnabled = false
-        xAxis.labelPosition = .Bottom
+        xAxis.labelPosition = .bottom
         
         let leftAxis = chartView.leftAxis
-        leftAxis.labelFont = UIFont.systemFontOfSize(10)
+        leftAxis.labelFont = UIFont.systemFont(ofSize: 10)
         leftAxis.labelTextColor = MalaColor_5E5E5E_0
         leftAxis.gridLineDashLengths = [2,2]
         leftAxis.gridColor = MalaColor_E6E9EC_0
@@ -69,8 +69,8 @@ class LearningReportAbilityImproveCell: MalaBaseReportCardCell {
         leftAxis.axisMaxValue = 100
         leftAxis.labelCount = 5
         
-        let pFormatter = NSNumberFormatter()
-        pFormatter.numberStyle = .PercentStyle
+        let pFormatter = NumberFormatter()
+        pFormatter.numberStyle = .percent
         pFormatter.maximumFractionDigits = 1
         pFormatter.multiplier = 1
         pFormatter.percentSymbol = "%"
@@ -112,17 +112,17 @@ class LearningReportAbilityImproveCell: MalaBaseReportCardCell {
         layoutView.addSubview(legendView)
         
         // Autolayout
-        legendView.snp_makeConstraints { (make) in
-            make.left.equalTo(descView.snp_left)
-            make.right.equalTo(descView.snp_right)
-            make.height.equalTo(12)
-            make.top.equalTo(layoutView.snp_bottom).multipliedBy(0.17)
+        legendView.snp.makeConstraints { (maker) in
+            maker.left.equalTo(descView.snp.left)
+            maker.right.equalTo(descView.snp.right)
+            maker.height.equalTo(12)
+            maker.top.equalTo(layoutView.snp.bottom).multipliedBy(0.17)
         }
-        combinedChartView.snp_makeConstraints { (make) in
-            make.top.equalTo(legendView.snp_bottom)
-            make.left.equalTo(descView.snp_left)
-            make.right.equalTo(descView.snp_right)
-            make.bottom.equalTo(layoutView.snp_bottom).multipliedBy(0.68)
+        combinedChartView.snp.makeConstraints { (maker) in
+            maker.top.equalTo(legendView.snp.bottom)
+            maker.left.equalTo(descView.snp.left)
+            maker.right.equalTo(descView.snp.right)
+            maker.bottom.equalTo(layoutView.snp.bottom).multipliedBy(0.68)
         }
     }
     
@@ -146,7 +146,7 @@ class LearningReportAbilityImproveCell: MalaBaseReportCardCell {
         lineDataSet.setColor(MalaColor_82C9F9_0)
         lineDataSet.fillAlpha = 1
         lineDataSet.circleRadius = 6
-        lineDataSet.mode = .CubicBezier
+        lineDataSet.mode = .cubicBezier
         lineDataSet.drawValuesEnabled = true
         lineDataSet.setDrawHighlightIndicators(false)
         let lineData = LineChartData()
@@ -194,7 +194,7 @@ class LearningReportAbilityImproveCell: MalaBaseReportCardCell {
 }
 
 // MARK: - LegendView
-public class CombinedLegendView: UIView {
+open class CombinedLegendView: UIView {
     
     // MARK: - Property
     private var currentButton: UIButton?
@@ -209,24 +209,24 @@ public class CombinedLegendView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
-    public func addLegend(image imageName: String, title: String) -> UIButton {
+    @discardableResult
+    open func addLegend(image imageName: String, title: String) -> UIButton {
         let button = UIButton()
         button.adjustsImageWhenHighlighted = false
         
-        button.setImage(UIImage(named: imageName), forState: .Normal)
+        button.setImage(UIImage(named: imageName), for: UIControlState())
         button.imageEdgeInsets = UIEdgeInsets(top: 0, left: -5, bottom: 0, right: 5)
         
-        button.setTitle(title, forState: .Normal)
-        button.titleLabel?.font = UIFont.systemFontOfSize(10)
-        button.setTitleColor(MalaColor_5E5E5E_0, forState: .Normal)
+        button.setTitle(title, for: UIControlState())
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 10)
+        button.setTitleColor(MalaColor_5E5E5E_0, for: UIControlState())
         
         button.sizeToFit()
         self.addSubview(button)
         
-        button.snp_makeConstraints { (make) in
-            make.centerY.equalTo(self.snp_centerY)
-            make.right.equalTo(currentButton?.snp_left ?? self.snp_right).offset(-13)
+        button.snp.makeConstraints { (maker) in
+            maker.centerY.equalTo(self.snp.centerY)
+            maker.right.equalTo(currentButton?.snp.left ?? self.snp.right).offset(-13)
         }
         currentButton = button
         

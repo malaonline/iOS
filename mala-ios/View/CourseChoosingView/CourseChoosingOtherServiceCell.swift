@@ -21,7 +21,7 @@ class CourseChoosingOtherServiceCell: MalaBaseCell {
     
     // MARK: - Components
     private lazy var tableView: CourseChoosingServiceTableView = {
-        let tableView = CourseChoosingServiceTableView(frame: CGRectZero, style: .Plain)
+        let tableView = CourseChoosingServiceTableView(frame: CGRect.zero, style: .plain)
         return tableView
     }()
     private lazy var priceView: PriceResultView = {
@@ -51,21 +51,21 @@ class CourseChoosingOtherServiceCell: MalaBaseCell {
         contentView.addSubview(priceView)
         
         // Autolayout
-        priceView.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(self.tableView.snp_bottom)
-            make.left.equalTo(self.contentView.snp_left)
-            make.right.equalTo(self.contentView.snp_right)
-            make.bottom.equalTo(self.contentView.snp_bottom)
-            make.height.equalTo(MalaLayout_OtherServiceCellHeight)
+        priceView.snp.makeConstraints { (maker) -> Void in
+            maker.top.equalTo(self.tableView.snp.bottom)
+            maker.left.equalTo(self.contentView.snp.left)
+            maker.right.equalTo(self.contentView.snp.right)
+            maker.bottom.equalTo(self.contentView.snp.bottom)
+            maker.height.equalTo(MalaLayout_OtherServiceCellHeight)
         }
         
         let otherServiceCount = (MalaIsHasBeenEvaluatedThisSubject == true ? MalaOtherService.count : (MalaOtherService.count-1))
-        tableView.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(self.contentView.snp_top)
-            make.bottom.equalTo(priceView.snp_top)
-            make.left.equalTo(self.contentView.snp_left).offset(12)
-            make.right.equalTo(self.contentView.snp_right).offset(-12)
-            make.height.equalTo(otherServiceCount*Int(MalaLayout_OtherServiceCellHeight))
+        tableView.snp.makeConstraints { (maker) -> Void in
+            maker.top.equalTo(self.contentView.snp.top)
+            maker.bottom.equalTo(priceView.snp.top)
+            maker.left.equalTo(self.contentView.snp.left).offset(12)
+            maker.right.equalTo(self.contentView.snp.right).offset(-12)
+            maker.height.equalTo(otherServiceCount*Int(MalaLayout_OtherServiceCellHeight))
         }
     }
 }
@@ -88,7 +88,7 @@ class PriceResultView: UIView {
     private lazy var stringLabel: UILabel = {
         let stringLabel = UILabel()
         stringLabel.textColor = MalaColor_333333_0
-        stringLabel.font = UIFont.systemFontOfSize(14)
+        stringLabel.font = UIFont.systemFont(ofSize: 14)
         stringLabel.text = "原价:"
         return stringLabel
     }()
@@ -96,7 +96,7 @@ class PriceResultView: UIView {
     private lazy var priceLabel: UILabel = {
         let priceLabel = UILabel()
         priceLabel.textColor = MalaColor_E36A5D_0
-        priceLabel.font = UIFont.systemFontOfSize(14)
+        priceLabel.font = UIFont.systemFont(ofSize: 14)
         priceLabel.text = "￥0.00"
         return priceLabel
     }()
@@ -116,7 +116,7 @@ class PriceResultView: UIView {
     
     
     // MARK: - Override
-    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         // 当选课条件改变时，更新总价
         self.price = MalaCurrentCourse.originalPrice
     }
@@ -125,27 +125,27 @@ class PriceResultView: UIView {
     // MARK: - Private Method
     private func setupUserInterface() {
         // Style
-        self.backgroundColor = UIColor.whiteColor()
+        self.backgroundColor = UIColor.white
         
         // SubViews
         addSubview(stringLabel)
         addSubview(priceLabel)
         
         // Autolayout
-        priceLabel.snp_makeConstraints { (make) -> Void in
-            make.height.equalTo(14)
-            make.centerY.equalTo(self.snp_centerY)
-            make.right.equalTo(self.snp_right).offset(-12)
+        priceLabel.snp.makeConstraints { (maker) -> Void in
+            maker.height.equalTo(14)
+            maker.centerY.equalTo(self.snp.centerY)
+            maker.right.equalTo(self.snp.right).offset(-12)
         }
-        stringLabel.snp_makeConstraints { (make) -> Void in
-            make.height.equalTo(14)
-            make.bottom.equalTo(self.priceLabel.snp_bottom)
-            make.right.equalTo(priceLabel.snp_left)
+        stringLabel.snp.makeConstraints { (maker) -> Void in
+            maker.height.equalTo(14)
+            maker.bottom.equalTo(self.priceLabel.snp.bottom)
+            maker.right.equalTo(priceLabel.snp.left)
         }
     }
     
     private func configure() {
-        MalaCurrentCourse.addObserver(self, forKeyPath: "originalPrice", options: .New, context: &myContext)
+        MalaCurrentCourse.addObserver(self, forKeyPath: "originalPrice", options: .new, context: &myContext)
     }
     
     

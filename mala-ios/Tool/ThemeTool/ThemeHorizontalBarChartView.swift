@@ -8,13 +8,13 @@
 
 import UIKit
 
-public class ThemeHorizontalBarChartView: UIView {
+open class ThemeHorizontalBarChartView: UIView {
 
     // MARK: - Property
     /// 数据
     var vals: [ThemeHorizontalBarData] = [] {
         didSet{
-            dispatch_async(dispatch_get_main_queue(), { [weak self] () -> Void in
+            DispatchQueue.main.async(execute: { [weak self] () -> Void in
                 self?.setupData()
             })
         }
@@ -40,16 +40,16 @@ public class ThemeHorizontalBarChartView: UIView {
     // MARK: - Private Method
     private func setupData() {
         
-        for (index, data) in vals.enumerate() {
+        for (index, data) in vals.enumerated() {
            
             let bar = ThemeHorizontalBar()
             self.addSubview(bar)
             
-            bar.snp_makeConstraints(closure: { (make) in
-                make.height.equalTo(16)//self.snp_height).multipliedBy(1/count*2)
-                make.top.equalTo(self.snp_top).offset(((index*2)+1)*16)
-                make.left.equalTo(self.snp_left)
-                make.right.equalTo(self.snp_right)
+            bar.snp.makeConstraints({ (maker) in
+                maker.height.equalTo(16)//self.snp.height).multipliedBy(1/count*2)
+                maker.top.equalTo(self.snp.top).offset(((index*2)+1)*16)
+                maker.left.equalTo(self.snp.left)
+                maker.right.equalTo(self.snp.right)
             })
             
             bar.data = data
@@ -66,7 +66,7 @@ public class ThemeHorizontalBarChartView: UIView {
 }
 
 
-public class ThemeHorizontalBar: UIView {
+open class ThemeHorizontalBar: UIView {
     
     // MARK: - Property
     /// 数据
@@ -100,9 +100,9 @@ public class ThemeHorizontalBar: UIView {
     /// 条形图
     private lazy var progressBar: YLProgressBar = {
         let bar = YLProgressBar()
-        bar.indicatorTextDisplayMode = .Progress
-        bar.behavior = .Indeterminate
-        bar.stripesOrientation = .Left
+        bar.indicatorTextDisplayMode = .progress
+        bar.behavior = .indeterminate
+        bar.stripesOrientation = .left
         bar.progressTintColor = MalaColor_E5E5E5_0
         bar.trackTintColor = MalaColor_E5E5E5_0
         bar.stripesColor = MalaColor_E5E5E5_0
@@ -118,7 +118,7 @@ public class ThemeHorizontalBar: UIView {
             fontSize: 10,
             textColor: MalaColor_97A8BB_0
         )
-        label.textAlignment = .Right
+        label.textAlignment = .right
         return label
     }()
     
@@ -142,35 +142,35 @@ public class ThemeHorizontalBar: UIView {
         self.addSubview(percentLabel)
         
         // AutoLayout
-        titleLabel.snp_makeConstraints { (make) in
-            make.width.equalTo(56)
-            make.left.equalTo(self.snp_left)
-            make.right.equalTo(progressBar.snp_left).offset(-8)
-            make.height.equalTo(self.snp_height)
-            make.centerY.equalTo(self.snp_centerY)
+        titleLabel.snp.makeConstraints { (maker) in
+            maker.width.equalTo(56)
+            maker.left.equalTo(self.snp.left)
+            maker.right.equalTo(progressBar.snp.left).offset(-8)
+            maker.height.equalTo(self.snp.height)
+            maker.centerY.equalTo(self.snp.centerY)
         }
-        progressBar.snp_makeConstraints { (make) in
-            make.centerY.equalTo(self.snp_centerY)
-            make.left.equalTo(titleLabel.snp_right).offset(8)
-            make.right.equalTo(percentLabel.snp_left).offset(-8)
-            make.height.equalTo(self.snp_height)
+        progressBar.snp.makeConstraints { (maker) in
+            maker.centerY.equalTo(self.snp.centerY)
+            maker.left.equalTo(titleLabel.snp.right).offset(8)
+            maker.right.equalTo(percentLabel.snp.left).offset(-8)
+            maker.height.equalTo(self.snp.height)
         }
-        percentLabel.snp_makeConstraints { (make) in
-            make.width.equalTo(34)
-            make.right.equalTo(self.snp_right)
-            make.left.equalTo(progressBar.snp_right).offset(8)
-            make.height.equalTo(self.snp_height)
-            make.centerY.equalTo(self.snp_centerY)
+        percentLabel.snp.makeConstraints { (maker) in
+            maker.width.equalTo(34)
+            maker.right.equalTo(self.snp.right)
+            maker.left.equalTo(progressBar.snp.right).offset(8)
+            maker.height.equalTo(self.snp.height)
+            maker.centerY.equalTo(self.snp.centerY)
         }
     }
 }
 
 
-public class ThemeHorizontalBarData: NSObject {
+open class ThemeHorizontalBarData: NSObject {
     
     // MARK: - Property
     var title: String = ""
-    var color: UIColor = UIColor.whiteColor()
+    var color: UIColor = UIColor.white
     var rightNum: Int = 0
     var totalNum: Int = 0
     

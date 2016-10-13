@@ -35,7 +35,7 @@ class MemberPrivilegesViewController: UITableViewController {
     /// 学习报告状态
     var reportStatus: MalaLearningReportStatus = .LoggingIn {
         didSet {
-            dispatch_async(dispatch_get_main_queue(), { [weak self] () -> Void in
+            DispatchQueue.main.async(execute: { [weak self] () -> Void in
                 self?.tableView.reloadData()
             })
         }
@@ -57,7 +57,7 @@ class MemberPrivilegesViewController: UITableViewController {
         super.didReceiveMemoryWarning()
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if !isPushed {
             loadStudyReportOverview()
@@ -65,7 +65,7 @@ class MemberPrivilegesViewController: UITableViewController {
         isPushed = false
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if !isPushed {
             sendScreenTrack(SAStudyReportViewName)
@@ -79,19 +79,19 @@ class MemberPrivilegesViewController: UITableViewController {
         tableView.estimatedRowHeight = 230
         
         // register
-        tableView.registerClass(LearningReportCell.self, forCellReuseIdentifier: MemberPrivilegesLearningReportCellReuseID)
-        tableView.registerClass(MemberSerivceCell.self, forCellReuseIdentifier: MemberPrivilegesMemberSerivceCellReuseID)
+        tableView.register(LearningReportCell.self, forCellReuseIdentifier: MemberPrivilegesLearningReportCellReuseID)
+        tableView.register(MemberSerivceCell.self, forCellReuseIdentifier: MemberPrivilegesMemberSerivceCellReuseID)
     }
     
     private func setupUserInterface() {
         // Style
         tableView.backgroundColor = MalaColor_EDEDED_0
-        tableView.separatorStyle = .None
+        tableView.separatorStyle = .none
     }
     
     private func setupNotification() {
-        NSNotificationCenter.defaultCenter().addObserverForName(
-            MalaNotification_PushIntroduction,
+        NotificationCenter.default.addObserver(
+            forName: MalaNotification_PushIntroduction,
             object: nil,
             queue: nil
         ) { [weak self] (notification) -> Void in
@@ -106,15 +106,15 @@ class MemberPrivilegesViewController: UITableViewController {
             }
         }
         
-        NSNotificationCenter.defaultCenter().addObserverForName(
-            MalaNotification_ReloadLearningReport,
+        NotificationCenter.default.addObserver(
+            forName: MalaNotification_ReloadLearningReport,
             object: nil,
             queue: nil) { [weak self] (notification) in
                 self?.loadStudyReportOverview()
         }
         
-        NSNotificationCenter.defaultCenter().addObserverForName(
-            MalaNotification_ShowLearningReport,
+        NotificationCenter.default.addObserver(
+            forName: MalaNotification_ShowLearningReport,
             object: nil,
             queue: nil
         ) { [weak self] (notification) -> Void in
@@ -167,7 +167,7 @@ class MemberPrivilegesViewController: UITableViewController {
                 println("MemberPrivilegesViewController - loadStudyReportOverview Error \(errorMessage)")
             }
             
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            DispatchQueue.main.async(execute: { () -> Void in
                 self?.reportStatus = .Error
                 self?.ShowTost("当前无法访问题目数据，请稍后再试")
             })
@@ -215,7 +215,7 @@ class MemberPrivilegesViewController: UITableViewController {
                 println("MemberPrivilegesViewController - loadSubjectReport Error \(errorMessage)")
             }
             
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            DispatchQueue.main.async(execute: { () -> Void in
                 self?.reportStatus = .Error
                 self?.ShowTost("当前无法访问题目数据，请稍后再试")
             })
@@ -236,7 +236,7 @@ class MemberPrivilegesViewController: UITableViewController {
             self?.loadStudyReportOverview()
         }
 
-        self.presentViewController(
+        self.present(
             UINavigationController(rootViewController: loginViewController),
             animated: true,
             completion: { () -> Void in
@@ -262,16 +262,16 @@ class MemberPrivilegesViewController: UITableViewController {
     
     
     // MARK: - DataSource
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 2
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        switch indexPath.row {
+        switch (indexPath as NSIndexPath).row {
         case 0:
             /// 学习报告
-            let cell = tableView.dequeueReusableCellWithIdentifier(MemberPrivilegesLearningReportCellReuseID, forIndexPath: indexPath) as! LearningReportCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: MemberPrivilegesLearningReportCellReuseID, for: indexPath) as! LearningReportCell
             
             println("\(self.rightNum)-\(self.totalNum)")
             
@@ -283,7 +283,7 @@ class MemberPrivilegesViewController: UITableViewController {
             
         case 1:
             /// 会员专享
-            let cell = tableView.dequeueReusableCellWithIdentifier(MemberPrivilegesMemberSerivceCellReuseID, forIndexPath: indexPath) as! MemberSerivceCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: MemberPrivilegesMemberSerivceCellReuseID, for: indexPath) as! MemberSerivceCell
             return cell
             
             
@@ -294,21 +294,21 @@ class MemberPrivilegesViewController: UITableViewController {
     
     
     // MARK: - Delegate
-    override func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    override func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
         return false
     }
     
-    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 0.01
     }
     
-    override func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 0.01
     }
     
     deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: MalaNotification_PushIntroduction, object: nil)
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: MalaNotification_ShowLearningReport, object: nil)
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: MalaNotification_ReloadLearningReport, object: nil)
+        NotificationCenter.default.removeObserver(self, name: MalaNotification_PushIntroduction, object: nil)
+        NotificationCenter.default.removeObserver(self, name: MalaNotification_ShowLearningReport, object: nil)
+        NotificationCenter.default.removeObserver(self, name: MalaNotification_ReloadLearningReport, object: nil)
     }
 }

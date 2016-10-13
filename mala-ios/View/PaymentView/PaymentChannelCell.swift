@@ -22,9 +22,9 @@ class PaymentChannelCell: UITableViewCell {
             channel = model?.channel ?? .Alipay
         }
     }
-    override var selected: Bool {
+    override var isSelected: Bool {
         didSet {
-            selectButton.selected = selected
+            selectButton.isSelected = isSelected
         }
     }
     
@@ -36,24 +36,24 @@ class PaymentChannelCell: UITableViewCell {
     /// 支付方式名称
     private lazy var titleLabel: UILabel = {
         let titleLabel = UILabel()
-        titleLabel.font = UIFont.systemFontOfSize(14)
+        titleLabel.font = UIFont.systemFont(ofSize: 14)
         titleLabel.textColor = MalaColor_333333_0
         return titleLabel
     }()
     /// 支付方式描述
     private lazy var subTitleLabel: UILabel = {
         let subTitleLabel = UILabel()
-        subTitleLabel.font = UIFont.systemFontOfSize(13)
+        subTitleLabel.font = UIFont.systemFont(ofSize: 13)
         subTitleLabel.textColor = MalaColor_6C6C6C_0
         return subTitleLabel
     }()
     /// 选择按钮
     private lazy var selectButton: UIButton = {
         let selectButton = UIButton()
-        selectButton.setBackgroundImage(UIImage(named: "unselected"), forState: .Normal)
-        selectButton.setBackgroundImage(UIImage(named: "selected"), forState: .Selected)
+        selectButton.setBackgroundImage(UIImage(named: "unselected"), for: UIControlState())
+        selectButton.setBackgroundImage(UIImage(named: "selected"), for: .selected)
         // 冻结按钮交互功能，其只作为视觉显示效果使用
-        selectButton.userInteractionEnabled = false
+        selectButton.isUserInteractionEnabled = false
         return selectButton
     }()
     /// 分割线
@@ -74,7 +74,7 @@ class PaymentChannelCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
     }
@@ -93,35 +93,35 @@ class PaymentChannelCell: UITableViewCell {
         contentView.addSubview(separatorLine)
         
         // Autolayout
-        iconView.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(contentView.snp_top).offset(16)
-            make.left.equalTo(contentView.snp_left).offset(12)
-            make.bottom.equalTo(contentView.snp_bottom).offset(-16)
-            make.width.equalTo(iconView.snp_height)
+        iconView.snp.makeConstraints { (maker) -> Void in
+            maker.top.equalTo(contentView.snp.top).offset(16)
+            maker.left.equalTo(contentView.snp.left).offset(12)
+            maker.bottom.equalTo(contentView.snp.bottom).offset(-16)
+            maker.width.equalTo(iconView.snp.height)
         }
-        titleLabel.snp_makeConstraints { (make) -> Void in
-            make.height.equalTo(14)
-            make.top.equalTo(iconView.snp_top)
-            make.left.equalTo(iconView.snp_right).offset(12)
+        titleLabel.snp.makeConstraints { (maker) -> Void in
+            maker.height.equalTo(14)
+            maker.top.equalTo(iconView.snp.top)
+            maker.left.equalTo(iconView.snp.right).offset(12)
         }
-        subTitleLabel.snp_makeConstraints { (make) -> Void in
-            make.left.equalTo(titleLabel.snp_left)
-            make.bottom.equalTo(iconView.snp_bottom)
-            make.height.equalTo(13)
+        subTitleLabel.snp.makeConstraints { (maker) -> Void in
+            maker.left.equalTo(titleLabel.snp.left)
+            maker.bottom.equalTo(iconView.snp.bottom)
+            maker.height.equalTo(13)
         }
-        selectButton.snp_makeConstraints { (make) -> Void in
-            make.centerY.equalTo(contentView.snp_centerY)
-            make.right.equalTo(contentView.snp_right).offset(-12)
+        selectButton.snp.makeConstraints { (maker) -> Void in
+            maker.centerY.equalTo(contentView.snp.centerY)
+            maker.right.equalTo(contentView.snp.right).offset(-12)
         }
-        separatorLine.snp_makeConstraints { (make) in
-            make.bottom.equalTo(contentView.snp_bottom)
-            make.left.equalTo(contentView.snp_left).offset(12)
-            make.right.equalTo(contentView.snp_right).offset(-12)
-            make.height.equalTo(MalaScreenOnePixel)
+        separatorLine.snp.makeConstraints { (maker) in
+            maker.bottom.equalTo(contentView.snp.bottom)
+            maker.left.equalTo(contentView.snp.left).offset(12)
+            maker.right.equalTo(contentView.snp.right).offset(-12)
+            maker.height.equalTo(MalaScreenOnePixel)
         }
     }
     
     func hideSeparator() {
-        self.separatorLine.hidden = true
+        self.separatorLine.isHidden = true
     }
 }

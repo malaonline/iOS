@@ -10,7 +10,7 @@ import Foundation
 
 extension UIViewController {
     
-    public func ShowTost(message: String) {
+    public func ShowTost(_ message: String) {
         
         if let naviView = self.navigationController?.view {
             naviView.makeToast(message)
@@ -22,9 +22,9 @@ extension UIViewController {
     public func showActivity() {
         
         if let naviView = self.navigationController?.view {
-            naviView.makeToastActivity(.Center)
+            naviView.makeToastActivity(.center)
         }else if let view = self.view {
-            view.makeToastActivity(.Center)
+            view.makeToastActivity(.center)
         }
     }
     
@@ -41,10 +41,10 @@ extension UIViewController {
     // MARK: - Badge Point
     var showTabBadgePoint : Bool {
         get {
-            return !tabBadgePointView.hidden
+            return !tabBadgePointView.isHidden
         }
         set {
-            dispatch_async(dispatch_get_main_queue(), { [weak self] () -> Void in
+            DispatchQueue.main.async(execute: { [weak self] () -> Void in
                 guard let strongSelf = self else {
                     return
                 }
@@ -54,7 +54,7 @@ extension UIViewController {
                         tbb.addSubview(strongSelf.tabBadgePointView)
                     }
                 }
-                strongSelf.tabBadgePointView.hidden = newValue == false
+                strongSelf.tabBadgePointView.isHidden = newValue == false
             })
         }
     }
@@ -73,7 +73,7 @@ extension UIViewController {
             if newValue.superview != nil {
                 newValue.removeFromSuperview()
             }
-            newValue.hidden = true
+            newValue.isHidden = true
             objc_setAssociatedObject(self, &AssociatedKeys.tabBadgePointViewAssociatedKey, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         }
     }
@@ -82,20 +82,20 @@ extension UIViewController {
         
         get {
             if let obj = objc_getAssociatedObject(self, &AssociatedKeys.tabBadgePointViewOffsetAssociatedKey) {
-                return obj.UIOffsetValue()
+                return (obj as AnyObject).uiOffsetValue
             }
             else {
-                return UIOffsetZero
+                return UIOffset.zero
             }
         }
         set {
-            objc_setAssociatedObject(self, &AssociatedKeys.tabBadgePointViewOffsetAssociatedKey, NSValue(UIOffset: newValue), .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            objc_setAssociatedObject(self, &AssociatedKeys.tabBadgePointViewOffsetAssociatedKey, NSValue(uiOffset: newValue), .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         }
     }
     
     var isEmbedInTabBarController : Bool {
         var _isEmbedInTabBarController = false
-        if let tbc = self.tabBarController, vcs = tbc.viewControllers {
+        if let tbc = self.tabBarController, let vcs = tbc.viewControllers {
             for i in 0 ..< vcs.count {
                 let vc = vcs[i]
                 if vc == self {
@@ -116,7 +116,7 @@ extension UIViewController {
                 return NSNotFound
             }
             let obj = objc_getAssociatedObject(self, &AssociatedKeys.tabIndexAssociatedKey)
-            return obj.integerValue
+            return (obj as! Int)
         }
         set {
             objc_setAssociatedObject(self, &AssociatedKeys.tabIndexAssociatedKey, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
@@ -128,14 +128,14 @@ extension UIViewController {
             if let tbc = tabBarController {
                 var tabBarButtonArray = [UIView]()
                 for subView in tbc.tabBar.subviews {
-                    if let className = NSString(CString: object_getClassName(subView), encoding: NSUTF8StringEncoding) {
+                    if let className = NSString(cString: object_getClassName(subView), encoding: String.Encoding.utf8.rawValue) {
                         if className.hasPrefix("UITabBarButton") {
                             tabBarButtonArray.append(subView)
                         }
                     }
                 }
                 
-                tabBarButtonArray.sortInPlace({ (subView1, subView2) -> Bool in
+                tabBarButtonArray.sort(by: { (subView1, subView2) -> Bool in
                     return subView1.frame.minX < subView2.frame.minX
                 })
                 
@@ -175,14 +175,14 @@ extension UIViewController {
         
         let defaultTabBadgePointViewRadius = 4.5
         
-        let defaultTabBadgePointViewFrame = CGRect(origin: CGPointZero, size: CGSize(width: defaultTabBadgePointViewRadius * 2, height: defaultTabBadgePointViewRadius * 2))
+        let defaultTabBadgePointViewFrame = CGRect(origin: CGPoint.zero, size: CGSize(width: defaultTabBadgePointViewRadius * 2, height: defaultTabBadgePointViewRadius * 2))
         
         let defaultTabBadgePointView = UIView(frame: defaultTabBadgePointViewFrame)
-        defaultTabBadgePointView.backgroundColor = UIColor.redColor()
+        defaultTabBadgePointView.backgroundColor = UIColor.red
         defaultTabBadgePointView.layer.cornerRadius = CGFloat(defaultTabBadgePointViewRadius)
         defaultTabBadgePointView.layer.masksToBounds = true
         
-        defaultTabBadgePointView.hidden = true
+        defaultTabBadgePointView.isHidden = true
         
         return defaultTabBadgePointView
     }

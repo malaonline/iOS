@@ -12,7 +12,7 @@ class AchievementModel: NSObject {
 
     // MARK: - Property
     var title: String?
-    var img: NSURL?
+    var img: URL?
     
     
     // MARK: - Constructed
@@ -22,24 +22,24 @@ class AchievementModel: NSObject {
     
     init(dict: [String: AnyObject]) {
         super.init()
-        setValuesForKeysWithDictionary(dict)
+        setValuesForKeys(dict)
     }
     
-    convenience init(title: String, img: NSURL) {
+    convenience init(title: String, img: URL) {
         self.init()
         self.title = title
         self.img = img
     }
     
     // MARK: - Override
-    override func setValue(value: AnyObject?, forUndefinedKey key: String) {
+    override func setValue(_ value: Any?, forUndefinedKey key: String) {
         println("AchievementModel - Set for UndefinedKey: \(key)")
     }
     
-    override func setValue(value: AnyObject?, forKey key: String) {
+    override func setValue(_ value: Any?, forKey key: String) {
         if key == "img" {
             if let urlString = value as? String {
-                img = NSURL(string: urlString)
+                img = URL(string: urlString)
             }
             return
         }
@@ -50,6 +50,6 @@ class AchievementModel: NSObject {
     // MARK: - Description
     override var description: String {
         let keys = ["title", "img"]
-        return dictionaryWithValuesForKeys(keys).description
+        return dictionaryWithValues(forKeys: keys).description
     }
 }

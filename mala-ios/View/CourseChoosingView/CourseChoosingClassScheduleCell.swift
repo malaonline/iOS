@@ -24,7 +24,7 @@ class CourseChoosingClassScheduleCell: MalaBaseCell {
         let frame = CGRect(x: 0, y: 0, width: MalaLayout_CardCellWidth, height: MalaLayout_CardCellWidth*0.65)
         let classSchedule = ThemeClassSchedule(frame: frame, collectionViewLayout: ThemeClassScheduleFlowLayout(frame: frame))
         classSchedule.bounces = false
-        classSchedule.scrollEnabled = false
+        classSchedule.isScrollEnabled = false
         return classSchedule
     }()
     private lazy var legendView: LegendView = {
@@ -55,21 +55,21 @@ class CourseChoosingClassScheduleCell: MalaBaseCell {
         content.addSubview(legendView)
         
         // Autolayout
-        content.snp_updateConstraints { (make) -> Void in
-            make.top.equalTo(headerView.snp_bottom).offset(14)
+        content.snp.updateConstraints { (maker) -> Void in
+            maker.top.equalTo(headerView.snp.bottom).offset(14)
         }
-        classSchedule.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(content.snp_top)
-            make.left.equalTo(content.snp_left)
-            make.right.equalTo(content.snp_right)
-            make.height.equalTo(classSchedule.snp_width).multipliedBy(0.65)
+        classSchedule.snp.makeConstraints { (maker) -> Void in
+            maker.top.equalTo(content.snp.top)
+            maker.left.equalTo(content.snp.left)
+            maker.right.equalTo(content.snp.right)
+            maker.height.equalTo(classSchedule.snp.width).multipliedBy(0.65)
         }
-        legendView.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(classSchedule.snp_bottom).offset(14)
-            make.left.equalTo(content.snp_left)
-            make.height.equalTo(15)
-            make.right.equalTo(content.snp_right)
-            make.bottom.equalTo(content.snp_bottom)
+        legendView.snp.makeConstraints { (maker) -> Void in
+            maker.top.equalTo(classSchedule.snp.bottom).offset(14)
+            maker.left.equalTo(content.snp.left)
+            maker.height.equalTo(15)
+            maker.right.equalTo(content.snp.right)
+            maker.bottom.equalTo(content.snp.bottom)
         }
     }
     
@@ -79,8 +79,8 @@ class CourseChoosingClassScheduleCell: MalaBaseCell {
         legendView.addLegend(image: "legend_selected", title: "已选")
         let buttonBought = legendView.addLegend(image: "legend_bought", title: "已买")
         let ButtonDesc = legendView.addLegend(image: "desc_icon", offset: 3)
-        buttonBought.addTarget(self, action: #selector(CourseChoosingClassScheduleCell.showBoughtDescription), forControlEvents: .TouchUpInside)
-        ButtonDesc.addTarget(self, action: #selector(CourseChoosingClassScheduleCell.showBoughtDescription), forControlEvents: .TouchUpInside)
+        buttonBought.addTarget(self, action: #selector(CourseChoosingClassScheduleCell.showBoughtDescription), for: .touchUpInside)
+        ButtonDesc.addTarget(self, action: #selector(CourseChoosingClassScheduleCell.showBoughtDescription), for: .touchUpInside)
     }
     
     
@@ -92,7 +92,7 @@ class CourseChoosingClassScheduleCell: MalaBaseCell {
 
 
 // MARK: - LegendView
-public class LegendView: UIView {
+open class LegendView: UIView {
     
     // MARK: - Property
     private var currentX: CGFloat = 3
@@ -107,24 +107,24 @@ public class LegendView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
- 
-    public func addLegend(image imageName: String, title: String? = nil, offset: CGFloat? = 12) -> UIButton {
+    @discardableResult
+    open func addLegend(image imageName: String, title: String? = nil, offset: CGFloat? = 12) -> UIButton {
         let button = UIButton()
         button.adjustsImageWhenHighlighted = false
-        button.setImage(UIImage(named: imageName), forState: .Normal)
+        button.setImage(UIImage(named: imageName), for: UIControlState())
         if title != nil {
             button.imageEdgeInsets = UIEdgeInsets(top: 0, left: -3, bottom: 0, right: 3)
             button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 3, bottom: 0, right: -3)
         }
         
-        button.setTitle(title, forState: .Normal)
-        button.titleLabel?.font = UIFont.systemFontOfSize(12)
-        button.setTitleColor(MalaColor_939393_0, forState: .Normal)
+        button.setTitle(title, for: UIControlState())
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 12)
+        button.setTitleColor(MalaColor_939393_0, for: UIControlState())
         
         button.sizeToFit()
         button.frame.origin.x = (currentX == 3 ? currentX : currentX+(offset ?? 12)+3)
         addSubview(button)
-        currentX = CGRectGetMaxX(button.frame)
+        currentX = button.frame.maxX
         
         return button
     }

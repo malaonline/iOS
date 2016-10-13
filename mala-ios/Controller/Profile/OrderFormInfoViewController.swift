@@ -35,7 +35,7 @@ class OrderFormInfoViewController: BaseViewController, OrderFormOperatingViewDel
     // MARK: - Compontents
     /// 订单详情页面
     private lazy var tableView: OrderFormTableView = {
-        let tableView = OrderFormTableView(frame: CGRectZero, style: .Grouped)
+        let tableView = OrderFormTableView(frame: CGRect.zero, style: .grouped)
         return tableView
     }()
     /// 底部操作视图
@@ -57,7 +57,7 @@ class OrderFormInfoViewController: BaseViewController, OrderFormOperatingViewDel
         }
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if isForConfirm {
             sendScreenTrack(SAOrderViewName)
@@ -83,17 +83,17 @@ class OrderFormInfoViewController: BaseViewController, OrderFormOperatingViewDel
         confirmView.delegate = self
         
         // Autolayout
-        confirmView.snp_makeConstraints { (make) -> Void in
-            make.bottom.equalTo(self.view.snp_bottom)
-            make.left.equalTo(self.view.snp_left)
-            make.right.equalTo(self.view.snp_right)
-            make.height.equalTo(47)
+        confirmView.snp.makeConstraints { (maker) -> Void in
+            maker.bottom.equalTo(view.snp.bottom)
+            maker.left.equalTo(view.snp.left)
+            maker.right.equalTo(view.snp.right)
+            maker.height.equalTo(47)
         }
-        tableView.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(self.view.snp_top)
-            make.left.equalTo(self.view.snp_left)
-            make.right.equalTo(self.view.snp_right)
-            make.bottom.equalTo(confirmView.snp_top)
+        tableView.snp.makeConstraints { (maker) -> Void in
+            maker.top.equalTo(view.snp.top)
+            maker.left.equalTo(view.snp.left)
+            maker.right.equalTo(view.snp.right)
+            maker.bottom.equalTo(confirmView.snp.top)
         }
     }
     
@@ -114,7 +114,7 @@ class OrderFormInfoViewController: BaseViewController, OrderFormOperatingViewDel
             }, completion: { [weak self] order -> Void in
                 println("订单获取成功 \(order)")
                 
-                dispatch_async(dispatch_get_main_queue()) { [weak self] in
+                DispatchQueue.main.async { [weak self] in
                     self?.model = order
                 }
         })
@@ -165,7 +165,7 @@ class OrderFormInfoViewController: BaseViewController, OrderFormOperatingViewDel
             MalaOrderOverView.schoolName = (self?.school != nil) ? self?.school!.name : (MalaCurrentSchool?.name)
             MalaOrderOverView.status = "c"
             
-            dispatch_async(dispatch_get_main_queue()) { [weak self] in
+            DispatchQueue.main.async { [weak self] in
                 self?.model = MalaOrderOverView
             }
         })
@@ -188,7 +188,7 @@ class OrderFormInfoViewController: BaseViewController, OrderFormOperatingViewDel
             }, completion:{ [weak self] (result) in
                 ThemeHUD.hideActivityIndicator()
                 println("取消订单结果 - \(result)")
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                DispatchQueue.main.async(execute: { () -> Void in
                     if result {
                         MalaUnpaidOrderCount -= 1
                         self?.ShowTost("订单取消成功")
@@ -216,7 +216,7 @@ class OrderFormInfoViewController: BaseViewController, OrderFormOperatingViewDel
                 println("PaymentViewController - CreateOrder Error \(errorMessage)")
             }
             
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            DispatchQueue.main.async(execute: { () -> Void in
                 self?.ShowTost("创建订单失败, 请重试！")
             })
             
@@ -226,20 +226,20 @@ class OrderFormInfoViewController: BaseViewController, OrderFormOperatingViewDel
                 
                 if let errorCode = order.code {
                     if errorCode == -1 {
-                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        DispatchQueue.main.async(execute: { () -> Void in
                             self?.ShowTost("该老师部分时段已被占用，请重新选择上课时间")
                         })
                     }else if errorCode == -2 {
-                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        DispatchQueue.main.async(execute: { () -> Void in
                             self?.ShowTost("奖学金使用信息有误，请重新选择")
-                            self?.navigationController?.popViewControllerAnimated(true)
+                            _ = self?.navigationController?.popViewController(animated: true)
                         })
                     }
                 }else {
                     ThemeHUD.hideActivityIndicator()
                     println("创建订单成功:\(order)")
                     ServiceResponseOrder = order
-                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    DispatchQueue.main.async(execute: { () -> Void in
                         self?.launchPaymentController()
                     })
                 }

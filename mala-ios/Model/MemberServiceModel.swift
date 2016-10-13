@@ -22,7 +22,7 @@ class MemberServiceModel: BaseObjectModel {
     
     override init(dict: [String: AnyObject]) {
         super.init(dict: dict)
-        setValuesForKeysWithDictionary(dict)
+        setValuesForKeys(dict)
     }
     
     convenience init(name: String?, detail: String?) {
@@ -37,7 +37,7 @@ class MemberServiceModel: BaseObjectModel {
     
     
     // MARK: - Override
-    override func setValue(value: AnyObject?, forUndefinedKey key: String) {
+    override func setValue(_ value: Any?, forUndefinedKey key: String) {
         println("SchoolModel - Set for UndefinedKey: \(key)")
     }
     
@@ -45,6 +45,6 @@ class MemberServiceModel: BaseObjectModel {
     // MARK: - Description
     override var description: String {
         let keys = ["detail", "enbaled"]
-        return super.description + dictionaryWithValuesForKeys(keys).description
+        return super.description + dictionaryWithValues(forKeys: keys).description
     }
 }

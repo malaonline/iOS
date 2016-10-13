@@ -60,35 +60,35 @@ class TeacherDetailsCertificateCell: MalaBaseCell {
     private func configure() {
         
         content.addSubview(tagsView)
-        content.snp_updateConstraints { (make) -> Void in
-            make.bottom.equalTo(contentView.snp_bottom).offset(-10)
+        content.snp.updateConstraints { (maker) -> Void in
+            maker.bottom.equalTo(contentView.snp.bottom).offset(-10)
         }
-        tagsView.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(content.snp_top)
-            make.left.equalTo(content.snp_left)
-            make.width.equalTo(MalaLayout_CardCellWidth)
-            make.bottom.equalTo(content.snp_bottom)
+        tagsView.snp.makeConstraints { (maker) -> Void in
+            maker.top.equalTo(content.snp.top)
+            maker.left.equalTo(content.snp.left)
+            maker.width.equalTo(MalaLayout_CardCellWidth)
+            maker.bottom.equalTo(content.snp.bottom)
         }
     }
     
     
     // MARK: - Delegate
     ///  标签点击事件
-    func tagDidTap(sender: UITapGestureRecognizer) {
+    func tagDidTap(_ sender: UITapGestureRecognizer) {
         
         /// 图片浏览器
         if let index = sender.view?.tag {
+            SKPhotoBrowserOptions.displayStatusbar = false
+            SKPhotoBrowserOptions.enableSingleTapDismiss = true
+            SKPhotoBrowserOptions.displayAction = false
+            SKPhotoBrowserOptions.bounceAnimation = false
+            SKPhotoBrowserOptions.displayDeleteButton = false
+            SKPhotoBrowserOptions.displayBackAndForwardButton = false
+            
             let browser = SKPhotoBrowser(photos: images)
             browser.initializePageIndex(index)
-            browser.statusBarStyle = nil
-            browser.forceDismiss = true
-            browser.displayAction = false
-            browser.bounceAnimation = false
-            browser.displayDeleteButton = false
-            browser.displayBackAndForwardButton = false
-            browser.navigationController?.navigationBarHidden = true
-            
-            NSNotificationCenter.defaultCenter().postNotificationName(MalaNotification_PushPhotoBrowser, object: browser)
+            browser.navigationController?.isNavigationBarHidden = true
+            NotificationCenter.default.post(name: MalaNotification_PushPhotoBrowser, object: browser)
         }
     }
 }

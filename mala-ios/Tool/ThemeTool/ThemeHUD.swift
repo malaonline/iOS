@@ -13,7 +13,7 @@ class ThemeHUD: NSObject {
     static let sharedInstance = ThemeHUD()
 
     var isShowing = false
-    var dismissTimer: NSTimer?
+    var dismissTimer: Timer?
 
     lazy var containerView: UIView = {
         let view = UIView()
@@ -21,7 +21,7 @@ class ThemeHUD: NSObject {
         }()
 
     lazy var activityIndicator: UIActivityIndicatorView = {
-        let view = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.WhiteLarge)
+        let view = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.whiteLarge)
         return view
         }()
 
@@ -29,20 +29,20 @@ class ThemeHUD: NSObject {
         showActivityIndicatorWhileBlockingUI(true)
     }
 
-    class func showActivityIndicatorWhileBlockingUI(blockingUI: Bool) {
+    class func showActivityIndicatorWhileBlockingUI(_ blockingUI: Bool) {
 
         if self.sharedInstance.isShowing {
             return // TODO: 或者用新的取代旧的
         }
 
-        dispatch_async(dispatch_get_main_queue()) {
+        DispatchQueue.main.async {
             if
-                let appDelegate = UIApplication.sharedApplication().delegate as? AppDelegate,
+                let appDelegate = UIApplication.shared.delegate as? AppDelegate,
                 let window = appDelegate.window {
 
                     self.sharedInstance.isShowing = true
 
-                    self.sharedInstance.containerView.userInteractionEnabled = blockingUI
+                    self.sharedInstance.containerView.isUserInteractionEnabled = blockingUI
 
                     self.sharedInstance.containerView.alpha = 0
                     window.addSubview(self.sharedInstance.containerView)
@@ -52,7 +52,7 @@ class ThemeHUD: NSObject {
                     let height = window.bounds.size.height - 64
                     self.sharedInstance.containerView.frame = CGRect(x: 0, y: 64, width: width, height: height)
                 
-                    UIView.animateWithDuration(0.1, delay: 0.0, options: UIViewAnimationOptions(rawValue: 0), animations: { () -> Void in
+                    UIView.animate(withDuration: 0.1, delay: 0.0, options: UIViewAnimationOptions(rawValue: 0), animations: { () -> Void in
                         self.sharedInstance.containerView.alpha = 1
 
                     }, completion: { (finished) -> Void in
@@ -70,22 +70,22 @@ class ThemeHUD: NSObject {
         }
     }
 
-    class func hideActivityIndicator(completion: () -> Void) {
+    class func hideActivityIndicator(_ completion: @escaping () -> Void) {
 
-        dispatch_async(dispatch_get_main_queue()) {
+        DispatchQueue.main.async {
 
             if self.sharedInstance.isShowing {
 
-                self.sharedInstance.activityIndicator.transform = CGAffineTransformIdentity
+                self.sharedInstance.activityIndicator.transform = CGAffineTransform.identity
 
-                UIView.animateWithDuration(0.2, delay: 0.0, options: UIViewAnimationOptions(rawValue: 0), animations: { () -> Void in
-                    self.sharedInstance.activityIndicator.transform = CGAffineTransformMakeScale(0.0001, 0.0001)
+                UIView.animate(withDuration: 0.2, delay: 0.0, options: UIViewAnimationOptions(rawValue: 0), animations: { () -> Void in
+                    self.sharedInstance.activityIndicator.transform = CGAffineTransform(scaleX: 0.0001, y: 0.0001)
                     self.sharedInstance.activityIndicator.alpha = 0
 
                 }, completion: { (finished) -> Void in
                     self.sharedInstance.activityIndicator.removeFromSuperview()
 
-                    UIView.animateWithDuration(0.1, delay: 0.0, options: UIViewAnimationOptions(rawValue: 0), animations: { () -> Void in
+                    UIView.animate(withDuration: 0.1, delay: 0.0, options: UIViewAnimationOptions(rawValue: 0), animations: { () -> Void in
                         self.sharedInstance.containerView.alpha = 0
 
                     }, completion: { (finished) -> Void in

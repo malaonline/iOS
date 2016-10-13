@@ -21,8 +21,7 @@ class CommentViewCell: UITableViewCell {
             schoolLabel.text = model?.school
             
             // 老师头像
-            avatarView.ma_setImage(model?.teacher?.avatar ?? NSURL(), placeholderImage: UIImage(named: "profileAvatar_placeholder"))
-            
+            avatarView.ma_setImage(model?.teacher?.avatar, placeholderImage: UIImage(named: "profileAvatar_placeholder"))
             // 课程评价状态
             if model?.comment != nil {
                 // 已评价
@@ -42,9 +41,9 @@ class CommentViewCell: UITableViewCell {
     // MARK: - Components
     /// 主要布局容器
     private lazy var content: UIView = {
-        let view = UIView.separator(UIColor.whiteColor())
+        let view = UIView.separator(UIColor.white)
         view.layer.shadowOffset = CGSize(width: 0, height: MalaScreenOnePixel)
-        view.layer.shadowColor = MalaColor_D7D7D7_0.CGColor
+        view.layer.shadowColor = MalaColor_D7D7D7_0.cgColor
         view.layer.shadowOpacity = 1
         return view
     }()
@@ -56,20 +55,20 @@ class CommentViewCell: UITableViewCell {
     /// 课程评价状态标示
     private lazy var statusIcon: UIButton = {
         let button = UIButton()
-        button.setBackgroundImage(UIImage(named: "uncomment"), forState: .Normal)
-        button.setBackgroundImage(UIImage(named: "commented"), forState: .Highlighted)
-        button.setBackgroundImage(UIImage(named: "comment_expired"), forState: .Disabled)
-        button.setTitle("待 评", forState: .Normal)
-        button.setTitle("已 评", forState: .Highlighted)
-        button.setTitle("过 期", forState: .Disabled)
-        button.titleLabel?.font = UIFont.systemFontOfSize(12)
-        button.userInteractionEnabled = false
+        button.setBackgroundImage(UIImage(named: "uncomment"), for: UIControlState())
+        button.setBackgroundImage(UIImage(named: "commented"), for: .highlighted)
+        button.setBackgroundImage(UIImage(named: "comment_expired"), for: .disabled)
+        button.setTitle("待 评", for: UIControlState())
+        button.setTitle("已 评", for: .highlighted)
+        button.setTitle("过 期", for: .disabled)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 12)
+        button.isUserInteractionEnabled = false
         return button
     }()
     /// 老师头像
     private lazy var avatarView: UIImageView = {
         let imageView = UIImageView(image: UIImage(named: "profileAvatar_placeholder"))
-        imageView.contentMode = .ScaleAspectFill
+        imageView.contentMode = .scaleAspectFill
         imageView.layer.cornerRadius = 55/2
         imageView.layer.masksToBounds = true
         return imageView
@@ -147,7 +146,7 @@ class CommentViewCell: UITableViewCell {
     /// 评分面板
     private lazy var floatRating: FloatRatingView = {
         let floatRating = FloatRatingView()
-        floatRating.backgroundColor = UIColor.whiteColor()
+        floatRating.backgroundColor = UIColor.white
         floatRating.editable = false
         return floatRating
     }()
@@ -168,35 +167,35 @@ class CommentViewCell: UITableViewCell {
     /// 评论按钮
     private lazy var commentButton: UIButton = {
         let button = UIButton()
-        button.layer.borderColor = MalaColor_E26254_0.CGColor
+        button.layer.borderColor = MalaColor_E26254_0.cgColor
         button.layer.borderWidth = MalaScreenOnePixel
         button.layer.cornerRadius = 3
         button.layer.masksToBounds = true
         
-        button.setBackgroundImage(UIImage.withColor(UIColor.whiteColor()), forState: .Normal)
-        button.setBackgroundImage(UIImage.withColor(MalaColor_FFF0EE_0), forState: .Highlighted)
-        button.setTitle("去评价", forState: .Normal)
-        button.setTitleColor(MalaColor_E26254_0, forState: .Normal)
-        button.titleLabel?.font = UIFont.systemFontOfSize(12)
-        button.addTarget(self, action: #selector(CommentViewCell.toComment), forControlEvents: .TouchUpInside)
-        button.hidden = true
+        button.setBackgroundImage(UIImage.withColor(UIColor.white), for: UIControlState())
+        button.setBackgroundImage(UIImage.withColor(MalaColor_FFF0EE_0), for: .highlighted)
+        button.setTitle("去评价", for: UIControlState())
+        button.setTitleColor(MalaColor_E26254_0, for: UIControlState())
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 12)
+        button.addTarget(self, action: #selector(CommentViewCell.toComment), for: .touchUpInside)
+        button.isHidden = true
         return button
     }()
     /// 查看评论按钮
     private lazy var showCommentButton: UIButton = {
         let button = UIButton()
-        button.layer.borderColor = MalaColor_82B4D9_0.CGColor
+        button.layer.borderColor = MalaColor_82B4D9_0.cgColor
         button.layer.borderWidth = MalaScreenOnePixel
         button.layer.cornerRadius = 3
         button.layer.masksToBounds = true
         
-        button.setBackgroundImage(UIImage.withColor(UIColor.whiteColor()), forState: .Normal)
-        button.setBackgroundImage(UIImage.withColor(MalaColor_E6F1FC_0), forState: .Highlighted)
-        button.setTitle("查看评价", forState: .Normal)
-        button.setTitleColor(MalaColor_82B4D9_0, forState: .Normal)
-        button.titleLabel?.font = UIFont.systemFontOfSize(12)
-        button.addTarget(self, action: #selector(CommentViewCell.showComment), forControlEvents: .TouchUpInside)
-        button.hidden = true
+        button.setBackgroundImage(UIImage.withColor(UIColor.white), for: UIControlState())
+        button.setBackgroundImage(UIImage.withColor(MalaColor_E6F1FC_0), for: .highlighted)
+        button.setTitle("查看评价", for: UIControlState())
+        button.setTitleColor(MalaColor_82B4D9_0, for: UIControlState())
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 12)
+        button.addTarget(self, action: #selector(CommentViewCell.showComment), for: .touchUpInside)
+        button.isHidden = true
         return button
     }()
     
@@ -242,110 +241,110 @@ class CommentViewCell: UITableViewCell {
         bottomLayoutView.addSubview(showCommentButton)
         
         // Autolayout
-        content.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(self.contentView.snp_top).offset(6)
-            make.left.equalTo(self.contentView.snp_left).offset(12)
-            make.bottom.equalTo(self.contentView.snp_bottom).offset(-6)
-            make.right.equalTo(self.contentView.snp_right).offset(-12)
+        content.snp.makeConstraints { (maker) -> Void in
+            maker.top.equalTo(self.contentView.snp.top).offset(6)
+            maker.left.equalTo(self.contentView.snp.left).offset(12)
+            maker.bottom.equalTo(self.contentView.snp.bottom).offset(-6)
+            maker.right.equalTo(self.contentView.snp.right).offset(-12)
         }
-        mainLayoutView.snp_makeConstraints { (make) in
-            make.top.equalTo(content.snp_top)
-            make.left.equalTo(content.snp_left)
-            make.height.equalTo(252)
-            make.right.equalTo(content.snp_right)
-            make.bottom.equalTo(separatorLine.snp_top)
+        mainLayoutView.snp.makeConstraints { (maker) in
+            maker.top.equalTo(content.snp.top)
+            maker.left.equalTo(content.snp.left)
+            maker.height.equalTo(252)
+            maker.right.equalTo(content.snp.right)
+            maker.bottom.equalTo(separatorLine.snp.top)
         }
-        separatorLine.snp_makeConstraints { (make) in
-            make.top.equalTo(mainLayoutView.snp_bottom).offset(14)
-            make.height.equalTo(MalaScreenOnePixel)
-            make.left.equalTo(content).offset(5)
-            make.right.equalTo(content).offset(-5)
+        separatorLine.snp.makeConstraints { (maker) in
+            maker.top.equalTo(mainLayoutView.snp.bottom).offset(14)
+            maker.height.equalTo(MalaScreenOnePixel)
+            maker.left.equalTo(content).offset(5)
+            maker.right.equalTo(content).offset(-5)
         }
-        floatRating.snp_makeConstraints { (make) in
-            make.center.equalTo(separatorLine.snp_center)
-            make.height.equalTo(20)
-            make.width.equalTo(80)
+        floatRating.snp.makeConstraints { (maker) in
+            maker.center.equalTo(separatorLine.snp.center)
+            maker.height.equalTo(20)
+            maker.width.equalTo(80)
         }
-        bottomLayoutView.snp_makeConstraints { (make) in
-            make.top.equalTo(separatorLine.snp_bottom)
-            make.bottom.equalTo(content.snp_bottom)
-            make.left.equalTo(content.snp_left)
-            make.right.equalTo(content.snp_right)
-            make.height.equalTo(50)
+        bottomLayoutView.snp.makeConstraints { (maker) in
+            maker.top.equalTo(separatorLine.snp.bottom)
+            maker.bottom.equalTo(content.snp.bottom)
+            maker.left.equalTo(content.snp.left)
+            maker.right.equalTo(content.snp.right)
+            maker.height.equalTo(50)
         }
-        statusIcon.snp_makeConstraints { (make) in
-            make.right.equalTo(mainLayoutView.snp_right).offset(-30)
-            make.top.equalTo(mainLayoutView.snp_top).offset(-6)
+        statusIcon.snp.makeConstraints { (maker) in
+            maker.right.equalTo(mainLayoutView.snp.right).offset(-30)
+            maker.top.equalTo(mainLayoutView.snp.top).offset(-6)
         }
-        avatarView.snp_makeConstraints { (make) in
-            make.centerX.equalTo(statusIcon.snp_centerX)
-            make.top.equalTo(statusIcon.snp_bottom).offset(10)
-            make.height.equalTo(55)
-            make.width.equalTo(55)
+        avatarView.snp.makeConstraints { (maker) in
+            maker.centerX.equalTo(statusIcon.snp.centerX)
+            maker.top.equalTo(statusIcon.snp.bottom).offset(10)
+            maker.height.equalTo(55)
+            maker.width.equalTo(55)
         }
-        teacherIcon.snp_makeConstraints { (make) in
-            make.top.equalTo(mainLayoutView.snp_top).offset(14)
-            make.left.equalTo(mainLayoutView.snp_left).offset(12)
-            make.height.equalTo(14)
-            make.width.equalTo(14)
+        teacherIcon.snp.makeConstraints { (maker) in
+            maker.top.equalTo(mainLayoutView.snp.top).offset(14)
+            maker.left.equalTo(mainLayoutView.snp.left).offset(12)
+            maker.height.equalTo(14)
+            maker.width.equalTo(14)
         }
-        teacherLabel.snp_makeConstraints { (make) in
-            make.top.equalTo(teacherIcon.snp_top)
-            make.left.equalTo(teacherIcon.snp_right).offset(10)
-            make.height.equalTo(13)
+        teacherLabel.snp.makeConstraints { (maker) in
+            maker.top.equalTo(teacherIcon.snp.top)
+            maker.left.equalTo(teacherIcon.snp.right).offset(10)
+            maker.height.equalTo(13)
         }
-        subjectIcon.snp_makeConstraints { (make) in
-            make.top.equalTo(teacherIcon.snp_bottom).offset(14)
-            make.left.equalTo(mainLayoutView.snp_left).offset(12)
-            make.height.equalTo(14)
-            make.width.equalTo(14)
+        subjectIcon.snp.makeConstraints { (maker) in
+            maker.top.equalTo(teacherIcon.snp.bottom).offset(14)
+            maker.left.equalTo(mainLayoutView.snp.left).offset(12)
+            maker.height.equalTo(14)
+            maker.width.equalTo(14)
         }
-        subjectLabel.snp_makeConstraints { (make) in
-            make.top.equalTo(subjectIcon.snp_top)
-            make.left.equalTo(subjectIcon.snp_right).offset(10)
-            make.height.equalTo(13)
+        subjectLabel.snp.makeConstraints { (maker) in
+            maker.top.equalTo(subjectIcon.snp.top)
+            maker.left.equalTo(subjectIcon.snp.right).offset(10)
+            maker.height.equalTo(13)
         }
-        timeSlotIcon.snp_makeConstraints { (make) in
-            make.top.equalTo(subjectIcon.snp_bottom).offset(14)
-            make.left.equalTo(mainLayoutView.snp_left).offset(12)
-            make.height.equalTo(14)
-            make.width.equalTo(14)
+        timeSlotIcon.snp.makeConstraints { (maker) in
+            maker.top.equalTo(subjectIcon.snp.bottom).offset(14)
+            maker.left.equalTo(mainLayoutView.snp.left).offset(12)
+            maker.height.equalTo(14)
+            maker.width.equalTo(14)
         }
-        timeSlotLabel.snp_makeConstraints { (make) in
-            make.top.equalTo(timeSlotIcon.snp_top)
-            make.left.equalTo(timeSlotIcon.snp_right).offset(10)
-            make.height.equalTo(13)
+        timeSlotLabel.snp.makeConstraints { (maker) in
+            maker.top.equalTo(timeSlotIcon.snp.top)
+            maker.left.equalTo(timeSlotIcon.snp.right).offset(10)
+            maker.height.equalTo(13)
         }
-        timeLabel.snp_makeConstraints { (make) in
-            make.top.equalTo(timeSlotLabel)
-            make.left.equalTo(timeSlotLabel.snp_right).offset(5)
-            make.height.equalTo(13)
+        timeLabel.snp.makeConstraints { (maker) in
+            maker.top.equalTo(timeSlotLabel)
+            maker.left.equalTo(timeSlotLabel.snp.right).offset(5)
+            maker.height.equalTo(13)
         }
-        schoolIcon.snp_makeConstraints { (make) in
-            make.top.equalTo(timeSlotIcon.snp_bottom).offset(14)
-            make.left.equalTo(mainLayoutView.snp_left).offset(12)
-            make.height.equalTo(15)
-            make.width.equalTo(14)
+        schoolIcon.snp.makeConstraints { (maker) in
+            maker.top.equalTo(timeSlotIcon.snp.bottom).offset(14)
+            maker.left.equalTo(mainLayoutView.snp.left).offset(12)
+            maker.height.equalTo(15)
+            maker.width.equalTo(14)
         }
-        schoolLabel.snp_makeConstraints { (make) in
-            make.top.equalTo(schoolIcon.snp_top)
-            make.left.equalTo(schoolIcon.snp_right).offset(10)
-            make.height.equalTo(13)
-            make.bottom.equalTo(mainLayoutView.snp_bottom).offset(-14)
+        schoolLabel.snp.makeConstraints { (maker) in
+            maker.top.equalTo(schoolIcon.snp.top)
+            maker.left.equalTo(schoolIcon.snp.right).offset(10)
+            maker.height.equalTo(13)
+            maker.bottom.equalTo(mainLayoutView.snp.bottom).offset(-14)
         }
-        expiredLabel.snp_makeConstraints { (make) in
-            make.height.equalTo(12)
-            make.center.equalTo(bottomLayoutView.snp_center)
+        expiredLabel.snp.makeConstraints { (maker) in
+            maker.height.equalTo(12)
+            maker.center.equalTo(bottomLayoutView.snp.center)
         }
-        commentButton.snp_makeConstraints { (make) in
-            make.center.equalTo(bottomLayoutView.snp_center)
-            make.width.equalTo(96)
-            make.height.equalTo(24)
+        commentButton.snp.makeConstraints { (maker) in
+            maker.center.equalTo(bottomLayoutView.snp.center)
+            maker.width.equalTo(96)
+            maker.height.equalTo(24)
         }
-        showCommentButton.snp_makeConstraints { (make) in
-            make.center.equalTo(bottomLayoutView.snp_center)
-            make.width.equalTo(96)
-            make.height.equalTo(24)
+        showCommentButton.snp.makeConstraints { (maker) in
+            maker.center.equalTo(bottomLayoutView.snp.center)
+            maker.width.equalTo(96)
+            maker.height.equalTo(24)
         }
     }
     
@@ -358,7 +357,7 @@ class CommentViewCell: UITableViewCell {
         
         let dateString = getDateString(start, format: "yyyy-MM-dd")
         let startString = getDateString(start, format: "HH:mm")
-        let endString = getDateString(date: NSDate(timeIntervalSince1970: start).dateByAddingHours(2), format: "HH:mm")
+        let endString = getDateString(date: NSDate(timeIntervalSince1970: start).addingHours(2) as NSDate?, format: "HH:mm")
         
         timeSlotLabel.text = String(format: "%@", dateString)
         timeLabel.text = String(format: "%@-%@", startString, endString)
@@ -366,42 +365,33 @@ class CommentViewCell: UITableViewCell {
     
     ///  设置过期样式
     private func setStyleExpired() {
-        println("课程评价状态 - 过期")
-        
-        showCommentButton.hidden = true
-        commentButton.hidden = true
-        
-        statusIcon.highlighted = false
-        statusIcon.enabled = false
-        expiredLabel.hidden = false
-        floatRating.hidden = true
+        showCommentButton.isHidden = true
+        commentButton.isHidden = true
+        statusIcon.isHighlighted = false
+        statusIcon.isEnabled = false
+        expiredLabel.isHidden = false
+        floatRating.isHidden = true
     }
     
     ///  设置已评论样式
     private func setStyleCommented() {
-        println("课程评价状态 - 已评价")
-        
-        commentButton.hidden = true
-        showCommentButton.hidden = false
-        
-        statusIcon.enabled = true
-        statusIcon.highlighted = true
-        expiredLabel.hidden = true
-        floatRating.hidden = false
+        commentButton.isHidden = true
+        showCommentButton.isHidden = false
+        statusIcon.isEnabled = true
+        statusIcon.isHighlighted = true
+        expiredLabel.isHidden = true
+        floatRating.isHidden = false
         floatRating.rating = Float((model?.comment?.score) ?? 0)
     }
     
     ///  设置待评论样式
     private func setStyleNoComments() {
-        println("课程评价状态 - 待评价")
-        
-        commentButton.hidden = false
-        showCommentButton.hidden = true
-        
-        statusIcon.highlighted = false
-        statusIcon.enabled = true
-        expiredLabel.hidden = true
-        floatRating.hidden = true
+        commentButton.isHidden = false
+        showCommentButton.isHidden = true
+        statusIcon.isHighlighted = false
+        statusIcon.isEnabled = true
+        expiredLabel.isHidden = true
+        floatRating.isHidden = true
     }
     
     
@@ -428,7 +418,7 @@ class CommentViewCell: UITableViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        statusIcon.highlighted = false
-        statusIcon.enabled = true
+        statusIcon.isHighlighted = false
+        statusIcon.isEnabled = true
     }
 }

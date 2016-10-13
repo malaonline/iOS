@@ -13,13 +13,13 @@ extension UIView {
     ///  convenience to create a separator line view
     ///
     ///  - returns: UIView
-    class func separator(color: UIColor = UIColor.blackColor()) -> UIView {
+    class func separator(_ color: UIColor = UIColor.black) -> UIView {
         let separatorLine = UIView()
         separatorLine.backgroundColor = color
         return separatorLine
     }
     
-    class func line(color: UIColor = UIColor.blackColor()) -> UIView {
+    class func line(_ color: UIColor = UIColor.black) -> UIView {
         let line = UIView()
         line.backgroundColor = color
         return line

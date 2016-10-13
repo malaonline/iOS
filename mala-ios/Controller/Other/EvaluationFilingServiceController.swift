@@ -35,29 +35,29 @@ class EvaluationFilingServiceController: BaseTableViewController {
     
     
     // MARK: - Delegate
-    override func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return section == (introductions?.count ?? 0)-1 ? 0 : 8
     }
     
-    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 0
     }
     
     
     // MARK: - DataSource
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return self.introductions?.count ?? 0
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(EvaluationFilingServiceCellReuseId, forIndexPath: indexPath) as! EvaluationFilingServiceCell
-        cell.selectionStyle = .None
-        if self.introductions?[indexPath.section] != nil {
-            cell.model = self.introductions![indexPath.section]
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: EvaluationFilingServiceCellReuseId, for: indexPath) as! EvaluationFilingServiceCell
+        cell.selectionStyle = .none
+        if self.introductions?[(indexPath as NSIndexPath).section] != nil {
+            cell.model = self.introductions![(indexPath as NSIndexPath).section]
         }
         return cell
     }
@@ -67,17 +67,17 @@ class EvaluationFilingServiceController: BaseTableViewController {
     private func configure() {
         // Style 
         title = MalaCommonString_EvaluationFiling
-        tableView.backgroundColor = UIColor.whiteColor()
+        tableView.backgroundColor = UIColor.white
         tableView.estimatedRowHeight = 300
-        tableView.separatorStyle = .None
+        tableView.separatorStyle = .none
         
-        self.tableView.registerClass(EvaluationFilingServiceCell.self, forCellReuseIdentifier: EvaluationFilingServiceCellReuseId)
+        self.tableView.register(EvaluationFilingServiceCell.self, forCellReuseIdentifier: EvaluationFilingServiceCellReuseId)
     }
     
     // 读取 [测评建档]服务 简介
     private func loadIntroductions() {
         // 网络请求
-        let dataArray = NSArray(contentsOfFile: NSBundle.mainBundle().pathForResource("EvaluationFiling.plist", ofType: nil)!) as? [AnyObject]
+        let dataArray = NSArray(contentsOfFile: Bundle.main.path(forResource: "EvaluationFiling.plist", ofType: nil)!) as? [AnyObject]
         var modelDicts: [IntroductionModel]? = []
         for object in dataArray! {
             if let dict = object as? [String: AnyObject] {
@@ -111,7 +111,7 @@ class EvaluationFilingServiceCell: MalaBaseCell {
     /// 简介文本框
     private lazy var contentLabel: UILabel = {
         let contentLabel = UILabel()
-        contentLabel.font = UIFont.systemFontOfSize(13)
+        contentLabel.font = UIFont.systemFont(ofSize: 13)
         contentLabel.textColor = MalaColor_6C6C6C_0
         contentLabel.numberOfLines = 0
         return contentLabel
@@ -139,17 +139,17 @@ class EvaluationFilingServiceCell: MalaBaseCell {
         content.addSubview(contentLabel)
         
         // Autolayout
-        contentImageView.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(content.snp_top)
-            make.left.equalTo(content.snp_left)
-            make.right.equalTo(content.snp_right)
-            make.height.equalTo(contentImageView.snp_width).multipliedBy(0.47)
+        contentImageView.snp.makeConstraints { (maker) -> Void in
+            maker.top.equalTo(content.snp.top)
+            maker.left.equalTo(content.snp.left)
+            maker.right.equalTo(content.snp.right)
+            maker.height.equalTo(contentImageView.snp.width).multipliedBy(0.47)
         }
-        contentLabel.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(contentImageView.snp_bottom).offset(14)
-            make.left.equalTo(content.snp_left)
-            make.right.equalTo(content.snp_right)
-            make.bottom.equalTo(content.snp_bottom)
+        contentLabel.snp.makeConstraints { (maker) -> Void in
+            maker.top.equalTo(contentImageView.snp.bottom).offset(14)
+            maker.left.equalTo(content.snp.left)
+            maker.right.equalTo(content.snp.right)
+            maker.bottom.equalTo(content.snp.bottom)
         }
     }
 }

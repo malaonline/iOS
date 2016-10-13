@@ -23,7 +23,7 @@ class FindTeacherViewController: BaseViewController {
     // MARK: - Components
     /// 老师信息tableView
     private lazy var tableView: TeacherTableView = {
-        let tableView = TeacherTableView(frame: self.view.frame, style: .Plain)
+        let tableView = TeacherTableView(frame: self.view.frame, style: .plain)
         tableView.controller = self
         // 底部Tabbar留白
         tableView.contentInset = UIEdgeInsets(top: 6, left: 0, bottom: 48 + 6, right: 0)
@@ -48,15 +48,15 @@ class FindTeacherViewController: BaseViewController {
         getCurrentLocation()
         
         // 开启下拉刷新
-        self.tableView.startPullToRefresh() //loadTeachers()
+        self.tableView.startPullRefresh() //loadTeachers()
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         sendScreenTrack(SAfindTeacherName)
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         makeStatusBarBlack()
         filterResultDidShow = false
@@ -69,8 +69,8 @@ class FindTeacherViewController: BaseViewController {
     
     // MARK: - Private Method
     private func setupNotification() {
-        NSNotificationCenter.defaultCenter().addObserverForName(
-            MalaNotification_CommitCondition,
+        NotificationCenter.default.addObserver(
+            forName: MalaNotification_CommitCondition,
             object: nil,
             queue: nil) { [weak self] (notification) -> Void in
                 if !(self?.filterResultDidShow ?? false) {
@@ -89,23 +89,24 @@ class FindTeacherViewController: BaseViewController {
         navigationItem.titleView = regionPickButton
         
         // 下拉刷新组件
-        self.tableView.addPullToRefresh({ [weak self] in
+        
+        self.tableView.addPullRefreshHandler { [weak self] in
             self?.loadTeachers()
-            })
+        }
         
         // SubViews
         self.view.addSubview(tableView)
         
         // Autolayout
-        tableView.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(self.view.snp_top)
-            make.left.equalTo(self.view.snp_left)
-            make.bottom.equalTo(self.view.snp_bottom)
-            make.right.equalTo(self.view.snp_right)
+        tableView.snp.makeConstraints { (maker) -> Void in
+            maker.top.equalTo(view.snp.top)
+            maker.left.equalTo(view.snp.left)
+            maker.bottom.equalTo(view.snp.bottom)
+            maker.right.equalTo(view.snp.right)
         }
         
         // 设置BarButtomItem间隔
-        let spacer = UIBarButtonItem(barButtonSystemItem: .FixedSpace, target: nil, action: nil)
+        let spacer = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
         spacer.width = -12
         
         // leftBarButtonItem
@@ -125,7 +126,7 @@ class FindTeacherViewController: BaseViewController {
     
     ///  获取当前地理位置信息
     private func getCurrentLocation() {
-        proposeToAccess(.Location(.WhenInUse), agreed: {
+        proposeToAccess(.location(.whenInUse), agreed: {
             
             MalaLocationService.turnOn()
             }, rejected: {
@@ -133,7 +134,7 @@ class FindTeacherViewController: BaseViewController {
         })
     }
     
-    func loadTeachers(filters: [String: AnyObject]? = nil, isLoadMore: Bool = false, finish: (()->())? = nil) {
+    func loadTeachers(_ filters: [String: AnyObject]? = nil, isLoadMore: Bool = false, finish: (()->())? = nil) {
         
         if isLoadMore {
             currentPageIndex += 1
@@ -153,15 +154,15 @@ class FindTeacherViewController: BaseViewController {
             let resultModel = ResultModel(dict: dict)
             
             /// 记录数据量
-            if let count = resultModel.count where count != 0 {
-                self?.allTeacherCount = count.integerValue
+            if let count = resultModel.count, count != 0 {
+                self?.allTeacherCount = count.intValue
             }
             
             /// 若请求数达到最大, 执行return
-            if let detail = resultModel.detail where (detail as NSString).containsString(MalaErrorDetail_InvalidPage) {
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            if let detail = resultModel.detail, (detail as NSString).contains(MalaErrorDetail_InvalidPage) {
+                DispatchQueue.main.async {
                     finish?()
-                })
+                }
                 return
             }
             
@@ -190,9 +191,9 @@ class FindTeacherViewController: BaseViewController {
                 self?.tableView.reloadData()
             }
             
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            DispatchQueue.main.async {
                 finish?()
-            })
+            }
         }
     }
     
@@ -203,7 +204,7 @@ class FindTeacherViewController: BaseViewController {
     
     
     // MARK: - Event Response
-    @objc private func regionsPickButtonDidTap(isStartup: Bool) {
+    @objc private func regionsPickButtonDidTap(_ isStartup: Bool) {
         
         if let _ = MalaUserDefaults.currentSchool.value {
             
@@ -219,7 +220,7 @@ class FindTeacherViewController: BaseViewController {
                 self?.regionPickButton.schoolName = MalaCurrentSchool?.name
             }
             
-            navigationController?.presentViewController(
+            navigationController?.present(
                 UINavigationController(rootViewController: viewController),
                 animated: true,
                 completion: nil
@@ -232,7 +233,7 @@ class FindTeacherViewController: BaseViewController {
                 self?.regionPickButton.schoolName = MalaCurrentSchool?.name
             }
             
-            navigationController?.presentViewController(
+            navigationController?.present(
                 UINavigationController(rootViewController: viewController),
                 animated: true,
                 completion: nil
@@ -241,11 +242,11 @@ class FindTeacherViewController: BaseViewController {
     }
 
     @objc private func filterButtonDidTap() {
-        TeacherFilterPopupWindow(contentView: FilterView(frame: CGRectZero)).show()
+        TeacherFilterPopupWindow(contentView: FilterView(frame: CGRect.zero)).show()
     }
     
     
     deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: MalaNotification_CommitCondition, object: nil)
+        NotificationCenter.default.removeObserver(self, name: MalaNotification_CommitCondition, object: nil)
     }
 }

@@ -9,7 +9,7 @@
 import Foundation
 
 //  see - https://github.com/dduan/cURLLook
-extension NSURLRequest {
+extension URLRequest {
     /**
      Convenience property, the value of calling `cURLRepresentation()` with no arguments.
      */
@@ -30,25 +30,25 @@ extension NSURLRequest {
      
      - Returns:              a string whose value is a cURL command that would perform the same HTTP request this object represents.
      */
-    public func cURLRepresentation(withURLSession session: NSURLSession? = nil, credential: NSURLCredential? = nil) -> String {
+    public func cURLRepresentation(withURLSession session: URLSession? = nil, credential: URLCredential? = nil) -> String {
         var components = ["curl -i"]
         
-        let URL = self.URL
+        let URL = self.url
         
-        if let HTTPMethod = self.HTTPMethod where HTTPMethod != "GET" {
+        if let HTTPMethod = self.httpMethod, HTTPMethod != "GET" {
             components.append("-X \(HTTPMethod)")
         }
         
-        if let credentialStorage = session?.configuration.URLCredentialStorage {
-            let protectionSpace = NSURLProtectionSpace(
+        if let credentialStorage = session?.configuration.urlCredentialStorage {
+            let protectionSpace = URLProtectionSpace(
                 host: URL!.host!,
-                port: URL!.port?.integerValue ?? 0,
+                port: URL!.port ?? 0,
                 protocol: URL!.scheme,
                 realm: URL!.host!,
                 authenticationMethod: NSURLAuthenticationMethodHTTPBasic
             )
             
-            if let credentials = credentialStorage.credentialsForProtectionSpace(protectionSpace)?.values {
+            if let credentials = credentialStorage.credentials(for: protectionSpace)?.values {
                 for credential in credentials {
                     components.append("-u \(credential.user!):\(credential.password!)")
                 }
@@ -59,13 +59,13 @@ extension NSURLRequest {
             }
         }
         
-        if session != nil && session!.configuration.HTTPShouldSetCookies {
-            if let
-                cookieStorage = session!.configuration.HTTPCookieStorage,
-                cookies = cookieStorage.cookiesForURL(URL!) where !cookies.isEmpty
+        if session != nil && session!.configuration.httpShouldSetCookies {
+            if
+                let cookieStorage = session!.configuration.httpCookieStorage,
+                let cookies = cookieStorage.cookies(for: URL!), !cookies.isEmpty
             {
-                let string = cookies.reduce("") { $0 + "\($1.name)=\($1.value ?? String());" }
-                components.append("-b \"\(string.substringToIndex(string.endIndex.predecessor()))\"")
+                let string = cookies.reduce("") { $0 + "\($1.name)=\($1.value);" }
+                components.append("-b \"\(string.substring(to: string.index(before: string.endIndex)))\"")
             }
         }
         
@@ -80,10 +80,10 @@ extension NSURLRequest {
             }
         }
         
-        if let additionalHeaders = session?.configuration.HTTPAdditionalHeaders {
+        if let additionalHeaders = session?.configuration.httpAdditionalHeaders {
             for (field, value) in additionalHeaders {
                 switch field {
-                case "Cookie":
+                case AnyHashable("Cookie"):
                     continue
                 default:
                     components.append("-H \"\(field): \(value)\"")
@@ -91,17 +91,17 @@ extension NSURLRequest {
             }
         }
         
-        if let
-            HTTPBodyData = self.HTTPBody,
-            HTTPBody = NSString(data: HTTPBodyData, encoding: NSUTF8StringEncoding)
+        if
+            let HTTPBodyData = self.httpBody,
+            let HTTPBody = NSString(data: HTTPBodyData, encoding: String.Encoding.utf8.rawValue)
         {
-            let escapedBody = HTTPBody.stringByReplacingOccurrencesOfString("\"", withString: "\\\"")
+            let escapedBody = HTTPBody.replacingOccurrences(of: "\"", with: "\\\"")
             components.append("-d \"\(escapedBody)\"")
         }
         
         components.append("\"\(URL!.absoluteString)\"")
         
-        return components.joinWithSeparator(" \\\n\t")
+        return components.joined(separator: " \\\n\t")
     }
     
 }

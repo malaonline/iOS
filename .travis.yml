@@ -13,6 +13,7 @@ before_install:
 - gem install xcpretty
 - security list-keychain
 install:
+- sudo gem install cocoapods --pre
 - pod repo remove master
 - travis_wait pod setup
 - pod install

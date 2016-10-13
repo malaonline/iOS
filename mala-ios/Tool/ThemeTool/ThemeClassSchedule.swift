@@ -39,39 +39,39 @@ class ThemeClassSchedule: UICollectionView, UICollectionViewDelegate, UICollecti
         delegate = self
         dataSource = self
         backgroundColor = MalaColor_88BCDE_0
-        self.layer.borderColor = MalaColor_88BCDE_0.CGColor
+        self.layer.borderColor = MalaColor_88BCDE_0.cgColor
         self.layer.borderWidth = 1
         
-        registerClass(ThemeClassScheduleCell.self, forCellWithReuseIdentifier: ThemeClassScheduleCellReuseId)
+        register(ThemeClassScheduleCell.self, forCellWithReuseIdentifier: ThemeClassScheduleCellReuseId)
     }
     
     
     // MARK: - DataSource
-    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 6
     }
     
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 8
     }
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(ThemeClassScheduleCellReuseId, forIndexPath: indexPath) as! ThemeClassScheduleCell
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ThemeClassScheduleCellReuseId, for: indexPath) as! ThemeClassScheduleCell
         
         // 重置Cell样式
         cell.reset()
         
         // 设置Cell列头标题
-        if indexPath.section == 0 {
-            cell.title = ThemeClassScheduleSectionTitles[indexPath.row]
+        if (indexPath as NSIndexPath).section == 0 {
+            cell.title = ThemeClassScheduleSectionTitles[(indexPath as NSIndexPath).row]
             cell.hiddenTitle = false
-            cell.button.highlighted = true
+            cell.button.isHighlighted = true
         }
         
         // 设置Cell行头标题
-        if indexPath.row == 0 && indexPath.section > 0 && (model ?? []) != [] {
+        if (indexPath as NSIndexPath).row == 0 && (indexPath as NSIndexPath).section > 0 && (model ?? []) != [] {
             // 行头数据源
-            let rowTitleModel = model?[0][indexPath.section-1]
+            let rowTitleModel = model?[0][(indexPath as NSIndexPath).section-1]
             cell.start = rowTitleModel?.start
             cell.end = rowTitleModel?.end
             cell.hiddenTime = false
@@ -79,52 +79,52 @@ class ThemeClassSchedule: UICollectionView, UICollectionViewDelegate, UICollecti
         }
         
         // 根据数据源设置显示样式
-        if indexPath.section > 0 && indexPath.row > 0 && (model ?? []) != [] {
-            let itemModel = model?[indexPath.row-1][indexPath.section-1]
+        if (indexPath as NSIndexPath).section > 0 && (indexPath as NSIndexPath).row > 0 && (model ?? []) != [] {
+            let itemModel = model?[(indexPath as NSIndexPath).row-1][(indexPath as NSIndexPath).section-1]
             
             // 若不可选择 - disable
-            cell.button.enabled = itemModel?.available ?? false
+            cell.button.isEnabled = itemModel?.available ?? false
             
             // 若为预留 - reserved
             cell.reserved = (itemModel?.available == true && itemModel?.reserved == true)
             
             // 若已选择的 - selected
             if itemModel?.isSelected != nil {
-                cell.button.selected = itemModel!.isSelected
+                cell.button.isSelected = itemModel!.isSelected
             }
         }
         return cell
     }
     
     // MARK: - Delegate
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         // 获取Cell对象
-        let cell = collectionView.cellForItemAtIndexPath(indexPath) as! ThemeClassScheduleCell
-        cell.button.selected = !cell.button.selected
+        let cell = collectionView.cellForItem(at: indexPath) as! ThemeClassScheduleCell
+        cell.button.isSelected = !cell.button.isSelected
         
         
         // 获取数据模型
-        if self.model != nil && indexPath.row >= 1 && indexPath.section >= 1 {
-            let model = self.model![indexPath.row-1][indexPath.section-1]
+        if self.model != nil && (indexPath as NSIndexPath).row >= 1 && (indexPath as NSIndexPath).section >= 1 {
+            let model = self.model![(indexPath as NSIndexPath).row-1][(indexPath as NSIndexPath).section-1]
             println("点击model: \(model)")
-            let weekID = (indexPath.row == 7 ? 0 : indexPath.row)
+            let weekID = ((indexPath as NSIndexPath).row == 7 ? 0 : (indexPath as NSIndexPath).row)
             model.weekID = weekID
-            NSNotificationCenter.defaultCenter().postNotificationName(MalaNotification_ClassScheduleDidTap, object: model)
-            model.isSelected = cell.button.selected
+            NotificationCenter.default.post(name: MalaNotification_ClassScheduleDidTap, object: model)
+            model.isSelected = cell.button.isSelected
         }
     }
     
-    func collectionView(collectionView: UICollectionView, shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
+    func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
         
         // 时间表数据未获取到时，无法点选
-        guard let timeSlots = self.model where timeSlots.count != 0 && timeSlots[0].count != 0 else{
+        guard let timeSlots = self.model, timeSlots.count != 0 && timeSlots[0].count != 0 else{
             return false
         }
         
         // 不可点击表头、行头
-        if indexPath.section > 0 && indexPath.row > 0 {
-            if let itemModel = model?[indexPath.row-1][indexPath.section-1] {
-                return itemModel.available ?? false
+        if (indexPath as NSIndexPath).section > 0 && (indexPath as NSIndexPath).row > 0 {
+            if let itemModel = model?[(indexPath as NSIndexPath).row-1][(indexPath as NSIndexPath).section-1] {
+                return itemModel.available
             }else {
                 return false
             }
@@ -140,14 +140,14 @@ class ThemeClassScheduleCell: UICollectionViewCell {
     /// 是否隐藏标题
     var hiddenTitle: Bool = true {
         didSet {
-            titleLabel.hidden = hiddenTitle
+            titleLabel.isHidden = hiddenTitle
         }
     }
     /// 是否隐藏每个时间段的开始时间、结束时间
     var hiddenTime: Bool = true {
         didSet {
-            startLabel.hidden = hiddenTime
-            endLabel.hidden = hiddenTime
+            startLabel.isHidden = hiddenTime
+            endLabel.isHidden = hiddenTime
         }
     }
     /// 标题文字
@@ -172,9 +172,9 @@ class ThemeClassScheduleCell: UICollectionViewCell {
     var reserved: Bool = false {
         didSet {
             if reserved {
-                button.setBackgroundImage(UIImage(named: "timeSlot_bought"), forState: .Normal)
+                button.setBackgroundImage(UIImage(named: "timeSlot_bought"), for: UIControlState())
             }else {
-                button.setBackgroundImage(UIImage.withColor(UIColor.whiteColor()), forState: .Normal)
+                button.setBackgroundImage(UIImage.withColor(UIColor.white), for: UIControlState())
             }
         }
     }
@@ -184,42 +184,42 @@ class ThemeClassScheduleCell: UICollectionViewCell {
     /// 多状态样式按钮，不进行用户交互
     lazy var button: UIButton = {
         let button = UIButton()
-        button.setBackgroundImage(UIImage.withColor(UIColor.whiteColor()), forState: .Normal)
-        button.setBackgroundImage(UIImage.withColor(MalaColor_EDEDED_0), forState: .Disabled)
-        button.setBackgroundImage(UIImage.withColor(MalaColor_ABD0E8_0), forState: .Selected)
-        button.setBackgroundImage(UIImage.withColor(MalaColor_88BCDE_0), forState: .Highlighted)
-        button.userInteractionEnabled = false
+        button.setBackgroundImage(UIImage.withColor(UIColor.white), for: UIControlState())
+        button.setBackgroundImage(UIImage.withColor(MalaColor_EDEDED_0), for: .disabled)
+        button.setBackgroundImage(UIImage.withColor(MalaColor_ABD0E8_0), for: .selected)
+        button.setBackgroundImage(UIImage.withColor(MalaColor_88BCDE_0), for: .highlighted)
+        button.isUserInteractionEnabled = false
         return button
     }()
     /// 标题label
     private lazy var titleLabel: UILabel = {
         let titleLabel = UILabel()
-        titleLabel.font = UIFont.systemFontOfSize(12)
-        titleLabel.textColor = UIColor.whiteColor()
-        titleLabel.hidden = true
-        titleLabel.textAlignment = .Center
+        titleLabel.font = UIFont.systemFont(ofSize: 12)
+        titleLabel.textColor = UIColor.white
+        titleLabel.isHidden = true
+        titleLabel.textAlignment = .center
         return titleLabel
     }()
     /// 第一个时间段label
     private lazy var startLabel: UILabel = {
         let startLabel = UILabel()
         startLabel.text = "00:00"
-        startLabel.font = UIFont.systemFontOfSize(12)
+        startLabel.font = UIFont.systemFont(ofSize: 12)
         startLabel.textColor = MalaColor_939393_0
-        startLabel.backgroundColor = UIColor.clearColor()
-        startLabel.hidden = true
-        startLabel.textAlignment = .Center
+        startLabel.backgroundColor = UIColor.clear
+        startLabel.isHidden = true
+        startLabel.textAlignment = .center
         return startLabel
     }()
     /// 第二个时间段label
     private lazy var endLabel: UILabel = {
         let endLabel = UILabel()
         endLabel.text = "00:00"
-        endLabel.font = UIFont.systemFontOfSize(12)
+        endLabel.font = UIFont.systemFont(ofSize: 12)
         endLabel.textColor = MalaColor_939393_0
-        endLabel.backgroundColor = UIColor.clearColor()
-        endLabel.hidden = true
-        endLabel.textAlignment = .Center
+        endLabel.backgroundColor = UIColor.clear
+        endLabel.isHidden = true
+        endLabel.textAlignment = .center
         return endLabel
     }()
     
@@ -247,26 +247,26 @@ class ThemeClassScheduleCell: UICollectionViewCell {
         contentView.insertSubview(titleLabel, aboveSubview: endLabel)
         
         // Autolayout
-        button.snp_makeConstraints { (make) -> Void in
-            make.size.equalTo(contentView.snp_size)
-            make.center.equalTo(contentView.snp_center)
+        button.snp.makeConstraints { (maker) -> Void in
+            maker.size.equalTo(contentView.snp.size)
+            maker.center.equalTo(contentView.snp.center)
         }
-        startLabel.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(contentView.snp_top)
-            make.left.equalTo(contentView.snp_left)
-            make.right.equalTo(contentView.snp_right)
-            make.height.equalTo(contentView.snp_height).multipliedBy(0.5)
+        startLabel.snp.makeConstraints { (maker) -> Void in
+            maker.top.equalTo(contentView.snp.top)
+            maker.left.equalTo(contentView.snp.left)
+            maker.right.equalTo(contentView.snp.right)
+            maker.height.equalTo(contentView.snp.height).multipliedBy(0.5)
         }
-        endLabel.snp_makeConstraints { (make) -> Void in
-            make.bottom.equalTo(contentView.snp_bottom)
-            make.left.equalTo(contentView.snp_left)
-            make.right.equalTo(contentView.snp_right)
-            make.height.equalTo(contentView.snp_height).multipliedBy(0.5)
+        endLabel.snp.makeConstraints { (maker) -> Void in
+            maker.bottom.equalTo(contentView.snp.bottom)
+            maker.left.equalTo(contentView.snp.left)
+            maker.right.equalTo(contentView.snp.right)
+            maker.height.equalTo(contentView.snp.height).multipliedBy(0.5)
         }
-        titleLabel.snp_makeConstraints { (make) -> Void in
-            make.width.equalTo(contentView.snp_width)
-            make.height.equalTo(12)
-            make.center.equalTo(contentView.snp_center)
+        titleLabel.snp.makeConstraints { (maker) -> Void in
+            maker.width.equalTo(contentView.snp.width)
+            maker.height.equalTo(12)
+            maker.center.equalTo(contentView.snp.center)
         }
     }
     
@@ -280,16 +280,16 @@ class ThemeClassScheduleCell: UICollectionViewCell {
     
     ///  设置button为normal状态
     func setNormal() {
-        self.button.selected = false
-        self.button.highlighted = false
-        self.button.enabled = true
+        self.button.isSelected = false
+        self.button.isHighlighted = false
+        self.button.isEnabled = true
     }
 }
 
 
 class ThemeClassScheduleFlowLayout: UICollectionViewFlowLayout {
     
-    private var frame = CGRectZero
+    private var frame = CGRect.zero
     
     // MARK: - Instance Method
     init(frame: CGRect) {
@@ -306,15 +306,15 @@ class ThemeClassScheduleFlowLayout: UICollectionViewFlowLayout {
     
     // MARK: - Private Method
     private func configure() {
-        let deviceName = UIDevice.currentDevice().modelName
+        let deviceName = UIDevice.current.modelName
         
         switch deviceName {
         case "iPhone 5", "iPhone 5s":
             
-            scrollDirection = .Vertical
+            scrollDirection = .vertical
             let itemWidth: CGFloat = frame.width / 8 - 1
             let itemHeight: CGFloat = (frame.height-MalaScreenOnePixel) / 6 - 1
-            itemSize = CGSizeMake(itemWidth, itemHeight)
+            itemSize = CGSize(width: itemWidth, height: itemHeight)
             sectionInset = UIEdgeInsets(top: MalaScreenOnePixel, left: MalaScreenOnePixel, bottom: MalaScreenOnePixel, right: MalaScreenOnePixel)
             minimumInteritemSpacing = 1
             minimumLineSpacing = 1
@@ -322,10 +322,10 @@ class ThemeClassScheduleFlowLayout: UICollectionViewFlowLayout {
             break
         case "iPhone 6", "iPhone 6s":
             
-            scrollDirection = .Vertical
+            scrollDirection = .vertical
             let itemWidth: CGFloat = frame.width / 8 - 1
             let itemHeight: CGFloat = frame.height / 6 - 1
-            itemSize = CGSizeMake(itemWidth, itemHeight)
+            itemSize = CGSize(width: itemWidth, height: itemHeight)
             sectionInset = UIEdgeInsets(top: MalaScreenOnePixel, left: 0, bottom: MalaScreenOnePixel, right: 0)
             minimumInteritemSpacing = 1
             minimumLineSpacing = 1
@@ -333,10 +333,10 @@ class ThemeClassScheduleFlowLayout: UICollectionViewFlowLayout {
             break
         case "iPhone 6 Plus", "iPhone 6s Plus":
             
-            scrollDirection = .Vertical
+            scrollDirection = .vertical
             let itemWidth: CGFloat = frame.width / 8 - MalaScreenOnePixel*2
             let itemHeight: CGFloat = (frame.height+MalaScreenOnePixel) / 6 - MalaScreenOnePixel*2
-            itemSize = CGSizeMake(itemWidth, itemHeight)
+            itemSize = CGSize(width: itemWidth, height: itemHeight)
             sectionInset = UIEdgeInsets(top: MalaScreenOnePixel, left: MalaScreenOnePixel, bottom: MalaScreenOnePixel, right: MalaScreenOnePixel)
             minimumInteritemSpacing = MalaScreenOnePixel*2
             minimumLineSpacing = MalaScreenOnePixel*2
@@ -344,10 +344,10 @@ class ThemeClassScheduleFlowLayout: UICollectionViewFlowLayout {
             break
         default:
             
-            scrollDirection = .Vertical
+            scrollDirection = .vertical
             let itemWidth: CGFloat = frame.width / 8 - 1
             let itemHeight: CGFloat = frame.height / 6 - 1
-            itemSize = CGSizeMake(itemWidth, itemHeight)
+            itemSize = CGSize(width: itemWidth, height: itemHeight)
             sectionInset = UIEdgeInsets(top: MalaScreenOnePixel, left: 0, bottom: MalaScreenOnePixel, right: 0)
             minimumInteritemSpacing = 1
             minimumLineSpacing = 1

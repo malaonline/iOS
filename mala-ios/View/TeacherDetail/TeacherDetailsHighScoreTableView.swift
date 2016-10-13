@@ -26,11 +26,11 @@ class TeacherDetailsHighScoreTableView: UITableView, UITableViewDelegate, UITabl
         
         delegate = self
         dataSource = self
-        registerClass(TeacherDetailsHighScoreTableViewCell.self, forCellReuseIdentifier: TeacherDetailsHighScoreTableViewCellReuseId)
+        register(TeacherDetailsHighScoreTableViewCell.self, forCellReuseIdentifier: TeacherDetailsHighScoreTableViewCellReuseId)
         
         // Style
-        scrollEnabled = false
-        separatorStyle = .None
+        isScrollEnabled = false
+        separatorStyle = .none
         
         setupTableHeaderView()
     }
@@ -42,21 +42,21 @@ class TeacherDetailsHighScoreTableView: UITableView, UITableViewDelegate, UITabl
     
     // MARK: - Private Method
     private func setupTableHeaderView() {
-        let headerView = TeacherDetailsHighScoreTableViewCell(style: .Default, reuseIdentifier: nil)
+        let headerView = TeacherDetailsHighScoreTableViewCell(style: .default, reuseIdentifier: nil)
         headerView.setTableTitles(["姓  名", "提分区间", "所在学校", "考入学校"])
-        headerView.separator.hidden = true
+        headerView.separator.isHidden = true
         self.tableHeaderView = headerView
     }
     
     
     // MARK: - DataSource
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return models.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(TeacherDetailsHighScoreTableViewCellReuseId, forIndexPath: indexPath)
-        let model = models[indexPath.row]
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: TeacherDetailsHighScoreTableViewCellReuseId, for: indexPath)
+        let model = models[(indexPath as NSIndexPath).row]
         if model == nil {
             (cell as! TeacherDetailsHighScoreTableViewCell).model = HighScoreModel(name: "-", score: 0, school: "-", admitted: "-")
         }else {
@@ -67,13 +67,13 @@ class TeacherDetailsHighScoreTableView: UITableView, UITableViewDelegate, UITabl
         return cell
     }
     
-    func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
         return false
     }
 
     
     // MARK: - Delegate
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 33
     }
 }
@@ -85,7 +85,7 @@ class TeacherDetailsHighScoreTableViewCell: UITableViewCell {
     var model: HighScoreModel? {
         didSet {
             nameLabel.text = model!.name
-            scoresLabel.text = String(format: "%d", model!.increased_scores ?? 0)
+            scoresLabel.text = String(format: "%d", model!.increased_scores)
             schoolLabel.text = model!.school_name
             admittedLabel.text = model!.admitted_to
         }
@@ -126,35 +126,35 @@ class TeacherDetailsHighScoreTableViewCell: UITableViewCell {
         contentView.addSubview(separator)
         
         // Autolayout
-        nameLabel.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(self.contentView.snp_top)
-            make.bottom.equalTo(self.contentView.snp_bottom)
-            make.left.equalTo(self.contentView.snp_left)
+        nameLabel.snp.makeConstraints { (maker) -> Void in
+            maker.top.equalTo(self.contentView.snp.top)
+            maker.bottom.equalTo(self.contentView.snp.bottom)
+            maker.left.equalTo(self.contentView.snp.left)
         }
-        scoresLabel.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(self.contentView.snp_top)
-            make.left.equalTo(self.nameLabel.snp_right)
-            make.width.equalTo(self.nameLabel.snp_width)
-            make.height.equalTo(self.nameLabel.snp_height)
+        scoresLabel.snp.makeConstraints { (maker) -> Void in
+            maker.top.equalTo(self.contentView.snp.top)
+            maker.left.equalTo(self.nameLabel.snp.right)
+            maker.width.equalTo(self.nameLabel.snp.width)
+            maker.height.equalTo(self.nameLabel.snp.height)
         }
-        schoolLabel.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(self.contentView.snp_top)
-            make.left.equalTo(self.scoresLabel.snp_right)
-            make.width.equalTo(self.scoresLabel.snp_width)
-            make.height.equalTo(self.scoresLabel.snp_height)
+        schoolLabel.snp.makeConstraints { (maker) -> Void in
+            maker.top.equalTo(self.contentView.snp.top)
+            maker.left.equalTo(self.scoresLabel.snp.right)
+            maker.width.equalTo(self.scoresLabel.snp.width)
+            maker.height.equalTo(self.scoresLabel.snp.height)
         }
-        admittedLabel.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(self.contentView.snp_top)
-            make.left.equalTo(self.schoolLabel.snp_right)
-            make.width.equalTo(self.schoolLabel.snp_width)
-            make.height.equalTo(self.schoolLabel.snp_height)
-            make.right.equalTo(self.contentView.snp_right)
+        admittedLabel.snp.makeConstraints { (maker) -> Void in
+            maker.top.equalTo(self.contentView.snp.top)
+            maker.left.equalTo(self.schoolLabel.snp.right)
+            maker.width.equalTo(self.schoolLabel.snp.width)
+            maker.height.equalTo(self.schoolLabel.snp.height)
+            maker.right.equalTo(self.contentView.snp.right)
         }
-        separator.snp_makeConstraints { (make) -> Void in
-            make.left.equalTo(self.contentView.snp_left)
-            make.right.equalTo(self.contentView.snp_right)
-            make.height.equalTo(MalaScreenOnePixel)
-            make.bottom.equalTo(self.contentView.snp_bottom)
+        separator.snp.makeConstraints { (maker) -> Void in
+            maker.left.equalTo(self.contentView.snp.left)
+            maker.right.equalTo(self.contentView.snp.right)
+            maker.height.equalTo(MalaScreenOnePixel)
+            maker.bottom.equalTo(self.contentView.snp.bottom)
         }
     }
     
@@ -163,7 +163,7 @@ class TeacherDetailsHighScoreTableViewCell: UITableViewCell {
     ///  根据传入的表头字符串数组，生成对应的表头
     ///
     ///  - parameter titles: 表头字符串数组
-    func setTableTitles(titles: [String]) {
+    func setTableTitles(_ titles: [String]) {
         nameLabel.text = titles[0]
         scoresLabel.text = titles[1]
         schoolLabel.text = titles[2]

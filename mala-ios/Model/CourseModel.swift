@@ -8,13 +8,13 @@
 
 import UIKit
 
-public class CourseModel: BaseObjectModel {
+open class CourseModel: BaseObjectModel {
     
     // MARK: - Property
     /// 开始时间 时间戳
-    var start: NSTimeInterval = 0
+    var start: TimeInterval = 0
     /// 结束时间 时间戳
-    var end: NSTimeInterval = 0
+    var end: TimeInterval = 0
     /// 学科名称
     var subject: String = ""
     /// 上课地点名称
@@ -34,10 +34,10 @@ public class CourseModel: BaseObjectModel {
     
     override init(dict: [String: AnyObject]) {
         super.init()
-        setValuesForKeysWithDictionary(dict)
+        setValuesForKeys(dict)
     }
     
-    convenience init(id: Int, start: NSTimeInterval, end: NSTimeInterval, subject: String,
+    convenience init(id: Int, start: TimeInterval, end: TimeInterval, subject: String,
         school: String, is_passed: Bool, teacher: TeacherModel?, comment: CommentModel?) {
             self.init()
             self.id = id
@@ -55,7 +55,7 @@ public class CourseModel: BaseObjectModel {
     }
     
     // MARK: - Override
-    override public func setValue(value: AnyObject?, forKey key: String) {
+    override open func setValue(_ value: Any?, forKey key: String) {
         if key == "teacher" {
             if let dict = value as? [String: AnyObject] {
                 teacher = TeacherModel(dict: dict)
@@ -71,14 +71,14 @@ public class CourseModel: BaseObjectModel {
         super.setValue(value, forKey: key)
     }
     
-    override public func setValue(value: AnyObject?, forUndefinedKey key: String) {
+    override open func setValue(_ value: Any?, forUndefinedKey key: String) {
         println("StudentCourseModel - Set for UndefinedKey: \(key)")
     }
     
     
     // MARK: - Description
-    override public var description: String {
+    override open var description: String {
         let keys = ["id", "start", "end", "subject", "school", "is_passed", "teacher", "comment"]
-        return "\n"+dictionaryWithValuesForKeys(keys).description+"\n"
+        return "\n"+dictionaryWithValues(forKeys: keys).description+"\n"
     }
 }

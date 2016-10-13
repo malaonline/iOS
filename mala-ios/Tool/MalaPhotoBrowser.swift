@@ -10,7 +10,7 @@ import UIKit
 
 private let MalaPhotoBrowserCellReuseID = "MalaPhotoBrowserCellReuseID"
 
-public class MalaPhotoBrowser: BaseViewController, UICollectionViewDataSource, UICollectionViewDelegate, SKPhotoBrowserDelegate {
+open class MalaPhotoBrowser: BaseViewController, UICollectionViewDataSource, UICollectionViewDelegate, SKPhotoBrowserDelegate {
 
     // MARK: - Property
     var imageURLs: [String] = [] {
@@ -29,20 +29,20 @@ public class MalaPhotoBrowser: BaseViewController, UICollectionViewDataSource, U
     var images: [SKPhoto] = [SKPhoto]()
     /// 相册
     private lazy var collectionView: UICollectionView = {
-        let collectionView = UICollectionView(frame: CGRectZero, collectionViewLayout: MalaPhotoBrowserFlowLayout())
+        let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: MalaPhotoBrowserFlowLayout())
         return collectionView
     }()
     
     
     // MARK: - Life Cycle
-    override public func viewDidLoad() {
+    override open func viewDidLoad() {
         super.viewDidLoad()
 
         configure()
         setupUserInterface()
     }
 
-    override public func didReceiveMemoryWarning() {
+    override open func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
@@ -53,7 +53,7 @@ public class MalaPhotoBrowser: BaseViewController, UICollectionViewDataSource, U
         collectionView.dataSource = self
         collectionView.delegate = self
         
-        collectionView.registerClass(MalaPhotoBrowserCell.self, forCellWithReuseIdentifier: MalaPhotoBrowserCellReuseID)
+        collectionView.register(MalaPhotoBrowserCell.self, forCellWithReuseIdentifier: MalaPhotoBrowserCellReuseID)
     }
     
     private func setupUserInterface() {
@@ -64,29 +64,29 @@ public class MalaPhotoBrowser: BaseViewController, UICollectionViewDataSource, U
         view.addSubview(collectionView)
         
         // Autolayout
-        collectionView.snp_makeConstraints { (make) -> Void in
-            make.size.equalTo(view.snp_size)
-            make.center.equalTo(view.snp_center)
+        collectionView.snp.makeConstraints { (maker) -> Void in
+            maker.size.equalTo(view.snp.size)
+            maker.center.equalTo(view.snp.center)
         }
     }
     
     
     // MARK: - DataSource
-    public func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    open func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return images.count
     }
     
-    public func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(MalaPhotoBrowserCellReuseID, forIndexPath: indexPath) as! MalaPhotoBrowserCell
-        cell.imageURL = imageURLs[indexPath.row]
+    open func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MalaPhotoBrowserCellReuseID, for: indexPath) as! MalaPhotoBrowserCell
+        cell.imageURL = imageURLs[(indexPath as NSIndexPath).row]
         return cell
     }
     
     
     // MARK: - Delegate
-    public func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    open func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        guard let cell = collectionView.cellForItemAtIndexPath(indexPath) as? MalaPhotoBrowserCell else {
+        guard let cell = collectionView.cellForItem(at: indexPath) as? MalaPhotoBrowserCell else {
             return
         }
         
@@ -95,33 +95,33 @@ public class MalaPhotoBrowser: BaseViewController, UICollectionViewDataSource, U
         }
         
         /// 图片浏览器
-        let browser = SKPhotoBrowser(originImage: originImage, photos: images, animatedFromView: cell)
-        browser.initializePageIndex(indexPath.row)
-        browser.delegate = self
-        browser.statusBarStyle = nil
-        browser.displayAction = false
-        browser.bounceAnimation = false
-        browser.displayDeleteButton = false
-        browser.displayBackAndForwardButton = false
+        SKPhotoBrowserOptions.displayStatusbar = false
+        SKPhotoBrowserOptions.displayAction = false
+        SKPhotoBrowserOptions.bounceAnimation = false
+        SKPhotoBrowserOptions.displayDeleteButton = false
+        SKPhotoBrowserOptions.displayBackAndForwardButton = false
         
-        presentViewController(browser, animated: true, completion: {})
+        let browser = SKPhotoBrowser(originImage: originImage, photos: images, animatedFromView: cell)
+        browser.initializePageIndex((indexPath as NSIndexPath).row)
+        browser.delegate = self
+        present(browser, animated: true, completion: {})
     }
 
 }
 
 
-public class MalaPhotoBrowserFlowLayout: UICollectionViewFlowLayout {
+open class MalaPhotoBrowserFlowLayout: UICollectionViewFlowLayout {
     
     // MARK: - Instance Method
     override init() {
         super.init()
         
-        scrollDirection = .Vertical
+        scrollDirection = .vertical
         let itemCountInRow: CGFloat = 3
         let itemMargin: CGFloat = 10
         let itemWidth: CGFloat = (MalaScreenWidth - itemMargin*(itemCountInRow+1))/itemCountInRow
         let itemHeight: CGFloat = (MalaScreenWidth - itemMargin*(itemCountInRow+1))/itemCountInRow
-        itemSize = CGSizeMake(itemWidth, itemHeight)
+        itemSize = CGSize(width: itemWidth, height: itemHeight)
         minimumInteritemSpacing = itemMargin
         minimumLineSpacing = itemMargin
         sectionInset = UIEdgeInsetsMake(itemMargin, itemMargin, itemMargin, itemMargin)
@@ -133,20 +133,20 @@ public class MalaPhotoBrowserFlowLayout: UICollectionViewFlowLayout {
 }
 
 
-public class MalaPhotoBrowserCell: UICollectionViewCell {
+open class MalaPhotoBrowserCell: UICollectionViewCell {
     
     // MARK: - Property
     /// 当前Cell图片URL
     var imageURL: String = "" {
         didSet {
-            contentImageView.ma_setImage(NSURL(string: imageURL) ?? NSURL())
+            contentImageView.ma_setImage(URL(string: imageURL))
         }
     }
     
     
     // MARK: - Components
     /// 图片视图
-    private lazy var contentImageView: UIImageView = {
+    lazy var contentImageView: UIImageView = {
         let contentImageView = UIImageView.placeHolder()
         contentImageView.image = UIImage(named: "detailPicture_placeholder")
         return contentImageView
@@ -170,9 +170,9 @@ public class MalaPhotoBrowserCell: UICollectionViewCell {
         contentView.addSubview(contentImageView)
         
         // Autolayout
-        contentImageView.snp_makeConstraints { (make) -> Void in
-            make.center.equalTo(contentView.snp_center)
-            make.size.equalTo(contentView.snp_size)
+        contentImageView.snp.makeConstraints { (maker) -> Void in
+            maker.center.equalTo(contentView.snp.center)
+            maker.size.equalTo(contentView.snp.size)
         }
     }
 }

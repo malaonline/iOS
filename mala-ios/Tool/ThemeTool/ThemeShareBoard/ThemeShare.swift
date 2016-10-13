@@ -36,20 +36,20 @@ class ThemeShare: NSObject, UIGestureRecognizerDelegate {
         showShareBoardWhileBlockingUI(true)
     }
     
-    class func showShareBoardWhileBlockingUI(blockingUI: Bool) {
+    class func showShareBoardWhileBlockingUI(_ blockingUI: Bool) {
                 
         if self.sharedInstance.isShowing {
             return
         }
         
-        dispatch_async(dispatch_get_main_queue()) {
+        DispatchQueue.main.async {
             if
-                let appDelegate = UIApplication.sharedApplication().delegate as? AppDelegate,
+                let appDelegate = UIApplication.shared.delegate as? AppDelegate,
                 let window = appDelegate.window {
                 
                 self.sharedInstance.isShowing = true
                 
-                self.sharedInstance.shareBoard.userInteractionEnabled = blockingUI
+                self.sharedInstance.shareBoard.isUserInteractionEnabled = blockingUI
                 
                 self.sharedInstance.shareBoard.alpha = 0
                 window.addSubview(self.sharedInstance.shareBoard)
@@ -59,7 +59,7 @@ class ThemeShare: NSObject, UIGestureRecognizerDelegate {
                 let height = window.bounds.size.height
                 self.sharedInstance.shareBoard.frame = CGRect(x: 0, y: 0, width: width, height: height)
                 
-                UIView.animateWithDuration(0.1, delay: 0.0, options: UIViewAnimationOptions(rawValue: 0), animations: { () -> Void in
+                UIView.animate(withDuration: 0.1, delay: 0.0, options: UIViewAnimationOptions(rawValue: 0), animations: { () -> Void in
                     self.sharedInstance.shareBoard.alpha = 1
                     
                     }, completion: { (finished) -> Void in
@@ -68,16 +68,16 @@ class ThemeShare: NSObject, UIGestureRecognizerDelegate {
         }
     }
     
-    class func hideShareBoard(completion: () -> Void) {
+    class func hideShareBoard(_ completion: () -> Void) {
         
-        dispatch_async(dispatch_get_main_queue()) {
+        DispatchQueue.main.async {
             
             if self.sharedInstance.isShowing {
                 
-                UIView.animateWithDuration(0.2, delay: 0.0, options: UIViewAnimationOptions(rawValue: 0), animations: { () -> Void in
+                UIView.animate(withDuration: 0.2, delay: 0.0, options: UIViewAnimationOptions(rawValue: 0), animations: { () -> Void in
                     
                     }, completion: { (finished) -> Void in
-                        UIView.animateWithDuration(0.1, delay: 0.0, options: UIViewAnimationOptions(rawValue: 0), animations: { () -> Void in
+                        UIView.animate(withDuration: 0.1, delay: 0.0, options: UIViewAnimationOptions(rawValue: 0), animations: { () -> Void in
                             
                             self.sharedInstance.shareBoard.alpha = 0
                             
@@ -91,8 +91,8 @@ class ThemeShare: NSObject, UIGestureRecognizerDelegate {
         }
     }
     
-    func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldReceiveTouch touch: UITouch) -> Bool {
-        if let tag = touch.view?.tag where tag == 1099 {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        if let tag = touch.view?.tag, tag == 1099 {
             return true
         }
         return false

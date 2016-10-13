@@ -37,10 +37,10 @@ class OrderForm: BaseObjectModel {
     var avatarURL: String?
     var amount: Int = 0
     var evaluated: Bool?
-    var timeSlots: [[NSTimeInterval]]?
+    var timeSlots: [[TimeInterval]]?
     var chargeChannel: String?
-    var createAt: NSTimeInterval?
-    var paidAt: NSTimeInterval?
+    var createAt: TimeInterval?
+    var paidAt: TimeInterval?
     var teacherPublished: Bool?
     
     // 其他
@@ -71,7 +71,7 @@ class OrderForm: BaseObjectModel {
         self.code = code
     }
     
-    convenience init(id: Int, orderId: String?, teacherId: Int?, teacherName: String?, avatarURL: String? = nil, schoolId: Int? = nil, schoolName: String?, gradeName: String?, subjectName: String?, orderStatus: String?, hours: Int = 0, amount: Int, timeSlots: [[NSTimeInterval]] = [], chargeChannel: String? = "other", createAt: NSTimeInterval = 0, evaluated: Bool?, teacherPublished: Bool? = false) {
+    convenience init(id: Int, orderId: String?, teacherId: Int?, teacherName: String?, avatarURL: String? = nil, schoolId: Int? = nil, schoolName: String?, gradeName: String?, subjectName: String?, orderStatus: String?, hours: Int = 0, amount: Int, timeSlots: [[TimeInterval]] = [], chargeChannel: String? = "other", createAt: TimeInterval = 0, evaluated: Bool?, teacherPublished: Bool? = false) {
         self.init()
         self.id = id
         self.order_id = orderId
@@ -93,7 +93,7 @@ class OrderForm: BaseObjectModel {
     }
     
     convenience init(id: Int?, name: String?, teacher: Int?, school: Int?, grade: Int?, subject: Int?, coupon: Int?, hours: Int?, timeSchedule: [Int]?,
-                     order_id: String?, parent: Int?, total: Int?, price: Int?, status: String?, is_timeslot_allocated: Bool?, timeSlots: [[NSTimeInterval]]? = nil, chargeChannel: String? = "other", createAt: NSTimeInterval? = 0) {
+                     order_id: String?, parent: Int?, total: Int?, price: Int?, status: String?, is_timeslot_allocated: Bool?, timeSlots: [[TimeInterval]]? = nil, chargeChannel: String? = "other", createAt: TimeInterval? = 0) {
             self.init()
             self.id = id ?? 0
             self.name = name
@@ -124,18 +124,27 @@ class OrderForm: BaseObjectModel {
     // MARK: - Description
     override var description: String {
         let keys = ["id", "name", "teacher", "school", "grade", "subject", "coupon", "hours", "weekly_time_slots", "order_id", "parent", "total", "price", "status", "schoolName"]
-        return dictionaryWithValuesForKeys(keys).description
+        return dictionaryWithValues(forKeys: keys).description
     }
     
     func jsonDictionary() -> JSONDictionary {
+        
+        let teacher = self.teacher as AnyObject?
+        let school = self.school as AnyObject
+        let grade = self.grade as AnyObject
+        let subject = self.subject as AnyObject
+        let hours = self.hours as AnyObject
+        let coupon = self.coupon
+        let timeslots = self.weekly_time_slots as AnyObject
+        
         var json: JSONDictionary = [
-            "teacher": teacher ?? 0,
-            "school": school ?? 0,
-            "grade": grade ?? 0,
-            "subject": subject ?? 0,
-            "hours": hours ?? 0,
-            "coupon": coupon ?? 0,
-            "weekly_time_slots": weekly_time_slots ?? [],
+            "teacher": teacher ?? 0 as AnyObject,
+            "school": school,
+            "grade": grade,
+            "subject": subject,
+            "hours": hours,
+            "coupon": coupon as AnyObject,
+            "weekly_time_slots": timeslots,
         ]
         if coupon == 0 {
             json["coupon"] = NSNull()

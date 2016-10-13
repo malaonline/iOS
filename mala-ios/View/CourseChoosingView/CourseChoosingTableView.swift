@@ -31,7 +31,7 @@ class CourseChoosingTableView: UITableView, UITableViewDelegate, UITableViewData
     /// 教师详情模型
     var teacherModel: TeacherDetailModel? {
         didSet {
-            dispatch_async(dispatch_get_main_queue(), { [weak self] () -> Void in
+            DispatchQueue.main.async(execute: { [weak self] () -> Void in
                 self?.reloadData()
                 })
         }
@@ -40,8 +40,8 @@ class CourseChoosingTableView: UITableView, UITableViewDelegate, UITableViewData
     var isOpenTimeScheduleCell: Bool = true {
         didSet {
             if isOpenTimeScheduleCell != oldValue {
-                dispatch_async(dispatch_get_main_queue(), { [weak self] () -> Void in
-                    self?.reloadSections(NSIndexSet(index: 3), withRowAnimation: .Fade)
+                DispatchQueue.main.async(execute: { [weak self] () -> Void in
+                    self?.reloadSections(IndexSet(integer: 3), with: .fade)
                 })
             }
         }
@@ -50,23 +50,23 @@ class CourseChoosingTableView: UITableView, UITableViewDelegate, UITableViewData
     var classScheduleModel: [[ClassScheduleDayModel]] = [] {
         didSet {
             // 刷新 [选择上课地点][选择小时][上课时间] Cell
-            dispatch_async(dispatch_get_main_queue(), { [weak self] () -> Void in
-                self?.reloadSections(NSIndexSet(index: 1), withRowAnimation: .Fade)
+            DispatchQueue.main.async(execute: { [weak self] () -> Void in
+                self?.reloadSections(IndexSet(integer: 1), with: .fade)
             })
 
         }
     }
     /// 上课时间表数据
-    var timeScheduleResult: [[NSTimeInterval]] = [] {
+    var timeScheduleResult: [[TimeInterval]] = [] {
         didSet {
             // 刷新 [上课时间] Cell
-            dispatch_async(dispatch_get_main_queue(), { [weak self] () -> Void in
-                self?.reloadSections(NSIndexSet(index: 3), withRowAnimation: .Fade)
+            DispatchQueue.main.async(execute: { [weak self] () -> Void in
+                self?.reloadSections(IndexSet(integer: 3), with: .fade)
             })
 
         }
     }
-    var selectedIndexPath: NSIndexPath?
+    var selectedIndexPath: IndexPath?
     
     
     // MARK: - Constructed
@@ -85,47 +85,47 @@ class CourseChoosingTableView: UITableView, UITableViewDelegate, UITableViewData
         dataSource = self
         backgroundColor = MalaColor_EDEDED_0
         estimatedRowHeight = 400
-        separatorStyle = .None
+        separatorStyle = .none
         bounces = false
         contentInset = UIEdgeInsets(top: -40, left: 0, bottom: 4, right: 0)
          
         
-        registerClass(CourseChoosingGradeCell.self, forCellReuseIdentifier: CourseChoosingCellReuseId[0]!)
-        registerClass(CourseChoosingClassScheduleCell.self, forCellReuseIdentifier: CourseChoosingCellReuseId[1]!)
-        registerClass(CourseChoosingClassPeriodCell.self, forCellReuseIdentifier: CourseChoosingCellReuseId[2]!)
-        registerClass(CourseChoosingTimeScheduleCell.self, forCellReuseIdentifier: CourseChoosingCellReuseId[3]!)
-        registerClass(CourseChoosingOtherServiceCell.self, forCellReuseIdentifier: CourseChoosingCellReuseId[4]!)
+        register(CourseChoosingGradeCell.self, forCellReuseIdentifier: CourseChoosingCellReuseId[0]!)
+        register(CourseChoosingClassScheduleCell.self, forCellReuseIdentifier: CourseChoosingCellReuseId[1]!)
+        register(CourseChoosingClassPeriodCell.self, forCellReuseIdentifier: CourseChoosingCellReuseId[2]!)
+        register(CourseChoosingTimeScheduleCell.self, forCellReuseIdentifier: CourseChoosingCellReuseId[3]!)
+        register(CourseChoosingOtherServiceCell.self, forCellReuseIdentifier: CourseChoosingCellReuseId[4]!)
     }
     
     // MARK: - Delegate
-    func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
         return true
     }
     
-    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return section == 0 ? 0 : 4
     }
     
-    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 4
     }
     
     
     // MARK: - DataSource
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return CourseChoosingCellReuseId.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let reuseCell = tableView.dequeueReusableCellWithIdentifier(CourseChoosingCellReuseId[indexPath.section]!, forIndexPath: indexPath)
-        reuseCell.selectionStyle = .None
-        (reuseCell as! MalaBaseCell).title = CourseChoosingCellTitle[indexPath.section+1]
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let reuseCell = tableView.dequeueReusableCell(withIdentifier: CourseChoosingCellReuseId[(indexPath as NSIndexPath).section]!, for: indexPath)
+        reuseCell.selectionStyle = .none
+        (reuseCell as! MalaBaseCell).title = CourseChoosingCellTitle[(indexPath as NSIndexPath).section+1]
         
-        switch indexPath.section {
+        switch (indexPath as NSIndexPath).section {
         case 0:
             let cell = reuseCell as! CourseChoosingGradeCell
             cell.prices = MalaCurrentCourse.grades ?? []
@@ -150,7 +150,7 @@ class CourseChoosingTableView: UITableView, UITableViewDelegate, UITableViewData
             
         case 4:
             let cell = reuseCell as! CourseChoosingOtherServiceCell
-            cell.price = MalaCurrentCourse.getOriginalPrice() ?? 0
+            cell.price = MalaCurrentCourse.getOriginalPrice()
             return cell
             
         default:

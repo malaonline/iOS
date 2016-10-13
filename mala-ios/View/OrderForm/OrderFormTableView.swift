@@ -30,7 +30,7 @@ class OrderFormTableView: UITableView, UITableViewDelegate, UITableViewDataSourc
             self.reloadData()
             delay(0.5) { [weak self] in
                 self?.shouldHiddenTimeSlots = false
-                self?.reloadSections(NSIndexSet(index: 1), withRowAnimation: .Fade)
+                self?.reloadSections(IndexSet(integer: 1), with: .fade)
                 ThemeHUD.hideActivityIndicator()
             }
         }
@@ -58,49 +58,49 @@ class OrderFormTableView: UITableView, UITableViewDelegate, UITableViewDataSourc
         dataSource = self
         backgroundColor = MalaColor_EDEDED_0
         estimatedRowHeight = 500
-        separatorStyle = .None
+        separatorStyle = .none
         contentInset = UIEdgeInsets(top: -25, left: 0, bottom: 4, right: 0)
         
-        registerClass(OrderFormStatusCell.self, forCellReuseIdentifier: OrderFormCellReuseId[0]!)
-        registerClass(OrderFormTimeScheduleCell.self, forCellReuseIdentifier: OrderFormCellReuseId[1]!)
-        registerClass(OrderFormPaymentChannelCell.self, forCellReuseIdentifier: OrderFormCellReuseId[2]!)
-        registerClass(OrderFormOtherInfoCell.self, forCellReuseIdentifier: OrderFormCellReuseId[3]!)
+        register(OrderFormStatusCell.self, forCellReuseIdentifier: OrderFormCellReuseId[0]!)
+        register(OrderFormTimeScheduleCell.self, forCellReuseIdentifier: OrderFormCellReuseId[1]!)
+        register(OrderFormPaymentChannelCell.self, forCellReuseIdentifier: OrderFormCellReuseId[2]!)
+        register(OrderFormOtherInfoCell.self, forCellReuseIdentifier: OrderFormCellReuseId[3]!)
     }
     
     
     // MARK: - Delegate
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
     }
     
-    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return section == 0 ? 0 : 4
     }
     
-    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 4
     }
     
     
     // MARK: - DataSource
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         var count = shouldHiddenPaymentChannel ? OrderFormCellReuseId.count-1 : OrderFormCellReuseId.count
         count = model?.status == "c" ? OrderFormCellReuseId.count-2 : count
         return count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let sectionIndex = (indexPath.section >= 2 && shouldHiddenPaymentChannel) ? indexPath.section+1 : indexPath.section
+        let sectionIndex = ((indexPath as NSIndexPath).section >= 2 && shouldHiddenPaymentChannel) ? (indexPath as NSIndexPath).section+1 : (indexPath as NSIndexPath).section
         
-        let reuseCell = tableView.dequeueReusableCellWithIdentifier(OrderFormCellReuseId[sectionIndex]!, forIndexPath: indexPath)
-        reuseCell.selectionStyle = .None
+        let reuseCell = tableView.dequeueReusableCell(withIdentifier: OrderFormCellReuseId[sectionIndex]!, for: indexPath)
+        reuseCell.selectionStyle = .none
         
-        switch indexPath.section {
+        switch (indexPath as NSIndexPath).section {
         case 0:
             let cell = reuseCell as! OrderFormStatusCell
             cell.model = self.model

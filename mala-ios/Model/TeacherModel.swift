@@ -11,7 +11,7 @@ import UIKit
 class TeacherModel: BaseObjectModel {
     
     // MARK: - Property
-    var avatar: NSURL?
+    var avatar: URL?
     var gender: String?
     var level: Int = 0
     var min_price: Int = 0
@@ -28,14 +28,14 @@ class TeacherModel: BaseObjectModel {
     
     override init(dict: [String: AnyObject]) {
         super.init(dict: dict)
-        setValuesForKeysWithDictionary(dict)
+        setValuesForKeys(dict)
     }
     
     convenience init(id: Int, name: String, avatar: String, degree: Int, minPrice: Int, maxPrice: Int, subject: String, shortname: String, tags: [String]) {
         self.init()
         self.id = id
         self.name = name
-        self.avatar = NSURL(string: avatar)
+        self.avatar = URL(string: avatar)
         self.level = degree
         self.min_price = minPrice
         self.max_price = maxPrice
@@ -48,7 +48,7 @@ class TeacherModel: BaseObjectModel {
         self.init()
         self.id = id
         self.name = name
-        self.avatar = NSURL(string: avatar)
+        self.avatar = URL(string: avatar)
     }
     
     required init(coder aDecoder: NSCoder) {
@@ -56,18 +56,18 @@ class TeacherModel: BaseObjectModel {
     }
     
     // MARK: - Override
-    override func setValue(value: AnyObject?, forUndefinedKey key: String) {
+    override func setValue(_ value: Any?, forUndefinedKey key: String) {
         println("TeacherModel - Set for UndefinedKey: \(key)")
     }
     
-    override func setValue(value: AnyObject?, forKey key: String) {
+    override func setValue(_ value: Any?, forKey key: String) {
         // keep the price's value to 0(Int), if the value is null
         if (key == "min_price" || key == "max_price") && value == nil {
             return
         }
         if key == "avatar" {
             if let urlString = value as? String {
-                avatar = NSURL(string: urlString)
+                avatar = URL(string: urlString)
             }
             return
         }
@@ -78,6 +78,6 @@ class TeacherModel: BaseObjectModel {
     // MARK: - Description
     override var description: String {
         let keys = ["id", "name", "avatar", "gender", "level", "min_price", "max_price", "subject", "grades_shortname", "tags"]
-        return dictionaryWithValuesForKeys(keys).description
+        return dictionaryWithValues(forKeys: keys).description
     }
 }

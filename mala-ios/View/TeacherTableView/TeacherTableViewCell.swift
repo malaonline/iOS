@@ -19,14 +19,14 @@ class TeacherTableViewCell: UITableViewCell {
                 return
             }
             
-            courseLabel.setTitle((model.grades_shortname ?? "")+" • "+(model.subject ?? ""), forState: .Normal)
+            courseLabel.setTitle((model.grades_shortname ?? "")+" • "+(model.subject ?? ""), for: UIControlState())
             nameLabel.text = model.name
             levelLabel.text = String(format: "  T%d  ", model.level)
-            avatarView.ma_setImage((model.avatar ?? NSURL()), placeholderImage: UIImage(named: "avatar_placeholder"))
+            avatarView.ma_setImage(model.avatar, placeholderImage: UIImage(named: "avatar_placeholder"))
             
             let string = String(MinPrice: model.min_price.money, MaxPrice: model.max_price.money)
             let attrString: NSMutableAttributedString = NSMutableAttributedString(string: string)
-            let rangeLocation = (string as NSString).rangeOfString("元").location
+            let rangeLocation = (string as NSString).range(of: "元").location
             attrString.addAttribute(
                 NSForegroundColorAttributeName,
                 value: MalaColor_82B4D9_0,
@@ -34,7 +34,7 @@ class TeacherTableViewCell: UITableViewCell {
             )
             attrString.addAttribute(
                 NSFontAttributeName,
-                value: UIFont.systemFontOfSize(14),
+                value: UIFont.systemFont(ofSize: 14),
                 range: NSMakeRange(0, rangeLocation)
             )
             attrString.addAttribute(
@@ -44,12 +44,12 @@ class TeacherTableViewCell: UITableViewCell {
             )
             attrString.addAttribute(
                 NSFontAttributeName,
-                value: UIFont.systemFontOfSize(12),
+                value: UIFont.systemFont(ofSize: 12),
                 range: NSMakeRange(rangeLocation, 4)
             )
             priceLabel.attributedText = attrString
             
-            tagsLabel.text = model.tags?.joinWithSeparator("｜")
+            tagsLabel.text = model.tags?.joined(separator: "｜")
         }
     }
     
@@ -58,16 +58,16 @@ class TeacherTableViewCell: UITableViewCell {
     /// 布局视图（卡片式Cell白色背景）
     private lazy var content: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor.whiteColor()
+        view.backgroundColor = UIColor.white
         return view
     }()
     /// 授课年级及科目label
     private lazy var courseLabel: UIButton = {
         let courseLabel = UIButton()
-        courseLabel.setBackgroundImage(UIImage(named: "tagsTitle"), forState: .Normal)
-        courseLabel.titleLabel?.font = UIFont.systemFontOfSize(11)
+        courseLabel.setBackgroundImage(UIImage(named: "tagsTitle"), for: UIControlState())
+        courseLabel.titleLabel?.font = UIFont.systemFont(ofSize: 11)
         courseLabel.titleEdgeInsets = UIEdgeInsets(top: -1, left: 0, bottom: 1, right: 0)
-        courseLabel.userInteractionEnabled = false
+        courseLabel.isUserInteractionEnabled = false
         return courseLabel
     }()
     /// 老师姓名label
@@ -81,7 +81,7 @@ class TeacherTableViewCell: UITableViewCell {
     private lazy var levelLabel: UILabel = {
         let levelLabel = UILabel()
         levelLabel.font = UIFont(name: "HelveticaNeue-Thin", size: 13)
-        levelLabel.backgroundColor = UIColor.whiteColor()
+        levelLabel.backgroundColor = UIColor.white
         levelLabel.textColor = MalaColor_E26254_0
         return levelLabel
     }()
@@ -98,13 +98,13 @@ class TeacherTableViewCell: UITableViewCell {
         avatarView.layer.cornerRadius = MalaLayout_AvatarSize * 0.5
         avatarView.layer.masksToBounds = true
         avatarView.image = UIImage(named: "avatar_placeholder")
-        avatarView.contentMode = .ScaleAspectFill
+        avatarView.contentMode = .scaleAspectFill
         return avatarView
     }()
     /// 授课价格label
     private lazy var priceLabel: UILabel = {
         let priceLabel = UILabel()
-        priceLabel.font = UIFont.systemFontOfSize(14)
+        priceLabel.font = UIFont.systemFont(ofSize: 14)
         priceLabel.textColor = MalaColor_6C6C6C_0
         return priceLabel
     }()
@@ -132,7 +132,7 @@ class TeacherTableViewCell: UITableViewCell {
     private func setupUserInterface() {
         // Style
         contentView.backgroundColor = MalaColor_EDEDED_0
-        selectionStyle = .None
+        selectionStyle = .none
         
         // SubViews
         contentView.addSubview(content)
@@ -145,51 +145,51 @@ class TeacherTableViewCell: UITableViewCell {
         content.addSubview(tagsLabel)
         
         // Autolayout
-        content.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(self.contentView.snp_top).offset(4)
-            make.left.equalTo(self.contentView.snp_left).offset(12)
-            make.bottom.equalTo(self.contentView.snp_bottom).offset(-4)
-            make.right.equalTo(self.contentView.snp_right).offset(-12)
+        content.snp.makeConstraints { (maker) -> Void in
+            maker.top.equalTo(self.contentView.snp.top).offset(4)
+            maker.left.equalTo(self.contentView.snp.left).offset(12)
+            maker.bottom.equalTo(self.contentView.snp.bottom).offset(-4)
+            maker.right.equalTo(self.contentView.snp.right).offset(-12)
         }
-        courseLabel.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(self.contentView.snp_top).offset(4)
-            make.left.equalTo(self.contentView.snp_left)
-            make.height.equalTo(24)
-            make.width.equalTo(100)
+        courseLabel.snp.makeConstraints { (maker) -> Void in
+            maker.top.equalTo(self.contentView.snp.top).offset(4)
+            maker.left.equalTo(self.contentView.snp.left)
+            maker.height.equalTo(24)
+            maker.width.equalTo(100)
         }
-        nameLabel.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(self.content.snp_top).offset(15)
-            make.centerX.equalTo(self.content.snp_centerX)
-            make.height.equalTo(17)
+        nameLabel.snp.makeConstraints { (maker) -> Void in
+            maker.top.equalTo(self.content.snp.top).offset(15)
+            maker.centerX.equalTo(self.content.snp.centerX)
+            maker.height.equalTo(17)
         }
-        levelLabel.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(self.nameLabel.snp_bottom).offset(10)
-            make.centerX.equalTo(self.content.snp_centerX)
-            make.height.equalTo(13)
+        levelLabel.snp.makeConstraints { (maker) -> Void in
+            maker.top.equalTo(self.nameLabel.snp.bottom).offset(10)
+            maker.centerX.equalTo(self.content.snp.centerX)
+            maker.height.equalTo(13)
         }
-        separator.snp_makeConstraints { (make) -> Void in
-            make.centerX.equalTo(self.content.snp_centerX)
-            make.centerY.equalTo(self.levelLabel.snp_centerY)
-            make.left.equalTo(self.content.snp_left).offset(10)
-            make.right.equalTo(self.content.snp_right).offset(-10)
-            make.height.equalTo(MalaScreenOnePixel)
+        separator.snp.makeConstraints { (maker) -> Void in
+            maker.centerX.equalTo(self.content.snp.centerX)
+            maker.centerY.equalTo(self.levelLabel.snp.centerY)
+            maker.left.equalTo(self.content.snp.left).offset(10)
+            maker.right.equalTo(self.content.snp.right).offset(-10)
+            maker.height.equalTo(MalaScreenOnePixel)
         }
-        avatarView.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(self.levelLabel.snp_bottom).offset(12)
-            make.centerX.equalTo(self.content.snp_centerX)
-            make.width.equalTo(MalaLayout_AvatarSize)
-            make.height.equalTo(MalaLayout_AvatarSize)
+        avatarView.snp.makeConstraints { (maker) -> Void in
+            maker.top.equalTo(self.levelLabel.snp.bottom).offset(12)
+            maker.centerX.equalTo(self.content.snp.centerX)
+            maker.width.equalTo(MalaLayout_AvatarSize)
+            maker.height.equalTo(MalaLayout_AvatarSize)
         }
-        priceLabel.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(self.avatarView.snp_bottom).offset(11)
-            make.centerX.equalTo(self.content.snp_centerX)
-            make.height.equalTo(14)
+        priceLabel.snp.makeConstraints { (maker) -> Void in
+            maker.top.equalTo(self.avatarView.snp.bottom).offset(11)
+            maker.centerX.equalTo(self.content.snp.centerX)
+            maker.height.equalTo(14)
         }
-        tagsLabel.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(self.priceLabel.snp_bottom).offset(12)
-            make.centerX.equalTo(self.content.snp_centerX)
-            make.height.equalTo(11)
-            make.bottom.equalTo(self.content.snp_bottom).offset(-15)
+        tagsLabel.snp.makeConstraints { (maker) -> Void in
+            maker.top.equalTo(self.priceLabel.snp.bottom).offset(12)
+            maker.centerX.equalTo(self.content.snp.centerX)
+            maker.height.equalTo(11)
+            maker.bottom.equalTo(self.content.snp.bottom).offset(-15)
         }
     }
     

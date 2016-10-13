@@ -16,28 +16,30 @@ extension UIImageView {
     ///  - returns: UIImageView
     class func placeHolder() -> UIImageView {
         let placeHolder = UIImageView()
-        placeHolder.contentMode = .ScaleAspectFill
+        placeHolder.contentMode = .scaleAspectFill
         placeHolder.clipsToBounds = true
         return placeHolder
     }
     
     
-    func ma_setImage(URL: NSURL, placeholderImage: Image? = nil, progressBlock: DownloadProgressBlock? = nil, completionHandler: CompletionHandler? = nil) {
+    func ma_setImage(_ URL: URL? = nil, placeholderImage: Image? = nil, progressBlock: DownloadProgressBlock? = nil, completionHandler: CompletionHandler? = nil) {
         
         // 使用图片绝对路径作为缓存键值
-        guard let splitArray = URL.absoluteString?.componentsSeparatedByString("?") else {
+        guard let URL = URL else {
             return
         }
-        guard let pureURL = splitArray.first where !pureURL.isEmpty else {
+        let splitArray = URL.absoluteString.components(separatedBy: "?")
+        guard let pureURL = splitArray.first, !pureURL.isEmpty else {
             return
         }
         
         // 加载图片资源
-        let resource = Kingfisher.Resource(downloadURL: URL, cacheKey: pureURL)
-        self.kf_setImageWithResource(
-            resource,
-            placeholderImage: placeholderImage,
-            optionsInfo: [.Transition(.Fade(0.25)), .TargetCache(ImageCache(name: pureURL))],
+        let resource = ImageResource(downloadURL: URL, cacheKey: pureURL)
+        
+        self.kf.setImage(
+            with: resource,
+            placeholder: placeholderImage,
+            options: [.transition(.fade(0.25)), .targetCache(ImageCache(name: pureURL))],
             progressBlock: progressBlock,
             completionHandler: completionHandler
         )

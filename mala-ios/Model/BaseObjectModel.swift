@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class BaseObjectModel: NSObject, NSCoding {
+open class BaseObjectModel: NSObject, NSCoding {
 
     // MARK: - Property
     var id: Int = 0
@@ -22,12 +22,12 @@ public class BaseObjectModel: NSObject, NSCoding {
     
     init(dict: [String: AnyObject]) {
         super.init()
-        setValuesForKeysWithDictionary(dict)
+        setValuesForKeys(dict)
     }
     
     required public init(coder aDecoder: NSCoder) {
-        self.id = aDecoder.decodeObjectForKey("id") as? Int ?? 0
-        self.name = aDecoder.decodeObjectForKey("name") as? String
+        self.id = aDecoder.decodeObject(forKey: "id") as? Int ?? 0
+        self.name = aDecoder.decodeObject(forKey: "name") as? String
     }
     
     convenience init(id: Int, name: String) {
@@ -38,21 +38,20 @@ public class BaseObjectModel: NSObject, NSCoding {
     
     
     // MARK: - Override
-    override public func setValue(value: AnyObject?, forUndefinedKey key: String) {
+    open override func setValue(_ value: Any?, forUndefinedKey key: String) {
         println("BaseObjectModel - Set for UndefinedKey: \(key)")
     }
     
-    
     // MARK: - Coding
-    public func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeObject(id, forKey: "id")
-        aCoder.encodeObject(name, forKey: "name")
+    open func encode(with aCoder: NSCoder) {
+        aCoder.encode(id, forKey: "id")
+        aCoder.encode(name, forKey: "name")
     }
     
     
     // MARK: - Description
-    override public var description: String {
+    override open var description: String {
         let keys = ["id", "name"]
-        return dictionaryWithValuesForKeys(keys).description
+        return dictionaryWithValues(forKeys: keys).description
     }
 }

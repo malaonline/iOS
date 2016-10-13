@@ -17,9 +17,9 @@ class TeacherDetailsSubjectCell: MalaBaseCell {
             
             if gradeStrings != oldValue {
                 
-                var elementarySchools = [String](count: 6, repeatedValue: "")
-                var juniorSchools = [String](count: 3, repeatedValue: "")
-                var seniorSchools = [String](count: 3, repeatedValue: "")
+                var elementarySchools = [String](repeating: "", count: 6)
+                var juniorSchools = [String](repeating: "", count: 3)
+                var seniorSchools = [String](repeating: "", count: 3)
                 
                 
                 for gradeName in gradeStrings {
@@ -35,7 +35,7 @@ class TeacherDetailsSubjectCell: MalaBaseCell {
                     }
                     
                     // 截取首个字符
-                    let firstCharacter = gradeName.substringToIndex(gradeName.startIndex.advancedBy(1))
+                    let firstCharacter = gradeName.substring(to: gradeName.characters.index(gradeName.startIndex, offsetBy: 1))
                     
                     // 根据字符分隔显示
                     if firstCharacter == "高" {
@@ -47,16 +47,12 @@ class TeacherDetailsSubjectCell: MalaBaseCell {
                     }
                 }
                 
-                println("小学年级数据 -> \(elementarySchools) \n")
-                println("初中年级数据 -> \(juniorSchools) \n")
-                println("高中年级数据 -> \(seniorSchools) \n")
-                
                 // 添加label
                 self.setupTags(elementarySchool, strings: &elementarySchools)
                 
                 let height = (MalaScreenWidth <= 375 && elementarySchools.count > 4) ? 55 : 25
-                elementarySchool.snp_updateConstraints { (make) in
-                    make.height.equalTo(height)
+                elementarySchool.snp.updateConstraints { (maker) in
+                    maker.height.equalTo(height)
                 }
                 
                 self.setupTags(juniorSchool, strings: &juniorSchools)
@@ -114,28 +110,28 @@ class TeacherDetailsSubjectCell: MalaBaseCell {
         content.addSubview(seniorSchool)
         
         // Autolayout
-        elementarySchool.snp_makeConstraints { (make) in
-            make.left.equalTo(content.snp_left)
-            make.right.equalTo(content.snp_right)
-            make.top.equalTo(content.snp_top)
-            make.height.equalTo(25)
+        elementarySchool.snp.makeConstraints { (maker) in
+            maker.left.equalTo(content.snp.left)
+            maker.right.equalTo(content.snp.right)
+            maker.top.equalTo(content.snp.top)
+            maker.height.equalTo(25)
         }
-        juniorSchool.snp_makeConstraints { (make) in
-            make.left.equalTo(content.snp_left)
-            make.right.equalTo(content.snp_right)
-            make.top.equalTo(elementarySchool.snp_bottom).offset(12)
-            make.height.equalTo(25)
+        juniorSchool.snp.makeConstraints { (maker) in
+            maker.left.equalTo(content.snp.left)
+            maker.right.equalTo(content.snp.right)
+            maker.top.equalTo(elementarySchool.snp.bottom).offset(12)
+            maker.height.equalTo(25)
         }
-        seniorSchool.snp_makeConstraints { (make) in
-            make.left.equalTo(content.snp_left)
-            make.right.equalTo(content.snp_right)
-            make.top.equalTo(juniorSchool.snp_bottom).offset(12)
-            make.height.equalTo(25)
-            make.bottom.equalTo(content.snp_bottom)
+        seniorSchool.snp.makeConstraints { (maker) in
+            maker.left.equalTo(content.snp.left)
+            maker.right.equalTo(content.snp.right)
+            maker.top.equalTo(juniorSchool.snp.bottom).offset(12)
+            maker.height.equalTo(25)
+            maker.bottom.equalTo(content.snp.bottom)
         }
     }
     
-    private func setupTags(tagsView: ThemeTagListView, inout strings: [String]) {
+    private func setupTags(_ tagsView: ThemeTagListView, strings: inout [String]) {
         
         // 判断转入数组的所有元素是否都为空字符串
         // 是，将移除对应控件。
@@ -144,8 +140,8 @@ class TeacherDetailsSubjectCell: MalaBaseCell {
         
         for string in strings {
             isEmpty += string
-            if string == "", let index = strings.indexOf(string) {
-                strings.removeAtIndex(index)
+            if string == "", let index = strings.index(of: string) {
+                strings.remove(at: index)
             }
         }
         
@@ -162,45 +158,45 @@ class TeacherDetailsSubjectCell: MalaBaseCell {
             break
         case (_, nil, nil):
             
-            elementarySchool.snp_updateConstraints(closure: { (make) in
-                make.bottom.equalTo(content.snp_bottom)
+            elementarySchool.snp.updateConstraints({ (maker) in
+                maker.bottom.equalTo(content.snp.bottom)
             })
             
             break
         case (nil, _, nil):
             
-            juniorSchool.snp_updateConstraints(closure: { (make) in
-                make.top.equalTo(content.snp_top)
-                make.bottom.equalTo(content.snp_bottom)
+            juniorSchool.snp.updateConstraints({ (maker) in
+                maker.top.equalTo(content.snp.top)
+                maker.bottom.equalTo(content.snp.bottom)
             })
             
             break
         case (nil, nil, _):
             
-            seniorSchool.snp_updateConstraints(closure: { (make) in
-                make.top.equalTo(content.snp_top)
-                make.bottom.equalTo(content.snp_bottom)
+            seniorSchool.snp.updateConstraints({ (maker) in
+                maker.top.equalTo(content.snp.top)
+                maker.bottom.equalTo(content.snp.bottom)
             })
             
             break
         case (_, _, nil):
             
-            juniorSchool.snp_updateConstraints(closure: { (make) in
-                make.bottom.equalTo(content.snp_bottom)
+            juniorSchool.snp.updateConstraints({ (maker) in
+                maker.bottom.equalTo(content.snp.bottom)
             })
             
             break
         case (_, nil, _):
             
-            seniorSchool.snp_updateConstraints(closure: { (make) in
-                make.top.equalTo(elementarySchool.snp_bottom).offset(12)
+            seniorSchool.snp.updateConstraints({ (maker) in
+                maker.top.equalTo(elementarySchool.snp.bottom).offset(12)
             })
             
             break
         case (nil, _, _):
             
-            juniorSchool.snp_updateConstraints(closure: { (make) in
-                make.top.equalTo(content.snp_top)
+            juniorSchool.snp.updateConstraints({ (maker) in
+                maker.top.equalTo(content.snp.top)
             })
             
             break

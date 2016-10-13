@@ -12,9 +12,9 @@ class CourseChoosingTimeScheduleCell: MalaBaseCell {
 
     // MARK: - Property
     /// 上课时间列表
-    var timeSchedules: [[NSTimeInterval]]? {
-        didSet {            
-            if (timeSchedules ?? []) !== (oldValue ?? []) && timeSchedules != nil && isOpen {
+    var timeSchedules: [[TimeInterval]]? {
+        didSet {
+            if timeSchedules != nil && isOpen {
                 parseTimeSchedules()
             }
         }
@@ -28,17 +28,17 @@ class CourseChoosingTimeScheduleCell: MalaBaseCell {
             }
             
             if isOpen {
-                timeLineView.hidden = false
-                timeLineView.snp_updateConstraints { (make) -> Void in
-                    make.height.equalTo(currentHeight)
+                timeLineView.isHidden = false
+                timeLineView.snp.updateConstraints { (maker) -> Void in
+                    maker.height.equalTo(currentHeight)
                 }
             }else {
-                timeLineView.hidden = true
-                timeLineView.snp_updateConstraints { (make) -> Void in
-                    make.height.equalTo(0)
+                timeLineView.isHidden = true
+                timeLineView.snp.updateConstraints { (maker) -> Void in
+                    maker.height.equalTo(0)
                 }
             }
-            detailButton.selected = isOpen
+            detailButton.isSelected = isOpen
         }
     }
     /// 当前高度
@@ -51,9 +51,9 @@ class CourseChoosingTimeScheduleCell: MalaBaseCell {
     /// 展开按钮
     private lazy var detailButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(named: "dropArrow"), forState: .Normal)
-        button.setImage(UIImage(named: "upArrow"), forState: .Selected)
-        button.addTarget(self, action: #selector(CourseChoosingTimeScheduleCell.detailButtonDidTap), forControlEvents: .TouchUpInside)
+        button.setImage(UIImage(named: "dropArrow"), for: UIControlState())
+        button.setImage(UIImage(named: "upArrow"), for: .selected)
+        button.addTarget(self, action: #selector(CourseChoosingTimeScheduleCell.detailButtonDidTap), for: .touchUpInside)
         return button
     }()
     
@@ -79,13 +79,13 @@ class CourseChoosingTimeScheduleCell: MalaBaseCell {
         headerView.addSubview(detailButton)
         
         // Autolayout
-        content.snp_updateConstraints { (make) -> Void in
-            make.top.equalTo(headerView.snp_bottom).offset(14)
+        content.snp.updateConstraints { (maker) -> Void in
+            maker.top.equalTo(headerView.snp.bottom).offset(14)
         }
-        detailButton.snp_makeConstraints { (make) -> Void in
-            make.height.equalTo(13)
-            make.right.equalTo(headerView.snp_right).offset(-12)
-            make.centerY.equalTo(headerView.snp_centerY)
+        detailButton.snp.makeConstraints { (maker) -> Void in
+            maker.height.equalTo(13)
+            maker.right.equalTo(headerView.snp.right).offset(-12)
+            maker.centerY.equalTo(headerView.snp.centerY)
         }
     }
     
@@ -99,18 +99,18 @@ class CourseChoosingTimeScheduleCell: MalaBaseCell {
         self.timeLineView = ThemeTimeLine(times: result.dates, descs: result.times)
         content.addSubview(timeLineView!)
         currentHeight = result.height
-        timeLineView!.snp_makeConstraints { (make) in
-            make.top.equalTo(content.snp_top)
-            make.left.equalTo(content.snp_left)
-            make.right.equalTo(content.snp_right)
-            make.bottom.equalTo(content.snp_bottom)
-            make.height.equalTo(currentHeight)
+        timeLineView!.snp.makeConstraints { (maker) in
+            maker.top.equalTo(content.snp.top)
+            maker.left.equalTo(content.snp.left)
+            maker.right.equalTo(content.snp.right)
+            maker.bottom.equalTo(content.snp.bottom)
+            maker.height.equalTo(currentHeight)
         }
     }
     
     
     // MARK: - Override
     @objc func detailButtonDidTap() {
-        NSNotificationCenter.defaultCenter().postNotificationName(MalaNotification_OpenTimeScheduleCell, object: !isOpen)
+        NotificationCenter.default.post(name: MalaNotification_OpenTimeScheduleCell, object: !isOpen)
     }
 }

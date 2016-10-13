@@ -28,7 +28,7 @@ class RegionViewController: UIViewController, UITableViewDelegate, UITableViewDa
     // 学校数据模型
     var models: [SchoolModel] = [] {
         didSet {
-            dispatch_async(dispatch_get_main_queue(), { [weak self] () -> Void in
+            DispatchQueue.main.async(execute: { [weak self] () -> Void in
                 self?.tableView.reloadData()
             })
         }
@@ -41,7 +41,7 @@ class RegionViewController: UIViewController, UITableViewDelegate, UITableViewDa
     // 城市选择按钮
     private lazy var cityView: UIView = {
         let view = UIView()
-        view.userInteractionEnabled = true
+        view.isUserInteractionEnabled = true
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(RegionViewController.pushToCityPickView)))
         return view
     }()
@@ -79,7 +79,7 @@ class RegionViewController: UIViewController, UITableViewDelegate, UITableViewDa
         return label
     }()
     private lazy var tableView: UITableView = {
-        let tableView = UITableView(frame: CGRectZero, style: .Grouped)
+        let tableView = UITableView(frame: CGRect.zero, style: .grouped)
         return tableView
     }()
     private lazy var popButton: UIButton = {
@@ -102,7 +102,7 @@ class RegionViewController: UIViewController, UITableViewDelegate, UITableViewDa
         super.didReceiveMemoryWarning()
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         loadSchoolList()
     }
@@ -113,10 +113,10 @@ class RegionViewController: UIViewController, UITableViewDelegate, UITableViewDa
         // Style
         title = "选择校区"
         view.backgroundColor = MalaColor_F6F7F9_0
-        cityView.backgroundColor = UIColor.whiteColor()
+        cityView.backgroundColor = UIColor.white
         let leftBarButtonItem = UIBarButtonItem(customView: popButton)
         navigationItem.leftBarButtonItem = leftBarButtonItem
-        UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.Default
+        UIApplication.shared.statusBarStyle = UIStatusBarStyle.default
         navigationController?.navigationBar.shadowImage = UIImage()
         
         // tableView Style
@@ -124,9 +124,9 @@ class RegionViewController: UIViewController, UITableViewDelegate, UITableViewDa
         tableView.dataSource = self
         tableView.bounces = false
         tableView.backgroundColor = MalaColor_F6F7F9_0
-        tableView.separatorStyle = .None
+        tableView.separatorStyle = .none
         tableView.separatorColor = MalaColor_E5E5E5_0
-        tableView.registerClass(RegionUnitCell.self, forCellReuseIdentifier: SchoolTableViewCellReuseId)
+        tableView.register(RegionUnitCell.self, forCellReuseIdentifier: SchoolTableViewCellReuseId)
         
         
         // SubViews
@@ -139,45 +139,45 @@ class RegionViewController: UIViewController, UITableViewDelegate, UITableViewDa
         view.addSubview(tableView)
         
         // AutoLayout
-        cityView.snp_makeConstraints { (make) in
-            make.top.equalTo(view).offset(10)
-            make.left.equalTo(view)
-            make.right.equalTo(view)
-            make.height.equalTo(40)
+        cityView.snp.makeConstraints { (maker) in
+            maker.top.equalTo(view).offset(10)
+            maker.left.equalTo(view)
+            maker.right.equalTo(view)
+            maker.height.equalTo(40)
         }
-        cityLabel.snp_makeConstraints { (make) in
-            make.centerY.equalTo(cityView)
-            make.height.equalTo(15)
-            make.left.equalTo(cityView).offset(12)
+        cityLabel.snp.makeConstraints { (maker) in
+            maker.centerY.equalTo(cityView)
+            maker.height.equalTo(15)
+            maker.left.equalTo(cityView).offset(12)
         }
-        currentCityLabel.snp_makeConstraints { (make) in
-            make.centerY.equalTo(cityView)
-            make.right.equalTo(cityArrow.snp_left).offset(-10)
-            make.height.equalTo(15)
+        currentCityLabel.snp.makeConstraints { (maker) in
+            maker.centerY.equalTo(cityView)
+            maker.right.equalTo(cityArrow.snp.left).offset(-10)
+            maker.height.equalTo(15)
         }
-        cityArrow.snp_makeConstraints { (make) in
-            make.height.equalTo(13)
-            make.width.equalTo(7)
-            make.right.equalTo(cityView).offset(-12)
-            make.centerY.equalTo(cityView)
+        cityArrow.snp.makeConstraints { (maker) in
+            maker.height.equalTo(13)
+            maker.width.equalTo(7)
+            maker.right.equalTo(cityView).offset(-12)
+            maker.centerY.equalTo(cityView)
         }
-        tableHeaderView.snp_makeConstraints { (make) in
-            make.top.equalTo(cityView.snp_bottom)
-            make.bottom.equalTo(tableView.snp_top)
-            make.height.equalTo(33)
-            make.left.equalTo(view)
-            make.right.equalTo(view)
+        tableHeaderView.snp.makeConstraints { (maker) in
+            maker.top.equalTo(cityView.snp.bottom)
+            maker.bottom.equalTo(tableView.snp.top)
+            maker.height.equalTo(33)
+            maker.left.equalTo(view)
+            maker.right.equalTo(view)
         }
-        tableHeaderString.snp_makeConstraints { (make) in
-            make.centerY.equalTo(tableHeaderView)
-            make.left.equalTo(tableHeaderView).offset(12)
-            make.height.equalTo(13)
+        tableHeaderString.snp.makeConstraints { (maker) in
+            maker.centerY.equalTo(tableHeaderView)
+            maker.left.equalTo(tableHeaderView).offset(12)
+            maker.height.equalTo(13)
         }
-        tableView.snp_makeConstraints { (make) in
-            make.top.equalTo(tableHeaderString.snp_bottom)
-            make.bottom.equalTo(view)
-            make.left.equalTo(view)
-            make.right.equalTo(view)
+        tableView.snp.makeConstraints { (maker) in
+            maker.top.equalTo(tableHeaderString.snp.bottom)
+            maker.bottom.equalTo(view)
+            maker.left.equalTo(view)
+            maker.right.equalTo(view)
         }
     }
     
@@ -200,36 +200,36 @@ class RegionViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 println("CityTableViewController - getSchools Error \(errorMessage)")
             }
             }, completion:{ [weak self] (schools) in
-                self?.models = schools.reverse()
+                self?.models = schools.reversed()
                 println("校区列表 - \(schools)")
             })
     }
     
     
     // MARK: - Delegate
-    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 0.01
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        MalaCurrentSchool = models[indexPath.row]
-        MalaUserDefaults.currentSchool.value = models[indexPath.row]
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        MalaCurrentSchool = models[(indexPath as NSIndexPath).row]
+        MalaUserDefaults.currentSchool.value = models[(indexPath as NSIndexPath).row]
         didSelectAction?()
-        dismissViewControllerAnimated(true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
     
     
     // MARK: - DataSource
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return models.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(SchoolTableViewCellReuseId, forIndexPath: indexPath) as! RegionUnitCell
-        cell.school = models[indexPath.row]
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: SchoolTableViewCellReuseId, for: indexPath) as! RegionUnitCell
+        cell.school = models[(indexPath as NSIndexPath).row]
         
         // Section的最后一个Cell隐藏分割线
-        if (indexPath.row+1) == models.count {
+        if ((indexPath as NSIndexPath).row+1) == models.count {
             cell.hideSeparator()
         }
         
@@ -246,6 +246,6 @@ class RegionViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     @objc private func closeButtonDidTap() {
-        dismissViewControllerAnimated(true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
 }

@@ -16,7 +16,7 @@ class PaymentViewController: BaseViewController, PaymentBottomViewDelegate {
     // MARK: - Components
     /// 支付信息TableView
     private lazy var paymentTableView: PaymentTableView = {
-        let paymentTableView = PaymentTableView(frame: CGRectZero, style: .Grouped)
+        let paymentTableView = PaymentTableView(frame: CGRect.zero, style: .grouped)
         return paymentTableView
     }()
     /// 支付页面底部视图
@@ -36,11 +36,11 @@ class PaymentViewController: BaseViewController, PaymentBottomViewDelegate {
         setupUserInterface()
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         sendScreenTrack(SAPaymentViewName)
     }
@@ -54,7 +54,7 @@ class PaymentViewController: BaseViewController, PaymentBottomViewDelegate {
     // MARK: - Private Method
     private func configure() {
         // 冻结Pop手势识别
-        self.navigationController?.interactivePopGestureRecognizer?.enabled = false
+        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
         /// 默认选中项
         MalaOrderObject.channel = .Alipay
     }
@@ -62,7 +62,7 @@ class PaymentViewController: BaseViewController, PaymentBottomViewDelegate {
     private func setupUserInterface() {
         // Style
         title = "支付"
-        view.backgroundColor = UIColor.whiteColor()
+        view.backgroundColor = UIColor.white
         paymentConfirmView.delegate = self
         
         // SubViews
@@ -70,17 +70,17 @@ class PaymentViewController: BaseViewController, PaymentBottomViewDelegate {
         view.addSubview(paymentConfirmView)
         
         // Autolayout
-        paymentConfirmView.snp_makeConstraints { (make) -> Void in
-            make.height.equalTo(47)
-            make.left.equalTo(self.view.snp_left)
-            make.right.equalTo(self.view.snp_right)
-            make.bottom.equalTo(self.view.snp_bottom)
+        paymentConfirmView.snp.makeConstraints { (maker) -> Void in
+            maker.height.equalTo(47)
+            maker.left.equalTo(view.snp.left)
+            maker.right.equalTo(view.snp.right)
+            maker.bottom.equalTo(view.snp.bottom)
         }
-        paymentTableView.snp_makeConstraints { (make) -> Void in
-            make.left.equalTo(self.view.snp_left)
-            make.right.equalTo(self.view.snp_right)
-            make.top.equalTo(self.view.snp_top)
-            make.bottom.equalTo(self.view.snp_bottom)
+        paymentTableView.snp.makeConstraints { (maker) -> Void in
+            maker.left.equalTo(view.snp.left)
+            maker.right.equalTo(view.snp.right)
+            maker.top.equalTo(view.snp.top)
+            maker.bottom.equalTo(view.snp.bottom)
         }
     }
     
@@ -100,8 +100,8 @@ class PaymentViewController: BaseViewController, PaymentBottomViewDelegate {
         }, completion:{ [weak self] (result) in
             ThemeHUD.hideActivityIndicator()
             println("取消订单结果 - \(result)")
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                self?.navigationController?.popViewControllerAnimated(true)
+            DispatchQueue.main.async(execute: { () -> Void in
+                _ = self?.navigationController?.popViewController(animated: true)
             })
         })
     }
@@ -125,7 +125,7 @@ class PaymentViewController: BaseViewController, PaymentBottomViewDelegate {
     
     @objc private func forcePop() {
         cancelOrder()
-        navigationController?.popViewControllerAnimated(true)
+        _ = navigationController?.popViewController(animated: true)
     }
 
     
@@ -156,7 +156,7 @@ class PaymentViewController: BaseViewController, PaymentBottomViewDelegate {
         }, completion: { [weak self] (charges) -> Void in
                 println("获取支付信息:\(charges)")
             
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            DispatchQueue.main.async(execute: { () -> Void in
                 
                 ThemeHUD.hideActivityIndicator()
                 
@@ -184,11 +184,11 @@ class PaymentViewController: BaseViewController, PaymentBottomViewDelegate {
         })
     }
     
-    func createPayment(charge: JSONDictionary) {
+    func createPayment(_ charge: JSONDictionary) {
         MalaPaymentController = self
         
         ///  调用Ping++开始支付
-        Pingpp.createPayment(charge,
+        Pingpp.createPayment(charge as NSObject!,
             viewController: self,
             appURLScheme: getURLScheme(MalaOrderObject.channel)) { (result, error) -> Void in
                 // 处理Ping++回调

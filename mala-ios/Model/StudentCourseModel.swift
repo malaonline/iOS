@@ -8,13 +8,13 @@
 
 import UIKit
 
-public class StudentCourseModel: BaseObjectModel {
+open class StudentCourseModel: BaseObjectModel {
 
     // MARK: - Property
     /// 开始时间 时间戳
-    var start: NSTimeInterval = 0
+    var start: TimeInterval = 0
     /// 结束时间 时间戳
-    var end: NSTimeInterval = 0
+    var end: TimeInterval = 0
     /// 学科名称
     var subject: String = ""
     /// 年级名称
@@ -44,7 +44,7 @@ public class StudentCourseModel: BaseObjectModel {
             // 设置课程状态
             if date.isToday() && !is_passed {
                 return .Today
-            }else if date.isEarlierThan(NSDate()) || is_passed {
+            }else if date.isEarlierThan(Date()) || is_passed {
                 return .Past
             }else {
                 return .Future
@@ -60,10 +60,10 @@ public class StudentCourseModel: BaseObjectModel {
     
     override init(dict: [String: AnyObject]) {
         super.init()
-        setValuesForKeysWithDictionary(dict)
+        setValuesForKeys(dict)
     }
     
-    convenience init(id: Int, start: NSTimeInterval, end: NSTimeInterval, subject: String, grade: String, school: String, is_passed: Bool, is_commented: Bool = false, is_expired: Bool) {
+    convenience init(id: Int, start: TimeInterval, end: TimeInterval, subject: String, grade: String, school: String, is_passed: Bool, is_commented: Bool = false, is_expired: Bool) {
         self.init()
         self.id = id
         self.start = start
@@ -81,14 +81,14 @@ public class StudentCourseModel: BaseObjectModel {
     }
     
     // MARK: - Override
-    override public func setValue(value: AnyObject?, forUndefinedKey key: String) {
+    override open func setValue(_ value: Any?, forUndefinedKey key: String) {
         println("StudentCourseModel - Set for UndefinedKey: \(key)")
     }
     
     
     // MARK: - Description
-    override public var description: String {
+    override open var description: String {
         let keys = ["id", "start", "end", "subject", "grade", "school", "is_passed"]
-        return "\n"+dictionaryWithValuesForKeys(keys).description+" Date: "+(getDateTimeString(end))+"\n"
+        return "\n"+dictionaryWithValues(forKeys: keys).description+" Date: "+(getDateTimeString(end))+"\n"
     }
 }

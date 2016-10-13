@@ -44,22 +44,22 @@ class CourseChoosingClassPeriodCell: MalaBaseCell {
         contentView.addSubview(legendView)
         
         // Autolayout
-        headerView.snp_updateConstraints { (make) -> Void in
-            make.bottom.equalTo(self.contentView.snp_bottom).offset(-16)
+        headerView.snp.makeConstraints { (maker) -> Void in
+            maker.bottom.equalTo(self.contentView.snp.bottom).offset(-16)
         }
 
-        legendView.snp_makeConstraints { (make) -> Void in
-            make.width.equalTo(97)
-            make.height.equalTo(27)
-            make.centerY.equalTo(headerView.snp_centerY)
-            make.right.equalTo(contentView.snp_right).offset(-12)
+        legendView.snp.makeConstraints { (maker) -> Void in
+            maker.width.equalTo(97)
+            maker.height.equalTo(27)
+            maker.centerY.equalTo(headerView.snp.centerY)
+            maker.right.equalTo(contentView.snp.right).offset(-12)
         }
     }
 
 }
 
 
-public class PeriodStepper: UIView, UITextFieldDelegate {
+open class PeriodStepper: UIView, UITextFieldDelegate {
   
     // MARK: - Compontents
     /// 计数器
@@ -68,21 +68,21 @@ public class PeriodStepper: UIView, UITextFieldDelegate {
     private lazy var textField: UITextField = {
         let textField = UITextField()
         textField.text = String(format: "%d", Int(MalaClassPeriod_StepValue))
-        textField.textAlignment = .Center
+        textField.textAlignment = .center
         return textField
     }()
     /// 计数器减按钮
     private lazy  var decrementButton: UIButton = {
         let decrementButton = UIButton()
-        decrementButton.setImage(UIImage(named: "minus"), forState: .Normal)
-        decrementButton.setBackgroundImage(UIImage(named: "grayBackground"), forState: .Normal)
+        decrementButton.setImage(UIImage(named: "minus"), for: UIControlState())
+        decrementButton.setBackgroundImage(UIImage(named: "grayBackground"), for: UIControlState())
         return decrementButton
     }()
     /// 计数器加按钮
     private lazy var incrementButton: UIButton = {
         let incrementButton = UIButton()
-        incrementButton.setImage(UIImage(named: "plus"), forState: .Normal)
-        incrementButton.setBackgroundImage(UIImage(named: "grayBackground"), forState: .Normal)
+        incrementButton.setImage(UIImage(named: "plus"), for: UIControlState())
+        incrementButton.setBackgroundImage(UIImage(named: "grayBackground"), for: UIControlState())
         return incrementButton
     }()
     
@@ -101,7 +101,7 @@ public class PeriodStepper: UIView, UITextFieldDelegate {
     
     
     // MARK: - Public Method
-    public func updateStepValue() {
+    open func updateStepValue() {
         stepper.value = Double(MalaCurrentCourse.classPeriod)
         stepper.minimumValue = Double(MalaCurrentCourse.selectedTime.count*2)
     }
@@ -121,11 +121,11 @@ public class PeriodStepper: UIView, UITextFieldDelegate {
         // 计数器数值changed回调闭包
         stepper.valueChangedCallback = {
             self.textField.text = String(format: "%d", Int(self.stepper.value))
-            NSNotificationCenter.defaultCenter().postNotificationName(MalaNotification_ClassPeriodDidChange, object: self.stepper.value)
+            NotificationCenter.default.post(name: MalaNotification_ClassPeriodDidChange, object: self.stepper.value)
         }
         
         textField.delegate = self
-        textField.keyboardType = .NumberPad
+        textField.keyboardType = .numberPad
     }
     
     private func setupUserInterface() {
@@ -135,29 +135,29 @@ public class PeriodStepper: UIView, UITextFieldDelegate {
         addSubview(incrementButton)
         
         // Autolayout
-        decrementButton.snp_makeConstraints { (make) -> Void in
-            make.width.equalTo(31)
-            make.height.equalTo(27)
-            make.top.equalTo(self.snp_top)
-            make.left.equalTo(self.snp_left)
+        decrementButton.snp.makeConstraints { (maker) -> Void in
+            maker.width.equalTo(31)
+            maker.height.equalTo(27)
+            maker.top.equalTo(self.snp.top)
+            maker.left.equalTo(self.snp.left)
         }
-        incrementButton.snp_makeConstraints { (make) -> Void in
-            make.width.equalTo(31)
-            make.height.equalTo(27)
-            make.top.equalTo(decrementButton.snp_top)
-            make.right.equalTo(self.snp_right)
+        incrementButton.snp.makeConstraints { (maker) -> Void in
+            maker.width.equalTo(31)
+            maker.height.equalTo(27)
+            maker.top.equalTo(decrementButton.snp.top)
+            maker.right.equalTo(self.snp.right)
         }
-        textField.snp_makeConstraints { (make) -> Void in
-            make.height.equalTo(27)
-            make.top.equalTo(decrementButton.snp_top)
-            make.left.equalTo(decrementButton.snp_right)
-            make.right.equalTo(incrementButton.snp_left)
+        textField.snp.makeConstraints { (maker) -> Void in
+            maker.height.equalTo(27)
+            maker.top.equalTo(decrementButton.snp.top)
+            maker.left.equalTo(decrementButton.snp.right)
+            maker.right.equalTo(incrementButton.snp.left)
         }
     }
     
     
     // MARK: - Delegate
-    public func textFieldDidEndEditing(textField: UITextField) {
+    open func textFieldDidEndEditing(_ textField: UITextField) {
         // 限制输入值最大为100
         var value = Int(textField.text ?? "") ?? 0
         value = value > 100 ? 100 : value

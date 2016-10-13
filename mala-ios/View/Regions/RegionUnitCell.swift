@@ -28,7 +28,7 @@ class RegionUnitCell: UITableViewCell {
     /// 标题label
     private lazy var titleLabel: UILabel = {
         let titleLabel = UILabel()
-        titleLabel.font = UIFont.systemFontOfSize(14)
+        titleLabel.font = UIFont.systemFont(ofSize: 14)
         titleLabel.textColor = MalaColor_636363_0
         return titleLabel
     }()
@@ -53,7 +53,7 @@ class RegionUnitCell: UITableViewCell {
     // MARK: - Private Method
     private func setupUserInterface() {
         // Style
-        selectionStyle = .None
+        selectionStyle = .none
         separatorInset = UIEdgeInsets(top: 0, left: 12, bottom: 0, right: 12)
         
         // SubViews
@@ -61,25 +61,25 @@ class RegionUnitCell: UITableViewCell {
         contentView.addSubview(separatorLine)
         
         // Autolayout
-        titleLabel.snp_makeConstraints { (make) in
-            make.height.equalTo(14)
-            make.centerY.equalTo(contentView.snp_centerY)
-            make.left.equalTo(contentView.snp_left).offset(13)
+        titleLabel.snp.makeConstraints { (maker) in
+            maker.height.equalTo(14)
+            maker.centerY.equalTo(contentView.snp.centerY)
+            maker.left.equalTo(contentView.snp.left).offset(13)
         }
-        separatorLine.snp_makeConstraints { (make) in
-            make.bottom.equalTo(contentView.snp_bottom)
-            make.left.equalTo(contentView.snp_left).offset(12)
-            make.right.equalTo(contentView.snp_right).offset(12)
-            make.height.equalTo(MalaScreenOnePixel)
+        separatorLine.snp.makeConstraints { (maker) in
+            maker.bottom.equalTo(contentView.snp.bottom)
+            maker.left.equalTo(contentView.snp.left).offset(12)
+            maker.right.equalTo(contentView.snp.right).offset(12)
+            maker.height.equalTo(MalaScreenOnePixel)
         }
     }
     
     func hideSeparator() {
-        separatorLine.hidden = true
+        separatorLine.isHidden = true
     }
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        separatorLine.hidden = false
+        separatorLine.isHidden = false
     }
 }

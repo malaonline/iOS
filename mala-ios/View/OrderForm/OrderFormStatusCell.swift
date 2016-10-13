@@ -16,7 +16,7 @@ class OrderFormStatusCell: UITableViewCell {
         didSet {
             /// 老师头像
             
-            if let urlString = model?.avatarURL, url = NSURL(string: (urlString)) {
+            if let urlString = model?.avatarURL, let url = URL(string: (urlString)) {
                 self.avatarView.ma_setImage(url, placeholderImage: UIImage(named: "profileAvatar_placeholder"))
             }
             
@@ -121,7 +121,7 @@ class OrderFormStatusCell: UITableViewCell {
     /// 老师头像
     private lazy var avatarView: UIImageView = {
         let imageView = UIImageView(image: UIImage(named: "profileAvatar_placeholder"))
-        imageView.contentMode = .ScaleAspectFill
+        imageView.contentMode = .scaleAspectFill
         imageView.layer.cornerRadius = 55/2
         imageView.layer.masksToBounds = true
         return imageView
@@ -157,60 +157,60 @@ class OrderFormStatusCell: UITableViewCell {
         
         // Autolayout
         // Remove margin
-        titleLabel.snp_updateConstraints { (make) -> Void in
-            make.top.equalTo(self.contentView.snp_top).offset(10)
-            make.left.equalTo(self.contentView.snp_left).offset(12)
-            make.height.equalTo(13)
+        titleLabel.snp.updateConstraints { (maker) -> Void in
+            maker.top.equalTo(self.contentView.snp.top).offset(10)
+            maker.left.equalTo(self.contentView.snp.left).offset(12)
+            maker.height.equalTo(13)
         }
-        statusLabel.snp_makeConstraints { (make) in
-            make.top.equalTo(titleLabel.snp_top)
-            make.right.equalTo(self.contentView.snp_right).offset(-12)
+        statusLabel.snp.makeConstraints { (maker) in
+            maker.top.equalTo(titleLabel.snp.top)
+            maker.right.equalTo(self.contentView.snp.right).offset(-12)
         }
-        separatorLine.snp_makeConstraints { (make) in
-            make.top.equalTo(titleLabel.snp_bottom).offset(10)
-            make.left.equalTo(self.contentView.snp_left).offset(12)
-            make.right.equalTo(self.contentView.snp_right).offset(-12)
-            make.height.equalTo(MalaScreenOnePixel)
+        separatorLine.snp.makeConstraints { (maker) in
+            maker.top.equalTo(titleLabel.snp.bottom).offset(10)
+            maker.left.equalTo(self.contentView.snp.left).offset(12)
+            maker.right.equalTo(self.contentView.snp.right).offset(-12)
+            maker.height.equalTo(MalaScreenOnePixel)
         }
-        teacherIcon.snp_makeConstraints { (make) in
-            make.top.equalTo(separatorLine.snp_bottom).offset(10)
-            make.left.equalTo(self.contentView.snp_left).offset(12)
-            make.height.equalTo(13)
-            make.width.equalTo(13)
+        teacherIcon.snp.makeConstraints { (maker) in
+            maker.top.equalTo(separatorLine.snp.bottom).offset(10)
+            maker.left.equalTo(self.contentView.snp.left).offset(12)
+            maker.height.equalTo(13)
+            maker.width.equalTo(13)
         }
-        teacherLabel.snp_makeConstraints { (make) in
-            make.top.equalTo(teacherIcon.snp_top)
-            make.left.equalTo(teacherIcon.snp_right).offset(10)
-            make.height.equalTo(13)
+        teacherLabel.snp.makeConstraints { (maker) in
+            maker.top.equalTo(teacherIcon.snp.top)
+            maker.left.equalTo(teacherIcon.snp.right).offset(10)
+            maker.height.equalTo(13)
         }
-        subjectIcon.snp_makeConstraints { (make) in
-            make.top.equalTo(teacherIcon.snp_bottom).offset(10)
-            make.left.equalTo(self.contentView.snp_left).offset(12)
-            make.height.equalTo(13)
-            make.width.equalTo(13)
+        subjectIcon.snp.makeConstraints { (maker) in
+            maker.top.equalTo(teacherIcon.snp.bottom).offset(10)
+            maker.left.equalTo(self.contentView.snp.left).offset(12)
+            maker.height.equalTo(13)
+            maker.width.equalTo(13)
         }
-        subjectLabel.snp_makeConstraints { (make) in
-            make.top.equalTo(subjectIcon.snp_top)
-            make.left.equalTo(subjectIcon.snp_right).offset(10)
-            make.height.equalTo(13)
+        subjectLabel.snp.makeConstraints { (maker) in
+            maker.top.equalTo(subjectIcon.snp.top)
+            maker.left.equalTo(subjectIcon.snp.right).offset(10)
+            maker.height.equalTo(13)
         }
-        schoolIcon.snp_makeConstraints { (make) in
-            make.top.equalTo(subjectIcon.snp_bottom).offset(10)
-            make.left.equalTo(self.contentView.snp_left).offset(12)
-            make.height.equalTo(13)
-            make.width.equalTo(13)
-            make.bottom.equalTo(self.contentView.snp_bottom).offset(-10)
+        schoolIcon.snp.makeConstraints { (maker) in
+            maker.top.equalTo(subjectIcon.snp.bottom).offset(10)
+            maker.left.equalTo(self.contentView.snp.left).offset(12)
+            maker.height.equalTo(13)
+            maker.width.equalTo(13)
+            maker.bottom.equalTo(self.contentView.snp.bottom).offset(-10)
         }
-        schoolLabel.snp_makeConstraints { (make) in
-            make.top.equalTo(schoolIcon.snp_top)
-            make.left.equalTo(schoolIcon.snp_right).offset(10)
-            make.height.equalTo(13)
+        schoolLabel.snp.makeConstraints { (maker) in
+            maker.top.equalTo(schoolIcon.snp.top)
+            maker.left.equalTo(schoolIcon.snp.right).offset(10)
+            maker.height.equalTo(13)
         }
-        avatarView.snp_makeConstraints { (make) in
-            make.centerY.equalTo(subjectIcon.snp_centerY)
-            make.right.equalTo(separatorLine.snp_right)
-            make.height.equalTo(55)
-            make.width.equalTo(55)
+        avatarView.snp.makeConstraints { (maker) in
+            maker.centerY.equalTo(subjectIcon.snp.centerY)
+            maker.right.equalTo(separatorLine.snp.right)
+            maker.height.equalTo(55)
+            maker.width.equalTo(55)
         }
     }
 }

@@ -24,7 +24,7 @@ class AboutTitleView: UIView {
     /// 标题
     private var titleLabel: UILabel = {
         let titleLabel = UILabel()
-        titleLabel.font = UIFont.systemFontOfSize(14)
+        titleLabel.font = UIFont.systemFont(ofSize: 14)
         titleLabel.textColor = MalaColor_6C6C6C_0
         return titleLabel
     }()
@@ -60,21 +60,21 @@ class AboutTitleView: UIView {
         addSubview(rightLine)
         
         // Autolayout
-        titleLabel.snp_makeConstraints { (make) -> Void in
-            make.centerX.equalTo(self.snp_centerX)
-            make.top.equalTo(self.snp_top)
-            make.bottom.equalTo(self.snp_bottom)
-            make.height.equalTo(14)
+        titleLabel.snp.makeConstraints { (maker) -> Void in
+            maker.centerX.equalTo(self.snp.centerX)
+            maker.top.equalTo(self.snp.top)
+            maker.bottom.equalTo(self.snp.bottom)
+            maker.height.equalTo(14)
         }
-        leftLine.snp_makeConstraints { (make) -> Void in
-            make.centerY.equalTo(titleLabel.snp_centerY)
-            make.left.equalTo(self.snp_left).offset(10)
-            make.right.equalTo(titleLabel.snp_left).offset(-5)
+        leftLine.snp.makeConstraints { (maker) -> Void in
+            maker.centerY.equalTo(titleLabel.snp.centerY)
+            maker.left.equalTo(self.snp.left).offset(10)
+            maker.right.equalTo(titleLabel.snp.left).offset(-5)
         }
-        rightLine.snp_makeConstraints { (make) -> Void in
-            make.centerY.equalTo(titleLabel.snp_centerY)
-            make.left.equalTo(titleLabel.snp_right).offset(5)
-            make.right.equalTo(self.snp_right).offset(-10)
+        rightLine.snp.makeConstraints { (maker) -> Void in
+            maker.centerY.equalTo(titleLabel.snp.centerY)
+            maker.left.equalTo(titleLabel.snp.right).offset(5)
+            maker.right.equalTo(self.snp.right).offset(-10)
         }
     }
 }

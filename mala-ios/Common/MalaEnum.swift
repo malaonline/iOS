@@ -64,10 +64,10 @@ enum MalaOrderStatus: String {
 ///  - Expired:     已过期
 ///  - Disabled:    已冻结
 enum CouponStatus: Int {
-    case Unused
-    case Used
-    case Expired
-    case Disabled
+    case unused
+    case used
+    case expired
+    case disabled
 }
 
 ///  价钱优惠类型
@@ -76,9 +76,9 @@ enum CouponStatus: Int {
 ///  - Reduce:   免除 例如: [￥400(删除线)] [￥0]
 ///  - None: 不显示
 enum PriceHandleType: Int {
-    case Discount
-    case Reduce
-    case None
+    case discount
+    case reduce
+    case none
 }
 
 ///  其他服务类型
@@ -86,8 +86,8 @@ enum PriceHandleType: Int {
 ///  - Coupon:           优惠券
 ///  - EvaluationFiling: 测评建档
 enum OtherServiceType {
-    case Coupon
-    case EvaluationFiling
+    case coupon
+    case evaluationFiling
 }
 
 ///  用户信息类型
@@ -95,8 +95,8 @@ enum OtherServiceType {
 ///  - StudentName:       学生姓名
 ///  - StudentSchoolName: 学生学校姓名
 public enum userInfoType {
-    case StudentName
-    case StudentSchoolName
+    case studentName
+    case studentSchoolName
 }
 
 

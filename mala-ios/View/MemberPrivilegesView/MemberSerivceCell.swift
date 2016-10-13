@@ -27,7 +27,7 @@ class MemberSerivceCell: UITableViewCell {
     }()
     /// 会员服务视图
     private lazy var collectionView: MemberSerivceCollectionView = {
-        let view = MemberSerivceCollectionView(frame: CGRectZero, collectionViewLayout: MemberSerivceFlowLayout(frame: CGRectZero))
+        let view = MemberSerivceCollectionView(frame: CGRect.zero, collectionViewLayout: MemberSerivceFlowLayout(frame: CGRect.zero))
         return view
     }()
     
@@ -47,7 +47,7 @@ class MemberSerivceCell: UITableViewCell {
     private func setupUserInterface() {
         // Style
         contentView.backgroundColor = MalaColor_EDEDED_0
-        content.backgroundColor = UIColor.whiteColor()
+        content.backgroundColor = UIColor.white
         
         // SubViews
         contentView.addSubview(content)
@@ -55,23 +55,23 @@ class MemberSerivceCell: UITableViewCell {
         content.addSubview(collectionView)
         
         // Autolayout
-        content.snp_makeConstraints { (make) in
-            make.top.equalTo(self.contentView.snp_top).offset(8)
-            make.left.equalTo(self.contentView.snp_left)
-            make.right.equalTo(self.contentView.snp_right)
-            make.height.equalTo(229)
-            make.bottom.equalTo(self.contentView.snp_bottom)
+        content.snp.makeConstraints { (maker) in
+            maker.top.equalTo(self.contentView.snp.top).offset(8)
+            maker.left.equalTo(self.contentView.snp.left)
+            maker.right.equalTo(self.contentView.snp.right)
+            maker.height.equalTo(229)
+            maker.bottom.equalTo(self.contentView.snp.bottom)
         }
-        titleLabel.snp_makeConstraints { (make) in
-            make.top.equalTo(content.snp_top).offset(16)
-            make.left.equalTo(content.snp_left).offset(12)
-            make.height.equalTo(15)
+        titleLabel.snp.makeConstraints { (maker) in
+            maker.top.equalTo(content.snp.top).offset(16)
+            maker.left.equalTo(content.snp.left).offset(12)
+            maker.height.equalTo(15)
         }
-        collectionView.snp_makeConstraints { (make) in
-            make.top.equalTo(titleLabel.snp_bottom).offset(16)
-            make.bottom.equalTo(content.snp_bottom)
-            make.left.equalTo(content.snp_left).offset(12)
-            make.right.equalTo(content.snp_right).offset(-12)
+        collectionView.snp.makeConstraints { (maker) in
+            maker.top.equalTo(titleLabel.snp.bottom).offset(16)
+            maker.bottom.equalTo(content.snp.bottom)
+            maker.left.equalTo(content.snp.left).offset(12)
+            maker.right.equalTo(content.snp.right).offset(-12)
         }
     }
 }

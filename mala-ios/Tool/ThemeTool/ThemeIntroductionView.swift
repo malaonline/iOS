@@ -32,7 +32,7 @@ class ThemeIntroductionView: BaseViewController, UICollectionViewDelegate, UICol
     /// 轮播视图
     private lazy var collectionView: UICollectionView = {
         let frame = CGRect(x: 0, y: 0, width: MalaScreenWidth, height: MalaScreenHeight-MalaScreenNaviHeight)
-        let collectionView = UICollectionView(frame: CGRectZero, collectionViewLayout: ThemeIntroductionFlowLayout(frame: frame))
+        let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: ThemeIntroductionFlowLayout(frame: frame))
         return collectionView
     }()
     
@@ -44,7 +44,7 @@ class ThemeIntroductionView: BaseViewController, UICollectionViewDelegate, UICol
         configure()
         delay(0.05) {
             if let i = self.index {
-                self.collectionView.scrollToItemAtIndexPath(NSIndexPath(forItem: i, inSection: 0), atScrollPosition: .None, animated: false)
+                self.collectionView.scrollToItem(at: IndexPath(item: i, section: 0), at: [], animated: false)
                 self.pageControl.setCurrentPage(CGFloat(i), animated: false)
             }
         }
@@ -59,20 +59,20 @@ class ThemeIntroductionView: BaseViewController, UICollectionViewDelegate, UICol
     
     // MARK: - Private method
     private func configure() {
-        collectionView.pagingEnabled = true
+        collectionView.isPagingEnabled = true
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.showsVerticalScrollIndicator = false
         collectionView.delegate = self
         collectionView.dataSource = self
-        collectionView.registerClass(ThemeIntroductionViewCell.self, forCellWithReuseIdentifier: ThemeIntroductionViewCellReuseId)
+        collectionView.register(ThemeIntroductionViewCell.self, forCellWithReuseIdentifier: ThemeIntroductionViewCellReuseId)
         
         pageControl.numberOfPages = model.count
-        pageControl.addTarget(self, action: #selector(ThemeIntroductionView.pageControlDidChangeCurrentPage(_:)), forControlEvents: .ValueChanged)
+        pageControl.addTarget(self, action: #selector(ThemeIntroductionView.pageControlDidChangeCurrentPage(_:)), for: .valueChanged)
     }
     
     private func setupUserInterface() {
         // Style
-        collectionView.backgroundColor = UIColor.whiteColor()
+        collectionView.backgroundColor = UIColor.white
         pageControl.tintColor = MalaColor_2AAADD_0
         
         // SubViews
@@ -80,27 +80,27 @@ class ThemeIntroductionView: BaseViewController, UICollectionViewDelegate, UICol
         view.addSubview(pageControl)
         
         // Autolayout
-        collectionView.snp_makeConstraints { (make) in
-            make.center.equalTo(self.view.snp_center)
-            make.size.equalTo(self.view.snp_size)
+        collectionView.snp.makeConstraints { (maker) in
+            maker.center.equalTo(self.view.snp.center)
+            maker.size.equalTo(self.view.snp.size)
         }
-        pageControl.snp_makeConstraints { (make) in
-            make.width.equalTo(200)
-            make.centerX.equalTo(self.view.snp_centerX)
-            make.bottom.equalTo(self.view.snp_bottom).offset(-20)
-            make.height.equalTo(10)
+        pageControl.snp.makeConstraints { (maker) in
+            maker.width.equalTo(200)
+            maker.centerX.equalTo(self.view.snp.centerX)
+            maker.bottom.equalTo(self.view.snp.bottom).offset(-20)
+            maker.height.equalTo(10)
         }
     }
     
     
     // MARK: - DataSource
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return model.count
     }
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(ThemeIntroductionViewCellReuseId, forIndexPath: indexPath) as! ThemeIntroductionViewCell
-        cell.model = self.model[indexPath.row]
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ThemeIntroductionViewCellReuseId, for: indexPath) as! ThemeIntroductionViewCell
+        cell.model = self.model[(indexPath as NSIndexPath).row]
         return cell
     }
     
@@ -109,12 +109,12 @@ class ThemeIntroductionView: BaseViewController, UICollectionViewDelegate, UICol
     
     
     // MARK: - Event Response
-    func pageControlDidChangeCurrentPage(pageControl: PageControl) {
+    func pageControlDidChangeCurrentPage(_ pageControl: PageControl) {
         collectionView.setContentOffset(CGPoint(x: collectionView.bounds.width * CGFloat(pageControl.currentPage), y: 0), animated: true)
     }
     
-    func scrollViewDidScroll(scrollView: UIScrollView) {
-        if scrollView.dragging || scrollView.decelerating {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.isDragging || scrollView.isDecelerating {
             let page = scrollView.contentOffset.x / scrollView.bounds.width
             pageControl.setCurrentPage(page)
         }
@@ -152,7 +152,7 @@ class ThemeIntroductionViewCell: UICollectionViewCell {
             fontSize: 16,
             textColor: MalaColor_2AAADD_0
         )
-        label.textAlignment = .Center
+        label.textAlignment = .center
         return label
     }()
     /// 简介内容标签
@@ -163,7 +163,7 @@ class ThemeIntroductionViewCell: UICollectionViewCell {
             textColor: MalaColor_2AAADD_0
         )
         label.numberOfLines = 0
-        label.textAlignment = .Center
+        label.textAlignment = .center
         return label
     }()
     
@@ -191,33 +191,33 @@ class ThemeIntroductionViewCell: UICollectionViewCell {
         layoutView.addSubview(detailLabel)
         
         // Autolayout
-        layoutView.snp_makeConstraints { (make) in
-            make.center.equalTo(self.contentView.snp_center)
-            make.width.equalTo(self.contentView.snp_width)
-            make.height.equalTo(self.contentView.snp_height).multipliedBy(0.75)
+        layoutView.snp.makeConstraints { (maker) in
+            maker.center.equalTo(self.contentView.snp.center)
+            maker.width.equalTo(self.contentView.snp.width)
+            maker.height.equalTo(self.contentView.snp.height).multipliedBy(0.75)
         }
-        imageView.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(layoutView.snp_top).offset(40)
-            make.centerX.equalTo(self.contentView.snp_centerX)
-            make.width.equalTo(217)
-            make.height.equalTo(183)
+        imageView.snp.makeConstraints { (maker) -> Void in
+            maker.top.equalTo(layoutView.snp.top).offset(40)
+            maker.centerX.equalTo(self.contentView.snp.centerX)
+            maker.width.equalTo(217)
+            maker.height.equalTo(183)
         }
-        titleLabel.snp_makeConstraints { (make) -> Void in
-            make.centerX.equalTo(imageView.snp_centerX)
-            make.height.equalTo(16)
-            make.top.equalTo(imageView.snp_bottom).offset(30)
+        titleLabel.snp.makeConstraints { (maker) -> Void in
+            maker.centerX.equalTo(imageView.snp.centerX)
+            maker.height.equalTo(16)
+            maker.top.equalTo(imageView.snp.bottom).offset(30)
         }
-        detailLabel.snp_makeConstraints { (make) in
-            make.top.equalTo(titleLabel.snp_bottom).offset(25)
-            make.centerX.equalTo(imageView.snp_centerX)
-            make.width.equalTo(200)
+        detailLabel.snp.makeConstraints { (maker) in
+            maker.top.equalTo(titleLabel.snp.bottom).offset(25)
+            maker.centerX.equalTo(imageView.snp.centerX)
+            maker.width.equalTo(200)
         }
     }
 }
 
 class ThemeIntroductionFlowLayout: UICollectionViewFlowLayout {
     
-    private var frame = CGRectZero
+    private var frame = CGRect.zero
     
     
     // MARK: - Instance Method
@@ -234,7 +234,7 @@ class ThemeIntroductionFlowLayout: UICollectionViewFlowLayout {
     
     // MARK: - Private Method
     private func configure() {
-        scrollDirection = .Horizontal
+        scrollDirection = .horizontal
         itemSize = frame.size
         minimumInteritemSpacing = 0
         minimumLineSpacing = 0

@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class MalaConfig {
+open class MalaConfig {
     
     static let appGroupID: String = "group.malalaoshi.parent"
     
@@ -38,8 +38,8 @@ public class MalaConfig {
     }
     ///  app版本号
     class func aboutAPPVersion() -> String {
-        let version = String(NSBundle.mainBundle().infoDictionary!["CFBundleShortVersionString"]!)
-        return String(format: "版本 V%@", version ?? "1.0")
+        let version = String(describing: Bundle.main.infoDictionary!["CFBundleShortVersionString"]!)
+        return String(format: "版本 V%@", version)
     }
     ///  版权信息
     class func aboutCopyRightString() -> String {
@@ -240,8 +240,8 @@ public class MalaConfig {
     
     class func shareItems() -> [IntroductionModel] {
         return [
-            IntroductionModel(title: "微信好友", image: "sns_icon_wechat_session.png", subTitle: "", platformType: .SubTypeWechatSession),
-            IntroductionModel(title: "朋友圈", image: "sns_icon_wechat_timeline.png", subTitle: "", platformType: .SubTypeWechatTimeline),
+            IntroductionModel(title: "微信好友", image: "sns_icon_wechat_session.png", subTitle: "", platformType: .subTypeWechatSession),
+            IntroductionModel(title: "朋友圈", image: "sns_icon_wechat_timeline.png", subTitle: "", platformType: .subTypeWechatTimeline),
         ]
     }
     
@@ -313,14 +313,14 @@ public class MalaConfig {
     ///  ［作业数据分析页面］样本数据
     class func homeworkSampleData() -> [SingleHomeworkData] {
         return [
-            SingleHomeworkData(id: 1, name: "实数", rate: NSNumber(double: 0.15)),
-            SingleHomeworkData(id: 2, name: "函数初步", rate: NSNumber(double: 0.20)),
-            SingleHomeworkData(id: 3, name: "多边形", rate: NSNumber(double: 0.13)),
-            SingleHomeworkData(id: 4, name: "圆", rate: NSNumber(double: 0.06)),
-            SingleHomeworkData(id: 5, name: "全等", rate: NSNumber(double: 0.2)),
-            SingleHomeworkData(id: 6, name: "相似", rate: NSNumber(double: 0.06)),
-            SingleHomeworkData(id: 7, name: "几何变换", rate: NSNumber(double: 0.12)),
-            SingleHomeworkData(id: 8, name: "几何操作", rate: NSNumber(double: 0.08))
+            SingleHomeworkData(id: 1, name: "实数", rate: NSNumber(value: 0.15 as Double)),
+            SingleHomeworkData(id: 2, name: "函数初步", rate: NSNumber(value: 0.20 as Double)),
+            SingleHomeworkData(id: 3, name: "多边形", rate: NSNumber(value: 0.13 as Double)),
+            SingleHomeworkData(id: 4, name: "圆", rate: NSNumber(value: 0.06 as Double)),
+            SingleHomeworkData(id: 5, name: "全等", rate: NSNumber(value: 0.2 as Double)),
+            SingleHomeworkData(id: 6, name: "相似", rate: NSNumber(value: 0.06 as Double)),
+            SingleHomeworkData(id: 7, name: "几何变换", rate: NSNumber(value: 0.12 as Double)),
+            SingleHomeworkData(id: 8, name: "几何操作", rate: NSNumber(value: 0.08 as Double))
         ]
     }
     
@@ -378,14 +378,14 @@ public class MalaConfig {
     ///  ［提分点分析页面］样本数据
     class func scoreSampleData() -> [SingleTopicScoreData] {
         return [
-            SingleTopicScoreData(id: "1", name: "实数", score: NSNumber(double: 0.47), aveScore: NSNumber(double: 0.72)),
-            SingleTopicScoreData(id: "2", name: "函数初步", score: NSNumber(double: 0.23), aveScore: NSNumber(double: 0.64)),
-            SingleTopicScoreData(id: "3", name: "圆", score: NSNumber(double: 0.80), aveScore: NSNumber(double: 0.70)),
-            SingleTopicScoreData(id: "4", name: "多边形", score: NSNumber(double: 0.56), aveScore: NSNumber(double: 0.59)),
-            SingleTopicScoreData(id: "5", name: "全等", score: NSNumber(double: 0.27), aveScore: NSNumber(double: 0.51)),
-            SingleTopicScoreData(id: "6", name: "相似", score: NSNumber(double: 0.77), aveScore: NSNumber(double: 0.62)),
-            SingleTopicScoreData(id: "7", name: "几何变换", score: NSNumber(double: 0.50), aveScore: NSNumber(double: 0.77)),
-            SingleTopicScoreData(id: "8", name: "几何操作", score: NSNumber(double: 0.55), aveScore: NSNumber(double: 0.21))
+            SingleTopicScoreData(id: "1", name: "实数", score: NSNumber(value: 0.47 as Double), aveScore: NSNumber(value: 0.72 as Double)),
+            SingleTopicScoreData(id: "2", name: "函数初步", score: NSNumber(value: 0.23 as Double), aveScore: NSNumber(value: 0.64 as Double)),
+            SingleTopicScoreData(id: "3", name: "圆", score: NSNumber(value: 0.80 as Double), aveScore: NSNumber(value: 0.70 as Double)),
+            SingleTopicScoreData(id: "4", name: "多边形", score: NSNumber(value: 0.56 as Double), aveScore: NSNumber(value: 0.59 as Double)),
+            SingleTopicScoreData(id: "5", name: "全等", score: NSNumber(value: 0.27 as Double), aveScore: NSNumber(value: 0.51 as Double)),
+            SingleTopicScoreData(id: "6", name: "相似", score: NSNumber(value: 0.77 as Double), aveScore: NSNumber(value: 0.62 as Double)),
+            SingleTopicScoreData(id: "7", name: "几何变换", score: NSNumber(value: 0.50 as Double), aveScore: NSNumber(value: 0.77 as Double)),
+            SingleTopicScoreData(id: "8", name: "几何操作", score: NSNumber(value: 0.55 as Double), aveScore: NSNumber(value: 0.21 as Double))
         ]
     }
 }

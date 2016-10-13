@@ -8,101 +8,125 @@
 
 import UIKit
 
-func ==(lhs: AvatarPod.Request, rhs: AvatarPod.Request) -> Bool {
-    return lhs.key == rhs.key
-}
+open class AvatarPod {
 
-public class AvatarPod {
+    fileprivate static let sharedInstance = AvatarPod()
 
-    static let sharedInstance = AvatarPod()
+    fileprivate let cache = NSCache<NSString, UIImage>()
 
-    let cache = NSCache()
+    fileprivate lazy var session = URLSession(configuration: URLSessionConfiguration.default)
 
     public enum CacheType {
-        case Memory
-        case Disk
-        case Cloud
+        case memory
+        case disk
+        case cloud
     }
 
-    public typealias Completion = (finished: Bool, image: UIImage, cacheType: CacheType) -> Void
+    public typealias Completion = (_ finished: Bool, _ image: UIImage, _ cacheType: CacheType) -> Void
 
-    struct Request: Equatable {
+    fileprivate struct Request {
 
         let avatar: Avatar
         let completion: Completion
+
+        var URL: Foundation.URL? {
+            return avatar.URL as URL?
+        }
 
         var key: String {
             return avatar.key
         }
     }
 
-    private struct RequestPool {
+    fileprivate class RequestTank {
 
-        private var requests: [Request]
+        let URL: Foundation.URL
+        var requests: [Request] = []
 
-        init() {
-
-            self.requests = [Request]()
-        }
-
-        mutating func addRequest(request: Request) {
-
-            requests.append(request)
-        }
-
-        func requestsWithURL(URL: NSURL) -> [Request] {
-
-            return requests.filter({ $0.avatar.URL == URL })
-        }
-
-        mutating func removeRequestsWithURL(URL: NSURL) {
-
-            let requestsToRemove = requests.filter({ $0.avatar.URL == URL })
-
-            requestsToRemove.forEach({
-                if let index = requests.indexOf($0) {
-                    requests.removeAtIndex(index)
-                }
-            })
-        }
-
-        mutating func removeAllRequests() {
-            requests = []
+        init(URL: Foundation.URL) {
+            self.URL = URL
         }
     }
 
-    private var requestPool = RequestPool()
+    fileprivate class RequestPool {
 
-    private func completeRequest(request: Request, withStyledImage styledImage: UIImage, cacheType: CacheType) {
+        fileprivate var requestTanks = [URL: RequestTank]()
 
-        dispatch_async(dispatch_get_main_queue()) {
-            request.completion(finished: true, image: styledImage, cacheType: cacheType)
+        func addRequest(_ request: Request) {
+
+            guard let URL = request.URL else {
+                return
+            }
+
+            if let requestTank = requestTanks[URL] {
+                requestTank.requests.append(request)
+
+            } else {
+                let requestTank = RequestTank(URL: URL)
+                requestTanks[URL] = requestTank
+                requestTank.requests.append(request)
+            }
         }
 
-        cache.setObject(styledImage, forKey: request.key)
+        func requestsWithURL(_ URL: Foundation.URL) -> [Request] {
+
+            guard let requestTank = requestTanks[URL] else {
+                return []
+            }
+
+            return requestTank.requests
+        }
+
+        func removeRequestsWithURL(_ URL: Foundation.URL) {
+
+            requestTanks.removeValue(forKey: URL)
+        }
+
+        func removeAllRequests() {
+            requestTanks.removeAll()
+        }
     }
 
-    private let cacheQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)
+    fileprivate var requestPool = RequestPool()
 
-    private func completeRequestsWithURL(URL: NSURL, image: UIImage, cacheType: CacheType) {
+    fileprivate let requestQueue = DispatchQueue(label: "com.nixWork.Navi.requestQueue", attributes: [])
+    fileprivate let cacheQueue = DispatchQueue.global(qos: .background)
 
-        dispatch_async(dispatch_get_main_queue()) {
+    fileprivate func completeRequest(_ request: Request, withStyledImage styledImage: UIImage, cacheType: CacheType) {
+
+        DispatchQueue.main.async {
+            request.completion(true, styledImage, cacheType)
+        }
+
+        cache.setObject(styledImage, forKey: request.key as NSString)
+    }
+
+    fileprivate func completeRequestsWithURL(_ URL: Foundation.URL, image: UIImage, cacheType: CacheType) {
+
+        requestQueue.async {
 
             let requests = self.requestPool.requestsWithURL(URL)
 
-            requests.forEach({ request in
+            self.cacheQueue.async {
 
-                dispatch_async(self.cacheQueue) {
+                requests.forEach({ request in
 
-                    let styledImage = image.navi_avatarImageWithStyle(request.avatar.style)
+                    // if can find styledImage in cache, no need to generate it again or save
 
-                    self.completeRequest(request, withStyledImage: styledImage, cacheType: cacheType)
+                    if let styledImage = self.cache.object(forKey: request.key as NSString) {
+                        self.completeRequest(request, withStyledImage: styledImage, cacheType: cacheType)
 
-                    // save images to local
+                    } else {
+                        let styledImage = image.navi_avatarImageWithStyle(request.avatar.style)
 
-                    request.avatar.saveOriginalImage(image, styledImage: styledImage)
-                }
-            })
+                        self.completeRequest(request, withStyledImage: styledImage, cacheType: cacheType)
+
+                        // save images to local
+
+                        request.avatar.saveOriginalImage(image, styledImage: styledImage)
+                    }
+                })
+            }
 
             self.requestPool.removeRequestsWithURL(URL)
         }
@@ -110,55 +134,57 @@ public class AvatarPod {
 
     // MARK: - API
 
-    public class func wakeAvatar(avatar: Avatar, completion: Completion) {
+    open class func wakeAvatar(_ avatar: Avatar, completion: @escaping Completion) {
 
         guard let URL = avatar.URL else {
-
-            completion(finished: false, image: avatar.placeholderImage ?? UIImage(), cacheType: .Memory)
-
+            completion(false, avatar.placeholderImage ?? UIImage(), .memory)
             return
         }
 
         let request = Request(avatar: avatar, completion: completion)
 
-        let key = request.key
-
-        if let image = sharedInstance.cache.objectForKey(key) as? UIImage {
-            completion(finished: true, image: image, cacheType: .Memory)
+        if let image = sharedInstance.cache.object(forKey: request.key as NSString) {
+            completion(true, image, .memory)
 
         } else {
             if let placeholderImage = avatar.placeholderImage {
-                completion(finished: false, image: placeholderImage, cacheType: .Memory)
+                completion(false, placeholderImage, .memory)
             }
 
-            dispatch_async(sharedInstance.cacheQueue) {
+            sharedInstance.cacheQueue.async {
 
                 if let styledImage = avatar.localStyledImage {
-                    sharedInstance.completeRequest(request, withStyledImage: styledImage, cacheType: .Disk)
+                    sharedInstance.completeRequest(request, withStyledImage: styledImage, cacheType: .disk)
 
                 } else {
-                    dispatch_async(dispatch_get_main_queue()) {
+                    sharedInstance.requestQueue.async {
 
                         sharedInstance.requestPool.addRequest(request)
 
-                        if sharedInstance.requestPool.requestsWithURL(URL).count > 1 {
+                        if sharedInstance.requestPool.requestsWithURL(URL as URL).count > 1 {
                             // do nothing
 
                         } else {
-                            dispatch_async(sharedInstance.cacheQueue) {
+                            sharedInstance.cacheQueue.async {
 
                                 if let image = avatar.localOriginalImage {
-                                    sharedInstance.completeRequestsWithURL(URL, image: image, cacheType: .Disk)
+                                    sharedInstance.completeRequestsWithURL(URL as URL, image: image, cacheType: .disk)
 
                                 } else {
-                                    if let data = NSData(contentsOfURL: URL), image = UIImage(data: data) {
-                                        sharedInstance.completeRequestsWithURL(URL, image: image, cacheType: .Cloud)
+                                    let task = sharedInstance.session.dataTask(with: URL, completionHandler: { data, response, error in
 
-                                    } else {
-                                        dispatch_async(dispatch_get_main_queue()) {
-                                            sharedInstance.requestPool.removeRequestsWithURL(URL)
+                                        guard error == nil, let data = data, let image = UIImage(data: data) else {
+                                            sharedInstance.requestQueue.async {
+                                                sharedInstance.requestPool.removeRequestsWithURL(URL)
+                                            }
+
+                                            return
                                         }
-                                    }
+
+                                        sharedInstance.completeRequestsWithURL(URL, image: image, cacheType: .cloud)
+                                    }) 
+                                    
+                                    task.resume()
                                 }
                             }
                         }
@@ -168,7 +194,7 @@ public class AvatarPod {
         }
     }
     
-    public class func clear() {
+    open class func clear() {
         
         sharedInstance.requestPool.removeAllRequests()
         

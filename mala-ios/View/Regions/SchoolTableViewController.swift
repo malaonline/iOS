@@ -16,7 +16,7 @@ class SchoolTableViewController: UIViewController, UITableViewDelegate, UITableV
     // 学校数据模型
     var models: [SchoolModel] = [] {
         didSet {
-            dispatch_async(dispatch_get_main_queue(), { [weak self] () -> Void in
+            DispatchQueue.main.async(execute: { [weak self] () -> Void in
                 self?.tableView.reloadData()
             })
         }
@@ -27,7 +27,7 @@ class SchoolTableViewController: UIViewController, UITableViewDelegate, UITableV
     
     // MARK: - Components
     private lazy var tableView: UITableView = {
-        let tableView = UITableView(frame: CGRectZero, style: .Grouped)
+        let tableView = UITableView(frame: CGRect.zero, style: .grouped)
         return tableView
     }()
     private lazy var popButton: UIButton = {
@@ -50,7 +50,7 @@ class SchoolTableViewController: UIViewController, UITableViewDelegate, UITableV
         super.didReceiveMemoryWarning()
     }
 
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         loadCitylist()
     }
@@ -62,26 +62,26 @@ class SchoolTableViewController: UIViewController, UITableViewDelegate, UITableV
         tableView.delegate = self
         tableView.dataSource = self
         tableView.backgroundColor = MalaColor_F6F7F9_0
-        tableView.separatorStyle = .None
+        tableView.separatorStyle = .none
         tableView.separatorColor = MalaColor_E5E5E5_0
-        tableView.registerClass(RegionUnitCell.self, forCellReuseIdentifier: SchoolTableViewCellReuseId)
+        tableView.register(RegionUnitCell.self, forCellReuseIdentifier: SchoolTableViewCellReuseId)
         
         // Style
         title = "选择校区"
         let leftBarButtonItem = UIBarButtonItem(customView: popButton)
         navigationItem.leftBarButtonItem = leftBarButtonItem
-        UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.Default
+        UIApplication.shared.statusBarStyle = UIStatusBarStyle.default
         navigationController?.navigationBar.shadowImage = UIImage()
         
         // SubViews
         self.view.addSubview(tableView)
         
         // AutoLayout
-        tableView.snp_makeConstraints { (make) in
-            make.top.equalTo(self.view.snp_top)
-            make.bottom.equalTo(self.view.snp_bottom)
-            make.left.equalTo(self.view.snp_left)
-            make.right.equalTo(self.view.snp_right)
+        tableView.snp.makeConstraints { (maker) in
+            maker.top.equalTo(view.snp.top)
+            maker.bottom.equalTo(view.snp.bottom)
+            maker.left.equalTo(view.snp.left)
+            maker.right.equalTo(view.snp.right)
         }
     }
     
@@ -103,36 +103,36 @@ class SchoolTableViewController: UIViewController, UITableViewDelegate, UITableV
                 println("CityTableViewController - getSchools Error \(errorMessage)")
             }
             }, completion:{ [weak self] (schools) in
-                self?.models = schools.reverse()
+                self?.models = schools.reversed()
                 println("校区列表 - \(schools)")
             })
     }
     
     
     // MARK: - Delegate
-    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 10
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        MalaCurrentSchool = models[indexPath.row]
-        MalaUserDefaults.currentSchool.value = models[indexPath.row]
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        MalaCurrentSchool = models[(indexPath as NSIndexPath).row]
+        MalaUserDefaults.currentSchool.value = models[(indexPath as NSIndexPath).row]
         didSelectAction?()
-        dismissViewControllerAnimated(true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
     
     
     // MARK: - DataSource
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return models.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(SchoolTableViewCellReuseId, forIndexPath: indexPath) as! RegionUnitCell
-        cell.school = models[indexPath.row]
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: SchoolTableViewCellReuseId, for: indexPath) as! RegionUnitCell
+        cell.school = models[(indexPath as NSIndexPath).row]
         
         // Section的最后一个Cell隐藏分割线
-        if (indexPath.row+1) == models.count {
+        if ((indexPath as NSIndexPath).row+1) == models.count {
             cell.hideSeparator()
         }
         
@@ -142,6 +142,6 @@ class SchoolTableViewController: UIViewController, UITableViewDelegate, UITableV
     
     // MARK: - Events Response
     func pop() {
-        navigationController?.popViewControllerAnimated(true)
+        _ = navigationController?.popViewController(animated: true)
     }
 }

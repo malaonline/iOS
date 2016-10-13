@@ -31,21 +31,21 @@ class TeacherDetailModel: BaseObjectModel {
     // 分享信息
     var shareText: String {
         get {
-            guard let teacherName = name, teacherSubject = subject else {
+            guard let teacherName = name, let teacherSubject = subject else {
             return "优秀的麻辣老师"
             }
-            return String(format: "%@，%@老师，%@！", teacherName, teacherSubject, tags.joinWithSeparator("，"))
+            return String(format: "%@，%@老师，%@！", teacherName, teacherSubject, tags.joined(separator: "，"))
         }
     }
     // 分享链接
-    var shareURL: NSURL? {
+    var shareURL: URL? {
         get {
             #if USE_PRD_SERVER
-                return NSURL(string: String(format: "https://www.malalaoshi.com/wechat/teacher/?teacherid=%d", id))
+                return URL(string: String(format: "https://www.malalaoshi.com/wechat/teacher/?teacherid=%d", id))
             #elseif USE_STAGE_SERVER
-                return NSURL(string: String(format: "https://stage.malalaoshi.com/wechat/teacher/?teacherid=%d", id))
+                return URL(string: String(format: "https://stage.malalaoshi.com/wechat/teacher/?teacherid=%d", id))
             #else
-                return NSURL(string: String(format: "https://dev.malalaoshi.com/wechat/teacher/?teacherid=%d", id))
+                return URL(string: String(format: "https://dev.malalaoshi.com/wechat/teacher/?teacherid=%d", id))
             #endif
             
         }
@@ -72,7 +72,7 @@ class TeacherDetailModel: BaseObjectModel {
     
     override init(dict: [String: AnyObject]) {
         super.init(dict: dict)
-        setValuesForKeysWithDictionary(dict)
+        setValuesForKeys(dict)
     }
     
     convenience init(id: Int, name: String, avatar: String, gender: String, teaching_age: Int, level: Int, subject: String, grades: [String],
@@ -102,11 +102,11 @@ class TeacherDetailModel: BaseObjectModel {
     
     
     // MARK: - Override
-    override func setValue(value: AnyObject?, forUndefinedKey key: String) {
+    override func setValue(_ value: Any?, forUndefinedKey key: String) {
         println("TeacherDetailModel - Set for UndefinedKey: \(key)")
     }
     
-    override func setValue(value: AnyObject?, forKey key: String) {
+    override func setValue(_ value: Any?, forKey key: String) {
         if key == "highscore_set" {
             if let dicts = value as? [[String: AnyObject]] {
                 var tempDict: [HighScoreModel?] = []

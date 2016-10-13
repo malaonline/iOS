@@ -37,13 +37,13 @@ class ThemeShareBoard: UIView {
     }()
     /// 会员服务视图
     private lazy var collectionView: ThemeShareCollectionView = {
-        let view = ThemeShareCollectionView(frame: CGRectZero, collectionViewLayout: ThemeShareFlowLayout(frame: CGRectZero))
+        let view = ThemeShareCollectionView(frame: CGRect.zero, collectionViewLayout: ThemeShareFlowLayout(frame: CGRect.zero))
         return view
     }()
     // 背景视图
     private lazy var backgroundView: UIView = {
         let backgroundView = UIView()
-        backgroundView.backgroundColor = UIColor.blackColor()
+        backgroundView.backgroundColor = UIColor.black
         backgroundView.alpha = 0.4
         backgroundView.tag = 1099
         return backgroundView
@@ -72,26 +72,26 @@ class ThemeShareBoard: UIView {
         content.addSubview(collectionView)
         
         // Autolayout
-        backgroundView.snp_makeConstraints { (make) in
-            make.center.equalTo(self)
-            make.size.equalTo(self)
+        backgroundView.snp.makeConstraints { (maker) in
+            maker.center.equalTo(self)
+            maker.size.equalTo(self)
         }
-        content.snp_makeConstraints { (make) in
-            make.left.equalTo(self.snp_left)
-            make.right.equalTo(self.snp_right)
-            make.height.equalTo(153)
-            make.bottom.equalTo(self.snp_bottom)
+        content.snp.makeConstraints { (maker) in
+            maker.left.equalTo(self.snp.left)
+            maker.right.equalTo(self.snp.right)
+            maker.height.equalTo(153)
+            maker.bottom.equalTo(self.snp.bottom)
         }
-        titleLabel.snp_makeConstraints { (make) in
-            make.centerX.equalTo(content.snp_centerX)
-            make.top.equalTo(content.snp_top).offset(20)
-            make.height.equalTo(15)
+        titleLabel.snp.makeConstraints { (maker) in
+            maker.centerX.equalTo(content.snp.centerX)
+            maker.top.equalTo(content.snp.top).offset(20)
+            maker.height.equalTo(15)
         }
-        collectionView.snp_makeConstraints { (make) in
-            make.top.equalTo(titleLabel.snp_bottom).offset(20)
-            make.left.equalTo(content.snp_left).offset(12)
-            make.right.equalTo(content.snp_right).offset(-12)
-            make.bottom.equalTo(content.snp_bottom).offset(-20)
+        collectionView.snp.makeConstraints { (maker) in
+            maker.top.equalTo(titleLabel.snp.bottom).offset(20)
+            maker.left.equalTo(content.snp.left).offset(12)
+            maker.right.equalTo(content.snp.right).offset(-12)
+            maker.bottom.equalTo(content.snp.bottom).offset(-20)
         }
     }
     

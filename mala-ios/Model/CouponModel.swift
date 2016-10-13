@@ -18,7 +18,7 @@ class CouponModel: NSObject {
     /// 金额(包含小数位)
     var amount: Int = 0
     /// 有效期
-    var expired_at: NSTimeInterval = 0
+    var expired_at: TimeInterval = 0
     /// 使用限制最小金额
     var minPrice: Int = 0
     /// 使用标记
@@ -50,13 +50,13 @@ class CouponModel: NSObject {
     func setupStatus() {
         // 已使用
         if used {
-            status = .Used
+            status = .used
         // 已过期
         }else if couponIsExpired(expired_at) {
-            status = .Expired
+            status = .expired
         // 未使用
         }else {
-            status = .Unused
+            status = .unused
         }
     }
     
@@ -68,10 +68,10 @@ class CouponModel: NSObject {
     
     init(dict: [String: AnyObject]) {
         super.init()
-        setValuesForKeysWithDictionary(dict)
+        setValuesForKeys(dict)
     }
     
-    convenience init(id: Int, name: String, amount: Int, expired_at: NSTimeInterval, minPrice: Int = 0, used: Bool) {
+    convenience init(id: Int, name: String, amount: Int, expired_at: TimeInterval, minPrice: Int = 0, used: Bool) {
         self.init()
         self.id = id
         self.name = name
@@ -84,7 +84,6 @@ class CouponModel: NSObject {
     
     // MARK: - Description
     override var description: String {
-        return "\nCouponModel(id: \(id), name: \(name), amount: \(amount), expired_at: \(String(timeStamp: expired_at)))" +
-        ", used: \(used)), status: \(status)\n"
+        return "\nCouponModel(id: \(id), name: \(name), amount: \(amount), used: \(used)), status: \(status)\n"
     }
 }

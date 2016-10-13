@@ -42,7 +42,7 @@ class MainViewController: UITabBarController, UITabBarControllerDelegate {
     /// 个人
     private lazy var profileViewController: MainNavigationController = {
         let naviVC  = self.getNaviController(
-            ProfileViewController(style: .Grouped),
+            ProfileViewController(style: .grouped),
             title: MalaCommonString_Profile,
             imageName: "profile_normal"
         )
@@ -53,21 +53,21 @@ class MainViewController: UITabBarController, UITabBarControllerDelegate {
     // MARK: - Property
     private enum Tab: Int {
         
-        case Teacher
-        case Schedule
-        case MemberPrivileges
-        case Profile
+        case teacher
+        case schedule
+        case memberPrivileges
+        case profile
         
         var title: String {
             
             switch self {
-            case .Teacher:
+            case .teacher:
                 return MalaCommonString_FindTeacher
-            case .Schedule:
+            case .schedule:
                 return MalaCommonString_ClassSchedule
-            case .Profile:
+            case .profile:
                 return MalaCommonString_Profile
-            case .MemberPrivileges:
+            case .memberPrivileges:
                 return MalaCommonString_MemberPrivileges
             }
         }
@@ -125,16 +125,16 @@ class MainViewController: UITabBarController, UITabBarControllerDelegate {
             MalaToCommentCount = comment
             
             if order != 0, let viewController = getActivityViewController() {
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                DispatchQueue.main.async {
                     self?.popAlert(viewController)
-                })
+                }
             }
             self?.profileViewController.showTabBadgePoint = (MalaUnpaidOrderCount > 0 || MalaToCommentCount > 0)
         })
     }
     
     /// 弹出未支付订单提示
-    private func popAlert(viewController: UIViewController) {
+    private func popAlert(_ viewController: UIViewController) {
         let alert = JSSAlertView().show(viewController,
                                         title: "您有订单尚未支付",
                                         buttonText: "查看订单",
@@ -162,7 +162,7 @@ class MainViewController: UITabBarController, UITabBarControllerDelegate {
      ///  - parameter viewController: ViewController
      ///  - parameter title:          String for ViewController's Title
      ///  - parameter imageName:      String for ImageName
-    private func getNaviController(viewController: UIViewController, title: String, imageName: String) -> MainNavigationController {
+    private func getNaviController(_ viewController: UIViewController, title: String, imageName: String) -> MainNavigationController {
         viewController.title = title
         viewController.tabBarItem.image = UIImage(named: imageName)
         let navigationController = MainNavigationController(rootViewController: viewController)
@@ -171,7 +171,7 @@ class MainViewController: UITabBarController, UITabBarControllerDelegate {
     
     
     // MARK: - Delegate
-    func tabBarController(tabBarController: UITabBarController, shouldSelectViewController viewController: UIViewController) -> Bool {
+    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
         
         guard let navi = viewController as? UINavigationController else {
             return false
@@ -185,7 +185,7 @@ class MainViewController: UITabBarController, UITabBarControllerDelegate {
             // 未登陆则进行登陆动作
             if !MalaUserDefaults.isLogined {
                 
-                self.presentViewController(
+                self.present(
                     UINavigationController(rootViewController: LoginViewController()),
                     animated: true,
                     completion: { () -> Void in

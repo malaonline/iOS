@@ -17,12 +17,12 @@ class ThemeDate {
     ///  - parameter Period: 课时数量（基数应为[课表对象]数量）
     ///
     ///  - returns: 上课时间表（字符串数组）
-    class func dateArray(days: [ClassScheduleDayModel], period: Int) -> [[NSTimeInterval]] {
+    class func dateArray(_ days: [ClassScheduleDayModel], period: Int) -> [[TimeInterval]] {
         
         /// 上课时间表字符串数组
-        var timeSchedule: [[NSTimeInterval]] = [[NSTimeInterval]]()
+        var timeSchedule: [[TimeInterval]] = [[TimeInterval]]()
         /// 课表数组排序
-        let sortDays = days.sort { (model0, model1) -> Bool in
+        let sortDays = days.sorted { (model0, model1) -> Bool in
             return (model0.weekID == 0 ? 7 : model0.weekID) < (model1.weekID == 0 ? 7 : model1.weekID)
         }
         /// 课时数
@@ -34,8 +34,8 @@ class ThemeDate {
         repeat {
             
             let singleDate = sortDays[index]
-            let firstDate = ThemeDate().getFirstAvailableDate(singleDate).dateByAddingWeeks(currentWeekAdding)
-            let endDate = firstDate.dateByAddingHours(2)
+            let firstDate = ThemeDate().getFirstAvailableDate(singleDate).addingWeeks(currentWeekAdding) as NSDate
+            let endDate = firstDate.addingHours(2)!
             timeSchedule.append([firstDate.timeIntervalSince1970, endDate.timeIntervalSince1970])
             
             classPeriod -= 2
@@ -58,28 +58,28 @@ class ThemeDate {
     ///  - parameter timeSlot: 上课时间模型
     ///
     ///  - returns: 首个有效开始上课时间
-    private func getFirstAvailableDate(timeSlot: ClassScheduleDayModel) -> NSDate {
+    private func getFirstAvailableDate(_ timeSlot: ClassScheduleDayModel) -> NSDate {
         
         if let lastDateTimeInterval = timeSlot.last_occupied_end {
             var lastDate = NSDate(timeIntervalSince1970: lastDateTimeInterval.doubleValue)
             // 下一周的课程开始时间
-            lastDate = lastDate.dateByAddingWeeks(1)
-            lastDate = lastDate.dateBySubtractingHours(2)
+            lastDate = lastDate.addingWeeks(1) as NSDate
+            lastDate = lastDate.subtractingHours(2) as NSDate
             return lastDate
         }else {
             
-            var date = MalaConfig.malaWeekdays()[timeSlot.weekID].dateInThisWeek()
+            var date = MalaConfig.malaWeekdays()[timeSlot.weekID].dateInThisWeek() as NSDate
             
             // 只有提前两天以上的课程，才会在本周开始授课。
             //（例如在周五预约了周日的课程，仅相隔周六一天不符合要求，将从下周日开始上课）
             //（例如在周四预约了周日的课程，相隔周五、周六两天符合要求，将从本周日开始上课）
             if !couldStartInThisWeek(timeSlot) {
-                date = date.dateByAddingWeeks(1)
+                date = date.addingWeeks(1) as NSDate
             }
             
-            let startDateString = getDateString(date: date, format: "yyyy-MM-dd")
+            let startDateString = getDateString(date: date as NSDate?, format: "yyyy-MM-dd")
             let dateString = startDateString + " " + (timeSlot.start ?? "")
-            return dateString.dateWithFormatter("yyyy-MM-dd HH:mm")!
+            return dateString.dateWithFormatter("yyyy-MM-dd HH:mm")! as NSDate
         }
     }
     
@@ -89,7 +89,7 @@ class ThemeDate {
     ///  - parameter timeSlot: 上课时间模型
     ///
     ///  - returns: 可否上课结果
-    private func couldStartInThisWeek(timeSlot: ClassScheduleDayModel) -> Bool {
+    private func couldStartInThisWeek(_ timeSlot: ClassScheduleDayModel) -> Bool {
         
         /// 若首次购课，则[计算上课时间]需要间隔两天，以用于用户安排[建档测评服务]
         let intervals = MalaIsHasBeenEvaluatedThisSubject == true ? 2 : 0
@@ -101,11 +101,11 @@ class ThemeDate {
             return false
         }
         
-        let dateString = getDateString(date: date, format: "yyyy-MM-dd") + " " + (timeSlot.start ?? "")
-        let selectedDate = dateString.dateWithFormatter("yyyy-MM-dd HH:mm")!
+        let dateString = getDateString(date: date as NSDate?, format: "yyyy-MM-dd") + " " + (timeSlot.start ?? "")
+        let selectedDate = dateString.dateWithFormatter("yyyy-MM-dd HH:mm")! as NSDate
         
         // 若所选时间与当前时间相距不足1小时，则从下周开始计算
-        if selectedDate.hoursFrom(NSDate()) < 1 {
+        if selectedDate.hoursLaterThan(Date()) < 1 {
             return false
         }
         return true

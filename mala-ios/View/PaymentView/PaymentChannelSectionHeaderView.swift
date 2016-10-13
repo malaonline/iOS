@@ -14,7 +14,7 @@ class PaymentChannelSectionHeaderView: UIView {
     /// Section标题
     private lazy var titleLabel: UILabel = {
         let titleLabel = UILabel()
-        titleLabel.font = UIFont.systemFontOfSize(13)
+        titleLabel.font = UIFont.systemFont(ofSize: 13)
         titleLabel.textColor = MalaColor_6C6C6C_0
         titleLabel.text = "选择支付方式"
         return titleLabel
@@ -36,17 +36,17 @@ class PaymentChannelSectionHeaderView: UIView {
     // MARK: - Private Method
     private func setupUserInterface() {
         // Style
-        self.backgroundColor = UIColor.clearColor()
+        self.backgroundColor = UIColor.clear
         
         // SubViews
         self.addSubview(titleLabel)
         
         // Autolayout
-        titleLabel.snp_makeConstraints { (make) -> Void in
-            make.left.equalTo(self.snp_left).offset(12)
-            make.top.equalTo(self.snp_top).offset(10)
-            make.bottom.equalTo(self.snp_bottom).offset(-10)
-            make.height.equalTo(13)
+        titleLabel.snp.makeConstraints { (maker) -> Void in
+            maker.left.equalTo(self.snp.left).offset(12)
+            maker.top.equalTo(self.snp.top).offset(10)
+            maker.bottom.equalTo(self.snp.bottom).offset(-10)
+            maker.height.equalTo(13)
         }
     }
 }

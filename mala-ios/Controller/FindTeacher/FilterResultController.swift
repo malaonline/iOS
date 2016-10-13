@@ -20,13 +20,13 @@ class FilterResultController: BaseViewController {
     // MARK: - Components
     /// 老师列表
     private lazy var tableView: TeacherTableView = {
-        let tableView = TeacherTableView(frame: self.view.frame, style: .Plain)
+        let tableView = TeacherTableView(frame: self.view.frame, style: .plain)
         tableView.controller = self
         return tableView
     }()
     /// 筛选条件面板
     private lazy var filterBar: FilterBar = {
-        let filterBar = FilterBar(frame: CGRectZero)
+        let filterBar = FilterBar(frame: CGRect.zero)
         filterBar.backgroundColor = MalaColor_EDEDED_0
         filterBar.controller = self
         return filterBar
@@ -46,7 +46,7 @@ class FilterResultController: BaseViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         makeStatusBarBlack()
     }
@@ -66,17 +66,17 @@ class FilterResultController: BaseViewController {
         view.addSubview(tableView)
         
         // AutoLayout
-        filterBar.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(self.view.snp_top)
-            make.left.equalTo(self.view.snp_left)
-            make.right.equalTo(self.view.snp_right)
-            make.height.equalTo(MalaLayout_FilterBarHeight)
+        filterBar.snp.makeConstraints { (maker) -> Void in
+            maker.top.equalTo(view.snp.top)
+            maker.left.equalTo(view.snp.left)
+            maker.right.equalTo(view.snp.right)
+            maker.height.equalTo(MalaLayout_FilterBarHeight)
         }
-        tableView.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(self.filterBar.snp_bottom)
-            make.left.equalTo(self.view.snp_left)
-            make.right.equalTo(self.view.snp_right)
-            make.bottom.equalTo(self.view.snp_bottom)
+        tableView.snp.makeConstraints { (maker) -> Void in
+            maker.top.equalTo(filterBar.snp.bottom)
+            maker.left.equalTo(view.snp.left)
+            maker.right.equalTo(view.snp.right)
+            maker.bottom.equalTo(view.snp.bottom)
         }
     }
     
@@ -96,7 +96,7 @@ class FilterResultController: BaseViewController {
     ///  根据筛选条件字典，请求老师列表
     ///
     ///  - parameter filters: 筛选条件字典
-    func loadTeachers(filters: [String: AnyObject]? = nil, isLoadMore: Bool = false, finish: (()->())? = nil) {
+    func loadTeachers(_ filters: [String: AnyObject]? = nil, isLoadMore: Bool = false, finish: (()->())? = nil) {
         
         if isLoadMore {
             currentPageIndex += 1
@@ -117,13 +117,13 @@ class FilterResultController: BaseViewController {
             let resultModel = ResultModel(dict: dict)
             
             /// 记录数据量
-            if let count = resultModel.count where count != 0 {
-                self?.allTeacherCount = count.integerValue
+            if let count = resultModel.count, count != 0 {
+                self?.allTeacherCount = count.intValue
             }
             
             /// 若请求数达到最大, 执行return
-            if let detail = resultModel.detail where (detail as NSString).containsString(MalaErrorDetail_InvalidPage) {
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            if let detail = resultModel.detail, (detail as NSString).contains(MalaErrorDetail_InvalidPage) {
+                DispatchQueue.main.async(execute: { () -> Void in
                     finish?()
                 })
                 return
@@ -154,10 +154,10 @@ class FilterResultController: BaseViewController {
                 self?.tableView.reloadData()
             }
             
-            dispatch_async(dispatch_get_main_queue(), { [weak self] () -> Void in
+            DispatchQueue.main.async { [weak self] () -> Void in
                 self?.showDefatultViewWhenModelIsEmpty()
                 finish?()
-            })
+            }
         }
     }
     

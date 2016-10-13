@@ -60,7 +60,7 @@ class LearningReportHomeworkDataCell: MalaBaseCardCell {
             textColor: MalaColor_5E5E5E_0
         )
         label.backgroundColor = MalaColor_E8F2F8_0
-        label.textAlignment = .Center
+        label.textAlignment = .center
         label.layer.cornerRadius = 11
         label.layer.masksToBounds = true
         return label
@@ -124,7 +124,7 @@ class LearningReportHomeworkDataCell: MalaBaseCardCell {
         
         // 加载图例
         legendView.removeAllLegend()
-        for (index, string) in xVals.enumerate() {
+        for (index, string) in xVals.enumerated() {
             legendView.addLegend(color: MalaConfig.chartsColor()[index], title: string)
         }
     }
@@ -144,45 +144,45 @@ class LearningReportHomeworkDataCell: MalaBaseCardCell {
         
         
         // Autolayout
-        titleLabel.snp_makeConstraints { (make) in
-            make.height.equalTo(20)
-            make.centerX.equalTo(layoutView.snp_centerX)
-            make.top.equalTo(layoutView.snp_bottom).multipliedBy(0.05)
+        titleLabel.snp.makeConstraints { (maker) in
+            maker.height.equalTo(20)
+            maker.centerX.equalTo(layoutView.snp.centerX)
+            maker.top.equalTo(layoutView.snp.bottom).multipliedBy(0.05)
         }
-        separatorLine.snp_makeConstraints { (make) in
-            make.top.equalTo(layoutView.snp_bottom).multipliedBy(0.13)
-            make.height.equalTo(MalaScreenOnePixel)
-            make.centerX.equalTo(layoutView.snp_centerX)
-            make.width.equalTo(layoutView.snp_width).multipliedBy(0.84)
+        separatorLine.snp.makeConstraints { (maker) in
+            maker.top.equalTo(layoutView.snp.bottom).multipliedBy(0.13)
+            maker.height.equalTo(MalaScreenOnePixel)
+            maker.centerX.equalTo(layoutView.snp.centerX)
+            maker.width.equalTo(layoutView.snp.width).multipliedBy(0.84)
         }
-        infoLabel.snp_makeConstraints { (make) in
-            make.width.equalTo(120)
-            make.height.equalTo(22)
-            make.centerX.equalTo(layoutView.snp_centerX)
-            make.top.equalTo(layoutView.snp_bottom).multipliedBy(0.17)
+        infoLabel.snp.makeConstraints { (maker) in
+            maker.width.equalTo(120)
+            maker.height.equalTo(22)
+            maker.centerX.equalTo(layoutView.snp.centerX)
+            maker.top.equalTo(layoutView.snp.bottom).multipliedBy(0.17)
         }
-        infoIcon.snp_makeConstraints { (make) in
-            make.bottom.equalTo(infoLabel.snp_bottom)
-            make.left.equalTo(infoLabel.snp_left)
-            make.width.equalTo(22.5)
-            make.height.equalTo(33)
+        infoIcon.snp.makeConstraints { (maker) in
+            maker.bottom.equalTo(infoLabel.snp.bottom)
+            maker.left.equalTo(infoLabel.snp.left)
+            maker.width.equalTo(22.5)
+            maker.height.equalTo(33)
         }
-        homeworkLabel.snp_makeConstraints { (make) in
-            make.top.equalTo(layoutView.snp_bottom).multipliedBy(0.23)
-            make.height.equalTo(12)
-            make.centerX.equalTo(layoutView.snp_centerX)
+        homeworkLabel.snp.makeConstraints { (maker) in
+            maker.top.equalTo(layoutView.snp.bottom).multipliedBy(0.23)
+            maker.height.equalTo(12)
+            maker.centerX.equalTo(layoutView.snp.centerX)
         }
-        pieChartView.snp_makeConstraints { (make) in
-            make.top.equalTo(homeworkLabel.snp_bottom)
-            make.left.equalTo(layoutView.snp_left).offset(27)
-            make.right.equalTo(layoutView.snp_right).offset(-27)
-            make.height.equalTo(pieChartView.snp_width)//.offset(100)
+        pieChartView.snp.makeConstraints { (maker) in
+            maker.top.equalTo(homeworkLabel.snp.bottom)
+            maker.left.equalTo(layoutView.snp.left).offset(27)
+            maker.right.equalTo(layoutView.snp.right).offset(-27)
+            maker.height.equalTo(pieChartView.snp.width)//.offset(100)
         }
-        legendView.snp_makeConstraints { (make) in
-            make.top.equalTo(pieChartView.snp_bottom)
-            make.left.equalTo(layoutView.snp_left).offset(27)
-            make.right.equalTo(layoutView.snp_right).offset(-27)
-            make.bottom.equalTo(layoutView.snp_bottom).multipliedBy(0.914)
+        legendView.snp.makeConstraints { (maker) in
+            maker.top.equalTo(pieChartView.snp.bottom)
+            maker.left.equalTo(layoutView.snp.left).offset(27)
+            maker.right.equalTo(layoutView.snp.right).offset(-27)
+            maker.bottom.equalTo(layoutView.snp.bottom).multipliedBy(0.914)
         }
     }
     
@@ -215,14 +215,14 @@ class LearningReportHomeworkDataCell: MalaBaseCardCell {
         let data = PieChartData(xVals: xVals, dataSet: dataSet)
         
         // 设置数据显示格式
-        let pFormatter = NSNumberFormatter()
-        pFormatter.numberStyle = .PercentStyle
+        let pFormatter = NumberFormatter()
+        pFormatter.numberStyle = .percent
         pFormatter.maximumFractionDigits = 1
         pFormatter.multiplier = 1
         pFormatter.percentSymbol = "%"
         data.setValueFormatter(pFormatter)
-        data.setValueFont(UIFont.systemFontOfSize(11))
-        data.setValueTextColor(UIColor.whiteColor())
+        data.setValueFont(UIFont.systemFont(ofSize: 11))
+        data.setValueTextColor(UIColor.white)
         pieChartView.data = data
     }
     
@@ -242,7 +242,7 @@ class LearningReportHomeworkDataCell: MalaBaseCardCell {
 
 
 // MARK: - LegendView
-public class PieLegendView: UIView {
+open class PieLegendView: UIView {
     
     // MARK: - Property
     private var currentX: CGFloat = 6
@@ -266,20 +266,20 @@ public class PieLegendView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
-    public func addLegend(color color: UIColor, title: String) -> UIButton {
+    @discardableResult
+    open func addLegend(color: UIColor, title: String) -> UIButton {
         let button = UIButton()
         button.adjustsImageWhenHighlighted = false
         
         let image = UIImage.withColor(color, bounds: CGRect(x: 0, y: 0, width: 10, height: 10))
-        button.setImage(image, forState: .Normal)
+        button.setImage(image, for: UIControlState())
         button.imageView?.layer.cornerRadius = 5
         button.imageView?.layer.masksToBounds = true
         button.imageEdgeInsets = UIEdgeInsets(top: 0, left: -6, bottom: 0, right: 6)
         
-        button.setTitle(title, forState: .Normal)
-        button.titleLabel?.font = UIFont.systemFontOfSize(12)
-        button.setTitleColor(MalaColor_939393_0, forState: .Normal)
+        button.setTitle(title, for: UIControlState())
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 12)
+        button.setTitleColor(MalaColor_939393_0, for: UIControlState())
         
         button.sizeToFit()
         currentY = CGFloat(Int(Int(self.viewCount)/3)*20)
@@ -289,13 +289,13 @@ public class PieLegendView: UIView {
         
         addSubview(button)
         viewCount += 1
-        currentX = CGRectGetMaxX(button.frame)
+        currentX = button.frame.maxX
         legends.append(button)
         
         return button
     }
     
-    public func removeAllLegend() {
+    open func removeAllLegend() {
         currentX = 0
         currentY = 0
         viewCount = 0

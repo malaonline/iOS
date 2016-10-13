@@ -14,8 +14,22 @@ import UIKit
 ///  - parameter SecIndexPath: Tuple (like (0,0))
 ///
 ///  - returns: Bool
-func ==(FirIndexPath: NSIndexPath, SecIndexPath: (section: Int, row: Int)) -> Bool {
-    return FirIndexPath.section == SecIndexPath.section && FirIndexPath.row == SecIndexPath.row
+func ==(firIndexPath: IndexPath, secIndexPath: (section: Int, row: Int)) -> Bool {
+    return (firIndexPath as NSIndexPath).section == secIndexPath.section && (firIndexPath as NSIndexPath).row == secIndexPath.row
+}
+
+
+/// Compare Custom Array With Empty Array
+///
+/// - parameter FirArray: Custom Model Array
+/// - parameter SecArray: Empty Array
+///
+/// - returns: Bool
+func !=(firArray: [[ClassScheduleDayModel]], secArray: [Any]) -> Bool {
+    if firArray.count == 0 {
+        return false
+    }
+    return true
 }
 
 ///  Random Number
@@ -23,9 +37,9 @@ func ==(FirIndexPath: NSIndexPath, SecIndexPath: (section: Int, row: Int)) -> Bo
 ///  - parameter range: range
 ///
 ///  - returns: Int
-func randomInRange(range: Range<Int>) -> Int {
-    let count = UInt32(range.endIndex - range.startIndex)
-    return  Int(arc4random_uniform(count)) + range.startIndex
+func randomInRange(_ range: Range<Int>) -> Int {
+    let count = UInt32(range.upperBound - range.lowerBound)
+    return  Int(arc4random_uniform(count)) + range.lowerBound
 }
 
 func ==<T>(lhs: Listener<T>, rhs: Listener<T>) -> Bool {

@@ -24,18 +24,18 @@ class TeacherDetailsPhotosCell: MalaBaseCell {
     // MARK: - Components
     private lazy var detailButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(named: "rightArrow"), forState: .Normal)
-        button.setTitle("更多", forState: .Normal)
-        button.setTitleColor(MalaColor_939393_0, forState: .Normal)
-        button.titleLabel?.font = UIFont.systemFontOfSize(12)
+        button.setImage(UIImage(named: "rightArrow"), for: UIControlState())
+        button.setTitle("更多", for: UIControlState())
+        button.setTitleColor(MalaColor_939393_0, for: UIControlState())
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 12)
         button.titleEdgeInsets = UIEdgeInsets(top: 0, left: -10, bottom: 0, right: 10)
         button.imageEdgeInsets = UIEdgeInsets(top: 0, left: 24, bottom: 0, right: -24)
-        button.addTarget(self, action: #selector(TeacherDetailsPhotosCell.detailButtonDidTap), forControlEvents: .TouchUpInside)
+        button.addTarget(self, action: #selector(TeacherDetailsPhotosCell.detailButtonDidTap), for: .touchUpInside)
         return button
     }()
     /// 图片滚动浏览视图
     private lazy var photoCollection: ThemePhotoCollectionView = {
-        let collection = ThemePhotoCollectionView(frame: CGRectZero, collectionViewLayout: CommonFlowLayout(type: .DetailPhotoView))
+        let collection = ThemePhotoCollectionView(frame: CGRect.zero, collectionViewLayout: CommonFlowLayout(type: .detailPhotoView))
         return collection
     }()
     
@@ -59,23 +59,23 @@ class TeacherDetailsPhotosCell: MalaBaseCell {
         content.addSubview(photoCollection)
 
         // Autolayout
-        detailButton.snp_makeConstraints { (make) -> Void in
-            make.height.equalTo(13)
-            make.right.equalTo(headerView.snp_right).offset(-12)
-            make.centerY.equalTo(headerView.snp_centerY)
+        detailButton.snp.makeConstraints { (maker) -> Void in
+            maker.height.equalTo(13)
+            maker.right.equalTo(headerView.snp.right).offset(-12)
+            maker.centerY.equalTo(headerView.snp.centerY)
         }
-        content.snp_updateConstraints { (make) -> Void in
-            make.top.equalTo(headerView.snp_bottom).offset(10)
-            make.left.equalTo(contentView.snp_left)
-            make.right.equalTo(contentView.snp_right)
-            make.bottom.equalTo(contentView.snp_bottom).offset(-10)
+        content.snp.updateConstraints { (maker) -> Void in
+            maker.top.equalTo(headerView.snp.bottom).offset(10)
+            maker.left.equalTo(contentView.snp.left)
+            maker.right.equalTo(contentView.snp.right)
+            maker.bottom.equalTo(contentView.snp.bottom).offset(-10)
         }
-        photoCollection.snp_makeConstraints { (make) in
-            make.left.equalTo(content)
-            make.right.equalTo(content)
-            make.top.equalTo(content)
-            make.height.equalTo(MalaLayout_DetailPhotoWidth)
-            make.bottom.equalTo(content)
+        photoCollection.snp.makeConstraints { (maker) in
+            maker.left.equalTo(content)
+            maker.right.equalTo(content)
+            maker.top.equalTo(content)
+            maker.height.equalTo(MalaLayout_DetailPhotoWidth)
+            maker.bottom.equalTo(content)
         }
     }
  
@@ -84,6 +84,6 @@ class TeacherDetailsPhotosCell: MalaBaseCell {
     ///  查看相册按钮点击事件
     @objc private func detailButtonDidTap() {
         // 相册
-        NSNotificationCenter.defaultCenter().postNotificationName(MalaNotification_PushPhotoBrowser, object: "browser")
+        NotificationCenter.default.post(name: MalaNotification_PushPhotoBrowser, object: "browser")
     }
 }

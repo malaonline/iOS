@@ -9,8 +9,8 @@
 import UIKit
 
 protocol ProfileViewHeaderViewDelegate: NSObjectProtocol {
-    func avatarViewDidTap(sender: UIImageView)
-    func nameEditButtonDidTap(sender: UIButton)
+    func avatarViewDidTap(_ sender: UIImageView)
+    func nameEditButtonDidTap(_ sender: UIButton)
 }
 
 class ProfileViewHeaderView: UIView {
@@ -25,7 +25,7 @@ class ProfileViewHeaderView: UIView {
     /// 用户头像URL
     var avatarURL: String = "" {
         didSet {
-            avatarView.ma_setImage(NSURL(string: avatarURL) ?? NSURL(), placeholderImage: UIImage(named: "profileAvatar_placeholder"))
+            avatarView.ma_setImage(URL(string: avatarURL), placeholderImage: UIImage(named: "profileAvatar_placeholder"))
         }
     }
     /// 用户头像
@@ -49,15 +49,15 @@ class ProfileViewHeaderView: UIView {
         let imageView = UIImageView(image: UIImage(named: "avatar_placeholder"))
         imageView.layer.cornerRadius = (MalaLayout_AvatarSize-5)*0.5
         imageView.layer.masksToBounds = true
-        imageView.userInteractionEnabled = true
-        imageView.contentMode = .ScaleAspectFill
+        imageView.isUserInteractionEnabled = true
+        imageView.contentMode = .scaleAspectFill
         imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(ProfileViewHeaderView.avatarViewDidTap(_:))))
         return imageView
     }()
     /// 头像背景
     private lazy var avatarBackground: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor.whiteColor()
+        view.backgroundColor = UIColor.white
         view.layer.cornerRadius = MalaLayout_AvatarSize*0.5
         view.layer.masksToBounds = true
         return view
@@ -66,24 +66,24 @@ class ProfileViewHeaderView: UIView {
     private lazy var nameLabel: UILabel = {
         let label = UILabel()
         label.textColor = MalaColor_82B4D9_0
-        label.font = UIFont.systemFontOfSize(14)
-        label.textAlignment = .Center
-        label.userInteractionEnabled = true
+        label.font = UIFont.systemFont(ofSize: 14)
+        label.textAlignment = .center
+        label.isUserInteractionEnabled = true
         label.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(ProfileViewHeaderView.nameEditButtonDidTap(_:))))
         return label
     }()
     /// 姓名修改按钮
     private lazy var editButton: UIButton = {
         let button = UIButton()
-        button.setBackgroundImage(UIImage(named: "edit_icon"), forState: .Normal)
-        button.addTarget(self, action: #selector(ProfileViewHeaderView.nameEditButtonDidTap(_:)), forControlEvents: .TouchUpInside)
+        button.setBackgroundImage(UIImage(named: "edit_icon"), for: UIControlState())
+        button.addTarget(self, action: #selector(ProfileViewHeaderView.nameEditButtonDidTap(_:)), for: .touchUpInside)
         return button
     }()
     /// 头像刷新指示器
     private lazy var activityIndicator: UIActivityIndicatorView = {
         let activityIndicator = UIActivityIndicatorView()
         activityIndicator.hidesWhenStopped = true
-        activityIndicator.hidden = true
+        activityIndicator.isHidden = true
         return activityIndicator
     }()
     
@@ -104,7 +104,7 @@ class ProfileViewHeaderView: UIView {
     // MARK: - Private
     private func setupUserInterface() {
         // Style
-        backgroundColor = UIColor.clearColor()
+        backgroundColor = UIColor.clear
         self.avatarURL = MalaUserDefaults.avatar.value ?? ""
         
         // SubViews
@@ -115,36 +115,36 @@ class ProfileViewHeaderView: UIView {
         avatarView.addSubview(activityIndicator)
         
         // Autolayout
-        avatarBackground.snp_makeConstraints { (make) in
-            make.top.equalTo(self.snp_top).offset(16)
-            make.centerX.equalTo(self.snp_centerX)
-            make.width.equalTo(MalaLayout_AvatarSize)
-            make.height.equalTo(MalaLayout_AvatarSize)
+        avatarBackground.snp.makeConstraints { (maker) in
+            maker.top.equalTo(self.snp.top).offset(16)
+            maker.centerX.equalTo(self.snp.centerX)
+            maker.width.equalTo(MalaLayout_AvatarSize)
+            maker.height.equalTo(MalaLayout_AvatarSize)
         }
-        avatarView.snp_makeConstraints(closure: { (make) -> Void in
-            make.center.equalTo(self.avatarBackground.snp_center)
-            make.size.equalTo(self.avatarBackground.snp_size).offset(-5)
+        avatarView.snp.makeConstraints({ (maker) -> Void in
+            maker.center.equalTo(self.avatarBackground.snp.center)
+            maker.size.equalTo(self.avatarBackground.snp.size).offset(-5)
         })
-        nameLabel.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(avatarView.snp_bottom).offset(10)
-            make.centerX.equalTo(avatarView.snp_centerX)
-            make.height.equalTo(14)
+        nameLabel.snp.makeConstraints { (maker) -> Void in
+            maker.top.equalTo(avatarView.snp.bottom).offset(10)
+            maker.centerX.equalTo(avatarView.snp.centerX)
+            maker.height.equalTo(14)
         }
-        editButton.snp_makeConstraints { (make) -> Void in
-            make.centerY.equalTo(nameLabel.snp_centerY)
-            make.left.equalTo(nameLabel.snp_right).offset(3)
-            make.width.equalTo(9)
-            make.height.equalTo(13)
+        editButton.snp.makeConstraints { (maker) -> Void in
+            maker.centerY.equalTo(nameLabel.snp.centerY)
+            maker.left.equalTo(nameLabel.snp.right).offset(3)
+            maker.width.equalTo(9)
+            maker.height.equalTo(13)
         }
-        activityIndicator.snp_makeConstraints { (make) -> Void in
-            make.center.equalTo(avatarView.snp_center)
+        activityIndicator.snp.makeConstraints { (maker) -> Void in
+            maker.center.equalTo(avatarView.snp.center)
         }
     }
     
     private func setupNotification() {
         // 刷新学生姓名
-        NSNotificationCenter.defaultCenter().addObserverForName(
-            MalaNotification_RefreshStudentName,
+        NotificationCenter.default.addObserver(
+            forName: MalaNotification_RefreshStudentName,
             object: nil,
             queue: nil) { [weak self] (notification) -> Void in
                 self?.nameLabel.text = MalaUserDefaults.studentName.value
@@ -153,11 +153,11 @@ class ProfileViewHeaderView: UIView {
     
     
     // MARK: - Event Response
-    @objc private func avatarViewDidTap(sender: UIImageView) {
+    @objc private func avatarViewDidTap(_ sender: UIImageView) {
         self.delegate?.avatarViewDidTap(sender)
     }
     
-    @objc private func nameEditButtonDidTap(sender: UIButton) {
+    @objc private func nameEditButtonDidTap(_ sender: UIButton) {
         self.delegate?.nameEditButtonDidTap(sender)
     }
     
@@ -169,6 +169,6 @@ class ProfileViewHeaderView: UIView {
     }
     
     deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: MalaNotification_RefreshStudentName, object: nil)
+        NotificationCenter.default.removeObserver(self, name: MalaNotification_RefreshStudentName, object: nil)
     }
 }

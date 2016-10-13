@@ -25,7 +25,7 @@ class GradeModel: BaseObjectModel {
     
     override init(dict: [String: AnyObject]) {
         super.init(dict: dict)
-        setValuesForKeysWithDictionary(dict)
+        setValuesForKeys(dict)
     }
     
     required init(coder aDecoder: NSCoder) {
@@ -48,11 +48,11 @@ class GradeModel: BaseObjectModel {
     
     
     // MARK: - Override
-    override func setValue(value: AnyObject?, forUndefinedKey key: String) {
+    override func setValue(_ value: Any?, forUndefinedKey key: String) {
         println("GradeModel - Set for UndefinedKey: \(key)")
     }
     
-    override func setValue(value: AnyObject?, forKey key: String) {
+    override func setValue(_ value: Any?, forKey key: String) {
         if key == "subset" {
             if let dicts = value as? [[String: AnyObject]] {
                 var tempDict: [GradeModel]? = []
@@ -82,6 +82,6 @@ class GradeModel: BaseObjectModel {
     // MARK: - Description
     override var description: String {
         let keys = ["id", "name", "subset", "subjects"]
-        return dictionaryWithValuesForKeys(keys).description
+        return dictionaryWithValues(forKeys: keys).description
     }
 }

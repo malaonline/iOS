@@ -26,7 +26,7 @@ class SingleHomeworkData: NSObject {
     
     init(dict: [String: AnyObject]) {
         super.init()
-        setValuesForKeysWithDictionary(dict)
+        setValuesForKeys(dict)
     }
     
     convenience init(id: Int, name: String, rate: NSNumber) {

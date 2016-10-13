@@ -7,12 +7,13 @@
 //
 
 import UIKit
+import DateTools
 
 class CourseTableViewSectionHeader: UITableViewHeaderFooterView {
 
     // MARK: - Property
     /// 日期数据
-    var timeInterval: NSTimeInterval? = 0 {
+    var timeInterval: TimeInterval? = 0 {
         didSet {
             /// 同年日期仅显示月份，否则显示年月
             let formatter = NSDate(timeIntervalSince1970: timeInterval ?? 0).year() == NSDate().year() ? "M月" : "yyyy年M月"
@@ -45,8 +46,8 @@ class CourseTableViewSectionHeader: UITableViewHeaderFooterView {
     /// 视差图片
     lazy var parallaxImage: UIImageView = {
         let imageView = UIImageView(image: UIImage(named: "course_header"))
-        imageView.backgroundColor = UIColor.whiteColor()
-        imageView.contentMode = .ScaleAspectFill
+        imageView.backgroundColor = UIColor.white
+        imageView.contentMode = .scaleAspectFill
         return imageView
     }()
     /// 时间文本标签
@@ -78,14 +79,14 @@ class CourseTableViewSectionHeader: UITableViewHeaderFooterView {
         
         // SubViews
         contentView.addSubview(parallaxImage)
-        contentView.sendSubviewToBack(parallaxImage)
+        contentView.sendSubview(toBack: parallaxImage)
         contentView.addSubview(dateLabel)
         
         // AutoLayout
-        dateLabel.snp_makeConstraints { (make) in
-            make.height.equalTo(20)
-            make.left.equalTo(contentView.snp_left).offset(70)
-            make.bottom.equalTo(contentView.snp_bottom).offset(-20)
+        dateLabel.snp.makeConstraints { (maker) in
+            maker.height.equalTo(20)
+            maker.left.equalTo(contentView.snp.left).offset(70)
+            maker.bottom.equalTo(contentView.snp.bottom).offset(-20)
         }
         
         // 确保图片宽度与屏幕保持一致（仅需在初始化后）
@@ -96,7 +97,7 @@ class CourseTableViewSectionHeader: UITableViewHeaderFooterView {
     ///  添加观察者
     private func safeAddObserver() {
         if let tableView = parentTableView {
-            tableView.addObserver(self, forKeyPath: "contentOffset", options: [.New, .Old], context: nil)
+            tableView.addObserver(self, forKeyPath: "contentOffset", options: [.new, .old], context: nil)
         }
     }
     
@@ -108,8 +109,8 @@ class CourseTableViewSectionHeader: UITableViewHeaderFooterView {
     }
     
     ///  将从父视图中移除
-    override func willMoveToSuperview(newSuperview: UIView?) {
-        super.willMoveToSuperview(newSuperview)
+    override func willMove(toSuperview newSuperview: UIView?) {
+        super.willMove(toSuperview: newSuperview)
         
         safeRemoveObserver()
         
@@ -125,8 +126,8 @@ class CourseTableViewSectionHeader: UITableViewHeaderFooterView {
         safeAddObserver()
     }
     
-    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
-        if let key = keyPath where key == "contentOffset" {
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        if let key = keyPath, key == "contentOffset" {
             self.updateParallaxOffset()
         }
     }
@@ -141,7 +142,7 @@ class CourseTableViewSectionHeader: UITableViewHeaderFooterView {
     private func updateParallaxOffset() {
 
         let contentOffset = defaultOffset + (parentTableView?.contentOffset.y ?? 0) - offset
-        let cellOffset = contentView.frame.origin.y - (contentOffset ?? 0)
+        let cellOffset = contentView.frame.origin.y - (contentOffset)
         let contentViewHeight: CGFloat = 140
 
         let percent = (cellOffset + contentViewHeight)/((parentTableView?.frame.size.height ?? (MalaScreenHeight-64)) + contentViewHeight)
@@ -161,7 +162,7 @@ class CourseTableViewSectionHeader: UITableViewHeaderFooterView {
         offset = parentTableView?.contentOffset.y ?? 0
         
         let contentOffset = defaultOffset + (parentTableView?.contentOffset.y ?? 0) - offset
-        let cellOffset = contentView.frame.origin.y - (contentOffset ?? 0)
+        let cellOffset = contentView.frame.origin.y - (contentOffset)
         let percent = (cellOffset + contentView.frame.size.height)/((parentTableView?.frame.size.height ?? 1) + contentView.frame.size.height)
         let extraHeight = contentView.frame.size.height*(parallaxRatio-1)
         parallaxImage.frame.origin.y = -extraHeight*percent-210

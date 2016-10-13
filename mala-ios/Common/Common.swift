@@ -37,23 +37,23 @@ var MalaCurrentCancelAction: (()->())?
 
 
 // MARK: - NotificationName
-let MalaNotification_PushPhotoBrowser = "com.malalaoshi.app.PushPhotoBrowser"
-let MalaNotification_PopFilterView = "com.malalaoshi.app.PopFilterView"
-let MalaNotification_ConfirmFilterView = "com.malalaoshi.app.ConfirmFilterView"
-let MalaNotification_CommitCondition = "com.malalaoshi.app.CommitCondition"
-let MalaNotification_ChoosingGrade = "com.malalaoshi.app.ChoosingGrade"
-let MalaNotification_ChoosingSchool = "com.malalaoshi.app.ChoosingSchool"
-let MalaNotification_ClassScheduleDidTap = "com.malalaoshi.app.ClassScheduleDidTap"
-let MalaNotification_ClassPeriodDidChange = "com.malalaoshi.app.ClassPeriodDidChange"
-let MalaNotification_OpenTimeScheduleCell = "com.malalaoshi.app.OpenTimeScheduleCell"
-let MalaNotification_PushTeacherDetailView = "com.malalaoshi.app.PushTeacherDetailView"
-let MalaNotification_CancelOrderForm = "com.malalaoshi.app.CancelOrderForm"
-let MalaNotification_PushToPayment = "com.malalaoshi.app.PushToPayment"
-let MalaNotification_PushIntroduction = "com.malalaoshi.app.PushIntroduction"
-let MalaNotification_ShowLearningReport = "com.malalaoshi.app.ShowLearningReport"
-let MalaNotification_RefreshStudentName = "com.malalaoshi.app.RefreshStudentName"
-let MalaNotification_PushProfileItemController = "com.malalaoshi.app.PushProfileItemController"
-let MalaNotification_ReloadLearningReport = "com.malalaoshi.app.ReloadLearningReport"
+let MalaNotification_PushPhotoBrowser = NSNotification.Name(rawValue: "com.malalaoshi.app.PushPhotoBrowser")
+let MalaNotification_PopFilterView = NSNotification.Name(rawValue: "com.malalaoshi.app.PopFilterView")
+let MalaNotification_ConfirmFilterView = NSNotification.Name(rawValue: "com.malalaoshi.app.ConfirmFilterView")
+let MalaNotification_CommitCondition = NSNotification.Name(rawValue: "com.malalaoshi.app.CommitCondition")
+let MalaNotification_ChoosingGrade = NSNotification.Name(rawValue: "com.malalaoshi.app.ChoosingGrade")
+let MalaNotification_ChoosingSchool = NSNotification.Name(rawValue: "com.malalaoshi.app.ChoosingSchool")
+let MalaNotification_ClassScheduleDidTap = NSNotification.Name(rawValue: "com.malalaoshi.app.ClassScheduleDidTap")
+let MalaNotification_ClassPeriodDidChange = NSNotification.Name(rawValue: "com.malalaoshi.app.ClassPeriodDidChange")
+let MalaNotification_OpenTimeScheduleCell = NSNotification.Name(rawValue: "com.malalaoshi.app.OpenTimeScheduleCell")
+let MalaNotification_PushTeacherDetailView = NSNotification.Name(rawValue: "com.malalaoshi.app.PushTeacherDetailView")
+let MalaNotification_CancelOrderForm = NSNotification.Name(rawValue: "com.malalaoshi.app.CancelOrderForm")
+let MalaNotification_PushToPayment = NSNotification.Name(rawValue: "com.malalaoshi.app.PushToPayment")
+let MalaNotification_PushIntroduction = NSNotification.Name(rawValue: "com.malalaoshi.app.PushIntroduction")
+let MalaNotification_ShowLearningReport = NSNotification.Name(rawValue: "com.malalaoshi.app.ShowLearningReport")
+let MalaNotification_RefreshStudentName = NSNotification.Name(rawValue: "com.malalaoshi.app.RefreshStudentName")
+let MalaNotification_PushProfileItemController = NSNotification.Name(rawValue: "com.malalaoshi.app.PushProfileItemController")
+let MalaNotification_ReloadLearningReport = NSNotification.Name(rawValue: "com.malalaoshi.app.ReloadLearningReport")
 
 
 // MARK: - Screen Name For Analytics
@@ -75,7 +75,7 @@ let MalaErrorDetail_InvalidPage = "Invalid page"
 
 
 // MARK: - Appearance TintColor
-let MalaColor_WhiteColor = UIColor.whiteColor()
+let MalaColor_WhiteColor = UIColor.white
 let MalaColor_6C6C6C_0 = UIColor(rgbHexValue: 0x6C6C6C, alpha: 1.0)
 let MalaColor_EDEDED_0 = UIColor(rgbHexValue: 0xEDEDED, alpha: 1.0)
 let MalaColor_DADADA_0 = UIColor(rgbHexValue: 0xDADADA, alpha: 1.0)
@@ -218,14 +218,14 @@ let MalaLayout_CouponRulesPopupWindowHeight: CGFloat = 500
 
 // MARK: - Device
 let MalaScreenNaviHeight: CGFloat = 64.0
-let MalaScreenWidth = UIScreen.mainScreen().bounds.size.width
-let MalaScreenHeight = UIScreen.mainScreen().bounds.size.height
-let MalaScreenOnePixel = 1/UIScreen.mainScreen().scale
-let MalaScreenScale = UIScreen.mainScreen().scale
+let MalaScreenWidth = UIScreen.main.bounds.size.width
+let MalaScreenHeight = UIScreen.main.bounds.size.height
+let MalaScreenOnePixel = 1/UIScreen.main.scale
+let MalaScreenScale = UIScreen.main.scale
 
 
 // MARK: - Array
 var MalaOtherService = [
-    OtherServiceModel(title: "奖学金", type: .Coupon, price: 0, priceHandleType: .None, viewController: CouponViewController.self),
-    OtherServiceModel(title: MalaCommonString_EvaluationFiling, type: .EvaluationFiling, price: 500, priceHandleType: .Reduce, viewController: EvaluationFilingServiceController.self)
+    OtherServiceModel(title: "奖学金", type: .coupon, price: 0, priceHandleType: .none, viewController: CouponViewController.self),
+    OtherServiceModel(title: MalaCommonString_EvaluationFiling, type: .evaluationFiling, price: 500, priceHandleType: .reduce, viewController: EvaluationFilingServiceController.self)
 ]

@@ -38,16 +38,17 @@ class ClassScheduleDayModel: BaseObjectModel {
     
     override init(dict: [String: AnyObject]) {
         super.init(dict: dict)
-        setValuesForKeysWithDictionary(dict)
+        setValuesForKeys(dict)
     }
     
-    required init(coder aDecoder: NSCoder) {
+    required
+    init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
     
     // MARK: - Override
-    override func setValue(value: AnyObject?, forUndefinedKey key: String) {
+    override func setValue(_ value: Any?, forUndefinedKey key: String) {
         println("ClassScheduleDayModel - Set for UndefinedKey: \(key)")
     }
     
@@ -55,6 +56,6 @@ class ClassScheduleDayModel: BaseObjectModel {
     // MARK: - Description
     override var description: String {
         let keys = ["id", "start", "end", "available", "weekID"]
-        return dictionaryWithValuesForKeys(keys).description
+        return dictionaryWithValues(forKeys: keys).description
     }
 }

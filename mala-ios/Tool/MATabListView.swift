@@ -9,8 +9,8 @@
 import UIKit
 
 @objc protocol MATabListViewDelegate: NSObjectProtocol {
-    optional func tagDidTap(sender: UILabel, tabListView: MATabListView)
-    optional func tagShourldDisplayBorder(sender: UILabel, tabListView: MATabListView) -> Bool
+    @objc optional func tagDidTap(_ sender: UILabel, tabListView: MATabListView)
+    @objc optional func tagShourldDisplayBorder(_ sender: UILabel, tabListView: MATabListView) -> Bool
 }
 
 
@@ -22,7 +22,7 @@ class MATabListView: UIView {
     // MARK: - Property
     weak var delegate: MATabListViewDelegate?
     var layoutHeight: CGFloat = 0
-    private var previousFrame = CGRectZero
+    private var previousFrame = CGRect.zero
     private var totalHeight: CGFloat = 0
     private var tagCount = 0
     
@@ -40,48 +40,48 @@ class MATabListView: UIView {
     
     
     // MARK: - API
-    func setTags(tags: [String]?) {
+    func setTags(_ tags: [String]?) {
         
-        previousFrame = CGRectZero
+        previousFrame = CGRect.zero
         for string in tags ?? [] {
             
             guard string != "" else {
                 continue
             }
             
-            let label = UILabel(frame: CGRectZero)
-            label.textAlignment = .Left
+            let label = UILabel(frame: CGRect.zero)
+            label.textAlignment = .left
             label.textColor = MalaColor_636363_0
-            label.font = UIFont.systemFontOfSize(14)
+            label.font = UIFont.systemFont(ofSize: 14)
             
             label.text = string
-            var size = (string as NSString).sizeWithAttributes([NSFontAttributeName: UIFont.systemFontOfSize(14)])
+            var size = (string as NSString).size(attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 14)])
             size.width += RightPadding
             
-            var newRect = CGRectZero
+            var newRect = CGRect.zero
             
-            var x = CGRectGetMaxX(previousFrame)
+            var x = previousFrame.maxX
             
-            if let isDisplayBorder = delegate?.tagShourldDisplayBorder?(label, tabListView: self) where isDisplayBorder {
+            if let isDisplayBorder = delegate?.tagShourldDisplayBorder?(label, tabListView: self), isDisplayBorder {
                 
                 label.textColor = MalaColor_939393_0
                 
                 size.height += 10
-                x = CGRectGetMaxX(previousFrame) == 0 ? CGRectGetMaxX(previousFrame) : CGRectGetMaxX(previousFrame)+RightPadding
+                x = previousFrame.maxX == 0 ? previousFrame.maxX : previousFrame.maxX+RightPadding
                 
                 label.layer.borderWidth = 1
-                label.layer.borderColor = MalaColor_C4C4C4_0.CGColor
+                label.layer.borderColor = MalaColor_C4C4C4_0.cgColor
                 label.layer.cornerRadius = 3
                 label.layer.masksToBounds = true
-                label.textAlignment = .Center
-                label.userInteractionEnabled = true
+                label.textAlignment = .center
+                label.isUserInteractionEnabled = true
                 label.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(MATabListView.labelDidTap(_:))))
                 label.tag = tagCount
                 tagCount += 1
             }
             
             // 如果当前行宽度不足够加入新的label
-            if CGRectGetMaxX(previousFrame) + size.width > self.bounds.size.width {
+            if previousFrame.maxX + size.width > self.bounds.size.width {
                 newRect.origin = CGPoint(x: 0, y: previousFrame.origin.y + size.height + BottomMargin)
                 totalHeight += size.height + BottomMargin
             }else {
@@ -98,16 +98,16 @@ class MATabListView: UIView {
     
     
     // MARK: - Private Method
-    private func setHeight(height: CGFloat) {
+    private func setHeight(_ height: CGFloat) {
         self.layoutHeight = height
-        self.snp_updateConstraints { (make) -> Void in
-            make.height.equalTo(self.layoutHeight)
+        self.snp.updateConstraints { (maker) -> Void in
+            maker.height.equalTo(self.layoutHeight)
         }
     }
     
     
     // MARK: - Event Response
-    @objc private func labelDidTap(gesture: UITapGestureRecognizer) {
+    @objc private func labelDidTap(_ gesture: UITapGestureRecognizer) {
         
         guard let label = gesture.view as? UILabel else {
             return

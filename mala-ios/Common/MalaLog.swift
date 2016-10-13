@@ -8,7 +8,7 @@
 
 import Foundation
 
-func println(object: Any) {
+func println(_ object: Any) {
     #if USE_DEV_SERVER
         Swift.print(object)
     #endif

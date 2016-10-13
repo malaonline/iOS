@@ -20,16 +20,16 @@ class ProfileViewCell: UITableViewCell {
             // 新消息样式
             if model.title == "我的订单" {
                 
-                self.infoLabel.hidden = !(MalaUnpaidOrderCount > 0)
+                self.infoLabel.isHidden = !(MalaUnpaidOrderCount > 0)
                 
                 if MalaUnpaidOrderCount > 0 {
                     self.titleLabel.showBadge()
                     self.titleLabel.badgeBgColor = MalaColor_E26254_0
-                    self.titleLabel.badge.snp_makeConstraints(closure: { (make) in
-                        make.top.equalTo(titleLabel.snp_top).offset(-1)
-                        make.right.equalTo(titleLabel.snp_right).offset(7)
-                        make.height.equalTo(7)
-                        make.width.equalTo(7)
+                    self.titleLabel.badge.snp.makeConstraints({ (maker) in
+                        maker.top.equalTo(titleLabel.snp.top).offset(-1)
+                        maker.right.equalTo(titleLabel.snp.right).offset(7)
+                        maker.height.equalTo(7)
+                        maker.width.equalTo(7)
                     })
                     
                     self.infoLabel.textColor = MalaColor_E26254_0
@@ -43,14 +43,14 @@ class ProfileViewCell: UITableViewCell {
     /// 标题label
     private lazy var titleLabel: UILabel = {
         let titleLabel = UILabel()
-        titleLabel.font = UIFont.systemFontOfSize(14)
+        titleLabel.font = UIFont.systemFont(ofSize: 14)
         titleLabel.textColor = MalaColor_636363_0
         return titleLabel
     }()
     /// 信息label
     private lazy var infoLabel: UILabel = {
         let infoLabel = UILabel()
-        infoLabel.font = UIFont.systemFontOfSize(13)
+        infoLabel.font = UIFont.systemFont(ofSize: 13)
         infoLabel.textColor = MalaColor_D4D4D4_0
         return infoLabel
     }()
@@ -63,7 +63,7 @@ class ProfileViewCell: UITableViewCell {
 
     // MARK: - Constructed
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-        super.init(style: .Value1, reuseIdentifier: reuseIdentifier)
+        super.init(style: .value1, reuseIdentifier: reuseIdentifier)
         
         setupUserInterface()
     }
@@ -76,8 +76,8 @@ class ProfileViewCell: UITableViewCell {
     // MARK: - Private Method
     private func setupUserInterface() {
         // Style
-        self.accessoryType = .DisclosureIndicator
-        self.selectionStyle = .None
+        self.accessoryType = .disclosureIndicator
+        self.selectionStyle = .none
         self.separatorInset = UIEdgeInsets(top: 0, left: 12, bottom: 0, right: 12)
         
         // SubViews
@@ -86,26 +86,26 @@ class ProfileViewCell: UITableViewCell {
         contentView.addSubview(separatorLine)
         
         // Autolayout
-        titleLabel.snp_makeConstraints { (make) in
-            make.height.equalTo(14)
-            make.centerY.equalTo(contentView.snp_centerY)
-            make.left.equalTo(contentView.snp_left).offset(13)
+        titleLabel.snp.makeConstraints { (maker) in
+            maker.height.equalTo(14)
+            maker.centerY.equalTo(contentView.snp.centerY)
+            maker.left.equalTo(contentView.snp.left).offset(13)
         }
-        infoLabel.snp_makeConstraints { (make) in
-            make.height.equalTo(13)
-            make.centerY.equalTo(contentView.snp_centerY)
-            make.right.equalTo(contentView.snp_right)
+        infoLabel.snp.makeConstraints { (maker) in
+            maker.height.equalTo(13)
+            maker.centerY.equalTo(contentView.snp.centerY)
+            maker.right.equalTo(contentView.snp.right)
         }
-        separatorLine.snp_makeConstraints { (make) in
-            make.bottom.equalTo(contentView.snp_bottom)
-            make.left.equalTo(contentView.snp_left).offset(12)
-            make.right.equalTo(contentView.snp_right).offset(12)
-            make.height.equalTo(MalaScreenOnePixel)
+        separatorLine.snp.makeConstraints { (maker) in
+            maker.bottom.equalTo(contentView.snp.bottom)
+            maker.left.equalTo(contentView.snp.left).offset(12)
+            maker.right.equalTo(contentView.snp.right).offset(12)
+            maker.height.equalTo(MalaScreenOnePixel)
         }
     }
     
     func hideSeparator() {
-        self.separatorLine.hidden = true
+        self.separatorLine.isHidden = true
     }
     
     

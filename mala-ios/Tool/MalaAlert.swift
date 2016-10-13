@@ -11,99 +11,99 @@ import UIKit
 
 class MalaAlert {
 
-    class func alert(title title: String, message: String?, dismissTitle: String, inViewController viewController: UIViewController?, withDismissAction dismissAction: (() -> Void)?) {
+    class func alert(title: String, message: String?, dismissTitle: String, inViewController viewController: UIViewController?, withDismissAction dismissAction: (() -> Void)?) {
 
-        dispatch_async(dispatch_get_main_queue()) {
+        DispatchQueue.main.async {
 
-            let alertController = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+            let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
 
-            let action: UIAlertAction = UIAlertAction(title: dismissTitle, style: .Default) { action -> Void in
+            let action: UIAlertAction = UIAlertAction(title: dismissTitle, style: .default) { action -> Void in
                 if let dismissAction = dismissAction {
                     dismissAction()
                 }
             }
             alertController.addAction(action)
 
-            viewController?.presentViewController(alertController, animated: true, completion: nil)
+            viewController?.present(alertController, animated: true, completion: nil)
         }
     }
 
-    class func alertSorry(message message: String?, inViewController viewController: UIViewController?, withDismissAction dismissAction: () -> Void) {
+    class func alertSorry(message: String?, inViewController viewController: UIViewController?, withDismissAction dismissAction: @escaping () -> Void) {
         alert(title: NSLocalizedString("Sorry", comment: ""), message: message, dismissTitle: NSLocalizedString("OK", comment: ""), inViewController: viewController, withDismissAction: dismissAction)
     }
 
-    class func alertSorry(message message: String?, inViewController viewController: UIViewController?) {
+    class func alertSorry(message: String?, inViewController viewController: UIViewController?) {
         alert(title: NSLocalizedString("Sorry", comment: ""), message: message, dismissTitle: NSLocalizedString("OK", comment: ""), inViewController: viewController, withDismissAction: nil)
     }
 
-    class func textInput(title title: String, placeholder: String?, oldText: String?, dismissTitle: String, inViewController viewController: UIViewController?, withFinishedAction finishedAction: ((text: String) -> Void)?) {
+    class func textInput(title: String, placeholder: String?, oldText: String?, dismissTitle: String, inViewController viewController: UIViewController?, withFinishedAction finishedAction: ((_ text: String) -> Void)?) {
 
-        dispatch_async(dispatch_get_main_queue()) {
+        DispatchQueue.main.async {
 
-            let alertController = UIAlertController(title: title, message: nil, preferredStyle: .Alert)
+            let alertController = UIAlertController(title: title, message: nil, preferredStyle: .alert)
 
-            alertController.addTextFieldWithConfigurationHandler { (textField) -> Void in
+            alertController.addTextField { (textField) -> Void in
                 textField.placeholder = placeholder
                 textField.text = oldText
             }
 
-            let action: UIAlertAction = UIAlertAction(title: dismissTitle, style: .Default) { action -> Void in
+            let action: UIAlertAction = UIAlertAction(title: dismissTitle, style: .default) { action -> Void in
                 if let finishedAction = finishedAction {
-                    if let textField = alertController.textFields?.first, text = textField.text {
-                        finishedAction(text: text)
+                    if let textField = alertController.textFields?.first, let text = textField.text {
+                        finishedAction(text)
                     }
                 }
             }
             alertController.addAction(action)
 
-            viewController?.presentViewController(alertController, animated: true, completion: nil)
+            viewController?.present(alertController, animated: true, completion: nil)
         }
     }
 
-    class func textInput(title title: String, message: String?, placeholder: String?, oldText: String?, confirmTitle: String, cancelTitle: String, inViewController viewController: UIViewController?, withConfirmAction confirmAction: ((text: String) -> Void)?, cancelAction: (() -> Void)?) {
+    class func textInput(title: String, message: String?, placeholder: String?, oldText: String?, confirmTitle: String, cancelTitle: String, inViewController viewController: UIViewController?, withConfirmAction confirmAction: ((_ text: String) -> Void)?, cancelAction: (() -> Void)?) {
 
-        dispatch_async(dispatch_get_main_queue()) {
+        DispatchQueue.main.async {
 
-            let alertController = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+            let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
 
-            alertController.addTextFieldWithConfigurationHandler { (textField) -> Void in
+            alertController.addTextField { (textField) -> Void in
                 textField.placeholder = placeholder
                 textField.text = oldText
             }
 
-            let _cancelAction: UIAlertAction = UIAlertAction(title: cancelTitle, style: .Cancel) { action -> Void in
+            let _cancelAction: UIAlertAction = UIAlertAction(title: cancelTitle, style: .cancel) { action -> Void in
                 cancelAction?()
             }
             alertController.addAction(_cancelAction)
 
-            let _confirmAction: UIAlertAction = UIAlertAction(title: confirmTitle, style: .Default) { action -> Void in
-                if let textField = alertController.textFields?.first, text = textField.text {
-                    confirmAction?(text: text)
+            let _confirmAction: UIAlertAction = UIAlertAction(title: confirmTitle, style: .default) { action -> Void in
+                if let textField = alertController.textFields?.first, let text = textField.text {
+                    confirmAction?(text)
                 }
             }
             alertController.addAction(_confirmAction)
 
-            viewController?.presentViewController(alertController, animated: true, completion: nil)
+            viewController?.present(alertController, animated: true, completion: nil)
         }
     }
 
-    class func confirmOrCancel(title title: String, message: String, confirmTitle: String, cancelTitle: String, inViewController viewController: UIViewController?, withConfirmAction confirmAction: () -> Void, cancelAction: () -> Void) {
+    class func confirmOrCancel(title: String, message: String, confirmTitle: String, cancelTitle: String, inViewController viewController: UIViewController?, withConfirmAction confirmAction: @escaping () -> Void, cancelAction: @escaping () -> Void) {
 
-        dispatch_async(dispatch_get_main_queue()) {
+        DispatchQueue.main.async {
 
-            let alertController = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+            let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
 
-            let cancelAction: UIAlertAction = UIAlertAction(title: cancelTitle, style: .Cancel) { action -> Void in
+            let cancelAction: UIAlertAction = UIAlertAction(title: cancelTitle, style: .cancel) { action -> Void in
                 cancelAction()
             }
             alertController.addAction(cancelAction)
 
-            let confirmAction: UIAlertAction = UIAlertAction(title: confirmTitle, style: .Default) { action -> Void in
+            let confirmAction: UIAlertAction = UIAlertAction(title: confirmTitle, style: .default) { action -> Void in
                 confirmAction()
             }
             alertController.addAction(confirmAction)
 
-            viewController?.presentViewController(alertController, animated: true, completion: nil)
+            viewController?.present(alertController, animated: true, completion: nil)
         }
     }
 
@@ -113,10 +113,10 @@ extension UIViewController {
 
     func alertCanNotAccessCameraRoll() {
 
-        dispatch_async(dispatch_get_main_queue()) {
+        DispatchQueue.main.async {
             MalaAlert.confirmOrCancel(title: "照片访问失败", message: "请在设置-隐私-照片里打开权限", confirmTitle: "去更改", cancelTitle: "取消", inViewController: self, withConfirmAction: {
 
-                UIApplication.sharedApplication().openURL(NSURL(string: UIApplicationOpenSettingsURLString)!)
+                UIApplication.shared.openURL(URL(string: UIApplicationOpenSettingsURLString)!)
 
             }, cancelAction: {
             })
@@ -125,10 +125,10 @@ extension UIViewController {
 
     func alertCanNotOpenCamera() {
 
-        dispatch_async(dispatch_get_main_queue()) {
+        DispatchQueue.main.async {
             MalaAlert.confirmOrCancel(title: "拍照失败", message: "请在设置-隐私-相机里打开权限", confirmTitle: "去更改", cancelTitle: "取消", inViewController: self, withConfirmAction: {
 
-                UIApplication.sharedApplication().openURL(NSURL(string: UIApplicationOpenSettingsURLString)!)
+                UIApplication.shared.openURL(URL(string: UIApplicationOpenSettingsURLString)!)
 
             }, cancelAction: {
             })
@@ -137,10 +137,10 @@ extension UIViewController {
 
     func alertCanNotAccessMicrophone() {
 
-        dispatch_async(dispatch_get_main_queue()) {
+        DispatchQueue.main.async {
             MalaAlert.confirmOrCancel(title: "麦克风访问失败", message: "请在设置-隐私-麦克风里打开权限", confirmTitle: "去更改", cancelTitle: "取消", inViewController: self, withConfirmAction: {
 
-                UIApplication.sharedApplication().openURL(NSURL(string: UIApplicationOpenSettingsURLString)!)
+                UIApplication.shared.openURL(URL(string: UIApplicationOpenSettingsURLString)!)
 
                 }, cancelAction: {
             })
@@ -149,10 +149,10 @@ extension UIViewController {
 
     func alertCanNotAccessContacts() {
 
-        dispatch_async(dispatch_get_main_queue()) {
+        DispatchQueue.main.async {
             MalaAlert.confirmOrCancel(title: NSLocalizedString("Sorry", comment: ""), message: NSLocalizedString("Yep can not read your Contacts!\nBut you can change it in iOS Settings.", comment: ""), confirmTitle: NSLocalizedString("Change it now", comment: ""), cancelTitle: NSLocalizedString("Dismiss", comment: ""), inViewController: self, withConfirmAction: {
 
-            UIApplication.sharedApplication().openURL(NSURL(string: UIApplicationOpenSettingsURLString)!)
+            UIApplication.shared.openURL(URL(string: UIApplicationOpenSettingsURLString)!)
 
             }, cancelAction: {
             })
@@ -161,10 +161,10 @@ extension UIViewController {
 
     func alertCanNotAccessLocation() {
 
-        dispatch_async(dispatch_get_main_queue()) {
+        DispatchQueue.main.async {
             MalaAlert.confirmOrCancel(title: "地理位置获取失败", message: "请在设置-隐私-定位服务里打开权限", confirmTitle: "去更改", cancelTitle: "取消", inViewController: self, withConfirmAction: {
 
-                UIApplication.sharedApplication().openURL(NSURL(string: UIApplicationOpenSettingsURLString)!)
+                UIApplication.shared.openURL(URL(string: UIApplicationOpenSettingsURLString)!)
 
             }, cancelAction: {
             })

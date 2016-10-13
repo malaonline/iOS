@@ -16,7 +16,7 @@ class CommentViewController: BaseTableViewController {
     /// 优惠券模型数组
     var models: [StudentCourseModel] = [] {
         didSet {
-            dispatch_async(dispatch_get_main_queue(), { [weak self] () -> Void in
+            DispatchQueue.main.async(execute: { [weak self] () -> Void in
                 if self?.models.count == 0 {
                     self?.showDefaultView()
                 }else {
@@ -34,7 +34,7 @@ class CommentViewController: BaseTableViewController {
     /// 下拉刷新视图
     private lazy var refresher: UIRefreshControl = {
         let refresher = UIRefreshControl()
-        refresher.addTarget(self, action: #selector(CommentViewController.loadCourse), forControlEvents: .ValueChanged)
+        refresher.addTarget(self, action: #selector(CommentViewController.loadCourse), for: .valueChanged)
         return refresher
     }()
     
@@ -48,7 +48,7 @@ class CommentViewController: BaseTableViewController {
         loadCourse()
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         sendScreenTrack(SAMyCommentsViewName)
     }
@@ -61,10 +61,10 @@ class CommentViewController: BaseTableViewController {
     // MARK: - Private Method
     private func configure() {
         tableView.backgroundColor = MalaColor_EDEDED_0
-        tableView.separatorStyle = .None
+        tableView.separatorStyle = .none
         tableView.contentInset = UIEdgeInsets(top: 6, left: 0, bottom: 6, right: 0)
         refreshControl = refresher
-        tableView.registerClass(CommentViewCell.self, forCellReuseIdentifier: CommentViewCellReuseId)
+        tableView.register(CommentViewCell.self, forCellReuseIdentifier: CommentViewCellReuseId)
     }
     
     private func setupUserInterface() {
@@ -107,20 +107,20 @@ class CommentViewController: BaseTableViewController {
     
     
     // MARK: - Delegate
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 188
     }
     
     
     // MARK: - DataSource
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.models.count
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(CommentViewCellReuseId, forIndexPath: indexPath) as! CommentViewCell
-        cell.selectionStyle = .None
-        cell.model = self.models[indexPath.row]
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: CommentViewCellReuseId, for: indexPath) as! CommentViewCell
+        cell.selectionStyle = .none
+        cell.model = self.models[(indexPath as NSIndexPath).row]
         return cell
     }
 }

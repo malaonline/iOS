@@ -12,7 +12,7 @@ internal let FilterViewCellReusedId = "FilterViewCellReusedId"
 internal let FilterViewSectionHeaderReusedId = "FilterViewSectionHeaderReusedId"
 internal let FilterViewSectionFooterReusedId = "FilterViewSectionFooterReusedId"
 /// 结果返回值闭包
-typealias FilterDidTapCallBack = (model: GradeModel?)->()
+typealias FilterDidTapCallBack = (_ model: GradeModel?)->()
 
 class BaseFilterView: UICollectionView, UICollectionViewDelegate, UICollectionViewDataSource {
     
@@ -22,11 +22,11 @@ class BaseFilterView: UICollectionView, UICollectionViewDelegate, UICollectionVi
     /// Cell点击回调闭包
     var didTapCallBack: FilterDidTapCallBack?
     /// 当前选中项下标标记
-    var selectedIndexPath: NSIndexPath? 
+    var selectedIndexPath: IndexPath? 
     
     
     // MARK: - Constructed
-    init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout, didTapCallBack: FilterDidTapCallBack) {
+    init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout, didTapCallBack: @escaping FilterDidTapCallBack) {
         super.init(frame: frame, collectionViewLayout: layout)
         self.didTapCallBack = didTapCallBack
         configration()
@@ -38,53 +38,53 @@ class BaseFilterView: UICollectionView, UICollectionViewDelegate, UICollectionVi
     
     
     // MARK: - Deleagte
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        let cell = collectionView.cellForItemAtIndexPath(indexPath)
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath)
         if let currentIndexPath = selectedIndexPath {
-            collectionView.cellForItemAtIndexPath(currentIndexPath)?.selected = false
+            collectionView.cellForItem(at: currentIndexPath)?.isSelected = false
         }
-        cell?.selected = true
+        cell?.isSelected = true
         self.selectedIndexPath = indexPath
     }
     
     
     // MARK: - DataSource
-    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
         // 默认情况为 小学, 初中, 高中 三项
         return self.grades?.count ?? 3
     }
     
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return gradeModel(section)?.subset?.count ?? 0
     }
     
-    func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         var reusableView: UICollectionReusableView?
         // Section 头部视图
         if kind == UICollectionElementKindSectionHeader {
-            let sectionHeaderView = collectionView.dequeueReusableSupplementaryViewOfKind(
-                UICollectionElementKindSectionHeader,
+            let sectionHeaderView = collectionView.dequeueReusableSupplementaryView(
+                ofKind: UICollectionElementKindSectionHeader,
                 withReuseIdentifier: FilterViewSectionHeaderReusedId,
-                forIndexPath: indexPath
+                for: indexPath
                 ) as! FilterSectionHeaderView
-            sectionHeaderView.sectionTitleText = gradeModel(indexPath.section)?.name ?? "年级"
+            sectionHeaderView.sectionTitleText = gradeModel((indexPath as NSIndexPath).section)?.name ?? "年级"
             reusableView = sectionHeaderView
         }
         // Section 尾部视图
         if kind == UICollectionElementKindSectionFooter {
-            let sectionFooterView = collectionView.dequeueReusableSupplementaryViewOfKind(
-                UICollectionElementKindSectionFooter,
+            let sectionFooterView = collectionView.dequeueReusableSupplementaryView(
+                ofKind: UICollectionElementKindSectionFooter,
                 withReuseIdentifier: FilterViewSectionFooterReusedId,
-                forIndexPath: indexPath
+                for: indexPath
             )
             reusableView = sectionFooterView
         }
         return reusableView!
     }
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(FilterViewCellReusedId, forIndexPath: indexPath) as! FilterViewCell
-        cell.model = gradeModel(indexPath.section, row: indexPath.row)!
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FilterViewCellReusedId, for: indexPath) as! FilterViewCell
+        cell.model = gradeModel((indexPath as NSIndexPath).section, row: (indexPath as NSIndexPath).row)!
         cell.indexPath = indexPath
         return cell
     }
@@ -94,19 +94,19 @@ class BaseFilterView: UICollectionView, UICollectionViewDelegate, UICollectionVi
     private func configration() {
         delegate = self
         dataSource = self
-        registerClass(FilterViewCell.self,
+        register(FilterViewCell.self,
             forCellWithReuseIdentifier: FilterViewCellReusedId)
-        registerClass(FilterSectionHeaderView.self,
+        register(FilterSectionHeaderView.self,
             forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
             withReuseIdentifier: FilterViewSectionHeaderReusedId)
-        registerClass(UICollectionReusableView.self,
+        register(UICollectionReusableView.self,
             forSupplementaryViewOfKind: UICollectionElementKindSectionFooter,
             withReuseIdentifier: FilterViewSectionFooterReusedId)
-        self.backgroundColor = UIColor.whiteColor()
+        self.backgroundColor = UIColor.white
     }
     
     /// 便利方法——通过 Section 或 Row 获取对应数据模型
-    internal func gradeModel(section: Int, row: Int? = nil) -> GradeModel? {
+    internal func gradeModel(_ section: Int, row: Int? = nil) -> GradeModel? {
         if row == nil {
             return self.grades?[section]
         }else {
@@ -146,7 +146,7 @@ class FilterSectionHeaderView: UICollectionReusableView {
     }()
     private lazy var titleLabel: UILabel = {
         let titleLabel = UILabel()
-        titleLabel.font = UIFont.systemFontOfSize(13)
+        titleLabel.font = UIFont.systemFont(ofSize: 13)
         titleLabel.textColor = MalaColor_939393_0
         titleLabel.text = "小学"
         titleLabel.sizeToFit()
@@ -172,15 +172,15 @@ class FilterSectionHeaderView: UICollectionReusableView {
         self.addSubview(titleLabel)
         
         // AutoLayout
-        iconView.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(self.snp_top).offset(4)
-            make.left.equalTo(self.snp_left)
-            make.width.equalTo(20)
-            make.height.equalTo(20)
+        iconView.snp.makeConstraints { (maker) -> Void in
+            maker.top.equalTo(self.snp.top).offset(4)
+            maker.left.equalTo(self.snp.left)
+            maker.width.equalTo(20)
+            maker.height.equalTo(20)
         }
-        titleLabel.snp_makeConstraints { (make) -> Void in
-            make.centerY.equalTo(self.iconView.snp_centerY)
-            make.left.equalTo(self.iconView.snp_right).offset(9)
+        titleLabel.snp.makeConstraints { (maker) -> Void in
+            maker.centerY.equalTo(self.iconView.snp.centerY)
+            maker.left.equalTo(self.iconView.snp.right).offset(9)
         }
     }
 }

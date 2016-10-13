@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class CommentModel: BaseObjectModel {
+open class CommentModel: BaseObjectModel {
 
     // MARK: - Property
     /// 课时数
@@ -26,7 +26,7 @@ public class CommentModel: BaseObjectModel {
     
     override init(dict: [String: AnyObject]) {
         super.init()
-        setValuesForKeysWithDictionary(dict)
+        setValuesForKeys(dict)
     }
     
     convenience init(id: Int, timeslot: Int, score: Int, content: String) {
@@ -42,14 +42,14 @@ public class CommentModel: BaseObjectModel {
     }
     
     // MARK: - Override
-    override public func setValue(value: AnyObject?, forUndefinedKey key: String) {
+    override open func setValue(_ value: Any?, forUndefinedKey key: String) {
         println("CommentModel - Set for UndefinedKey: \(key)")
     }
     
     
     // MARK: - Description
-    override public var description: String {
+    override open var description: String {
         let keys = ["id", "timeslot", "score", "content"]
-        return "\n"+dictionaryWithValuesForKeys(keys).description+"\n"
+        return "\n"+dictionaryWithValues(forKeys: keys).description+"\n"
     }
 }

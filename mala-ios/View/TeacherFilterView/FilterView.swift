@@ -40,8 +40,8 @@ class FilterView: UIScrollView, UIScrollViewDelegate {
     // MARK: - Components
     /// 年级筛选面板
     private lazy var gradeView: GradeFilterView = {
-        let gradeView = GradeFilterView(frame: CGRectZero,
-            collectionViewLayout: CommonFlowLayout(type: .FilterView),
+        let gradeView = GradeFilterView(frame: CGRect.zero,
+            collectionViewLayout: CommonFlowLayout(type: .filterView),
             didTapCallBack: { [weak self] (model) -> () in
                 MalaCondition.grade = model!
                 
@@ -52,8 +52,8 @@ class FilterView: UIScrollView, UIScrollViewDelegate {
                     // 根据所选年级，加载对应的科目
                     self?.subjects = model!.subjects.map({ (i: NSNumber) -> GradeModel in
                         let subject = GradeModel()
-                        subject.id = i.integerValue
-                        subject.name = MalaConfig.malaSubject()[i.integerValue]
+                        subject.id = i.intValue
+                        subject.name = MalaConfig.malaSubject()[i.intValue]
                         return subject
                     })
                 }else {
@@ -64,8 +64,8 @@ class FilterView: UIScrollView, UIScrollViewDelegate {
     }()
     /// 科目筛选面板
     private lazy var subjectView: SubjectFilterView = {
-        let subjectView = SubjectFilterView(frame: CGRectZero,
-            collectionViewLayout: CommonFlowLayout(type: .SubjectView),
+        let subjectView = SubjectFilterView(frame: CGRect.zero,
+            collectionViewLayout: CommonFlowLayout(type: .subjectView),
             didTapCallBack: { [weak self] (model) -> () in
                 MalaCondition.subject = model!
                 
@@ -107,7 +107,7 @@ class FilterView: UIScrollView, UIScrollViewDelegate {
     ///  滚动到指定面板
     ///
     ///  - parameter page: 面板下标，起始为1	
-    func scrollToPanel(page: Int, animated: Bool) {
+    func scrollToPanel(_ page: Int, animated: Bool) {
         switch page {
         case 1:
             // 当前显示View为 年级筛选
@@ -140,7 +140,7 @@ class FilterView: UIScrollView, UIScrollViewDelegate {
     // MARK: - Private Method
     private func configuration() {
         self.contentSize = CGSize(width: MalaLayout_FilterContentWidth*3, height: MalaLayout_FilterContentWidth-3)
-        self.scrollEnabled = false
+        self.isScrollEnabled = false
         self.delegate = self
         self.bounces = false
         self.showsHorizontalScrollIndicator = false
@@ -148,8 +148,8 @@ class FilterView: UIScrollView, UIScrollViewDelegate {
     
     private func registerNotification() {
         // pop页面通知处理
-        let observerPopFilterView = NSNotificationCenter.defaultCenter().addObserverForName(
-            MalaNotification_PopFilterView,
+        let observerPopFilterView = NotificationCenter.default.addObserver(
+            forName: MalaNotification_PopFilterView,
             object: nil,
             queue: nil
             ) { [weak self] (notification) -> Void in
@@ -159,8 +159,8 @@ class FilterView: UIScrollView, UIScrollViewDelegate {
         observers.append(observerPopFilterView)
         
         // 确认按钮点击通知处理
-        let observerConfirm = NSNotificationCenter.defaultCenter().addObserverForName(
-            MalaNotification_ConfirmFilterView,
+        let observerConfirm = NotificationCenter.default.addObserver(
+            forName: MalaNotification_ConfirmFilterView,
             object: nil,
             queue: nil) { [weak self] (notification) -> Void in
                 // 将选中字符串数组遍历为对象数组
@@ -187,35 +187,35 @@ class FilterView: UIScrollView, UIScrollViewDelegate {
         addSubview(styleView)
         
         // Autolayout
-        gradeView.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(self.snp_top)
-            make.left.equalTo(self.snp_left)
-            make.width.equalTo(self.snp_width)
-            make.height.equalTo(self.snp_height)
+        gradeView.snp.makeConstraints { (maker) -> Void in
+            maker.top.equalTo(self.snp.top)
+            maker.left.equalTo(self.snp.left)
+            maker.width.equalTo(self.snp.width)
+            maker.height.equalTo(self.snp.height)
         }
-        subjectView.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(self.snp_top)
-            make.left.equalTo(self.snp_left).offset(MalaLayout_FilterContentWidth)
-            make.width.equalTo(self.snp_width)
-            make.height.equalTo(self.snp_height)
+        subjectView.snp.makeConstraints { (maker) -> Void in
+            maker.top.equalTo(self.snp.top)
+            maker.left.equalTo(self.snp.left).offset(MalaLayout_FilterContentWidth)
+            maker.width.equalTo(self.snp.width)
+            maker.height.equalTo(self.snp.height)
         }
-        styleView.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(self.snp_top)
-            make.left.equalTo(subjectView.snp_left).offset(MalaLayout_FilterContentWidth)
-            make.width.equalTo(self.snp_width)
-            make.height.equalTo(self.snp_height)
+        styleView.snp.makeConstraints { (maker) -> Void in
+            maker.top.equalTo(self.snp.top)
+            maker.left.equalTo(subjectView.snp.left).offset(MalaLayout_FilterContentWidth)
+            maker.width.equalTo(self.snp.width)
+            maker.height.equalTo(self.snp.height)
         }
-        self.backgroundColor = UIColor.lightGrayColor()
+        self.backgroundColor = UIColor.lightGray
     }
     
     private func commitCondition() {
-        NSNotificationCenter.defaultCenter().postNotificationName(MalaNotification_CommitCondition, object: nil)
+        NotificationCenter.default.post(name: MalaNotification_CommitCondition, object: nil)
         self.container?.close()
     }
     
     private func loadFilterCondition() {
         // 读取年级和科目数据
-        var dataArray = NSArray(contentsOfFile: NSBundle.mainBundle().pathForResource("FilterCondition.plist", ofType: nil)!) as? [AnyObject]
+        var dataArray = NSArray(contentsOfFile: Bundle.main.path(forResource: "FilterCondition.plist", ofType: nil)!) as? [AnyObject]
         var gradeDict: [GradeModel]? = []
         for object in dataArray! {
             if let dict = object as? [String: AnyObject] {
@@ -228,8 +228,8 @@ class FilterView: UIScrollView, UIScrollViewDelegate {
         // 设置默认科目数据
         let subjects = grades![2].subjects.map({ (i: NSNumber) -> GradeModel in
             let subject = GradeModel()
-            subject.id = i.integerValue
-            subject.name = MalaConfig.malaSubject()[i.integerValue]
+            subject.id = i.intValue
+            subject.name = MalaConfig.malaSubject()[i.intValue]
             return subject
         })
         self.subjectView.subjects = subjects
@@ -262,16 +262,16 @@ class FilterView: UIScrollView, UIScrollViewDelegate {
         println("FilterView Deinit")
         // 移除观察者
         for observer in observers {
-            NSNotificationCenter.defaultCenter().removeObserver(observer)
-            self.observers.removeAtIndex(0)
+            NotificationCenter.default.removeObserver(observer)
+            self.observers.remove(at: 0)
         }
     }
 }
 
 
 /// 筛选条件选择下标
-public class filterSelectedIndexObject: NSObject {
-    var gradeIndexPath = NSIndexPath()
-    var subjectIndexPath = NSIndexPath()
+open class filterSelectedIndexObject: NSObject {
+    var gradeIndexPath = IndexPath()
+    var subjectIndexPath = IndexPath()
     var tags: [String] = []
 }

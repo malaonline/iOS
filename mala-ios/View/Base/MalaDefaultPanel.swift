@@ -35,7 +35,7 @@ class MalaDefaultPanel: UIView {
     /// 按钮描述文字
     var buttonTitle: String = "" {
         didSet {
-            button.setTitle(buttonTitle, forState: .Normal)
+            button.setTitle(buttonTitle, for: UIControlState())
         }
     }
     
@@ -49,17 +49,17 @@ class MalaDefaultPanel: UIView {
     /// 文字标签
     private lazy var label: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFontOfSize(13)
+        label.font = UIFont.systemFont(ofSize: 13)
         label.textColor = MalaColor_939393_0
-        label.textAlignment = .Center
+        label.textAlignment = .center
         return label
     }()
     /// 描述标签
     private lazy var descLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFontOfSize(13)
+        label.font = UIFont.systemFont(ofSize: 13)
         label.textColor = MalaColor_939393_0
-        label.textAlignment = .Center
+        label.textAlignment = .center
         return label
     }()
     /// 按钮
@@ -67,9 +67,9 @@ class MalaDefaultPanel: UIView {
         let button = UIButton()
         button.layer.cornerRadius = 18
         button.layer.masksToBounds = true
-        button.layer.borderColor = MalaColor_8DBEDE_0.CGColor
+        button.layer.borderColor = MalaColor_8DBEDE_0.cgColor
         button.layer.borderWidth = 1
-        button.setTitleColor(MalaColor_8DBEDE_0, forState: .Normal)
+        button.setTitleColor(MalaColor_8DBEDE_0, for: UIControlState())
         return button
     }()
     
@@ -94,33 +94,33 @@ class MalaDefaultPanel: UIView {
         addSubview(descLabel)
         
         // Autolayout
-        label.snp_makeConstraints { (make) -> Void in
-            make.centerY.equalTo(self.snp_centerY).offset(-50)
-            make.centerX.equalTo(self.snp_centerX)
-            make.height.equalTo(13)
+        label.snp.makeConstraints { (maker) -> Void in
+            maker.centerY.equalTo(self.snp.centerY).offset(-50)
+            maker.centerX.equalTo(self.snp.centerX)
+            maker.height.equalTo(13)
         }
-        imageView.snp_makeConstraints { (make) -> Void in
-            make.centerX.equalTo(self.snp_centerX)
-            make.bottom.equalTo(label.snp_top).offset(-8)
+        imageView.snp.makeConstraints { (maker) -> Void in
+            maker.centerX.equalTo(self.snp.centerX)
+            maker.bottom.equalTo(label.snp.top).offset(-8)
         }
-        descLabel.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(label.snp_bottom).offset(12)
-            make.centerX.equalTo(self.snp_centerX)
-            make.height.equalTo(13)
+        descLabel.snp.makeConstraints { (maker) -> Void in
+            maker.top.equalTo(label.snp.bottom).offset(12)
+            maker.centerX.equalTo(self.snp.centerX)
+            maker.height.equalTo(13)
         }
     }
     
     ///  按钮点击事件
-    func addTarget(target: AnyObject?, action: Selector) {
+    func addTarget(_ target: AnyObject?, action: Selector) {
         
         addSubview(button)
-        button.snp_makeConstraints { (make) -> Void in
-            make.centerX.equalTo(self.snp_centerX)
-            make.top.equalTo(label.snp_bottom).offset(25)
-            make.height.equalTo(36)
-            make.width.equalTo(164)
+        button.snp.makeConstraints { (maker) -> Void in
+            maker.centerX.equalTo(self.snp.centerX)
+            maker.top.equalTo(label.snp.bottom).offset(25)
+            maker.height.equalTo(36)
+            maker.width.equalTo(164)
         }
         
-        button.addTarget(target, action: action, forControlEvents: .TouchUpInside)
+        button.addTarget(target, action: action, for: .touchUpInside)
     }
 }

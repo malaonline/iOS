@@ -36,43 +36,43 @@ class ProfileItemCollectionView: UICollectionView, UICollectionViewDelegate, UIC
     private func configure() {
         delegate = self
         dataSource = self
-        backgroundColor = UIColor.whiteColor()
+        backgroundColor = UIColor.white
         bounces = false
-        scrollEnabled = false
+        isScrollEnabled = false
         
-        registerClass(ProfileItemCollectionViewCell.self, forCellWithReuseIdentifier: ProfileItemCollectionViewCellReuseId)
+        register(ProfileItemCollectionViewCell.self, forCellWithReuseIdentifier: ProfileItemCollectionViewCellReuseId)
     }
     
     
     // MARK: - DataSource
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         // 所有操作结束弹栈时，取消选中项
         defer {
-            collectionView.deselectItemAtIndexPath(indexPath, animated: true)
+            collectionView.deselectItem(at: indexPath, animated: true)
         }
         
-        if let model = model?[indexPath.row] {
-            NSNotificationCenter.defaultCenter().postNotificationName(MalaNotification_PushProfileItemController, object: model)
+        if let model = model?[(indexPath as NSIndexPath).row] {
+            NotificationCenter.default.post(name: MalaNotification_PushProfileItemController, object: model)
         }
     }
     
-    func collectionView(collectionView: UICollectionView, shouldHighlightItemAtIndexPath indexPath: NSIndexPath) -> Bool {
+    func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
         return true
     }
     
     
     // MARK: - DataSource
-    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
     
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return model?.count ?? 3
     }
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(ProfileItemCollectionViewCellReuseId, forIndexPath: indexPath) as! ProfileItemCollectionViewCell
-        cell.model = model?[indexPath.row]
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProfileItemCollectionViewCellReuseId, for: indexPath) as! ProfileItemCollectionViewCell
+        cell.model = model?[(indexPath as NSIndexPath).row]
         return cell
     }
 }
@@ -89,9 +89,9 @@ class ProfileItemCollectionViewCell: UICollectionViewCell {
             
             if let title = model?.controllerTitle {
                 if title == "我的订单" {
-                    newMessageView.hidden = (MalaUnpaidOrderCount == 0)
+                    newMessageView.isHidden = (MalaUnpaidOrderCount == 0)
                 }else if title == "我的评价" {
-                    newMessageView.hidden = (MalaToCommentCount == 0)
+                    newMessageView.isHidden = (MalaToCommentCount == 0)
                 }
             }
         }
@@ -107,7 +107,7 @@ class ProfileItemCollectionViewCell: UICollectionViewCell {
     /// 新消息标签
     private lazy var newMessageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.hidden = true
+        imageView.isHidden = true
         return imageView
     }()
     /// 标题标签
@@ -140,27 +140,27 @@ class ProfileItemCollectionViewCell: UICollectionViewCell {
         contentView.addSubview(titleLabel)
         
         // AutoLayout
-        iconView.snp_makeConstraints { (make) in
-            make.centerX.equalTo(self.contentView.snp_centerX)
-            make.top.equalTo(self.contentView.snp_top).offset(13)
-            make.width.equalTo(53)
-            make.height.equalTo(53)
+        iconView.snp.makeConstraints { (maker) in
+            maker.centerX.equalTo(self.contentView.snp.centerX)
+            maker.top.equalTo(self.contentView.snp.top).offset(13)
+            maker.width.equalTo(53)
+            maker.height.equalTo(53)
         }
-        newMessageView.snp_makeConstraints { (make) in
-            make.top.equalTo(self.iconView.snp_top)
-            make.right.equalTo(self.contentView.snp_right).offset(-10)
-            make.width.equalTo(39)
-            make.height.equalTo(15)
+        newMessageView.snp.makeConstraints { (maker) in
+            maker.top.equalTo(self.iconView.snp.top)
+            maker.right.equalTo(self.contentView.snp.right).offset(-10)
+            maker.width.equalTo(39)
+            maker.height.equalTo(15)
         }
-        titleLabel.snp_makeConstraints { (make) in
-            make.centerX.equalTo(self.contentView.snp_centerX)
-            make.top.equalTo(self.iconView.snp_bottom).offset(17)
-            make.height.equalTo(14)
+        titleLabel.snp.makeConstraints { (maker) in
+            maker.centerX.equalTo(self.contentView.snp.centerX)
+            maker.top.equalTo(self.iconView.snp.bottom).offset(17)
+            maker.height.equalTo(14)
         }
     }
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        newMessageView.hidden = true
+        newMessageView.isHidden = true
     }
 }

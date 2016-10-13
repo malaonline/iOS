@@ -13,11 +13,11 @@ class CommonFlowLayout: UICollectionViewFlowLayout {
     // MARK: - Property
     enum FlowLayoutType {
         case findTeacherView
-        case FilterView
-        case SubjectView
-        case GradeSelection
-        case ProfileItem
-        case DetailPhotoView
+        case filterView
+        case subjectView
+        case gradeSelection
+        case profileItem
+        case detailPhotoView
     }
     
     
@@ -29,15 +29,15 @@ class CommonFlowLayout: UICollectionViewFlowLayout {
         switch layoutType {
         case .findTeacherView:
             findTeacherViewFlowLayout()
-        case .FilterView:
+        case .filterView:
             filterViewFlowLayout()
-        case .SubjectView:
+        case .subjectView:
             subjectViewFlowLayout()
-        case .GradeSelection:
+        case .gradeSelection:
             gradeSelectionFlowLayout()
-        case .ProfileItem:
+        case .profileItem:
             profileItemFlowLayout()
-        case .DetailPhotoView:
+        case .detailPhotoView:
             DetailPhotoViewFlowLayout()
         }
     }
@@ -49,22 +49,22 @@ class CommonFlowLayout: UICollectionViewFlowLayout {
     
     // MARK: - Private Method
     private func findTeacherViewFlowLayout() {
-        scrollDirection = .Vertical
+        scrollDirection = .vertical
         let itemWidth: CGFloat = MalaScreenWidth*0.47
         let itemHeight: CGFloat = itemWidth*1.28
         let itemMargin: CGFloat = MalaScreenWidth*0.02
-        itemSize = CGSizeMake(itemWidth, itemHeight)
+        itemSize = CGSize(width: itemWidth, height: itemHeight)
         minimumInteritemSpacing = itemMargin
         minimumLineSpacing = itemMargin
         sectionInset = UIEdgeInsetsMake(itemMargin, itemMargin, itemMargin, itemMargin)
     }
     
     private func filterViewFlowLayout() {
-        scrollDirection = .Vertical
+        scrollDirection = .vertical
         let itemWidth: CGFloat = MalaLayout_FilterItemWidth
         let itemHeight: CGFloat = 38.0
         let itemMargin: CGFloat = 0.0
-        itemSize = CGSizeMake(itemWidth, itemHeight)
+        itemSize = CGSize(width: itemWidth, height: itemHeight)
         minimumInteritemSpacing = itemMargin
         minimumLineSpacing = itemMargin
         sectionInset = UIEdgeInsetsMake(itemMargin/2, itemMargin, itemMargin/2, itemMargin)
@@ -73,11 +73,11 @@ class CommonFlowLayout: UICollectionViewFlowLayout {
     }
     
     private func subjectViewFlowLayout() {
-        scrollDirection = .Vertical
+        scrollDirection = .vertical
         let itemWidth: CGFloat = MalaLayout_FilterItemWidth-10
         let itemHeight: CGFloat = 38.0
         let itemMargin: CGFloat = 0.0
-        itemSize = CGSizeMake(itemWidth, itemHeight)
+        itemSize = CGSize(width: itemWidth, height: itemHeight)
         minimumInteritemSpacing = itemMargin
         minimumLineSpacing = itemMargin
         sectionInset = UIEdgeInsetsMake(itemMargin/2, itemMargin, itemMargin/2, itemMargin)
@@ -86,30 +86,30 @@ class CommonFlowLayout: UICollectionViewFlowLayout {
     }
     
     private func gradeSelectionFlowLayout() {
-        scrollDirection = .Vertical
+        scrollDirection = .vertical
         let itemWidth = MalaLayout_GradeSelectionWidth
         let itemHeight: CGFloat = MalaLayout_GradeSelectionWidth*0.19
-        itemSize = CGSizeMake(itemWidth, itemHeight)
+        itemSize = CGSize(width: itemWidth, height: itemHeight)
         sectionInset = UIEdgeInsetsMake(0, 0, 0, 0)
         minimumInteritemSpacing = 12
         minimumLineSpacing = 14
     }
     
     private func profileItemFlowLayout() {
-        scrollDirection = .Horizontal
+        scrollDirection = .horizontal
         let itemWidth = MalaScreenWidth/3
         let itemHeight: CGFloat = 114
-        itemSize = CGSizeMake(itemWidth, itemHeight)
+        itemSize = CGSize(width: itemWidth, height: itemHeight)
         sectionInset = UIEdgeInsetsMake(0, 0, 0, 0)
         minimumInteritemSpacing = 0
         minimumLineSpacing = 0
     }
     
     private func DetailPhotoViewFlowLayout() {
-        scrollDirection = .Horizontal
+        scrollDirection = .horizontal
         let itemWidth: CGFloat = MalaLayout_DetailPhotoWidth
         let itemHeight: CGFloat = MalaLayout_DetailPhotoWidth
-        itemSize = CGSizeMake(itemWidth, itemHeight)
+        itemSize = CGSize(width: itemWidth, height: itemHeight)
         sectionInset = UIEdgeInsetsMake(0, 0, 0, 0)
         minimumInteritemSpacing = 0
         minimumLineSpacing = 2

@@ -41,7 +41,7 @@ class ProfileElementModel: BaseObjectModel {
     
     override init(dict: [String: AnyObject]) {
         super.init()
-        setValuesForKeysWithDictionary(dict)
+        setValuesForKeys(dict)
     }
     
     convenience init(id: Int, title: String = "", detail: String = "", controller: AnyClass?, controllerTitle: String, type: userInfoType?, badgeNumber: Int? = 0, iconName: String = "", newMessageIconName: String = "", disabled: Bool = false, disabledMessage: String? = nil) {
@@ -64,7 +64,7 @@ class ProfileElementModel: BaseObjectModel {
     }
     
     // MARK: - Override
-    override func setValue(value: AnyObject?, forUndefinedKey key: String) {
+    override func setValue(_ value: Any?, forUndefinedKey key: String) {
         println("ProfileElementModel - Set for UndefinedKey: \(key)")
     }
     
@@ -72,6 +72,6 @@ class ProfileElementModel: BaseObjectModel {
     // MARK: - Description
     override var description: String {
         let keys = ["id", "title", "detail", "controller", "type"]
-        return dictionaryWithValuesForKeys(keys).description
+        return dictionaryWithValues(forKeys: keys).description
     }
 }

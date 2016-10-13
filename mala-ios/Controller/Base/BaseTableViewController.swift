@@ -9,26 +9,26 @@
 import UIKit
 import Kingfisher
 
-public class BaseTableViewController: UITableViewController {
+open class BaseTableViewController: UITableViewController {
 
     // MARK: - Components
     /// 无筛选结果缺省面板
     lazy var defaultView: MalaDefaultPanel = {
         let defaultView = MalaDefaultPanel()
-        defaultView.hidden = true
+        defaultView.isHidden = true
         return defaultView
     }()
     
     
     // MARK: - Life Cycle
-    override public func viewDidLoad() {
+    override open func viewDidLoad() {
         super.viewDidLoad()
         configure()
     }
     
-    override public func didReceiveMemoryWarning() {
+    override open func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        KingfisherManager.sharedManager.cache.clearMemoryCache()
+        KingfisherManager.shared.cache.clearMemoryCache()
     }
     
     
@@ -39,9 +39,9 @@ public class BaseTableViewController: UITableViewController {
             view.addSubview(defaultView)
             
             // AutoLayout
-            defaultView.snp_makeConstraints { (make) -> Void in
-                make.size.equalTo(view.snp_size)
-                make.center.equalTo(view.snp_center)
+            defaultView.snp.makeConstraints { (maker) -> Void in
+                maker.size.equalTo(view.snp.size)
+                maker.center.equalTo(view.snp.center)
             }
         }
     }
@@ -49,7 +49,7 @@ public class BaseTableViewController: UITableViewController {
     private func configure() {
         
         // 设置BarButtomItem间隔
-        let spacer = UIBarButtonItem(barButtonSystemItem: .FixedSpace, target: nil, action: nil)
+        let spacer = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
         spacer.width = -2
         
         // leftBarButtonItem
@@ -67,18 +67,18 @@ public class BaseTableViewController: UITableViewController {
     
     // MARK: - Event Response
     @objc func popSelf() {
-        self.navigationController?.popViewControllerAnimated(true)
+        _ = self.navigationController?.popViewController(animated: true)
     }
     
     
     // MARK: - API
     func showDefaultView() {
         setupDefaultViewIfNeed()
-        defaultView.hidden = false
+        defaultView.isHidden = false
     }
     
     func hideDefaultView() {
         setupDefaultViewIfNeed()
-        defaultView.hidden = true
+        defaultView.isHidden = true
     }
 }

@@ -14,9 +14,9 @@ class TeacherDetailsHighScoreCell: MalaBaseCell {
     var model: [HighScoreModel?] = [] {
         didSet {
             // 设置数据模型后，刷新TableView高度
-            tableView.models = model
-            tableView.snp_updateConstraints { (make) -> Void in
-                make.height.equalTo(Int(MalaLayout_DeatilHighScoreTableViewCellHeight) * (model.count+1))
+            tableView.models = model            
+            tableView.snp.updateConstraints { (maker) in
+                maker.height.equalTo(Int(MalaLayout_DeatilHighScoreTableViewCellHeight) * (model.count+1))
             }
         }
     }
@@ -24,7 +24,7 @@ class TeacherDetailsHighScoreCell: MalaBaseCell {
     
     // MARK: - Components
     private lazy var tableView: TeacherDetailsHighScoreTableView = {
-        let tableView = TeacherDetailsHighScoreTableView(frame: CGRectZero, style: .Plain)
+        let tableView = TeacherDetailsHighScoreTableView(frame: CGRect.zero, style: .plain)
         return tableView
     }()
     
@@ -46,11 +46,12 @@ class TeacherDetailsHighScoreCell: MalaBaseCell {
         content.addSubview(tableView)
         
         // Autolayout
-        tableView.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(self.content.snp_top)
-            make.left.equalTo(self.content.snp_left)
-            make.bottom.equalTo(self.content.snp_bottom)
-            make.right.equalTo(self.content.snp_right)
+        tableView.snp.makeConstraints { (maker) -> Void in
+            maker.top.equalTo(self.content.snp.top)
+            maker.left.equalTo(self.content.snp.left)
+            maker.bottom.equalTo(self.content.snp.bottom)
+            maker.right.equalTo(self.content.snp.right)
+            maker.height.equalTo(MalaLayout_DeatilHighScoreTableViewCellHeight)
         }
     }
 }
