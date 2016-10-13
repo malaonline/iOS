@@ -149,7 +149,7 @@ class OrderFormViewController: BaseTableViewController {
     private func setupNotification() {
         
         NotificationCenter.default.addObserver(
-            forName: NSNotification.Name(rawValue: MalaNotification_PushToPayment),
+            forName: MalaNotification_PushToPayment,
             object: nil,
             queue: nil
         ) { [weak self] (notification) -> Void in
@@ -162,7 +162,7 @@ class OrderFormViewController: BaseTableViewController {
         }
         
         NotificationCenter.default.addObserver(
-            forName: NSNotification.Name(rawValue: MalaNotification_PushTeacherDetailView),
+            forName: MalaNotification_PushTeacherDetailView,
             object: nil,
             queue: nil
         ) { [weak self] (notification) -> Void in
@@ -179,7 +179,7 @@ class OrderFormViewController: BaseTableViewController {
         }
         
         NotificationCenter.default.addObserver(
-            forName: NSNotification.Name(rawValue: MalaNotification_CancelOrderForm),
+            forName: MalaNotification_CancelOrderForm,
             object: nil,
             queue: nil
         ) { [weak self] (notification) -> Void in
@@ -326,8 +326,8 @@ class OrderFormViewController: BaseTableViewController {
     
     
     deinit {
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: MalaNotification_PushToPayment), object: nil)
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: MalaNotification_PushTeacherDetailView), object: nil)
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: MalaNotification_CancelOrderForm), object: nil)
+        NotificationCenter.default.removeObserver(self, name: MalaNotification_PushToPayment, object: nil)
+        NotificationCenter.default.removeObserver(self, name: MalaNotification_PushTeacherDetailView, object: nil)
+        NotificationCenter.default.removeObserver(self, name: MalaNotification_CancelOrderForm, object: nil)
     }
 }

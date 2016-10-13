@@ -223,7 +223,7 @@ class TeacherDetailsController: BaseViewController, UIGestureRecognizerDelegate,
     
     private func setupNotification() {
         NotificationCenter.default.addObserver(
-            forName: NSNotification.Name(rawValue: MalaNotification_PushPhotoBrowser),
+            forName: MalaNotification_PushPhotoBrowser,
             object: nil,
             queue: nil
             ) { [weak self] (notification) -> Void in
@@ -502,6 +502,6 @@ class TeacherDetailsController: BaseViewController, UIGestureRecognizerDelegate,
     deinit {
         println("TeacherDetailController Deinit")
         // 移除观察者
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: MalaNotification_PushPhotoBrowser), object: nil)
+        NotificationCenter.default.removeObserver(self, name: MalaNotification_PushPhotoBrowser, object: nil)
     }
 }

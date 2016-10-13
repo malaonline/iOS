@@ -148,7 +148,7 @@ class GradeSelectionCell: UICollectionViewCell {
         didSet {
             self.button.isSelected = isSelected
             if isSelected {
-                NotificationCenter.default.post(name: Notification.Name(rawValue: MalaNotification_ChoosingGrade), object: self.grade!)
+                NotificationCenter.default.post(name: MalaNotification_ChoosingGrade, object: self.grade!)
             }
         }
     }

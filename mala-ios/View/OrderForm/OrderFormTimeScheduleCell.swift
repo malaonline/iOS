@@ -163,10 +163,10 @@ class OrderFormTimeScheduleCell: UITableViewCell {
         timeLineView?.isHidden = true
         
         self.contentView.addSubview(timeLineView!)
-        topLayoutView.snp.updateConstraints { (maker) in
+        topLayoutView.snp.makeConstraints { (maker) in
             maker.bottom.equalTo(timeLineView!.snp.top).offset(-10)
         }
-        timeLineView!.snp.updateConstraints { (maker) in
+        timeLineView!.snp.makeConstraints { (maker) in
             maker.top.equalTo(topLayoutView.snp.bottom).offset(10)
             maker.left.equalTo(self.contentView.snp.left).offset(12)
             maker.right.equalTo(self.contentView.snp.right).offset(-12)

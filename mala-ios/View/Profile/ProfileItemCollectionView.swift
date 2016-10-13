@@ -52,7 +52,7 @@ class ProfileItemCollectionView: UICollectionView, UICollectionViewDelegate, UIC
         }
         
         if let model = model?[(indexPath as NSIndexPath).row] {
-            NotificationCenter.default.post(name: Notification.Name(rawValue: MalaNotification_PushProfileItemController), object: model)
+            NotificationCenter.default.post(name: MalaNotification_PushProfileItemController, object: model)
         }
     }
     

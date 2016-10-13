@@ -121,7 +121,7 @@ open class PeriodStepper: UIView, UITextFieldDelegate {
         // 计数器数值changed回调闭包
         stepper.valueChangedCallback = {
             self.textField.text = String(format: "%d", Int(self.stepper.value))
-            NotificationCenter.default.post(name: Notification.Name(rawValue: MalaNotification_ClassPeriodDidChange), object: self.stepper.value)
+            NotificationCenter.default.post(name: MalaNotification_ClassPeriodDidChange, object: self.stepper.value)
         }
         
         textField.delegate = self

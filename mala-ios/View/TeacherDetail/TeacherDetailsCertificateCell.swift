@@ -88,7 +88,7 @@ class TeacherDetailsCertificateCell: MalaBaseCell {
             let browser = SKPhotoBrowser(photos: images)
             browser.initializePageIndex(index)
             browser.navigationController?.isNavigationBarHidden = true
-            NotificationCenter.default.post(name: Notification.Name(rawValue: MalaNotification_PushPhotoBrowser), object: browser)
+            NotificationCenter.default.post(name: MalaNotification_PushPhotoBrowser, object: browser)
         }
     }
 }

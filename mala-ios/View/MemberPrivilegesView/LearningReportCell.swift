@@ -358,21 +358,21 @@ class LearningReportCell: UITableViewCell {
     /// 登录
     @objc private func login() {
         println("登录")
-        NotificationCenter.default.post(name: Notification.Name(rawValue: MalaNotification_ShowLearningReport), object: -1)
+        NotificationCenter.default.post(name: MalaNotification_ShowLearningReport, object: -1)
     }
     /// 显示学习报告样本
     @objc private func showReportDemo() {
         println("样本")
-        NotificationCenter.default.post(name: Notification.Name(rawValue: MalaNotification_ShowLearningReport), object: 0)
+        NotificationCenter.default.post(name: MalaNotification_ShowLearningReport, object: 0)
     }
     /// 显示我的学习报告
     @objc private func showMyReport() {
         println("报告")
-        NotificationCenter.default.post(name: Notification.Name(rawValue: MalaNotification_ShowLearningReport), object: 1)
+        NotificationCenter.default.post(name: MalaNotification_ShowLearningReport, object: 1)
     }
     /// 重新获取学习报告
     @objc private func reloadStatus() {
         println("重新获取")
-        NotificationCenter.default.post(name: Notification.Name(rawValue: MalaNotification_ReloadLearningReport), object: nil)
+        NotificationCenter.default.post(name: MalaNotification_ReloadLearningReport, object: nil)
     }
 }

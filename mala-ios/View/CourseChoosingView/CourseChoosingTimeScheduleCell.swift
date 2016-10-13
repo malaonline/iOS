@@ -111,6 +111,6 @@ class CourseChoosingTimeScheduleCell: MalaBaseCell {
     
     // MARK: - Override
     @objc func detailButtonDidTap() {
-        NotificationCenter.default.post(name: Notification.Name(rawValue: MalaNotification_OpenTimeScheduleCell), object: !isOpen)
+        NotificationCenter.default.post(name: MalaNotification_OpenTimeScheduleCell, object: !isOpen)
     }
 }

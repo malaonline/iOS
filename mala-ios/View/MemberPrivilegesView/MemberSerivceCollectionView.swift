@@ -77,7 +77,7 @@ class MemberSerivceCollectionView: UICollectionView, UICollectionViewDelegate, U
         defer {
             collectionView.deselectItem(at: indexPath, animated: true)
         }
-        NotificationCenter.default.post(name: Notification.Name(rawValue: MalaNotification_PushIntroduction), object: ((indexPath as NSIndexPath).section*4+((indexPath as NSIndexPath).row)))
+        NotificationCenter.default.post(name: MalaNotification_PushIntroduction, object: ((indexPath as NSIndexPath).section*4+((indexPath as NSIndexPath).row)))
     }
     
     func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {

@@ -365,11 +365,8 @@ class CommentViewCell: UITableViewCell {
     
     ///  设置过期样式
     private func setStyleExpired() {
-        println("课程评价状态 - 过期")
-        
         showCommentButton.isHidden = true
         commentButton.isHidden = true
-        
         statusIcon.isHighlighted = false
         statusIcon.isEnabled = false
         expiredLabel.isHidden = false
@@ -378,11 +375,8 @@ class CommentViewCell: UITableViewCell {
     
     ///  设置已评论样式
     private func setStyleCommented() {
-        println("课程评价状态 - 已评价")
-        
         commentButton.isHidden = true
         showCommentButton.isHidden = false
-        
         statusIcon.isEnabled = true
         statusIcon.isHighlighted = true
         expiredLabel.isHidden = true
@@ -392,11 +386,8 @@ class CommentViewCell: UITableViewCell {
     
     ///  设置待评论样式
     private func setStyleNoComments() {
-        println("课程评价状态 - 待评价")
-        
         commentButton.isHidden = false
         showCommentButton.isHidden = true
-        
         statusIcon.isHighlighted = false
         statusIcon.isEnabled = true
         expiredLabel.isHidden = true

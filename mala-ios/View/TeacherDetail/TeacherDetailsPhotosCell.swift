@@ -84,6 +84,6 @@ class TeacherDetailsPhotosCell: MalaBaseCell {
     ///  查看相册按钮点击事件
     @objc private func detailButtonDidTap() {
         // 相册
-        NotificationCenter.default.post(name: Notification.Name(rawValue: MalaNotification_PushPhotoBrowser), object: "browser")
+        NotificationCenter.default.post(name: MalaNotification_PushPhotoBrowser, object: "browser")
     }
 }

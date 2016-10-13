@@ -278,7 +278,7 @@ class CourseChoosingViewController: BaseViewController, CourseChoosingConfirmVie
     private func setupNotification() {
         // 授课年级选择
         let observerChoosingGrade = NotificationCenter.default.addObserver(
-            forName: NSNotification.Name(rawValue: MalaNotification_ChoosingGrade),
+            forName: MalaNotification_ChoosingGrade,
             object: nil,
             queue: nil) { [weak self] (notification) -> Void in
                 guard let grade = notification.object as? GradeModel else {
@@ -295,7 +295,7 @@ class CourseChoosingViewController: BaseViewController, CourseChoosingConfirmVie
         
         // 选择上课时间
         let observerClassScheduleDidTap = NotificationCenter.default.addObserver(
-            forName: NSNotification.Name(rawValue: MalaNotification_ClassScheduleDidTap),
+            forName: MalaNotification_ClassScheduleDidTap,
             object: nil,
             queue: nil) { [weak self] (notification) -> Void in
                 let model = notification.object as! ClassScheduleDayModel
@@ -338,7 +338,7 @@ class CourseChoosingViewController: BaseViewController, CourseChoosingConfirmVie
         
         // 选择课时
         let observerClassPeriodDidChange = NotificationCenter.default.addObserver(
-            forName: NSNotification.Name(rawValue: MalaNotification_ClassPeriodDidChange),
+            forName: MalaNotification_ClassPeriodDidChange,
             object: nil,
             queue: nil) { [weak self] (notification) -> Void in
                 let period = (notification.object as? Double) ?? 2
@@ -356,7 +356,7 @@ class CourseChoosingViewController: BaseViewController, CourseChoosingConfirmVie
         
         // 展开/收起 上课时间表
         let observerOpenTimeScheduleCell = NotificationCenter.default.addObserver(
-            forName: NSNotification.Name(rawValue: MalaNotification_OpenTimeScheduleCell),
+            forName: MalaNotification_OpenTimeScheduleCell,
             object: nil,
             queue: nil) { [weak self] (notification) -> Void in
                 

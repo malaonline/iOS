@@ -109,7 +109,7 @@ class ThemeClassSchedule: UICollectionView, UICollectionViewDelegate, UICollecti
             println("点击model: \(model)")
             let weekID = ((indexPath as NSIndexPath).row == 7 ? 0 : (indexPath as NSIndexPath).row)
             model.weekID = weekID
-            NotificationCenter.default.post(name: Notification.Name(rawValue: MalaNotification_ClassScheduleDidTap), object: model)
+            NotificationCenter.default.post(name: MalaNotification_ClassScheduleDidTap, object: model)
             model.isSelected = cell.button.isSelected
         }
     }

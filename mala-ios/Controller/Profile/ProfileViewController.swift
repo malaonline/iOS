@@ -129,7 +129,7 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
     
     private func setupNotification() {
         NotificationCenter.default.addObserver(
-            forName: NSNotification.Name(rawValue: MalaNotification_PushProfileItemController),
+            forName: MalaNotification_PushProfileItemController,
             object: nil,
             queue: nil
         ) { [weak self] (notification) -> Void in
@@ -381,7 +381,7 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
     }
     
     deinit {
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: MalaNotification_PushProfileItemController), object: nil)
+        NotificationCenter.default.removeObserver(self, name: MalaNotification_PushProfileItemController, object: nil)
     }
 }
 

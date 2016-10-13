@@ -285,12 +285,12 @@ open class TeacherFilterPopupWindow: UIViewController {
     }
     
     @objc private func cancelButtonDidTap() {
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: MalaNotification_PopFilterView), object: nil)
+        NotificationCenter.default.post(name: MalaNotification_PopFilterView, object: nil)
     }
     
     @objc private func confirmButtonDidTap() {
         confirmButton.isUserInteractionEnabled = false
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: MalaNotification_ConfirmFilterView), object: nil)
+        NotificationCenter.default.post(name: MalaNotification_ConfirmFilterView, object: nil)
     }
     
     deinit{

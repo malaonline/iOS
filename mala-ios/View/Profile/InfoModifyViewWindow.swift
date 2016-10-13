@@ -259,7 +259,7 @@ open class InfoModifyViewWindow: UIViewController, UITextViewDelegate {
             println("学生姓名保存 - \(bool)")
             
             MalaUserDefaults.studentName.value = name
-            NotificationCenter.default.post(name: Notification.Name(rawValue: MalaNotification_RefreshStudentName), object: nil)
+            NotificationCenter.default.post(name: MalaNotification_RefreshStudentName, object: nil)
             
             ThemeHUD.hideActivityIndicator()
             DispatchQueue.main.async(execute: { () -> Void in

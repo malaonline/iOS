@@ -91,7 +91,7 @@ class MemberPrivilegesViewController: UITableViewController {
     
     private func setupNotification() {
         NotificationCenter.default.addObserver(
-            forName: NSNotification.Name(rawValue: MalaNotification_PushIntroduction),
+            forName: MalaNotification_PushIntroduction,
             object: nil,
             queue: nil
         ) { [weak self] (notification) -> Void in
@@ -107,14 +107,14 @@ class MemberPrivilegesViewController: UITableViewController {
         }
         
         NotificationCenter.default.addObserver(
-            forName: NSNotification.Name(rawValue: MalaNotification_ReloadLearningReport),
+            forName: MalaNotification_ReloadLearningReport,
             object: nil,
             queue: nil) { [weak self] (notification) in
                 self?.loadStudyReportOverview()
         }
         
         NotificationCenter.default.addObserver(
-            forName: NSNotification.Name(rawValue: MalaNotification_ShowLearningReport),
+            forName: MalaNotification_ShowLearningReport,
             object: nil,
             queue: nil
         ) { [weak self] (notification) -> Void in
@@ -307,8 +307,8 @@ class MemberPrivilegesViewController: UITableViewController {
     }
     
     deinit {
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: MalaNotification_PushIntroduction), object: nil)
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: MalaNotification_ShowLearningReport), object: nil)
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: MalaNotification_ReloadLearningReport), object: nil)
+        NotificationCenter.default.removeObserver(self, name: MalaNotification_PushIntroduction, object: nil)
+        NotificationCenter.default.removeObserver(self, name: MalaNotification_ShowLearningReport, object: nil)
+        NotificationCenter.default.removeObserver(self, name: MalaNotification_ReloadLearningReport, object: nil)
     }
 }

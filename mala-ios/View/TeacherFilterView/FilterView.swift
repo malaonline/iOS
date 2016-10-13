@@ -149,7 +149,7 @@ class FilterView: UIScrollView, UIScrollViewDelegate {
     private func registerNotification() {
         // pop页面通知处理
         let observerPopFilterView = NotificationCenter.default.addObserver(
-            forName: NSNotification.Name(rawValue: MalaNotification_PopFilterView),
+            forName: MalaNotification_PopFilterView,
             object: nil,
             queue: nil
             ) { [weak self] (notification) -> Void in
@@ -160,7 +160,7 @@ class FilterView: UIScrollView, UIScrollViewDelegate {
         
         // 确认按钮点击通知处理
         let observerConfirm = NotificationCenter.default.addObserver(
-            forName: NSNotification.Name(rawValue: MalaNotification_ConfirmFilterView),
+            forName: MalaNotification_ConfirmFilterView,
             object: nil,
             queue: nil) { [weak self] (notification) -> Void in
                 // 将选中字符串数组遍历为对象数组
@@ -209,7 +209,7 @@ class FilterView: UIScrollView, UIScrollViewDelegate {
     }
     
     private func commitCondition() {
-        NotificationCenter.default.post(name: Notification.Name(rawValue: MalaNotification_CommitCondition), object: nil)
+        NotificationCenter.default.post(name: MalaNotification_CommitCondition, object: nil)
         self.container?.close()
     }
     

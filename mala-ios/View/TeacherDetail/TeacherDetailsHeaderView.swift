@@ -329,7 +329,7 @@ class TeacherDetailsHeaderView: UIView {
     }
     
     @objc private func avatarDidTap() {
-        NotificationCenter.default.post(name: Notification.Name(rawValue: MalaNotification_PushPhotoBrowser), object: avatarView)
+        NotificationCenter.default.post(name: MalaNotification_PushPhotoBrowser, object: avatarView)
     }
     
     deinit {

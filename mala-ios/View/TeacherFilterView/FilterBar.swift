@@ -107,7 +107,7 @@ class FilterBar: UIView {
     
     private func setupNotification() {
         NotificationCenter.default.addObserver(
-            forName: NSNotification.Name(rawValue: MalaNotification_CommitCondition),
+            forName: MalaNotification_CommitCondition,
             object: nil,
             queue: nil) { [weak self] (notification) -> Void in
                 self?.filterCondition = MalaCondition
@@ -150,6 +150,6 @@ class FilterBar: UIView {
     
     deinit {
         println("FilterBar - Deinit")
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: MalaNotification_CommitCondition), object: nil)
+        NotificationCenter.default.removeObserver(self, name: MalaNotification_CommitCondition, object: nil)
     }
 }

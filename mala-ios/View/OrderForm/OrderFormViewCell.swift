@@ -457,18 +457,18 @@ class OrderFormViewCell: UITableViewCell {
     // MARK: - Event Response
     /// 立即支付
     @objc private func pay() {
-        NotificationCenter.default.post(name: Notification.Name(rawValue: MalaNotification_PushToPayment), object: self.model)
+        NotificationCenter.default.post(name: MalaNotification_PushToPayment, object: self.model)
     }
     
     /// 再次购买
     @objc private func buyAgain() {
         MalaIsHasBeenEvaluatedThisSubject = model?.evaluated
-        NotificationCenter.default.post(name: Notification.Name(rawValue: MalaNotification_PushTeacherDetailView), object: self.model)
+        NotificationCenter.default.post(name: MalaNotification_PushTeacherDetailView, object: self.model)
     }
     
     /// 取消订单
     @objc private func cancelOrderForm() {
-        NotificationCenter.default.post(name: Notification.Name(rawValue: MalaNotification_CancelOrderForm), object: self.model?.id)
+        NotificationCenter.default.post(name: MalaNotification_CancelOrderForm, object: self.model?.id)
     }
     
     

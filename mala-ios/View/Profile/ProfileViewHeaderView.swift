@@ -144,7 +144,7 @@ class ProfileViewHeaderView: UIView {
     private func setupNotification() {
         // 刷新学生姓名
         NotificationCenter.default.addObserver(
-            forName: NSNotification.Name(rawValue: MalaNotification_RefreshStudentName),
+            forName: MalaNotification_RefreshStudentName,
             object: nil,
             queue: nil) { [weak self] (notification) -> Void in
                 self?.nameLabel.text = MalaUserDefaults.studentName.value
@@ -169,6 +169,6 @@ class ProfileViewHeaderView: UIView {
     }
     
     deinit {
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: MalaNotification_RefreshStudentName), object: nil)
+        NotificationCenter.default.removeObserver(self, name: MalaNotification_RefreshStudentName, object: nil)
     }
 }

@@ -56,7 +56,7 @@ class ThemePhotoCollectionView: UICollectionView, UICollectionViewDelegate, UICo
     // MARK: - Delegate
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as! ThemePhotoCollectionViewCell
-        NotificationCenter.default.post(name: Notification.Name(rawValue: MalaNotification_PushPhotoBrowser), object: cell.imageView)
+        NotificationCenter.default.post(name: MalaNotification_PushPhotoBrowser, object: cell.imageView)
     }
 }
 

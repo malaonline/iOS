@@ -143,33 +143,34 @@ class OrderFormOtherInfoCell: UITableViewCell {
         contentView.addSubview(paymentDateLabel)
         
         // Autolayout
-        titleString.snp.updateConstraints { (maker) -> Void in
+        titleString.snp.makeConstraints { (maker) -> Void in
             maker.top.equalTo(self.contentView.snp.top).offset(16)
             maker.left.equalTo(self.contentView.snp.left).offset(12)
             maker.height.equalTo(12)
         }
-        titleLabel.snp.updateConstraints { (maker) -> Void in
+        titleLabel.snp.makeConstraints { (maker) -> Void in
             maker.top.equalTo(titleString.snp.top)
             maker.left.equalTo(titleString.snp.right).offset(10)
             maker.height.equalTo(12)
         }
-        createDateString.snp.updateConstraints { (maker) -> Void in
+        createDateString.snp.makeConstraints { (maker) -> Void in
             maker.top.equalTo(titleString.snp.bottom).offset(10)
             maker.left.equalTo(titleString.snp.left)
             maker.height.equalTo(12)
+            maker.bottom.equalTo(self.contentView.snp.bottom).offset(-16)
         }
-        createDateLabel.snp.updateConstraints { (maker) -> Void in
+        createDateLabel.snp.makeConstraints { (maker) -> Void in
             maker.top.equalTo(createDateString.snp.top)
             maker.left.equalTo(createDateString.snp.right).offset(10)
             maker.height.equalTo(12)
         }
-        paymentDateString.snp.updateConstraints { (maker) -> Void in
+        paymentDateString.snp.makeConstraints { (maker) -> Void in
             maker.top.equalTo(createDateString.snp.bottom).offset(10)
             maker.left.equalTo(titleString.snp.left)
             maker.height.equalTo(12)
             maker.bottom.equalTo(self.contentView.snp.bottom).offset(-16)
         }
-        paymentDateLabel.snp.updateConstraints { (maker) -> Void in
+        paymentDateLabel.snp.makeConstraints { (maker) -> Void in
             maker.top.equalTo(paymentDateString.snp.top)
             maker.left.equalTo(paymentDateString.snp.right).offset(10)
             maker.height.equalTo(12)
