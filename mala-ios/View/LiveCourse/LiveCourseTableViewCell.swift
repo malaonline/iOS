@@ -19,57 +19,31 @@ class LiveCourseTableViewCell: UITableViewCell {
                 return
             }
             
-            courseLabel.setTitle((model.grades_shortname ?? "")+" • "+(model.subject ?? ""), for: UIControlState())
-            nameLabel.text = model.name
-            levelLabel.text = String(format: "  T%d  ", model.level)
-            avatarView.ma_setImage(model.avatar, placeholderImage: UIImage(named: "avatar_placeholder"))
-            
-            let string = String(MinPrice: model.min_price.money, MaxPrice: model.max_price.money)
-            let attrString: NSMutableAttributedString = NSMutableAttributedString(string: string)
-            let rangeLocation = (string as NSString).range(of: "元").location
-            attrString.addAttribute(
-                NSForegroundColorAttributeName,
-                value: MalaColor_82B4D9_0,
-                range: NSMakeRange(0, rangeLocation)
-            )
-            attrString.addAttribute(
-                NSFontAttributeName,
-                value: UIFont.systemFont(ofSize: 14),
-                range: NSMakeRange(0, rangeLocation)
-            )
-            attrString.addAttribute(
-                NSForegroundColorAttributeName,
-                value: MalaColor_6C6C6C_0,
-                range: NSMakeRange(rangeLocation, 4)
-            )
-            attrString.addAttribute(
-                NSFontAttributeName,
-                value: UIFont.systemFont(ofSize: 12),
-                range: NSMakeRange(rangeLocation, 4)
-            )
-            priceLabel.attributedText = attrString
-            
-            tagsLabel.text = model.tags?.joined(separator: "｜")
+           
         }
     }
     
     
     // MARK: - Components
-    /// 布局视图（卡片式Cell白色背景）
+    /// 布局视图
     private lazy var content: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor.white
         return view
     }()
-    /// 授课年级及科目label
-    private lazy var courseLabel: UIButton = {
-        let courseLabel = UIButton()
-        courseLabel.setBackgroundImage(UIImage(named: "tagsTitle"), for: UIControlState())
-        courseLabel.titleLabel?.font = UIFont.systemFont(ofSize: 11)
-        courseLabel.titleEdgeInsets = UIEdgeInsets(top: -1, left: 0, bottom: 1, right: 0)
-        courseLabel.isUserInteractionEnabled = false
-        return courseLabel
+    /// 教师信息布局视图
+    private lazy var teacherContent: UIView = {
+        let view = UIView()
+        return view
     }()
+    /// 课程信息布局视图
+    private lazy var infoContent: UIView = {
+        let view = UIView()
+        return view
+    }()
+    
+    
+    
     /// 老师姓名label
     private lazy var nameLabel: UILabel = {
         let nameLabel = UILabel()
@@ -136,7 +110,6 @@ class LiveCourseTableViewCell: UITableViewCell {
         
         // SubViews
         contentView.addSubview(content)
-        contentView.addSubview(courseLabel)
         content.addSubview(nameLabel)
         content.addSubview(levelLabel)
         content.insertSubview(separator, belowSubview: levelLabel)
@@ -150,12 +123,6 @@ class LiveCourseTableViewCell: UITableViewCell {
             maker.left.equalTo(self.contentView.snp.left).offset(12)
             maker.bottom.equalTo(self.contentView.snp.bottom).offset(-4)
             maker.right.equalTo(self.contentView.snp.right).offset(-12)
-        }
-        courseLabel.snp.makeConstraints { (maker) -> Void in
-            maker.top.equalTo(self.contentView.snp.top).offset(4)
-            maker.left.equalTo(self.contentView.snp.left)
-            maker.height.equalTo(24)
-            maker.width.equalTo(100)
         }
         nameLabel.snp.makeConstraints { (maker) -> Void in
             maker.top.equalTo(self.content.snp.top).offset(15)

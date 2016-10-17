@@ -146,7 +146,7 @@ class OrderFormViewCell: UITableViewCell {
     }()
     /// 中部分割线
     private lazy var separatorLine: UIView = {
-        let view = UIView.line(MalaColor_DADADA_0)
+        let view = UIView(MalaColor_DADADA_0)
         return view
     }()
     

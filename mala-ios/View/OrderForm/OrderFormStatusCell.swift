@@ -73,7 +73,7 @@ class OrderFormStatusCell: UITableViewCell {
     }()
     /// 分割线
     private lazy var separatorLine: UIView = {
-        let view = UIView.separator(MalaColor_E5E5E5_0)
+        let view = UIView(MalaColor_E5E5E5_0)
         return view
     }()
     /// 老师姓名图标

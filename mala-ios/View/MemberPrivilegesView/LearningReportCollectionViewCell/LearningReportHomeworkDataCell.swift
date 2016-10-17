@@ -49,7 +49,7 @@ class LearningReportHomeworkDataCell: MalaBaseCardCell {
     }()
     /// 分割线
     private lazy var separatorLine: UIView = {
-        let view = UIView.separator(MalaColor_EDEDED_0)
+        let view = UIView(MalaColor_EDEDED_0)
         return view
     }()
     /// 学习信息标签

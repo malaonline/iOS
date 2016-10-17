@@ -10,18 +10,11 @@ import UIKit
 
 extension UIView {
 
-    ///  convenience to create a separator line view
+    ///  convenience to create a view with background color
     ///
     ///  - returns: UIView
-    class func separator(_ color: UIColor = UIColor.black) -> UIView {
-        let separatorLine = UIView()
-        separatorLine.backgroundColor = color
-        return separatorLine
-    }
-    
-    class func line(_ color: UIColor = UIColor.black) -> UIView {
-        let line = UIView()
-        line.backgroundColor = color
-        return line
+    convenience init(_ backgroundColor: UIColor) {
+        self.init()
+        self.backgroundColor = backgroundColor
     }
 }

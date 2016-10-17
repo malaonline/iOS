@@ -41,7 +41,7 @@ class CommentViewCell: UITableViewCell {
     // MARK: - Components
     /// 主要布局容器
     private lazy var content: UIView = {
-        let view = UIView.separator(UIColor.white)
+        let view = UIView(UIColor.white)
         view.layer.shadowOffset = CGSize(width: 0, height: MalaScreenOnePixel)
         view.layer.shadowColor = MalaColor_D7D7D7_0.cgColor
         view.layer.shadowOpacity = 1
@@ -140,7 +140,7 @@ class CommentViewCell: UITableViewCell {
     }()
     /// 中部分割线
     private lazy var separatorLine: UIView = {
-        let view = UIView.line(MalaColor_DADADA_0)
+        let view = UIView(MalaColor_DADADA_0)
         return view
     }()
     /// 评分面板

@@ -41,12 +41,12 @@ class OrderFormTimeScheduleCell: UITableViewCell {
     }()
     /// 分割线
     private lazy var separatorLine: UIView = {
-        let view = UIView.separator(MalaColor_E5E5E5_0)
+        let view = UIView(MalaColor_E5E5E5_0)
         return view
     }()
     /// 图标
     private lazy var iconView: UIView = {
-        let view = UIView.separator(MalaColor_82B4D9_0)
+        let view = UIView(MalaColor_82B4D9_0)
         return view
     }()
     /// cell标题
