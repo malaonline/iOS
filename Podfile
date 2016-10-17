@@ -17,6 +17,7 @@ def pods
   pod 'MOBFoundation'
   pod 'ShareSDK3'
   pod 'ShareSDK3/ShareSDKPlatforms/WeChat'
+  pod 'PagingMenuController', :git => 'https://github.com/kitasuke/PagingMenuController.git', :branch => 'swift3.0'
 end
 
 target 'parent-dev' do

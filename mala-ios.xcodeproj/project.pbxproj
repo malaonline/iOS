@@ -696,6 +696,12 @@
 		F464BD711DA8CE3A00032C88 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F464BD701DA8CE3A00032C88 /* libc++.tbd */; };
 		F464BD731DA8CE5600032C88 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F464BD721DA8CE5600032C88 /* libsqlite3.0.tbd */; };
 		F464BD751DA8CE6B00032C88 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F464BD741DA8CE6B00032C88 /* CoreMotion.framework */; };
+		F465F12E1DB46EE40025D867 /* NewProjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F465F12D1DB46EE40025D867 /* NewProjectViewController.swift */; };
+		F465F12F1DB46EE40025D867 /* NewProjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F465F12D1DB46EE40025D867 /* NewProjectViewController.swift */; };
+		F465F1301DB46EE40025D867 /* NewProjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F465F12D1DB46EE40025D867 /* NewProjectViewController.swift */; };
+		F465F1321DB4709F0025D867 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F465F1311DB4709F0025D867 /* RootViewController.swift */; };
+		F465F1331DB4709F0025D867 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F465F1311DB4709F0025D867 /* RootViewController.swift */; };
+		F465F1341DB4709F0025D867 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F465F1311DB4709F0025D867 /* RootViewController.swift */; };
 		F46CA2451CC8841C00457EA6 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E1061B1CBBA35B001AD4AF /* BaseViewController.swift */; };
 		F46CA2461CC8841C00457EA6 /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E1061F1CBBA497001AD4AF /* BaseTableViewController.swift */; };
 		F46CA2471CC8841C00457EA6 /* Extension+UIDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E106251CC0D390001AD4AF /* Extension+UIDevice.swift */; };
@@ -1085,6 +1091,8 @@
 		F464BD721DA8CE5600032C88 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		F464BD741DA8CE6B00032C88 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		F464BD761DA8D10500032C88 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		F465F12D1DB46EE40025D867 /* NewProjectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewProjectViewController.swift; sourceTree = "<group>"; };
+		F465F1311DB4709F0025D867 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		F474E89C1CF2A9ED0025A865 /* SimpleReportResultModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleReportResultModel.swift; sourceTree = "<group>"; };
 		F474E89E1CF2DCEE0025A865 /* MalaBaseReportCardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MalaBaseReportCardCell.swift; sourceTree = "<group>"; };
 		F4767A3E1D2CDCD000FD47F1 /* ThemePhotoCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemePhotoCollectionView.swift; sourceTree = "<group>"; };
@@ -1325,6 +1333,7 @@
 		304135841C23AE6400830C43 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				F465F12C1DB46EC80025D867 /* NewProject */,
 				F4ADCFE11D0FC158004D517A /* Course */,
 				F48BBAE71CE9D65500774297 /* MemberPrivileges */,
 				F4E1061A1CBBA34D001AD4AF /* Base */,
@@ -1791,11 +1800,12 @@
 		F460650F1C97B168004056B1 /* FindTeacher */ = {
 			isa = PBXGroup;
 			children = (
-				F46065101C97B168004056B1 /* CourseChoosingViewController.swift */,
-				F46065111C97B168004056B1 /* FilterResultController.swift */,
+				F465F1311DB4709F0025D867 /* RootViewController.swift */,
 				F46065121C97B168004056B1 /* FindTeacherViewController.swift */,
-				F46065131C97B168004056B1 /* PaymentViewController.swift */,
+				F46065111C97B168004056B1 /* FilterResultController.swift */,
 				F46065141C97B168004056B1 /* TeacherDetailsController.swift */,
+				F46065101C97B168004056B1 /* CourseChoosingViewController.swift */,
+				F46065131C97B168004056B1 /* PaymentViewController.swift */,
 			);
 			path = FindTeacher;
 			sourceTree = "<group>";
@@ -1831,6 +1841,14 @@
 				F4215D6A1D50521A0014B653 /* FavoriteViewController.swift */,
 			);
 			path = Profile;
+			sourceTree = "<group>";
+		};
+		F465F12C1DB46EC80025D867 /* NewProject */ = {
+			isa = PBXGroup;
+			children = (
+				F465F12D1DB46EE40025D867 /* NewProjectViewController.swift */,
+			);
+			path = NewProject;
 			sourceTree = "<group>";
 		};
 		F48BBAE71CE9D65500774297 /* MemberPrivileges */ = {
@@ -2554,6 +2572,7 @@
 				F48F12C31DAB7A9C006A2F5C /* UIView+Radius.swift in Sources */,
 				F460650C1C96D363004056B1 /* UIImageView+Navi.swift in Sources */,
 				F40B53B01C7EEA2800C20037 /* Extension+NSURLRequest.swift in Sources */,
+				F465F12E1DB46EE40025D867 /* NewProjectViewController.swift in Sources */,
 				F49432D81D237B34001C4D22 /* FilterBar.swift in Sources */,
 				30D4AA051C23E07600C5A336 /* Common.swift in Sources */,
 				F45871EB1C51D7910048D93F /* CourseChoosingTableView.swift in Sources */,
@@ -2606,6 +2625,7 @@
 				304D6D381C3E92D500282925 /* Extension+UIImageView.swift in Sources */,
 				F45F27F41CA8DC5C00F0012C /* Toast.swift in Sources */,
 				F48BBADA1CE57F9100774297 /* OrderFormPaymentChannelCell.swift in Sources */,
+				F465F1321DB4709F0025D867 /* RootViewController.swift in Sources */,
 				30E336751C27F61900DCF1C5 /* ResultModel.swift in Sources */,
 				307788501C297C34007AF6B0 /* Extension+UIImage.swift in Sources */,
 				F40D89681C7D9E4100BD6871 /* CourseChoosingObject.swift in Sources */,
@@ -2773,6 +2793,7 @@
 				F48F12C41DAB7A9C006A2F5C /* UIView+Radius.swift in Sources */,
 				35FF7A871CF8325A000A70EE /* Extension+NSURLRequest.swift in Sources */,
 				35FF7A891CF8325A000A70EE /* Common.swift in Sources */,
+				F465F12F1DB46EE40025D867 /* NewProjectViewController.swift in Sources */,
 				F49432D91D237B34001C4D22 /* FilterBar.swift in Sources */,
 				35FF7A8A1CF8325A000A70EE /* CourseChoosingTableView.swift in Sources */,
 				35FF7A8B1CF8325A000A70EE /* JSSAlertView.swift in Sources */,
@@ -2825,6 +2846,7 @@
 				35FF7AB41CF8325A000A70EE /* Extension+UIImageView.swift in Sources */,
 				35FF7AB61CF8325A000A70EE /* Toast.swift in Sources */,
 				35FF7AB71CF8325A000A70EE /* OrderFormPaymentChannelCell.swift in Sources */,
+				F465F1331DB4709F0025D867 /* RootViewController.swift in Sources */,
 				35FF7AB81CF8325A000A70EE /* ResultModel.swift in Sources */,
 				35FF7ABA1CF8325A000A70EE /* Extension+UIImage.swift in Sources */,
 				35FF7ABB1CF8325A000A70EE /* CourseChoosingObject.swift in Sources */,
@@ -2992,6 +3014,7 @@
 				F48F12C51DAB7A9C006A2F5C /* UIView+Radius.swift in Sources */,
 				35FF7B6A1CF83264000A70EE /* Extension+NSURLRequest.swift in Sources */,
 				35FF7B6C1CF83264000A70EE /* Common.swift in Sources */,
+				F465F1301DB46EE40025D867 /* NewProjectViewController.swift in Sources */,
 				F49432DA1D237B34001C4D22 /* FilterBar.swift in Sources */,
 				35FF7B6D1CF83264000A70EE /* CourseChoosingTableView.swift in Sources */,
 				35FF7B6E1CF83264000A70EE /* JSSAlertView.swift in Sources */,
@@ -3044,6 +3067,7 @@
 				35FF7B971CF83264000A70EE /* Extension+UIImageView.swift in Sources */,
 				35FF7B991CF83264000A70EE /* Toast.swift in Sources */,
 				35FF7B9A1CF83264000A70EE /* OrderFormPaymentChannelCell.swift in Sources */,
+				F465F1341DB4709F0025D867 /* RootViewController.swift in Sources */,
 				35FF7B9B1CF83264000A70EE /* ResultModel.swift in Sources */,
 				35FF7B9D1CF83264000A70EE /* Extension+UIImage.swift in Sources */,
 				35FF7B9E1CF83264000A70EE /* CourseChoosingObject.swift in Sources */,

@@ -27,6 +27,7 @@ PODS:
   - IQKeyboardManagerSwift (4.0.5)
   - Kingfisher (2.5.1)
   - MOBFoundation (2.0.11)
+  - PagingMenuController (1.2.0)
   - Pingpp/Alipay (2.2.8):
     - Pingpp/Core
   - Pingpp/Core (2.2.8):
@@ -48,6 +49,7 @@ DEPENDENCIES:
   - IQKeyboardManagerSwift
   - Kingfisher
   - MOBFoundation
+  - PagingMenuController (from `https://github.com/kitasuke/PagingMenuController.git`, branch `swift3.0`)
   - Pingpp/Alipay
   - Pingpp/Wx
   - ShareSDK3
@@ -58,11 +60,17 @@ EXTERNAL SOURCES:
   Charts:
     :branch: Chart2.2.5-Swift3.0
     :git: https://github.com/danielgindi/Charts.git
+  PagingMenuController:
+    :branch: swift3.0
+    :git: https://github.com/kitasuke/PagingMenuController.git
 
 CHECKOUT OPTIONS:
   Charts:
     :commit: ab3bb619df2c2d165b41736b6bc25a4218833252
     :git: https://github.com/danielgindi/Charts.git
+  PagingMenuController:
+    :commit: 4bdfdc7a6b614c581cff7694e99669a462eb0e07
+    :git: https://github.com/kitasuke/PagingMenuController.git
 
 SPEC CHECKSUMS:
   Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
@@ -79,10 +87,11 @@ SPEC CHECKSUMS:
   IQKeyboardManagerSwift: 41fd3a45a2cdb2a0e031af697708a95b865068a1
   Kingfisher: 9b82e0e1f1a296f149a50bbc2214532eaa4df4f1
   MOBFoundation: e213065e65eebd8146ab29d10a8445dc8f385091
+  PagingMenuController: a2ee82351f712be10ff31e59c11221a04fcc8a73
   Pingpp: b5ad287bd6969d69cff1f2438ea63147976711c9
   ShareSDK3: e7bcdfeb95338f89efd6fff82b4793d2bfee76f8
   SnapKit: 2e456761aa92d4d4067a7a5594c18769d451a8ad
 
-PODFILE CHECKSUM: 055a9460ee80675328d93ffcfd8f59e5350c97df
+PODFILE CHECKSUM: 037fc020c38dc2ef254562fe9b570be6e70fd5a7
 
 COCOAPODS: 1.1.0.rc.2

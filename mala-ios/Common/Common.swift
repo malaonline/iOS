@@ -54,6 +54,7 @@ let MalaNotification_ShowLearningReport = NSNotification.Name(rawValue: "com.mal
 let MalaNotification_RefreshStudentName = NSNotification.Name(rawValue: "com.malalaoshi.app.RefreshStudentName")
 let MalaNotification_PushProfileItemController = NSNotification.Name(rawValue: "com.malalaoshi.app.PushProfileItemController")
 let MalaNotification_ReloadLearningReport = NSNotification.Name(rawValue: "com.malalaoshi.app.ReloadLearningReport")
+let MalaNotification_LoadTeachers = NSNotification.Name(rawValue: "com.malalaoshi.app.LoadTeachers")
 
 
 // MARK: - Screen Name For Analytics
@@ -169,6 +170,7 @@ let MalaColor_B2CDE1_0 = UIColor(rgbHexValue: 0xB2CDE1, alpha: 1.0)
 let MalaColor_F6F7F9_0 = UIColor(rgbHexValue: 0xF6F7F9, alpha: 1.0)
 let MalaColor_DEDFD0_0 = UIColor(rgbHexValue: 0xDEDFD0, alpha: 1.0)
 let MalaColor_71B3E3_0 = UIColor(rgbHexValue: 0x71B3E3, alpha: 1.0)
+let MalaColor_7E7E7E_0 = UIColor(rgbHexValue: 0x7E7E7E, alpha: 1.0)
 
 
 // MARK: - Common String
