@@ -22,6 +22,22 @@ extension UIImageView {
     }
     
     
+    convenience init(frame: CGRect, cornerRadius: CGFloat? = nil, image: String? = nil, contentMode: UIViewContentMode = .scaleAspectFill) {
+        self.init()
+        self.frame = frame
+        
+        if let cornerRadius = cornerRadius {
+            self.layer.cornerRadius = cornerRadius
+            self.layer.masksToBounds = true
+        }
+        
+        if let imageName = image {
+            self.image = UIImage(named: imageName)
+        }
+        
+        self.contentMode = contentMode
+    }
+    
     func ma_setImage(_ URL: URL? = nil, placeholderImage: Image? = nil, progressBlock: DownloadProgressBlock? = nil, completionHandler: CompletionHandler? = nil) {
         
         // 使用图片绝对路径作为缓存键值
