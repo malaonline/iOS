@@ -21,7 +21,7 @@ private struct PagingMenuOptions: PagingMenuControllerCustomizable {
     
     fileprivate var pagingControllers: [UIViewController] {
         let viewController1 = FindTeacherViewController()
-        let viewController2 = NewProjectViewController()
+        let viewController2 = LiveCourseViewController()
         return [viewController1, viewController2]
     }
     

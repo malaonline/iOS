@@ -65,12 +65,12 @@ class FindTeacherViewController: BaseViewController {
         defaultView.text = "当前城市没有老师！"
         
         // 下拉刷新组件
-        self.tableView.addPullRefreshHandler { [weak self] in
+        tableView.addPullRefreshHandler { [weak self] in
             self?.loadTeachers()
         }
         
         // SubViews
-        self.view.addSubview(tableView)
+        view.addSubview(tableView)
         
         // Autolayout
         tableView.snp.makeConstraints { (maker) -> Void in
