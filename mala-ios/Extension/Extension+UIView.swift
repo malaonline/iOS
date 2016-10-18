@@ -13,8 +13,13 @@ extension UIView {
     ///  convenience to create a view with background color
     ///
     ///  - returns: UIView
-    convenience init(_ backgroundColor: UIColor) {
+    convenience init(_ backgroundColor: UIColor, cornerRadius: CGFloat? = nil) {
         self.init()
         self.backgroundColor = backgroundColor
+        
+        if let cornerRadius = cornerRadius {
+            self.layer.cornerRadius = cornerRadius
+            self.layer.masksToBounds = true
+        }
     }
 }

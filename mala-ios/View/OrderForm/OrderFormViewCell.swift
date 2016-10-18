@@ -22,9 +22,7 @@ class OrderFormViewCell: UITableViewCell {
             amountString.text = model?.amount.priceCNY
             
             // 老师头像
-            if let url = URL(string: (model?.avatarURL ?? "")) {
-                avatarView.ma_setImage(url, placeholderImage: UIImage(named: "profileAvatar_placeholder"))
-            }
+            avatarView.setImage(withURL: model?.avatarURL, placeholderImage: "profileAvatar_placeholder")
             
             // 设置订单状态
             if let status = model?.status, let orderStatus = MalaOrderStatus(rawValue: status) {

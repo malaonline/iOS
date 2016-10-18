@@ -22,9 +22,12 @@ extension UIImageView {
     }
     
     
-    convenience init(frame: CGRect, cornerRadius: CGFloat? = nil, image: String? = nil, contentMode: UIViewContentMode = .scaleAspectFill) {
+    convenience init(frame: CGRect? = nil, cornerRadius: CGFloat? = nil, image: String? = nil, contentMode: UIViewContentMode = .scaleAspectFill) {
         self.init()
-        self.frame = frame
+        
+        if let frame = frame {
+            self.frame = frame
+        }
         
         if let cornerRadius = cornerRadius {
             self.layer.cornerRadius = cornerRadius
@@ -38,10 +41,11 @@ extension UIImageView {
         self.contentMode = contentMode
     }
     
-    func ma_setImage(_ URL: URL? = nil, placeholderImage: Image? = nil, progressBlock: DownloadProgressBlock? = nil, completionHandler: CompletionHandler? = nil) {
+    func setImage(withURL url: String? = nil, placeholderImage: String? = nil, progressBlock: DownloadProgressBlock? = nil, completionHandler: CompletionHandler? = nil) {
         
         // 使用图片绝对路径作为缓存键值
-        guard let URL = URL else {
+        guard let url = url, let URL = URL(string: url) else {
+            println(#function)
             return
         }
         let splitArray = URL.absoluteString.components(separatedBy: "?")
@@ -52,12 +56,21 @@ extension UIImageView {
         // 加载图片资源
         let resource = ImageResource(downloadURL: URL, cacheKey: pureURL)
         
-        self.kf.setImage(
-            with: resource,
-            placeholder: placeholderImage,
-            options: [.transition(.fade(0.25)), .targetCache(ImageCache(name: pureURL))],
-            progressBlock: progressBlock,
-            completionHandler: completionHandler
-        )
+        if let placeholderImage = placeholderImage, let placeholder = Image(named: placeholderImage) {
+            self.kf.setImage(
+                with: resource,
+                placeholder: placeholder,
+                options: [.transition(.fade(0.25)), .targetCache(ImageCache(name: pureURL))],
+                progressBlock: progressBlock,
+                completionHandler: completionHandler
+            )
+        }else {
+            self.kf.setImage(
+                with: resource,
+                options: [.transition(.fade(0.25)), .targetCache(ImageCache(name: pureURL))],
+                progressBlock: progressBlock,
+                completionHandler: completionHandler
+            )
+        }
     }
 }

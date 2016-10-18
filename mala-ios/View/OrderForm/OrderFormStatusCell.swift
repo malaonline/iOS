@@ -16,8 +16,8 @@ class OrderFormStatusCell: UITableViewCell {
         didSet {
             /// 老师头像
             
-            if let urlString = model?.avatarURL, let url = URL(string: (urlString)) {
-                self.avatarView.ma_setImage(url, placeholderImage: UIImage(named: "profileAvatar_placeholder"))
+            if let url = model?.avatarURL {
+                self.avatarView.setImage(withURL: url, placeholderImage: "profileAvatar_placeholder")
             }
             
             /// 订单状态

@@ -11,7 +11,7 @@ import UIKit
 class TeacherModel: BaseObjectModel {
     
     // MARK: - Property
-    var avatar: URL?
+    var avatar: String?
     var gender: String?
     var level: Int = 0
     var min_price: Int = 0
@@ -35,7 +35,7 @@ class TeacherModel: BaseObjectModel {
         self.init()
         self.id = id
         self.name = name
-        self.avatar = URL(string: avatar)
+        self.avatar = avatar
         self.level = degree
         self.min_price = minPrice
         self.max_price = maxPrice
@@ -48,7 +48,7 @@ class TeacherModel: BaseObjectModel {
         self.init()
         self.id = id
         self.name = name
-        self.avatar = URL(string: avatar)
+        self.avatar = avatar
     }
     
     required init(coder aDecoder: NSCoder) {
@@ -67,7 +67,7 @@ class TeacherModel: BaseObjectModel {
         }
         if key == "avatar" {
             if let urlString = value as? String {
-                avatar = URL(string: urlString)
+                avatar = urlString
             }
             return
         }

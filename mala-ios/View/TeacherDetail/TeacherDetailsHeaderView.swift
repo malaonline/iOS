@@ -16,11 +16,7 @@ class TeacherDetailsHeaderView: UIView {
     var model: TeacherDetailModel = TeacherDetailModel() {
         didSet {
             /// 教师头像URL
-            guard let url = URL(string: model.avatar ?? "") else {
-                println("TeacherDetailsHeaderView - AvatarURL Format Error")
-                return
-            }
-            avatarView.ma_setImage(url, placeholderImage: UIImage(named: "avatar_placeholder"))
+            avatarView.setImage(withURL: model.avatar, placeholderImage: "avatar_placeholder")
             
             /// 教师姓名
             nameLabel.text = model.name
