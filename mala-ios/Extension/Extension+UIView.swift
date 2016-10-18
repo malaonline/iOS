@@ -22,4 +22,10 @@ extension UIView {
             self.layer.masksToBounds = true
         }
     }
+    
+    func addShadow(offset: CGFloat = MalaScreenOnePixel, color: UIColor = UIColor.black, opacity: Float = 1) {
+        self.layer.shadowOffset = CGSize(width: 0, height: offset)
+        self.layer.shadowColor = color.cgColor
+        self.layer.shadowOpacity = opacity
+    }
 }

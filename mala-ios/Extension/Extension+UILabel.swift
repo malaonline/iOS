@@ -21,7 +21,7 @@ extension UILabel {
         return label
     }
     
-    convenience init(text: String = "", font: UIFont? = nil, fontSize: CGFloat? = nil, textColor: UIColor? = nil, textAlignment: NSTextAlignment = .left, opacity: CGFloat? = nil, borderColor: UIColor? = nil, borderWidth: CGFloat? = nil, cornerRadius: CGFloat? = nil) {
+    convenience init(text: String = "", font: UIFont? = nil, fontSize: CGFloat? = nil, textColor: UIColor? = nil, textAlignment: NSTextAlignment = .left, backgroundColor: UIColor? = nil, opacity: CGFloat? = nil, borderColor: UIColor? = nil, borderWidth: CGFloat? = nil, cornerRadius: CGFloat? = nil) {
         self.init()
         self.text = text
         
@@ -36,6 +36,10 @@ extension UILabel {
         }
         
         self.textAlignment = textAlignment
+        
+        if let backgroundColor = backgroundColor {
+            self.backgroundColor = backgroundColor
+        }
         
         if let opacity = opacity {
             self.alpha = opacity

@@ -42,9 +42,7 @@ class CommentViewCell: UITableViewCell {
     /// 主要布局容器
     private lazy var content: UIView = {
         let view = UIView(UIColor.white)
-        view.layer.shadowOffset = CGSize(width: 0, height: MalaScreenOnePixel)
-        view.layer.shadowColor = MalaColor_D7D7D7_0.cgColor
-        view.layer.shadowOpacity = 1
+        view.addShadow(color: MalaColor_D7D7D7_0)
         return view
     }()
     /// 课程信息布局容器

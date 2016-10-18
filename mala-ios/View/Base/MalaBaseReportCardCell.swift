@@ -28,9 +28,7 @@ class MalaBaseReportCardCell: MalaBaseCardCell {
     /// 描述视图
     lazy var descView: UIView = {
         let view = UIView(MalaColor_F8FAFD_0)
-        view.layer.shadowOffset = CGSize(width: 0, height: MalaScreenOnePixel)
-        view.layer.shadowColor = MalaColor_D7D7D7_0.cgColor
-        view.layer.shadowOpacity = 1
+        view.addShadow(color: MalaColor_D7D7D7_0)
         return view
     }()
     /// 曲别针图标
