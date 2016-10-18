@@ -696,9 +696,6 @@
 		F464BD711DA8CE3A00032C88 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F464BD701DA8CE3A00032C88 /* libc++.tbd */; };
 		F464BD731DA8CE5600032C88 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F464BD721DA8CE5600032C88 /* libsqlite3.0.tbd */; };
 		F464BD751DA8CE6B00032C88 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F464BD741DA8CE6B00032C88 /* CoreMotion.framework */; };
-		F465F1321DB4709F0025D867 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F465F1311DB4709F0025D867 /* RootViewController.swift */; };
-		F465F1331DB4709F0025D867 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F465F1311DB4709F0025D867 /* RootViewController.swift */; };
-		F465F1341DB4709F0025D867 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F465F1311DB4709F0025D867 /* RootViewController.swift */; };
 		F465F13F1DB4A5F20025D867 /* LiveCourseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F465F13E1DB4A5F20025D867 /* LiveCourseModel.swift */; };
 		F465F1401DB4A5F20025D867 /* LiveCourseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F465F13E1DB4A5F20025D867 /* LiveCourseModel.swift */; };
 		F465F1411DB4A5F20025D867 /* LiveCourseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F465F13E1DB4A5F20025D867 /* LiveCourseModel.swift */; };
@@ -889,6 +886,9 @@
 		F4F29B061D10FF92000D1904 /* SingleCourseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F29B051D10FF92000D1904 /* SingleCourseView.swift */; };
 		F4F29B071D10FF92000D1904 /* SingleCourseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F29B051D10FF92000D1904 /* SingleCourseView.swift */; };
 		F4F29B081D10FF92000D1904 /* SingleCourseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F29B051D10FF92000D1904 /* SingleCourseView.swift */; };
+		F4FF66D21DB605AE0036E299 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FF66D11DB605AE0036E299 /* RootViewController.swift */; };
+		F4FF66D31DB605AE0036E299 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FF66D11DB605AE0036E299 /* RootViewController.swift */; };
+		F4FF66D41DB605AE0036E299 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FF66D11DB605AE0036E299 /* RootViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -1100,7 +1100,6 @@
 		F464BD721DA8CE5600032C88 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		F464BD741DA8CE6B00032C88 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		F464BD761DA8D10500032C88 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		F465F1311DB4709F0025D867 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		F465F13E1DB4A5F20025D867 /* LiveCourseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveCourseModel.swift; sourceTree = "<group>"; };
 		F465F1431DB4ABB00025D867 /* LiveCourseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveCourseViewController.swift; sourceTree = "<group>"; };
 		F465F1481DB4ABEC0025D867 /* LiveCourseTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveCourseTableView.swift; sourceTree = "<group>"; };
@@ -1200,6 +1199,7 @@
 		F4F29AFB1D0FEC83000D1904 /* CourseTableViewSectionHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseTableViewSectionHeader.swift; sourceTree = "<group>"; };
 		F4F29AFF1D0FF001000D1904 /* CourseTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseTableViewCell.swift; sourceTree = "<group>"; };
 		F4F29B051D10FF92000D1904 /* SingleCourseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleCourseView.swift; sourceTree = "<group>"; };
+		F4FF66D11DB605AE0036E299 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1814,7 +1814,6 @@
 		F460650F1C97B168004056B1 /* FindTeacher */ = {
 			isa = PBXGroup;
 			children = (
-				F465F1311DB4709F0025D867 /* RootViewController.swift */,
 				F46065121C97B168004056B1 /* FindTeacherViewController.swift */,
 				F46065111C97B168004056B1 /* FilterResultController.swift */,
 				F46065141C97B168004056B1 /* TeacherDetailsController.swift */,
@@ -1827,6 +1826,7 @@
 		F46065151C97B168004056B1 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				F4FF66D11DB605AE0036E299 /* RootViewController.swift */,
 				F46065161C97B168004056B1 /* MainNavigationController.swift */,
 				F46065171C97B168004056B1 /* MainViewController.swift */,
 				F45F27F91CAA600D00F0012C /* MalaSingleWebViewController.swift */,
@@ -2650,7 +2650,6 @@
 				304D6D381C3E92D500282925 /* Extension+UIImageView.swift in Sources */,
 				F45F27F41CA8DC5C00F0012C /* Toast.swift in Sources */,
 				F48BBADA1CE57F9100774297 /* OrderFormPaymentChannelCell.swift in Sources */,
-				F465F1321DB4709F0025D867 /* RootViewController.swift in Sources */,
 				30E336751C27F61900DCF1C5 /* ResultModel.swift in Sources */,
 				307788501C297C34007AF6B0 /* Extension+UIImage.swift in Sources */,
 				F40D89681C7D9E4100BD6871 /* CourseChoosingObject.swift in Sources */,
@@ -2741,6 +2740,7 @@
 				F48F12E71DAB7A9C006A2F5C /* SKPhoto.swift in Sources */,
 				F48F12F01DAB7A9C006A2F5C /* SKPhotoBrowserDelegate.swift in Sources */,
 				F41CE6371D86487500B57F69 /* RegionPicker.swift in Sources */,
+				F4FF66D21DB605AE0036E299 /* RootViewController.swift in Sources */,
 				F49BD5AA1CA413C000EB3CCF /* MalaPhotoBrowser.swift in Sources */,
 				F40B53CC1C83FBCA00C20037 /* OrderForm.swift in Sources */,
 				F45871F41C51DFE70048D93F /* CourseChoosingClassScheduleCell.swift in Sources */,
@@ -2874,7 +2874,6 @@
 				35FF7AB41CF8325A000A70EE /* Extension+UIImageView.swift in Sources */,
 				35FF7AB61CF8325A000A70EE /* Toast.swift in Sources */,
 				35FF7AB71CF8325A000A70EE /* OrderFormPaymentChannelCell.swift in Sources */,
-				F465F1331DB4709F0025D867 /* RootViewController.swift in Sources */,
 				35FF7AB81CF8325A000A70EE /* ResultModel.swift in Sources */,
 				35FF7ABA1CF8325A000A70EE /* Extension+UIImage.swift in Sources */,
 				35FF7ABB1CF8325A000A70EE /* CourseChoosingObject.swift in Sources */,
@@ -2965,6 +2964,7 @@
 				F48F12E81DAB7A9C006A2F5C /* SKPhoto.swift in Sources */,
 				F48F12F11DAB7A9C006A2F5C /* SKPhotoBrowserDelegate.swift in Sources */,
 				F41CE6381D86487500B57F69 /* RegionPicker.swift in Sources */,
+				F4FF66D31DB605AE0036E299 /* RootViewController.swift in Sources */,
 				35FF7B0B1CF8325A000A70EE /* MalaPhotoBrowser.swift in Sources */,
 				35FF7B0C1CF8325A000A70EE /* OrderForm.swift in Sources */,
 				35FF7B0D1CF8325A000A70EE /* CourseChoosingClassScheduleCell.swift in Sources */,
@@ -3098,7 +3098,6 @@
 				35FF7B971CF83264000A70EE /* Extension+UIImageView.swift in Sources */,
 				35FF7B991CF83264000A70EE /* Toast.swift in Sources */,
 				35FF7B9A1CF83264000A70EE /* OrderFormPaymentChannelCell.swift in Sources */,
-				F465F1341DB4709F0025D867 /* RootViewController.swift in Sources */,
 				35FF7B9B1CF83264000A70EE /* ResultModel.swift in Sources */,
 				35FF7B9D1CF83264000A70EE /* Extension+UIImage.swift in Sources */,
 				35FF7B9E1CF83264000A70EE /* CourseChoosingObject.swift in Sources */,
@@ -3189,6 +3188,7 @@
 				F48F12E91DAB7A9C006A2F5C /* SKPhoto.swift in Sources */,
 				F48F12F21DAB7A9C006A2F5C /* SKPhotoBrowserDelegate.swift in Sources */,
 				F41CE6391D86487500B57F69 /* RegionPicker.swift in Sources */,
+				F4FF66D41DB605AE0036E299 /* RootViewController.swift in Sources */,
 				35FF7BEE1CF83264000A70EE /* MalaPhotoBrowser.swift in Sources */,
 				35FF7BEF1CF83264000A70EE /* OrderForm.swift in Sources */,
 				35FF7BF01CF83264000A70EE /* CourseChoosingClassScheduleCell.swift in Sources */,

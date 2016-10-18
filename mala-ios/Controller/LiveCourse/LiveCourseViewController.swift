@@ -25,6 +25,7 @@ class LiveCourseViewController: BaseViewController {
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        println("LiveCourse ViewDidLoad")
         setupUserInterface()
     }
 

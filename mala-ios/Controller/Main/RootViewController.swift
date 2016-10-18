@@ -15,6 +15,10 @@ private struct PagingMenuOptions: PagingMenuControllerCustomizable {
         return MalaColor_EDEDED_0
     }
     
+    // var lazyLoadingPage: LazyLoadingPage {
+    //     return .one
+    // }
+    
     fileprivate var componentType: ComponentType {
         return .all(menuOptions: MenuOptions(), pagingControllers: pagingControllers)
     }
@@ -26,6 +30,12 @@ private struct PagingMenuOptions: PagingMenuControllerCustomizable {
     }
     
     fileprivate struct MenuOptions: MenuViewCustomizable {
+        var backgroundColor: UIColor {
+            return MalaColor_FDFDFD_0
+        }
+        var selectedBackgroundColor: UIColor {
+            return MalaColor_FDFDFD_0
+        }
         var displayMode: MenuDisplayMode {
             return .segmentedControl
         }
@@ -77,7 +87,7 @@ class RootViewController: UIViewController {
     // MARK: - Private Method
     private func setupUserInterface() {
         // Style
-        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.shadowImage = UIImage.withColor(MalaColor_F4F4F4_0)
         
         // TitleView
         navigationItem.titleView = regionPickButton
