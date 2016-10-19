@@ -14,8 +14,8 @@ before_install:
 - security list-keychain
 install:
 - sudo gem install cocoapods --pre
-- pod repo remove master
-- travis_wait pod setup
+# - pod repo remove master
+# - travis_wait pod setup
 - pod install
 before_script:
 - openssl aes-256-cbc -k $ENCRYPTION_SECRET -in scripts/profile/mala_dev_AdHoc.mobileprovision.enc -d -a -out scripts/profile/Mala_DevAdHoc.mobileprovision
