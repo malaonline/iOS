@@ -696,9 +696,9 @@
 		F464BD711DA8CE3A00032C88 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F464BD701DA8CE3A00032C88 /* libc++.tbd */; };
 		F464BD731DA8CE5600032C88 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F464BD721DA8CE5600032C88 /* libsqlite3.0.tbd */; };
 		F464BD751DA8CE6B00032C88 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F464BD741DA8CE6B00032C88 /* CoreMotion.framework */; };
-		F465F13F1DB4A5F20025D867 /* LiveCourseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F465F13E1DB4A5F20025D867 /* LiveCourseModel.swift */; };
-		F465F1401DB4A5F20025D867 /* LiveCourseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F465F13E1DB4A5F20025D867 /* LiveCourseModel.swift */; };
-		F465F1411DB4A5F20025D867 /* LiveCourseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F465F13E1DB4A5F20025D867 /* LiveCourseModel.swift */; };
+		F465F13F1DB4A5F20025D867 /* LiveClassModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F465F13E1DB4A5F20025D867 /* LiveClassModel.swift */; };
+		F465F1401DB4A5F20025D867 /* LiveClassModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F465F13E1DB4A5F20025D867 /* LiveClassModel.swift */; };
+		F465F1411DB4A5F20025D867 /* LiveClassModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F465F13E1DB4A5F20025D867 /* LiveClassModel.swift */; };
 		F465F1441DB4ABB00025D867 /* LiveCourseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F465F1431DB4ABB00025D867 /* LiveCourseViewController.swift */; };
 		F465F1451DB4ABB00025D867 /* LiveCourseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F465F1431DB4ABB00025D867 /* LiveCourseViewController.swift */; };
 		F465F1461DB4ABB00025D867 /* LiveCourseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F465F1431DB4ABB00025D867 /* LiveCourseViewController.swift */; };
@@ -1100,7 +1100,7 @@
 		F464BD721DA8CE5600032C88 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		F464BD741DA8CE6B00032C88 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		F464BD761DA8D10500032C88 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		F465F13E1DB4A5F20025D867 /* LiveCourseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveCourseModel.swift; sourceTree = "<group>"; };
+		F465F13E1DB4A5F20025D867 /* LiveClassModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveClassModel.swift; sourceTree = "<group>"; };
 		F465F1431DB4ABB00025D867 /* LiveCourseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveCourseViewController.swift; sourceTree = "<group>"; };
 		F465F1481DB4ABEC0025D867 /* LiveCourseTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveCourseTableView.swift; sourceTree = "<group>"; };
 		F465F1491DB4ABEC0025D867 /* LiveCourseTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveCourseTableViewCell.swift; sourceTree = "<group>"; };
@@ -1404,7 +1404,7 @@
 				F4312B731CF82AC100E0EAF1 /* TimeScheduleModel.swift */,
 				F49432DB1D237BBE001C4D22 /* ConditionObject.swift */,
 				F4B3C6711CFD3CF000C1B423 /* StudyReport */,
-				F465F13E1DB4A5F20025D867 /* LiveCourseModel.swift */,
+				F465F13E1DB4A5F20025D867 /* LiveClassModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2576,7 +2576,7 @@
 				F465F1441DB4ABB00025D867 /* LiveCourseViewController.swift in Sources */,
 				F48F13091DAB9211006A2F5C /* UIScrollViewExtension.swift in Sources */,
 				30E336761C28061700DCF1C5 /* GradeModel.swift in Sources */,
-				F465F13F1DB4A5F20025D867 /* LiveCourseModel.swift in Sources */,
+				F465F13F1DB4A5F20025D867 /* LiveClassModel.swift in Sources */,
 				F48BBAD41CE57D1500774297 /* OrderFormTableView.swift in Sources */,
 				F40D896E1C7EAFB100BD6871 /* MalaLog.swift in Sources */,
 				307AB8A01C33CDD200D8397F /* HighScoreModel.swift in Sources */,
@@ -2800,7 +2800,7 @@
 				F465F1451DB4ABB00025D867 /* LiveCourseViewController.swift in Sources */,
 				F48F130A1DAB9211006A2F5C /* UIScrollViewExtension.swift in Sources */,
 				35FF7A781CF8325A000A70EE /* GradeModel.swift in Sources */,
-				F465F1401DB4A5F20025D867 /* LiveCourseModel.swift in Sources */,
+				F465F1401DB4A5F20025D867 /* LiveClassModel.swift in Sources */,
 				35FF7A791CF8325A000A70EE /* OrderFormTableView.swift in Sources */,
 				35FF7A7A1CF8325A000A70EE /* MalaLog.swift in Sources */,
 				35FF7A7B1CF8325A000A70EE /* HighScoreModel.swift in Sources */,
@@ -3024,7 +3024,7 @@
 				F465F1461DB4ABB00025D867 /* LiveCourseViewController.swift in Sources */,
 				F48F130B1DAB9211006A2F5C /* UIScrollViewExtension.swift in Sources */,
 				35FF7B5B1CF83264000A70EE /* GradeModel.swift in Sources */,
-				F465F1411DB4A5F20025D867 /* LiveCourseModel.swift in Sources */,
+				F465F1411DB4A5F20025D867 /* LiveClassModel.swift in Sources */,
 				35FF7B5C1CF83264000A70EE /* OrderFormTableView.swift in Sources */,
 				35FF7B5D1CF83264000A70EE /* MalaLog.swift in Sources */,
 				35FF7B5E1CF83264000A70EE /* HighScoreModel.swift in Sources */,

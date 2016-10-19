@@ -12,28 +12,25 @@ class LiveCourseTableViewCell: UITableViewCell {
     
     // MARK: - Property
     /// 老师简介模型
-    var model: LiveCourseModel? {
+    var model: LiveClassModel? = TestFactory.testLiveClass() {
         didSet{
             
-            let model = LiveCourseModel(
-                teacherAvatar: "http://s3.cn-north-1.amazonaws.com.cn/dev-upload/avatars/avatar21_161101?X-Amz-Expires=86400&X-Amz-Signature=517143d11c51518bba37c9f71c4b9f59327daf9c8b9ed9afe183127e14a49412&X-Amz-SignedHeaders=host&X-Amz-Date=20161018T040232Z&X-Amz-Credential=AKIAOSV3WMTYCF7T4LTA/20161018/cn-north-1/s3/aws4_request&X-Amz-Algorithm=AWS4-HMAC-SHA256",
-                assistantAvatar: "http://s3.cn-north-1.amazonaws.com.cn/dev-upload/avatars/avatar22_11290?X-Amz-Expires=86400&X-Amz-Signature=0e082c8967e8d8bac5be78d225ef5a104d5c9069dd0a2d21c2ac928e24ff10d3&X-Amz-SignedHeaders=host&X-Amz-Date=20161018T041156Z&X-Amz-Credential=AKIAOSV3WMTYCF7T4LTA/20161018/cn-north-1/s3/aws4_request&X-Amz-Algorithm=AWS4-HMAC-SHA256",
-                teacherName: "何芳",
-                assistantName: "刘孟军",
-                teacherTitle: "著名外语节目主持人",
-                courseName: "新概念英语初级周末上午班",
-                courseGrade: "小学四－六年级",
-                classLevel: 20
-            )
+            guard let model = model else {
+                return
+            }
             
-            teacherAvatar.setImage(withURL: model.teacherAvatar, placeholderImage: "avatar_placeholder")
+            lecturerAvatar.setImage(withURL: model.lecturerAvatar, placeholderImage: "avatar_placeholder")
             assistantAvatar.setImage(withURL: model.assistantAvatar, placeholderImage: "avatar_placeholder")
-            teacherNameLabel.text = model.teacherName
+            lecturerNameLabel.text = model.lecturerName
             assistantNameLabel.text = model.assistantName
-            teacherTitleLabel.text = model.teacherTitle
+            lecturerTitleLabel.text = model.lecturerTitle
+            classLevelLabel.text = String(format: "%d人小班", model.roomCapacity ?? 0)
+            
             courseName.text = model.courseName
-            gradeLabel.text = model.courseGrade
-            classLevelLabel.text = String(format: "%d人小班", model.classLevel ?? 12)
+            gradeLabel.text = (model.courseGrade ?? "")+"  "
+            courseDateLabel.text = String(format: "%@-%@", getDateString(model.courseStart, format: "MM月dd日"), getDateString(model.courseEnd, format: "MM月dd日"))
+            priceLabel.text = String(format: "%@/", model.courseFee?.priceCNY ?? "")
+            lessionsLabel.text = String(format: "%d次", model.courseLessons ?? 0)
         }
     }
     
@@ -57,7 +54,7 @@ class LiveCourseTableViewCell: UITableViewCell {
         return view
     }()
     /// 老师头像
-    private lazy var teacherAvatar: UIImageView = {
+    private lazy var lecturerAvatar: UIImageView = {
         let imageView = UIImageView(
             frame: CGRect(x: 0, y: 0, width: 60, height: 60),
             cornerRadius: 27,
@@ -66,7 +63,7 @@ class LiveCourseTableViewCell: UITableViewCell {
         return imageView
     }()
     /// 老师头像背景
-    private lazy var teacherAvatarBackground: UIView = {
+    private lazy var lecturerAvatarBackground: UIView = {
         let view = UIView(MalaColor_A8D0FF_0, cornerRadius: 30)
         return view
     }()
@@ -90,7 +87,7 @@ class LiveCourseTableViewCell: UITableViewCell {
         return view
     }()
     /// 老师姓名
-    private lazy var teacherNameLabel: UILabel = {
+    private lazy var lecturerNameLabel: UILabel = {
         let label = UILabel(
             text: "主讲老师",
             font: UIFont(name: "PingFang-SC-Regular", size: 15),
@@ -99,7 +96,7 @@ class LiveCourseTableViewCell: UITableViewCell {
         return label
     }()
     /// 老师title
-    private lazy var teacherTitleLabel: UILabel = {
+    private lazy var lecturerTitleLabel: UILabel = {
         let label = UILabel(
             text: "主讲老师主要成就",
             font: UIFont(name: "PingFang-SC-Light", size: 12),
@@ -184,7 +181,7 @@ class LiveCourseTableViewCell: UITableViewCell {
         return label
     }()
     /// 课时数标签
-    private lazy var periodLabel: UILabel = {
+    private lazy var lessionsLabel: UILabel = {
         let label = UILabel(
             text: "次数",
             font: UIFont(name: "PingFang-SC-Light", size: 12),
@@ -217,14 +214,14 @@ class LiveCourseTableViewCell: UITableViewCell {
         contentView.addSubview(content)
         content.addSubview(teacherContent)
         content.addSubview(courseContent)
-        teacherContent.addSubview(teacherAvatar)
-        teacherContent.insertSubview(teacherAvatarBackground, belowSubview: teacherAvatar)
+        teacherContent.addSubview(lecturerAvatar)
+        teacherContent.insertSubview(lecturerAvatarBackground, belowSubview: lecturerAvatar)
         teacherContent.addSubview(liveIcon)
         teacherContent.addSubview(assistantAvatar)
         teacherContent.insertSubview(assistantAvatarBackground, belowSubview: assistantAvatar)
-        teacherContent.addSubview(teacherNameLabel)
+        teacherContent.addSubview(lecturerNameLabel)
         teacherContent.addSubview(assistantNameLabel)
-        teacherContent.addSubview(teacherTitleLabel)
+        teacherContent.addSubview(lecturerTitleLabel)
         teacherContent.addSubview(avatarLine1)
         teacherContent.addSubview(avatarLine2)
         teacherContent.addSubview(classLevelLabel)
@@ -232,7 +229,7 @@ class LiveCourseTableViewCell: UITableViewCell {
         courseContent.addSubview(dateIcon)
         courseContent.addSubview(courseDateLabel)
         courseContent.addSubview(gradeLabel)
-        courseContent.addSubview(periodLabel)
+        courseContent.addSubview(lessionsLabel)
         courseContent.addSubview(priceLabel)
         
         // Autolayout
@@ -253,25 +250,25 @@ class LiveCourseTableViewCell: UITableViewCell {
             maker.right.equalTo(content)
             maker.bottom.equalTo(content)
         }
-        teacherAvatarBackground.snp.makeConstraints { (maker) in
+        lecturerAvatarBackground.snp.makeConstraints { (maker) in
             maker.top.equalTo(teacherContent).offset(12)
             maker.centerX.equalTo(teacherContent.snp.right).multipliedBy(0.25)
             maker.width.equalTo(60)
             maker.height.equalTo(60)
         }
-        teacherAvatar.snp.makeConstraints { (maker) in
-            maker.center.equalTo(teacherAvatarBackground)
+        lecturerAvatar.snp.makeConstraints { (maker) in
+            maker.center.equalTo(lecturerAvatarBackground)
             maker.width.equalTo(54)
             maker.height.equalTo(54)
         }
         liveIcon.snp.makeConstraints { (maker) in
             maker.top.equalTo(teacherContent).offset(18)
-            maker.right.equalTo(teacherAvatar).offset(10)
+            maker.right.equalTo(lecturerAvatar).offset(10)
             maker.width.equalTo(24)
             maker.height.equalTo(14)
         }
         assistantAvatarBackground.snp.makeConstraints { (maker) in
-            maker.centerY.equalTo(teacherAvatar)
+            maker.centerY.equalTo(lecturerAvatar)
             maker.centerX.equalTo(teacherContent.snp.right).multipliedBy(0.75)
             maker.width.equalTo(48)
             maker.height.equalTo(48)
@@ -281,20 +278,20 @@ class LiveCourseTableViewCell: UITableViewCell {
             maker.width.equalTo(44)
             maker.height.equalTo(44)
         }
-        teacherNameLabel.snp.makeConstraints { (maker) in
-            maker.centerX.equalTo(teacherAvatar)
-            maker.top.equalTo(teacherAvatar.snp.bottom).offset(5)
+        lecturerNameLabel.snp.makeConstraints { (maker) in
+            maker.centerX.equalTo(lecturerAvatar)
+            maker.top.equalTo(lecturerAvatar.snp.bottom).offset(5)
             maker.height.equalTo(15)
-            maker.bottom.equalTo(teacherTitleLabel.snp.top).offset(-6)
+            maker.bottom.equalTo(lecturerTitleLabel.snp.top).offset(-6)
         }
         assistantNameLabel.snp.makeConstraints { (maker) in
             maker.top.equalTo(assistantAvatar.snp.bottom).offset(5)
             maker.centerX.equalTo(assistantAvatar)
             maker.height.equalTo(12)
         }
-        teacherTitleLabel.snp.makeConstraints { (maker) in
-            maker.top.equalTo(teacherNameLabel.snp.bottom).offset(6)
-            maker.centerX.equalTo(teacherNameLabel)
+        lecturerTitleLabel.snp.makeConstraints { (maker) in
+            maker.top.equalTo(lecturerNameLabel.snp.bottom).offset(6)
+            maker.centerX.equalTo(lecturerNameLabel)
             maker.height.equalTo(12)
             maker.bottom.equalTo(teacherContent).offset(-12)
         }
@@ -302,13 +299,13 @@ class LiveCourseTableViewCell: UITableViewCell {
             maker.height.equalTo(MalaScreenOnePixel)
             maker.width.equalTo(teacherContent).multipliedBy(0.168)
             maker.centerX.equalTo(teacherContent).offset(-20)
-            maker.centerY.equalTo(teacherAvatar).offset(-5)
+            maker.centerY.equalTo(lecturerAvatar).offset(-5)
         }
         avatarLine2.snp.makeConstraints { (maker) in
             maker.height.equalTo(MalaScreenOnePixel)
             maker.width.equalTo(teacherContent).multipliedBy(0.168)
             maker.centerX.equalTo(teacherContent).offset(20)
-            maker.centerY.equalTo(teacherAvatar).offset(5)
+            maker.centerY.equalTo(lecturerAvatar).offset(5)
         }
         classLevelLabel.snp.makeConstraints { (maker) in
             maker.right.equalTo(teacherContent).offset(15.6)
@@ -338,17 +335,16 @@ class LiveCourseTableViewCell: UITableViewCell {
         gradeLabel.snp.makeConstraints { (maker) in
             maker.top.equalTo(courseContent).offset(15)
             maker.right.equalTo(courseContent).offset(-12)
-            maker.width.equalTo(75)
             maker.height.equalTo(courseName)
         }
-        periodLabel.snp.makeConstraints { (maker) in
+        lessionsLabel.snp.makeConstraints { (maker) in
             maker.right.equalTo(gradeLabel)
             maker.bottom.equalTo(priceLabel)
             maker.height.equalTo(12)
         }
         priceLabel.snp.makeConstraints { (maker) in
             maker.top.equalTo(gradeLabel.snp.bottom).offset(12)
-            maker.right.equalTo(periodLabel.snp.left)
+            maker.right.equalTo(lessionsLabel.snp.left)
             maker.bottom.equalTo(courseContent).offset(-12)
             maker.height.equalTo(18)
         }
@@ -356,6 +352,6 @@ class LiveCourseTableViewCell: UITableViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        teacherAvatar.image = UIImage(named: "avatar_placeholder")
+        lecturerAvatar.image = UIImage(named: "avatar_placeholder")
     }
 }
