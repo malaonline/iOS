@@ -20,14 +20,9 @@ class LiveCourseTableView: UITableView, UITableViewDelegate, UITableViewDataSour
     
     // MARK: - Property
     /// 老师数据模型数组
-    var teachers: [TeacherModel] = [] {
+    var model: [LiveClassModel] = [] {
         didSet {
-            reloadData()
-            if teachers.count == 0 {
-                (controller as? FindTeacherViewController)?.showDefaultView()
-            }else {
-                (controller as? FindTeacherViewController)?.hideDefaultView()
-            }
+            self.reloadData()
         }
     }
     weak var controller: UIViewController?
@@ -97,15 +92,15 @@ class LiveCourseTableView: UITableView, UITableViewDelegate, UITableViewDataSour
         switch section {
             
         case Section.teacher.rawValue:
-            return teachers.count
+            return model.count
             
         case Section.loadMore.rawValue:
-            if (controller as? FindTeacherViewController)?.allTeacherCount == teachers.count {
+            if (controller as? FindTeacherViewController)?.allTeacherCount == model.count {
                 return 0
-            }else if (controller as? FilterResultController)?.allTeacherCount == teachers.count {
+            }else if (controller as? FilterResultController)?.allTeacherCount == model.count {
                 return 0
             }else {
-                return teachers.isEmpty ? 0 : 1
+                return model.isEmpty ? 0 : 1
             }
             
         default:
@@ -119,7 +114,7 @@ class LiveCourseTableView: UITableView, UITableViewDelegate, UITableViewDataSour
             
         case Section.teacher.rawValue:
             let cell = tableView.dequeueReusableCell(withIdentifier: LiveCourseTableViewCellReusedId, for: indexPath) as! LiveCourseTableViewCell
-            cell.model = teachers[(indexPath as NSIndexPath).row]
+             cell.model = model[(indexPath as NSIndexPath).row]
             return cell
             
         case Section.loadMore.rawValue:
@@ -133,34 +128,34 @@ class LiveCourseTableView: UITableView, UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         
-        switch (indexPath as NSIndexPath).section {
-            
-        case Section.teacher.rawValue:
-            break
-            
-        case Section.loadMore.rawValue:
-            if let cell = cell as? ThemeReloadView {
-                println("load more Teacher info")
-                
-                if !cell.activityIndicator.isAnimating {
-                    cell.activityIndicator.startAnimating()
-                }
-                
-                if let viewController = (controller as? FindTeacherViewController) {
-                    viewController.loadTeachers(isLoadMore: true, finish: { [weak cell] in
-                        cell?.activityIndicator.stopAnimating()
-                        })
-                    
-                }else if let viewController = (controller as? FilterResultController) {
-                    viewController.loadTeachers(isLoadMore: true, finish: { [weak cell] in
-                        cell?.activityIndicator.stopAnimating()
-                        })
-                }
-            }
-            
-        default:
-            break
-        }
+//        switch (indexPath as NSIndexPath).section {
+//            
+//        case Section.teacher.rawValue:
+//            break
+//            
+//        case Section.loadMore.rawValue:
+//            if let cell = cell as? ThemeReloadView {
+//                println("load more Teacher info")
+//                
+//                if !cell.activityIndicator.isAnimating {
+//                    cell.activityIndicator.startAnimating()
+//                }
+//                
+//                if let viewController = (controller as? FindTeacherViewController) {
+//                    viewController.loadTeachers(isLoadMore: true, finish: { [weak cell] in
+//                        cell?.activityIndicator.stopAnimating()
+//                        })
+//                    
+//                }else if let viewController = (controller as? FilterResultController) {
+//                    viewController.loadTeachers(isLoadMore: true, finish: { [weak cell] in
+//                        cell?.activityIndicator.stopAnimating()
+//                        })
+//                }
+//            }
+//            
+//        default:
+//            break
+//        }
     }
     
     

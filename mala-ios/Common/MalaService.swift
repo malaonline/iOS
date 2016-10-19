@@ -629,6 +629,36 @@ func loadTeachersWithConditions(_ conditions: JSONDictionary?, failureHandler: (
 }
 
 
+// MARK: - LiveCourse
+/// 获取双师直播班级列表
+///
+/// - parameter page:           页数
+/// - parameter failureHandler: 失败处理闭包
+/// - parameter completion:     成功处理闭包
+func getLiveClasses(_ page: Int = 1, failureHandler: ((Reason, String?) -> Void)?, completion: @escaping ([LiveClassModel], Int) -> Void) {
+    
+    var requestParameters: JSONDictionary = [
+        "page": page as AnyObject
+    ]
+    
+    if let school = MalaCurrentSchool {
+        requestParameters["school"] = school.id as AnyObject?
+    }
+    
+    let parse: (JSONDictionary) -> ([LiveClassModel], Int) = { data in
+        return parseLiveClassList(data)
+    }
+    
+    let resource = jsonResource(path: "/liveclasses", method: .GET, requestParameters: requestParameters, parse: parse)
+    
+    if let failureHandler = failureHandler {
+        apiRequest({_ in}, baseURL: MalaBaseURL, resource: resource, failure: failureHandler, completion: completion)
+    } else {
+        apiRequest({_ in}, baseURL: MalaBaseURL, resource: resource, failure: defaultFailureHandler, completion: completion)
+    }
+}
+
+
 // MARK: - Course
 ///  获取课程信息
 ///
@@ -1369,4 +1399,20 @@ let parseTeacherGradePrice: (JSONDictionary) -> [GradeModel] = { resultInfo in
         }
     }
     return prices
+}
+/// 双师直播班级列表JSON解析器
+let parseLiveClassList: (JSONDictionary) -> ([LiveClassModel], Int) = { resultInfo in
+    
+    var classes: [LiveClassModel] = []
+    var count = 0
+    
+    if
+        let allCount = resultInfo["count"] as? Int,
+        let results = resultInfo["results"] as? [JSONDictionary], results.count > 0 {
+        count = allCount
+        for course in results {
+            classes.append(LiveClassModel(dict: course))
+        }
+    }
+    return (classes, count)
 }

@@ -11,6 +11,20 @@ import PagingMenuController
 
 class LiveCourseViewController: BaseViewController {
     
+    // MARK: - Property
+    var model: [LiveClassModel] = [] {
+        didSet {
+            tableView.model = model
+        }
+    }
+    /// 是否正在拉取数据
+    var isFetching: Bool = false
+    /// 当前显示页数
+    var currentPageIndex = 1
+    /// 数据总量
+    var allCount = 0
+    
+    
     // MARK: - Components
     /// 老师信息tableView
     private lazy var tableView: LiveCourseTableView = {
@@ -25,8 +39,13 @@ class LiveCourseViewController: BaseViewController {
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         println("LiveCourse ViewDidLoad")
+        
+        
         setupUserInterface()
+        
+        loadLiveClasses()
     }
 
     override func didReceiveMemoryWarning() {
@@ -53,8 +72,40 @@ class LiveCourseViewController: BaseViewController {
         }
     }
     
-    func loadTeachers() {
+    ///  获取双师直播班级列表
+    private func loadLiveClasses(_ page: Int = 1, isLoadMore: Bool = false, finish: (()->())? = nil) {
         
+        // 屏蔽[正在刷新]时的操作
+        guard isFetching == false else {
+            return
+        }
+        isFetching = true
+        
+        if isLoadMore {
+            currentPageIndex += 1
+        }else {
+            currentPageIndex = 1
+        }
+        
+        ///  获取用户订单列表
+        getLiveClasses(currentPageIndex, failureHandler: { [weak self] (reason, errorMessage) in
+            defaultFailureHandler(reason, errorMessage: errorMessage)
+            
+            // 错误处理
+            if let errorMessage = errorMessage {
+                println("LiveCourseViewController - loadLiveClasses Error \(errorMessage)")
+            }
+        }, completion: { [weak self] (classList, count) in
+            
+            println("获取双师直播 - \(classList) - \(count)")
+            
+            /// 记录数据量
+            if count != 0 {
+                self?.allCount = count
+            }
+            self?.model = classList
+        })
     }
+    
 }
 

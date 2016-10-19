@@ -179,18 +179,18 @@ class RootViewController: UIViewController {
 // MARK: - PagingMenuControllerDelegate
 extension RootViewController: PagingMenuControllerDelegate {
     func willMove(toMenu menuController: UIViewController, fromMenu previousMenuController: UIViewController) {
-        print(#function)
+        // print(#function)
     }
     
     func didMove(toMenu menuController: UIViewController, fromMenu previousMenuController: UIViewController) {
-        print(#function)
+        // print(#function)
     }
     
     func willMove(toMenuItem menuItemView: MenuItemView, fromMenuItem previousMenuItemView: MenuItemView) {
-        print(#function)
+        // print(#function)
     }
     
     func didMove(toMenuItem menuItemView: MenuItemView, fromMenuItem previousMenuItemView: MenuItemView) {
-        print(#function)
+        // print(#function)
     }
 }
