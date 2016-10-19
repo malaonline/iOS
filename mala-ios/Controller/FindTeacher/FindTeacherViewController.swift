@@ -39,7 +39,7 @@ class FindTeacherViewController: BaseViewController {
         setupNotification()
         
         // 开启下拉刷新
-        self.tableView.startPullRefresh() //loadTeachers()
+        tableView.startPullRefresh() //loadTeachers()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -65,7 +65,7 @@ class FindTeacherViewController: BaseViewController {
         defaultView.text = "当前城市没有老师！"
         
         // 下拉刷新组件
-        tableView.addPullRefresh { [weak self] in
+        tableView.addPullRefresh{ [weak self] in
             self?.loadTeachers()
         }
         
