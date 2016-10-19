@@ -14,7 +14,7 @@ before_install:
 install:
 - sudo gem install cocoapods --pre
 - pod repo remove master
-- travis_wait pod setup
+- travis_wait 30 pod setup
 - pod --version
 - pod install
 before_script:
