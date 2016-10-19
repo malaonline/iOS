@@ -39,7 +39,7 @@ end
 post_install do |installer|
   installer.pods_project.targets.each do |target|
     case target.name
-      when 'Alamofire', 'Charts', 'IQKeyboardManagerSwift', 'Kingfisher', 'SnapKit'
+      when 'Alamofire', 'Charts', 'IQKeyboardManagerSwift', 'Kingfisher', 'SnapKit','PagingMenuController'
         target.build_configurations.each do |config|
         config.build_settings['SWIFT_VERSION'] = '3.0'
       end
