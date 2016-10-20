@@ -14,13 +14,14 @@ class LiveCourseDetailViewController: BaseViewController, LiveCourseConfirmViewD
     /// 教师id
     var classId: Int? {
         didSet {
-
+            
         }
     }
     /// 教师详情数据模型
     var model: LiveClassModel = TestFactory.testLiveClass() {
         didSet {
-            
+            // confirm view
+            confirmView.model = model
         }
     }
     

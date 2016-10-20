@@ -18,52 +18,58 @@ class LiveCourseConfirmView: UIView {
     
     // MARK: - Property
     /// 需支付金额
-    var price: Int = 0 {
+    var model: LiveClassModel? {
         didSet{
-            DispatchQueue.main.async(execute: { [weak self] () -> Void in
-                self?.priceLabel.text = self?.price.amountCNY
-            })
+            
+            guard let model = model else {
+                return
+            }
+            
+            priceLabel.text = String(format: "%@/", model.courseFee?.priceCNY ?? "")
+            lessionsLabel.text = String(format: "%d次", model.courseLessons ?? 0)
         }
     }
-    private var myContext = 0
     weak var delegate: LiveCourseConfirmViewDelegate?
     
     
     // MARK: - Components
-    private lazy var topLine: UIView = {
-        let view = UIView()
-        view.backgroundColor = UIColor.black
-        view.alpha = 0.4
+    /// 价格容器
+    private lazy var priceContainer: UIView = {
+        let view = UIView(UIColor.white)
         return view
     }()
-    /// 价格说明标签
-    private lazy var stringLabel: UILabel = {
-        let stringLabel = UILabel()
-        stringLabel.font = UIFont.systemFont(ofSize: 14)
-        stringLabel.textColor = MalaColor_333333_0
-        stringLabel.text = "还需支付:"
-        return stringLabel
-    }()
-    /// 金额标签
+    /// 价格标签
     private lazy var priceLabel: UILabel = {
-        let priceLabel = UILabel()
-        priceLabel.font = UIFont.systemFont(ofSize: 14)
-        priceLabel.textColor = MalaColor_E26254_0
-        priceLabel.textAlignment = .left
-        priceLabel.text = "￥0.00"
-        return priceLabel
+        let label = UILabel(
+            text: "价格/",
+            font: UIFont(name: "PingFang-SC-Light", size: 18),
+            textColor: MalaColor_E26254_0,
+            textAlignment: .right
+        )
+        return label
     }()
-    /// 确定按钮
+    /// 课时数标签
+    private lazy var lessionsLabel: UILabel = {
+        let label = UILabel(
+            text: "次数",
+            font: UIFont(name: "PingFang-SC-Light", size: 10),
+            textColor: MalaColor_E26254_0,
+            textAlignment: .right
+        )
+        return label
+    }()
+    /// 确认按钮
     private lazy var confirmButton: UIButton = {
-        let confirmButton = UIButton()
-        confirmButton.backgroundColor = MalaColor_E26254_0
-        confirmButton.titleLabel?.font = UIFont.systemFont(ofSize: 16)
-        confirmButton.setTitle("确定", for: UIControlState())
-        confirmButton.setTitleColor(UIColor.white, for: UIControlState())
-        confirmButton.layer.cornerRadius = 5
-        confirmButton.layer.masksToBounds = true
-        confirmButton.addTarget(self, action: #selector(PaymentBottomView.buttonDidTap), for: .touchUpInside)
-        return confirmButton
+        let button = UIButton(
+            title: "立即购买",
+            titleColor: UIColor.white,
+            selectedTitleColor: UIColor.white,
+            bgColor: MalaColor_9BC3E1_0,
+            selectedBgColor: MalaColor_9BC3E1_0
+        )
+        button.titleLabel?.font = UIFont(name: "FZLTXHK", size: 15)
+        button.addTarget(self, action: #selector(LiveCourseConfirmView.buttonDidTap), for: .touchUpInside)
+        return button
     }()
     
     
@@ -82,37 +88,38 @@ class LiveCourseConfirmView: UIView {
     // MARK: - Private method
     private func setupUserInterface() {
         // Style
-        self.backgroundColor = UIColor.white
+        backgroundColor = UIColor.white
         
         // SubViews
-        addSubview(topLine)
-        addSubview(stringLabel)
-        addSubview(priceLabel)
+        addSubview(priceContainer)
         addSubview(confirmButton)
+        priceContainer.addSubview(priceLabel)
+        priceContainer.addSubview(lessionsLabel)
         
         // Autolayout
-        topLine.snp.makeConstraints({ (maker) -> Void in
-            maker.top.equalTo(self.snp.top)
-            maker.left.equalTo(self.snp.left)
-            maker.right.equalTo(self.snp.right)
-            maker.height.equalTo(MalaScreenOnePixel)
+        priceContainer.snp.makeConstraints({ (maker) -> Void in
+            maker.top.equalTo(self)
+            maker.left.equalTo(self)
+            maker.right.equalTo(self).multipliedBy(0.5)
+            maker.height.equalTo(44)
+            maker.bottom.equalTo(self)
         })
-        stringLabel.snp.makeConstraints { (maker) -> Void in
-            maker.left.equalTo(self.snp.left).offset(12)
-            maker.centerY.equalTo(self.snp.centerY)
-            maker.height.equalTo(14)
-        }
-        priceLabel.snp.makeConstraints { (maker) -> Void in
-            maker.left.equalTo(stringLabel.snp.right)
-            maker.width.equalTo(100)
-            maker.bottom.equalTo(stringLabel.snp.bottom)
-            maker.height.equalTo(14)
-        }
         confirmButton.snp.makeConstraints { (maker) -> Void in
-            maker.right.equalTo(self.snp.right).offset(-12)
-            maker.centerY.equalTo(self.snp.centerY)
-            maker.width.equalTo(144)
-            maker.height.equalTo(37)
+            maker.top.equalTo(self)
+            maker.left.equalTo(priceContainer.snp.right)
+            maker.right.equalTo(self)
+            maker.height.equalTo(44)
+            maker.bottom.equalTo(self)
+        }
+        priceLabel.snp.makeConstraints { (maker) in
+            maker.centerY.equalTo(priceContainer)
+            maker.centerX.equalTo(priceContainer).offset(-17)
+            maker.height.equalTo(18)
+        }
+        lessionsLabel.snp.makeConstraints { (maker) in
+            maker.left.equalTo(priceLabel.snp.right)
+            maker.bottom.equalTo(priceLabel)
+            maker.height.equalTo(10)
         }
     }
     
