@@ -10,6 +10,18 @@ import UIKit
 
 class LiveCourseDetailClassCell: MalaBaseLiveCourseCell {
 
+    // MARK: - Property
+    /// 课程模型
+    var model: LiveClassModel? {
+        didSet{
+            guard let model = model else {
+                return
+            }
+
+        }
+    }
+    
+    
     // MARK: - Instance Method
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)

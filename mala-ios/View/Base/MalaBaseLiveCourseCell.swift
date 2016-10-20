@@ -94,7 +94,7 @@ class MalaBaseLiveCourseCell: UITableViewCell {
             maker.top.equalTo(line.snp.bottom)
             maker.left.equalTo(cardContent).offset(12)
             maker.right.equalTo(cardContent).offset(-12)
-            maker.bottom.equalTo(cardContent).offset(-18)
+            maker.bottom.equalTo(cardContent)
         }
     }
 }

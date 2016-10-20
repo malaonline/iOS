@@ -17,7 +17,7 @@ public protocol LiveCourseConfirmViewDelegate: class {
 class LiveCourseConfirmView: UIView {
     
     // MARK: - Property
-    /// 需支付金额
+    /// 课程模型
     var model: LiveClassModel? {
         didSet{
             

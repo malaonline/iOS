@@ -86,14 +86,17 @@ class LiveCourseDetailTableView: UITableView, UITableViewDelegate, UITableViewDa
         switch (indexPath as NSIndexPath).section {
         case 0:
             let cell = reuseCell as! LiveCourseDetailClassCell
+            cell.model = model
             return cell
             
         case 1:
             let cell = reuseCell as! LiveCourseDetailDescCell
+            cell.model = model
             return cell
             
         case 2:
             let cell = reuseCell as! LiveCourseDetailLecturerCell
+            cell.model = model
             return cell
             
         default:

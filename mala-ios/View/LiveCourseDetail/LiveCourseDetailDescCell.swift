@@ -10,11 +10,23 @@ import UIKit
 
 class LiveCourseDetailDescCell: MalaBaseLiveCourseCell {
     
+    // MARK: - Property
+    /// 课程模型
+    var model: LiveClassModel? {
+        didSet{
+            guard let model = model else {
+                return
+            }
+            courseDescView.text = model.courseDesc
+        }
+    }
+    
+    
     // MARK: - Comoponents
     /// 课程介绍
     private lazy var courseDescView: UILabel = {
         let label = UILabel(
-            text: MalaConfig.aboutDescriptionHTMLString(),
+            text: "",
             font: UIFont(name: "STHeitiSC-Light", size: 13),
             textColor: MalaColor_939393_0
         )
@@ -47,7 +59,7 @@ class LiveCourseDetailDescCell: MalaBaseLiveCourseCell {
             maker.top.equalTo(content).offset(2)
             maker.left.equalTo(content)
             maker.right.equalTo(content)
-            maker.bottom.equalTo(content)
+            maker.bottom.equalTo(content).offset(-18)
         }
     }
 }
