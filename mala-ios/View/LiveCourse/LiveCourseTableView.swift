@@ -41,7 +41,7 @@ class LiveCourseTableView: UITableView, UITableViewDelegate, UITableViewDataSour
         backgroundColor = MalaColor_EDEDED_0
         estimatedRowHeight = 200
         separatorStyle = .none
-        contentInset = UIEdgeInsets(top: 12, left: 0, bottom: 12, right: 0)
+        contentInset = UIEdgeInsets(top: 6, left: 0, bottom: 48 + 6, right: 0)
         register(LiveCourseTableViewCell.self, forCellReuseIdentifier: LiveCourseTableViewCellReusedId)
     }
     
@@ -80,6 +80,5 @@ class LiveCourseTableView: UITableView, UITableViewDelegate, UITableViewDataSour
         DispatchQueue.main.async(execute: { () -> Void in
             super.reloadData()
         })
-        self.stopPullRefreshEver()
     }
 }

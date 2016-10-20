@@ -25,8 +25,6 @@ class FindTeacherViewController: BaseViewController {
     private lazy var tableView: TeacherTableView = {
         let tableView = TeacherTableView(frame: self.view.frame, style: .plain)
         tableView.controller = self
-        // 底部Tabbar留白
-        tableView.contentInset = UIEdgeInsets(top: 6, left: 0, bottom: 48 + 6, right: 0)
         return tableView
     }()
     
@@ -67,11 +65,6 @@ class FindTeacherViewController: BaseViewController {
         // 下拉刷新
         tableView.addPullRefresh{ [weak self] in
             self?.loadTeachers()
-        }
-        // 加载更多
-        tableView.addPushRefresh { [weak self] in
-            self?.loadTeachers(isLoadMore: true)
-            self?.tableView.stopPushRefreshEver()
         }
         
         // SubViews

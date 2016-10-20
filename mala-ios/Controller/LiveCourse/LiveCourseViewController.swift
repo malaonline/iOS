@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import PagingMenuController
 
 class LiveCourseViewController: BaseViewController {
     
@@ -17,8 +16,6 @@ class LiveCourseViewController: BaseViewController {
             tableView.model = model
         }
     }
-    /// 是否正在拉取数据
-    var isFetching: Bool = false
     /// 当前显示页数
     var currentPageIndex = 1
     /// 数据总量
@@ -29,9 +26,7 @@ class LiveCourseViewController: BaseViewController {
     /// 老师信息tableView
     private lazy var tableView: LiveCourseTableView = {
         let tableView = LiveCourseTableView(frame: self.view.frame, style: .plain)
-        tableView.controller = self
-        // 底部Tabbar留白
-        tableView.contentInset = UIEdgeInsets(top: 6, left: 0, bottom: 48 + 6, right: 0)
+        tableView.controller = self        
         return tableView
     }()
     
@@ -40,10 +35,10 @@ class LiveCourseViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        println("LiveCourse ViewDidLoad")
-        
         setupUserInterface()
-        loadLiveClasses()
+        
+        // 开启下拉刷新
+        tableView.startPullRefresh()
     }
 
     override func didReceiveMemoryWarning() {
@@ -59,9 +54,10 @@ class LiveCourseViewController: BaseViewController {
         defaultView.text = "当前城市没有老师！"
         
         // 下拉刷新
-        tableView.addPullRefresh { [weak self] in
+        tableView.addPullRefresh{ [weak self] in
+            println("下拉刷新")
             self?.loadLiveClasses()
-            self?.tableView.stopPushRefreshEver()
+            self?.tableView.stopPullRefreshEver()
         }
         
         // SubViews
@@ -78,12 +74,6 @@ class LiveCourseViewController: BaseViewController {
     
     ///  获取双师直播班级列表
     private func loadLiveClasses(_ page: Int = 1, isLoadMore: Bool = false, finish: (()->())? = nil) {
-        
-        // 屏蔽[正在刷新]时的操作
-        guard isFetching == false else {
-            return
-        }
-        isFetching = true
         
         if isLoadMore {
             currentPageIndex += 1
