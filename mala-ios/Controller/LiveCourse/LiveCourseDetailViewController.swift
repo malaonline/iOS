@@ -58,7 +58,7 @@ class LiveCourseDetailViewController: BaseViewController, LiveCourseConfirmViewD
     // MARK: - Private method
     private func setupUserInterface() {
         // Style
-        title = MalaCommonString_CourseChoosing
+        title = "课程页"
         
         // SubViews
         view.addSubview(tableView)

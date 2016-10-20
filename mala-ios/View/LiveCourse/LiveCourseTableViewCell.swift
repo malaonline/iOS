@@ -56,15 +56,15 @@ class LiveCourseTableViewCell: UITableViewCell {
     /// 老师头像
     private lazy var lecturerAvatar: UIImageView = {
         let imageView = UIImageView(
-            frame: CGRect(x: 0, y: 0, width: 60, height: 60),
-            cornerRadius: 27,
+            frame: CGRect(x: 0, y: 0, width: 64, height: 64),
+            cornerRadius: 32,
             image: "avatar_placeholder"
         )
         return imageView
     }()
     /// 老师头像背景
     private lazy var lecturerAvatarBackground: UIView = {
-        let view = UIView(MalaColor_A8D0FF_0, cornerRadius: 30)
+        let view = UIView(MalaColor_A8D0FF_0, cornerRadius: 35)
         return view
     }()
     /// 直播图标
@@ -75,22 +75,22 @@ class LiveCourseTableViewCell: UITableViewCell {
     /// 助教头像
     private lazy var assistantAvatar: UIImageView = {
         let imageView = UIImageView(
-            frame: CGRect(x: 0, y: 0, width: 48, height: 48),
-            cornerRadius: 22,
+            frame: CGRect(x: 0, y: 0, width: 54, height: 54),
+            cornerRadius: 27,
             image: "avatar_placeholder"
         )
         return imageView
     }()
     /// 助教头像背景
     private lazy var assistantAvatarBackground: UIView = {
-        let view = UIView(MalaColor_A8D0FF_0, cornerRadius: 24)
+        let view = UIView(MalaColor_A8D0FF_0, cornerRadius: 29)
         return view
     }()
     /// 老师姓名
     private lazy var lecturerNameLabel: UILabel = {
         let label = UILabel(
             text: "主讲老师",
-            font: UIFont(name: "PingFang-SC-Regular", size: 15),
+            font: UIFont(name: "PingFang-SC-Regular", size: 17),
             textColor: UIColor.white
         )
         return label
@@ -99,7 +99,7 @@ class LiveCourseTableViewCell: UITableViewCell {
     private lazy var lecturerTitleLabel: UILabel = {
         let label = UILabel(
             text: "主讲老师主要成就",
-            font: UIFont(name: "PingFang-SC-Light", size: 12),
+            font: UIFont(name: "PingFang-SC-Light", size: 14),
             textColor: UIColor.white,
             opacity: 0.56
         )
@@ -109,7 +109,7 @@ class LiveCourseTableViewCell: UITableViewCell {
     private lazy var assistantNameLabel: UILabel = {
         let label = UILabel(
             text: "助教",
-            font: UIFont(name: "PingFang-SC-Light", size: 12),
+            font: UIFont(name: "PingFang-SC-Light", size: 14),
             textColor: UIColor.white
         )
         return label
@@ -138,7 +138,7 @@ class LiveCourseTableViewCell: UITableViewCell {
     private lazy var courseName: UILabel = {
         let label = UILabel(
             text: "课程名称",
-            font: UIFont(name: "PingFang-SC-Light", size: 15),
+            font: UIFont(name: "PingFang-SC-Light", size: 17),
             textColor: MalaColor_636363_0
         )
         return label
@@ -152,7 +152,7 @@ class LiveCourseTableViewCell: UITableViewCell {
     private lazy var courseDateLabel: UILabel = {
         let label = UILabel(
             text: "课程日期",
-            font: UIFont(name: "PingFang-SC-Light", size: 9),
+            font: UIFont(name: "PingFang-SC-Light", size: 12),
             textColor: MalaColor_778CA4_0
         )
         return label
@@ -161,7 +161,7 @@ class LiveCourseTableViewCell: UITableViewCell {
     private lazy var gradeLabel: UILabel = {
         let label = UILabel(
             text: "课程年级区间",
-            font: UIFont(name: "PingFang-SC-Light", size: 9),
+            font: UIFont(name: "PingFang-SC-Light", size: 12),
             textColor: MalaColor_8DBEDE_0,
             textAlignment: .center,
             borderColor: MalaColor_8DBEDE_0,
@@ -174,7 +174,7 @@ class LiveCourseTableViewCell: UITableViewCell {
     private lazy var priceLabel: UILabel = {
         let label = UILabel(
             text: "价格/",
-            font: UIFont(name: "PingFang-SC-Light", size: 18),
+            font: UIFont(name: "PingFang-SC-Light", size: 20),
             textColor: MalaColor_E26254_0,
             textAlignment: .right
         )
@@ -184,7 +184,7 @@ class LiveCourseTableViewCell: UITableViewCell {
     private lazy var lessionsLabel: UILabel = {
         let label = UILabel(
             text: "次数",
-            font: UIFont(name: "PingFang-SC-Light", size: 12),
+            font: UIFont(name: "PingFang-SC-Light", size: 14),
             textColor: MalaColor_E26254_0,
             textAlignment: .right
         )
@@ -253,46 +253,46 @@ class LiveCourseTableViewCell: UITableViewCell {
         lecturerAvatarBackground.snp.makeConstraints { (maker) in
             maker.top.equalTo(teacherContent).offset(12)
             maker.centerX.equalTo(teacherContent.snp.right).multipliedBy(0.25)
-            maker.width.equalTo(60)
-            maker.height.equalTo(60)
+            maker.width.equalTo(70)
+            maker.height.equalTo(70)
         }
         lecturerAvatar.snp.makeConstraints { (maker) in
             maker.center.equalTo(lecturerAvatarBackground)
-            maker.width.equalTo(54)
-            maker.height.equalTo(54)
+            maker.width.equalTo(64)
+            maker.height.equalTo(64)
         }
         liveIcon.snp.makeConstraints { (maker) in
             maker.top.equalTo(teacherContent).offset(18)
             maker.right.equalTo(lecturerAvatar).offset(10)
             maker.width.equalTo(24)
-            maker.height.equalTo(14)
+            maker.height.equalTo(18)
         }
         assistantAvatarBackground.snp.makeConstraints { (maker) in
             maker.centerY.equalTo(lecturerAvatar)
             maker.centerX.equalTo(teacherContent.snp.right).multipliedBy(0.75)
-            maker.width.equalTo(48)
-            maker.height.equalTo(48)
+            maker.width.equalTo(58)
+            maker.height.equalTo(58)
         }
         assistantAvatar.snp.makeConstraints { (maker) in
             maker.center.equalTo(assistantAvatarBackground)
-            maker.width.equalTo(44)
-            maker.height.equalTo(44)
+            maker.width.equalTo(54)
+            maker.height.equalTo(54)
         }
         lecturerNameLabel.snp.makeConstraints { (maker) in
             maker.centerX.equalTo(lecturerAvatar)
-            maker.top.equalTo(lecturerAvatar.snp.bottom).offset(5)
-            maker.height.equalTo(15)
+            maker.top.equalTo(lecturerAvatar.snp.bottom).offset(8)
+            maker.height.equalTo(17)
             maker.bottom.equalTo(lecturerTitleLabel.snp.top).offset(-6)
         }
         assistantNameLabel.snp.makeConstraints { (maker) in
-            maker.top.equalTo(assistantAvatar.snp.bottom).offset(5)
+            maker.top.equalTo(assistantAvatar.snp.bottom).offset(8)
             maker.centerX.equalTo(assistantAvatar)
-            maker.height.equalTo(12)
+            maker.height.equalTo(14)
         }
         lecturerTitleLabel.snp.makeConstraints { (maker) in
             maker.top.equalTo(lecturerNameLabel.snp.bottom).offset(6)
             maker.centerX.equalTo(lecturerNameLabel)
-            maker.height.equalTo(12)
+            maker.height.equalTo(14)
             maker.bottom.equalTo(teacherContent).offset(-12)
         }
         avatarLine1.snp.makeConstraints { (maker) in
@@ -317,20 +317,20 @@ class LiveCourseTableViewCell: UITableViewCell {
         courseName.snp.makeConstraints { (maker) in
             maker.top.equalTo(courseContent).offset(17)
             maker.left.equalTo(courseContent).offset(12)
-            maker.height.equalTo(15)
+            maker.height.equalTo(17)
             maker.bottom.equalTo(dateIcon.snp.top).offset(-12)
         }
         dateIcon.snp.makeConstraints { (maker) in
-            maker.width.equalTo(9)
-            maker.height.equalTo(9.5)
+            maker.width.equalTo(10)
+            maker.height.equalTo(10)
             maker.top.equalTo(courseName.snp.bottom).offset(12)
             maker.left.equalTo(courseContent).offset(12)
             maker.bottom.equalTo(courseContent).offset(-18)
         }
         courseDateLabel.snp.makeConstraints { (maker) in
-            maker.bottom.equalTo(dateIcon)
+            maker.centerY.equalTo(dateIcon).offset(MalaScreenOnePixel)
             maker.left.equalTo(dateIcon.snp.right).offset(4)
-            maker.height.equalTo(9)
+            maker.height.equalTo(13)
         }
         gradeLabel.snp.makeConstraints { (maker) in
             maker.top.equalTo(courseContent).offset(15)
@@ -340,13 +340,13 @@ class LiveCourseTableViewCell: UITableViewCell {
         lessionsLabel.snp.makeConstraints { (maker) in
             maker.right.equalTo(gradeLabel)
             maker.bottom.equalTo(priceLabel)
-            maker.height.equalTo(12)
+            maker.height.equalTo(14)
         }
         priceLabel.snp.makeConstraints { (maker) in
             maker.top.equalTo(gradeLabel.snp.bottom).offset(12)
             maker.right.equalTo(lessionsLabel.snp.left)
             maker.bottom.equalTo(courseContent).offset(-12)
-            maker.height.equalTo(18)
+            maker.height.equalTo(20)
         }
     }
     

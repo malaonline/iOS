@@ -35,7 +35,7 @@ class LiveCourseDetailLecturerCell: MalaBaseLiveCourseCell {
     private lazy var lecturerNameLabel: UILabel = {
         let label = UILabel(
             text: "老师姓名",
-            font: UIFont(name: "PingFang-SC-Light", size: 13),
+            font: UIFont(name: "PingFang-SC-Light", size: 15),
             textColor: MalaColor_9BC3E1_0
         )
         return label
@@ -44,7 +44,7 @@ class LiveCourseDetailLecturerCell: MalaBaseLiveCourseCell {
     private lazy var lecturerBioView: UILabel = {
         let label = UILabel(
             text: "",
-            font: UIFont(name: "STHeitiSC-Light", size: 13),
+            font: UIFont(name: "STHeitiSC-Light", size: 14),
             textColor: MalaColor_939393_0
         )
         label.numberOfLines = 0
@@ -85,7 +85,7 @@ class LiveCourseDetailLecturerCell: MalaBaseLiveCourseCell {
         
         // Autolayout
         lecturerIcon.snp.makeConstraints { (maker) in
-            maker.top.equalTo(content).offset(12)
+            maker.top.equalTo(content)
             maker.left.equalTo(content)
             maker.width.equalTo(15)
             maker.height.equalTo(15)
@@ -93,13 +93,13 @@ class LiveCourseDetailLecturerCell: MalaBaseLiveCourseCell {
         lecturerNameLabel.snp.makeConstraints { (maker) in
             maker.centerY.equalTo(lecturerIcon)
             maker.left.equalTo(lecturerIcon.snp.right).offset(6)
-            maker.height.equalTo(13)
+            maker.height.equalTo(15)
         }
         lecturerBioView.snp.makeConstraints { (maker) in
-            maker.top.equalTo(lecturerNameLabel.snp.bottom).offset(18)
+            maker.top.equalTo(lecturerNameLabel.snp.bottom).offset(12)
             maker.left.equalTo(lecturerNameLabel)
             maker.right.equalTo(lecturerAvatar.snp.left).offset(-18)
-            maker.bottom.equalTo(content).offset(-18)
+            maker.bottom.equalTo(content)
         }
         lecturerAvatar.snp.makeConstraints { (maker) in
             maker.right.equalTo(content)

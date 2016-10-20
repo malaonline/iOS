@@ -19,27 +19,13 @@ class LiveCourseDetailClassCell: MalaBaseLiveCourseCell {
             }
             
             title = model.courseName
-            roomCapacityLabel.text = String(format: " %d人小班  ", model.roomCapacity ?? 0)
+            roomCapacityLabel.text = String(format: "%d人小班  ", model.roomCapacity ?? 0)
             courseGradeLabel.text = (model.courseGrade ?? "")+"  "
             dateLabel.text = String(format: "%@-%@", getDateString(model.courseStart), getDateString(model.courseEnd))
             scheduleLabel.text = model.coursePeriod?.trim().replacingOccurrences(of: ";", with: "\n")
             
             
-            let string = String(format: "已报: %d人", model.studentsCount ?? 0)
-            let attrString: NSMutableAttributedString = NSMutableAttributedString(string: string)
-            let rangeLocation = (string as NSString).range(of: " ").location
-            attrString.addAttribute(
-                NSForegroundColorAttributeName,
-                value: MalaColor_636363_0,
-                range: NSMakeRange(0, rangeLocation)
-            )
-            attrString.addAttribute(
-                NSForegroundColorAttributeName,
-                value: MalaColor_E26254_0,
-                range: NSMakeRange(rangeLocation, 4)
-            )
-            
-            checkinLabel.attributedText = attrString
+            checkinLabel.text = String(format: "%d人", model.studentsCount ?? 0)
         }
     }
     
@@ -49,7 +35,7 @@ class LiveCourseDetailClassCell: MalaBaseLiveCourseCell {
     private lazy var roomCapacityLabel: UILabel = {
         let label = UILabel(
             text: "班级规模",
-            font: UIFont(name: "PingFang-SC-Light", size: 12),
+            font: UIFont(name: "PingFang-SC-Light", size: 14),
             textColor: UIColor.white,
             textAlignment: .center,
             backgroundColor: MalaColor_9BC3E1_0,
@@ -61,7 +47,7 @@ class LiveCourseDetailClassCell: MalaBaseLiveCourseCell {
     private lazy var courseGradeLabel: UILabel = {
         let label = UILabel(
             text: "课程年级",
-            font: UIFont(name: "PingFang-SC-Light", size: 12),
+            font: UIFont(name: "PingFang-SC-Light", size: 14),
             textColor: UIColor.white,
             textAlignment: .center,
             backgroundColor: MalaColor_9BC3E1_0,
@@ -78,7 +64,7 @@ class LiveCourseDetailClassCell: MalaBaseLiveCourseCell {
     private lazy var dateLabel: UILabel = {
         let label = UILabel(
             text: "课程日期",
-            font: UIFont(name: "FZLTXHK", size: 13),
+            font: UIFont(name: "PingFang-SC-Light", size: 15),
             textColor: MalaColor_636363_0
         )
         return label
@@ -87,7 +73,7 @@ class LiveCourseDetailClassCell: MalaBaseLiveCourseCell {
     private lazy var scheduleLabel: UILabel = {
         let label = UILabel(
             text: "上课时间",
-            font: UIFont(name: "FZLTXHK", size: 13),
+            font: UIFont(name: "PingFang-SC-Light", size: 15),
             textColor: MalaColor_939393_0,
             opacity: 0.8
         )
@@ -100,11 +86,20 @@ class LiveCourseDetailClassCell: MalaBaseLiveCourseCell {
         return imageView
     }()
     /// 报课人数标签
+    private lazy var checkinStringLabel: UILabel = {
+        let label = UILabel(
+            text: "已报: ",
+            font: UIFont(name: "PingFang-SC-Light", size: 15),
+            textColor: MalaColor_636363_0
+        )
+        return label
+    }()
+    /// 报课人数标签
     private lazy var checkinLabel: UILabel = {
         let label = UILabel(
-            text: "已报人数",
-            font: UIFont(name: "FZLTXHK", size: 13),
-            textColor: MalaColor_636363_0
+            text: "人数",
+            font: UIFont(name: "PingFang-SC-Light", size: 15),
+            textColor: MalaColor_E26254_0
         )
         return label
     }()
@@ -133,11 +128,12 @@ class LiveCourseDetailClassCell: MalaBaseLiveCourseCell {
         content.addSubview(dateLabel)
         content.addSubview(scheduleLabel)
         content.addSubview(checkinIcon)
+        content.addSubview(checkinStringLabel)
         content.addSubview(checkinLabel)
         
         // Autolayout
         roomCapacityLabel.snp.makeConstraints { (maker) in
-            maker.top.equalTo(content).offset(12)
+            maker.top.equalTo(content)
             maker.left.equalTo(dateLabel)
             maker.height.equalTo(21)
         }
@@ -155,7 +151,7 @@ class LiveCourseDetailClassCell: MalaBaseLiveCourseCell {
         dateLabel.snp.makeConstraints { (maker) in
             maker.left.equalTo(scheduleIcon.snp.right).offset(6)
             maker.centerY.equalTo(scheduleIcon)
-            maker.height.equalTo(14)
+            maker.height.equalTo(15)
         }
         scheduleLabel.snp.makeConstraints { (maker) in
             maker.top.equalTo(dateLabel.snp.bottom).offset(12)
@@ -166,11 +162,16 @@ class LiveCourseDetailClassCell: MalaBaseLiveCourseCell {
             maker.left.equalTo(content)
             maker.height.equalTo(15)
             maker.width.equalTo(15)
-            maker.bottom.equalTo(content).offset(-18)
+            maker.bottom.equalTo(content)
         }
-        checkinLabel.snp.makeConstraints { (maker) in
+        checkinStringLabel.snp.makeConstraints { (maker) in
             maker.left.equalTo(checkinIcon.snp.right).offset(6)
             maker.centerY.equalTo(checkinIcon)
+            maker.height.equalTo(15)
+        }
+        checkinLabel.snp.makeConstraints { (maker) in
+            maker.left.equalTo(checkinStringLabel.snp.right)
+            maker.centerY.equalTo(checkinStringLabel)
             maker.height.equalTo(15)
         }
     }

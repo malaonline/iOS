@@ -30,14 +30,14 @@ class MalaBaseLiveCourseCell: UITableViewCell {
     lazy var titleLabel: UILabel = {
         let label = UILabel(
             text: "title",
-            font: UIFont(name: "PingFang-SC-Light", size: 13),
-            textColor: MalaColor_9BC3E1_0
+            font: UIFont(name: "PingFang-SC-Light", size: 15),
+            textColor: MalaColor_7DB7E2_0
         )
         return label
     }()
     /// 分割线
     lazy var line: UIView = {
-        let view = UIView(MalaColor_F9F9F9_0)
+        let view = UIView(MalaColor_F2F2F2_0)
         return view
     }()
     /// 布局容器
@@ -82,7 +82,7 @@ class MalaBaseLiveCourseCell: UITableViewCell {
         titleLabel.snp.makeConstraints { (maker) in
             maker.top.equalTo(cardContent).offset(11.5)
             maker.left.equalTo(cardContent).offset(12)
-            maker.height.equalTo(13)
+            maker.height.equalTo(15)
         }
         line.snp.makeConstraints { (maker) in
             maker.top.equalTo(cardContent).offset(36)
@@ -91,10 +91,10 @@ class MalaBaseLiveCourseCell: UITableViewCell {
             maker.right.equalTo(cardContent).offset(-6)
         }
         content.snp.makeConstraints { (maker) in
-            maker.top.equalTo(line.snp.bottom)
+            maker.top.equalTo(line.snp.bottom).offset(12)
             maker.left.equalTo(cardContent).offset(12)
             maker.right.equalTo(cardContent).offset(-12)
-            maker.bottom.equalTo(cardContent)
+            maker.bottom.equalTo(cardContent).offset(-12)
         }
     }
 }

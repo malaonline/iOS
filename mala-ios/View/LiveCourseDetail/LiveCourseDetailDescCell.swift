@@ -27,7 +27,7 @@ class LiveCourseDetailDescCell: MalaBaseLiveCourseCell {
     private lazy var courseDescView: UILabel = {
         let label = UILabel(
             text: "",
-            font: UIFont(name: "STHeitiSC-Light", size: 13),
+            font: UIFont(name: "STHeitiSC-Light", size: 14),
             textColor: MalaColor_939393_0
         )
         label.numberOfLines = 0
@@ -56,10 +56,10 @@ class LiveCourseDetailDescCell: MalaBaseLiveCourseCell {
         
         // Autolayout
         courseDescView.snp.makeConstraints { (maker) in
-            maker.top.equalTo(content).offset(18)
+            maker.top.equalTo(content)
             maker.left.equalTo(content)
             maker.right.equalTo(content)
-            maker.bottom.equalTo(content).offset(-18)
+            maker.bottom.equalTo(content)
         }
     }
 }
