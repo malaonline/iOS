@@ -20,15 +20,15 @@ class LiveCourseDetailViewController: BaseViewController, LiveCourseConfirmViewD
     /// 教师详情数据模型
     var model: LiveClassModel = TestFactory.testLiveClass() {
         didSet {
-            // confirm view
+            tableView.model = model
             confirmView.model = model
         }
     }
     
     
     // MARK: - Compontents
-    private lazy var tableView: LiveCourseTableView = {
-        let tableView = LiveCourseTableView(frame: CGRect.zero, style: .grouped)
+    private lazy var tableView: LiveCourseDetailTableView = {
+        let tableView = LiveCourseDetailTableView(frame: CGRect.zero, style: .grouped)
         return tableView
     }()
     private lazy var confirmView: LiveCourseConfirmView = {
@@ -68,16 +68,16 @@ class LiveCourseDetailViewController: BaseViewController, LiveCourseConfirmViewD
         
         // Autolayout
         tableView.snp.makeConstraints { (maker) -> Void in
-            maker.top.equalTo(view.snp.top)
-            maker.left.equalTo(view.snp.left)
-            maker.right.equalTo(view.snp.right)
+            maker.top.equalTo(view)
+            maker.left.equalTo(view)
+            maker.right.equalTo(view)
             maker.bottom.equalTo(confirmView.snp.top)
         }
         confirmView.snp.makeConstraints { (maker) -> Void in
-            maker.bottom.equalTo(view.snp.bottom)
-            maker.left.equalTo(view.snp.left)
-            maker.right.equalTo(view.snp.right)
-            maker.height.equalTo(47)
+            maker.bottom.equalTo(view)
+            maker.left.equalTo(view)
+            maker.right.equalTo(view)
+            maker.height.equalTo(44)
         }
     }
     

@@ -50,8 +50,6 @@ class LiveCourseDetailTableView: UITableView, UITableViewDelegate, UITableViewDa
         backgroundColor = MalaColor_EDEDED_0
         estimatedRowHeight = 400
         separatorStyle = .none
-        bounces = false
-        contentInset = UIEdgeInsets(top: -40, left: 0, bottom: 4, right: 0)
         
         register(LiveCourseDetailClassCell.self, forCellReuseIdentifier: LiveCourseDetailCellReuseId[0]!)
         register(LiveCourseDetailDescCell.self, forCellReuseIdentifier: LiveCourseDetailCellReuseId[1]!)
@@ -64,11 +62,11 @@ class LiveCourseDetailTableView: UITableView, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return section == 0 ? 0 : 4
+        return section == 0 ? 12 : 6
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 4
+        return 6
     }
     
     

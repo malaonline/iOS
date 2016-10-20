@@ -20,10 +20,13 @@ class MalaBaseLiveCourseCell: UITableViewCell {
     
     
     // MARK: - Components
+    /// 卡片布局容器
     lazy var cardContent: UIView = {
         let view = UIView(UIColor.white)
+        view.addShadow(color: MalaColor_D7D7D7_0)
         return view
     }()
+    /// 标题标签
     lazy var titleLabel: UILabel = {
         let label = UILabel(
             text: "title",
@@ -61,6 +64,7 @@ class MalaBaseLiveCourseCell: UITableViewCell {
     private func setupUserInterface() {
         // Style
         selectionStyle = .none
+        contentView.backgroundColor = MalaColor_EDEDED_0
         
         // SubViews
         contentView.addSubview(cardContent)
@@ -70,19 +74,21 @@ class MalaBaseLiveCourseCell: UITableViewCell {
         
         // Autolayout
         cardContent.snp.makeConstraints { (maker) in
-            maker.center.equalTo(contentView)
-            maker.size.equalTo(contentView)
+            maker.top.equalTo(contentView)
+            maker.left.equalTo(contentView).offset(12)
+            maker.right.equalTo(contentView).offset(-12)
+            maker.bottom.equalTo(contentView)
         }
         titleLabel.snp.makeConstraints { (maker) in
-            maker.top.equalTo(content).offset(11.5)
-            maker.left.equalTo(content).offset(12)
+            maker.top.equalTo(cardContent).offset(11.5)
+            maker.left.equalTo(cardContent).offset(12)
             maker.height.equalTo(13)
         }
         line.snp.makeConstraints { (maker) in
-            maker.top.equalTo(content).offset(36)
+            maker.top.equalTo(cardContent).offset(36)
             maker.height.equalTo(MalaScreenOnePixel)
-            maker.left.equalTo(content).offset(6)
-            maker.right.equalTo(content).offset(-6)
+            maker.left.equalTo(cardContent).offset(6)
+            maker.right.equalTo(cardContent).offset(-6)
         }
         content.snp.makeConstraints { (maker) in
             maker.top.equalTo(line.snp.bottom)
