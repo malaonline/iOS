@@ -889,6 +889,9 @@
 		F4FF66D21DB605AE0036E299 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FF66D11DB605AE0036E299 /* RootViewController.swift */; };
 		F4FF66D31DB605AE0036E299 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FF66D11DB605AE0036E299 /* RootViewController.swift */; };
 		F4FF66D41DB605AE0036E299 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FF66D11DB605AE0036E299 /* RootViewController.swift */; };
+		F4FF66D61DB751DC0036E299 /* pulltorefresharrow.png in Resources */ = {isa = PBXBuildFile; fileRef = F4FF66D51DB751DC0036E299 /* pulltorefresharrow.png */; };
+		F4FF66D71DB751DC0036E299 /* pulltorefresharrow.png in Resources */ = {isa = PBXBuildFile; fileRef = F4FF66D51DB751DC0036E299 /* pulltorefresharrow.png */; };
+		F4FF66D81DB751DC0036E299 /* pulltorefresharrow.png in Resources */ = {isa = PBXBuildFile; fileRef = F4FF66D51DB751DC0036E299 /* pulltorefresharrow.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -1200,6 +1203,7 @@
 		F4F29AFF1D0FF001000D1904 /* CourseTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseTableViewCell.swift; sourceTree = "<group>"; };
 		F4F29B051D10FF92000D1904 /* SingleCourseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleCourseView.swift; sourceTree = "<group>"; };
 		F4FF66D11DB605AE0036E299 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
+		F4FF66D51DB751DC0036E299 /* pulltorefresharrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pulltorefresharrow.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1414,6 +1418,7 @@
 			children = (
 				F4C5C2431C75D35400FB833B /* EvaluationFiling */,
 				F4D0D19B1CA2BF0500B25704 /* JPush */,
+				F4FF66D51DB751DC0036E299 /* pulltorefresharrow.png */,
 				F491A8B91C73439F00B5D520 /* refreshImage@3x.gif */,
 				F45E69D31C8A85DC00BD0859 /* refreshImage@2x.gif */,
 				304135881C23AE6400830C43 /* Assets.xcassets */,
@@ -2236,6 +2241,7 @@
 				F4C5C2451C75D35400FB833B /* EvaluationFiling.plist in Resources */,
 				F48F12EA1DAB7A9C006A2F5C /* SKPhotoBrowser.bundle in Resources */,
 				F41CE6321D86457300B57F69 /* GoogleService-Info.plist in Resources */,
+				F4FF66D61DB751DC0036E299 /* pulltorefresharrow.png in Resources */,
 				F491A8BA1C73439F00B5D520 /* refreshImage@3x.gif in Resources */,
 				F45E69D41C8A85DC00BD0859 /* refreshImage@2x.gif in Resources */,
 				F4D0D1A31CA2C02400B25704 /* PushConfig.plist in Resources */,
@@ -2248,6 +2254,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F4FF66D71DB751DC0036E299 /* pulltorefresharrow.png in Resources */,
 				35FF7A491CF8325A000A70EE /* EvaluationFiling2@2x.png in Resources */,
 				35FF7A4A1CF8325A000A70EE /* EvaluationFiling3@2x.png in Resources */,
 				35FF7A4B1CF8325A000A70EE /* EvaluationFiling3@3x.png in Resources */,
@@ -2269,6 +2276,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F4FF66D81DB751DC0036E299 /* pulltorefresharrow.png in Resources */,
 				35FF7B2C1CF83264000A70EE /* EvaluationFiling2@2x.png in Resources */,
 				35FF7B2D1CF83264000A70EE /* EvaluationFiling3@2x.png in Resources */,
 				35FF7B2E1CF83264000A70EE /* EvaluationFiling3@3x.png in Resources */,

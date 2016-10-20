@@ -61,6 +61,12 @@ class FilterResultController: BaseViewController {
         defaultView.imageName = "filter_no_result"
         defaultView.text = "请重新设定筛选条件！"
         
+        // 加载更多
+        tableView.addPushRefresh { [weak self] in
+            self?.loadTeachers(isLoadMore: true)
+            self?.tableView.stopPushRefreshEver()
+        }
+        
         // SubViews
         view.addSubview(filterBar)
         view.addSubview(tableView)

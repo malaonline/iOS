@@ -42,9 +42,7 @@ class LiveCourseViewController: BaseViewController {
         
         println("LiveCourse ViewDidLoad")
         
-        
         setupUserInterface()
-        
         loadLiveClasses()
     }
 
@@ -59,6 +57,12 @@ class LiveCourseViewController: BaseViewController {
         view.backgroundColor = MalaColor_EDEDED_0
         defaultView.imageName = "filter_no_result"
         defaultView.text = "当前城市没有老师！"
+        
+        // 下拉刷新
+        tableView.addPullRefresh { [weak self] in
+            self?.loadLiveClasses()
+            self?.tableView.stopPushRefreshEver()
+        }
         
         // SubViews
         view.addSubview(tableView)
@@ -88,7 +92,7 @@ class LiveCourseViewController: BaseViewController {
         }
         
         ///  获取用户订单列表
-        getLiveClasses(currentPageIndex, failureHandler: { [weak self] (reason, errorMessage) in
+        getLiveClasses(currentPageIndex, failureHandler: { (reason, errorMessage) in
             defaultFailureHandler(reason, errorMessage: errorMessage)
             
             // 错误处理
@@ -108,4 +112,3 @@ class LiveCourseViewController: BaseViewController {
     }
     
 }
-

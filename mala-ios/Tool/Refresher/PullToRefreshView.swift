@@ -23,7 +23,8 @@ open class PullToRefreshView: UIView {
     
     fileprivate var options: PullToRefreshOption
     fileprivate var backgroundView: UIView
-    fileprivate var arrow: ThemeRefreshView
+    fileprivate var arrow: UIImageView
+    fileprivate var refreshIndicator: ThemeRefreshView
     fileprivate var indicator: UIActivityIndicatorView
     fileprivate var scrollViewBounces: Bool = false
     fileprivate var scrollViewInsets: UIEdgeInsets = UIEdgeInsets.zero
@@ -87,9 +88,9 @@ open class PullToRefreshView: UIView {
         self.backgroundView.backgroundColor = self.options.backgroundColor
         self.backgroundView.autoresizingMask = UIViewAutoresizing.flexibleWidth
         
-        self.arrow = ThemeRefreshView(frame: CGRect(x: 0, y: 0, width: 115, height: 50))
+        self.arrow = UIImageView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
         self.arrow.autoresizingMask = [.flexibleLeftMargin, .flexibleRightMargin]
-        // self.arrow.image = UIImage(named: PullToRefreshConst.imageName, in: Bundle(for: type(of: self)), compatibleWith: nil)
+        self.arrow.image = UIImage(named: PullToRefreshConst.imageName, in: Bundle(for: type(of: self)), compatibleWith: nil)
         
         self.indicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
         self.indicator.bounds = self.arrow.bounds
@@ -97,6 +98,9 @@ open class PullToRefreshView: UIView {
         self.indicator.hidesWhenStopped = true
         self.indicator.color = options.indicatorColor
         self.pull = down
+        
+        self.refreshIndicator = ThemeRefreshView(frame: CGRect(x: 0, y: 0, width: 115, height: 50))
+        
         
         super.init(frame: frame)
         self.addSubview(indicator)
@@ -209,9 +213,9 @@ open class PullToRefreshView: UIView {
     // MARK: private
     
     fileprivate func startAnimating() {
-        self.arrow.animating = true
-        // self.indicator.startAnimating()
-        // self.arrow.isHidden = true
+        self.refreshIndicator.animating = true
+        self.indicator.startAnimating()
+        self.arrow.isHidden = true
         guard let scrollView = superview as? UIScrollView else {
             return
         }
@@ -243,9 +247,9 @@ open class PullToRefreshView: UIView {
     }
     
     fileprivate func stopAnimating() {
-        self.arrow.animating = false
-        // self.indicator.stopAnimating()
-        // self.arrow.isHidden = false
+        self.refreshIndicator.animating = false
+        self.indicator.stopAnimating()
+        self.arrow.isHidden = false
         guard let scrollView = superview as? UIScrollView else {
             return
         }
@@ -262,19 +266,19 @@ open class PullToRefreshView: UIView {
     }
     
     fileprivate func arrowRotation() {
-//        UIView.animate(withDuration: 0.2, delay: 0, options:[], animations: {
-//            // -0.0000001 for the rotation direction control
-//            self.arrow.transform = CGAffineTransform(rotationAngle: CGFloat(M_PI-0.0000001))
-//        }, completion:nil)
-
-        arrow.isCanRefresh = true
+        UIView.animate(withDuration: 0.2, delay: 0, options:[], animations: {
+            // -0.0000001 for the rotation direction control
+            self.arrow.transform = CGAffineTransform(rotationAngle: CGFloat(M_PI-0.0000001))
+        }, completion:nil)
+        
+        refreshIndicator.isCanRefresh = true
     }
     
     fileprivate func arrowRotationBack() {
-//        UIView.animate(withDuration: 0.2, animations: {
-//            self.arrow.transform = CGAffineTransform.identity
-//        })
-
-        arrow.isCanRefresh = false
+        UIView.animate(withDuration: 0.2, animations: {
+            self.arrow.transform = CGAffineTransform.identity
+        })
+        
+        refreshIndicator.isCanRefresh = false
     }
 }

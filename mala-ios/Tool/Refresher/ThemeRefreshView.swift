@@ -24,13 +24,17 @@ class ThemeRefreshView: UIView {
     /// 可刷新标记
     var isCanRefresh = false {
         didSet {
-            changeTitle()
+            if !isHidden {
+                changeTitle()
+            }
         }
     }
     /// 动画标记
     var animating = false {
         didSet {
-            setAnimating()
+            if !isHidden {
+                setAnimating()
+            }
         }
     }
     

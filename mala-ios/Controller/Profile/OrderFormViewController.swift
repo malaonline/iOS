@@ -13,11 +13,6 @@ private let OrderFormViewLoadmoreCellReusedId = "OrderFormViewLoadmoreCellReused
 
 class OrderFormViewController: BaseTableViewController {
     
-    private enum Section: Int {
-        case teacher
-        case loadMore
-    }
-    
     // MARK: - Property
     /// 优惠券模型数组
     var models: [OrderForm] = [] {
@@ -90,7 +85,12 @@ class OrderFormViewController: BaseTableViewController {
         refreshControl = refresher
         
         tableView.register(OrderFormViewCell.self, forCellReuseIdentifier: OrderFormViewCellReuseId)
-        tableView.register(ThemeReloadView.self, forCellReuseIdentifier: OrderFormViewLoadmoreCellReusedId)
+        
+        // 加载更多
+        tableView.addPushRefresh { [weak self] in
+            self?.loadOrderForm(isLoadMore: true)
+            self?.tableView.stopPushRefreshEver()
+        }
     }
     
     ///  获取用户订单列表
@@ -248,31 +248,6 @@ class OrderFormViewController: BaseTableViewController {
         return MalaLayout_CardCellWidth*0.6
     }
     
-    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        
-        switch (indexPath as NSIndexPath).section {
-            
-        case Section.teacher.rawValue:
-            break
-            
-        case Section.loadMore.rawValue:
-            if let cell = cell as? ThemeReloadView {
-                println("load more orderForm")
-                
-                if !cell.activityIndicator.isAnimating {
-                    cell.activityIndicator.startAnimating()
-                }
-                
-                loadOrderForm(isLoadMore: true, finish: { 
-                    cell.activityIndicator.stopAnimating()
-                })
-            }
-            
-        default:
-            break
-        }
-    }
-    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let viewController = OrderFormInfoViewController()
         let model = models[(indexPath as NSIndexPath).row]
@@ -282,46 +257,15 @@ class OrderFormViewController: BaseTableViewController {
     
     
     // MARK: - DataSource
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
-    }
-    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        switch section {
-            
-        case Section.teacher.rawValue:
-            return models.count 
-            
-        case Section.loadMore.rawValue:
-            if allOrderFormCount == models.count {
-                return 0
-            }else {
-                return models.isEmpty ? 0 : 1
-            }
-            
-        default:
-            return 0
-        }
+        return models.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        switch (indexPath as NSIndexPath).section {
-            
-        case Section.teacher.rawValue:
-            let cell = tableView.dequeueReusableCell(withIdentifier: OrderFormViewCellReuseId, for: indexPath) as! OrderFormViewCell
-            cell.selectionStyle = .none
-            cell.model = self.models[(indexPath as NSIndexPath).row]
-            return cell
-            
-        case Section.loadMore.rawValue:
-            let cell = tableView.dequeueReusableCell(withIdentifier: OrderFormViewLoadmoreCellReusedId, for: indexPath) as! ThemeReloadView
-            return cell
-            
-        default:
-            return UITableViewCell()
-        }
+        let cell = tableView.dequeueReusableCell(withIdentifier: OrderFormViewCellReuseId, for: indexPath) as! OrderFormViewCell
+        cell.selectionStyle = .none
+        cell.model = self.models[(indexPath as NSIndexPath).row]
+        return cell
     }
     
     

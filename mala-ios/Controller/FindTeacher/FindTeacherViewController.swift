@@ -64,9 +64,14 @@ class FindTeacherViewController: BaseViewController {
         defaultView.imageName = "filter_no_result"
         defaultView.text = "当前城市没有老师！"
         
-        // 下拉刷新组件
+        // 下拉刷新
         tableView.addPullRefresh{ [weak self] in
             self?.loadTeachers()
+        }
+        // 加载更多
+        tableView.addPushRefresh { [weak self] in
+            self?.loadTeachers(isLoadMore: true)
+            self?.tableView.stopPushRefreshEver()
         }
         
         // SubViews

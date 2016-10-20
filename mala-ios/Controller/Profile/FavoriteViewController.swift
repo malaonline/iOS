@@ -9,15 +9,9 @@
 import UIKit
 
 private let FavoriteViewCellReuseId = "FavoriteViewCellReuseId"
-private let FavoriteViewLoadmoreCellReusedId = "FavoriteViewLoadmoreCellReusedId"
 
 class FavoriteViewController: BaseTableViewController {
 
-    private enum Section: Int {
-        case teacher
-        case loadMore
-    }
-    
     // MARK: - Property
     /// 收藏老师模型列表
     var models: [TeacherModel] = [] {
@@ -78,7 +72,10 @@ class FavoriteViewController: BaseTableViewController {
         refreshControl = refresher
         
         tableView.register(TeacherTableViewCell.self, forCellReuseIdentifier: FavoriteViewCellReuseId)
-        tableView.register(ThemeReloadView.self, forCellReuseIdentifier: FavoriteViewLoadmoreCellReusedId)
+        tableView.addPushRefresh { [weak self] in
+            self?.loadFavoriteTeachers(isLoadMore: true)
+            self?.tableView.stopPushRefreshEver()
+        }
     }
     
     
@@ -137,31 +134,6 @@ class FavoriteViewController: BaseTableViewController {
     
     
     // MARK: - Delegate
-    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        
-        switch (indexPath as NSIndexPath).section {
-            
-        case Section.teacher.rawValue:
-            break
-            
-        case Section.loadMore.rawValue:
-            if let cell = cell as? ThemeReloadView {
-                println("load more orderForm")
-                
-                if !cell.activityIndicator.isAnimating {
-                    cell.activityIndicator.startAnimating()
-                }
-                
-                loadFavoriteTeachers(isLoadMore: true, finish: {
-                    cell.activityIndicator.stopAnimating()
-                })
-            }
-            
-        default:
-            break
-        }
-    }
-    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let teacherId = (tableView.cellForRow(at: indexPath) as! TeacherTableViewCell).model!.id
         let viewController = TeacherDetailsController()
@@ -172,45 +144,14 @@ class FavoriteViewController: BaseTableViewController {
     
     
     // MARK: - DataSource
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
-    }
-    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        switch section {
-            
-        case Section.teacher.rawValue:
-            return models.count
-            
-        case Section.loadMore.rawValue:
-            if allOrderFormCount == models.count {
-                return 0
-            }else {
-                return models.isEmpty ? 0 : 1
-            }
-            
-        default:
-            return 0
-        }
+        return models.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        switch (indexPath as NSIndexPath).section {
-            
-        case Section.teacher.rawValue:
-            let cell = tableView.dequeueReusableCell(withIdentifier: FavoriteViewCellReuseId, for: indexPath) as! TeacherTableViewCell
-            cell.model = models[(indexPath as NSIndexPath).row]
-            return cell
-            
-        case Section.loadMore.rawValue:
-            let cell = tableView.dequeueReusableCell(withIdentifier: FavoriteViewLoadmoreCellReusedId, for: indexPath) as! ThemeReloadView
-            return cell
-            
-        default:
-            return UITableViewCell()
-        }
+        let cell = tableView.dequeueReusableCell(withIdentifier: FavoriteViewCellReuseId, for: indexPath) as! TeacherTableViewCell
+        cell.model = models[(indexPath as NSIndexPath).row]
+        return cell
     }
     
 }
