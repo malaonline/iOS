@@ -34,7 +34,6 @@ class CourseChoosingServiceTableView: UITableView, UITableViewDelegate, UITableV
         bounces = false
         separatorColor = MalaColor_E5E5E5_0
         register(CourseChoosingServiceTableViewCell.self, forCellReuseIdentifier: CourseChoosingServiceTableViewCellReuseId)
-        
     }
     
     
@@ -50,7 +49,7 @@ class CourseChoosingServiceTableView: UITableView, UITableViewDelegate, UITableV
             (viewController as? CouponViewController)?.justShow = false
             (viewController as? CouponViewController)?.onlyValid = true
             viewController.hidesBottomBarWhenPushed = true
-            self.viewController()?.navigationController?.pushViewController(viewController, animated: true)
+            self.viewController?.navigationController?.pushViewController(viewController, animated: true)
         }
     }
     
