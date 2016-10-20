@@ -52,12 +52,12 @@ class LiveCourseTableView: UITableView, UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let teacherId = (tableView.cellForRow(at: indexPath) as? LiveCourseTableViewCell)?.model?.id else {
+        guard let classModel = (tableView.cellForRow(at: indexPath) as? LiveCourseTableViewCell)?.model else {
             return
         }
         
-        let viewController = TeacherDetailsController()
-        viewController.teacherID = teacherId
+        let viewController = LiveCourseDetailViewController()
+        viewController.model = classModel
         viewController.hidesBottomBarWhenPushed = true
         controller?.navigationController?.pushViewController(viewController, animated: true)
     }
