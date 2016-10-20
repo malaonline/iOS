@@ -79,7 +79,7 @@ class LearningReportCell: UITableViewCell {
     }()
     /// 中央垂直分割线
     private lazy var separator: UIView = {
-        let view = UIView.separator(MalaColor_E5E5E5_0)
+        let view = UIView(MalaColor_E5E5E5_0)
         return view
     }()
     /// 答题数标签

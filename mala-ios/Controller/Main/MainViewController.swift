@@ -15,7 +15,7 @@ class MainViewController: UITabBarController, UITabBarControllerDelegate {
     /// 首页
     private lazy var findTeacherViewController: MainNavigationController = {
         let naviVC = self.getNaviController(
-            FindTeacherViewController(),
+            RootViewController(),
             title: MalaCommonString_FindTeacher,
             imageName: "search_normal"
         )

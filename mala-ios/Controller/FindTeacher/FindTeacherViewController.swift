@@ -25,15 +25,7 @@ class FindTeacherViewController: BaseViewController {
     private lazy var tableView: TeacherTableView = {
         let tableView = TeacherTableView(frame: self.view.frame, style: .plain)
         tableView.controller = self
-        // 底部Tabbar留白
-        tableView.contentInset = UIEdgeInsets(top: 6, left: 0, bottom: 48 + 6, right: 0)
         return tableView
-    }()
-    /// 上课地点选择按钮
-    private lazy var regionPickButton: RegionPicker = {
-        let picker = RegionPicker()
-        picker.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(FindTeacherViewController.regionsPickButtonDidTap)))
-        return picker
     }()
     
     
@@ -41,14 +33,11 @@ class FindTeacherViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        regionsPickButtonDidTap(true)
-        
-        setupNotification()
         setupUserInterface()
-        getCurrentLocation()
+        setupNotification()
         
         // 开启下拉刷新
-        self.tableView.startPullRefresh() //loadTeachers()
+        tableView.startPullRefresh() //loadTeachers()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -68,6 +57,28 @@ class FindTeacherViewController: BaseViewController {
     
     
     // MARK: - Private Method
+    private func setupUserInterface() {
+        // Style
+        defaultView.imageName = "filter_no_result"
+        defaultView.text = "当前城市没有老师！"
+        
+        // 下拉刷新
+        tableView.addPullRefresh{ [weak self] in
+            self?.loadTeachers()
+        }
+        
+        // SubViews
+        view.addSubview(tableView)
+        
+        // Autolayout
+        tableView.snp.makeConstraints { (maker) -> Void in
+            maker.top.equalTo(view.snp.top)
+            maker.left.equalTo(view.snp.left)
+            maker.bottom.equalTo(view.snp.bottom)
+            maker.right.equalTo(view.snp.right)
+        }
+    }
+    
     private func setupNotification() {
         NotificationCenter.default.addObserver(
             forName: MalaNotification_CommitCondition,
@@ -78,60 +89,12 @@ class FindTeacherViewController: BaseViewController {
                     self?.resolveFilterCondition()
                 }
         }
-    }
-    
-    private func setupUserInterface() {
-        // Style
-        defaultView.imageName = "filter_no_result"
-        defaultView.text = "当前城市没有老师！"
-        
-        // titleView
-        navigationItem.titleView = regionPickButton
-        
-        // 下拉刷新组件
-        
-        self.tableView.addPullRefreshHandler { [weak self] in
-            self?.loadTeachers()
+        NotificationCenter.default.addObserver(
+            forName: MalaNotification_LoadTeachers,
+            object: nil,
+            queue: nil) { [weak self] (notification) in
+                self?.loadTeachers()
         }
-        
-        // SubViews
-        self.view.addSubview(tableView)
-        
-        // Autolayout
-        tableView.snp.makeConstraints { (maker) -> Void in
-            maker.top.equalTo(view.snp.top)
-            maker.left.equalTo(view.snp.left)
-            maker.bottom.equalTo(view.snp.bottom)
-            maker.right.equalTo(view.snp.right)
-        }
-        
-        // 设置BarButtomItem间隔
-        let spacer = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
-        spacer.width = -12
-        
-        // leftBarButtonItem
-        navigationItem.leftBarButtonItems = []
-        
-        // rightBarButtonItem
-        let rightBarButtonItem = UIBarButtonItem(customView:
-            UIButton(
-                imageName: "filter_normal",
-                highlightImageName: "filter_press",
-                target: self,
-                action: #selector(FindTeacherViewController.filterButtonDidTap)
-            )
-        )
-        navigationItem.rightBarButtonItems = [spacer, rightBarButtonItem]
-    }
-    
-    ///  获取当前地理位置信息
-    private func getCurrentLocation() {
-        proposeToAccess(.location(.whenInUse), agreed: {
-            
-            MalaLocationService.turnOn()
-            }, rejected: {
-                self.alertCanNotAccessLocation()
-        })
     }
     
     func loadTeachers(_ filters: [String: AnyObject]? = nil, isLoadMore: Bool = false, finish: (()->())? = nil) {
@@ -201,52 +164,9 @@ class FindTeacherViewController: BaseViewController {
         let viewController = FilterResultController()
         navigationController?.pushViewController(viewController, animated: true)
     }
-    
-    
-    // MARK: - Event Response
-    @objc private func regionsPickButtonDidTap(_ isStartup: Bool) {
-        
-        if let _ = MalaUserDefaults.currentSchool.value {
-            
-            // 启动时如果已选择过地点，则不显示地点选择面板
-            if isStartup {
-                return
-            }
-            
-            // 地点选择器
-            let viewController = RegionViewController()
-            viewController.didSelectAction = { [weak self] in
-                self?.loadTeachers()
-                self?.regionPickButton.schoolName = MalaCurrentSchool?.name
-            }
-            
-            navigationController?.present(
-                UINavigationController(rootViewController: viewController),
-                animated: true,
-                completion: nil
-            )
-        }else {
-            // 初次启动时
-            let viewController = CityTableViewController()
-            viewController.didSelectAction = { [weak self] in
-                self?.loadTeachers()
-                self?.regionPickButton.schoolName = MalaCurrentSchool?.name
-            }
-            
-            navigationController?.present(
-                UINavigationController(rootViewController: viewController),
-                animated: true,
-                completion: nil
-            )
-        }
-    }
 
-    @objc private func filterButtonDidTap() {
-        TeacherFilterPopupWindow(contentView: FilterView(frame: CGRect.zero)).show()
-    }
-    
-    
     deinit {
         NotificationCenter.default.removeObserver(self, name: MalaNotification_CommitCondition, object: nil)
+        NotificationCenter.default.removeObserver(self, name: MalaNotification_LoadTeachers, object: nil)
     }
 }

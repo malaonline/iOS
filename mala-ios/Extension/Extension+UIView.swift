@@ -10,18 +10,22 @@ import UIKit
 
 extension UIView {
 
-    ///  convenience to create a separator line view
+    ///  convenience to create a view with background color
     ///
     ///  - returns: UIView
-    class func separator(_ color: UIColor = UIColor.black) -> UIView {
-        let separatorLine = UIView()
-        separatorLine.backgroundColor = color
-        return separatorLine
+    convenience init(_ backgroundColor: UIColor, cornerRadius: CGFloat? = nil) {
+        self.init()
+        self.backgroundColor = backgroundColor
+        
+        if let cornerRadius = cornerRadius {
+            self.layer.cornerRadius = cornerRadius
+            self.layer.masksToBounds = true
+        }
     }
     
-    class func line(_ color: UIColor = UIColor.black) -> UIView {
-        let line = UIView()
-        line.backgroundColor = color
-        return line
+    func addShadow(offset: CGFloat = MalaScreenOnePixel, color: UIColor = UIColor.black, opacity: Float = 1) {
+        self.layer.shadowOffset = CGSize(width: 0, height: offset)
+        self.layer.shadowColor = color.cgColor
+        self.layer.shadowOpacity = opacity
     }
 }

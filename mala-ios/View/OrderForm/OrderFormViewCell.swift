@@ -22,9 +22,7 @@ class OrderFormViewCell: UITableViewCell {
             amountString.text = model?.amount.priceCNY
             
             // 老师头像
-            if let url = URL(string: (model?.avatarURL ?? "")) {
-                avatarView.ma_setImage(url, placeholderImage: UIImage(named: "profileAvatar_placeholder"))
-            }
+            avatarView.setImage(withURL: model?.avatarURL, placeholderImage: "profileAvatar_placeholder")
             
             // 设置订单状态
             if let status = model?.status, let orderStatus = MalaOrderStatus(rawValue: status) {
@@ -146,7 +144,7 @@ class OrderFormViewCell: UITableViewCell {
     }()
     /// 中部分割线
     private lazy var separatorLine: UIView = {
-        let view = UIView.line(MalaColor_DADADA_0)
+        let view = UIView(MalaColor_DADADA_0)
         return view
     }()
     

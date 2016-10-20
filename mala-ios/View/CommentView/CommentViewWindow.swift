@@ -15,7 +15,7 @@ open class CommentViewWindow: UIViewController, UITextViewDelegate {
         didSet {
             println("评论视图 - 放置模型: \(model)")
             
-            avatarView.ma_setImage(model.teacher?.avatar)
+            avatarView.setImage(withURL: model.teacher?.avatar)
             teacherNameLabel.text = model.teacher?.name
             subjectLabel.text = model.subject
             textView.text = model.comment?.content
@@ -58,7 +58,7 @@ open class CommentViewWindow: UIViewController, UITextViewDelegate {
     // MARK: - Components
     /// 标题视图
     private lazy var titleView: UILabel = {
-        let label = UILabel(title: "评价")
+        let label = UILabel(text: "评价")
         label.textColor = MalaColor_8FBCDD_0
         label.font = UIFont.systemFont(ofSize: 16)
         label.textAlignment = .center

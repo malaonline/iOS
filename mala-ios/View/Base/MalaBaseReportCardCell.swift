@@ -22,15 +22,13 @@ class MalaBaseReportCardCell: MalaBaseCardCell {
     }()
     /// 分割线
     lazy var separatorLine: UIView = {
-        let view = UIView.separator(MalaColor_EDEDED_0)
+        let view = UIView(MalaColor_EDEDED_0)
         return view
     }()
     /// 描述视图
     lazy var descView: UIView = {
-        let view = UIView.separator(MalaColor_F8FAFD_0)
-        view.layer.shadowOffset = CGSize(width: 0, height: MalaScreenOnePixel)
-        view.layer.shadowColor = MalaColor_D7D7D7_0.cgColor
-        view.layer.shadowOpacity = 1
+        let view = UIView(MalaColor_F8FAFD_0)
+        view.addShadow(color: MalaColor_D7D7D7_0)
         return view
     }()
     /// 曲别针图标

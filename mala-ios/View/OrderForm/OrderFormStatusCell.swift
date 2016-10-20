@@ -16,8 +16,8 @@ class OrderFormStatusCell: UITableViewCell {
         didSet {
             /// 老师头像
             
-            if let urlString = model?.avatarURL, let url = URL(string: (urlString)) {
-                self.avatarView.ma_setImage(url, placeholderImage: UIImage(named: "profileAvatar_placeholder"))
+            if let url = model?.avatarURL {
+                self.avatarView.setImage(withURL: url, placeholderImage: "profileAvatar_placeholder")
             }
             
             /// 订单状态
@@ -73,7 +73,7 @@ class OrderFormStatusCell: UITableViewCell {
     }()
     /// 分割线
     private lazy var separatorLine: UIView = {
-        let view = UIView.separator(MalaColor_E5E5E5_0)
+        let view = UIView(MalaColor_E5E5E5_0)
         return view
     }()
     /// 老师姓名图标

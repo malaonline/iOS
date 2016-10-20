@@ -21,7 +21,7 @@ class CommentViewCell: UITableViewCell {
             schoolLabel.text = model?.school
             
             // 老师头像
-            avatarView.ma_setImage(model?.teacher?.avatar, placeholderImage: UIImage(named: "profileAvatar_placeholder"))
+            avatarView.setImage(withURL: model?.teacher?.avatar, placeholderImage: "profileAvatar_placeholder")
             // 课程评价状态
             if model?.comment != nil {
                 // 已评价
@@ -41,10 +41,8 @@ class CommentViewCell: UITableViewCell {
     // MARK: - Components
     /// 主要布局容器
     private lazy var content: UIView = {
-        let view = UIView.separator(UIColor.white)
-        view.layer.shadowOffset = CGSize(width: 0, height: MalaScreenOnePixel)
-        view.layer.shadowColor = MalaColor_D7D7D7_0.cgColor
-        view.layer.shadowOpacity = 1
+        let view = UIView(UIColor.white)
+        view.addShadow(color: MalaColor_D7D7D7_0)
         return view
     }()
     /// 课程信息布局容器
@@ -140,7 +138,7 @@ class CommentViewCell: UITableViewCell {
     }()
     /// 中部分割线
     private lazy var separatorLine: UIView = {
-        let view = UIView.line(MalaColor_DADADA_0)
+        let view = UIView(MalaColor_DADADA_0)
         return view
     }()
     /// 评分面板

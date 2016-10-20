@@ -5,7 +5,6 @@ osx_image: xcode8
 xcode_workspace: mala-ios.xcworkspace
 xcode_scheme: parent-dev
 before_install:
-# - pod --version
 # - brew --version
 # - xctool -version
 # - xcodebuild -version -sdk
@@ -15,7 +14,8 @@ before_install:
 install:
 - sudo gem install cocoapods --pre
 - pod repo remove master
-- travis_wait pod setup
+- travis_wait 30 pod setup
+- pod --version
 - pod install
 before_script:
 - openssl aes-256-cbc -k $ENCRYPTION_SECRET -in scripts/profile/mala_dev_AdHoc.mobileprovision.enc -d -a -out scripts/profile/Mala_DevAdHoc.mobileprovision

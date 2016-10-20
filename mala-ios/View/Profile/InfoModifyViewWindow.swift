@@ -81,7 +81,7 @@ open class InfoModifyViewWindow: UIViewController, UITextViewDelegate {
     }()
     /// 姓名底部装饰线
     private lazy var nameLine: UIView = {
-        let view = UIView.separator(MalaColor_82B4D9_0)
+        let view = UIView(MalaColor_82B4D9_0)
         return view
     }()
     /// 提示文字标签
