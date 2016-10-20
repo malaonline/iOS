@@ -56,7 +56,7 @@ class LiveCourseDetailDescCell: MalaBaseLiveCourseCell {
         
         // Autolayout
         courseDescView.snp.makeConstraints { (maker) in
-            maker.top.equalTo(content).offset(2)
+            maker.top.equalTo(content).offset(18)
             maker.left.equalTo(content)
             maker.right.equalTo(content)
             maker.bottom.equalTo(content).offset(-18)
