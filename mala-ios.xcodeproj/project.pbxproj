@@ -128,7 +128,6 @@
 		35FDCEBF1CAD0A2300A25FE8 /* FilterResultController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46065111C97B168004056B1 /* FilterResultController.swift */; };
 		35FDCEC01CAD0A2300A25FE8 /* TeacherDetailsHighScoreTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303BCFEA1C43885700B37DD9 /* TeacherDetailsHighScoreTableView.swift */; };
 		35FDCEC21CAD0A2300A25FE8 /* UIViewController+KMNavigationBarTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = F4402DA61C5768F600E7D3DB /* UIViewController+KMNavigationBarTransition.m */; };
-		35FDCEC31CAD0A2300A25FE8 /* ClassScheduleViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B58F771C990247009B5B8D /* ClassScheduleViewCell.swift */; };
 		35FDCEC41CAD0A2300A25FE8 /* ProfileViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F455EB2F1C91981B00BAEC78 /* ProfileViewCell.swift */; };
 		35FDCEC51CAD0A2300A25FE8 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F460652C1C97B1C8004056B1 /* AboutViewController.swift */; };
 		35FDCEC61CAD0A2300A25FE8 /* KMSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = F4402DA21C5768F600E7D3DB /* KMSwizzle.m */; };
@@ -304,7 +303,6 @@
 		35FF7ACA1CF8325A000A70EE /* FilterResultController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46065111C97B168004056B1 /* FilterResultController.swift */; };
 		35FF7ACB1CF8325A000A70EE /* ThemeTimeLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48BBAE51CE5C2AC00774297 /* ThemeTimeLine.swift */; };
 		35FF7ACC1CF8325A000A70EE /* TeacherDetailsHighScoreTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303BCFEA1C43885700B37DD9 /* TeacherDetailsHighScoreTableView.swift */; };
-		35FF7ACE1CF8325A000A70EE /* ClassScheduleViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B58F771C990247009B5B8D /* ClassScheduleViewCell.swift */; };
 		35FF7ACF1CF8325A000A70EE /* ProfileViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F455EB2F1C91981B00BAEC78 /* ProfileViewCell.swift */; };
 		35FF7AD01CF8325A000A70EE /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F460652C1C97B1C8004056B1 /* AboutViewController.swift */; };
 		35FF7AD11CF8325A000A70EE /* TeacherDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 307AB89C1C33CDD200D8397F /* TeacherDetailModel.swift */; };
@@ -473,7 +471,6 @@
 		35FF7BAD1CF83264000A70EE /* FilterResultController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46065111C97B168004056B1 /* FilterResultController.swift */; };
 		35FF7BAE1CF83264000A70EE /* ThemeTimeLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48BBAE51CE5C2AC00774297 /* ThemeTimeLine.swift */; };
 		35FF7BAF1CF83264000A70EE /* TeacherDetailsHighScoreTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303BCFEA1C43885700B37DD9 /* TeacherDetailsHighScoreTableView.swift */; };
-		35FF7BB11CF83264000A70EE /* ClassScheduleViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B58F771C990247009B5B8D /* ClassScheduleViewCell.swift */; };
 		35FF7BB21CF83264000A70EE /* ProfileViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F455EB2F1C91981B00BAEC78 /* ProfileViewCell.swift */; };
 		35FF7BB31CF83264000A70EE /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F460652C1C97B1C8004056B1 /* AboutViewController.swift */; };
 		35FF7BB41CF83264000A70EE /* TeacherDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 307AB89C1C33CDD200D8397F /* TeacherDetailModel.swift */; };
@@ -846,7 +843,6 @@
 		F4B3C6881CFD486800C1B423 /* SingleTopicScoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B3C6861CFD486800C1B423 /* SingleTopicScoreData.swift */; };
 		F4B3C6891CFD486800C1B423 /* SingleTopicScoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B3C6861CFD486800C1B423 /* SingleTopicScoreData.swift */; };
 		F4B58F751C9822ED009B5B8D /* AboutTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B58F741C9822ED009B5B8D /* AboutTitleView.swift */; };
-		F4B58F791C990247009B5B8D /* ClassScheduleViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B58F771C990247009B5B8D /* ClassScheduleViewCell.swift */; };
 		F4BD4FCE1C74559F00488613 /* AchievementModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BD4FCD1C74559F00488613 /* AchievementModel.swift */; };
 		F4BD4FD01C745C0A00488613 /* ThemeRefreshView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BD4FCF1C745C0900488613 /* ThemeRefreshView.swift */; };
 		F4C5C2371C757EF600FB833B /* CourseChoosingServiceTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C5C2361C757EF600FB833B /* CourseChoosingServiceTableView.swift */; };
@@ -1190,7 +1186,6 @@
 		F4B3C6821CFD450600C1B423 /* SingleAbilityData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleAbilityData.swift; sourceTree = "<group>"; };
 		F4B3C6861CFD486800C1B423 /* SingleTopicScoreData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleTopicScoreData.swift; sourceTree = "<group>"; };
 		F4B58F741C9822ED009B5B8D /* AboutTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutTitleView.swift; sourceTree = "<group>"; };
-		F4B58F771C990247009B5B8D /* ClassScheduleViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassScheduleViewCell.swift; sourceTree = "<group>"; };
 		F4BD4FCD1C74559F00488613 /* AchievementModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AchievementModel.swift; sourceTree = "<group>"; };
 		F4BD4FCF1C745C0900488613 /* ThemeRefreshView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeRefreshView.swift; sourceTree = "<group>"; };
 		F4C5C2361C757EF600FB833B /* CourseChoosingServiceTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseChoosingServiceTableView.swift; sourceTree = "<group>"; };
@@ -1466,7 +1461,6 @@
 				F452CD551CDC5823001A30E8 /* OrderForm */,
 				F4B58F7B1C990274009B5B8D /* Base */,
 				F4D0D17F1CA14F7900B25704 /* CommentView */,
-				F4B58F761C990247009B5B8D /* ClassScheduleView */,
 				F414FFEC1C916ACE0038D7A7 /* Profile */,
 				F40B53C61C83F96300C20037 /* PaymentView */,
 				F4C5C23A1C75CD4D00FB833B /* OtherService */,
@@ -2003,14 +1997,6 @@
 				F4B3C6861CFD486800C1B423 /* SingleTopicScoreData.swift */,
 			);
 			path = StudyReport;
-			sourceTree = "<group>";
-		};
-		F4B58F761C990247009B5B8D /* ClassScheduleView */ = {
-			isa = PBXGroup;
-			children = (
-				F4B58F771C990247009B5B8D /* ClassScheduleViewCell.swift */,
-			);
-			path = ClassScheduleView;
 			sourceTree = "<group>";
 		};
 		F4B58F7B1C990274009B5B8D /* Base */ = {
@@ -2725,7 +2711,6 @@
 				F48BBAE61CE5C2AC00774297 /* ThemeTimeLine.swift in Sources */,
 				303BCFEC1C43885700B37DD9 /* TeacherDetailsHighScoreTableView.swift in Sources */,
 				F48F12DB1DAB7A9C006A2F5C /* SKIndicatorView.swift in Sources */,
-				F4B58F791C990247009B5B8D /* ClassScheduleViewCell.swift in Sources */,
 				F455EB301C91981B00BAEC78 /* ProfileViewCell.swift in Sources */,
 				F460652D1C97B1C8004056B1 /* AboutViewController.swift in Sources */,
 				307AB8A21C33CDD200D8397F /* TeacherDetailModel.swift in Sources */,
@@ -2956,7 +2941,6 @@
 				35FF7ACB1CF8325A000A70EE /* ThemeTimeLine.swift in Sources */,
 				35FF7ACC1CF8325A000A70EE /* TeacherDetailsHighScoreTableView.swift in Sources */,
 				F48F12DC1DAB7A9C006A2F5C /* SKIndicatorView.swift in Sources */,
-				35FF7ACE1CF8325A000A70EE /* ClassScheduleViewCell.swift in Sources */,
 				35FF7ACF1CF8325A000A70EE /* ProfileViewCell.swift in Sources */,
 				35FF7AD01CF8325A000A70EE /* AboutViewController.swift in Sources */,
 				35FF7AD11CF8325A000A70EE /* TeacherDetailModel.swift in Sources */,
@@ -3187,7 +3171,6 @@
 				35FF7BAE1CF83264000A70EE /* ThemeTimeLine.swift in Sources */,
 				35FF7BAF1CF83264000A70EE /* TeacherDetailsHighScoreTableView.swift in Sources */,
 				F48F12DD1DAB7A9C006A2F5C /* SKIndicatorView.swift in Sources */,
-				35FF7BB11CF83264000A70EE /* ClassScheduleViewCell.swift in Sources */,
 				35FF7BB21CF83264000A70EE /* ProfileViewCell.swift in Sources */,
 				35FF7BB31CF83264000A70EE /* AboutViewController.swift in Sources */,
 				35FF7BB41CF83264000A70EE /* TeacherDetailModel.swift in Sources */,
@@ -3356,7 +3339,6 @@
 				35FDCEBF1CAD0A2300A25FE8 /* FilterResultController.swift in Sources */,
 				35FDCEC01CAD0A2300A25FE8 /* TeacherDetailsHighScoreTableView.swift in Sources */,
 				35FDCEC21CAD0A2300A25FE8 /* UIViewController+KMNavigationBarTransition.m in Sources */,
-				35FDCEC31CAD0A2300A25FE8 /* ClassScheduleViewCell.swift in Sources */,
 				35FDCEC41CAD0A2300A25FE8 /* ProfileViewCell.swift in Sources */,
 				35FDCEC51CAD0A2300A25FE8 /* AboutViewController.swift in Sources */,
 				35FDCEC61CAD0A2300A25FE8 /* KMSwizzle.m in Sources */,
