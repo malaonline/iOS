@@ -72,10 +72,10 @@ class FindTeacherViewController: BaseViewController {
         
         // Autolayout
         tableView.snp.makeConstraints { (maker) -> Void in
-            maker.top.equalTo(view.snp.top)
-            maker.left.equalTo(view.snp.left)
-            maker.bottom.equalTo(view.snp.bottom)
-            maker.right.equalTo(view.snp.right)
+            maker.top.equalTo(view)
+            maker.left.equalTo(view)
+            maker.bottom.equalTo(view)
+            maker.right.equalTo(view)
         }
     }
     

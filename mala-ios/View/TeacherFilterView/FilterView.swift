@@ -188,24 +188,24 @@ class FilterView: UIScrollView, UIScrollViewDelegate {
         
         // Autolayout
         gradeView.snp.makeConstraints { (maker) -> Void in
-            maker.top.equalTo(self.snp.top)
-            maker.left.equalTo(self.snp.left)
-            maker.width.equalTo(self.snp.width)
-            maker.height.equalTo(self.snp.height)
+            maker.top.equalTo(self)
+            maker.left.equalTo(self)
+            maker.width.equalTo(self)
+            maker.height.equalTo(self)
         }
         subjectView.snp.makeConstraints { (maker) -> Void in
-            maker.top.equalTo(self.snp.top)
-            maker.left.equalTo(self.snp.left).offset(MalaLayout_FilterContentWidth)
-            maker.width.equalTo(self.snp.width)
-            maker.height.equalTo(self.snp.height)
+            maker.top.equalTo(self)
+            maker.left.equalTo(self).offset(MalaLayout_FilterContentWidth)
+            maker.width.equalTo(self)
+            maker.height.equalTo(self)
         }
         styleView.snp.makeConstraints { (maker) -> Void in
-            maker.top.equalTo(self.snp.top)
-            maker.left.equalTo(subjectView.snp.left).offset(MalaLayout_FilterContentWidth)
-            maker.width.equalTo(self.snp.width)
-            maker.height.equalTo(self.snp.height)
+            maker.top.equalTo(self)
+            maker.left.equalTo(subjectView).offset(MalaLayout_FilterContentWidth)
+            maker.width.equalTo(self)
+            maker.height.equalTo(self)
         }
-        self.backgroundColor = UIColor.lightGray
+        backgroundColor = UIColor.lightGray
     }
     
     private func commitCondition() {

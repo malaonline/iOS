@@ -78,10 +78,10 @@ class SchoolTableViewController: UIViewController, UITableViewDelegate, UITableV
         
         // AutoLayout
         tableView.snp.makeConstraints { (maker) in
-            maker.top.equalTo(view.snp.top)
-            maker.bottom.equalTo(view.snp.bottom)
-            maker.left.equalTo(view.snp.left)
-            maker.right.equalTo(view.snp.right)
+            maker.top.equalTo(view)
+            maker.bottom.equalTo(view)
+            maker.left.equalTo(view)
+            maker.right.equalTo(view)
         }
     }
     

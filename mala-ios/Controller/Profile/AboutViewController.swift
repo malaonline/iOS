@@ -17,33 +17,34 @@ class AboutViewController: BaseViewController, UIScrollViewDelegate {
         scrollView.isScrollEnabled = true
         return scrollView
     }()
-    /// 应用logoView
+    /// 应用logo
     private lazy var appLogoView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage(named: "AppIcon60x60")
+        let imageView = UIImageView(imageName: "AppIcon60x60")
         return imageView
     }()
     /// 应用版本号label
     private lazy var appVersionLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 14)
-        label.textColor = MalaColor_333333_0
-        label.text = MalaConfig.aboutAPPVersion()
+        let label = UILabel(
+            text: MalaConfig.aboutAPPVersion(),
+            fontSize: 14,
+            textColor: MalaColor_333333_0
+        )
         return label
     }()
     /// 版权信息label
     private lazy var copyrightLabel: UILabel = {
-        let label = UILabel()
-        label.textAlignment = .center
+        let label = UILabel(
+            text: MalaConfig.aboutCopyRightString(),
+            fontSize: 12,
+            textColor: MalaColor_939393_0,
+            textAlignment: .center
+        )
         label.numberOfLines = 2
-        label.font = UIFont.systemFont(ofSize: 12)
-        label.textColor = MalaColor_939393_0
-        label.text = MalaConfig.aboutCopyRightString()
         return label
     }()
     /// 描述 文字背景
     private lazy var textBackground: UIImageView = {
-        let imageView = UIImageView(image: UIImage(named: "aboutText_Background"))
+        let imageView = UIImageView(imageName: "aboutText_Background")
         return imageView
     }()
     /// 描述标题
@@ -54,12 +55,14 @@ class AboutViewController: BaseViewController, UIScrollViewDelegate {
     }()
     /// 关于描述label
     private lazy var aboutTextView: UILabel = {
-        let label = UILabel()
+        let label = UILabel(
+            text: MalaConfig.aboutDescriptionHTMLString(),
+            fontSize: 13,
+            textColor: MalaColor_939393_0,
+            textAlignment: .center,
+            backgroundColor: MalaColor_F2F2F2_0
+        )
         label.numberOfLines = 0
-        label.font = UIFont.systemFont(ofSize: 13)
-        label.textColor = MalaColor_939393_0
-        label.text = MalaConfig.aboutDescriptionHTMLString()
-        label.backgroundColor = MalaColor_F2F2F2_0
         return label
     }()
     
@@ -94,41 +97,40 @@ class AboutViewController: BaseViewController, UIScrollViewDelegate {
         
         // Autolayout
         scrollView.snp.makeConstraints { (maker) -> Void in
-            maker.size.equalTo(view.snp.size)
-            maker.top.equalTo(view.snp.top)
-            maker.left.equalTo(view.snp.left)
+            maker.size.equalTo(view)
+            maker.center.equalTo(view)
         }
         appLogoView.snp.makeConstraints { (maker) -> Void in
-            maker.top.equalTo(scrollView.snp.top).offset(24)
-            maker.centerX.equalTo(scrollView.snp.centerX)
-            maker.width.equalTo(MalaLayout_AboutAPPLogoViewHeight)
-            maker.height.equalTo(MalaLayout_AboutAPPLogoViewHeight)
+            maker.top.equalTo(scrollView).offset(24)
+            maker.centerX.equalTo(scrollView)
+            maker.width.equalTo(62)
+            maker.height.equalTo(62)
         }
         appVersionLabel.snp.makeConstraints { (maker) -> Void in
-            maker.centerX.equalTo(scrollView.snp.centerX)
+            maker.centerX.equalTo(scrollView)
             maker.top.equalTo(appLogoView.snp.bottom).offset(12)
             maker.height.equalTo(14)
         }
         copyrightLabel.snp.makeConstraints { (maker) -> Void in
-            maker.centerX.equalTo(scrollView.snp.centerX)
+            maker.centerX.equalTo(scrollView)
             maker.top.equalTo(appVersionLabel.snp.bottom).offset(12)
         }
         textBackground.snp.makeConstraints { (maker) -> Void in
             maker.top.equalTo(copyrightLabel.snp.bottom).offset(12)
-            maker.centerX.equalTo(scrollView.snp.centerX)
-            maker.left.equalTo(scrollView.snp.left).offset(12)
-            maker.right.equalTo(scrollView.snp.right).offset(-12)
+            maker.centerX.equalTo(scrollView)
+            maker.left.equalTo(scrollView).offset(12)
+            maker.right.equalTo(scrollView).offset(-12)
         }
         titleView.snp.makeConstraints { (maker) -> Void in
-            maker.top.equalTo(textBackground.snp.top).offset(18)
-            maker.left.equalTo(textBackground.snp.left)
-            maker.right.equalTo(textBackground.snp.right)
+            maker.top.equalTo(textBackground).offset(18)
+            maker.left.equalTo(textBackground)
+            maker.right.equalTo(textBackground)
         }
         aboutTextView.snp.makeConstraints { (maker) -> Void in
             maker.top.equalTo(titleView.snp.bottom).offset(18)
-            maker.left.equalTo(textBackground.snp.left).offset(18)
-            maker.right.equalTo(textBackground.snp.right).offset(-18)
-            maker.bottom.equalTo(textBackground.snp.bottom).offset(-18)
+            maker.left.equalTo(textBackground).offset(18)
+            maker.right.equalTo(textBackground).offset(-18)
+            maker.bottom.equalTo(textBackground).offset(-18)
         }
         
         upateContentSize()

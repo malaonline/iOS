@@ -113,16 +113,16 @@ class LearningReportAbilityImproveCell: MalaBaseReportCardCell {
         
         // Autolayout
         legendView.snp.makeConstraints { (maker) in
-            maker.left.equalTo(descView.snp.left)
-            maker.right.equalTo(descView.snp.right)
+            maker.left.equalTo(descView)
+            maker.right.equalTo(descView)
             maker.height.equalTo(12)
             maker.top.equalTo(layoutView.snp.bottom).multipliedBy(0.17)
         }
         combinedChartView.snp.makeConstraints { (maker) in
             maker.top.equalTo(legendView.snp.bottom)
-            maker.left.equalTo(descView.snp.left)
-            maker.right.equalTo(descView.snp.right)
-            maker.bottom.equalTo(layoutView.snp.bottom).multipliedBy(0.68)
+            maker.left.equalTo(descView)
+            maker.right.equalTo(descView)
+            maker.bottom.equalTo(layoutView).multipliedBy(0.68)
         }
     }
     

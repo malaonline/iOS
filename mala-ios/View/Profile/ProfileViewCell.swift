@@ -26,8 +26,8 @@ class ProfileViewCell: UITableViewCell {
                     self.titleLabel.showBadge()
                     self.titleLabel.badgeBgColor = MalaColor_E26254_0
                     self.titleLabel.badge.snp.makeConstraints({ (maker) in
-                        maker.top.equalTo(titleLabel.snp.top).offset(-1)
-                        maker.right.equalTo(titleLabel.snp.right).offset(7)
+                        maker.top.equalTo(titleLabel).offset(-1)
+                        maker.right.equalTo(titleLabel).offset(7)
                         maker.height.equalTo(7)
                         maker.width.equalTo(7)
                     })
@@ -88,29 +88,30 @@ class ProfileViewCell: UITableViewCell {
         // Autolayout
         titleLabel.snp.makeConstraints { (maker) in
             maker.height.equalTo(14)
-            maker.centerY.equalTo(contentView.snp.centerY)
-            maker.left.equalTo(contentView.snp.left).offset(13)
+            maker.centerY.equalTo(contentView)
+            maker.left.equalTo(contentView).offset(13)
         }
         infoLabel.snp.makeConstraints { (maker) in
             maker.height.equalTo(13)
-            maker.centerY.equalTo(contentView.snp.centerY)
-            maker.right.equalTo(contentView.snp.right)
+            maker.centerY.equalTo(contentView)
+            maker.right.equalTo(contentView)
         }
         separatorLine.snp.makeConstraints { (maker) in
-            maker.bottom.equalTo(contentView.snp.bottom)
-            maker.left.equalTo(contentView.snp.left).offset(12)
-            maker.right.equalTo(contentView.snp.right).offset(12)
+            maker.bottom.equalTo(contentView)
+            maker.left.equalTo(contentView).offset(12)
+            maker.right.equalTo(contentView).offset(12)
             maker.height.equalTo(MalaScreenOnePixel)
         }
     }
     
     func hideSeparator() {
-        self.separatorLine.isHidden = true
+        separatorLine.isHidden = true
     }
     
     
-    // MARK: -Override
+    // MARK: - Override
     override func prepareForReuse() {
-        self.infoLabel.textColor = MalaColor_D4D4D4_0
+        super.prepareForReuse()
+        infoLabel.textColor = MalaColor_D4D4D4_0
     }
 }

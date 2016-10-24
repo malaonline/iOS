@@ -31,10 +31,9 @@ class SingleCourseView: UIView {
     // MARK: - Components
     /// 信息背景视图
     private lazy var headerBackground: UIView = {
-        let view = UIView()
+        let view = UIView(MalaColor_CFCFCF_0)
         view.layer.cornerRadius = 4
         view.layer.masksToBounds = true
-        view.backgroundColor = MalaColor_CFCFCF_0
         return view
     }()
     /// 学科年级信息标签
@@ -118,33 +117,33 @@ class SingleCourseView: UIView {
         }
         subjectLabel.snp.makeConstraints { (maker) in
             maker.height.equalTo(14)
-            maker.left.equalTo(headerBackground.snp.left).offset(10)
-            maker.centerY.equalTo(headerBackground.snp.centerY)
+            maker.left.equalTo(headerBackground).offset(10)
+            maker.centerY.equalTo(headerBackground)
         }
         nameLabel.snp.makeConstraints { (maker) in
             maker.height.equalTo(14)
-            maker.right.equalTo(headerBackground.snp.right).offset(-10)
-            maker.centerY.equalTo(headerBackground.snp.centerY)
+            maker.right.equalTo(headerBackground).offset(-10)
+            maker.centerY.equalTo(headerBackground)
         }
         timeSlotIcon.snp.makeConstraints { (maker) in
             maker.top.equalTo(headerBackground.snp.bottom).offset(10)
-            maker.left.equalTo(headerBackground.snp.left)
+            maker.left.equalTo(headerBackground)
             maker.width.equalTo(13)
             maker.height.equalTo(13)
         }
         timeLabel.snp.makeConstraints { (maker) in
-            maker.top.equalTo(timeSlotIcon.snp.top)
+            maker.top.equalTo(timeSlotIcon)
             maker.left.equalTo(timeSlotIcon.snp.right).offset(5)
             maker.height.equalTo(13)
         }
         schoolIcon.snp.makeConstraints { (maker) in
             maker.top.equalTo(timeSlotIcon.snp.bottom).offset(10)
-            maker.left.equalTo(headerBackground.snp.left)
+            maker.left.equalTo(headerBackground)
             maker.width.equalTo(13)
             maker.height.equalTo(15)
         }
         schoolLabel.snp.makeConstraints { (maker) in
-            maker.centerY.equalTo(schoolIcon.snp.centerY)
+            maker.centerY.equalTo(schoolIcon)
             maker.left.equalTo(schoolIcon.snp.right).offset(5)
             maker.height.equalTo(13)
         }

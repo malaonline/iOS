@@ -50,8 +50,8 @@ open class BaseViewController: UIViewController {
             
             // AutoLayout
             defaultView.snp.makeConstraints { (maker) -> Void in
-                maker.size.equalTo(view.snp.size)
-                maker.center.equalTo(view.snp.center)
+                maker.center.equalTo(view)
+                maker.size.equalTo(view)
             }
         }
     }

@@ -28,7 +28,7 @@ open class CouponRulesPopupWindow: UIViewController, UITextViewDelegate {
     // MARK: - Components
     /// 描述 文字背景
     private lazy var textBackground: UIImageView = {
-        let textBackground = UIImageView(image: UIImage(named: "aboutText_Background"))
+        let textBackground = UIImageView(imageName: "aboutText_Background")
         return textBackground
     }()
     /// 描述标题
@@ -46,8 +46,7 @@ open class CouponRulesPopupWindow: UIViewController, UITextViewDelegate {
     }()
     /// 提交按钮装饰线
     private lazy var buttonSeparatorLine: UIView = {
-        let view = UIView()
-        view.backgroundColor = MalaColor_8FBCDD_0
+        let view = UIView(MalaColor_8FBCDD_0)
         return view
     }()
     /// 提交按钮
@@ -154,37 +153,37 @@ open class CouponRulesPopupWindow: UIViewController, UITextViewDelegate {
         // Autolayout
         window.snp.makeConstraints { (maker) -> Void in
             maker.width.equalTo(MalaLayout_CommentPopupWindowWidth)
-            maker.height.equalTo(self.windowHeight)
-            maker.center.equalTo(self.view.snp.center)
+            maker.height.equalTo(windowHeight)
+            maker.center.equalTo(view)
         }
         buttonSeparatorLine.snp.makeConstraints { (maker) in
             maker.height.equalTo(MalaScreenOnePixel)
-            maker.left.equalTo(self.confirmButton.snp.left)
-            maker.right.equalTo(self.confirmButton.snp.right)
-            maker.top.equalTo(self.confirmButton.snp.top)
+            maker.left.equalTo(confirmButton)
+            maker.right.equalTo(confirmButton)
+            maker.top.equalTo(confirmButton)
         }
         confirmButton.snp.makeConstraints { (maker) in
-            maker.bottom.equalTo(self.window.snp.bottom)
-            maker.left.equalTo(self.window.snp.left)
-            maker.right.equalTo(self.window.snp.right)
+            maker.bottom.equalTo(window)
+            maker.left.equalTo(window)
+            maker.right.equalTo(window)
             maker.height.equalTo(44)
         }
         textBackground.snp.makeConstraints { (maker) -> Void in
-            maker.top.equalTo(self.window.snp.top).offset(18)
-            maker.left.equalTo(self.window.snp.left).offset(18)
-            maker.right.equalTo(self.window.snp.right).offset(-18)
-            maker.bottom.equalTo(self.confirmButton.snp.top).offset(-18)
+            maker.top.equalTo(window).offset(18)
+            maker.left.equalTo(window).offset(18)
+            maker.right.equalTo(window).offset(-18)
+            maker.bottom.equalTo(confirmButton.snp.top).offset(-18)
         }
         titleView.snp.makeConstraints { (maker) -> Void in
-            maker.top.equalTo(textBackground.snp.top).offset(18)
-            maker.left.equalTo(textBackground.snp.left)
-            maker.right.equalTo(textBackground.snp.right)
+            maker.top.equalTo(textBackground).offset(18)
+            maker.left.equalTo(textBackground)
+            maker.right.equalTo(textBackground)
         }
         descTextView.snp.makeConstraints { (maker) -> Void in
             maker.top.equalTo(titleView.snp.bottom).offset(18)
-            maker.left.equalTo(textBackground.snp.left).offset(18)
-            maker.right.equalTo(textBackground.snp.right).offset(-18)
-            maker.bottom.equalTo(textBackground.snp.bottom).offset(-18)
+            maker.left.equalTo(textBackground).offset(18)
+            maker.right.equalTo(textBackground).offset(-18)
+            maker.bottom.equalTo(textBackground).offset(-18)
         }
     }
     

@@ -158,57 +158,57 @@ class OrderFormStatusCell: UITableViewCell {
         // Autolayout
         // Remove margin
         titleLabel.snp.updateConstraints { (maker) -> Void in
-            maker.top.equalTo(self.contentView.snp.top).offset(10)
-            maker.left.equalTo(self.contentView.snp.left).offset(12)
+            maker.top.equalTo(contentView).offset(10)
+            maker.left.equalTo(contentView).offset(12)
             maker.height.equalTo(13)
         }
         statusLabel.snp.makeConstraints { (maker) in
-            maker.top.equalTo(titleLabel.snp.top)
-            maker.right.equalTo(self.contentView.snp.right).offset(-12)
+            maker.top.equalTo(titleLabel)
+            maker.right.equalTo(contentView).offset(-12)
         }
         separatorLine.snp.makeConstraints { (maker) in
             maker.top.equalTo(titleLabel.snp.bottom).offset(10)
-            maker.left.equalTo(self.contentView.snp.left).offset(12)
-            maker.right.equalTo(self.contentView.snp.right).offset(-12)
+            maker.left.equalTo(contentView).offset(12)
+            maker.right.equalTo(contentView).offset(-12)
             maker.height.equalTo(MalaScreenOnePixel)
         }
         teacherIcon.snp.makeConstraints { (maker) in
             maker.top.equalTo(separatorLine.snp.bottom).offset(10)
-            maker.left.equalTo(self.contentView.snp.left).offset(12)
+            maker.left.equalTo(contentView).offset(12)
             maker.height.equalTo(13)
             maker.width.equalTo(13)
         }
         teacherLabel.snp.makeConstraints { (maker) in
-            maker.top.equalTo(teacherIcon.snp.top)
+            maker.top.equalTo(teacherIcon)
             maker.left.equalTo(teacherIcon.snp.right).offset(10)
             maker.height.equalTo(13)
         }
         subjectIcon.snp.makeConstraints { (maker) in
             maker.top.equalTo(teacherIcon.snp.bottom).offset(10)
-            maker.left.equalTo(self.contentView.snp.left).offset(12)
+            maker.left.equalTo(contentView).offset(12)
             maker.height.equalTo(13)
             maker.width.equalTo(13)
         }
         subjectLabel.snp.makeConstraints { (maker) in
-            maker.top.equalTo(subjectIcon.snp.top)
+            maker.top.equalTo(subjectIcon)
             maker.left.equalTo(subjectIcon.snp.right).offset(10)
             maker.height.equalTo(13)
         }
         schoolIcon.snp.makeConstraints { (maker) in
             maker.top.equalTo(subjectIcon.snp.bottom).offset(10)
-            maker.left.equalTo(self.contentView.snp.left).offset(12)
+            maker.left.equalTo(contentView).offset(12)
             maker.height.equalTo(13)
             maker.width.equalTo(13)
-            maker.bottom.equalTo(self.contentView.snp.bottom).offset(-10)
+            maker.bottom.equalTo(contentView).offset(-10)
         }
         schoolLabel.snp.makeConstraints { (maker) in
-            maker.top.equalTo(schoolIcon.snp.top)
+            maker.top.equalTo(schoolIcon)
             maker.left.equalTo(schoolIcon.snp.right).offset(10)
             maker.height.equalTo(13)
         }
         avatarView.snp.makeConstraints { (maker) in
-            maker.centerY.equalTo(subjectIcon.snp.centerY)
-            maker.right.equalTo(separatorLine.snp.right)
+            maker.centerY.equalTo(subjectIcon)
+            maker.right.equalTo(separatorLine)
             maker.height.equalTo(55)
             maker.width.equalTo(55)
         }

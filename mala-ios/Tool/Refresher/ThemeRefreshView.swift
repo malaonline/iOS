@@ -61,15 +61,15 @@ class ThemeRefreshView: UIView {
         view.snp.makeConstraints { (maker) -> Void in
             maker.height.equalTo(30)
             maker.width.equalTo(105)
-            maker.center.equalTo(self.snp.center)
+            maker.center.equalTo(self)
         }
         imageView.snp.makeConstraints { (maker) -> Void in
-            maker.centerY.equalTo(self.view.snp.centerY).offset(-MalaScreenOnePixel*3)
-            maker.left.equalTo(self.view.snp.left)
+            maker.centerY.equalTo(view).offset(-MalaScreenOnePixel*3)
+            maker.left.equalTo(view)
         }
         label.snp.makeConstraints { (maker) -> Void in
-            maker.centerY.equalTo(self.view.snp.centerY)
-            maker.right.equalTo(self.view.snp.right)
+            maker.centerY.equalTo(view)
+            maker.right.equalTo(view)
         }
         
     }

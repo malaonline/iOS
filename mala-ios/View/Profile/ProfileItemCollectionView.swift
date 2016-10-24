@@ -141,20 +141,20 @@ class ProfileItemCollectionViewCell: UICollectionViewCell {
         
         // AutoLayout
         iconView.snp.makeConstraints { (maker) in
-            maker.centerX.equalTo(self.contentView.snp.centerX)
-            maker.top.equalTo(self.contentView.snp.top).offset(13)
+            maker.centerX.equalTo(contentView)
+            maker.top.equalTo(contentView).offset(13)
             maker.width.equalTo(53)
             maker.height.equalTo(53)
         }
         newMessageView.snp.makeConstraints { (maker) in
-            maker.top.equalTo(self.iconView.snp.top)
-            maker.right.equalTo(self.contentView.snp.right).offset(-10)
+            maker.top.equalTo(iconView)
+            maker.right.equalTo(contentView).offset(-10)
             maker.width.equalTo(39)
             maker.height.equalTo(15)
         }
         titleLabel.snp.makeConstraints { (maker) in
-            maker.centerX.equalTo(self.contentView.snp.centerX)
-            maker.top.equalTo(self.iconView.snp.bottom).offset(17)
+            maker.centerX.equalTo(contentView)
+            maker.top.equalTo(iconView.snp.bottom).offset(17)
             maker.height.equalTo(14)
         }
     }

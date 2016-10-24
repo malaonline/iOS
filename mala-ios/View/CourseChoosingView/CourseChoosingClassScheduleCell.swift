@@ -59,17 +59,17 @@ class CourseChoosingClassScheduleCell: MalaBaseCell {
             maker.top.equalTo(headerView.snp.bottom).offset(14)
         }
         classSchedule.snp.makeConstraints { (maker) -> Void in
-            maker.top.equalTo(content.snp.top)
-            maker.left.equalTo(content.snp.left)
-            maker.right.equalTo(content.snp.right)
+            maker.top.equalTo(content)
+            maker.left.equalTo(content)
+            maker.right.equalTo(content)
             maker.height.equalTo(classSchedule.snp.width).multipliedBy(0.65)
         }
         legendView.snp.makeConstraints { (maker) -> Void in
             maker.top.equalTo(classSchedule.snp.bottom).offset(14)
-            maker.left.equalTo(content.snp.left)
+            maker.left.equalTo(content)
             maker.height.equalTo(15)
-            maker.right.equalTo(content.snp.right)
-            maker.bottom.equalTo(content.snp.bottom)
+            maker.right.equalTo(content)
+            maker.bottom.equalTo(content)
         }
     }
     

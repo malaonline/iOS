@@ -113,41 +113,41 @@ class OrderFormTimeScheduleCell: UITableViewCell {
         
         // Autolayout
         topLayoutView.snp.makeConstraints { (maker) in
-            maker.top.equalTo(self.contentView.snp.top)
-            maker.left.equalTo(self.contentView.snp.left)
-            maker.right.equalTo(self.contentView.snp.right)
+            maker.top.equalTo(contentView)
+            maker.left.equalTo(contentView)
+            maker.right.equalTo(contentView)
             maker.height.equalTo(35)
-            maker.bottom.equalTo(self.contentView.snp.bottom).offset(-12)
+            maker.bottom.equalTo(contentView).offset(-12)
         }
         separatorLine.snp.makeConstraints { (maker) in
-            maker.bottom.equalTo(topLayoutView.snp.bottom)
-            maker.left.equalTo(topLayoutView.snp.left)
-            maker.right.equalTo(topLayoutView.snp.right)
+            maker.bottom.equalTo(topLayoutView)
+            maker.left.equalTo(topLayoutView)
+            maker.right.equalTo(topLayoutView)
             maker.height.equalTo(MalaScreenOnePixel)
         }
         iconView.snp.makeConstraints { (maker) in
-            maker.left.equalTo(topLayoutView.snp.left)
-            maker.centerY.equalTo(topLayoutView.snp.centerY)
+            maker.left.equalTo(topLayoutView)
+            maker.centerY.equalTo(topLayoutView)
             maker.height.equalTo(19)
             maker.width.equalTo(3)
         }
         titleLabel.snp.updateConstraints { (maker) -> Void in
-            maker.centerY.equalTo(topLayoutView.snp.centerY)
-            maker.left.equalTo(topLayoutView.snp.left).offset(12)
+            maker.centerY.equalTo(topLayoutView)
+            maker.left.equalTo(topLayoutView).offset(12)
             maker.height.equalTo(15)
         }
         periodRightLabel.snp.makeConstraints { (maker) in
-            maker.centerY.equalTo(topLayoutView.snp.centerY)
-            maker.right.equalTo(topLayoutView.snp.right).offset(-12)
+            maker.centerY.equalTo(topLayoutView)
+            maker.right.equalTo(topLayoutView).offset(-12)
             maker.height.equalTo(13)
         }
         periodLabel.snp.makeConstraints { (maker) in
-            maker.centerY.equalTo(topLayoutView.snp.centerY)
+            maker.centerY.equalTo(topLayoutView)
             maker.right.equalTo(periodRightLabel.snp.left).offset(-5)
             maker.height.equalTo(13)
         }
         periodLeftLabel.snp.makeConstraints { (maker) in
-            maker.centerY.equalTo(topLayoutView.snp.centerY)
+            maker.centerY.equalTo(topLayoutView)
             maker.right.equalTo(periodLabel.snp.left).offset(-5)
             maker.height.equalTo(13)
         }
@@ -168,9 +168,9 @@ class OrderFormTimeScheduleCell: UITableViewCell {
         }
         timeLineView!.snp.makeConstraints { (maker) in
             maker.top.equalTo(topLayoutView.snp.bottom).offset(10)
-            maker.left.equalTo(self.contentView.snp.left).offset(12)
-            maker.right.equalTo(self.contentView.snp.right).offset(-12)
-            maker.bottom.equalTo(self.contentView.snp.bottom).offset(-16)
+            maker.left.equalTo(contentView).offset(12)
+            maker.right.equalTo(contentView).offset(-12)
+            maker.bottom.equalTo(contentView).offset(-16)
             maker.height.equalTo(result.height)
         }
     }

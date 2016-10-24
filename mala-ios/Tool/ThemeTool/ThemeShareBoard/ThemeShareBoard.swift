@@ -22,8 +22,7 @@ class ThemeShareBoard: UIView {
     // MARK: - Components
     /// 父布局容器（白色卡片）
     private lazy var content: UIView = {
-        let view = UIView()
-        view.backgroundColor = MalaColor_F2F2F2_95
+        let view = UIView(MalaColor_F2F2F2_95)
         return view
     }()
     /// 标题标签
@@ -77,21 +76,21 @@ class ThemeShareBoard: UIView {
             maker.size.equalTo(self)
         }
         content.snp.makeConstraints { (maker) in
-            maker.left.equalTo(self.snp.left)
-            maker.right.equalTo(self.snp.right)
+            maker.left.equalTo(self)
+            maker.right.equalTo(self)
             maker.height.equalTo(153)
-            maker.bottom.equalTo(self.snp.bottom)
+            maker.bottom.equalTo(self)
         }
         titleLabel.snp.makeConstraints { (maker) in
-            maker.centerX.equalTo(content.snp.centerX)
-            maker.top.equalTo(content.snp.top).offset(20)
+            maker.centerX.equalTo(content)
+            maker.top.equalTo(content).offset(20)
             maker.height.equalTo(15)
         }
         collectionView.snp.makeConstraints { (maker) in
             maker.top.equalTo(titleLabel.snp.bottom).offset(20)
-            maker.left.equalTo(content.snp.left).offset(12)
-            maker.right.equalTo(content.snp.right).offset(-12)
-            maker.bottom.equalTo(content.snp.bottom).offset(-20)
+            maker.left.equalTo(content).offset(12)
+            maker.right.equalTo(content).offset(-12)
+            maker.bottom.equalTo(content).offset(-20)
         }
     }
     

@@ -73,16 +73,16 @@ class FilterResultController: BaseViewController {
         
         // AutoLayout
         filterBar.snp.makeConstraints { (maker) -> Void in
-            maker.top.equalTo(view.snp.top)
-            maker.left.equalTo(view.snp.left)
-            maker.right.equalTo(view.snp.right)
+            maker.top.equalTo(view)
+            maker.left.equalTo(view)
+            maker.right.equalTo(view)
             maker.height.equalTo(MalaLayout_FilterBarHeight)
         }
         tableView.snp.makeConstraints { (maker) -> Void in
             maker.top.equalTo(filterBar.snp.bottom)
-            maker.left.equalTo(view.snp.left)
-            maker.right.equalTo(view.snp.right)
-            maker.bottom.equalTo(view.snp.bottom)
+            maker.left.equalTo(view)
+            maker.right.equalTo(view)
+            maker.bottom.equalTo(view)
         }
     }
     

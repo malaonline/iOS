@@ -22,8 +22,7 @@ class MalaBaseCell: UITableViewCell {
     // MARK: - Components
     /// 头部视图
     lazy var headerView: UIView = {
-        let view = UIView()
-        view.backgroundColor = MalaColor_F6F6F6_96
+        let view = UIView(MalaColor_F6F6F6_96)
         return view
     }()
     /// 标题标签
@@ -61,20 +60,20 @@ class MalaBaseCell: UITableViewCell {
         
         // Autolayout
         headerView.snp.makeConstraints { (maker) in
-            maker.top.equalTo(contentView.snp.top)
+            maker.top.equalTo(contentView)
             maker.height.equalTo(34)
-            maker.left.equalTo(contentView.snp.left)
-            maker.right.equalTo(contentView.snp.right)
+            maker.left.equalTo(contentView)
+            maker.right.equalTo(contentView)
         }
         content.snp.makeConstraints { (maker) -> Void in
             maker.top.equalTo(headerView.snp.bottom).offset(15)
-            maker.left.equalTo(contentView.snp.left).offset(12)
-            maker.right.equalTo(contentView.snp.right).offset(-12)
-            maker.bottom.equalTo(contentView.snp.bottom).offset(-15)
+            maker.left.equalTo(contentView).offset(12)
+            maker.right.equalTo(contentView).offset(-12)
+            maker.bottom.equalTo(contentView).offset(-15)
         }
         titleLabel.snp.makeConstraints { (maker) -> Void in
-            maker.centerY.equalTo(headerView.snp.centerY)
-            maker.left.equalTo(headerView.snp.left).offset(12)
+            maker.centerY.equalTo(headerView)
+            maker.left.equalTo(headerView).offset(12)
             maker.height.equalTo(14)
         }
     }
@@ -85,7 +84,7 @@ class MalaBaseCell: UITableViewCell {
         headerView.backgroundColor = UIColor.white
         
         headerView.snp.updateConstraints { (maker) in
-            maker.top.equalTo(contentView.snp.top).offset(15)
+            maker.top.equalTo(contentView).offset(15)
             maker.height.equalTo(15)
         }
         content.snp.updateConstraints { (maker) in

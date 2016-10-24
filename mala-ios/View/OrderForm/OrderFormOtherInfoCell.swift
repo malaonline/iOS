@@ -26,9 +26,9 @@ class OrderFormOtherInfoCell: UITableViewCell {
                     
                     createDateString.snp.updateConstraints { (maker) -> Void in
                         maker.top.equalTo(titleString.snp.bottom).offset(10)
-                        maker.left.equalTo(titleString.snp.left)
+                        maker.left.equalTo(titleString)
                         maker.height.equalTo(12)
-                        maker.bottom.equalTo(self.contentView.snp.bottom).offset(-16)
+                        maker.bottom.equalTo(contentView).offset(-16)
                     }
                     break
                     
@@ -144,34 +144,34 @@ class OrderFormOtherInfoCell: UITableViewCell {
         
         // Autolayout
         titleString.snp.makeConstraints { (maker) -> Void in
-            maker.top.equalTo(self.contentView.snp.top).offset(16)
-            maker.left.equalTo(self.contentView.snp.left).offset(12)
+            maker.top.equalTo(contentView).offset(16)
+            maker.left.equalTo(contentView).offset(12)
             maker.height.equalTo(12)
         }
         titleLabel.snp.makeConstraints { (maker) -> Void in
-            maker.top.equalTo(titleString.snp.top)
+            maker.top.equalTo(titleString)
             maker.left.equalTo(titleString.snp.right).offset(10)
             maker.height.equalTo(12)
         }
         createDateString.snp.makeConstraints { (maker) -> Void in
             maker.top.equalTo(titleString.snp.bottom).offset(10)
-            maker.left.equalTo(titleString.snp.left)
+            maker.left.equalTo(titleString)
             maker.height.equalTo(12)
-            maker.bottom.equalTo(self.contentView.snp.bottom).offset(-16)
+            maker.bottom.equalTo(contentView.snp.bottom).offset(-16)
         }
         createDateLabel.snp.makeConstraints { (maker) -> Void in
-            maker.top.equalTo(createDateString.snp.top)
+            maker.top.equalTo(createDateString)
             maker.left.equalTo(createDateString.snp.right).offset(10)
             maker.height.equalTo(12)
         }
         paymentDateString.snp.makeConstraints { (maker) -> Void in
             maker.top.equalTo(createDateString.snp.bottom).offset(10)
-            maker.left.equalTo(titleString.snp.left)
+            maker.left.equalTo(titleString)
             maker.height.equalTo(12)
-            maker.bottom.equalTo(self.contentView.snp.bottom).offset(-16)
+            maker.bottom.equalTo(contentView).offset(-16)
         }
         paymentDateLabel.snp.makeConstraints { (maker) -> Void in
-            maker.top.equalTo(paymentDateString.snp.top)
+            maker.top.equalTo(paymentDateString)
             maker.left.equalTo(paymentDateString.snp.right).offset(10)
             maker.height.equalTo(12)
         }

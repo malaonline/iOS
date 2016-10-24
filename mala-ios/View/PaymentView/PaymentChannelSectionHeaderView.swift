@@ -36,16 +36,16 @@ class PaymentChannelSectionHeaderView: UIView {
     // MARK: - Private Method
     private func setupUserInterface() {
         // Style
-        self.backgroundColor = UIColor.clear
+        backgroundColor = UIColor.clear
         
         // SubViews
-        self.addSubview(titleLabel)
+        addSubview(titleLabel)
         
         // Autolayout
         titleLabel.snp.makeConstraints { (maker) -> Void in
-            maker.left.equalTo(self.snp.left).offset(12)
-            maker.top.equalTo(self.snp.top).offset(10)
-            maker.bottom.equalTo(self.snp.bottom).offset(-10)
+            maker.left.equalTo(self).offset(12)
+            maker.top.equalTo(self).offset(10)
+            maker.bottom.equalTo(self).offset(-10)
             maker.height.equalTo(13)
         }
     }

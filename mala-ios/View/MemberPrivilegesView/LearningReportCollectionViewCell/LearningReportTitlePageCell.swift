@@ -131,23 +131,23 @@ class LearningReportTitlePageCell: MalaBaseCardCell {
         
         // Autolayout
         titleBackground.snp.makeConstraints { (maker) in
-            maker.center.equalTo(titleLabel.snp.center)
-            maker.width.equalTo(titleLabel.snp.width).offset(16)
+            maker.center.equalTo(titleLabel)
+            maker.width.equalTo(titleLabel).offset(16)
         }
         titleLabel.snp.makeConstraints { (maker) in
             maker.height.equalTo(20)
-            maker.centerX.equalTo(layoutView.snp.centerX)
+            maker.centerX.equalTo(layoutView)
             maker.top.equalTo(layoutView.snp.bottom).multipliedBy(0.09)
         }
         dateLabel.snp.makeConstraints { (maker) in
             maker.width.equalTo(160)
             maker.height.equalTo(24)
-            maker.centerX.equalTo(layoutView.snp.centerX)
+            maker.centerX.equalTo(layoutView)
             maker.top.equalTo(layoutView.snp.bottom).multipliedBy(0.18)
         }
         folderImage.snp.makeConstraints { (maker) in
             maker.top.equalTo(layoutView.snp.bottom).multipliedBy(0.32)
-            maker.centerX.equalTo(layoutView.snp.centerX)
+            maker.centerX.equalTo(layoutView)
             maker.width.equalTo(100.5)
             maker.height.equalTo(142.5)
         }
@@ -157,14 +157,14 @@ class LearningReportTitlePageCell: MalaBaseCardCell {
             maker.right.equalTo(layoutView.snp.centerX)
         }
         nameLabel.snp.makeConstraints { (maker) in
-            maker.top.equalTo(nameString.snp.top)
+            maker.top.equalTo(nameString)
             maker.left.equalTo(layoutView.snp.centerX)
         }
         nameSeparator.snp.makeConstraints { (maker) in
             maker.top.equalTo(layoutView.snp.bottom).multipliedBy(0.76)
             maker.height.equalTo(6)
-            maker.left.equalTo(layoutView.snp.left)
-            maker.right.equalTo(nameLabel.snp.right).offset(20)
+            maker.left.equalTo(layoutView)
+            maker.right.equalTo(nameLabel).offset(20)
         }
         gradeString.snp.makeConstraints { (maker) in
             maker.top.equalTo(layoutView.snp.bottom).multipliedBy(0.81)
@@ -172,14 +172,14 @@ class LearningReportTitlePageCell: MalaBaseCardCell {
             maker.right.equalTo(layoutView.snp.centerX)
         }
         gradeLabel.snp.makeConstraints { (maker) in
-            maker.top.equalTo(gradeString.snp.top)
+            maker.top.equalTo(gradeString)
             maker.left.equalTo(layoutView.snp.centerX)
         }
         gradeSeparator.snp.makeConstraints { (maker) in
             maker.top.equalTo(layoutView.snp.bottom).multipliedBy(0.84)
             maker.height.equalTo(6)
-            maker.left.equalTo(gradeString.snp.left).offset(-20)
-            maker.right.equalTo(layoutView.snp.right)
+            maker.left.equalTo(gradeString).offset(-20)
+            maker.right.equalTo(layoutView)
         }
     }
     

@@ -13,8 +13,7 @@ class MalaBaseCardCell: UICollectionViewCell {
     // MARK: - Components
     /// 布局视图（卡片）
     lazy var layoutView: UIView = {
-        let view = UIView()
-        view.backgroundColor = UIColor.white
+        let view = UIView(UIColor.white)
         return view
     }()
     /// 标识是否作为样本展示
@@ -42,10 +41,10 @@ class MalaBaseCardCell: UICollectionViewCell {
         
         // Autolayout
         layoutView.snp.makeConstraints { (maker) in
-            maker.top.equalTo(self.contentView.snp.top).offset(6)
-            maker.left.equalTo(self.contentView.snp.left).offset(6)
-            maker.bottom.equalTo(self.contentView.snp.bottom).offset(-6)
-            maker.right.equalTo(self.contentView.snp.right).offset(-6)
+            maker.top.equalTo(contentView).offset(6)
+            maker.left.equalTo(contentView).offset(6)
+            maker.bottom.equalTo(contentView).offset(-6)
+            maker.right.equalTo(contentView).offset(-6)
         }
     }
 }

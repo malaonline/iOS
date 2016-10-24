@@ -115,12 +115,12 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
         // Autolayout
         headerBackground.snp.makeConstraints { (maker) -> Void in
             maker.top.equalTo(0)
-            maker.centerX.equalTo(tableView.snp.centerX)
+            maker.centerX.equalTo(tableView)
             maker.width.equalTo(MalaScreenWidth)
             maker.height.equalTo(MalaLayout_ProfileHeaderViewHeight)
         }
         logoutButton.snp.makeConstraints { (maker) -> Void in
-            maker.bottom.equalTo(profileFooterView.snp.bottom)
+            maker.bottom.equalTo(profileFooterView)
             maker.centerX.equalTo(profileFooterView)
             maker.width.equalTo(profileFooterView).multipliedBy(0.85)
             maker.height.equalTo(37)

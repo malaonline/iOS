@@ -38,8 +38,7 @@ class TeacherDetailsSignupView: UIView {
     // MARK: - Components
     /// 装饰线
     private lazy var topLine: UIView = {
-        let view = UIView()
-        view.backgroundColor = UIColor.black
+        let view = UIView(UIColor.black)
         view.alpha = 0.25
         return view
     }()
@@ -112,32 +111,32 @@ class TeacherDetailsSignupView: UIView {
         topLine.snp.makeConstraints({ (maker) -> Void in
             maker.left.equalTo(0)
             maker.width.equalTo(MalaScreenWidth)
-            maker.top.equalTo(self.snp.top)
+            maker.top.equalTo(self)
             maker.height.equalTo(MalaScreenOnePixel)
         })
         likeView.snp.makeConstraints({ (maker) -> Void in
             maker.top.equalTo(topLine.snp.bottom)
-            maker.left.equalTo(self.snp.left)
-            maker.bottom.equalTo(self.snp.bottom)
-            maker.right.equalTo(self.snp.right).multipliedBy(0.422)
+            maker.left.equalTo(self)
+            maker.bottom.equalTo(self)
+            maker.right.equalTo(self).multipliedBy(0.422)
         })
         likeButton.snp.makeConstraints({ (maker) -> Void in
-            maker.centerX.equalTo(likeView.snp.centerX)
-            maker.centerY.equalTo(likeView.snp.centerY).offset(-8)
+            maker.centerX.equalTo(likeView)
+            maker.centerY.equalTo(likeView).offset(-8)
             maker.height.equalTo(44)
             maker.width.equalTo(44)
         })
         likeString.snp.makeConstraints({ (maker) -> Void in
-            maker.centerX.equalTo(likeView.snp.centerX)
-            maker.centerY.equalTo(likeView.snp.centerY).offset(10)
+            maker.centerX.equalTo(likeView)
+            maker.centerY.equalTo(likeView).offset(10)
             maker.height.equalTo(10)
             maker.width.equalTo(40)
         })
         button.snp.makeConstraints({ (maker) -> Void in
             maker.top.equalTo(topLine.snp.bottom)
             maker.left.equalTo(likeView.snp.right)
-            maker.bottom.equalTo(self.snp.bottom)
-            maker.right.equalTo(self.snp.right)
+            maker.bottom.equalTo(self)
+            maker.right.equalTo(self)
         })
     }
     

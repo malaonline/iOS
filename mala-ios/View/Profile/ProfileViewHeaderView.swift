@@ -56,8 +56,7 @@ class ProfileViewHeaderView: UIView {
     }()
     /// 头像背景
     private lazy var avatarBackground: UIView = {
-        let view = UIView()
-        view.backgroundColor = UIColor.white
+        let view = UIView(UIColor.white)
         view.layer.cornerRadius = MalaLayout_AvatarSize*0.5
         view.layer.masksToBounds = true
         return view
@@ -116,28 +115,28 @@ class ProfileViewHeaderView: UIView {
         
         // Autolayout
         avatarBackground.snp.makeConstraints { (maker) in
-            maker.top.equalTo(self.snp.top).offset(16)
-            maker.centerX.equalTo(self.snp.centerX)
+            maker.top.equalTo(self).offset(16)
+            maker.centerX.equalTo(self)
             maker.width.equalTo(MalaLayout_AvatarSize)
             maker.height.equalTo(MalaLayout_AvatarSize)
         }
         avatarView.snp.makeConstraints({ (maker) -> Void in
-            maker.center.equalTo(self.avatarBackground.snp.center)
-            maker.size.equalTo(self.avatarBackground.snp.size).offset(-5)
+            maker.center.equalTo(avatarBackground)
+            maker.size.equalTo(avatarBackground).offset(-5)
         })
         nameLabel.snp.makeConstraints { (maker) -> Void in
             maker.top.equalTo(avatarView.snp.bottom).offset(10)
-            maker.centerX.equalTo(avatarView.snp.centerX)
+            maker.centerX.equalTo(avatarView)
             maker.height.equalTo(14)
         }
         editButton.snp.makeConstraints { (maker) -> Void in
-            maker.centerY.equalTo(nameLabel.snp.centerY)
+            maker.centerY.equalTo(nameLabel)
             maker.left.equalTo(nameLabel.snp.right).offset(3)
             maker.width.equalTo(9)
             maker.height.equalTo(13)
         }
         activityIndicator.snp.makeConstraints { (maker) -> Void in
-            maker.center.equalTo(avatarView.snp.center)
+            maker.center.equalTo(avatarView)
         }
     }
     

@@ -83,13 +83,13 @@ class LearningReportKnowledgeCell: MalaBaseReportCardCell {
         infoLabel.snp.makeConstraints { (maker) in
             maker.width.equalTo(170)
             maker.height.equalTo(22)
-            maker.centerX.equalTo(layoutView.snp.centerX)
+            maker.centerX.equalTo(layoutView)
             maker.top.equalTo(layoutView.snp.bottom).multipliedBy(0.17)
         }
         barChartView.snp.makeConstraints { (maker) in
             maker.top.equalTo(infoLabel.snp.bottom).offset(10)
-            maker.left.equalTo(descView.snp.left)
-            maker.right.equalTo(descView.snp.right)
+            maker.left.equalTo(descView)
+            maker.right.equalTo(descView)
             maker.bottom.equalTo(descView.snp.top).offset(-10)
         }
     }

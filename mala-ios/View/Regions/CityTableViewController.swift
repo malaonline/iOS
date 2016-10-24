@@ -82,14 +82,12 @@ class CityTableViewController: UIViewController, UITableViewDelegate, UITableVie
         tableView.register(RegionUnitCell.self, forCellReuseIdentifier: CityTableViewCellReuseId)
         
         // SubViews
-        self.view.addSubview(tableView)
+        view.addSubview(tableView)
         
         // AutoLayout
         tableView.snp.makeConstraints { (maker) in
-            maker.top.equalTo(view.snp.top)
-            maker.bottom.equalTo(view.snp.bottom)
-            maker.left.equalTo(view.snp.left)
-            maker.right.equalTo(view.snp.right)
+            maker.center.equalTo(view)
+            maker.size.equalTo(view)
         }
     }
     

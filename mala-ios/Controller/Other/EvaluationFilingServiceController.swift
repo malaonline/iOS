@@ -105,14 +105,15 @@ class EvaluationFilingServiceCell: MalaBaseCell {
     // MARK: - Components
     /// 内容展示图片容器
     private lazy var contentImageView: UIImageView = {
-        let contentImageView = UIImageView(image: UIImage(named: "detailPicture_placeholder"))
+        let contentImageView = UIImageView(imageName: "detailPicture_placeholder")
         return contentImageView
     }()
     /// 简介文本框
     private lazy var contentLabel: UILabel = {
-        let contentLabel = UILabel()
-        contentLabel.font = UIFont.systemFont(ofSize: 13)
-        contentLabel.textColor = MalaColor_6C6C6C_0
+        let contentLabel = UILabel(
+            fontSize: 13,
+            textColor: MalaColor_6C6C6C_0
+        )
         contentLabel.numberOfLines = 0
         return contentLabel
     }()
@@ -140,16 +141,16 @@ class EvaluationFilingServiceCell: MalaBaseCell {
         
         // Autolayout
         contentImageView.snp.makeConstraints { (maker) -> Void in
-            maker.top.equalTo(content.snp.top)
-            maker.left.equalTo(content.snp.left)
-            maker.right.equalTo(content.snp.right)
+            maker.top.equalTo(content)
+            maker.left.equalTo(content)
+            maker.right.equalTo(content)
             maker.height.equalTo(contentImageView.snp.width).multipliedBy(0.47)
         }
         contentLabel.snp.makeConstraints { (maker) -> Void in
             maker.top.equalTo(contentImageView.snp.bottom).offset(14)
-            maker.left.equalTo(content.snp.left)
-            maker.right.equalTo(content.snp.right)
-            maker.bottom.equalTo(content.snp.bottom)
+            maker.left.equalTo(content)
+            maker.right.equalTo(content)
+            maker.bottom.equalTo(content)
         }
     }
 }

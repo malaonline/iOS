@@ -51,8 +51,7 @@ class TeacherDetailsHeaderView: UIView {
     // MARK: - Components
     /// 内部控件容器（注意本类继承于 UIView 而非 UITableViewCell）
     private lazy var contentView: UIView = {
-        let view = UIView()
-        view.backgroundColor = UIColor.white
+        let view = UIView(UIColor.white)
         return view
     }()
     /// 头像显示控件
@@ -68,8 +67,7 @@ class TeacherDetailsHeaderView: UIView {
     }()
     /// 头像背景
     private lazy var avatarBackground: UIView = {
-        let view = UIView()
-        view.backgroundColor = UIColor.white
+        let view = UIView(UIColor.white)
         view.layer.cornerRadius = MalaLayout_AvatarSize*0.5
         view.layer.masksToBounds = true
         return view
@@ -225,65 +223,65 @@ class TeacherDetailsHeaderView: UIView {
         
         // Autolayout
         contentView.snp.makeConstraints({ (maker) -> Void in
-            maker.left.equalTo(self.snp.left)
-            maker.right.equalTo(self.snp.right)
-            maker.bottom.equalTo(self.snp.bottom)
+            maker.left.equalTo(self)
+            maker.right.equalTo(self)
+            maker.bottom.equalTo(self)
             maker.height.equalTo(MalaLayout_DetailHeaderContentHeight)
         })
         avatarBackground.snp.makeConstraints { (maker) in
-            maker.left.equalTo(contentView.snp.left).offset(12)
+            maker.left.equalTo(contentView).offset(12)
             maker.bottom.equalTo(separatorLine.snp.top).offset(-7)
             maker.width.equalTo(MalaLayout_AvatarSize)
             maker.height.equalTo(MalaLayout_AvatarSize)
         }
         avatarView.snp.makeConstraints({ (maker) -> Void in
-            maker.center.equalTo(avatarBackground.snp.center)
-            maker.size.equalTo(avatarBackground.snp.size).offset(-5)
+            maker.center.equalTo(avatarBackground)
+            maker.size.equalTo(avatarBackground).offset(-5)
         })
         vipIconView.snp.makeConstraints({ (maker) -> Void in
-            maker.right.equalTo(avatarView.snp.right).offset(-3)
-            maker.bottom.equalTo(avatarView.snp.bottom).offset(-3)
+            maker.right.equalTo(avatarView).offset(-3)
+            maker.bottom.equalTo(avatarView).offset(-3)
             maker.width.equalTo(MalaLayout_VipIconSize)
             maker.height.equalTo(MalaLayout_VipIconSize)
         })
         nameLabel.snp.makeConstraints({ (maker) -> Void in
-            maker.top.equalTo(contentView.snp.top).offset(12)
+            maker.top.equalTo(contentView).offset(12)
             maker.left.equalTo(avatarView.snp.right).offset(12)
             maker.height.equalTo(16)
         })
         genderIcon.snp.makeConstraints({ (maker) -> Void in
-            maker.centerY.equalTo(nameLabel.snp.centerY)
+            maker.centerY.equalTo(nameLabel)
             maker.left.equalTo(nameLabel.snp.right).offset(12)
             maker.width.equalTo(13)
             maker.height.equalTo(13)
         })
         subjectLabel.snp.makeConstraints({ (maker) -> Void in
             maker.top.equalTo(nameLabel.snp.bottom).offset(8)
-            maker.left.equalTo(nameLabel.snp.left)
+            maker.left.equalTo(nameLabel)
             maker.width.equalTo(36)
             maker.height.equalTo(12)
         })
         priceLabel.snp.makeConstraints({ (maker) -> Void in
             maker.top.equalTo(nameLabel.snp.bottom).offset(8)
             maker.left.equalTo(subjectLabel.snp.right).offset(12)
-            maker.right.equalTo(contentView.snp.right).offset(-12)
+            maker.right.equalTo(contentView).offset(-12)
             maker.height.equalTo(12)
         })
         separatorLine.snp.makeConstraints { (maker) in
             maker.top.equalTo(subjectLabel.snp.bottom).offset(10)
             maker.height.equalTo(MalaScreenOnePixel)
-            maker.left.equalTo(contentView.snp.left).offset(12)
-            maker.right.equalTo(contentView.snp.right).offset(-12)
+            maker.left.equalTo(contentView).offset(12)
+            maker.right.equalTo(contentView).offset(-12)
         }
         teachingAgeProgressBar.snp.makeConstraints { (maker) in
             maker.top.equalTo(separatorLine.snp.bottom).offset(20)
             maker.width.equalTo(50)
             maker.height.equalTo(50)
-            maker.right.equalTo(contentView.snp.right).multipliedBy(0.25)
-            maker.bottom.equalTo(contentView.snp.bottom).offset(-20)
+            maker.right.equalTo(contentView).multipliedBy(0.25)
+            maker.bottom.equalTo(contentView).offset(-20)
         }
         teachingAgeIcon.snp.makeConstraints { (maker) in
-            maker.center.equalTo(teachingAgeProgressBar.snp.center)
+            maker.center.equalTo(teachingAgeProgressBar)
             maker.width.equalTo(23)
             maker.height.equalTo(23)
         }
@@ -303,10 +301,10 @@ class TeacherDetailsHeaderView: UIView {
             maker.top.equalTo(separatorLine.snp.bottom).offset(20)
             maker.width.equalTo(50)
             maker.height.equalTo(50)
-            maker.right.equalTo(contentView.snp.right).multipliedBy(0.75)
+            maker.right.equalTo(contentView).multipliedBy(0.75)
         }
         levelIcon.snp.makeConstraints { (maker) in
-            maker.center.equalTo(levelProgressBar.snp.center)
+            maker.center.equalTo(levelProgressBar)
             maker.width.equalTo(23)
             maker.height.equalTo(23)
         }

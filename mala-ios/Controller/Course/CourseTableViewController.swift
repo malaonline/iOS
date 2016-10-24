@@ -147,26 +147,26 @@ open class CourseTableViewController: UIViewController, UITableViewDataSource, U
         
         // AutoLayout
         tableView.snp.makeConstraints { (maker) -> Void in
-            maker.center.equalTo(view.snp.center)
-            maker.size.equalTo(view.snp.size)
+            maker.center.equalTo(view)
+            maker.size.equalTo(view)
         }
         goTopButton.snp.makeConstraints { (maker) -> Void in
-            maker.right.equalTo(view.snp.right).offset(-20)
-            maker.bottom.equalTo(view.snp.bottom).offset(-64)
+            maker.right.equalTo(view).offset(-20)
+            maker.bottom.equalTo(view).offset(-64)
             maker.width.equalTo(58)
             maker.height.equalTo(58)
         }
         defaultView.snp.makeConstraints { (maker) -> Void in
-            maker.size.equalTo(tableView.snp.size)
-            maker.center.equalTo(tableView.snp.center)
+            maker.size.equalTo(tableView)
+            maker.center.equalTo(tableView)
         }
         unLoginDefaultView.snp.makeConstraints { (maker) -> Void in
-            maker.size.equalTo(tableView.snp.size)
-            maker.center.equalTo(tableView.snp.center)
+            maker.size.equalTo(tableView)
+            maker.center.equalTo(tableView)
         }
         if let titleView = navigationItem.titleView {
             titleLabel.snp.makeConstraints { (maker) -> Void in
-                maker.center.equalTo(titleView.snp.center)
+                maker.center.equalTo(titleView)
             }
         }
     }

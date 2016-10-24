@@ -144,7 +144,7 @@ class ThemeTimeLine: UIView, CAAnimationDelegate {
                 line.snp.makeConstraints({ (maker) in
                     maker.centerX.equalTo(progressViewContainer)
                     maker.width.equalTo(9)
-                    maker.top.equalTo(label.snp.top).offset(4)
+                    maker.top.equalTo(label).offset(4)
                     maker.height.equalTo(9)
                 })
             /// 描述字数多于一行的，下一个时间点以描述label为基准
@@ -152,16 +152,16 @@ class ThemeTimeLine: UIView, CAAnimationDelegate {
                 line.snp.makeConstraints({ (maker) in
                     maker.centerX.equalTo(progressViewContainer)
                     maker.width.equalTo(9)
-                    maker.top.equalTo(label.snp.top).offset(2)
-                    maker.bottom.equalTo(label.snp.bottom).offset(24)
+                    maker.top.equalTo(label).offset(2)
+                    maker.bottom.equalTo(label).offset(24)
                 })
             /// 描述字数少于一行的，下一个时间点以时间label为基准
             }else {
                 line.snp.makeConstraints({ (maker) in
                     maker.centerX.equalTo(progressViewContainer)
                     maker.width.equalTo(9)
-                    maker.top.equalTo(label.snp.top).offset(2)
-                    maker.bottom.equalTo(label.snp.bottom).offset(36)
+                    maker.top.equalTo(label).offset(2)
+                    maker.bottom.equalTo(label).offset(36)
                 })
             }
             i += 1

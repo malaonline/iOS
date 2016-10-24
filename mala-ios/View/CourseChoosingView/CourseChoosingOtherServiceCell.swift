@@ -14,7 +14,7 @@ class CourseChoosingOtherServiceCell: MalaBaseCell {
     /// 价格
     var price: Int = 0 {
         didSet {
-            self.priceView.price = price
+            priceView.price = price
         }
     }
     
@@ -52,19 +52,19 @@ class CourseChoosingOtherServiceCell: MalaBaseCell {
         
         // Autolayout
         priceView.snp.makeConstraints { (maker) -> Void in
-            maker.top.equalTo(self.tableView.snp.bottom)
-            maker.left.equalTo(self.contentView.snp.left)
-            maker.right.equalTo(self.contentView.snp.right)
-            maker.bottom.equalTo(self.contentView.snp.bottom)
+            maker.top.equalTo(tableView.snp.bottom)
+            maker.left.equalTo(contentView)
+            maker.right.equalTo(contentView)
+            maker.bottom.equalTo(contentView)
             maker.height.equalTo(MalaLayout_OtherServiceCellHeight)
         }
         
         let otherServiceCount = (MalaIsHasBeenEvaluatedThisSubject == true ? MalaOtherService.count : (MalaOtherService.count-1))
         tableView.snp.makeConstraints { (maker) -> Void in
-            maker.top.equalTo(self.contentView.snp.top)
+            maker.top.equalTo(contentView)
             maker.bottom.equalTo(priceView.snp.top)
-            maker.left.equalTo(self.contentView.snp.left).offset(12)
-            maker.right.equalTo(self.contentView.snp.right).offset(-12)
+            maker.left.equalTo(contentView).offset(12)
+            maker.right.equalTo(contentView).offset(-12)
             maker.height.equalTo(otherServiceCount*Int(MalaLayout_OtherServiceCellHeight))
         }
     }
@@ -86,18 +86,20 @@ class PriceResultView: UIView {
     // MARK: - Components
     /// 价格说明标签
     private lazy var stringLabel: UILabel = {
-        let stringLabel = UILabel()
-        stringLabel.textColor = MalaColor_333333_0
-        stringLabel.font = UIFont.systemFont(ofSize: 14)
-        stringLabel.text = "原价:"
+        let stringLabel = UILabel(
+            text: "原价:",
+            fontSize: 14,
+            textColor: MalaColor_333333_0
+        )
         return stringLabel
     }()
     /// 金额标签
     private lazy var priceLabel: UILabel = {
-        let priceLabel = UILabel()
-        priceLabel.textColor = MalaColor_E36A5D_0
-        priceLabel.font = UIFont.systemFont(ofSize: 14)
-        priceLabel.text = "￥0.00"
+        let priceLabel = UILabel(
+            text: "￥0.00",
+            fontSize: 14,
+            textColor: MalaColor_E36A5D_0
+        )
         return priceLabel
     }()
     
@@ -125,7 +127,7 @@ class PriceResultView: UIView {
     // MARK: - Private Method
     private func setupUserInterface() {
         // Style
-        self.backgroundColor = UIColor.white
+        backgroundColor = UIColor.white
         
         // SubViews
         addSubview(stringLabel)
@@ -134,12 +136,12 @@ class PriceResultView: UIView {
         // Autolayout
         priceLabel.snp.makeConstraints { (maker) -> Void in
             maker.height.equalTo(14)
-            maker.centerY.equalTo(self.snp.centerY)
-            maker.right.equalTo(self.snp.right).offset(-12)
+            maker.centerY.equalTo(self)
+            maker.right.equalTo(self).offset(-12)
         }
         stringLabel.snp.makeConstraints { (maker) -> Void in
             maker.height.equalTo(14)
-            maker.bottom.equalTo(self.priceLabel.snp.bottom)
+            maker.bottom.equalTo(priceLabel)
             maker.right.equalTo(priceLabel.snp.left)
         }
     }

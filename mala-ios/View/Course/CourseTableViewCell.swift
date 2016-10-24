@@ -75,21 +75,21 @@ class CourseTableViewCell: UITableViewCell {
         
         // AutoLayout
         dateLabel.snp.makeConstraints { (maker) in
-            maker.top.equalTo(contentView.snp.top).offset(20)
-            maker.left.equalTo(contentView.snp.left).offset(20)
+            maker.top.equalTo(contentView).offset(20)
+            maker.left.equalTo(contentView).offset(20)
             maker.height.equalTo(27)
         }
         weekLabel.snp.makeConstraints { (maker) in
             maker.top.equalTo(dateLabel.snp.bottom).offset(5)
-            maker.left.equalTo(dateLabel.snp.left)
+            maker.left.equalTo(dateLabel)
             maker.width.equalTo(30)
             maker.height.equalTo(14)
         }
         courseLayoutView.snp.makeConstraints { (maker) in
-            maker.top.equalTo(dateLabel.snp.top)
+            maker.top.equalTo(dateLabel)
             maker.left.equalTo(weekLabel.snp.right).offset(20)
-            maker.right.equalTo(contentView.snp.right).offset(-12)
-            maker.bottom.equalTo(contentView.snp.bottom)
+            maker.right.equalTo(contentView).offset(-12)
+            maker.bottom.equalTo(contentView)
         }
     }
     
@@ -129,15 +129,15 @@ class CourseTableViewCell: UITableViewCell {
             if let lastCourseView = lastCourseView {
                 view.snp.makeConstraints { (maker) in
                     maker.top.equalTo(lastCourseView.snp.bottom)
-                    maker.left.equalTo(courseLayoutView.snp.left)
-                    maker.right.equalTo(courseLayoutView.snp.right)
+                    maker.left.equalTo(courseLayoutView)
+                    maker.right.equalTo(courseLayoutView)
                     maker.height.equalTo(102)
                 }
             }else {
                 view.snp.makeConstraints { (maker) in
-                    maker.top.equalTo(courseLayoutView.snp.top)
-                    maker.left.equalTo(courseLayoutView.snp.left)
-                    maker.right.equalTo(courseLayoutView.snp.right)
+                    maker.top.equalTo(courseLayoutView)
+                    maker.left.equalTo(courseLayoutView)
+                    maker.right.equalTo(courseLayoutView)
                     maker.height.equalTo(102)
                 }
             }

@@ -137,7 +137,7 @@ class CourseChoosingViewController: BaseViewController, CourseChoosingConfirmVie
     private func setupUserInterface() {
         // Style
         makeStatusBarBlack()
-        self.title = MalaCommonString_CourseChoosing
+        title = MalaCommonString_CourseChoosing
         
         // SubViews
         view.addSubview(confirmView)
@@ -147,15 +147,15 @@ class CourseChoosingViewController: BaseViewController, CourseChoosingConfirmVie
         
         // Autolayout
         confirmView.snp.makeConstraints { (maker) -> Void in
-            maker.bottom.equalTo(self.view.snp.bottom)
-            maker.left.equalTo(self.view.snp.left)
-            maker.right.equalTo(self.view.snp.right)
+            maker.bottom.equalTo(view)
+            maker.left.equalTo(view)
+            maker.right.equalTo(view)
             maker.height.equalTo(47)
         }
         tableView.snp.makeConstraints { (maker) -> Void in
-            maker.top.equalTo(self.view.snp.top)
-            maker.left.equalTo(self.view.snp.left)
-            maker.right.equalTo(self.view.snp.right)
+            maker.top.equalTo(view)
+            maker.left.equalTo(view)
+            maker.right.equalTo(view)
             maker.bottom.equalTo(confirmView.snp.top)
         }
     }

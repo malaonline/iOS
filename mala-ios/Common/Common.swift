@@ -218,7 +218,6 @@ let MalaLayout_FilterBarHeight: CGFloat = 40
 let MalaLayout_OtherServiceCellHeight: CGFloat = 46
 let MalaLayout_ProfileHeaderViewHeight: CGFloat = 190
 let MalaLayout_ProfileModifyViewHeight: CGFloat = 48
-let MalaLayout_AboutAPPLogoViewHeight: CGFloat = 62
 let MalaLayout_CoursePopupWindowWidth: CGFloat = 272
 let MalaLayout_CoursePopupWindowHeight: CGFloat = 300
 let MalaLayout_CoursePopupWindowTitleViewHeight: CGFloat = 69

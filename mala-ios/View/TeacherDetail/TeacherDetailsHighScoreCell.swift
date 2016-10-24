@@ -47,10 +47,10 @@ class TeacherDetailsHighScoreCell: MalaBaseCell {
         
         // Autolayout
         tableView.snp.makeConstraints { (maker) -> Void in
-            maker.top.equalTo(self.content.snp.top)
-            maker.left.equalTo(self.content.snp.left)
-            maker.bottom.equalTo(self.content.snp.bottom)
-            maker.right.equalTo(self.content.snp.right)
+            maker.top.equalTo(content)
+            maker.left.equalTo(content)
+            maker.bottom.equalTo(content)
+            maker.right.equalTo(content)
             maker.height.equalTo(MalaLayout_DeatilHighScoreTableViewCellHeight)
         }
     }

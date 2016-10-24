@@ -140,15 +140,16 @@ class FilterSectionHeaderView: UICollectionReusableView {
     
     // MARK: - Components
     private lazy var iconView: UIImageView = {
-        let iconView = UIImageView()
-        iconView.image = UIImage(named: "primarySchool")
+        let iconView = UIImageView(imageName: "primarySchool")
         return iconView
     }()
     private lazy var titleLabel: UILabel = {
-        let titleLabel = UILabel()
-        titleLabel.font = UIFont.systemFont(ofSize: 13)
-        titleLabel.textColor = MalaColor_939393_0
-        titleLabel.text = "小学"
+        let titleLabel = UILabel(
+            text: "小学",
+            fontSize: 13,
+            textColor: MalaColor_939393_0,
+            textAlignment: .center
+        )
         titleLabel.sizeToFit()
         return titleLabel
     }()
@@ -168,19 +169,19 @@ class FilterSectionHeaderView: UICollectionReusableView {
     // MARK: - Private Method
     private func setupUserInterface() {
         // SubViews
-        self.addSubview(iconView)
-        self.addSubview(titleLabel)
+        addSubview(iconView)
+        addSubview(titleLabel)
         
         // AutoLayout
         iconView.snp.makeConstraints { (maker) -> Void in
-            maker.top.equalTo(self.snp.top).offset(4)
-            maker.left.equalTo(self.snp.left)
+            maker.top.equalTo(self).offset(4)
+            maker.left.equalTo(self)
             maker.width.equalTo(20)
             maker.height.equalTo(20)
         }
         titleLabel.snp.makeConstraints { (maker) -> Void in
-            maker.centerY.equalTo(self.iconView.snp.centerY)
-            maker.left.equalTo(self.iconView.snp.right).offset(9)
+            maker.centerY.equalTo(iconView)
+            maker.left.equalTo(iconView.snp.right).offset(9)
         }
     }
 }

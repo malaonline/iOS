@@ -65,15 +65,16 @@ class CommentViewCell: UITableViewCell {
     }()
     /// 老师头像
     private lazy var avatarView: UIImageView = {
-        let imageView = UIImageView(image: UIImage(named: "profileAvatar_placeholder"))
-        imageView.contentMode = .scaleAspectFill
-        imageView.layer.cornerRadius = 55/2
-        imageView.layer.masksToBounds = true
+        let imageView = UIImageView(
+            cornerRadius: 55/2,
+            image: "profileAvatar_placeholder",
+            contentMode: .scaleAspectFill
+        )
         return imageView
     }()
     /// 老师姓名图标
     private lazy var teacherIcon: UIImageView = {
-        let imageView = UIImageView(image: UIImage(named: "comment_teacher_normal"))
+        let imageView = UIImageView(imageName: "comment_teacher_normal")
         return imageView
     }()
     /// 老师姓名
@@ -87,7 +88,7 @@ class CommentViewCell: UITableViewCell {
     }()
     /// 学科信息图标
     private lazy var subjectIcon: UIImageView = {
-        let imageView = UIImageView(image: UIImage(named: "comment_subject"))
+        let imageView = UIImageView(imageName: "comment_subject")
         return imageView
     }()
     /// 学科信息
@@ -101,7 +102,7 @@ class CommentViewCell: UITableViewCell {
     }()
     /// 上课时间图标
     private lazy var timeSlotIcon: UIImageView = {
-        let imageView = UIImageView(image: UIImage(named: "comment_time"))
+        let imageView = UIImageView(imageName: "comment_time")
         return imageView
     }()
     /// 上课日期信息
@@ -124,7 +125,7 @@ class CommentViewCell: UITableViewCell {
     }()
     /// 上课地点图标
     private lazy var schoolIcon: UIImageView = {
-        let imageView = UIImageView(image: UIImage(named: "comment_location"))
+        let imageView = UIImageView(imageName: "comment_location")
         return imageView
     }()
     /// 上课地点
@@ -240,16 +241,16 @@ class CommentViewCell: UITableViewCell {
         
         // Autolayout
         content.snp.makeConstraints { (maker) -> Void in
-            maker.top.equalTo(self.contentView.snp.top).offset(6)
-            maker.left.equalTo(self.contentView.snp.left).offset(12)
-            maker.bottom.equalTo(self.contentView.snp.bottom).offset(-6)
-            maker.right.equalTo(self.contentView.snp.right).offset(-12)
+            maker.top.equalTo(contentView).offset(6)
+            maker.left.equalTo(contentView).offset(12)
+            maker.bottom.equalTo(contentView).offset(-6)
+            maker.right.equalTo(contentView).offset(-12)
         }
         mainLayoutView.snp.makeConstraints { (maker) in
-            maker.top.equalTo(content.snp.top)
-            maker.left.equalTo(content.snp.left)
+            maker.top.equalTo(content)
+            maker.left.equalTo(content)
             maker.height.equalTo(252)
-            maker.right.equalTo(content.snp.right)
+            maker.right.equalTo(content)
             maker.bottom.equalTo(separatorLine.snp.top)
         }
         separatorLine.snp.makeConstraints { (maker) in
@@ -259,57 +260,57 @@ class CommentViewCell: UITableViewCell {
             maker.right.equalTo(content).offset(-5)
         }
         floatRating.snp.makeConstraints { (maker) in
-            maker.center.equalTo(separatorLine.snp.center)
+            maker.center.equalTo(separatorLine)
             maker.height.equalTo(20)
             maker.width.equalTo(80)
         }
         bottomLayoutView.snp.makeConstraints { (maker) in
             maker.top.equalTo(separatorLine.snp.bottom)
-            maker.bottom.equalTo(content.snp.bottom)
-            maker.left.equalTo(content.snp.left)
-            maker.right.equalTo(content.snp.right)
+            maker.bottom.equalTo(content)
+            maker.left.equalTo(content)
+            maker.right.equalTo(content)
             maker.height.equalTo(50)
         }
         statusIcon.snp.makeConstraints { (maker) in
-            maker.right.equalTo(mainLayoutView.snp.right).offset(-30)
-            maker.top.equalTo(mainLayoutView.snp.top).offset(-6)
+            maker.right.equalTo(mainLayoutView).offset(-30)
+            maker.top.equalTo(mainLayoutView).offset(-6)
         }
         avatarView.snp.makeConstraints { (maker) in
-            maker.centerX.equalTo(statusIcon.snp.centerX)
+            maker.centerX.equalTo(statusIcon)
             maker.top.equalTo(statusIcon.snp.bottom).offset(10)
             maker.height.equalTo(55)
             maker.width.equalTo(55)
         }
         teacherIcon.snp.makeConstraints { (maker) in
-            maker.top.equalTo(mainLayoutView.snp.top).offset(14)
-            maker.left.equalTo(mainLayoutView.snp.left).offset(12)
+            maker.top.equalTo(mainLayoutView).offset(14)
+            maker.left.equalTo(mainLayoutView).offset(12)
             maker.height.equalTo(14)
             maker.width.equalTo(14)
         }
         teacherLabel.snp.makeConstraints { (maker) in
-            maker.top.equalTo(teacherIcon.snp.top)
+            maker.top.equalTo(teacherIcon)
             maker.left.equalTo(teacherIcon.snp.right).offset(10)
             maker.height.equalTo(13)
         }
         subjectIcon.snp.makeConstraints { (maker) in
             maker.top.equalTo(teacherIcon.snp.bottom).offset(14)
-            maker.left.equalTo(mainLayoutView.snp.left).offset(12)
+            maker.left.equalTo(mainLayoutView).offset(12)
             maker.height.equalTo(14)
             maker.width.equalTo(14)
         }
         subjectLabel.snp.makeConstraints { (maker) in
-            maker.top.equalTo(subjectIcon.snp.top)
+            maker.top.equalTo(subjectIcon)
             maker.left.equalTo(subjectIcon.snp.right).offset(10)
             maker.height.equalTo(13)
         }
         timeSlotIcon.snp.makeConstraints { (maker) in
             maker.top.equalTo(subjectIcon.snp.bottom).offset(14)
-            maker.left.equalTo(mainLayoutView.snp.left).offset(12)
+            maker.left.equalTo(mainLayoutView).offset(12)
             maker.height.equalTo(14)
             maker.width.equalTo(14)
         }
         timeSlotLabel.snp.makeConstraints { (maker) in
-            maker.top.equalTo(timeSlotIcon.snp.top)
+            maker.top.equalTo(timeSlotIcon)
             maker.left.equalTo(timeSlotIcon.snp.right).offset(10)
             maker.height.equalTo(13)
         }
@@ -320,27 +321,27 @@ class CommentViewCell: UITableViewCell {
         }
         schoolIcon.snp.makeConstraints { (maker) in
             maker.top.equalTo(timeSlotIcon.snp.bottom).offset(14)
-            maker.left.equalTo(mainLayoutView.snp.left).offset(12)
+            maker.left.equalTo(mainLayoutView).offset(12)
             maker.height.equalTo(15)
             maker.width.equalTo(14)
         }
         schoolLabel.snp.makeConstraints { (maker) in
-            maker.top.equalTo(schoolIcon.snp.top)
+            maker.top.equalTo(schoolIcon)
             maker.left.equalTo(schoolIcon.snp.right).offset(10)
             maker.height.equalTo(13)
-            maker.bottom.equalTo(mainLayoutView.snp.bottom).offset(-14)
+            maker.bottom.equalTo(mainLayoutView).offset(-14)
         }
         expiredLabel.snp.makeConstraints { (maker) in
             maker.height.equalTo(12)
-            maker.center.equalTo(bottomLayoutView.snp.center)
+            maker.center.equalTo(bottomLayoutView)
         }
         commentButton.snp.makeConstraints { (maker) in
-            maker.center.equalTo(bottomLayoutView.snp.center)
+            maker.center.equalTo(bottomLayoutView)
             maker.width.equalTo(96)
             maker.height.equalTo(24)
         }
         showCommentButton.snp.makeConstraints { (maker) in
-            maker.center.equalTo(bottomLayoutView.snp.center)
+            maker.center.equalTo(bottomLayoutView)
             maker.width.equalTo(96)
             maker.height.equalTo(24)
         }

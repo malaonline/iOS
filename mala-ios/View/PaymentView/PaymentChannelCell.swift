@@ -94,34 +94,34 @@ class PaymentChannelCell: UITableViewCell {
         
         // Autolayout
         iconView.snp.makeConstraints { (maker) -> Void in
-            maker.top.equalTo(contentView.snp.top).offset(16)
-            maker.left.equalTo(contentView.snp.left).offset(12)
-            maker.bottom.equalTo(contentView.snp.bottom).offset(-16)
+            maker.top.equalTo(contentView).offset(16)
+            maker.left.equalTo(contentView).offset(12)
+            maker.bottom.equalTo(contentView).offset(-16)
             maker.width.equalTo(iconView.snp.height)
         }
         titleLabel.snp.makeConstraints { (maker) -> Void in
             maker.height.equalTo(14)
-            maker.top.equalTo(iconView.snp.top)
+            maker.top.equalTo(iconView)
             maker.left.equalTo(iconView.snp.right).offset(12)
         }
         subTitleLabel.snp.makeConstraints { (maker) -> Void in
-            maker.left.equalTo(titleLabel.snp.left)
-            maker.bottom.equalTo(iconView.snp.bottom)
+            maker.left.equalTo(titleLabel)
+            maker.bottom.equalTo(iconView)
             maker.height.equalTo(13)
         }
         selectButton.snp.makeConstraints { (maker) -> Void in
-            maker.centerY.equalTo(contentView.snp.centerY)
-            maker.right.equalTo(contentView.snp.right).offset(-12)
+            maker.centerY.equalTo(contentView)
+            maker.right.equalTo(contentView).offset(-12)
         }
         separatorLine.snp.makeConstraints { (maker) in
-            maker.bottom.equalTo(contentView.snp.bottom)
-            maker.left.equalTo(contentView.snp.left).offset(12)
-            maker.right.equalTo(contentView.snp.right).offset(-12)
+            maker.bottom.equalTo(contentView)
+            maker.left.equalTo(contentView).offset(12)
+            maker.right.equalTo(contentView).offset(-12)
             maker.height.equalTo(MalaScreenOnePixel)
         }
     }
     
     func hideSeparator() {
-        self.separatorLine.isHidden = true
+        separatorLine.isHidden = true
     }
 }
