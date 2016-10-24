@@ -78,7 +78,7 @@ class OrderFormStatusCell: UITableViewCell {
     }()
     /// 老师姓名图标
     private lazy var teacherIcon: UIImageView = {
-        let imageView = UIImageView(image: UIImage(named: "order_teacher"))
+        let imageView = UIImageView(imageName: "order_teacher")
         return imageView
     }()
     /// 老师姓名
@@ -92,7 +92,7 @@ class OrderFormStatusCell: UITableViewCell {
     }()
     /// 学科信息图标
     private lazy var subjectIcon: UIImageView = {
-        let imageView = UIImageView(image: UIImage(named: "order_subject"))
+        let imageView = UIImageView(imageName: "order_subject")
         return imageView
     }()
     /// 学科信息
@@ -106,7 +106,7 @@ class OrderFormStatusCell: UITableViewCell {
     }()
     /// 上课地点图标
     private lazy var schoolIcon: UIImageView = {
-        let imageView = UIImageView(image: UIImage(named: "order_school"))
+        let imageView = UIImageView(imageName: "order_school")
         return imageView
     }()
     /// 上课地点
@@ -120,7 +120,7 @@ class OrderFormStatusCell: UITableViewCell {
     }()
     /// 老师头像
     private lazy var avatarView: UIImageView = {
-        let imageView = UIImageView(image: UIImage(named: "profileAvatar_placeholder"))
+        let imageView = UIImageView(imageName: "profileAvatar_placeholder")
         imageView.contentMode = .scaleAspectFill
         imageView.layer.cornerRadius = 55/2
         imageView.layer.masksToBounds = true

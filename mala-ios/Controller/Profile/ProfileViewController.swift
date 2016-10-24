@@ -33,7 +33,7 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
     }()
     /// 顶部背景图
     private lazy var headerBackground: UIImageView = {
-        let image = UIImageView(image: UIImage(named: "profile_headerBackground"))
+        let image = UIImageView(imageName: "profile_headerBackground")
         image.contentMode = .scaleAspectFill
         return image
     }()

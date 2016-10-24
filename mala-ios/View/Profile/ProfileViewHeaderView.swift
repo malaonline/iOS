@@ -46,7 +46,7 @@ class ProfileViewHeaderView: UIView {
     // MARK: - Components
     /// 头像ImageView控件
     private lazy var avatarView: UIImageView = {
-        let imageView = UIImageView(image: UIImage(named: "avatar_placeholder"))
+        let imageView = UIImageView(imageName: "avatar_placeholder")
         imageView.layer.cornerRadius = (MalaLayout_AvatarSize-5)*0.5
         imageView.layer.masksToBounds = true
         imageView.isUserInteractionEnabled = true

@@ -67,7 +67,7 @@ class LearningReportHomeworkDataCell: MalaBaseCardCell {
     }()
     /// 皇冠头像图片
     private lazy var infoIcon: UIImageView = {
-        let imageView = UIImageView(image: UIImage(named: "reportTitle_icon"))
+        let imageView = UIImageView(imageName:  "reportTitle_icon")
         return imageView
     }()
     /// 作业信息标签

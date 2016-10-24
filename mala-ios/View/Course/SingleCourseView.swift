@@ -56,7 +56,7 @@ class SingleCourseView: UIView {
     }()
     /// 上课时间图标
     private lazy var timeSlotIcon: UIImageView = {
-        let imageView = UIImageView(image: UIImage(named: "comment_time"))
+        let imageView = UIImageView(imageName: "comment_time")
         return imageView
     }()
     /// 上课时间信息
@@ -70,7 +70,7 @@ class SingleCourseView: UIView {
     }()
     /// 上课地点图标
     private lazy var schoolIcon: UIImageView = {
-        let imageView = UIImageView(image: UIImage(named: "comment_location"))
+        let imageView = UIImageView(imageName: "comment_location")
         return imageView
     }()
     /// 上课地点

@@ -69,7 +69,7 @@ class LiveCourseTableViewCell: UITableViewCell {
     }()
     /// 直播图标
     private lazy var liveIcon: UIImageView = {
-        let imageView = UIImageView(image: "live_icon")
+        let imageView = UIImageView(imageName: "live_icon")
         return imageView
     }()
     /// 助教头像
@@ -145,7 +145,7 @@ class LiveCourseTableViewCell: UITableViewCell {
     }()
     /// 课程日期图标
     private lazy var dateIcon: UIImageView = {
-        let imageView = UIImageView(image: "live_time")
+        let imageView = UIImageView(imageName: "live_time")
         return imageView
     }()
     /// 课程日期

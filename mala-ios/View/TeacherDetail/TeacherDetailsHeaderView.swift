@@ -56,7 +56,7 @@ class TeacherDetailsHeaderView: UIView {
     }()
     /// 头像显示控件
     private lazy var avatarView: UIImageView = {
-        let imageView = UIImageView(image: UIImage(named: "avatar_placeholder"))
+        let imageView = UIImageView(imageName: "avatar_placeholder")
         imageView.layer.cornerRadius = (MalaLayout_AvatarSize-5)*0.5
         imageView.layer.masksToBounds = true
         imageView.contentMode = .scaleAspectFill
@@ -74,7 +74,7 @@ class TeacherDetailsHeaderView: UIView {
     }()
     /// 会员图标显示控件
     private lazy var vipIconView: UIImageView = {
-        let imageView = UIImageView(image: UIImage(named: "vip_icon"))
+        let imageView = UIImageView(imageName: "vip_icon")
         imageView.layer.cornerRadius = MalaLayout_VipIconSize*0.5
         imageView.layer.masksToBounds = true
         imageView.layer.borderWidth = 1.0
@@ -89,7 +89,7 @@ class TeacherDetailsHeaderView: UIView {
     }()
     /// 老师性别Icon
     private lazy var genderIcon: UIImageView = {
-        let imageView = UIImageView(image: UIImage(named: "gender_female"))
+        let imageView = UIImageView(imageName: "gender_female")
         return imageView
     }()
     /// 科目label
@@ -126,7 +126,7 @@ class TeacherDetailsHeaderView: UIView {
     }()
     /// 教龄图标
     private lazy var teachingAgeIcon: UIImageView = {
-        let imageView = UIImageView(image: UIImage(named: "teachingAge_icon"))
+        let imageView = UIImageView(imageName: "teachingAge_icon")
         return imageView
     }()
     /// 教龄文字标签
@@ -161,7 +161,7 @@ class TeacherDetailsHeaderView: UIView {
     }()
     /// 级别图标
     private lazy var levelIcon: UIImageView = {
-        let imageView = UIImageView(image: UIImage(named: "level_icon"))
+        let imageView = UIImageView(imageName: "level_icon")
         return imageView
     }()
     /// 级别文字标签

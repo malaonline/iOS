@@ -57,7 +57,7 @@ class LiveCourseDetailClassCell: MalaBaseLiveCourseCell {
     }()
     /// 课程日期图标
     private lazy var scheduleIcon: UIImageView = {
-        let imageView = UIImageView(image: "live_schedule")
+        let imageView = UIImageView(imageName: "live_schedule")
         return imageView
     }()
     /// 课程日期标签
@@ -82,7 +82,7 @@ class LiveCourseDetailClassCell: MalaBaseLiveCourseCell {
     }()
     /// 报课人数图标
     private lazy var checkinIcon: UIImageView = {
-        let imageView = UIImageView(image: "live_checkin")
+        let imageView = UIImageView(imageName: "live_checkin")
         return imageView
     }()
     /// 报课人数标签

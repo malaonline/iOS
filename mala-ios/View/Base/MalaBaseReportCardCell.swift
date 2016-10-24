@@ -33,7 +33,7 @@ class MalaBaseReportCardCell: MalaBaseCardCell {
     }()
     /// 曲别针图标
     private lazy var pinIcon: UIImageView = {
-        let imageView = UIImageView(image: UIImage(named: "pin_icon"))
+        let imageView = UIImageView(imageName: "pin_icon")
         return imageView
     }()
     /// 解读标签

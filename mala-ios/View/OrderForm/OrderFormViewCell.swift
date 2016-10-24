@@ -51,7 +51,7 @@ class OrderFormViewCell: UITableViewCell {
     }()
     /// 父布局容器
     private lazy var content: UIImageView = {
-        let imageView = UIImageView(image: UIImage(named: "orderForm_background"))
+        let imageView = UIImageView(imageName: "orderForm_background")
         imageView.isUserInteractionEnabled = true
         return imageView
     }()
@@ -135,7 +135,7 @@ class OrderFormViewCell: UITableViewCell {
     }()
     /// 老师头像
     private lazy var avatarView: UIImageView = {
-        let imageView = UIImageView(image: UIImage(named: "profileAvatar_placeholder"))
+        let imageView = UIImageView(imageName: "profileAvatar_placeholder")
         imageView.contentMode = .scaleAspectFill
         imageView.layer.cornerRadius = 55/2
         imageView.layer.masksToBounds = true

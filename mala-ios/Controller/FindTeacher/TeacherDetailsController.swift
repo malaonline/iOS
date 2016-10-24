@@ -85,7 +85,7 @@ class TeacherDetailsController: BaseViewController, UIGestureRecognizerDelegate,
     }()
     /// 顶部背景图
     private lazy var headerBackground: UIImageView = {
-        let image = UIImageView(image: UIImage(named: "teacherDetailHeader_placeholder"))
+        let image = UIImageView(imageName: "teacherDetailHeader_placeholder")
         image.contentMode = .scaleAspectFill
         return image
     }()

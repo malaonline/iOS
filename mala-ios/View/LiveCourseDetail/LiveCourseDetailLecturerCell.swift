@@ -28,7 +28,7 @@ class LiveCourseDetailLecturerCell: MalaBaseLiveCourseCell {
     // MARK: - Components
     /// 主讲图标
     private lazy var lecturerIcon: UIImageView = {
-        let imageView = UIImageView(image: "live_lecturer")
+        let imageView = UIImageView(imageName: "live_lecturer")
         return imageView
     }()
     /// 讲师姓名

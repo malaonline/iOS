@@ -33,7 +33,7 @@ class LearningReportTitlePageCell: MalaBaseCardCell {
     }()
     /// 标题背景图
     private lazy var titleBackground: UIImageView = {
-        let imageView = UIImageView(image: UIImage(named: "reportTitle_background"))
+        let imageView = UIImageView(imageName: "reportTitle_background")
         return imageView
     }()
     /// 日期范围标签
@@ -49,7 +49,7 @@ class LearningReportTitlePageCell: MalaBaseCardCell {
     }()
     /// 文件夹图片
     private lazy var folderImage: UIImageView = {
-        let imageView = UIImageView(image: UIImage(named: "folder_icon"))
+        let imageView = UIImageView(imageName: "folder_icon")
         return imageView
     }()
     /// "学生姓名"文字
@@ -72,7 +72,7 @@ class LearningReportTitlePageCell: MalaBaseCardCell {
     }()
     /// 姓名分割线
     private lazy var nameSeparator: UIImageView = {
-        let imageView = UIImageView(image: UIImage(named: "label_rightSeparator"))
+        let imageView = UIImageView(imageName: "label_rightSeparator")
         return imageView
     }()
     /// "所在年纪"文字
@@ -95,7 +95,7 @@ class LearningReportTitlePageCell: MalaBaseCardCell {
     }()
     /// 年级分割线
     private lazy var gradeSeparator: UIImageView = {
-        let imageView = UIImageView(image: UIImage(named: "label_leftSeparator"))
+        let imageView = UIImageView(imageName: "label_leftSeparator")
         return imageView
     }()
     

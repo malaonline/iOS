@@ -135,7 +135,7 @@ class ThemeTimeLine: UIView, CAAnimationDelegate {
         
         for label in labels {
             
-            let line = UIImageView(image: UIImage(named: "time_top"))
+            let line = UIImageView(imageName: "time_top")
             self.progressViewContainer.addSubview(line)
             
             /// 最后一个时间点

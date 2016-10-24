@@ -62,7 +62,7 @@ class RegionViewController: UIViewController, UITableViewDelegate, UITableViewDa
         return label
     }()
     private lazy var cityArrow: UIImageView = {
-        let imageView = UIImageView(image: UIImage(named: "rightArrow"))
+        let imageView = UIImageView(imageName: "rightArrow")
         return imageView
     }()
     /// 校区列表

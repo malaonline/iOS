@@ -45,7 +45,7 @@ class CourseTableViewSectionHeader: UITableViewHeaderFooterView {
     // MARK: - Components
     /// 视差图片
     lazy var parallaxImage: UIImageView = {
-        let imageView = UIImageView(image: UIImage(named: "course_header"))
+        let imageView = UIImageView(imageName: "course_header")
         imageView.backgroundColor = UIColor.white
         imageView.contentMode = .scaleAspectFill
         return imageView

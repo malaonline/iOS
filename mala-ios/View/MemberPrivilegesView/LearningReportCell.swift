@@ -129,7 +129,7 @@ class LearningReportCell: UITableViewCell {
     }()
     /// 遮罩层图片
     private lazy var layerImage: UIImageView = {
-        let imageView = UIImageView(image: UIImage(named: "noReport"))
+        let imageView = UIImageView(imageName: "noReport")
         return imageView
     }()
     /// 遮罩层说明标签

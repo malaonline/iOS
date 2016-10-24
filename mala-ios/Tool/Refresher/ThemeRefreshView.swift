@@ -12,7 +12,7 @@ class ThemeRefreshView: UIView {
     
     // MARK: - Property
     private lazy var view: UIView = UIView()
-    private lazy var imageView: UIImageView = UIImageView(image: UIImage(named: "refreshImage"))
+    private lazy var imageView: UIImageView = UIImageView(imageName: "refreshImage")
     private lazy var label: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 13)
