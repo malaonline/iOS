@@ -68,6 +68,18 @@ class RootViewController: UIViewController {
         picker.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(RootViewController.regionsPickButtonDidTap)))
         return picker
     }()
+    fileprivate lazy var rightBarButtonItem: UIBarButtonItem = {
+        let button = UIBarButtonItem(customView:
+            UIButton(
+                imageName: "filter_normal",
+                highlightImageName: "filter_press",
+                target: self,
+                action: #selector(RootViewController.filterButtonDidTap)
+            )
+        )
+        return button
+    }()
+    
     
     // MARK: - Life Cycle
     override func viewDidLoad() {
@@ -96,16 +108,6 @@ class RootViewController: UIViewController {
         let spacer = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
         spacer.width = -12
         navigationItem.leftBarButtonItems = []
-        
-        // RightBarButtonItem
-        let rightBarButtonItem = UIBarButtonItem(customView:
-            UIButton(
-                imageName: "filter_normal",
-                highlightImageName: "filter_press",
-                target: self,
-                action: #selector(RootViewController.filterButtonDidTap)
-            )
-        )
         navigationItem.rightBarButtonItems = [spacer, rightBarButtonItem]
     }
     
@@ -179,7 +181,11 @@ class RootViewController: UIViewController {
 // MARK: - PagingMenuControllerDelegate
 extension RootViewController: PagingMenuControllerDelegate {
     func willMove(toMenu menuController: UIViewController, fromMenu previousMenuController: UIViewController) {
-        // print(#function)
+        if menuController is FindTeacherViewController {
+            rightBarButtonItem.isEnabled = true
+        }else if menuController is LiveCourseViewController {
+            rightBarButtonItem.isEnabled = false
+        }
     }
     
     func didMove(toMenu menuController: UIViewController, fromMenu previousMenuController: UIViewController) {
