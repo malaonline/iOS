@@ -56,7 +56,7 @@ class OrderFormTableView: UITableView, UITableViewDelegate, UITableViewDataSourc
     private func configure() {
         delegate = self
         dataSource = self
-        backgroundColor = MalaColor_EDEDED_0
+        backgroundColor = MalaColor_F2F2F2_0
         estimatedRowHeight = 500
         separatorStyle = .none
         
