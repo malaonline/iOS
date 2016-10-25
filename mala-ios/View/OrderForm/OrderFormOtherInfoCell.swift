@@ -15,53 +15,34 @@ class OrderFormOtherInfoCell: UITableViewCell {
     var model: OrderForm? {
         didSet {
             
+            guard let model = model else {
+                return
+            }
+            
             /// 订单状态
-            if let status = MalaOrderStatus(rawValue: (model?.status ?? "")) {
+            if let status = MalaOrderStatus(rawValue: (model.status ?? "")) {
                 switch status {
-                // 已支付、已退款状态时，不显示支付时间
+                // 待付款、已退款状态时，不显示支付时间
                 case .Penging, .Canceled:
                     
                     paymentDateString.isHidden = true
                     paymentDateLabel.isHidden = true
                     
-                    createDateString.snp.updateConstraints { (maker) -> Void in
+                    createDateString.snp.remakeConstraints { (maker) -> Void in
                         maker.top.equalTo(titleString.snp.bottom).offset(10)
                         maker.left.equalTo(titleString)
                         maker.height.equalTo(12)
                         maker.bottom.equalTo(contentView).offset(-16)
                     }
                     break
-                    
                 default:
                     break
                 }
             }
-            self.orderId = self.model?.order_id ?? "-"
-            self.createDate = self.model?.createAt
-            self.paymentDate = self.model?.paidAt
-        }
-    }
-    
-    /// 订单编号
-    var orderId: String = "" {
-        didSet {
-            titleLabel.text = orderId
-        }
-    }
-    /// 订单创建时间
-    var createDate: TimeInterval? {
-        didSet {
-            if let createDate = createDate {
-                createDateLabel.text = getDateTimeString(createDate)
-            }
-        }
-    }
-    /// 订单支付时间
-    var paymentDate: TimeInterval? {
-        didSet {
-            if let paymentDate = paymentDate {
-                paymentDateLabel.text = getDateTimeString(paymentDate)
-            }
+            
+            titleLabel.text = model.order_id ?? "-"
+            createDateLabel.text = getDateTimeString(model.createAt ?? 0)
+            paymentDateLabel.text = getDateTimeString(model.paidAt ?? 0)
         }
     }
     
@@ -78,7 +59,6 @@ class OrderFormOtherInfoCell: UITableViewCell {
     }()
     private lazy var titleLabel: UILabel = {
         let label = UILabel(
-            text: "",
             fontSize: 12,
             textColor: MalaColor_939393_0
         )
@@ -95,7 +75,6 @@ class OrderFormOtherInfoCell: UITableViewCell {
     }()
     private lazy var createDateLabel: UILabel = {
         let label = UILabel(
-            text: "",
             fontSize: 12,
             textColor: MalaColor_939393_0
         )
@@ -112,7 +91,6 @@ class OrderFormOtherInfoCell: UITableViewCell {
     }()
     private lazy var paymentDateLabel: UILabel = {
         let label = UILabel(
-            text: "",
             fontSize: 12,
             textColor: MalaColor_939393_0
         )
@@ -157,7 +135,7 @@ class OrderFormOtherInfoCell: UITableViewCell {
             maker.top.equalTo(titleString.snp.bottom).offset(10)
             maker.left.equalTo(titleString)
             maker.height.equalTo(12)
-            maker.bottom.equalTo(contentView.snp.bottom).offset(-16)
+            maker.bottom.equalTo(paymentDateString.snp.bottom).offset(-16)
         }
         createDateLabel.snp.makeConstraints { (maker) -> Void in
             maker.top.equalTo(createDateString)
