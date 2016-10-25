@@ -30,6 +30,11 @@ class OrderFormPaymentChannelCell: UITableViewCell {
     
     
     // MARK: - Components
+    /// 布局容器
+    private lazy var content: UIView = {
+        let view = UIView(UIColor.white)
+        return view
+    }()
     /// cell标题
     private lazy var titleLabel: UILabel = {
         let label = UILabel(
@@ -63,21 +68,30 @@ class OrderFormPaymentChannelCell: UITableViewCell {
     
     // MARK: - Private Method
     private func setupUserInterface() {
+        // Style
+        contentView.backgroundColor = MalaColor_EDEDED_0
         
         // SubViews
-        contentView.addSubview(titleLabel)
-        contentView.addSubview(payChannelLabel)
+        contentView.addSubview(content)
+        content.addSubview(titleLabel)
+        content.addSubview(payChannelLabel)
         
         // Autolayout
-        titleLabel.snp.updateConstraints { (maker) -> Void in
-            maker.top.equalTo(contentView).offset(16)
+        content.snp.makeConstraints { (maker) in
+            maker.top.equalTo(contentView)
             maker.left.equalTo(contentView).offset(12)
+            maker.right.equalTo(contentView).offset(-12)
+            maker.bottom.equalTo(contentView)
+        }
+        titleLabel.snp.updateConstraints { (maker) -> Void in
+            maker.top.equalTo(content).offset(16)
+            maker.left.equalTo(content).offset(12)
             maker.height.equalTo(15)
-            maker.bottom.equalTo(contentView).offset(-16)
+            maker.bottom.equalTo(content).offset(-16)
         }
         payChannelLabel.snp.updateConstraints { (maker) -> Void in
             maker.centerY.equalTo(titleLabel)
-            maker.right.equalTo(contentView).offset(-12)
+            maker.right.equalTo(content).offset(-12)
             maker.height.equalTo(13)
         }
     }

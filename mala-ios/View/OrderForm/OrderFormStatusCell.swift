@@ -53,6 +53,11 @@ class OrderFormStatusCell: UITableViewCell {
     
 
     // MARK: - Components
+    /// 布局容器
+    private lazy var content: UIView = {
+        let view = UIView(UIColor.white)
+        return view
+    }()
     /// cell标题
     private lazy var titleLabel: UILabel = {
         let label = UILabel(
@@ -141,40 +146,47 @@ class OrderFormStatusCell: UITableViewCell {
     
     // MARK: - Private Method
     private func setupUserInterface() {
+        // Style
+        contentView.backgroundColor = MalaColor_EDEDED_0
+        
         // SubViews
-        contentView.addSubview(titleLabel)
-        contentView.addSubview(statusLabel)
-        contentView.addSubview(separatorLine)
-        
-        contentView.addSubview(teacherIcon)
-        contentView.addSubview(teacherLabel)
-        contentView.addSubview(subjectIcon)
-        contentView.addSubview(subjectLabel)
-        contentView.addSubview(schoolIcon)
-        contentView.addSubview(schoolLabel)
-        
-        contentView.addSubview(avatarView)
+        contentView.addSubview(content)
+        content.addSubview(titleLabel)
+        content.addSubview(statusLabel)
+        content.addSubview(separatorLine)
+        content.addSubview(teacherIcon)
+        content.addSubview(teacherLabel)
+        content.addSubview(subjectIcon)
+        content.addSubview(subjectLabel)
+        content.addSubview(schoolIcon)
+        content.addSubview(schoolLabel)
+        content.addSubview(avatarView)
         
         // Autolayout
-        // Remove margin
-        titleLabel.snp.updateConstraints { (maker) -> Void in
-            maker.top.equalTo(contentView).offset(10)
+        content.snp.makeConstraints { (maker) in
+            maker.top.equalTo(contentView)
             maker.left.equalTo(contentView).offset(12)
+            maker.right.equalTo(contentView).offset(-12)
+            maker.bottom.equalTo(contentView)
+        }
+        titleLabel.snp.updateConstraints { (maker) -> Void in
+            maker.top.equalTo(content).offset(10)
+            maker.left.equalTo(content).offset(12)
             maker.height.equalTo(13)
         }
         statusLabel.snp.makeConstraints { (maker) in
             maker.top.equalTo(titleLabel)
-            maker.right.equalTo(contentView).offset(-12)
+            maker.right.equalTo(content).offset(-12)
         }
         separatorLine.snp.makeConstraints { (maker) in
             maker.top.equalTo(titleLabel.snp.bottom).offset(10)
-            maker.left.equalTo(contentView).offset(12)
-            maker.right.equalTo(contentView).offset(-12)
+            maker.left.equalTo(content).offset(12)
+            maker.right.equalTo(content).offset(-12)
             maker.height.equalTo(MalaScreenOnePixel)
         }
         teacherIcon.snp.makeConstraints { (maker) in
             maker.top.equalTo(separatorLine.snp.bottom).offset(10)
-            maker.left.equalTo(contentView).offset(12)
+            maker.left.equalTo(content).offset(12)
             maker.height.equalTo(13)
             maker.width.equalTo(13)
         }
@@ -185,7 +197,7 @@ class OrderFormStatusCell: UITableViewCell {
         }
         subjectIcon.snp.makeConstraints { (maker) in
             maker.top.equalTo(teacherIcon.snp.bottom).offset(10)
-            maker.left.equalTo(contentView).offset(12)
+            maker.left.equalTo(content).offset(12)
             maker.height.equalTo(13)
             maker.width.equalTo(13)
         }
@@ -196,10 +208,10 @@ class OrderFormStatusCell: UITableViewCell {
         }
         schoolIcon.snp.makeConstraints { (maker) in
             maker.top.equalTo(subjectIcon.snp.bottom).offset(10)
-            maker.left.equalTo(contentView).offset(12)
+            maker.left.equalTo(content).offset(12)
             maker.height.equalTo(13)
             maker.width.equalTo(13)
-            maker.bottom.equalTo(contentView).offset(-10)
+            maker.bottom.equalTo(content).offset(-10)
         }
         schoolLabel.snp.makeConstraints { (maker) in
             maker.top.equalTo(schoolIcon)

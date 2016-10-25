@@ -59,7 +59,6 @@ class OrderFormTableView: UITableView, UITableViewDelegate, UITableViewDataSourc
         backgroundColor = MalaColor_EDEDED_0
         estimatedRowHeight = 500
         separatorStyle = .none
-        contentInset = UIEdgeInsets(top: -25, left: 0, bottom: 4, right: 0)
         
         register(OrderFormStatusCell.self, forCellReuseIdentifier: OrderFormCellReuseId[0]!)
         register(OrderFormTimeScheduleCell.self, forCellReuseIdentifier: OrderFormCellReuseId[1]!)
@@ -74,11 +73,11 @@ class OrderFormTableView: UITableView, UITableViewDelegate, UITableViewDataSourc
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return section == 0 ? 0 : 4
+        return section == 0 ? 12 : 6
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 4
+        return section == (OrderFormCellReuseId.count-1) ? 12 : 6
     }
     
     

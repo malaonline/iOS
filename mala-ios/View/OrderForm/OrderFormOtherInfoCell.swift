@@ -48,6 +48,11 @@ class OrderFormOtherInfoCell: UITableViewCell {
     
     
     // MARK: - Components
+    /// 布局容器
+    private lazy var content: UIView = {
+        let view = UIView(UIColor.white)
+        return view
+    }()
     /// 订单编号
     private lazy var titleString: UILabel = {
         let label = UILabel(
@@ -111,19 +116,28 @@ class OrderFormOtherInfoCell: UITableViewCell {
     
     // MARK: - Private Method
     private func setupUserInterface() {
+        // Style
+        contentView.backgroundColor = MalaColor_EDEDED_0
         
         // SubViews
-        contentView.addSubview(titleString)
-        contentView.addSubview(titleLabel)
-        contentView.addSubview(createDateString)
-        contentView.addSubview(createDateLabel)
-        contentView.addSubview(paymentDateString)
-        contentView.addSubview(paymentDateLabel)
+        contentView.addSubview(content)
+        content.addSubview(titleString)
+        content.addSubview(titleLabel)
+        content.addSubview(createDateString)
+        content.addSubview(createDateLabel)
+        content.addSubview(paymentDateString)
+        content.addSubview(paymentDateLabel)
         
         // Autolayout
-        titleString.snp.makeConstraints { (maker) -> Void in
-            maker.top.equalTo(contentView).offset(16)
+        content.snp.makeConstraints { (maker) in
+            maker.top.equalTo(contentView)
             maker.left.equalTo(contentView).offset(12)
+            maker.right.equalTo(contentView).offset(-12)
+            maker.bottom.equalTo(contentView)
+        }
+        titleString.snp.makeConstraints { (maker) -> Void in
+            maker.top.equalTo(content).offset(16)
+            maker.left.equalTo(content).offset(12)
             maker.height.equalTo(12)
         }
         titleLabel.snp.makeConstraints { (maker) -> Void in

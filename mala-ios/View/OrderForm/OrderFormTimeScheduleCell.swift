@@ -34,6 +34,11 @@ class OrderFormTimeScheduleCell: UITableViewCell {
     
     
     // MARK: - Components
+    /// 布局容器
+    private lazy var content: UIView = {
+        let view = UIView(UIColor.white)
+        return view
+    }()
     /// 顶部布局容器
     private lazy var topLayoutView: UIView = {
         let view = UIView()
@@ -100,9 +105,12 @@ class OrderFormTimeScheduleCell: UITableViewCell {
     
     // MARK: - Private Method
     private func setupUserInterface() {
+        // Style
+        contentView.backgroundColor = MalaColor_EDEDED_0
         
         // SubViews
-        contentView.addSubview(topLayoutView)
+        contentView.addSubview(content)
+        content.addSubview(topLayoutView)
         topLayoutView.addSubview(separatorLine)
         topLayoutView.addSubview(iconView)
         topLayoutView.addSubview(titleLabel)
@@ -112,12 +120,18 @@ class OrderFormTimeScheduleCell: UITableViewCell {
         topLayoutView.addSubview(periodLeftLabel)
         
         // Autolayout
-        topLayoutView.snp.makeConstraints { (maker) in
+        content.snp.makeConstraints { (maker) in
             maker.top.equalTo(contentView)
-            maker.left.equalTo(contentView)
-            maker.right.equalTo(contentView)
+            maker.left.equalTo(contentView).offset(12)
+            maker.right.equalTo(contentView).offset(-12)
+            maker.bottom.equalTo(contentView)
+        }
+        topLayoutView.snp.makeConstraints { (maker) in
+            maker.top.equalTo(content)
+            maker.left.equalTo(content)
+            maker.right.equalTo(content)
             maker.height.equalTo(35)
-            maker.bottom.equalTo(contentView).offset(-12)
+            maker.bottom.equalTo(content).offset(-12)
         }
         separatorLine.snp.makeConstraints { (maker) in
             maker.bottom.equalTo(topLayoutView)
@@ -168,9 +182,9 @@ class OrderFormTimeScheduleCell: UITableViewCell {
         }
         timeLineView!.snp.makeConstraints { (maker) in
             maker.top.equalTo(topLayoutView.snp.bottom).offset(10)
-            maker.left.equalTo(contentView).offset(12)
-            maker.right.equalTo(contentView).offset(-12)
-            maker.bottom.equalTo(contentView).offset(-16)
+            maker.left.equalTo(content).offset(12)
+            maker.right.equalTo(content).offset(-12)
+            maker.bottom.equalTo(content).offset(-16)
             maker.height.equalTo(result.height)
         }
     }
