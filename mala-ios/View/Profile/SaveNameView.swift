@@ -80,25 +80,25 @@ class SaveNameView: UIView, UITextFieldDelegate {
         
         // Autolayout
         inputBackground.snp.makeConstraints { (maker) -> Void in
-            maker.top.equalTo(self.snp.top).offset(12)
-            maker.left.equalTo(self.snp.left)
-            maker.right.equalTo(self.snp.right)
+            maker.top.equalTo(self).offset(12)
+            maker.left.equalTo(self)
+            maker.right.equalTo(self)
             maker.height.equalTo(MalaLayout_ProfileModifyViewHeight)
         }
         inputField.snp.makeConstraints { (maker) -> Void in
-            maker.left.equalTo(inputBackground.snp.left)
-            maker.right.equalTo(inputBackground.snp.right)
-            maker.centerY.equalTo(inputBackground.snp.centerY)
+            maker.left.equalTo(inputBackground)
+            maker.right.equalTo(inputBackground)
+            maker.centerY.equalTo(inputBackground)
         }
         descLabel.snp.makeConstraints { (maker) -> Void in
             maker.top.equalTo(inputBackground.snp.bottom).offset(12)
-            maker.left.equalTo(self.snp.left).offset(12)
+            maker.left.equalTo(self).offset(12)
             maker.height.equalTo(12)
         }
         finishButton.snp.makeConstraints { (maker) -> Void in
             maker.top.equalTo(descLabel.snp.bottom).offset(12)
-            maker.left.equalTo(self.snp.left).offset(12)
-            maker.right.equalTo(self.snp.right).offset(-12)
+            maker.left.equalTo(self).offset(12)
+            maker.right.equalTo(self).offset(-12)
             maker.height.equalTo(37)
         }
     }

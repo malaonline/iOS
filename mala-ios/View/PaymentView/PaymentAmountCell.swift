@@ -63,13 +63,13 @@ class PaymentAmountCell: UITableViewCell {
         
         // Autolayout
         titleLabel.snp.makeConstraints { (maker) -> Void in
-            maker.top.equalTo(contentView.snp.top).offset(16)
-            maker.left.equalTo(contentView.snp.left).offset(12)
-            maker.bottom.equalTo(contentView.snp.bottom).offset(-16)
+            maker.top.equalTo(contentView).offset(16)
+            maker.left.equalTo(contentView).offset(12)
+            maker.bottom.equalTo(contentView).offset(-16)
         }
         amountLabel.snp.makeConstraints { (maker) -> Void in
-            maker.centerY.equalTo(contentView.snp.centerY)
-            maker.right.equalTo(contentView.snp.right).offset(-12)
+            maker.centerY.equalTo(contentView)
+            maker.right.equalTo(contentView).offset(-12)
             maker.height.equalTo(15)
         }
         

@@ -63,13 +63,13 @@ class RegionUnitCell: UITableViewCell {
         // Autolayout
         titleLabel.snp.makeConstraints { (maker) in
             maker.height.equalTo(14)
-            maker.centerY.equalTo(contentView.snp.centerY)
-            maker.left.equalTo(contentView.snp.left).offset(13)
+            maker.centerY.equalTo(contentView)
+            maker.left.equalTo(contentView).offset(13)
         }
         separatorLine.snp.makeConstraints { (maker) in
-            maker.bottom.equalTo(contentView.snp.bottom)
-            maker.left.equalTo(contentView.snp.left).offset(12)
-            maker.right.equalTo(contentView.snp.right).offset(12)
+            maker.bottom.equalTo(contentView)
+            maker.left.equalTo(contentView).offset(12)
+            maker.right.equalTo(contentView).offset(12)
             maker.height.equalTo(MalaScreenOnePixel)
         }
     }

@@ -95,17 +95,17 @@ class MalaDefaultPanel: UIView {
         
         // Autolayout
         label.snp.makeConstraints { (maker) -> Void in
-            maker.centerY.equalTo(self.snp.centerY).offset(-50)
-            maker.centerX.equalTo(self.snp.centerX)
+            maker.centerY.equalTo(self).offset(-50)
+            maker.centerX.equalTo(self)
             maker.height.equalTo(13)
         }
         imageView.snp.makeConstraints { (maker) -> Void in
-            maker.centerX.equalTo(self.snp.centerX)
+            maker.centerX.equalTo(self)
             maker.bottom.equalTo(label.snp.top).offset(-8)
         }
         descLabel.snp.makeConstraints { (maker) -> Void in
             maker.top.equalTo(label.snp.bottom).offset(12)
-            maker.centerX.equalTo(self.snp.centerX)
+            maker.centerX.equalTo(self)
             maker.height.equalTo(13)
         }
     }
@@ -115,7 +115,7 @@ class MalaDefaultPanel: UIView {
         
         addSubview(button)
         button.snp.makeConstraints { (maker) -> Void in
-            maker.centerX.equalTo(self.snp.centerX)
+            maker.centerX.equalTo(self)
             maker.top.equalTo(label.snp.bottom).offset(25)
             maker.height.equalTo(36)
             maker.width.equalTo(164)

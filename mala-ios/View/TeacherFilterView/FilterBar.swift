@@ -80,28 +80,28 @@ class FilterBar: UIView {
         filterCondition = MalaCondition
         
         // SubViews
-        self.addSubview(gradeButton)
-        self.addSubview(subjectButton)
-        self.addSubview(styleButton)
+        addSubview(gradeButton)
+        addSubview(subjectButton)
+        addSubview(styleButton)
         
         // Autolayout
         gradeButton.snp.makeConstraints { (maker) -> Void in
-            maker.top.equalTo(self.snp.top).offset(9)
-            maker.left.equalTo(self.snp.left).offset(12)
+            maker.top.equalTo(self).offset(9)
+            maker.left.equalTo(self).offset(12)
             maker.width.equalTo(88)
-            maker.bottom.equalTo(self.snp.bottom).offset(-5)
+            maker.bottom.equalTo(self).offset(-5)
         }
         subjectButton.snp.makeConstraints { (maker) -> Void in
-            maker.top.equalTo(self.gradeButton.snp.top)
-            maker.left.equalTo(self.gradeButton.snp.right).offset(7)
+            maker.top.equalTo(gradeButton)
+            maker.left.equalTo(gradeButton.snp.right).offset(7)
             maker.width.equalTo(54)
-            maker.height.equalTo(gradeButton.snp.height)
+            maker.height.equalTo(gradeButton)
         }
         styleButton.snp.makeConstraints { (maker) -> Void in
-            maker.top.equalTo(self.subjectButton.snp.top)
-            maker.left.equalTo(self.subjectButton.snp.right).offset(7)
-            maker.right.equalTo(self.snp.right).offset(-12)
-            maker.height.equalTo(self.subjectButton.snp.height)
+            maker.top.equalTo(subjectButton)
+            maker.left.equalTo(subjectButton.snp.right).offset(7)
+            maker.right.equalTo(self).offset(-12)
+            maker.height.equalTo(subjectButton)
         }
     }
     

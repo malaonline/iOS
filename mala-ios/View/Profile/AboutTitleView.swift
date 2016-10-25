@@ -23,19 +23,20 @@ class AboutTitleView: UIView {
     // MARK: - Components
     /// 标题
     private var titleLabel: UILabel = {
-        let titleLabel = UILabel()
-        titleLabel.font = UIFont.systemFont(ofSize: 14)
-        titleLabel.textColor = MalaColor_6C6C6C_0
+        let titleLabel = UILabel(
+            fontSize: 14,
+            textColor: MalaColor_6C6C6C_0
+        )
         return titleLabel
     }()
     /// 左侧装饰线
     private var leftLine: UIImageView = {
-        let leftLine = UIImageView(image: UIImage(named: "titleLeftLine"))
+        let leftLine = UIImageView(imageName: "titleLeftLine")
         return leftLine
     }()
     /// 右侧装饰线
     private var rightLine: UIImageView = {
-        let rightLine = UIImageView(image: UIImage(named: "titleRightLine"))
+        let rightLine = UIImageView(imageName: "titleRightLine")
         return rightLine
     }()
     
@@ -61,20 +62,20 @@ class AboutTitleView: UIView {
         
         // Autolayout
         titleLabel.snp.makeConstraints { (maker) -> Void in
-            maker.centerX.equalTo(self.snp.centerX)
-            maker.top.equalTo(self.snp.top)
-            maker.bottom.equalTo(self.snp.bottom)
+            maker.top.equalTo(self)
+            maker.centerX.equalTo(self)
             maker.height.equalTo(14)
+            maker.bottom.equalTo(self)
         }
         leftLine.snp.makeConstraints { (maker) -> Void in
-            maker.centerY.equalTo(titleLabel.snp.centerY)
-            maker.left.equalTo(self.snp.left).offset(10)
+            maker.centerY.equalTo(titleLabel)
+            maker.left.equalTo(self).offset(10)
             maker.right.equalTo(titleLabel.snp.left).offset(-5)
         }
         rightLine.snp.makeConstraints { (maker) -> Void in
-            maker.centerY.equalTo(titleLabel.snp.centerY)
+            maker.centerY.equalTo(titleLabel)
             maker.left.equalTo(titleLabel.snp.right).offset(5)
-            maker.right.equalTo(self.snp.right).offset(-10)
+            maker.right.equalTo(self).offset(-10)
         }
     }
 }

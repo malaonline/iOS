@@ -94,14 +94,13 @@ open class TeacherFilterPopupWindow: UIViewController {
         pageControl.currentPageIndicatorTintColor = MalaColor_82B4D9_0
         
         // 添加横线
-        let view = UIView()
-        view.backgroundColor = MalaColor_C7DEEE_0
+        let view = UIView(MalaColor_C7DEEE_0)
         pageControl.addSubview(view)
         view.snp.makeConstraints({ (maker) in
-            maker.left.equalTo(pageControl.snp.left)
-            maker.right.equalTo(pageControl.snp.right)
+            maker.left.equalTo(pageControl)
+            maker.right.equalTo(pageControl)
             maker.height.equalTo(MalaScreenOnePixel)
-            maker.centerY.equalTo(pageControl.snp.centerY)
+            maker.centerY.equalTo(pageControl)
         })
         return pageControl
     }()
@@ -201,50 +200,50 @@ open class TeacherFilterPopupWindow: UIViewController {
         
         // Autolayout
         window.snp.makeConstraints { (maker) -> Void in
-            maker.center.equalTo(self.view.snp.center)
+            maker.center.equalTo(view)
             maker.width.equalTo(MalaLayout_FilterWindowWidth)
             maker.height.equalTo(MalaLayout_FilterWindowHeight)
         }
         themeIcon.snp.makeConstraints { (maker) -> Void in
-            maker.centerX.equalTo(self.window.snp.centerX)
-            maker.top.equalTo(self.window.snp.top).offset(-20)
+            maker.centerX.equalTo(window)
+            maker.top.equalTo(window).offset(-20)
             maker.width.equalTo(64)
             maker.height.equalTo(64)
         }
         closeButton.snp.makeConstraints { (maker) -> Void in
-            maker.top.equalTo(self.window.snp.top).offset(7)
-            maker.left.equalTo(self.window.snp.left).offset(5)
+            maker.top.equalTo(window).offset(7)
+            maker.left.equalTo(window).offset(5)
         }
         cancelButton.snp.makeConstraints { (maker) -> Void in
-            maker.top.equalTo(self.window.snp.top).offset(7)
-            maker.left.equalTo(self.window.snp.left).offset(5)
+            maker.top.equalTo(window).offset(7)
+            maker.left.equalTo(window).offset(5)
         }
         confirmButton.snp.makeConstraints { (maker) -> Void in
-            maker.top.equalTo(self.window.snp.top).offset(7)
-            maker.right.equalTo(self.window.snp.right).offset(-5)
+            maker.top.equalTo(window).offset(7)
+            maker.right.equalTo(window).offset(-5)
         }
         themeTitle.snp.makeConstraints { (maker) -> Void in
-            maker.top.equalTo(self.themeIcon.snp.bottom).offset(16)
-            maker.centerX.equalTo(self.themeIcon.snp.centerX)
+            maker.top.equalTo(themeIcon.snp.bottom).offset(16)
+            maker.centerX.equalTo(themeIcon)
             maker.height.equalTo(15)
         }
         separator.snp.makeConstraints { (maker) -> Void in
-            maker.centerY.equalTo(self.themeTitle.snp.centerY)
-            maker.left.equalTo(self.window.snp.left).offset(26)
-            maker.right.equalTo(self.window.snp.right).offset(-26)
+            maker.centerY.equalTo(themeTitle)
+            maker.left.equalTo(window).offset(26)
+            maker.right.equalTo(window).offset(-26)
             maker.height.equalTo(MalaScreenOnePixel)
         }
         pageControl.snp.makeConstraints { (maker) -> Void in
             maker.width.equalTo(36)
             maker.height.equalTo(6)
-            maker.bottom.equalTo(self.window.snp.bottom).offset(-10)
-            maker.centerX.equalTo(self.window.snp.centerX)
+            maker.bottom.equalTo(window).offset(-10)
+            maker.centerX.equalTo(window)
         }
         contentContainer.snp.makeConstraints { (maker) -> Void in
-            maker.top.equalTo(self.themeTitle.snp.bottom).offset(12)
-            maker.left.equalTo(self.window.snp.left).offset(26)
-            maker.right.equalTo(self.window.snp.right).offset(-26)
-            maker.bottom.equalTo(self.pageControl.snp.top).offset(-10)
+            maker.top.equalTo(themeTitle.snp.bottom).offset(12)
+            maker.left.equalTo(window).offset(26)
+            maker.right.equalTo(window).offset(-26)
+            maker.bottom.equalTo(pageControl.snp.top).offset(-10)
         }
     }
     
@@ -254,10 +253,10 @@ open class TeacherFilterPopupWindow: UIViewController {
         
         // Autolayout
         contentView!.snp.makeConstraints { (maker) -> Void in
-            maker.top.equalTo(self.contentContainer.snp.top)
-            maker.left.equalTo(self.contentContainer.snp.left)
-            maker.right.equalTo(self.contentContainer.snp.right)
-            maker.bottom.equalTo(self.contentContainer.snp.bottom)
+            maker.top.equalTo(contentContainer)
+            maker.left.equalTo(contentContainer)
+            maker.right.equalTo(contentContainer)
+            maker.bottom.equalTo(contentContainer)
         }
     }
     

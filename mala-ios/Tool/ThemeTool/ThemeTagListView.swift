@@ -70,16 +70,16 @@ class ThemeTagListView: UIView {
         
         // AutoLayout
         iconView.snp.makeConstraints { (maker) in
-            maker.left.equalTo(self.snp.left)
-            maker.top.equalTo(self.snp.top).offset(2)
+            maker.left.equalTo(self)
+            maker.top.equalTo(self).offset(2)
             maker.height.equalTo(21)
             maker.width.equalTo(21)
         }
         tagsView.snp.makeConstraints { (maker) -> Void in
             maker.left.equalTo(iconView.snp.right).offset(12)
-            maker.top.equalTo(self.snp.top)
-            maker.bottom.equalTo(self.snp.bottom)
-            maker.right.equalTo(self.snp.right)
+            maker.top.equalTo(self)
+            maker.bottom.equalTo(self)
+            maker.right.equalTo(self)
         }
     }
     

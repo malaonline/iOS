@@ -73,7 +73,7 @@ class CouponViewCell: UITableViewCell {
     }()
     /// 主要布局容器
     private lazy var content: UIImageView = {
-        let imageView = UIImageView(image: UIImage(named: "coupon_valid"))
+        let imageView = UIImageView(imageName: "coupon_valid")
         return imageView
     }()
     /// 左侧布局容器
@@ -125,13 +125,13 @@ class CouponViewCell: UITableViewCell {
     }()
     /// 状态标识图标
     private lazy var statusIcon: UIImageView = {
-        let imageView = UIImageView(image: UIImage(named: "coupon_expired"))
+        let imageView = UIImageView(imageName: "coupon_expired")
         imageView.isHidden = true
         return imageView
     }()
     /// 选中效果箭头
     lazy var selectedView: UIImageView = {
-        let imageView = UIImageView(image: UIImage(named: "coupon_selected"))
+        let imageView = UIImageView(imageName: "coupon_selected")
         imageView.isHidden = true
         return imageView
     }()
@@ -168,59 +168,59 @@ class CouponViewCell: UITableViewCell {
 
         // Autolayout
         separatorView.snp.makeConstraints { (maker) -> Void in
-            maker.top.equalTo(self.contentView.snp.top)
-            maker.left.equalTo(self.contentView.snp.left).offset(12)
+            maker.top.equalTo(contentView)
+            maker.left.equalTo(contentView).offset(12)
             maker.bottom.equalTo(content.snp.top)
-            maker.right.equalTo(self.contentView.snp.right).offset(-12)
+            maker.right.equalTo(contentView).offset(-12)
             maker.height.equalTo(8)
         }
         content.snp.makeConstraints { (maker) -> Void in
             maker.top.equalTo(separatorView.snp.bottom)
-            maker.left.equalTo(self.contentView.snp.left).offset(12)
-            maker.bottom.equalTo(self.contentView.snp.bottom)
-            maker.right.equalTo(self.contentView.snp.right).offset(-12)
+            maker.left.equalTo(contentView).offset(12)
+            maker.bottom.equalTo(contentView)
+            maker.right.equalTo(contentView).offset(-12)
         }
         leftLayoutView.snp.makeConstraints { (maker) -> Void in
-            maker.top.equalTo(content.snp.top)
-            maker.bottom.equalTo(content.snp.bottom)
-            maker.left.equalTo(content.snp.left)
-            maker.width.equalTo(content.snp.width).multipliedBy(0.2865)
+            maker.top.equalTo(content)
+            maker.bottom.equalTo(content)
+            maker.left.equalTo(content)
+            maker.width.equalTo(content).multipliedBy(0.2865)
         }
         rightLayoutView.snp.makeConstraints { (maker) -> Void in
-            maker.top.equalTo(content.snp.top)
-            maker.bottom.equalTo(content.snp.bottom)
+            maker.top.equalTo(content)
+            maker.bottom.equalTo(content)
             maker.left.equalTo(leftLayoutView.snp.right)
-            maker.right.equalTo(content.snp.right)
+            maker.right.equalTo(content)
         }
         moneySymbol.snp.makeConstraints { (maker) -> Void in
             maker.right.equalTo(priceLabel.snp.left)
-            maker.bottom.equalTo(priceLabel.snp.bottom).offset(-4)
+            maker.bottom.equalTo(priceLabel).offset(-4)
             maker.height.equalTo(17)
         }
         priceLabel.snp.makeConstraints { (maker) -> Void in
             maker.height.equalTo(37)
-            maker.centerX.equalTo(leftLayoutView.snp.centerX).offset(5)
-            maker.centerY.equalTo(leftLayoutView.snp.centerY)
+            maker.centerX.equalTo(leftLayoutView).offset(5)
+            maker.centerY.equalTo(leftLayoutView)
         }
         titleLabel.snp.makeConstraints { (maker) -> Void in
-            maker.top.equalTo(content.snp.top).offset(20)
-            maker.left.equalTo(rightLayoutView.snp.left).offset(20)
+            maker.top.equalTo(content).offset(20)
+            maker.left.equalTo(rightLayoutView).offset(20)
             maker.height.equalTo(17)
         }
         validityTermLabel.snp.makeConstraints { (maker) -> Void in
             maker.top.equalTo(titleLabel.snp.bottom).offset(12)
-            maker.left.equalTo(rightLayoutView.snp.left).offset(20)
+            maker.left.equalTo(rightLayoutView).offset(20)
             maker.height.equalTo(13)
         }
         statusIcon.snp.makeConstraints { (maker) -> Void in
-            maker.top.equalTo(rightLayoutView.snp.top).offset(6)
-            maker.right.equalTo(rightLayoutView.snp.right).offset(-6)
+            maker.top.equalTo(rightLayoutView).offset(6)
+            maker.right.equalTo(rightLayoutView).offset(-6)
             maker.width.equalTo(50)
             maker.height.equalTo(50)
         }
         selectedView.snp.makeConstraints { (maker) -> Void in
-            maker.centerY.equalTo(rightLayoutView.snp.centerY)
-            maker.right.equalTo(rightLayoutView.snp.right).offset(-10)
+            maker.centerY.equalTo(rightLayoutView)
+            maker.right.equalTo(rightLayoutView).offset(-10)
         }
     }
     ///  不可用样式(当前选课条件不满足使用条件)

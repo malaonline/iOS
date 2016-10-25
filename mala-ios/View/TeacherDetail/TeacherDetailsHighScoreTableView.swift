@@ -127,34 +127,34 @@ class TeacherDetailsHighScoreTableViewCell: UITableViewCell {
         
         // Autolayout
         nameLabel.snp.makeConstraints { (maker) -> Void in
-            maker.top.equalTo(self.contentView.snp.top)
-            maker.bottom.equalTo(self.contentView.snp.bottom)
-            maker.left.equalTo(self.contentView.snp.left)
+            maker.top.equalTo(contentView)
+            maker.bottom.equalTo(contentView)
+            maker.left.equalTo(contentView)
         }
         scoresLabel.snp.makeConstraints { (maker) -> Void in
-            maker.top.equalTo(self.contentView.snp.top)
-            maker.left.equalTo(self.nameLabel.snp.right)
-            maker.width.equalTo(self.nameLabel.snp.width)
-            maker.height.equalTo(self.nameLabel.snp.height)
+            maker.top.equalTo(contentView)
+            maker.left.equalTo(nameLabel.snp.right)
+            maker.width.equalTo(nameLabel)
+            maker.height.equalTo(nameLabel)
         }
         schoolLabel.snp.makeConstraints { (maker) -> Void in
-            maker.top.equalTo(self.contentView.snp.top)
-            maker.left.equalTo(self.scoresLabel.snp.right)
-            maker.width.equalTo(self.scoresLabel.snp.width)
-            maker.height.equalTo(self.scoresLabel.snp.height)
+            maker.top.equalTo(contentView)
+            maker.left.equalTo(scoresLabel.snp.right)
+            maker.width.equalTo(scoresLabel)
+            maker.height.equalTo(scoresLabel)
         }
         admittedLabel.snp.makeConstraints { (maker) -> Void in
-            maker.top.equalTo(self.contentView.snp.top)
-            maker.left.equalTo(self.schoolLabel.snp.right)
-            maker.width.equalTo(self.schoolLabel.snp.width)
-            maker.height.equalTo(self.schoolLabel.snp.height)
-            maker.right.equalTo(self.contentView.snp.right)
+            maker.top.equalTo(contentView)
+            maker.left.equalTo(schoolLabel.snp.right)
+            maker.width.equalTo(schoolLabel)
+            maker.height.equalTo(schoolLabel)
+            maker.right.equalTo(contentView)
         }
         separator.snp.makeConstraints { (maker) -> Void in
-            maker.left.equalTo(self.contentView.snp.left)
-            maker.right.equalTo(self.contentView.snp.right)
+            maker.left.equalTo(contentView)
+            maker.right.equalTo(contentView)
             maker.height.equalTo(MalaScreenOnePixel)
-            maker.bottom.equalTo(self.contentView.snp.bottom)
+            maker.bottom.equalTo(contentView)
         }
     }
     
@@ -171,6 +171,6 @@ class TeacherDetailsHighScoreTableViewCell: UITableViewCell {
         for view in self.contentView.subviews {
             (view as? UILabel)?.textColor = MalaColor_333333_0
         }
-        self.contentView.backgroundColor = MalaColor_F6F6F6_96
+        contentView.backgroundColor = MalaColor_F6F6F6_96
     }
 }

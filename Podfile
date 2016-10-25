@@ -9,7 +9,7 @@ def pods
   pod 'DateTools'
   pod 'Alamofire', '~> 4.0.1'
   pod 'Kingfisher'
-  pod 'IQKeyboardManagerSwift'
+  pod 'IQKeyboardManager', :git => 'https://github.com/hackiftekhar/IQKeyboardManager.git', :branch => 'swift3'
   pod 'Charts', :git => 'https://github.com/danielgindi/Charts.git', :branch => 'Chart2.2.5-Swift3.0'
   pod 'Google/Analytics'
   pod 'Pingpp/Alipay'
@@ -39,7 +39,7 @@ end
 post_install do |installer|
   installer.pods_project.targets.each do |target|
     case target.name
-      when 'Alamofire', 'Charts', 'IQKeyboardManagerSwift', 'Kingfisher', 'SnapKit','PagingMenuController'
+      when 'Alamofire', 'Charts', 'IQKeyboardManager', 'Kingfisher', 'SnapKit','PagingMenuController'
         target.build_configurations.each do |config|
         config.build_settings['SWIFT_VERSION'] = '3.0'
       end

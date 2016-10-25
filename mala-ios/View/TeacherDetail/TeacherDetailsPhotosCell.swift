@@ -61,14 +61,14 @@ class TeacherDetailsPhotosCell: MalaBaseCell {
         // Autolayout
         detailButton.snp.makeConstraints { (maker) -> Void in
             maker.height.equalTo(13)
-            maker.right.equalTo(headerView.snp.right).offset(-12)
-            maker.centerY.equalTo(headerView.snp.centerY)
+            maker.right.equalTo(headerView).offset(-12)
+            maker.centerY.equalTo(headerView)
         }
         content.snp.updateConstraints { (maker) -> Void in
             maker.top.equalTo(headerView.snp.bottom).offset(10)
-            maker.left.equalTo(contentView.snp.left)
-            maker.right.equalTo(contentView.snp.right)
-            maker.bottom.equalTo(contentView.snp.bottom).offset(-10)
+            maker.left.equalTo(contentView)
+            maker.right.equalTo(contentView)
+            maker.bottom.equalTo(contentView).offset(-10)
         }
         photoCollection.snp.makeConstraints { (maker) in
             maker.left.equalTo(content)

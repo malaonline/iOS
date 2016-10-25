@@ -89,13 +89,13 @@ class LearningReportViewController: BaseViewController, UICollectionViewDelegate
         
         // Autolayout
         collectionView.snp.makeConstraints { (maker) in
-            maker.center.equalTo(self.view.snp.center)
-            maker.size.equalTo(self.view.snp.size)
+            maker.center.equalTo(view)
+            maker.size.equalTo(view)
         }
         pageControl.snp.makeConstraints { (maker) in
             maker.width.equalTo(200)
-            maker.centerX.equalTo(self.view.snp.centerX)
-            maker.bottom.equalTo(self.view.snp.bottom).offset(-20)
+            maker.centerX.equalTo(view)
+            maker.bottom.equalTo(view).offset(-20)
             maker.height.equalTo(10)
         }
     }

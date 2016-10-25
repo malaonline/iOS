@@ -84,8 +84,8 @@ class CourseChoosingTimeScheduleCell: MalaBaseCell {
         }
         detailButton.snp.makeConstraints { (maker) -> Void in
             maker.height.equalTo(13)
-            maker.right.equalTo(headerView.snp.right).offset(-12)
-            maker.centerY.equalTo(headerView.snp.centerY)
+            maker.right.equalTo(headerView).offset(-12)
+            maker.centerY.equalTo(headerView)
         }
     }
     
@@ -100,10 +100,10 @@ class CourseChoosingTimeScheduleCell: MalaBaseCell {
         content.addSubview(timeLineView!)
         currentHeight = result.height
         timeLineView!.snp.makeConstraints { (maker) in
-            maker.top.equalTo(content.snp.top)
-            maker.left.equalTo(content.snp.left)
-            maker.right.equalTo(content.snp.right)
-            maker.bottom.equalTo(content.snp.bottom)
+            maker.top.equalTo(content)
+            maker.left.equalTo(content)
+            maker.right.equalTo(content)
+            maker.bottom.equalTo(content)
             maker.height.equalTo(currentHeight)
         }
     }

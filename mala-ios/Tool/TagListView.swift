@@ -85,7 +85,7 @@ class TagListView:UIScrollView
         // 图标
         if iconName != nil {
             label.textAlignment = .left
-            let imageView = UIImageView(image: UIImage(named: iconName!))
+            let imageView = UIImageView(imageName: iconName!)
             label.addSubview(imageView)
             
             imageView.snp.makeConstraints { (maker) -> Void in

@@ -45,7 +45,7 @@ class CourseTableViewSectionHeader: UITableViewHeaderFooterView {
     // MARK: - Components
     /// 视差图片
     lazy var parallaxImage: UIImageView = {
-        let imageView = UIImageView(image: UIImage(named: "course_header"))
+        let imageView = UIImageView(imageName: "course_header")
         imageView.backgroundColor = UIColor.white
         imageView.contentMode = .scaleAspectFill
         return imageView
@@ -85,8 +85,8 @@ class CourseTableViewSectionHeader: UITableViewHeaderFooterView {
         // AutoLayout
         dateLabel.snp.makeConstraints { (maker) in
             maker.height.equalTo(20)
-            maker.left.equalTo(contentView.snp.left).offset(70)
-            maker.bottom.equalTo(contentView.snp.bottom).offset(-20)
+            maker.left.equalTo(contentView).offset(70)
+            maker.bottom.equalTo(contentView).offset(-20)
         }
         
         // 确保图片宽度与屏幕保持一致（仅需在初始化后）

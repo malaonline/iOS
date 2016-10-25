@@ -195,21 +195,21 @@ class MemberSerivceCollectionViewCell: UICollectionViewCell {
         
         // Autolayout
         iconView.snp.makeConstraints { (maker) -> Void in
-            maker.top.equalTo(self.contentView.snp.top).offset(20)
-            maker.centerX.equalTo(self.contentView.snp.centerX)
+            maker.top.equalTo(contentView).offset(20)
+            maker.centerX.equalTo(contentView)
             maker.width.equalTo(23)
             maker.height.equalTo(23)
         }
         titleLabel.snp.makeConstraints { (maker) -> Void in
-            maker.centerX.equalTo(self.contentView.snp.centerX)
+            maker.centerX.equalTo(contentView)
             maker.height.equalTo(13)
             maker.top.equalTo(iconView.snp.bottom).offset(14)
         }
         separator.snp.makeConstraints { (maker) in
-            maker.left.equalTo(self.contentView.snp.left)
+            maker.left.equalTo(contentView)
             maker.width.equalTo(MalaScreenOnePixel)
-            maker.top.equalTo(self.contentView.snp.top).offset(15)
-            maker.bottom.equalTo(self.contentView.snp.bottom).offset(-15)
+            maker.top.equalTo(contentView).offset(15)
+            maker.bottom.equalTo(contentView).offset(-15)
         }
     }
     

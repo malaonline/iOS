@@ -248,25 +248,25 @@ class ThemeClassScheduleCell: UICollectionViewCell {
         
         // Autolayout
         button.snp.makeConstraints { (maker) -> Void in
-            maker.size.equalTo(contentView.snp.size)
-            maker.center.equalTo(contentView.snp.center)
+            maker.size.equalTo(contentView)
+            maker.center.equalTo(contentView)
         }
         startLabel.snp.makeConstraints { (maker) -> Void in
-            maker.top.equalTo(contentView.snp.top)
-            maker.left.equalTo(contentView.snp.left)
-            maker.right.equalTo(contentView.snp.right)
-            maker.height.equalTo(contentView.snp.height).multipliedBy(0.5)
+            maker.top.equalTo(contentView)
+            maker.left.equalTo(contentView)
+            maker.right.equalTo(contentView)
+            maker.height.equalTo(contentView).multipliedBy(0.5)
         }
         endLabel.snp.makeConstraints { (maker) -> Void in
-            maker.bottom.equalTo(contentView.snp.bottom)
-            maker.left.equalTo(contentView.snp.left)
-            maker.right.equalTo(contentView.snp.right)
-            maker.height.equalTo(contentView.snp.height).multipliedBy(0.5)
+            maker.bottom.equalTo(contentView)
+            maker.left.equalTo(contentView)
+            maker.right.equalTo(contentView)
+            maker.height.equalTo(contentView).multipliedBy(0.5)
         }
         titleLabel.snp.makeConstraints { (maker) -> Void in
-            maker.width.equalTo(contentView.snp.width)
+            maker.width.equalTo(contentView)
             maker.height.equalTo(12)
-            maker.center.equalTo(contentView.snp.center)
+            maker.center.equalTo(contentView)
         }
     }
     

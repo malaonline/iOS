@@ -85,7 +85,7 @@ class TeacherDetailsController: BaseViewController, UIGestureRecognizerDelegate,
     }()
     /// 顶部背景图
     private lazy var headerBackground: UIImageView = {
-        let image = UIImageView(image: UIImage(named: "teacherDetailHeader_placeholder"))
+        let image = UIImageView(imageName: "teacherDetailHeader_placeholder")
         image.contentMode = .scaleAspectFill
         return image
     }()
@@ -202,21 +202,21 @@ class TeacherDetailsController: BaseViewController, UIGestureRecognizerDelegate,
         
         // Autolayout
         tableView.snp.makeConstraints { (maker) in
-            maker.top.equalTo(view.snp.top)
-            maker.left.equalTo(view.snp.left)
-            maker.right.equalTo(view.snp.right)
-            maker.bottom.equalTo(view.snp.bottom).offset(-MalaLayout_DetailBottomViewHeight)
+            maker.top.equalTo(view)
+            maker.left.equalTo(view)
+            maker.right.equalTo(view)
+            maker.bottom.equalTo(view).offset(-MalaLayout_DetailBottomViewHeight)
         }
         headerBackground.snp.makeConstraints { (maker) -> Void in
             maker.top.equalTo(0).offset(-MalaScreenNaviHeight)
-            maker.left.equalTo(view.snp.left)
-            maker.right.equalTo(view.snp.right)
+            maker.left.equalTo(view)
+            maker.right.equalTo(view)
             maker.height.equalTo(MalaLayout_DetailHeaderContentHeight)
         }
         signupView.snp.makeConstraints({ (maker) -> Void in
-            maker.left.equalTo(view.snp.left)
-            maker.right.equalTo(view.snp.right)
-            maker.bottom.equalTo(view.snp.bottom)
+            maker.left.equalTo(view)
+            maker.right.equalTo(view)
+            maker.bottom.equalTo(view)
             maker.height.equalTo(MalaLayout_DetailBottomViewHeight)
         })
     }

@@ -47,8 +47,7 @@ class OrderFormOperatingView: UIView {
     
     // MARK: - Components
     private lazy var topLine: UIView = {
-        let view = UIView()
-        view.backgroundColor = UIColor.black
+        let view = UIView(UIColor.black)
         view.alpha = 0.4
         return view
     }()
@@ -138,33 +137,33 @@ class OrderFormOperatingView: UIView {
         
         // Autolayout
         topLine.snp.makeConstraints({ (maker) -> Void in
-            maker.top.equalTo(self.snp.top)
-            maker.left.equalTo(self.snp.left)
-            maker.right.equalTo(self.snp.right)
+            maker.top.equalTo(self)
+            maker.left.equalTo(self)
+            maker.right.equalTo(self)
             maker.height.equalTo(MalaScreenOnePixel)
         })
         stringLabel.snp.makeConstraints { (maker) -> Void in
-            maker.left.equalTo(self.snp.left).offset(12)
-            maker.centerY.equalTo(self.snp.centerY)
+            maker.left.equalTo(self).offset(12)
+            maker.centerY.equalTo(self)
             maker.height.equalTo(14)
         }
         priceLabel.snp.makeConstraints { (maker) -> Void in
             maker.left.equalTo(stringLabel.snp.right)
             maker.width.equalTo(100)
-            maker.bottom.equalTo(stringLabel.snp.bottom)
+            maker.bottom.equalTo(stringLabel)
             maker.height.equalTo(14)
         }
         confirmButton.snp.makeConstraints { (maker) in
-            maker.right.equalTo(self.snp.right).offset(-12)
-            maker.centerY.equalTo(self.snp.centerY)
+            maker.right.equalTo(self).offset(-12)
+            maker.centerY.equalTo(self)
             maker.width.equalTo(confirmButton.snp.height).multipliedBy(2.78)
-            maker.height.equalTo(self.snp.height).multipliedBy(0.55)
+            maker.height.equalTo(self).multipliedBy(0.55)
         }
         cancelButton.snp.makeConstraints { (maker) in
             maker.right.equalTo(confirmButton.snp.left).offset(-10)
-            maker.centerY.equalTo(confirmButton.snp.centerY)
+            maker.centerY.equalTo(confirmButton)
             maker.width.equalTo(confirmButton.snp.height).multipliedBy(2.78)
-            maker.height.equalTo(self.snp.height).multipliedBy(0.55)
+            maker.height.equalTo(self).multipliedBy(0.55)
         }
         disabledLabel.snp.makeConstraints { (maker) in
             maker.center.equalTo(confirmButton)

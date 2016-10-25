@@ -65,8 +65,8 @@ open class MalaPhotoBrowser: BaseViewController, UICollectionViewDataSource, UIC
         
         // Autolayout
         collectionView.snp.makeConstraints { (maker) -> Void in
-            maker.size.equalTo(view.snp.size)
-            maker.center.equalTo(view.snp.center)
+            maker.size.equalTo(view)
+            maker.center.equalTo(view)
         }
     }
     
@@ -171,8 +171,8 @@ open class MalaPhotoBrowserCell: UICollectionViewCell {
         
         // Autolayout
         contentImageView.snp.makeConstraints { (maker) -> Void in
-            maker.center.equalTo(contentView.snp.center)
-            maker.size.equalTo(contentView.snp.size)
+            maker.center.equalTo(contentView)
+            maker.size.equalTo(contentView)
         }
     }
 }

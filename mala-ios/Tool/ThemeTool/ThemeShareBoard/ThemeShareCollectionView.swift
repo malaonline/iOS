@@ -132,8 +132,7 @@ class ThemeShareCollectionViewCell: UICollectionViewCell {
         return label
     }()
     private lazy var background: UIView = {
-        let view = UIView()
-        view.backgroundColor = UIColor.white
+        let view = UIView(UIColor.white)
         view.layer.cornerRadius = 10
         view.layer.masksToBounds = true
         return view
@@ -175,10 +174,10 @@ class ThemeShareCollectionViewCell: UICollectionViewCell {
             maker.height.equalTo(47)
         }
         titleLabel.snp.makeConstraints { (maker) -> Void in
-            maker.centerX.equalTo(contentView.snp.centerX)
+            maker.centerX.equalTo(contentView)
             maker.height.equalTo(13)
             maker.top.equalTo(background.snp.bottom).offset(10)
-            maker.bottom.equalTo(contentView.snp.bottom)
+            maker.bottom.equalTo(contentView)
         }
     }
 }

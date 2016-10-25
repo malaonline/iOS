@@ -102,9 +102,9 @@ class LearningReportTopicDataCell: MalaBaseReportCardCell {
         // Autolayout
         lineChartView.snp.makeConstraints { (maker) in
             maker.top.equalTo(layoutView.snp.bottom).multipliedBy(0.18)
-            maker.left.equalTo(descView.snp.left)
-            maker.right.equalTo(descView.snp.right)
-            maker.bottom.equalTo(layoutView.snp.bottom).multipliedBy(0.68)
+            maker.left.equalTo(descView)
+            maker.right.equalTo(descView)
+            maker.bottom.equalTo(layoutView).multipliedBy(0.68)
         }
     }
     

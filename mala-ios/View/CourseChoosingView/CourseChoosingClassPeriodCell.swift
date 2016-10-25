@@ -45,14 +45,14 @@ class CourseChoosingClassPeriodCell: MalaBaseCell {
         
         // Autolayout
         headerView.snp.makeConstraints { (maker) -> Void in
-            maker.bottom.equalTo(self.contentView.snp.bottom).offset(-16)
+            maker.bottom.equalTo(contentView).offset(-16)
         }
 
         legendView.snp.makeConstraints { (maker) -> Void in
             maker.width.equalTo(97)
             maker.height.equalTo(27)
-            maker.centerY.equalTo(headerView.snp.centerY)
-            maker.right.equalTo(contentView.snp.right).offset(-12)
+            maker.centerY.equalTo(headerView)
+            maker.right.equalTo(contentView).offset(-12)
         }
     }
 
@@ -138,18 +138,18 @@ open class PeriodStepper: UIView, UITextFieldDelegate {
         decrementButton.snp.makeConstraints { (maker) -> Void in
             maker.width.equalTo(31)
             maker.height.equalTo(27)
-            maker.top.equalTo(self.snp.top)
-            maker.left.equalTo(self.snp.left)
+            maker.top.equalTo(self)
+            maker.left.equalTo(self)
         }
         incrementButton.snp.makeConstraints { (maker) -> Void in
             maker.width.equalTo(31)
             maker.height.equalTo(27)
-            maker.top.equalTo(decrementButton.snp.top)
-            maker.right.equalTo(self.snp.right)
+            maker.top.equalTo(decrementButton)
+            maker.right.equalTo(self)
         }
         textField.snp.makeConstraints { (maker) -> Void in
             maker.height.equalTo(27)
-            maker.top.equalTo(decrementButton.snp.top)
+            maker.top.equalTo(decrementButton)
             maker.left.equalTo(decrementButton.snp.right)
             maker.right.equalTo(incrementButton.snp.left)
         }

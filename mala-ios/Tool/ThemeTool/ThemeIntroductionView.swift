@@ -81,13 +81,13 @@ class ThemeIntroductionView: BaseViewController, UICollectionViewDelegate, UICol
         
         // Autolayout
         collectionView.snp.makeConstraints { (maker) in
-            maker.center.equalTo(self.view.snp.center)
-            maker.size.equalTo(self.view.snp.size)
+            maker.center.equalTo(view)
+            maker.size.equalTo(view)
         }
         pageControl.snp.makeConstraints { (maker) in
             maker.width.equalTo(200)
-            maker.centerX.equalTo(self.view.snp.centerX)
-            maker.bottom.equalTo(self.view.snp.bottom).offset(-20)
+            maker.centerX.equalTo(view)
+            maker.bottom.equalTo(view).offset(-20)
             maker.height.equalTo(10)
         }
     }
@@ -192,24 +192,24 @@ class ThemeIntroductionViewCell: UICollectionViewCell {
         
         // Autolayout
         layoutView.snp.makeConstraints { (maker) in
-            maker.center.equalTo(self.contentView.snp.center)
-            maker.width.equalTo(self.contentView.snp.width)
-            maker.height.equalTo(self.contentView.snp.height).multipliedBy(0.75)
+            maker.center.equalTo(contentView)
+            maker.width.equalTo(contentView)
+            maker.height.equalTo(contentView).multipliedBy(0.75)
         }
         imageView.snp.makeConstraints { (maker) -> Void in
-            maker.top.equalTo(layoutView.snp.top).offset(40)
-            maker.centerX.equalTo(self.contentView.snp.centerX)
+            maker.top.equalTo(layoutView).offset(40)
+            maker.centerX.equalTo(contentView)
             maker.width.equalTo(217)
             maker.height.equalTo(183)
         }
         titleLabel.snp.makeConstraints { (maker) -> Void in
-            maker.centerX.equalTo(imageView.snp.centerX)
+            maker.centerX.equalTo(imageView)
             maker.height.equalTo(16)
             maker.top.equalTo(imageView.snp.bottom).offset(30)
         }
         detailLabel.snp.makeConstraints { (maker) in
             maker.top.equalTo(titleLabel.snp.bottom).offset(25)
-            maker.centerX.equalTo(imageView.snp.centerX)
+            maker.centerX.equalTo(imageView)
             maker.width.equalTo(200)
         }
     }

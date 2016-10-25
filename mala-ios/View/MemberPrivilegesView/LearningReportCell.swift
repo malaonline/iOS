@@ -124,13 +124,12 @@ class LearningReportCell: UITableViewCell {
     }()
     /// 遮罩层（无数学学习报告样式）
     private lazy var layerView: UIView = {
-        let view = UIView()
-        view.backgroundColor = UIColor.white
+        let view = UIView(UIColor.white)
         return view
     }()
     /// 遮罩层图片
     private lazy var layerImage: UIImageView = {
-        let imageView = UIImageView(image: UIImage(named: "noReport"))
+        let imageView = UIImageView(imageName: "noReport")
         return imageView
     }()
     /// 遮罩层说明标签
@@ -187,54 +186,54 @@ class LearningReportCell: UITableViewCell {
         
         // Autolayout
         content.snp.makeConstraints { (maker) in
-            maker.top.equalTo(self.contentView.snp.top).offset(8)
-            maker.left.equalTo(self.contentView.snp.left)
-            maker.right.equalTo(self.contentView.snp.right)
+            maker.top.equalTo(contentView).offset(8)
+            maker.left.equalTo(contentView)
+            maker.right.equalTo(contentView)
             maker.height.equalTo(212)
-            maker.bottom.equalTo(self.contentView.snp.bottom)
+            maker.bottom.equalTo(contentView)
         }
         titleLabel.snp.makeConstraints { (maker) in
-            maker.top.equalTo(content.snp.top).offset(16)
-            maker.left.equalTo(content.snp.left).offset(12)
+            maker.top.equalTo(content).offset(16)
+            maker.left.equalTo(content).offset(12)
             maker.height.equalTo(15)
         }
         subjectLabel.snp.makeConstraints { (maker) in
-            maker.top.equalTo(content.snp.top).offset(-4)
-            maker.right.equalTo(content.snp.right).offset(-12)
+            maker.top.equalTo(content).offset(-4)
+            maker.right.equalTo(content).offset(-12)
             maker.width.equalTo(40.5)
             maker.height.equalTo(34)
         }
         separator.snp.makeConstraints { (maker) in
             maker.top.equalTo(titleLabel.snp.bottom).offset(20)
-            maker.centerX.equalTo(content.snp.centerX)
+            maker.centerX.equalTo(content)
             maker.width.equalTo(MalaScreenOnePixel)
             maker.bottom.equalTo(button.snp.top).offset(-20)
         }
         answerNumberLabel.snp.makeConstraints { (maker) in
-            maker.left.equalTo(button.snp.left)
+            maker.left.equalTo(button)
             maker.right.equalTo(separator.snp.left)
-            maker.bottom.equalTo(separator.snp.bottom)
+            maker.bottom.equalTo(separator)
             maker.height.equalTo(35)
         }
         correctRateLabel.snp.makeConstraints { (maker) in
             maker.left.equalTo(separator.snp.right)
-            maker.right.equalTo(button.snp.right)
-            maker.bottom.equalTo(separator.snp.bottom)
+            maker.right.equalTo(button)
+            maker.bottom.equalTo(separator)
             maker.height.equalTo(35)
         }
         answerNumberLegend.snp.makeConstraints { (maker) in
-            maker.centerX.equalTo(answerNumberLabel.snp.centerX)
-            maker.top.equalTo(separator.snp.top).offset(8)
+            maker.centerX.equalTo(answerNumberLabel)
+            maker.top.equalTo(separator).offset(8)
         }
         correctRateLegend.snp.makeConstraints { (maker) in
-            maker.centerX.equalTo(correctRateLabel.snp.centerX)
-            maker.top.equalTo(separator.snp.top).offset(8)
+            maker.centerX.equalTo(correctRateLabel)
+            maker.top.equalTo(separator).offset(8)
         }
         button.snp.makeConstraints { (maker) in
             maker.height.equalTo(37)
-            maker.left.equalTo(content.snp.left).offset(12)
-            maker.right.equalTo(content.snp.right).offset(-12)
-            maker.bottom.equalTo(content.snp.bottom).offset(-20)
+            maker.left.equalTo(content).offset(12)
+            maker.right.equalTo(content).offset(-12)
+            maker.bottom.equalTo(content).offset(-20)
         }
         
         layerView.snp.makeConstraints { (maker) in
@@ -245,18 +244,18 @@ class LearningReportCell: UITableViewCell {
         }
         layerLabel.snp.makeConstraints { (maker) in
             maker.height.equalTo(12)
-            maker.centerX.equalTo(layerView.snp.centerX)
-            maker.bottom.equalTo(layerView.snp.bottom).offset(-15)
+            maker.centerX.equalTo(layerView)
+            maker.bottom.equalTo(layerView).offset(-15)
         }
         layerImage.snp.makeConstraints { (maker) in
             maker.width.equalTo(92)
             maker.height.equalTo(95)
-            maker.centerX.equalTo(layerView.snp.centerX)
+            maker.centerX.equalTo(layerView)
             maker.bottom.equalTo(layerLabel.snp.top).offset(-15)
         }
         loadingView.snp.makeConstraints { (maker) in
-            maker.centerX.equalTo(button.snp.centerX).offset(-16*3.5)
-            maker.centerY.equalTo(button.snp.centerY)
+            maker.centerX.equalTo(button).offset(-16*3.5)
+            maker.centerY.equalTo(button)
         }
     }
     

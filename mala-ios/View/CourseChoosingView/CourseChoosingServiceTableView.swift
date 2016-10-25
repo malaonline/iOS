@@ -34,7 +34,6 @@ class CourseChoosingServiceTableView: UITableView, UITableViewDelegate, UITableV
         bounces = false
         separatorColor = MalaColor_E5E5E5_0
         register(CourseChoosingServiceTableViewCell.self, forCellReuseIdentifier: CourseChoosingServiceTableViewCellReuseId)
-        
     }
     
     
@@ -50,7 +49,7 @@ class CourseChoosingServiceTableView: UITableView, UITableViewDelegate, UITableV
             (viewController as? CouponViewController)?.justShow = false
             (viewController as? CouponViewController)?.onlyValid = true
             viewController.hidesBottomBarWhenPushed = true
-            self.viewController()?.navigationController?.pushViewController(viewController, animated: true)
+            self.viewController?.navigationController?.pushViewController(viewController, animated: true)
         }
     }
     
@@ -122,14 +121,15 @@ class CourseChoosingServiceTableViewCell: UITableViewCell {
     // MARK: - Components
     /// 标题Label
     private lazy var titleLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 14)
-        label.textColor = MalaColor_6C6C6C_0
+        let label = UILabel(
+            fontSize: 14,
+            textColor: MalaColor_6C6C6C_0
+        )
         return label
     }()
     /// 右箭头标示
     private lazy var detailImageView: UIImageView = {
-        let imageView = UIImageView(image: UIImage(named: "rightArrow"))
+        let imageView = UIImageView(imageName: "rightArrow")
         return imageView
     }()
     /// 价格Label
@@ -181,23 +181,23 @@ class CourseChoosingServiceTableViewCell: UITableViewCell {
         
         // Autolayout
         titleLabel.snp.makeConstraints { (maker) -> Void in
-            maker.left.equalTo(contentView.snp.left)
+            maker.left.equalTo(contentView)
             maker.height.equalTo(14)
-            maker.centerY.equalTo(contentView.snp.centerY)
+            maker.centerY.equalTo(contentView)
         }
         detailImageView.snp.makeConstraints { (maker) -> Void in
-            maker.right.equalTo(contentView.snp.right)
-            maker.centerY.equalTo(contentView.snp.centerY)
+            maker.right.equalTo(contentView)
+            maker.centerY.equalTo(contentView)
         }
         priceLabel.snp.makeConstraints { (maker) -> Void in
             maker.height.equalTo(14)
             maker.right.equalTo(detailImageView.snp.left).offset(-6)
-            maker.centerY.equalTo(contentView.snp.centerY)
+            maker.centerY.equalTo(contentView)
         }
         priceHandleLabel.snp.makeConstraints { (maker) -> Void in
             maker.height.equalTo(14)
             maker.right.equalTo(priceLabel.snp.left).offset(-6)
-            maker.centerY.equalTo(contentView.snp.centerY)
+            maker.centerY.equalTo(contentView)
         }
     }
     

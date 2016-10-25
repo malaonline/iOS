@@ -294,9 +294,8 @@ private extension PageControl {
         }
         
         for _ in 0..<numberOfPages {
-            let view = UIView()
+            let view = UIView(UIColor.black)
             view.clipsToBounds = true
-            view.backgroundColor = UIColor.black
             pageIndicatorMaskingView.addSubview(view)
         }
     }

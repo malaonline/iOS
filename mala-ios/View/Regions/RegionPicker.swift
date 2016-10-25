@@ -32,7 +32,7 @@ class RegionPicker: UIView {
         return label
     }()
     private lazy var arrow: UIImageView = {
-        let imageView = UIImageView(image: UIImage(named: "pullArrow"))
+        let imageView = UIImageView(imageName: "pullArrow")
         return imageView
     }()
     

@@ -21,6 +21,11 @@ extension UIImageView {
         return placeHolder
     }
     
+    convenience init(imageName name: String) {
+        self.init()
+        self.image = UIImage(named: name)
+    }
+    
     
     convenience init(frame: CGRect? = nil, cornerRadius: CGFloat? = nil, image: String? = nil, contentMode: UIViewContentMode = .scaleAspectFill) {
         self.init()

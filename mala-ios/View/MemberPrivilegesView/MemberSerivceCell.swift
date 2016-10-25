@@ -56,22 +56,22 @@ class MemberSerivceCell: UITableViewCell {
         
         // Autolayout
         content.snp.makeConstraints { (maker) in
-            maker.top.equalTo(self.contentView.snp.top).offset(8)
-            maker.left.equalTo(self.contentView.snp.left)
-            maker.right.equalTo(self.contentView.snp.right)
+            maker.top.equalTo(contentView).offset(8)
+            maker.left.equalTo(contentView)
+            maker.right.equalTo(contentView)
             maker.height.equalTo(229)
-            maker.bottom.equalTo(self.contentView.snp.bottom)
+            maker.bottom.equalTo(contentView)
         }
         titleLabel.snp.makeConstraints { (maker) in
-            maker.top.equalTo(content.snp.top).offset(16)
-            maker.left.equalTo(content.snp.left).offset(12)
+            maker.top.equalTo(content).offset(16)
+            maker.left.equalTo(content).offset(12)
             maker.height.equalTo(15)
         }
         collectionView.snp.makeConstraints { (maker) in
             maker.top.equalTo(titleLabel.snp.bottom).offset(16)
-            maker.bottom.equalTo(content.snp.bottom)
-            maker.left.equalTo(content.snp.left).offset(12)
-            maker.right.equalTo(content.snp.right).offset(-12)
+            maker.bottom.equalTo(content)
+            maker.left.equalTo(content).offset(12)
+            maker.right.equalTo(content).offset(-12)
         }
     }
 }

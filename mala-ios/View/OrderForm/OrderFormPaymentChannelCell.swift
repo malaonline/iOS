@@ -70,14 +70,14 @@ class OrderFormPaymentChannelCell: UITableViewCell {
         
         // Autolayout
         titleLabel.snp.updateConstraints { (maker) -> Void in
-            maker.top.equalTo(self.contentView.snp.top).offset(16)
-            maker.left.equalTo(self.contentView.snp.left).offset(12)
+            maker.top.equalTo(contentView).offset(16)
+            maker.left.equalTo(contentView).offset(12)
             maker.height.equalTo(15)
-            maker.bottom.equalTo(self.contentView.snp.bottom).offset(-16)
+            maker.bottom.equalTo(contentView).offset(-16)
         }
         payChannelLabel.snp.updateConstraints { (maker) -> Void in
-            maker.centerY.equalTo(titleLabel.snp.centerY)
-            maker.right.equalTo(self.contentView.snp.right).offset(-12)
+            maker.centerY.equalTo(titleLabel)
+            maker.right.equalTo(contentView).offset(-12)
             maker.height.equalTo(13)
         }
     }

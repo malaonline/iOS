@@ -46,10 +46,10 @@ open class ThemeHorizontalBarChartView: UIView {
             self.addSubview(bar)
             
             bar.snp.makeConstraints({ (maker) in
-                maker.height.equalTo(16)//self.snp.height).multipliedBy(1/count*2)
-                maker.top.equalTo(self.snp.top).offset(((index*2)+1)*16)
-                maker.left.equalTo(self.snp.left)
-                maker.right.equalTo(self.snp.right)
+                maker.height.equalTo(16)
+                maker.top.equalTo(self).offset(((index*2)+1)*16)
+                maker.left.equalTo(self)
+                maker.right.equalTo(self)
             })
             
             bar.data = data
@@ -144,23 +144,23 @@ open class ThemeHorizontalBar: UIView {
         // AutoLayout
         titleLabel.snp.makeConstraints { (maker) in
             maker.width.equalTo(56)
-            maker.left.equalTo(self.snp.left)
+            maker.left.equalTo(self)
             maker.right.equalTo(progressBar.snp.left).offset(-8)
-            maker.height.equalTo(self.snp.height)
-            maker.centerY.equalTo(self.snp.centerY)
+            maker.height.equalTo(self)
+            maker.centerY.equalTo(self)
         }
         progressBar.snp.makeConstraints { (maker) in
-            maker.centerY.equalTo(self.snp.centerY)
+            maker.centerY.equalTo(self)
             maker.left.equalTo(titleLabel.snp.right).offset(8)
             maker.right.equalTo(percentLabel.snp.left).offset(-8)
-            maker.height.equalTo(self.snp.height)
+            maker.height.equalTo(self)
         }
         percentLabel.snp.makeConstraints { (maker) in
             maker.width.equalTo(34)
-            maker.right.equalTo(self.snp.right)
+            maker.right.equalTo(self)
             maker.left.equalTo(progressBar.snp.right).offset(8)
-            maker.height.equalTo(self.snp.height)
-            maker.centerY.equalTo(self.snp.centerY)
+            maker.height.equalTo(self)
+            maker.centerY.equalTo(self)
         }
     }
 }

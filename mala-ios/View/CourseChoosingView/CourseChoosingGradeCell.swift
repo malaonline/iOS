@@ -58,10 +58,10 @@ class CourseChoosingGradeCell: MalaBaseCell {
             maker.top.equalTo(headerView.snp.bottom).offset(14)
         }
         collectionView.snp.makeConstraints({ (maker) -> Void in
-            maker.top.equalTo(content.snp.top)
-            maker.left.equalTo(content.snp.left)
-            maker.right.equalTo(content.snp.right)
-            maker.bottom.equalTo(content.snp.bottom)
+            maker.top.equalTo(content)
+            maker.left.equalTo(content)
+            maker.right.equalTo(content)
+            maker.bottom.equalTo(content)
             maker.height.equalTo(10)
         })
     }
@@ -179,14 +179,14 @@ class GradeSelectionCell: UICollectionViewCell {
     // MARK: - Private Method
     private func setupUserInterface() {
         // SubViews
-        self.contentView.addSubview(button)
+        contentView.addSubview(button)
         
         // Autolayout
         button.snp.makeConstraints({ (maker) -> Void in
-            maker.top.equalTo(self.contentView.snp.top)
-            maker.left.equalTo(self.contentView.snp.left)
-            maker.right.equalTo(self.contentView.snp.right)
-            maker.bottom.equalTo(self.contentView.snp.bottom)
+            maker.top.equalTo(contentView)
+            maker.left.equalTo(contentView)
+            maker.right.equalTo(contentView)
+            maker.bottom.equalTo(contentView)
         })
     }
 }

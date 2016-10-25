@@ -31,26 +31,27 @@ class CourseChoosingConfirmView: UIView {
     
     // MARK: - Components
     private lazy var topLine: UIView = {
-        let view = UIView()
-        view.backgroundColor = UIColor.black
+        let view = UIView(UIColor.black)
         view.alpha = 0.4
         return view
     }()
     /// 价格说明标签
     private lazy var stringLabel: UILabel = {
-        let stringLabel = UILabel()
-        stringLabel.font = UIFont.systemFont(ofSize: 14)
-        stringLabel.textColor = MalaColor_333333_0
-        stringLabel.text = "还需支付:"
+        let stringLabel = UILabel(
+            text: "还需支付:",
+            fontSize: 14,
+            textColor: MalaColor_333333_0
+        )
         return stringLabel
     }()
     /// 金额标签
     private lazy var priceLabel: UILabel = {
-        let priceLabel = UILabel()
-        priceLabel.font = UIFont.systemFont(ofSize: 14)
-        priceLabel.textColor = MalaColor_E26254_0
-        priceLabel.textAlignment = .left
-        priceLabel.text = "￥0.00"
+        let priceLabel = UILabel(
+            text: "￥0.00",
+            fontSize: 14,
+            textColor: MalaColor_E26254_0,
+            textAlignment: .left
+        )
         return priceLabel
     }()
     /// 确定按钮
@@ -100,25 +101,25 @@ class CourseChoosingConfirmView: UIView {
         
         // Autolayout
         topLine.snp.makeConstraints({ (maker) -> Void in
-            maker.top.equalTo(self.snp.top)
-            maker.left.equalTo(self.snp.left)
-            maker.right.equalTo(self.snp.right)
+            maker.top.equalTo(self)
+            maker.left.equalTo(self)
+            maker.right.equalTo(self)
             maker.height.equalTo(MalaScreenOnePixel)
         })
         stringLabel.snp.makeConstraints { (maker) -> Void in
-            maker.left.equalTo(self.snp.left).offset(12)
-            maker.centerY.equalTo(self.snp.centerY)
+            maker.left.equalTo(self).offset(12)
+            maker.centerY.equalTo(self)
             maker.height.equalTo(14)
         }
         priceLabel.snp.makeConstraints { (maker) -> Void in
             maker.left.equalTo(stringLabel.snp.right)
             maker.width.equalTo(100)
-            maker.bottom.equalTo(stringLabel.snp.bottom)
+            maker.bottom.equalTo(stringLabel)
             maker.height.equalTo(14)
         }
         confirmButton.snp.makeConstraints { (maker) -> Void in
-            maker.right.equalTo(self.snp.right).offset(-12)
-            maker.centerY.equalTo(self.snp.centerY)
+            maker.right.equalTo(self).offset(-12)
+            maker.centerY.equalTo(self)
             maker.width.equalTo(144)
             maker.height.equalTo(37)
         }
