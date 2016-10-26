@@ -23,24 +23,27 @@ class OrderFormStatusCell: UITableViewCell {
             /// 订单状态
             if let status = MalaOrderStatus(rawValue: (model?.status ?? "")) {
                 switch status {
-                case .Penging:
+                case .penging:
                     self.statusLabel.text = "订单待支付"
                     break
                     
-                case .Paid:
+                case .paid:
                     self.statusLabel.text = "支付成功"
                     break
                     
-                case .Canceled:
+                case .canceled:
                     self.statusLabel.text = "订单已关闭"
                     break
                     
-                case .Refund:
+                case .refund:
                     self.statusLabel.text = "退款成功"
                     break
                     
-                case .Confirm:
+                case .confirm:
                     self.statusLabel.text = "确认订单"
+                    break
+                    
+                default:
                     break
                 }
             }
@@ -53,12 +56,17 @@ class OrderFormStatusCell: UITableViewCell {
     
 
     // MARK: - Components
+    /// 布局容器
+    private lazy var content: UIView = {
+        let view = UIView(UIColor.white)
+        return view
+    }()
     /// cell标题
     private lazy var titleLabel: UILabel = {
         let label = UILabel(
             text: "订单状态",
-            fontSize: 13,
-            textColor: MalaColor_6C6C6C_0
+            fontSize: 15,
+            textColor: MalaColor_333333_0
         )
         return label
     }()
@@ -73,7 +81,7 @@ class OrderFormStatusCell: UITableViewCell {
     }()
     /// 分割线
     private lazy var separatorLine: UIView = {
-        let view = UIView(MalaColor_E5E5E5_0)
+        let view = UIView(MalaColor_F2F2F2_0)
         return view
     }()
     /// 老师姓名图标
@@ -141,40 +149,48 @@ class OrderFormStatusCell: UITableViewCell {
     
     // MARK: - Private Method
     private func setupUserInterface() {
+        // Style
+        contentView.backgroundColor = MalaColor_EDEDED_0
+        
         // SubViews
-        contentView.addSubview(titleLabel)
-        contentView.addSubview(statusLabel)
-        contentView.addSubview(separatorLine)
-        
-        contentView.addSubview(teacherIcon)
-        contentView.addSubview(teacherLabel)
-        contentView.addSubview(subjectIcon)
-        contentView.addSubview(subjectLabel)
-        contentView.addSubview(schoolIcon)
-        contentView.addSubview(schoolLabel)
-        
-        contentView.addSubview(avatarView)
+        contentView.addSubview(content)
+        content.addSubview(titleLabel)
+        content.addSubview(statusLabel)
+        content.addSubview(separatorLine)
+        content.addSubview(teacherIcon)
+        content.addSubview(teacherLabel)
+        content.addSubview(subjectIcon)
+        content.addSubview(subjectLabel)
+        content.addSubview(schoolIcon)
+        content.addSubview(schoolLabel)
+        content.addSubview(avatarView)
         
         // Autolayout
-        // Remove margin
-        titleLabel.snp.updateConstraints { (maker) -> Void in
-            maker.top.equalTo(contentView).offset(10)
+        content.snp.makeConstraints { (maker) in
+            maker.top.equalTo(contentView)
             maker.left.equalTo(contentView).offset(12)
-            maker.height.equalTo(13)
+            maker.right.equalTo(contentView).offset(-12)
+            maker.bottom.equalTo(contentView)
+        }
+        titleLabel.snp.updateConstraints { (maker) -> Void in
+            maker.top.equalTo(content).offset(9.5)
+            maker.left.equalTo(content).offset(12)
+            maker.height.equalTo(17)
         }
         statusLabel.snp.makeConstraints { (maker) in
-            maker.top.equalTo(titleLabel)
-            maker.right.equalTo(contentView).offset(-12)
+            maker.bottom.equalTo(titleLabel)
+            maker.right.equalTo(content).offset(-12)
+            maker.height.equalTo(14)
         }
         separatorLine.snp.makeConstraints { (maker) in
-            maker.top.equalTo(titleLabel.snp.bottom).offset(10)
-            maker.left.equalTo(contentView).offset(12)
-            maker.right.equalTo(contentView).offset(-12)
+            maker.top.equalTo(content).offset(36)
+            maker.left.equalTo(content).offset(7)
+            maker.right.equalTo(content).offset(-7)
             maker.height.equalTo(MalaScreenOnePixel)
         }
         teacherIcon.snp.makeConstraints { (maker) in
             maker.top.equalTo(separatorLine.snp.bottom).offset(10)
-            maker.left.equalTo(contentView).offset(12)
+            maker.left.equalTo(content).offset(12)
             maker.height.equalTo(13)
             maker.width.equalTo(13)
         }
@@ -185,7 +201,7 @@ class OrderFormStatusCell: UITableViewCell {
         }
         subjectIcon.snp.makeConstraints { (maker) in
             maker.top.equalTo(teacherIcon.snp.bottom).offset(10)
-            maker.left.equalTo(contentView).offset(12)
+            maker.left.equalTo(content).offset(12)
             maker.height.equalTo(13)
             maker.width.equalTo(13)
         }
@@ -196,10 +212,10 @@ class OrderFormStatusCell: UITableViewCell {
         }
         schoolIcon.snp.makeConstraints { (maker) in
             maker.top.equalTo(subjectIcon.snp.bottom).offset(10)
-            maker.left.equalTo(contentView).offset(12)
+            maker.left.equalTo(content).offset(12)
             maker.height.equalTo(13)
             maker.width.equalTo(13)
-            maker.bottom.equalTo(contentView).offset(-10)
+            maker.bottom.equalTo(content).offset(-10)
         }
         schoolLabel.snp.makeConstraints { (maker) in
             maker.top.equalTo(schoolIcon)

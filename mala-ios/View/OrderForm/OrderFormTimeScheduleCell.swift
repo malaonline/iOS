@@ -34,19 +34,14 @@ class OrderFormTimeScheduleCell: UITableViewCell {
     
     
     // MARK: - Components
-    /// 顶部布局容器
-    private lazy var topLayoutView: UIView = {
-        let view = UIView()
+    /// 布局容器
+    private lazy var content: UIView = {
+        let view = UIView(UIColor.white)
         return view
     }()
     /// 分割线
     private lazy var separatorLine: UIView = {
-        let view = UIView(MalaColor_E5E5E5_0)
-        return view
-    }()
-    /// 图标
-    private lazy var iconView: UIView = {
-        let view = UIView(MalaColor_82B4D9_0)
+        let view = UIView(MalaColor_F2F2F2_0)
         return view
     }()
     /// cell标题
@@ -100,54 +95,47 @@ class OrderFormTimeScheduleCell: UITableViewCell {
     
     // MARK: - Private Method
     private func setupUserInterface() {
+        // Style
+        contentView.backgroundColor = MalaColor_EDEDED_0
         
         // SubViews
-        contentView.addSubview(topLayoutView)
-        topLayoutView.addSubview(separatorLine)
-        topLayoutView.addSubview(iconView)
-        topLayoutView.addSubview(titleLabel)
-        
-        topLayoutView.addSubview(periodRightLabel)
-        topLayoutView.addSubview(periodLabel)
-        topLayoutView.addSubview(periodLeftLabel)
+        contentView.addSubview(content)
+        content.addSubview(separatorLine)
+        content.addSubview(titleLabel)
+        content.addSubview(periodRightLabel)
+        content.addSubview(periodLabel)
+        content.addSubview(periodLeftLabel)
         
         // Autolayout
-        topLayoutView.snp.makeConstraints { (maker) in
+        content.snp.makeConstraints { (maker) in
             maker.top.equalTo(contentView)
-            maker.left.equalTo(contentView)
-            maker.right.equalTo(contentView)
-            maker.height.equalTo(35)
-            maker.bottom.equalTo(contentView).offset(-12)
+            maker.left.equalTo(contentView).offset(12)
+            maker.right.equalTo(contentView).offset(-12)
+            maker.bottom.equalTo(contentView)
         }
         separatorLine.snp.makeConstraints { (maker) in
-            maker.bottom.equalTo(topLayoutView)
-            maker.left.equalTo(topLayoutView)
-            maker.right.equalTo(topLayoutView)
+            maker.top.equalTo(content).offset(36)
+            maker.left.equalTo(content).offset(7)
+            maker.right.equalTo(content).offset(-7)
             maker.height.equalTo(MalaScreenOnePixel)
         }
-        iconView.snp.makeConstraints { (maker) in
-            maker.left.equalTo(topLayoutView)
-            maker.centerY.equalTo(topLayoutView)
-            maker.height.equalTo(19)
-            maker.width.equalTo(3)
-        }
         titleLabel.snp.updateConstraints { (maker) -> Void in
-            maker.centerY.equalTo(topLayoutView)
-            maker.left.equalTo(topLayoutView).offset(12)
-            maker.height.equalTo(15)
+            maker.top.equalTo(content).offset(9.5)
+            maker.left.equalTo(content).offset(12)
+            maker.height.equalTo(17)
         }
         periodRightLabel.snp.makeConstraints { (maker) in
-            maker.centerY.equalTo(topLayoutView)
-            maker.right.equalTo(topLayoutView).offset(-12)
+            maker.centerY.equalTo(titleLabel)
+            maker.right.equalTo(content).offset(-12)
             maker.height.equalTo(13)
         }
         periodLabel.snp.makeConstraints { (maker) in
-            maker.centerY.equalTo(topLayoutView)
+            maker.centerY.equalTo(titleLabel)
             maker.right.equalTo(periodRightLabel.snp.left).offset(-5)
             maker.height.equalTo(13)
         }
         periodLeftLabel.snp.makeConstraints { (maker) in
-            maker.centerY.equalTo(topLayoutView)
+            maker.centerY.equalTo(titleLabel)
             maker.right.equalTo(periodLabel.snp.left).offset(-5)
             maker.height.equalTo(13)
         }
@@ -163,14 +151,14 @@ class OrderFormTimeScheduleCell: UITableViewCell {
         timeLineView?.isHidden = true
         
         self.contentView.addSubview(timeLineView!)
-        topLayoutView.snp.makeConstraints { (maker) in
-            maker.bottom.equalTo(timeLineView!.snp.top).offset(-10)
+        separatorLine.snp.makeConstraints { (maker) in
+            maker.bottom.equalTo(timeLineView!.snp.top).offset(-10.5)
         }
         timeLineView!.snp.makeConstraints { (maker) in
-            maker.top.equalTo(topLayoutView.snp.bottom).offset(10)
-            maker.left.equalTo(contentView).offset(12)
-            maker.right.equalTo(contentView).offset(-12)
-            maker.bottom.equalTo(contentView).offset(-16)
+            maker.top.equalTo(separatorLine.snp.bottom).offset(10.5)
+            maker.left.equalTo(content).offset(12)
+            maker.right.equalTo(content).offset(-12)
+            maker.bottom.equalTo(content).offset(-9)
             maker.height.equalTo(result.height)
         }
     }

@@ -23,7 +23,7 @@ class OrderFormTableView: UITableView, UITableViewDelegate, UITableViewDataSourc
         didSet {
             println("当前支付渠道信息： \(model?.chargeChannel)")
             // 若订单状态为[待支付]或[已关闭]，隐藏支付渠道Cell
-            self.shouldHiddenPaymentChannel = (model?.status == MalaOrderStatus.Canceled.rawValue) || (model?.status == MalaOrderStatus.Penging.rawValue)
+            self.shouldHiddenPaymentChannel = (model?.status == MalaOrderStatus.canceled.rawValue) || (model?.status == MalaOrderStatus.penging.rawValue)
             
             // 刷新数据渲染UI
             ThemeHUD.showActivityIndicator()
@@ -56,10 +56,9 @@ class OrderFormTableView: UITableView, UITableViewDelegate, UITableViewDataSourc
     private func configure() {
         delegate = self
         dataSource = self
-        backgroundColor = MalaColor_EDEDED_0
+        backgroundColor = MalaColor_F2F2F2_0
         estimatedRowHeight = 500
         separatorStyle = .none
-        contentInset = UIEdgeInsets(top: -25, left: 0, bottom: 4, right: 0)
         
         register(OrderFormStatusCell.self, forCellReuseIdentifier: OrderFormCellReuseId[0]!)
         register(OrderFormTimeScheduleCell.self, forCellReuseIdentifier: OrderFormCellReuseId[1]!)
@@ -74,11 +73,11 @@ class OrderFormTableView: UITableView, UITableViewDelegate, UITableViewDataSourc
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return section == 0 ? 0 : 4
+        return section == 0 ? 12 : 6
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 4
+        return section == (OrderFormCellReuseId.count-1) ? 12 : 6
     }
     
     

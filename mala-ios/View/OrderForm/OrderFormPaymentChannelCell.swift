@@ -17,9 +17,11 @@ class OrderFormPaymentChannelCell: UITableViewCell {
             switch channel {
             case .Alipay:
                 payChannelLabel.text = "支付宝"
+                iconView.image = UIImage(named: "alipay_icon")
                 break
             case .Wechat:
                 payChannelLabel.text = "微信"
+                iconView.image = UIImage(named: "wechat_icon")
                 break
             case .Other:
                 payChannelLabel.text = "其他支付方式"
@@ -30,6 +32,11 @@ class OrderFormPaymentChannelCell: UITableViewCell {
     
     
     // MARK: - Components
+    /// 布局容器
+    private lazy var content: UIView = {
+        let view = UIView(UIColor.white)
+        return view
+    }()
     /// cell标题
     private lazy var titleLabel: UILabel = {
         let label = UILabel(
@@ -39,12 +46,17 @@ class OrderFormPaymentChannelCell: UITableViewCell {
         )
         return label
     }()
-    /// 支付方式
+    /// 支付渠道icon
+    private lazy var iconView: UIImageView = {
+        let imageView = UIImageView()
+        return imageView
+    }()
+    /// 支付渠道
     private lazy var payChannelLabel: UILabel = {
         let label = UILabel(
-            text: "其他支付方式",
+            text: "支付方式",
             fontSize: 13,
-            textColor: MalaColor_6C6C6C_0
+            textColor: MalaColor_636363_0
         )
         return label
     }()
@@ -63,22 +75,38 @@ class OrderFormPaymentChannelCell: UITableViewCell {
     
     // MARK: - Private Method
     private func setupUserInterface() {
+        // Style
+        contentView.backgroundColor = MalaColor_EDEDED_0
         
         // SubViews
-        contentView.addSubview(titleLabel)
-        contentView.addSubview(payChannelLabel)
+        contentView.addSubview(content)
+        content.addSubview(titleLabel)
+        content.addSubview(iconView)
+        content.addSubview(payChannelLabel)
         
         // Autolayout
-        titleLabel.snp.updateConstraints { (maker) -> Void in
-            maker.top.equalTo(contentView).offset(16)
+        content.snp.makeConstraints { (maker) in
+            maker.top.equalTo(contentView)
             maker.left.equalTo(contentView).offset(12)
-            maker.height.equalTo(15)
-            maker.bottom.equalTo(contentView).offset(-16)
+            maker.right.equalTo(contentView).offset(-12)
+            maker.bottom.equalTo(contentView)
+            maker.height.equalTo(44)
+        }
+        titleLabel.snp.updateConstraints { (maker) -> Void in
+            maker.centerY.equalTo(content)
+            maker.left.equalTo(content).offset(12)
+            maker.height.equalTo(17)
+        }
+        iconView.snp.makeConstraints { (maker) in
+            maker.centerY.equalTo(content)
+            maker.right.equalTo(payChannelLabel.snp.left).offset(-5)
+            maker.width.equalTo(22)
+            maker.height.equalTo(22)
         }
         payChannelLabel.snp.updateConstraints { (maker) -> Void in
-            maker.centerY.equalTo(titleLabel)
-            maker.right.equalTo(contentView).offset(-12)
-            maker.height.equalTo(13)
+            maker.centerY.equalTo(content)
+            maker.right.equalTo(content).offset(-12)
+            maker.height.equalTo(21)
         }
     }
 }

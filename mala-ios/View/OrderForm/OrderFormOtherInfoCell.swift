@@ -15,106 +15,70 @@ class OrderFormOtherInfoCell: UITableViewCell {
     var model: OrderForm? {
         didSet {
             
+            guard let model = model else {
+                return
+            }
+            
             /// 订单状态
-            if let status = MalaOrderStatus(rawValue: (model?.status ?? "")) {
+            if let status = MalaOrderStatus(rawValue: (model.status ?? "")) {
                 switch status {
-                // 已支付、已退款状态时，不显示支付时间
-                case .Penging, .Canceled:
+                // 待付款、已退款状态时，不显示支付时间
+                case .penging, .canceled:
                     
-                    paymentDateString.isHidden = true
-                    paymentDateLabel.isHidden = true
+                    paymentAtLabel.isHidden = true
                     
-                    createDateString.snp.updateConstraints { (maker) -> Void in
-                        maker.top.equalTo(titleString.snp.bottom).offset(10)
-                        maker.left.equalTo(titleString)
-                        maker.height.equalTo(12)
-                        maker.bottom.equalTo(contentView).offset(-16)
+                    createAtLabel.snp.remakeConstraints { (maker) -> Void in
+                        maker.top.equalTo(orderCodeLabel.snp.bottom).offset(12)
+                        maker.left.equalTo(orderCodeLabel)
+                        maker.height.equalTo(orderCodeLabel)
+                        maker.bottom.equalTo(contentView).offset(-15.5)
                     }
                     break
-                    
                 default:
                     break
                 }
             }
-            self.orderId = self.model?.order_id ?? "-"
-            self.createDate = self.model?.createAt
-            self.paymentDate = self.model?.paidAt
-        }
-    }
-    
-    /// 订单编号
-    var orderId: String = "" {
-        didSet {
-            titleLabel.text = orderId
-        }
-    }
-    /// 订单创建时间
-    var createDate: TimeInterval? {
-        didSet {
-            if let createDate = createDate {
-                createDateLabel.text = getDateTimeString(createDate)
-            }
-        }
-    }
-    /// 订单支付时间
-    var paymentDate: TimeInterval? {
-        didSet {
-            if let paymentDate = paymentDate {
-                paymentDateLabel.text = getDateTimeString(paymentDate)
-            }
+            
+            orderCodeLabel.text = String(format: "订单编号：%@", (model.order_id ?? "-"))
+            createAtLabel.text = String(format: "创建时间：%@", getDateTimeString(model.createAt ?? 0))
+            paymentAtLabel.text = String(format: "支付时间：%@", getDateTimeString(model.paidAt ?? 0))
         }
     }
     
     
     // MARK: - Components
+    /// 布局容器
+    private lazy var content: UIView = {
+        let view = UIView(UIColor.white)
+        return view
+    }()
     /// 订单编号
-    private lazy var titleString: UILabel = {
+    private lazy var orderCodeLabel: UILabel = {
         let label = UILabel(
             text: "订单编号：",
-            fontSize: 12,
-            textColor: MalaColor_939393_0
-        )
-        return label
-    }()
-    private lazy var titleLabel: UILabel = {
-        let label = UILabel(
-            text: "",
-            fontSize: 12,
-            textColor: MalaColor_939393_0
+            font: UIFont(name: "PingFang-SC-Regular", size: 13),
+            textColor: MalaColor_939393_0,
+            opacity: 0.8
         )
         return label
     }()
     /// 创建时间
-    private lazy var createDateString: UILabel = {
+    private lazy var createAtLabel: UILabel = {
         let label = UILabel(
             text: "创建时间：",
-            fontSize: 12,
-            textColor: MalaColor_939393_0
-        )
-        return label
-    }()
-    private lazy var createDateLabel: UILabel = {
-        let label = UILabel(
-            text: "",
-            fontSize: 12,
-            textColor: MalaColor_939393_0
+            font: UIFont(name: "PingFang-SC-Regular", size: 13),
+            textColor: MalaColor_939393_0,
+            opacity: 0.8
         )
         return label
     }()
     /// 支付时间
-    private lazy var paymentDateString: UILabel = {
+    private lazy var paymentAtLabel: UILabel = {
         let label = UILabel(
             text: "支付时间：",
-            fontSize: 12,
-            textColor: MalaColor_939393_0
-        )
-        return label
-    }()
-    private lazy var paymentDateLabel: UILabel = {
-        let label = UILabel(
-            text: "",
-            fontSize: 12,
-            textColor: MalaColor_939393_0
+            font: UIFont(name: "PingFang-SC-Regular", size: 13),
+            textColor: MalaColor_939393_0,
+            opacity: 0.8
         )
         return label
     }()
@@ -133,47 +97,38 @@ class OrderFormOtherInfoCell: UITableViewCell {
     
     // MARK: - Private Method
     private func setupUserInterface() {
+        // Style
+        contentView.backgroundColor = MalaColor_F2F2F2_0
         
         // SubViews
-        contentView.addSubview(titleString)
-        contentView.addSubview(titleLabel)
-        contentView.addSubview(createDateString)
-        contentView.addSubview(createDateLabel)
-        contentView.addSubview(paymentDateString)
-        contentView.addSubview(paymentDateLabel)
+        contentView.addSubview(content)
+        content.addSubview(orderCodeLabel)
+        content.addSubview(createAtLabel)
+        content.addSubview(paymentAtLabel)
         
         // Autolayout
-        titleString.snp.makeConstraints { (maker) -> Void in
-            maker.top.equalTo(contentView).offset(16)
+        content.snp.makeConstraints { (maker) in
+            maker.top.equalTo(contentView)
             maker.left.equalTo(contentView).offset(12)
-            maker.height.equalTo(12)
+            maker.right.equalTo(contentView).offset(-12)
+            maker.bottom.equalTo(contentView)
         }
-        titleLabel.snp.makeConstraints { (maker) -> Void in
-            maker.top.equalTo(titleString)
-            maker.left.equalTo(titleString.snp.right).offset(10)
-            maker.height.equalTo(12)
+        orderCodeLabel.snp.makeConstraints { (maker) -> Void in
+            maker.top.equalTo(content).offset(18)
+            maker.left.equalTo(content).offset(13)
+            maker.height.equalTo(14)
         }
-        createDateString.snp.makeConstraints { (maker) -> Void in
-            maker.top.equalTo(titleString.snp.bottom).offset(10)
-            maker.left.equalTo(titleString)
-            maker.height.equalTo(12)
-            maker.bottom.equalTo(contentView.snp.bottom).offset(-16)
+        createAtLabel.snp.makeConstraints { (maker) -> Void in
+            maker.top.equalTo(orderCodeLabel.snp.bottom).offset(12)
+            maker.left.equalTo(orderCodeLabel)
+            maker.height.equalTo(orderCodeLabel)
+            maker.bottom.equalTo(paymentAtLabel.snp.top).offset(-12)
         }
-        createDateLabel.snp.makeConstraints { (maker) -> Void in
-            maker.top.equalTo(createDateString)
-            maker.left.equalTo(createDateString.snp.right).offset(10)
-            maker.height.equalTo(12)
-        }
-        paymentDateString.snp.makeConstraints { (maker) -> Void in
-            maker.top.equalTo(createDateString.snp.bottom).offset(10)
-            maker.left.equalTo(titleString)
-            maker.height.equalTo(12)
-            maker.bottom.equalTo(contentView).offset(-16)
-        }
-        paymentDateLabel.snp.makeConstraints { (maker) -> Void in
-            maker.top.equalTo(paymentDateString)
-            maker.left.equalTo(paymentDateString.snp.right).offset(10)
-            maker.height.equalTo(12)
+        paymentAtLabel.snp.makeConstraints { (maker) -> Void in
+            maker.top.equalTo(createAtLabel.snp.bottom).offset(12)
+            maker.left.equalTo(orderCodeLabel)
+            maker.height.equalTo(orderCodeLabel)
+            maker.bottom.equalTo(contentView).offset(-15.5)
         }
     }
 }

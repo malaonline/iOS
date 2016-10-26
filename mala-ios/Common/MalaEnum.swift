@@ -45,16 +45,23 @@ enum MalaAppURLScheme: String {
 
 ///  订单状态
 ///
-///  - Penging:  待付款
-///  - Paid:     已付款
-///  - Canceled: 已取消
-///  - Refund:   退费
+///  - penging:             待付款
+///  - paid:                已付款(不可退费)
+///  - paidRefundable:      已付款(可退费)
+///  - finished:            已付款(不可退费)
+///  - refunding:           退费审核中
+///  - refund:              已退费
+///  - canceled:            已关闭
+///  - confirm:             确认订单(for 订单预览)
 enum MalaOrderStatus: String {
-    case Penging = "u"
-    case Paid = "p"
-    case Canceled = "d"
-    case Refund = "r"
-    case Confirm = "c"
+    case penging        = "u"
+    case paid           = "p"
+    case paidRefundable = "pl"
+    case finished       = "f"
+    case refunding      = "ri"
+    case refund         = "r"
+    case canceled       = "d"
+    case confirm        = "c"
 }
 
 ///  奖学金状态

@@ -84,7 +84,7 @@ class HandlePingppBehaviour: NSObject {
             DispatchQueue.main.async { () -> Void in
                 
                 // 判断订单状态
-                if order.status == MalaOrderStatus.Paid.rawValue {
+                if order.status == MalaOrderStatus.paid.rawValue {
                     
                     if order.teacherPublished == false {
                         // 老师已下架
