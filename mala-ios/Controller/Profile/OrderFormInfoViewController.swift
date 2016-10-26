@@ -21,8 +21,8 @@ class OrderFormInfoViewController: BaseViewController, OrderFormOperatingViewDel
             id = model?.id ?? 0
             
             /// 渲染底部视图UI
-            confirmView.orderStatus = MalaOrderStatus(rawValue: model?.status ?? "d") ?? .canceled
             confirmView.isTeacherPublished = model?.teacherPublished
+            confirmView.orderStatus = MalaOrderStatus(rawValue: model?.status ?? "d") ?? .canceled
             confirmView.price = isForConfirm ? MalaCurrentCourse.getAmount() ?? 0 : model?.amount ?? 0
         }
     }
@@ -259,7 +259,7 @@ class OrderFormInfoViewController: BaseViewController, OrderFormOperatingViewDel
     
     // MARK: - Delegate
     ///  立即支付
-    func OrderFormPayment() {
+    func orderFormPayment() {
         
         // 订单详情 － 支付
         if isForConfirm {
@@ -275,7 +275,7 @@ class OrderFormInfoViewController: BaseViewController, OrderFormOperatingViewDel
     }
     
     ///  再次购买
-    func OrderFormBuyAgain() {
+    func orderFormBuyAgain() {
         
         // 跳转到课程购买页
         let viewController = CourseChoosingViewController()
@@ -291,7 +291,7 @@ class OrderFormInfoViewController: BaseViewController, OrderFormOperatingViewDel
     }
     
     ///  取消订单
-    func OrderFormCancel() {
+    func orderFormCancel() {
         
         MalaAlert.confirmOrCancel(
             title: "取消订单",
@@ -303,5 +303,10 @@ class OrderFormInfoViewController: BaseViewController, OrderFormOperatingViewDel
                 self?.cancelOrder()
             }, cancelAction: { () -> Void in
         })
+    }
+    
+    /// 申请退费
+    func requestRefund() {
+        
     }
 }
