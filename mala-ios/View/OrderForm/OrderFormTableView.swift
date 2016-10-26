@@ -23,7 +23,7 @@ class OrderFormTableView: UITableView, UITableViewDelegate, UITableViewDataSourc
         didSet {
             println("当前支付渠道信息： \(model?.chargeChannel)")
             // 若订单状态为[待支付]或[已关闭]，隐藏支付渠道Cell
-            self.shouldHiddenPaymentChannel = (model?.status == MalaOrderStatus.Canceled.rawValue) || (model?.status == MalaOrderStatus.Penging.rawValue)
+            self.shouldHiddenPaymentChannel = (model?.status == MalaOrderStatus.canceled.rawValue) || (model?.status == MalaOrderStatus.penging.rawValue)
             
             // 刷新数据渲染UI
             ThemeHUD.showActivityIndicator()

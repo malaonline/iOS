@@ -23,24 +23,27 @@ class OrderFormStatusCell: UITableViewCell {
             /// 订单状态
             if let status = MalaOrderStatus(rawValue: (model?.status ?? "")) {
                 switch status {
-                case .Penging:
+                case .penging:
                     self.statusLabel.text = "订单待支付"
                     break
                     
-                case .Paid:
+                case .paid:
                     self.statusLabel.text = "支付成功"
                     break
                     
-                case .Canceled:
+                case .canceled:
                     self.statusLabel.text = "订单已关闭"
                     break
                     
-                case .Refund:
+                case .refund:
                     self.statusLabel.text = "退款成功"
                     break
                     
-                case .Confirm:
+                case .confirm:
                     self.statusLabel.text = "确认订单"
+                    break
+                    
+                default:
                     break
                 }
             }

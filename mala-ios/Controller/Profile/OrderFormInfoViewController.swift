@@ -21,7 +21,7 @@ class OrderFormInfoViewController: BaseViewController, OrderFormOperatingViewDel
             id = model?.id ?? 0
             
             /// 渲染底部视图UI
-            confirmView.orderStatus = MalaOrderStatus(rawValue: model?.status ?? "d") ?? .Canceled
+            confirmView.orderStatus = MalaOrderStatus(rawValue: model?.status ?? "d") ?? .canceled
             confirmView.isTeacherPublished = model?.teacherPublished
             confirmView.price = isForConfirm ? MalaCurrentCourse.getAmount() ?? 0 : model?.amount ?? 0
         }
@@ -192,7 +192,7 @@ class OrderFormInfoViewController: BaseViewController, OrderFormOperatingViewDel
                     if result {
                         MalaUnpaidOrderCount -= 1
                         self?.ShowTost("订单取消成功")
-                        self?.confirmView.orderStatus = .Canceled
+                        self?.confirmView.orderStatus = .canceled
                     }else {
                         self?.ShowTost("订单取消失败")
                     }

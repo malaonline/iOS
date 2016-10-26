@@ -23,7 +23,7 @@ class OrderFormOtherInfoCell: UITableViewCell {
             if let status = MalaOrderStatus(rawValue: (model.status ?? "")) {
                 switch status {
                 // 待付款、已退款状态时，不显示支付时间
-                case .Penging, .Canceled:
+                case .penging, .canceled:
                     
                     paymentAtLabel.isHidden = true
                     

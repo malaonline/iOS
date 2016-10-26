@@ -28,7 +28,7 @@ class OrderFormOperatingView: UIView {
         }
     }
     /// 订单状态
-    var orderStatus: MalaOrderStatus = .Canceled {
+    var orderStatus: MalaOrderStatus = .canceled {
         didSet {
             DispatchQueue.main.async(execute: { [weak self] () -> Void in
                 self?.changeDisplayMode()
@@ -180,7 +180,7 @@ class OrderFormOperatingView: UIView {
         
         // 渲染UI样式
         switch orderStatus {
-        case .Penging:
+        case .penging:
             
             // 待付款
             cancelButton.isHidden = false
@@ -196,7 +196,7 @@ class OrderFormOperatingView: UIView {
             confirmButton.addTarget(self, action: #selector(OrderFormOperatingView.pay), for: .touchUpInside)
             break
             
-        case .Paid:
+        case .paid:
             
             // 已付款
             cancelButton.isHidden = true
@@ -209,7 +209,7 @@ class OrderFormOperatingView: UIView {
             confirmButton.addTarget(self, action: #selector(OrderFormOperatingView.buyAgain), for: .touchUpInside)
             break
             
-        case .Canceled:
+        case .canceled:
             
             // 已取消
             cancelButton.isHidden = true
@@ -222,14 +222,14 @@ class OrderFormOperatingView: UIView {
             confirmButton.addTarget(self, action: #selector(OrderFormOperatingView.buyAgain), for: .touchUpInside)
             break
             
-        case .Refund:
+        case .refund:
             
             // 已退款
             cancelButton.isHidden = true
             confirmButton.isHidden = true
             break
             
-        case .Confirm:
+        case .confirm:
             
             // 确认订单
             cancelButton.isHidden = true
@@ -238,6 +238,8 @@ class OrderFormOperatingView: UIView {
             confirmButton.setTitle("提交订单", for: UIControlState())
             confirmButton.setTitleColor(MalaColor_E26254_0, for: UIControlState())
             confirmButton.addTarget(self, action: #selector(OrderFormOperatingView.pay), for: .touchUpInside)
+            break
+        default:
             break
         }
         

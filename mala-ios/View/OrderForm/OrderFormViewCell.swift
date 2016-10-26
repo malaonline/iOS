@@ -34,7 +34,7 @@ class OrderFormViewCell: UITableViewCell {
         }
     }
     /// 订单状态
-    private var orderStatus: MalaOrderStatus = .Canceled {
+    private var orderStatus: MalaOrderStatus = .canceled {
         didSet {
             DispatchQueue.main.async(execute: { [weak self] () -> Void in
                 self?.changeDisplayMode()
@@ -381,7 +381,7 @@ class OrderFormViewCell: UITableViewCell {
         
         // 渲染UI样式
         switch orderStatus {
-        case .Penging:
+        case .penging:
             // 待付款
             topLayoutView.backgroundColor = MalaColor_8FBCDD_0
             statusString.text = "订单待支付"
@@ -398,7 +398,7 @@ class OrderFormViewCell: UITableViewCell {
             confirmButton.addTarget(self, action: #selector(OrderFormViewCell.pay), for: .touchUpInside)
             break
         
-        case .Paid:
+        case .paid:
             // 已付款
             topLayoutView.backgroundColor = MalaColor_B1D0E8_0
             statusString.text = "交易完成"
@@ -414,7 +414,7 @@ class OrderFormViewCell: UITableViewCell {
             confirmButton.addTarget(self, action: #selector(OrderFormViewCell.buyAgain), for: .touchUpInside)
             break
         
-        case .Canceled:
+        case .canceled:
             // 已取消
             topLayoutView.backgroundColor = MalaColor_CFCFCF_0
             statusString.text = "订单已关闭"
@@ -430,7 +430,7 @@ class OrderFormViewCell: UITableViewCell {
             confirmButton.addTarget(self, action: #selector(OrderFormViewCell.buyAgain), for: .touchUpInside)
             break
         
-        case .Refund:
+        case .refund:
             // 已退款
             topLayoutView.backgroundColor = MalaColor_B1D0E8_0
             statusString.text = "退款成功"
@@ -440,7 +440,10 @@ class OrderFormViewCell: UITableViewCell {
             confirmButton.isHidden = true
             break
             
-        case .Confirm:
+        case .confirm:
+            break
+            
+        default:
             break
         }
         
