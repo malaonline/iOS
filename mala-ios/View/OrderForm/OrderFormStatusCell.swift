@@ -62,8 +62,8 @@ class OrderFormStatusCell: UITableViewCell {
     private lazy var titleLabel: UILabel = {
         let label = UILabel(
             text: "订单状态",
-            fontSize: 13,
-            textColor: MalaColor_6C6C6C_0
+            fontSize: 15,
+            textColor: MalaColor_333333_0
         )
         return label
     }()
@@ -78,7 +78,7 @@ class OrderFormStatusCell: UITableViewCell {
     }()
     /// 分割线
     private lazy var separatorLine: UIView = {
-        let view = UIView(MalaColor_E5E5E5_0)
+        let view = UIView(MalaColor_F2F2F2_0)
         return view
     }()
     /// 老师姓名图标
@@ -170,18 +170,19 @@ class OrderFormStatusCell: UITableViewCell {
             maker.bottom.equalTo(contentView)
         }
         titleLabel.snp.updateConstraints { (maker) -> Void in
-            maker.top.equalTo(content).offset(10)
+            maker.top.equalTo(content).offset(9.5)
             maker.left.equalTo(content).offset(12)
-            maker.height.equalTo(13)
+            maker.height.equalTo(17)
         }
         statusLabel.snp.makeConstraints { (maker) in
-            maker.top.equalTo(titleLabel)
+            maker.bottom.equalTo(titleLabel)
             maker.right.equalTo(content).offset(-12)
+            maker.height.equalTo(14)
         }
         separatorLine.snp.makeConstraints { (maker) in
-            maker.top.equalTo(titleLabel.snp.bottom).offset(10)
-            maker.left.equalTo(content).offset(12)
-            maker.right.equalTo(content).offset(-12)
+            maker.top.equalTo(content).offset(36)
+            maker.left.equalTo(content).offset(7)
+            maker.right.equalTo(content).offset(-7)
             maker.height.equalTo(MalaScreenOnePixel)
         }
         teacherIcon.snp.makeConstraints { (maker) in
