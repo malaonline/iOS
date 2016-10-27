@@ -138,7 +138,7 @@ class OrderForm: BaseObjectModel {
         let subject = self.subject as AnyObject
         let hours = self.hours as AnyObject
         let coupon = self.coupon
-        let timeslots = self.weekly_time_slots as AnyObject
+        let timeslots = (self.weekly_time_slots ?? []) as AnyObject
         
         var json: JSONDictionary = [
             "teacher": teacher ?? 0 as AnyObject,
