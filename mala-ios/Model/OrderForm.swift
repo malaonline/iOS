@@ -19,6 +19,8 @@ class OrderForm: BaseObjectModel {
     var coupon: Int = 0
     var hours: Int = 0
     var weekly_time_slots: [Int]?
+    /// only for live course
+    var liveClass: Int = 0
     
     // 订单结果参数
     var order_id: String?
@@ -127,6 +129,7 @@ class OrderForm: BaseObjectModel {
         return dictionaryWithValues(forKeys: keys).description
     }
     
+    /// 快速转出[一对一]订单参数字典
     func jsonDictionary() -> JSONDictionary {
         
         let teacher = self.teacher as AnyObject?
@@ -150,5 +153,12 @@ class OrderForm: BaseObjectModel {
             json["coupon"] = NSNull()
         }
         return json
+    }
+    
+    /// 快速转出[双师直播]订单参数字典
+    func jsonForLiveCourse() -> JSONDictionary {
+        return [
+            "live_class": liveClass as AnyObject
+        ]
     }
 }

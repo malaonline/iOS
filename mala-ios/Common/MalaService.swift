@@ -780,6 +780,7 @@ func createOrderWithForm(_ orderForm: JSONDictionary, failureHandler: ((Reason, 
     // coupon               优惠卡券id
     // hours                用户所选课时数
     // weekly_time_slots    用户所选上课时间id数组
+    // live_class           直播课程班级id（双师直播仅需此参数）
     
     /// 返回值解析器
     let parse: (JSONDictionary) -> OrderForm? = { data in
