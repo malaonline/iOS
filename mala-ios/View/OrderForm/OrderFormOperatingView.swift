@@ -26,7 +26,7 @@ class OrderFormOperatingView: UIView {
     /// 需支付金额
     var price: Int = 0 {
         didSet{
-            self.priceLabel.text = price.amountCNY
+            priceLabel.text = price.amountCNY
         }
     }
     /// 订单状态
@@ -141,8 +141,8 @@ class OrderFormOperatingView: UIView {
     /// 根据当前订单状态，渲染对应UI样式
     private func changeDisplayMode() {
         
-        // 渲染UI样式
-        if isTeacherPublished == false {
+        // 仅当订单金额已支付时，老师下架状态才会生效
+        if isTeacherPublished == false && orderStatus != .penging {
             setTeacherDisable()
             return
         }

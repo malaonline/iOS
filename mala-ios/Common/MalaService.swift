@@ -773,16 +773,8 @@ func getCommentInfo(_ id: Int, failureHandler: ((Reason, String?) -> Void)?, com
 ///  - parameter failureHandler: 失败处理闭包
 ///  - parameter completion:     成功处理闭包
 func createOrderWithForm(_ orderForm: JSONDictionary, failureHandler: ((Reason, String?) -> Void)?, completion: @escaping (OrderForm) -> Void) {
-    // teacher              老师id
-    // school               上课地点id
-    // grade                年级(&价格)id
-    // subject              学科id
-    // coupon               优惠卡券id
-    // hours                用户所选课时数
-    // weekly_time_slots    用户所选上课时间id数组
-    // live_class           直播课程班级id（双师直播仅需此参数）
     
-    /// 返回值解析器
+    /// 订单创建结果解析器
     let parse: (JSONDictionary) -> OrderForm? = { data in
         return parseOrderCreateResult(data)
     }
@@ -981,100 +973,28 @@ func getUserProtocolHTML(_ failureHandler: ((Reason, String?) -> Void)?, complet
 
 // MARK: - Parse
 /// 订单JSON解析器
-let parseOrderForm: (JSONDictionary) -> OrderForm? = { orderInfo in
-    
-    // 订单创建失败
-    if
-        let result = orderInfo["ok"] as? Bool,
-        let errorCode = orderInfo["code"] as? Int {
-        return OrderForm(result: result, code: errorCode)
-    }
-    
-    // 订单创建成功
-    if
-        let id          = orderInfo["id"] as? Int,
-        let teacher     = orderInfo["teacher"] as? Int,
-        let teacherName = orderInfo["teacher_name"] as? String,
-        let school      = orderInfo["school"] as? String,
-        let grade       = orderInfo["grade"] as? String,
-        let subject     = orderInfo["subject"] as? String,
-        let hours       = orderInfo["hours"] as? Int,
-        let status      = orderInfo["status"] as? String,
-        let orderId     = orderInfo["order_id"] as? String,
-        let amount      = orderInfo["to_pay"] as? Int,
-        let evaluated   = orderInfo["evaluated"] as? Bool {
-        // 创建订单模型
-        let order = OrderForm(id: id, orderId: orderId, teacherId: teacher, teacherName: teacherName, schoolName: school, gradeName: grade, subjectName: subject, orderStatus: status, amount: amount, evaluated: evaluated)
-        // 教师头像
-        if let avatar = orderInfo["teacher_avatar"] as? String {
-            order.avatarURL = avatar
-        }
-        return order
-    }
-    return nil
-}
-/// 订单JSON解析器
 let parseOrderFormInfo: (JSONDictionary) -> OrderForm? = { orderInfo in
     
     // 订单创建失败
-    if
-        let result = orderInfo["ok"] as? Bool,
-        let errorCode = orderInfo["code"] as? Int {
+    if let result = orderInfo["ok"] as? Bool, let errorCode = orderInfo["code"] as? Int {
         return OrderForm(result: result, code: errorCode)
     }
-    
     // 订单创建成功
-    if
-        let id              = orderInfo["id"] as? Int,
-        let teacher         = orderInfo["teacher"] as? Int,
-        let teacherName     = orderInfo["teacher_name"] as? String,
-        let school          = orderInfo["school"] as? String,
-        let schoolId        = orderInfo["school_id"] as? Int,
-        let grade           = orderInfo["grade"] as? String,
-        let subject         = orderInfo["subject"] as? String,
-        let hours           = orderInfo["hours"] as? Int,
-        let status          = orderInfo["status"] as? String,
-        let orderId         = orderInfo["order_id"] as? String,
-        let amount          = orderInfo["to_pay"] as? Int,
-        let createdAt       = orderInfo["created_at"] as? TimeInterval,
-        let timeSlots       = orderInfo["timeslots"] as? [[TimeInterval]],
-        let evaluated       = orderInfo["evaluated"] as? Bool,
-        let isTimeAllocated = orderInfo["is_timeslot_allocated"] as? Bool,
-        let isteacherPublished = orderInfo["is_teacher_published"] as? Bool {
-        // 订单信息
-        let order = OrderForm(id: id, orderId: orderId, teacherId: teacher, teacherName: teacherName, schoolId: schoolId, schoolName: school, gradeName: grade, subjectName: subject, orderStatus: status, hours: hours, amount: amount, timeSlots: timeSlots, createAt: createdAt, evaluated: evaluated, teacherPublished: isteacherPublished)
-        // 判断是否存在支付时间（未支付状态无此数据）
-        if let paidAt = orderInfo["paid_at"] as? TimeInterval {
-            order.paidAt = paidAt
-        }
-        // 判断是否存在支付渠道（订单取消状态无此数据）
-        if let chargeChannel   = orderInfo["charge_channel"] as? String {
-            order.chargeChannel = chargeChannel
-        }
-        // 教师头像
-        if let avatar = orderInfo["teacher_avatar"] as? String {
-            order.avatarURL = avatar
-        }
-        return order
+    if let _ = orderInfo["id"] as? Int {
+        return OrderForm(dict: orderInfo)
     }
     return nil
 }
 /// 订单创建返回结果JSON解析器
 let parseOrderCreateResult: (JSONDictionary) -> OrderForm? = { orderInfo in
     
-    println("结果：\(orderInfo)")
-    
     // 订单创建失败
-    if
-        let result = orderInfo["ok"] as? Bool,
-        let errorCode = orderInfo["code"] as? Int {
+    if let result = orderInfo["ok"] as? Bool, let errorCode = orderInfo["code"] as? Int {
         return OrderForm(result: result, code: errorCode)
     }
     
     // 订单创建成功
-    if
-        let id = orderInfo["id"] as? Int,
-        let amount = orderInfo["to_pay"] as? Int {
+    if let id = orderInfo["id"] as? Int, let amount = orderInfo["to_pay"] as? Int {
         let order = OrderForm()
         order.id = id
         order.amount = amount
@@ -1288,27 +1208,9 @@ let parseOrderList: (JSONDictionary) -> ([OrderForm], Int) = { ordersInfo in
     }
     
     for order in orders {
-        if
-            let id          = order["id"] as? Int,
-            let teacher     = order["teacher"] as? Int,
-            let teacherName = order["teacher_name"] as? String,
-            let schoolId    = order["school_id"] as? Int,
-            let schoolName  = order["school"] as? String,
-            let grade       = order["grade"] as? String,
-            let subject     = order["subject"] as? String,
-            let hours       = order["hours"] as? Int,
-            let status      = order["status"] as? String,
-            let orderId     = order["order_id"] as? String,
-            let amount      = order["to_pay"] as? Int,
-            let evaluated   = order["evaluated"] as? Bool,
-            let isteacherPublished = order["is_teacher_published"] as? Bool {
-            // 创建订单模型
-            let orderForm = OrderForm(id: id, orderId: orderId, teacherId: teacher, teacherName: teacherName, schoolId: schoolId, schoolName: schoolName, gradeName: grade, subjectName: subject, orderStatus: status, amount: amount, evaluated: evaluated, teacherPublished: isteacherPublished)
-            // 教师头像
-            if let avatar = order["teacher_avatar"] as? String {
-                orderForm.avatarURL = avatar
-            }
-            orderList.append(orderForm)
+        // 订单创建成功
+        if let _ = order["id"] as? Int {
+            orderList.append(OrderForm(dict: order))
         }
     }
     
