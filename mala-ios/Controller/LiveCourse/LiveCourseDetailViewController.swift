@@ -86,7 +86,61 @@ class LiveCourseDetailViewController: BaseViewController, LiveCourseConfirmViewD
     }
     
     func OrderDidConfirm() {
-        println("Order Did Confirm")
+        
+        println("创建订单")
+        ThemeHUD.showActivityIndicator()
+        
+        let order = OrderForm(classId: model.id)
+        
+        ///  创建订单
+        createOrderWithForm(order.jsonForLiveCourse(), failureHandler: { [weak self] (reason, errorMessage) -> Void in
+            
+            ThemeHUD.hideActivityIndicator()
+            defaultFailureHandler(reason, errorMessage: errorMessage)
+            
+            // 错误处理
+            if let errorMessage = errorMessage {
+                println("PaymentViewController - CreateOrder Error \(errorMessage)")
+            }
+            
+            DispatchQueue.main.async(execute: { () -> Void in
+                self?.ShowTost("创建订单失败, 请重试！")
+            })
+            
+            }, completion: { [weak self] (order) -> Void in
+                
+                ThemeHUD.hideActivityIndicator()
+                
+                if let errorCode = order.code {
+                    if errorCode == -1 {
+                        DispatchQueue.main.async(execute: { () -> Void in
+                            self?.ShowTost("该老师部分时段已被占用，请重新选择上课时间")
+                        })
+                    }else if errorCode == -2 {
+                        DispatchQueue.main.async(execute: { () -> Void in
+                            self?.ShowTost("奖学金使用信息有误，请重新选择")
+                            _ = self?.navigationController?.popViewController(animated: true)
+                        })
+                    }
+                }else {
+                    ThemeHUD.hideActivityIndicator()
+                    println("创建订单成功:\(order)")
+                    ServiceResponseOrder = order
+                    DispatchQueue.main.async(execute: { () -> Void in
+                        self?.launchPaymentController()
+                    })
+                }
+            })
+    }
+    
+    private func launchPaymentController() {
+        
+        // 跳转到支付页面
+        let viewController = PaymentViewController()
+        viewController.popAction = {
+            MalaIsPaymentIn = false
+        }
+        self.navigationController?.pushViewController(viewController, animated: true)
     }
     
     deinit {

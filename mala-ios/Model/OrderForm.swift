@@ -67,6 +67,11 @@ class OrderForm: BaseObjectModel {
         super.init()
     }
     
+    convenience init(classId: Int) {
+        self.init()
+        self.liveClass = classId
+    }
+    
     convenience init(result: Bool, code: Int) {
         self.init()
         self.result = result
@@ -125,7 +130,7 @@ class OrderForm: BaseObjectModel {
     
     // MARK: - Description
     override var description: String {
-        let keys = ["id", "name", "teacher", "school", "grade", "subject", "coupon", "hours", "weekly_time_slots", "order_id", "parent", "total", "price", "status", "schoolName"]
+        let keys = ["id", "name", "teacher", "school", "grade", "subject", "coupon", "hours", "weekly_time_slots", "order_id", "parent", "total", "price", "status", "schoolName", "liveClass"]
         return dictionaryWithValues(forKeys: keys).description
     }
     
