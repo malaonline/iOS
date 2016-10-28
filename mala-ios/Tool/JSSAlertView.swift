@@ -180,13 +180,13 @@ class JSSAlertView: UIViewController {
         }
         
         // position the title
-        let titleString = titleLabel.text! as NSString
-        let titleAttr = [NSFontAttributeName:titleLabel.font]
-        let titleSize = CGSize(width: contentWidth, height: 90)
-        let titleRect = titleString.boundingRect(with: titleSize, options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: titleAttr, context: nil)
+        // let titleString = titleLabel.text! as NSString
+        // let titleAttr = [NSFontAttributeName: titleLabel.font]
+        // let titleSize = CGSize(width: contentWidth, height: 90)
+        // let titleRect = titleString.boundingRect(with: titleSize, options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: titleAttr, context: nil)
         yPos += padding
-        self.titleLabel.frame = CGRect(x: self.padding, y: yPos, width: self.alertWidth - (self.padding*2), height: ceil(titleRect.size.height))
-        yPos += ceil(titleRect.size.height)
+        self.titleLabel.frame = CGRect(x: self.padding, y: yPos, width: self.alertWidth - (self.padding*2), height: ceil(24/*titleRect.size.height*/))
+        yPos += 24 // ceil(titleRect.size.height)
         
         
         // position text
