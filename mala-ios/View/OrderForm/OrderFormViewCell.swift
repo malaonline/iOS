@@ -149,6 +149,11 @@ class OrderFormViewCell: UITableViewCell {
         let imageView = UIImageView(cornerRadius: 55/2, image: "profileAvatar_placeholder")
         return imageView
     }()
+    /// 双师直播课程头像
+    private lazy var liveCourseAvatarView: LiveCourseAvatarView = {
+        let view = LiveCourseAvatarView()
+        return view
+    }()
     /// 中部分割线
     private lazy var separatorLine: UIView = {
         let view = UIView(MalaColor_DADADA_0)
@@ -254,6 +259,7 @@ class OrderFormViewCell: UITableViewCell {
         middleLayoutView.addSubview(separatorLine)
         middleLayoutView.addSubview(statusString)
         middleLayoutView.addSubview(avatarView)
+        middleLayoutView.addSubview(liveCourseAvatarView)
         
         content.addSubview(bottomLayoutView)
         bottomLayoutView.addSubview(amountLabel)
@@ -341,6 +347,12 @@ class OrderFormViewCell: UITableViewCell {
             maker.height.equalTo(55)
             maker.width.equalTo(55)
         }
+        liveCourseAvatarView.snp.makeConstraints { (maker) in
+            maker.centerX.equalTo(statusString)
+            maker.bottom.equalTo(middleLayoutView).offset(-14)
+            maker.width.equalTo(72)
+            maker.height.equalTo(45)
+        }
         separatorLine.snp.makeConstraints { (maker) in
             maker.left.equalTo(middleLayoutView).offset(-3)
             maker.right.equalTo(middleLayoutView).offset(3)
@@ -387,6 +399,8 @@ class OrderFormViewCell: UITableViewCell {
         // 显示老师信息
         teacherNameLabel.isHidden = false
         teacherNameString.isHidden = false
+        avatarView.isHidden = false
+        liveCourseAvatarView.isHidden = true
         
         teacherNameString.text = model?.teacherName
         avatarView.setImage(withURL: model?.avatarURL, placeholderImage: "profileAvatar_placeholder")
@@ -398,9 +412,11 @@ class OrderFormViewCell: UITableViewCell {
         // 隐藏老师信息
         teacherNameLabel.isHidden = true
         teacherNameString.isHidden = true
+        avatarView.isHidden = true
+        liveCourseAvatarView.isHidden = false
         
         subjectString.text = model?.liveClass?.courseName
-        avatarView.setImage(withURL: model?.avatarURL, placeholderImage: "profileAvatar_placeholder")
+        liveCourseAvatarView.setAvatar(lecturer: model?.liveClass?.lecturerAvatar, assistant: model?.liveClass?.assistantAvatar)
     }
     
     /// 根据当前订单状态，渲染对应UI样式

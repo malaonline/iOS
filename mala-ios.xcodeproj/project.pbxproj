@@ -882,6 +882,9 @@
 		F4F29B061D10FF92000D1904 /* SingleCourseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F29B051D10FF92000D1904 /* SingleCourseView.swift */; };
 		F4F29B071D10FF92000D1904 /* SingleCourseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F29B051D10FF92000D1904 /* SingleCourseView.swift */; };
 		F4F29B081D10FF92000D1904 /* SingleCourseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F29B051D10FF92000D1904 /* SingleCourseView.swift */; };
+		F4F5F2701DC6F34100096CD0 /* LiveCourseAvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F5F26F1DC6F34100096CD0 /* LiveCourseAvatarView.swift */; };
+		F4F5F2711DC6F34100096CD0 /* LiveCourseAvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F5F26F1DC6F34100096CD0 /* LiveCourseAvatarView.swift */; };
+		F4F5F2721DC6F34100096CD0 /* LiveCourseAvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F5F26F1DC6F34100096CD0 /* LiveCourseAvatarView.swift */; };
 		F4FF66D21DB605AE0036E299 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FF66D11DB605AE0036E299 /* RootViewController.swift */; };
 		F4FF66D31DB605AE0036E299 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FF66D11DB605AE0036E299 /* RootViewController.swift */; };
 		F4FF66D41DB605AE0036E299 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FF66D11DB605AE0036E299 /* RootViewController.swift */; };
@@ -1218,6 +1221,7 @@
 		F4F29AFB1D0FEC83000D1904 /* CourseTableViewSectionHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseTableViewSectionHeader.swift; sourceTree = "<group>"; };
 		F4F29AFF1D0FF001000D1904 /* CourseTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseTableViewCell.swift; sourceTree = "<group>"; };
 		F4F29B051D10FF92000D1904 /* SingleCourseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleCourseView.swift; sourceTree = "<group>"; };
+		F4F5F26F1DC6F34100096CD0 /* LiveCourseAvatarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveCourseAvatarView.swift; sourceTree = "<group>"; };
 		F4FF66D11DB605AE0036E299 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		F4FF66D51DB751DC0036E299 /* pulltorefresharrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pulltorefresharrow.png; sourceTree = "<group>"; };
 		F4FF66D91DB875FD0036E299 /* LiveCourseDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveCourseDetailViewController.swift; sourceTree = "<group>"; };
@@ -2007,6 +2011,7 @@
 				F474E89E1CF2DCEE0025A865 /* MalaBaseReportCardCell.swift */,
 				F41A01AB1D212B1F0069CF29 /* MalaBaseCell.swift */,
 				F4FF66EE1DB87E920036E299 /* MalaBaseLiveCourseCell.swift */,
+				F4F5F26F1DC6F34100096CD0 /* LiveCourseAvatarView.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -2779,6 +2784,7 @@
 				F4402DFE1C5A0DE200E7D3DB /* Extension+String.swift in Sources */,
 				3037B59C1C3BAAB3005672D9 /* TeacherDetailsTagsCell.swift in Sources */,
 				F46064F81C941829004056B1 /* SaveNameView.swift in Sources */,
+				F4F5F2701DC6F34100096CD0 /* LiveCourseAvatarView.swift in Sources */,
 				F4FF66F71DB88E960036E299 /* LiveCourseDetailDescCell.swift in Sources */,
 				F48F12E71DAB7A9C006A2F5C /* SKPhoto.swift in Sources */,
 				F48F12F01DAB7A9C006A2F5C /* SKPhotoBrowserDelegate.swift in Sources */,
@@ -3009,6 +3015,7 @@
 				35FF7B081CF8325A000A70EE /* Extension+String.swift in Sources */,
 				35FF7B091CF8325A000A70EE /* TeacherDetailsTagsCell.swift in Sources */,
 				35FF7B0A1CF8325A000A70EE /* SaveNameView.swift in Sources */,
+				F4F5F2711DC6F34100096CD0 /* LiveCourseAvatarView.swift in Sources */,
 				F4FF66F81DB88E960036E299 /* LiveCourseDetailDescCell.swift in Sources */,
 				F48F12E81DAB7A9C006A2F5C /* SKPhoto.swift in Sources */,
 				F48F12F11DAB7A9C006A2F5C /* SKPhotoBrowserDelegate.swift in Sources */,
@@ -3239,6 +3246,7 @@
 				35FF7BEB1CF83264000A70EE /* Extension+String.swift in Sources */,
 				35FF7BEC1CF83264000A70EE /* TeacherDetailsTagsCell.swift in Sources */,
 				35FF7BED1CF83264000A70EE /* SaveNameView.swift in Sources */,
+				F4F5F2721DC6F34100096CD0 /* LiveCourseAvatarView.swift in Sources */,
 				F4FF66F91DB88E960036E299 /* LiveCourseDetailDescCell.swift in Sources */,
 				F48F12E91DAB7A9C006A2F5C /* SKPhoto.swift in Sources */,
 				F48F12F21DAB7A9C006A2F5C /* SKPhotoBrowserDelegate.swift in Sources */,
