@@ -14,23 +14,25 @@ class OrderFormViewCell: UITableViewCell {
     /// 订单模型
     var model: OrderForm? {
         didSet {
-            // 加载订单数据
+            // 订单课程数据
             orderIdString.text = model?.orderId
-            teacherNameString.text = model?.teacherName
             subjectString.text = (model?.gradeName ?? "") + " " + (model?.subjectName ?? "")
             schoolString.text = model?.schoolName
             amountString.text = model?.amount.priceCNY
-            
-            // 老师头像
-            avatarView.setImage(withURL: model?.avatarURL, placeholderImage: "profileAvatar_placeholder")
-            
-            // 设置订单状态
+            // 订单状态
             if let status = model?.status, let orderStatus = MalaOrderStatus(rawValue: status) {
                 self.orderStatus = orderStatus
             }
             
-            // 设置老师下架状态
+            // 老师下架状态
             disabledLabel.isHidden = !(model?.isTeacherPublished == false)
+            
+            // 根据课程类型加载数据
+            if let isLive = model?.isLiveCourse, isLive == true {
+                setupLiveCourseOrderInfo()
+            }else {
+                setupPrivateTuitionOrderInfo()
+            }
         }
     }
     /// 订单状态
@@ -62,17 +64,19 @@ class OrderFormViewCell: UITableViewCell {
     }()
     /// "订单编号"文字
     private lazy var orderIdLabel: UILabel = {
-        let label = UILabel()
-        label.text = "订单编号："
-        label.font = UIFont.systemFont(ofSize: 11)
-        label.textColor = UIColor.white
+        let label = UILabel(
+            text: "订单编号：",
+            font: UIFont.systemFont(ofSize: 11),
+            textColor: UIColor.white
+        )
         return label
     }()
     /// 订单编号
     private lazy var orderIdString: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 11)
-        label.textColor = UIColor.white
+        let label = UILabel(
+            font: UIFont.systemFont(ofSize: 11),
+            textColor: UIColor.white
+        )
         return label
     }()
     /// 中部订单信息布局容器
@@ -82,63 +86,67 @@ class OrderFormViewCell: UITableViewCell {
     }()
     /// "老师姓名"文字
     private lazy var teacherNameLabel: UILabel = {
-        let label = UILabel()
-        label.text = "教师姓名："
-        label.font = UIFont.systemFont(ofSize: 11)
-        label.textColor = MalaColor_636363_0
+        let label = UILabel(
+            text: "教师姓名：",
+            font: UIFont.systemFont(ofSize: 11),
+            textColor: MalaColor_636363_0
+        )
         return label
     }()
     /// 老师姓名
     private lazy var teacherNameString: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 11)
-        label.textColor = MalaColor_939393_0
+        let label = UILabel(
+            font: UIFont.systemFont(ofSize: 11),
+            textColor: MalaColor_939393_0
+        )
         return label
     }()
     /// "课程名称"文字
     private lazy var subjectLabel: UILabel = {
-        let label = UILabel()
-        label.text = "课程名称："
-        label.font = UIFont.systemFont(ofSize: 11)
-        label.textColor = MalaColor_636363_0
+        let label = UILabel(
+            text: "课程名称：",
+            font: UIFont.systemFont(ofSize: 11),
+            textColor: MalaColor_636363_0
+        )
         return label
     }()
     /// 课程名称
     private lazy var subjectString: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 11)
-        label.textColor = MalaColor_939393_0
+        let label = UILabel(
+            font: UIFont.systemFont(ofSize: 11),
+            textColor: MalaColor_939393_0
+        )
         return label
     }()
     /// "上课地点"文字
     private lazy var schoolLabel: UILabel = {
-        let label = UILabel()
-        label.text = "上课地点："
-        label.font = UIFont.systemFont(ofSize: 11)
-        label.textColor = MalaColor_636363_0
+        let label = UILabel(
+            text: "上课地点：",
+            font: UIFont.systemFont(ofSize: 11),
+            textColor: MalaColor_636363_0
+        )
         return label
     }()
     /// 课程名称
     private lazy var schoolString: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 11)
-        label.textColor = MalaColor_939393_0
+        let label = UILabel(
+            font: UIFont.systemFont(ofSize: 11),
+            textColor: MalaColor_939393_0
+        )
         return label
     }()
     /// 订单状态
     private lazy var statusString: UILabel = {
-        let label = UILabel()
-        label.text = "订单状态"
-        label.font = UIFont.systemFont(ofSize: 12)
-        label.textColor = MalaColor_939393_0
+        let label = UILabel(
+            text: "订单状态",
+            font: UIFont.systemFont(ofSize: 12),
+            textColor: MalaColor_939393_0
+        )
         return label
     }()
     /// 老师头像
     private lazy var avatarView: UIImageView = {
-        let imageView = UIImageView(imageName: "profileAvatar_placeholder")
-        imageView.contentMode = .scaleAspectFill
-        imageView.layer.cornerRadius = 55/2
-        imageView.layer.masksToBounds = true
+        let imageView = UIImageView(cornerRadius: 55/2, image: "profileAvatar_placeholder")
         return imageView
     }()
     /// 中部分割线
@@ -154,17 +162,20 @@ class OrderFormViewCell: UITableViewCell {
     }()
     /// "共计"文字
     private lazy var amountLabel: UILabel = {
-        let label = UILabel()
-        label.text = "共计："
-        label.font = UIFont.systemFont(ofSize: 12)
-        label.textColor = MalaColor_636363_0
+        let label = UILabel(
+            text: "共计：",
+            font: UIFont.systemFont(ofSize: 12),
+            textColor: MalaColor_636363_0
+        )
         return label
     }()
     /// 共计金额
     private lazy var amountString: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 16)
-        label.textColor = MalaColor_333333_0
+        let label = UILabel(
+            text: "共计：",
+            font: UIFont.systemFont(ofSize: 16),
+            textColor: MalaColor_333333_0
+        )
         return label
     }()
     /// 老师已下架样式
@@ -209,7 +220,7 @@ class OrderFormViewCell: UITableViewCell {
     }()
     
     
-    // MARK: - Constructed
+    // MARK: - Instance Method
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupUserInterface()
@@ -250,7 +261,6 @@ class OrderFormViewCell: UITableViewCell {
         bottomLayoutView.addSubview(confirmButton)
         bottomLayoutView.addSubview(cancelButton)
         bottomLayoutView.addSubview(disabledLabel)
-        
         
         // Autolayout
         separatorView.snp.makeConstraints { (maker) -> Void in
@@ -369,6 +379,28 @@ class OrderFormViewCell: UITableViewCell {
             maker.centerY.equalTo(bottomLayoutView)
             maker.right.equalTo(confirmButton.snp.left).offset(-14)
         }
+    }
+    
+    
+    /// 加载一对一课程订单数据
+    private func setupPrivateTuitionOrderInfo() {
+        // 显示老师信息
+        teacherNameLabel.isHidden = false
+        teacherNameString.isHidden = false
+        
+        teacherNameString.text = model?.teacherName
+        avatarView.setImage(withURL: model?.avatarURL, placeholderImage: "profileAvatar_placeholder")
+
+    }
+    
+    /// 加载双师直播课程订单数据
+    private func setupLiveCourseOrderInfo() {
+        // 隐藏老师信息
+        teacherNameLabel.isHidden = true
+        teacherNameString.isHidden = true
+        
+        subjectString.text = model?.liveClass?.courseName
+        avatarView.setImage(withURL: model?.avatarURL, placeholderImage: "profileAvatar_placeholder")
     }
     
     /// 根据当前订单状态，渲染对应UI样式
