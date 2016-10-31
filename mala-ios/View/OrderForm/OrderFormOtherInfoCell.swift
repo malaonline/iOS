@@ -39,8 +39,8 @@ class OrderFormOtherInfoCell: UITableViewCell {
                 }
             }
             
-            orderCodeLabel.text = String(format: "订单编号：%@", (model.order_id ?? "-"))
-            createAtLabel.text = String(format: "创建时间：%@", getDateTimeString(model.createAt ?? 0))
+            orderCodeLabel.text = String(format: "订单编号：%@", (model.orderId ?? "-"))
+            createAtLabel.text = String(format: "创建时间：%@", getDateTimeString(model.createdAt ?? 0))
             paymentAtLabel.text = String(format: "支付时间：%@", getDateTimeString(model.paidAt ?? 0))
         }
     }

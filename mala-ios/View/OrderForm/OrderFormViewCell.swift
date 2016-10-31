@@ -15,7 +15,7 @@ class OrderFormViewCell: UITableViewCell {
     var model: OrderForm? {
         didSet {
             // 加载订单数据
-            orderIdString.text = model?.order_id
+            orderIdString.text = model?.orderId
             teacherNameString.text = model?.teacherName
             subjectString.text = (model?.gradeName ?? "") + " " + (model?.subjectName ?? "")
             schoolString.text = model?.schoolName
@@ -30,7 +30,7 @@ class OrderFormViewCell: UITableViewCell {
             }
             
             // 设置老师下架状态
-            disabledLabel.isHidden = !(model?.teacherPublished == false)
+            disabledLabel.isHidden = !(model?.isTeacherPublished == false)
         }
     }
     /// 订单状态
@@ -447,7 +447,7 @@ class OrderFormViewCell: UITableViewCell {
             break
         }
         
-        if model?.teacherPublished == false {
+        if model?.isTeacherPublished == false {
             cancelButton.isHidden = true
             confirmButton.isHidden = true
         }

@@ -452,7 +452,7 @@ class CourseChoosingViewController: BaseViewController, CourseChoosingConfirmVie
         MalaOrderObject.subject = MalaConfig.malaSubjectName()[(teacherModel?.subject) ?? ""] ?? 0
         MalaOrderObject.coupon = MalaCurrentCourse.coupon?.id ?? 0
         MalaOrderObject.hours = MalaCurrentCourse.classPeriod
-        MalaOrderObject.weekly_time_slots = MalaCurrentCourse.selectedTime.map{ (model) -> Int in
+        MalaOrderObject.weeklyTimeSlots = MalaCurrentCourse.selectedTime.map{ (model) -> Int in
             return model.id
         }
         
