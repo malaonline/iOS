@@ -26,7 +26,6 @@ extension UIImageView {
         self.image = UIImage(named: name)
     }
     
-    
     convenience init(frame: CGRect? = nil, cornerRadius: CGFloat? = nil, image: String? = nil, contentMode: UIViewContentMode = .scaleAspectFill) {
         self.init()
         
@@ -44,6 +43,10 @@ extension UIImageView {
         }
         
         self.contentMode = contentMode
+    }
+    
+    func setImage(withImageName name: String?) {
+        image = UIImage(named: name ?? "")
     }
     
     func setImage(withURL url: String? = nil, placeholderImage: String? = "profileAvatar_placeholder", progressBlock: DownloadProgressBlock? = nil, completionHandler: CompletionHandler? = nil) {

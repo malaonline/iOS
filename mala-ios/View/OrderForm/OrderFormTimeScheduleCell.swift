@@ -96,7 +96,7 @@ class OrderFormTimeScheduleCell: UITableViewCell {
     // MARK: - Private Method
     private func setupUserInterface() {
         // Style
-        contentView.backgroundColor = MalaColor_EDEDED_0
+        contentView.backgroundColor = MalaColor_F2F2F2_0
         
         // SubViews
         contentView.addSubview(content)

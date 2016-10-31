@@ -14,43 +14,19 @@ class OrderFormStatusCell: UITableViewCell {
     /// 订单详情模型
     var model: OrderForm? {
         didSet {
-            /// 老师头像
             
-            if let url = model?.avatarURL {
-                self.avatarView.setImage(withURL: url, placeholderImage: "profileAvatar_placeholder")
+            guard let _ = model else {
+                return
             }
             
-            /// 订单状态
-            if let status = MalaOrderStatus(rawValue: (model?.status ?? "")) {
-                switch status {
-                case .penging:
-                    self.statusLabel.text = "订单待支付"
-                    break
-                    
-                case .paid:
-                    self.statusLabel.text = "支付成功"
-                    break
-                    
-                case .canceled:
-                    self.statusLabel.text = "订单已关闭"
-                    break
-                    
-                case .refund:
-                    self.statusLabel.text = "退款成功"
-                    break
-                    
-                case .confirm:
-                    self.statusLabel.text = "确认订单"
-                    break
-                    
-                default:
-                    break
-                }
+            // 订单状态
+            self.changeDisplayMode()
+            // 课程类型
+            if let isLive = self.model?.isLiveCourse, isLive == true {
+                self.setupLiveCourseOrderInfo()
+            }else {
+                self.setupPrivateTuitionOrderInfo()
             }
-            
-            self.teacherLabel.text = model?.teacherName
-            self.subjectLabel.text = (model?.gradeName ?? "") + " " + (model?.subjectName ?? "")
-            self.schoolLabel.text = model?.schoolName
         }
     }
     
@@ -61,7 +37,7 @@ class OrderFormStatusCell: UITableViewCell {
         let view = UIView(UIColor.white)
         return view
     }()
-    /// cell标题
+    /// 标题
     private lazy var titleLabel: UILabel = {
         let label = UILabel(
             text: "订单状态",
@@ -84,15 +60,17 @@ class OrderFormStatusCell: UITableViewCell {
         let view = UIView(MalaColor_F2F2F2_0)
         return view
     }()
-    /// 老师姓名图标
-    private lazy var teacherIcon: UIImageView = {
+    
+    // MARK: Components for Private Tuition
+    /// 名称图标
+    private lazy var nameIcon: UIImageView = {
         let imageView = UIImageView(imageName: "order_teacher")
         return imageView
     }()
-    /// 老师姓名
-    private lazy var teacherLabel: UILabel = {
+    /// 名称（老师名 或 课程名）
+    private lazy var nameLabel: UILabel = {
         let label = UILabel(
-            text: "教师姓名",
+            text: "名称",
             fontSize: 13,
             textColor: MalaColor_6C6C6C_0
         )
@@ -128,15 +106,46 @@ class OrderFormStatusCell: UITableViewCell {
     }()
     /// 老师头像
     private lazy var avatarView: UIImageView = {
-        let imageView = UIImageView(imageName: "profileAvatar_placeholder")
-        imageView.contentMode = .scaleAspectFill
-        imageView.layer.cornerRadius = 55/2
-        imageView.layer.masksToBounds = true
+        let imageView = UIImageView(cornerRadius: 55/2, image: "profileAvatar_placeholder")
         return imageView
     }()
     
+    // MARK: Components for LiveCourse
+    /// 班型
+    private lazy var roomCapacityIcon: UIImageView = {
+        let imageView = UIImageView(imageName: "order_school")
+        return imageView
+    }()
+    /// 班型标签
+    private lazy var roomCapacityLabel: UILabel = {
+        let label = UILabel(
+            text: "班    型：",
+            fontSize: 13,
+            textColor: MalaColor_636363_0
+        )
+        return label
+    }()
+    /// 上课次数
+    private lazy var courseLessonsIcon: UIImageView = {
+        let imageView = UIImageView(imageName: "order_school")
+        return imageView
+    }()
+    /// 上课次数标签
+    private lazy var courseLessonsLabel: UILabel = {
+        let label = UILabel(
+            text: "上课次数：",
+            fontSize: 13,
+            textColor: MalaColor_636363_0
+        )
+        return label
+    }()
+    /// 双师直播课程头像
+    private lazy var liveCourseAvatarView: LiveCourseAvatarView = {
+        let view = LiveCourseAvatarView()
+        return view
+    }()
     
-    // MARK: - Contructed
+    // MARK: - Instance Method
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupUserInterface()
@@ -150,22 +159,15 @@ class OrderFormStatusCell: UITableViewCell {
     // MARK: - Private Method
     private func setupUserInterface() {
         // Style
-        contentView.backgroundColor = MalaColor_EDEDED_0
+        contentView.backgroundColor = MalaColor_F2F2F2_0
         
         // SubViews
         contentView.addSubview(content)
         content.addSubview(titleLabel)
         content.addSubview(statusLabel)
         content.addSubview(separatorLine)
-        content.addSubview(teacherIcon)
-        content.addSubview(teacherLabel)
-        content.addSubview(subjectIcon)
-        content.addSubview(subjectLabel)
-        content.addSubview(schoolIcon)
-        content.addSubview(schoolLabel)
-        content.addSubview(avatarView)
         
-        // Autolayout
+        // AutoLayout
         content.snp.makeConstraints { (maker) in
             maker.top.equalTo(contentView)
             maker.left.equalTo(contentView).offset(12)
@@ -188,19 +190,33 @@ class OrderFormStatusCell: UITableViewCell {
             maker.right.equalTo(content).offset(-7)
             maker.height.equalTo(MalaScreenOnePixel)
         }
-        teacherIcon.snp.makeConstraints { (maker) in
+    }
+    
+    /// 加载一对一课程订单数据
+    private func setupPrivateTuitionOrderInfo() {
+        // SubViews
+        content.addSubview(nameIcon)
+        content.addSubview(nameLabel)
+        content.addSubview(subjectIcon)
+        content.addSubview(subjectLabel)
+        content.addSubview(schoolIcon)
+        content.addSubview(schoolLabel)
+        content.addSubview(avatarView)
+        
+        // Autolayout
+        nameIcon.snp.makeConstraints { (maker) in
             maker.top.equalTo(separatorLine.snp.bottom).offset(10)
             maker.left.equalTo(content).offset(12)
             maker.height.equalTo(13)
             maker.width.equalTo(13)
         }
-        teacherLabel.snp.makeConstraints { (maker) in
-            maker.top.equalTo(teacherIcon)
-            maker.left.equalTo(teacherIcon.snp.right).offset(10)
+        nameLabel.snp.makeConstraints { (maker) in
+            maker.top.equalTo(nameIcon)
+            maker.left.equalTo(nameIcon.snp.right).offset(10)
             maker.height.equalTo(13)
         }
         subjectIcon.snp.makeConstraints { (maker) in
-            maker.top.equalTo(teacherIcon.snp.bottom).offset(10)
+            maker.top.equalTo(nameIcon.snp.bottom).offset(10)
             maker.left.equalTo(content).offset(12)
             maker.height.equalTo(13)
             maker.width.equalTo(13)
@@ -227,6 +243,122 @@ class OrderFormStatusCell: UITableViewCell {
             maker.right.equalTo(separatorLine)
             maker.height.equalTo(55)
             maker.width.equalTo(55)
+        }
+        
+        
+        /// 课程信息
+        avatarView.setImage(withURL: model?.avatarURL, placeholderImage: "profileAvatar_placeholder")
+        nameLabel.text = model?.teacherName
+        subjectLabel.text = (model?.gradeName ?? "") + " " + (model?.subjectName ?? "")
+        schoolLabel.text = model?.schoolName
+    }
+    
+    /// 加载双师直播课程订单数据
+    private func setupLiveCourseOrderInfo() {
+        // SubViews
+        content.addSubview(nameIcon)
+        content.addSubview(nameLabel)
+        content.addSubview(roomCapacityIcon)
+        content.addSubview(roomCapacityLabel)
+        content.addSubview(courseLessonsIcon)
+        content.addSubview(courseLessonsLabel)
+        content.addSubview(schoolIcon)
+        content.addSubview(schoolLabel)
+        content.addSubview(liveCourseAvatarView)
+        
+        // Autolayout
+        nameIcon.snp.makeConstraints { (maker) in
+            maker.top.equalTo(separatorLine.snp.bottom).offset(10)
+            maker.left.equalTo(content).offset(12)
+            maker.height.equalTo(13)
+            maker.width.equalTo(13)
+        }
+        nameLabel.snp.makeConstraints { (maker) in
+            maker.top.equalTo(nameIcon)
+            maker.left.equalTo(nameIcon.snp.right).offset(10)
+            maker.height.equalTo(13)
+        }
+        roomCapacityIcon.snp.makeConstraints { (maker) in
+            maker.top.equalTo(nameIcon.snp.bottom).offset(10)
+            maker.left.equalTo(content).offset(12)
+            maker.height.equalTo(13)
+            maker.width.equalTo(13)
+        }
+        roomCapacityLabel.snp.makeConstraints { (maker) in
+            maker.top.equalTo(roomCapacityIcon)
+            maker.left.equalTo(roomCapacityIcon.snp.right).offset(10)
+            maker.height.equalTo(13)
+        }
+        courseLessonsIcon.snp.makeConstraints { (maker) in
+            maker.top.equalTo(roomCapacityIcon.snp.bottom).offset(10)
+            maker.left.equalTo(content).offset(12)
+            maker.height.equalTo(13)
+            maker.width.equalTo(13)
+        }
+        courseLessonsLabel.snp.makeConstraints { (maker) in
+            maker.top.equalTo(courseLessonsIcon)
+            maker.left.equalTo(courseLessonsIcon.snp.right).offset(10)
+            maker.height.equalTo(13)
+        }
+        schoolIcon.snp.makeConstraints { (maker) in
+            maker.top.equalTo(courseLessonsIcon.snp.bottom).offset(10)
+            maker.left.equalTo(content).offset(12)
+            maker.height.equalTo(13)
+            maker.width.equalTo(13)
+            maker.bottom.equalTo(content).offset(-10)
+        }
+        schoolLabel.snp.makeConstraints { (maker) in
+            maker.top.equalTo(schoolIcon)
+            maker.left.equalTo(schoolIcon.snp.right).offset(10)
+            maker.height.equalTo(13)
+        }
+        liveCourseAvatarView.snp.makeConstraints { (maker) in
+            maker.right.equalTo(content).offset(-12)
+            maker.top.equalTo(roomCapacityIcon.snp.centerY)
+            maker.width.equalTo(72)
+            maker.height.equalTo(45)
+        }
+        
+        /// 课程信息
+        liveCourseAvatarView.setAvatar(lecturer: model?.liveClass?.lecturerAvatar, assistant: model?.liveClass?.assistantAvatar)
+        nameIcon.setImage(withImageName: "live_class")
+        nameLabel.text = String(format: "课程名称：%@", model?.liveClass?.courseName ?? "")
+        roomCapacityIcon.setImage(withImageName: "live_students")
+        roomCapacityLabel.text = String(format: "班       型：%d人", model?.liveClass?.roomCapacity ?? 0)
+        courseLessonsIcon.setImage(withImageName: "live_times")
+        courseLessonsLabel.text = String(format: "上课次数：%d次", model?.liveClass?.courseLessons ?? 0)
+        schoolIcon.setImage(withImageName: "live_location")
+        schoolLabel.text = String(format: "上课地点：%@", model?.schoolName ?? "")
+    }
+    
+    /// 根据当前订单状态，渲染对应UI样式
+    private func changeDisplayMode() {
+        /// 订单状态
+        if let status = MalaOrderStatus(rawValue: (model?.status ?? "")) {
+            switch status {
+            case .penging:
+                statusLabel.text = "订单待支付"
+                break
+                
+            case .paid:
+                statusLabel.text = "支付成功"
+                break
+                
+            case .canceled:
+                statusLabel.text = "订单已关闭"
+                break
+                
+            case .refund:
+                statusLabel.text = "退款成功"
+                break
+                
+            case .confirm:
+                statusLabel.text = "确认订单"
+                break
+                
+            default:
+                break
+            }
         }
     }
 }
