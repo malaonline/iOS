@@ -36,6 +36,7 @@ class LiveCourseViewController: BaseViewController {
         super.viewDidLoad()
         
         setupUserInterface()
+        setupNotification()
         
         // 开启下拉刷新
         tableView.startPullRefresh()
@@ -51,7 +52,7 @@ class LiveCourseViewController: BaseViewController {
         // Style
         view.backgroundColor = MalaColor_EDEDED_0
         defaultView.imageName = "filter_no_result"
-        defaultView.text = "当前城市没有老师！"
+        defaultView.text = "当前城市暂无直播课程！"
         
         // 下拉刷新
         tableView.addPullRefresh{ [weak self] in
@@ -69,6 +70,15 @@ class LiveCourseViewController: BaseViewController {
             maker.left.equalTo(view.snp.left)
             maker.bottom.equalTo(view.snp.bottom)
             maker.right.equalTo(view.snp.right)
+        }
+    }
+    
+    private func setupNotification() {
+        NotificationCenter.default.addObserver(
+            forName: MalaNotification_LoadTeachers,
+            object: nil,
+            queue: nil) { [weak self] (notification) in
+                self?.loadLiveClasses()
         }
     }
     

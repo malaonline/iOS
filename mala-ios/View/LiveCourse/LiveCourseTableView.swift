@@ -16,7 +16,12 @@ class LiveCourseTableView: UITableView, UITableViewDelegate, UITableViewDataSour
     /// 数据模型数组
     var model: [LiveClassModel] = [] {
         didSet {
-            self.reloadData()
+            reloadData()
+            if model.count == 0 {
+                (controller as? LiveCourseViewController)?.showDefaultView()
+            }else {
+                (controller as? LiveCourseViewController)?.hideDefaultView()
+            }
         }
     }
     weak var controller: UIViewController?
