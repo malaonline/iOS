@@ -203,8 +203,8 @@ class OrderFormViewCell: UITableViewCell {
         button.layer.masksToBounds = true
         
         button.titleLabel?.font = UIFont.systemFont(ofSize: 12)
-        button.setTitle("再次购买", for: UIControlState())
-        button.setTitleColor(MalaColor_E26254_0, for: UIControlState())
+        button.setTitle("再次购买", for: .normal)
+        button.setTitleColor(MalaColor_E26254_0, for: .normal)
         button.addTarget(self, action: #selector(OrderFormViewCell.buyAgain), for: .touchUpInside)
         return button
     }()
@@ -218,8 +218,8 @@ class OrderFormViewCell: UITableViewCell {
         button.layer.masksToBounds = true
         
         button.titleLabel?.font = UIFont.systemFont(ofSize: 12)
-        button.setTitle("取消订单", for: UIControlState())
-        button.setTitleColor(MalaColor_939393_0, for: UIControlState())
+        button.setTitle("取消订单", for: .normal)
+        button.setTitleColor(MalaColor_939393_0, for: .normal)
         button.addTarget(self, action: #selector(OrderFormViewCell.cancelOrderForm), for: .touchUpInside)
         return button
     }()
@@ -393,7 +393,6 @@ class OrderFormViewCell: UITableViewCell {
         }
     }
     
-    
     /// 加载一对一课程订单数据
     private func setupPrivateTuitionOrderInfo() {
         // 显示老师信息
@@ -438,9 +437,9 @@ class OrderFormViewCell: UITableViewCell {
             cancelButton.isHidden = false
             confirmButton.isHidden = false
             
-            confirmButton.setTitle("立即支付", for: UIControlState())
-            confirmButton.setBackgroundImage(UIImage.withColor(MalaColor_E26254_0), for: UIControlState())
-            confirmButton.setTitleColor(UIColor.white, for: UIControlState())
+            confirmButton.setTitle("立即支付", for: .normal)
+            confirmButton.setBackgroundImage(UIImage.withColor(MalaColor_E26254_0), for: .normal)
+            confirmButton.setTitleColor(UIColor.white, for: .normal)
             
             cancelButton.addTarget(self, action: #selector(OrderFormViewCell.cancelOrderForm), for: .touchUpInside)
             confirmButton.addTarget(self, action: #selector(OrderFormViewCell.pay), for: .touchUpInside)
@@ -455,9 +454,9 @@ class OrderFormViewCell: UITableViewCell {
             cancelButton.isHidden = true
             confirmButton.isHidden = false
             
-            confirmButton.setTitle("再次购买", for: UIControlState())
-            confirmButton.setBackgroundImage(UIImage.withColor(UIColor.white), for: UIControlState())
-            confirmButton.setTitleColor(MalaColor_E26254_0, for: UIControlState())
+            confirmButton.setTitle("再次购买", for: .normal)
+            confirmButton.setBackgroundImage(UIImage.withColor(MalaColor_FFF0EE_0), for: .normal)
+            confirmButton.setTitleColor(MalaColor_E26254_0, for: .normal)
             
             confirmButton.addTarget(self, action: #selector(OrderFormViewCell.buyAgain), for: .touchUpInside)
             break
@@ -471,9 +470,9 @@ class OrderFormViewCell: UITableViewCell {
             cancelButton.isHidden = true
             confirmButton.isHidden = false
             
-            confirmButton.setTitle("重新购买", for: UIControlState())
-            confirmButton.setBackgroundImage(UIImage.withColor(UIColor.white), for: UIControlState())
-            confirmButton.setTitleColor(MalaColor_E26254_0, for: UIControlState())
+            confirmButton.setTitle("重新购买", for: .normal)
+            confirmButton.setBackgroundImage(UIImage.withColor(UIColor.white), for: .normal)
+            confirmButton.setTitleColor(MalaColor_E26254_0, for: .normal)
             
             confirmButton.addTarget(self, action: #selector(OrderFormViewCell.buyAgain), for: .touchUpInside)
             break
