@@ -1099,45 +1099,7 @@ let parseStudentCourse: (JSONDictionary) -> [StudentCourseModel] = { courseInfos
     
     ///  遍历字典数组，转换为模型
     for course in courses {
-
-        if
-            let id = course["id"] as? Int,
-            let start = course["start"] as? TimeInterval,
-            let end = course["end"] as? TimeInterval,
-            let subject = course["subject"] as? String,
-            let grade = course["grade"] as? String,
-            let school = course["school"] as? String,
-            let is_passed = course["is_passed"] as? Bool,
-            let is_expired = course["is_expired"] as? Bool {
-            
-            let model = StudentCourseModel(id: id, start: start, end: end, subject: subject, grade: grade, school: school, is_passed: is_passed, is_expired: is_expired)
-            
-            if let is_commented = course["is_commented"] as? Bool {
-                model.is_commented = is_commented
-            }
-            
-            /// 老师模型
-            if
-                let teacherDict = course["teacher"] as? JSONDictionary,
-                let id = teacherDict["id"] as? Int,
-                let avatar = teacherDict["avatar"] as? String,
-                let name = teacherDict["name"] as? String {
-                model.teacher = TeacherModel(id: id, name: name, avatar: avatar)
-            }
-            /// 评价模型
-            if
-                let commentDict = course["comment"] as? JSONDictionary,
-                let id = commentDict["id"] as? Int,
-                let timeslot = commentDict["timeslot"] as? Int,
-                let score = commentDict["score"] as? Int,
-                let content = commentDict["content"] as? String {
-                model.comment = CommentModel(id: id, timeslot: timeslot, score: score, content: content)
-            }
-            
-            courseList.append(model)
-        }else {
-            continue
-        }
+        courseList.append(StudentCourseModel(dict: course))
     }
     return courseList
 }
