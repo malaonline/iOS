@@ -27,7 +27,7 @@ class CommentViewCell: UITableViewCell {
                 // 已评价
                 setStyleCommented()
                 
-            }else if model?.is_expired == true {
+            }else if model?.isExpired == true {
                 // 过期
                 setStyleExpired()
                 

@@ -26,7 +26,6 @@ extension UIImageView {
         self.image = UIImage(named: name)
     }
     
-    
     convenience init(frame: CGRect? = nil, cornerRadius: CGFloat? = nil, image: String? = nil, contentMode: UIViewContentMode = .scaleAspectFill) {
         self.init()
         
@@ -46,7 +45,11 @@ extension UIImageView {
         self.contentMode = contentMode
     }
     
-    func setImage(withURL url: String? = nil, placeholderImage: String? = nil, progressBlock: DownloadProgressBlock? = nil, completionHandler: CompletionHandler? = nil) {
+    func setImage(withImageName name: String?) {
+        image = UIImage(named: name ?? "")
+    }
+    
+    func setImage(withURL url: String? = nil, placeholderImage: String? = "profileAvatar_placeholder", progressBlock: DownloadProgressBlock? = nil, completionHandler: CompletionHandler? = nil) {
         
         // 使用图片绝对路径作为缓存键值
         guard let url = url, let URL = URL(string: url) else {

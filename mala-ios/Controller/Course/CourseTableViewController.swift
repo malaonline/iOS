@@ -248,7 +248,7 @@ open class CourseTableViewController: UIViewController, UITableViewDataSource, U
         return 20
     }
     open func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return CGFloat((model?[(indexPath as NSIndexPath).section][(indexPath as NSIndexPath).row].count ?? 0) * 102)
+        return CGFloat((model?[(indexPath as NSIndexPath).section][(indexPath as NSIndexPath).row].count ?? 0) * 123)
     }
     open func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
         return false

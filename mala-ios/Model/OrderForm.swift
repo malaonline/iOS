@@ -280,7 +280,7 @@ class OrderForm: BaseObjectModel {
     /// 快速转出[双师直播]订单参数字典
     func jsonForLiveCourse() -> JSONDictionary {
         return [
-            "live_class": liveClassId as AnyObject
+            "live_class": (liveClassId ?? 0) as AnyObject
         ]
     }
 }
