@@ -14,26 +14,9 @@ class SingleCourseView: UIView {
     /// 单次课程数据模型
     var model: StudentCourseModel? {
         didSet {
-            
-            guard let course = model else {
-                return
+            DispatchQueue.main.async { [weak self] in
+                self?.setupCourseInfo()
             }
-            
-            if course.isLiveCourse == true {
-                liveCourseIcon.isHidden = false
-                assistantLabel.isHidden = false
-                teacherLabel.text = course.lecturer?.name
-                assistantLabel.text = String(format: "助教：%@", course.teacher?.name ?? "")
-            }else {
-                liveCourseIcon.isHidden = true
-                assistantLabel.isHidden = true
-                teacherLabel.text = course.teacher?.name
-            }
-            
-            subjectLabel.text = String(format: "%@%@", course.grade, course.subject)
-            timeSlotLabel.text = String(format: "%@-%@", getDateString(course.start, format: "HH:mm"), getDateString(course.end, format: "HH:mm"))
-            schoolLabel.text = model?.school
-            changeUI()
         }
     }
     
@@ -198,13 +181,31 @@ class SingleCourseView: UIView {
         }
     }
     
-    ///  根据课程状态渲染UI
-    private func changeUI() {
+    ///  加载课程数据
+    private func setupCourseInfo() {
         
         guard let course = model else {
             return
         }
         
+        // 课程类型
+        if course.isLiveCourse == true {
+            liveCourseIcon.isHidden = false
+            assistantLabel.isHidden = false
+            teacherLabel.text = course.lecturer?.name
+            assistantLabel.text = String(format: "助教：%@", course.teacher?.name ?? "")
+        }else {
+            liveCourseIcon.isHidden = true
+            assistantLabel.isHidden = true
+            teacherLabel.text = course.teacher?.name
+        }
+        
+        // 课程信息
+        subjectLabel.text = String(format: "%@%@", course.grade, course.subject)
+        timeSlotLabel.text = String(format: "%@-%@", getDateString(course.start, format: "HH:mm"), getDateString(course.end, format: "HH:mm"))
+        schoolLabel.text = model?.school
+        
+        // 课程状态
         switch course.status {
         case .Past:
             headerBackground.backgroundColor = MalaColor_CFCFCF_0
