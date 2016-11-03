@@ -85,14 +85,13 @@ class LiveCourseDetailViewController: BaseViewController, LiveCourseConfirmViewD
         
     }
     
-    func OrderDidConfirm() {
-        
+    ///  创建订单
+    private func createOrder() {
         println("创建订单")
         ThemeHUD.showActivityIndicator()
         
         let order = OrderForm(classId: model.id)
         
-        ///  创建订单
         createOrderWithForm(order.jsonForLiveCourse(), failureHandler: { [weak self] (reason, errorMessage) -> Void in
             
             ThemeHUD.hideActivityIndicator()
@@ -130,7 +129,7 @@ class LiveCourseDetailViewController: BaseViewController, LiveCourseConfirmViewD
                         self?.launchPaymentController()
                     })
                 }
-            })
+        })
     }
     
     private func launchPaymentController() {
@@ -141,6 +140,22 @@ class LiveCourseDetailViewController: BaseViewController, LiveCourseConfirmViewD
             MalaIsPaymentIn = false
         }
         self.navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+    
+    
+    @objc internal func OrderDidConfirm() {
+        
+        // 验证是否已登陆
+        if !MalaUserDefaults.isLogined {
+            let loginController = LoginViewController()
+            self.present(
+                UINavigationController(rootViewController: loginController),
+                animated: true,
+                completion: nil)
+        }else {
+            createOrder()
+        }
     }
     
     deinit {
