@@ -14,27 +14,30 @@ class CommentViewCell: UITableViewCell {
     /// 单个课程模型
     var model: StudentCourseModel? {
         didSet {
-            // 设置单个课程模型
+            
+            guard let _ = model else {
+                return
+            }
+            
+            // 评价状态
+            changeDisplayMode()
+            
+            // 课程类型
+            if let isLive = model?.isLiveCourse, isLive == true {
+                liveCourseAvatarView.setAvatar(lecturer: model?.lecturer?.avatar, assistant: model?.teacher?.avatar)
+                liveCourseAvatarView.isHidden = false
+                avatarView.isHidden = true
+            }else {
+                avatarView.setImage(withURL: model?.teacher?.avatar, placeholderImage: "profileAvatar_placeholder")
+                avatarView.isHidden = false
+                liveCourseAvatarView.isHidden = true
+            }
+            
+            // 课程模型
             teacherLabel.text = model?.teacher?.name
             subjectLabel.text = (model?.grade ?? "") + " " + (model?.subject ?? "")
             setDateString()
             schoolLabel.text = model?.school
-            
-            // 老师头像
-            avatarView.setImage(withURL: model?.teacher?.avatar, placeholderImage: "profileAvatar_placeholder")
-            // 课程评价状态
-            if model?.comment != nil {
-                // 已评价
-                setStyleCommented()
-                
-            }else if model?.isExpired == true {
-                // 过期
-                setStyleExpired()
-                
-            }else {
-                // 未评价
-                setStyleNoComments()
-            }
         }
     }
     
@@ -71,6 +74,11 @@ class CommentViewCell: UITableViewCell {
             contentMode: .scaleAspectFill
         )
         return imageView
+    }()
+    /// 双师直播课程头像
+    private lazy var liveCourseAvatarView: LiveCourseAvatarView = {
+        let view = LiveCourseAvatarView()
+        return view
     }()
     /// 老师姓名图标
     private lazy var teacherIcon: UIImageView = {
@@ -223,6 +231,7 @@ class CommentViewCell: UITableViewCell {
         content.addSubview(floatRating)
         
         mainLayoutView.addSubview(avatarView)
+        mainLayoutView.addSubview(liveCourseAvatarView)
         mainLayoutView.addSubview(statusIcon)
         
         mainLayoutView.addSubview(teacherIcon)
@@ -280,6 +289,12 @@ class CommentViewCell: UITableViewCell {
             maker.top.equalTo(statusIcon.snp.bottom).offset(10)
             maker.height.equalTo(55)
             maker.width.equalTo(55)
+        }
+        liveCourseAvatarView.snp.makeConstraints { (maker) in
+            maker.centerX.equalTo(statusIcon)
+            maker.top.equalTo(statusIcon.snp.bottom).offset(10)
+            maker.width.equalTo(72)
+            maker.height.equalTo(45)
         }
         teacherIcon.snp.makeConstraints { (maker) in
             maker.top.equalTo(mainLayoutView).offset(14)
@@ -393,6 +408,22 @@ class CommentViewCell: UITableViewCell {
         floatRating.isHidden = true
     }
     
+    /// 根据当前课程评价状态，渲染对应UI样式
+    private func changeDisplayMode() {
+        // 课程评价状态
+        if model?.comment != nil {
+            // 已评价
+            setStyleCommented()
+            
+        }else if model?.isExpired == true {
+            // 过期
+            setStyleExpired()
+            
+        }else {
+            // 未评价
+            setStyleNoComments()
+        }
+    }
     
     // MARK: - Event Response
     ///  去评价
