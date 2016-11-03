@@ -44,7 +44,7 @@ class CourseChoosingServiceTableView: UITableView, UITableViewDelegate, UITableV
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // 跳转到对应的ViewController
-        if let type = (services[(indexPath as NSIndexPath).row].viewController) as? UIViewController.Type {
+        if let type = (services[indexPath.row].viewController) as? UIViewController.Type {
             let viewController = type.init()
             (viewController as? CouponViewController)?.justShow = false
             (viewController as? CouponViewController)?.onlyValid = true
@@ -62,7 +62,7 @@ class CourseChoosingServiceTableView: UITableView, UITableViewDelegate, UITableV
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CourseChoosingServiceTableViewCellReuseId, for: indexPath)
-        (cell as! CourseChoosingServiceTableViewCell).service = self.services[(indexPath as NSIndexPath).row]
+        (cell as! CourseChoosingServiceTableViewCell).service = self.services[indexPath.row]
         return cell
     }
 }

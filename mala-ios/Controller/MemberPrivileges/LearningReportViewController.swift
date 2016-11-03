@@ -107,10 +107,10 @@ class LearningReportViewController: BaseViewController, UICollectionViewDelegate
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let reuseCell = collectionView.dequeueReusableCell(withReuseIdentifier: LearningReportCellReuseId[(indexPath as NSIndexPath).row]!, for: indexPath) as! MalaBaseCardCell
+        let reuseCell = collectionView.dequeueReusableCell(withReuseIdentifier: LearningReportCellReuseId[indexPath.row]!, for: indexPath) as! MalaBaseCardCell
         reuseCell.asSample = sample
         
-        switch (indexPath as NSIndexPath).row {
+        switch indexPath.row {
         case 0:
             let cell = reuseCell as! LearningReportTitlePageCell
             return cell

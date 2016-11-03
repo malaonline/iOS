@@ -49,7 +49,7 @@ class ThemeShareCollectionView: UICollectionView, UICollectionViewDelegate, UICo
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let index = (indexPath as NSIndexPath).section*2+((indexPath as NSIndexPath).row)
+        let index = indexPath.section*2+indexPath.row
         let model = self.model[index]
         
         ThemeShare.hideShareBoard { 
@@ -93,7 +93,7 @@ class ThemeShareCollectionView: UICollectionView, UICollectionViewDelegate, UICo
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ThemeShareCollectionViewCellReuseId, for: indexPath) as! ThemeShareCollectionViewCell
-        let index = (indexPath as NSIndexPath).section*2 + ((indexPath as NSIndexPath).row)
+        let index = indexPath.section*2+indexPath.row
         if index < model.count {
             cell.model = self.model[index]
         }

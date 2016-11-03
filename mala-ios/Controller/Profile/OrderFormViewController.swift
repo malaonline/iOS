@@ -250,7 +250,7 @@ class OrderFormViewController: BaseTableViewController {
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         
-        switch (indexPath as NSIndexPath).section {
+        switch indexPath.section {
             
         case Section.teacher.rawValue:
             break
@@ -275,7 +275,7 @@ class OrderFormViewController: BaseTableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let viewController = OrderFormInfoViewController()
-        let model = models[(indexPath as NSIndexPath).row]
+        let model = models[indexPath.row]
         viewController.id = model.id
         self.navigationController?.pushViewController(viewController, animated: true)
     }
@@ -307,12 +307,12 @@ class OrderFormViewController: BaseTableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        switch (indexPath as NSIndexPath).section {
+        switch indexPath.section {
             
         case Section.teacher.rawValue:
             let cell = tableView.dequeueReusableCell(withIdentifier: OrderFormViewCellReuseId, for: indexPath) as! OrderFormViewCell
             cell.selectionStyle = .none
-            cell.model = self.models[(indexPath as NSIndexPath).row]
+            cell.model = self.models[indexPath.row]
             return cell
             
         case Section.loadMore.rawValue:

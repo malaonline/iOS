@@ -15,7 +15,7 @@ import UIKit
 ///
 ///  - returns: Bool
 func ==(firIndexPath: IndexPath, secIndexPath: (section: Int, row: Int)) -> Bool {
-    return (firIndexPath as NSIndexPath).section == secIndexPath.section && (firIndexPath as NSIndexPath).row == secIndexPath.row
+    return firIndexPath.section == secIndexPath.section && firIndexPath.row == secIndexPath.row
 }
 
 

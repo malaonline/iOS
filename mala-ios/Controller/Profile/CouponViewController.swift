@@ -171,9 +171,9 @@ class CouponViewController: BaseTableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CouponViewCellReuseId, for: indexPath) as! CouponViewCell
         cell.selectionStyle = .none
-        cell.model = self.models[(indexPath as NSIndexPath).row]
+        cell.model = self.models[indexPath.row]
         // 如果是默认选中的优惠券，则设置选中样式
-        if models[(indexPath as NSIndexPath).row].id == MalaCurrentCourse.coupon?.id && !justShow {
+        if models[indexPath.row].id == MalaCurrentCourse.coupon?.id && !justShow {
             cell.showSelectedIndicator = true
             currentSelectedIndexPath = indexPath
         }

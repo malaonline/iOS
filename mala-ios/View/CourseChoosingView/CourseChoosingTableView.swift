@@ -121,11 +121,11 @@ class CourseChoosingTableView: UITableView, UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let reuseCell = tableView.dequeueReusableCell(withIdentifier: CourseChoosingCellReuseId[(indexPath as NSIndexPath).section]!, for: indexPath)
+        let reuseCell = tableView.dequeueReusableCell(withIdentifier: CourseChoosingCellReuseId[indexPath.section]!, for: indexPath)
         reuseCell.selectionStyle = .none
-        (reuseCell as! MalaBaseCell).title = CourseChoosingCellTitle[(indexPath as NSIndexPath).section+1]
+        (reuseCell as! MalaBaseCell).title = CourseChoosingCellTitle[indexPath.section+1]
         
-        switch (indexPath as NSIndexPath).section {
+        switch indexPath.section {
         case 0:
             let cell = reuseCell as! CourseChoosingGradeCell
             cell.prices = MalaCurrentCourse.grades ?? []

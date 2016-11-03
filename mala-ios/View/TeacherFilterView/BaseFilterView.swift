@@ -67,7 +67,7 @@ class BaseFilterView: UICollectionView, UICollectionViewDelegate, UICollectionVi
                 withReuseIdentifier: FilterViewSectionHeaderReusedId,
                 for: indexPath
                 ) as! FilterSectionHeaderView
-            sectionHeaderView.sectionTitleText = gradeModel((indexPath as NSIndexPath).section)?.name ?? "年级"
+            sectionHeaderView.sectionTitleText = gradeModel(indexPath.section)?.name ?? "年级"
             reusableView = sectionHeaderView
         }
         // Section 尾部视图
@@ -84,7 +84,7 @@ class BaseFilterView: UICollectionView, UICollectionViewDelegate, UICollectionVi
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FilterViewCellReusedId, for: indexPath) as! FilterViewCell
-        cell.model = gradeModel((indexPath as NSIndexPath).section, row: (indexPath as NSIndexPath).row)!
+        cell.model = gradeModel(indexPath.section, row: indexPath.row)!
         cell.indexPath = indexPath
         return cell
     }

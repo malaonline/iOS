@@ -212,8 +212,8 @@ class RegionViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        MalaCurrentSchool = models[(indexPath as NSIndexPath).row]
-        MalaUserDefaults.currentSchool.value = models[(indexPath as NSIndexPath).row]
+        MalaCurrentSchool = models[indexPath.row]
+        MalaUserDefaults.currentSchool.value = models[indexPath.row]
         didSelectAction?()
         dismiss(animated: true, completion: nil)
     }
@@ -226,10 +226,10 @@ class RegionViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: SchoolTableViewCellReuseId, for: indexPath) as! RegionUnitCell
-        cell.school = models[(indexPath as NSIndexPath).row]
+        cell.school = models[indexPath.row]
         
         // Section的最后一个Cell隐藏分割线
-        if ((indexPath as NSIndexPath).row+1) == models.count {
+        if (indexPath.row+1) == models.count {
             cell.hideSeparator()
         }
         

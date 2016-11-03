@@ -78,7 +78,7 @@ open class MalaPhotoBrowser: BaseViewController, UICollectionViewDataSource, UIC
     
     open func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MalaPhotoBrowserCellReuseID, for: indexPath) as! MalaPhotoBrowserCell
-        cell.imageURL = imageURLs[(indexPath as NSIndexPath).row]
+        cell.imageURL = imageURLs[indexPath.row]
         return cell
     }
     
@@ -102,7 +102,7 @@ open class MalaPhotoBrowser: BaseViewController, UICollectionViewDataSource, UIC
         SKPhotoBrowserOptions.displayBackAndForwardButton = false
         
         let browser = SKPhotoBrowser(originImage: originImage, photos: images, animatedFromView: cell)
-        browser.initializePageIndex((indexPath as NSIndexPath).row)
+        browser.initializePageIndex(indexPath.row)
         browser.delegate = self
         present(browser, animated: true, completion: {})
     }

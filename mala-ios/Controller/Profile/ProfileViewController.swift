@@ -179,7 +179,7 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch (indexPath as NSIndexPath).section {
+        switch indexPath.section {
         case 0:
             
             let cell = tableView.dequeueReusableCell(withIdentifier: ProfileViewTableViewItemCellReuseID, for: indexPath) as! ProfileItemViewCell
@@ -190,9 +190,9 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
             
             let cell = tableView.dequeueReusableCell(withIdentifier: ProfileViewTableViewCellReuseID, for: indexPath) as! ProfileViewCell
             
-            cell.model =  model[(indexPath as NSIndexPath).section][(indexPath as NSIndexPath).row]
+            cell.model =  model[indexPath.section][indexPath.row]
             // Section的最后一个Cell隐藏分割线
-            if ((indexPath as NSIndexPath).row+1) == model[(indexPath as NSIndexPath).section].count {
+            if (indexPath.row+1) == model[indexPath.section].count {
                 cell.hideSeparator()
             }
             return cell
@@ -216,7 +216,7 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return (indexPath as NSIndexPath).section == 0 ? 114 : 44
+        return indexPath.section == 0 ? 114 : 44
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

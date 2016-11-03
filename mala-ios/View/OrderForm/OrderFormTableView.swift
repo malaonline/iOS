@@ -94,12 +94,12 @@ class OrderFormTableView: UITableView, UITableViewDelegate, UITableViewDataSourc
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let sectionIndex = ((indexPath as NSIndexPath).section >= 2 && shouldHiddenPaymentChannel) ? (indexPath as NSIndexPath).section+1 : (indexPath as NSIndexPath).section
+        let sectionIndex = (indexPath.section >= 2 && shouldHiddenPaymentChannel) ? indexPath.section+1 : indexPath.section
         
         let reuseCell = tableView.dequeueReusableCell(withIdentifier: OrderFormCellReuseId[sectionIndex]!, for: indexPath)
         reuseCell.selectionStyle = .none
         
-        switch (indexPath as NSIndexPath).section {
+        switch indexPath.section {
         case 0:
             let cell = reuseCell as! OrderFormStatusCell
             cell.model = self.model

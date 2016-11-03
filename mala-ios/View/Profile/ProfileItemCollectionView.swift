@@ -51,7 +51,7 @@ class ProfileItemCollectionView: UICollectionView, UICollectionViewDelegate, UIC
             collectionView.deselectItem(at: indexPath, animated: true)
         }
         
-        if let model = model?[(indexPath as NSIndexPath).row] {
+        if let model = model?[indexPath.row] {
             NotificationCenter.default.post(name: MalaNotification_PushProfileItemController, object: model)
         }
     }
@@ -72,7 +72,7 @@ class ProfileItemCollectionView: UICollectionView, UICollectionViewDelegate, UIC
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProfileItemCollectionViewCellReuseId, for: indexPath) as! ProfileItemCollectionViewCell
-        cell.model = model?[(indexPath as NSIndexPath).row]
+        cell.model = model?[indexPath.row]
         return cell
     }
 }
