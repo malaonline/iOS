@@ -64,7 +64,7 @@ class OrderFormStatusCell: UITableViewCell {
     // MARK: Components for Private Tuition
     /// 名称图标
     private lazy var nameIcon: UIImageView = {
-        let imageView = UIImageView(imageName: "order_teacher")
+        let imageView = UIImageView(imageName: "live_class")
         return imageView
     }()
     /// 名称（老师名 或 课程名）
@@ -92,7 +92,7 @@ class OrderFormStatusCell: UITableViewCell {
     }()
     /// 上课地点图标
     private lazy var schoolIcon: UIImageView = {
-        let imageView = UIImageView(imageName: "order_school")
+        let imageView = UIImageView(imageName: "live_location")
         return imageView
     }()
     /// 上课地点
@@ -113,7 +113,7 @@ class OrderFormStatusCell: UITableViewCell {
     // MARK: Components for LiveCourse
     /// 班型
     private lazy var roomCapacityIcon: UIImageView = {
-        let imageView = UIImageView(imageName: "order_school")
+        let imageView = UIImageView(imageName: "live_students")
         return imageView
     }()
     /// 班型标签
@@ -127,7 +127,7 @@ class OrderFormStatusCell: UITableViewCell {
     }()
     /// 上课次数
     private lazy var courseLessonsIcon: UIImageView = {
-        let imageView = UIImageView(imageName: "order_school")
+        let imageView = UIImageView(imageName: "live_times")
         return imageView
     }()
     /// 上课次数标签
@@ -321,13 +321,9 @@ class OrderFormStatusCell: UITableViewCell {
         
         /// 课程信息
         liveCourseAvatarView.setAvatar(lecturer: model?.liveClass?.lecturerAvatar, assistant: model?.liveClass?.assistantAvatar)
-        nameIcon.setImage(withImageName: "live_class")
         nameLabel.text = String(format: "课程名称：%@", model?.liveClass?.courseName ?? "")
-        roomCapacityIcon.setImage(withImageName: "live_students")
         roomCapacityLabel.text = String(format: "班       型：%d人", model?.liveClass?.roomCapacity ?? 0)
-        courseLessonsIcon.setImage(withImageName: "live_times")
         courseLessonsLabel.text = String(format: "上课次数：%d次", model?.liveClass?.courseLessons ?? 0)
-        schoolIcon.setImage(withImageName: "live_location")
         schoolLabel.text = String(format: "上课地点：%@", model?.schoolName ?? "")
     }
     

@@ -13,13 +13,22 @@ open class CommentViewWindow: UIViewController, UITextViewDelegate {
     // MARK: - Property
     var model: StudentCourseModel = StudentCourseModel() {
         didSet {
-            println("评论视图 - 放置模型: \(model)")
-            
-            avatarView.setImage(withURL: model.teacher?.avatar)
+            // 课程信息
             teacherNameLabel.text = model.teacher?.name
             subjectLabel.text = model.subject
             textView.text = model.comment?.content
             floatRating.rating = Float((model.comment?.score) ?? 0)
+            
+            // 课程类型
+            if let isLive = model.isLiveCourse, isLive == true {
+                liveCourseAvatarView.setAvatar(lecturer: model.lecturer?.avatar, assistant: model.teacher?.avatar)
+                liveCourseAvatarView.isHidden = false
+                avatar.isHidden = true
+            }else {
+                avatar.setImage(withURL: model.teacher?.avatar, placeholderImage: "profileAvatar_placeholder")
+                avatar.isHidden = false
+                liveCourseAvatarView.isHidden = true
+            }   
         }
     }
     /// 是否仅为展示标记
@@ -83,10 +92,24 @@ open class CommentViewWindow: UIViewController, UITextViewDelegate {
         let view = UIView()
         return view
     }()
+    /// 头像布局视图
+    private lazy var avatarView: UIView = {
+        let view = UIView()
+        return view
+    }()
     /// 老师头像
-    private lazy var avatarView: UIImageView = {
-        let imageView = UIImageView(cornerRadius: 69/2, image: "avatar_placeholder", contentMode: .scaleAspectFill)
+    private lazy var avatar: UIImageView = {
+        let imageView = UIImageView(
+            cornerRadius: 69/2,
+            image: "avatar_placeholder",
+            contentMode: .scaleAspectFill
+        )
         return imageView
+    }()
+    /// 双师直播课程头像
+    private lazy var liveCourseAvatarView: LiveCourseAvatarView = {
+        let view = LiveCourseAvatarView()
+        return view
     }()
     /// 老师姓名label
     private lazy var teacherNameLabel: UILabel = {
@@ -219,6 +242,8 @@ open class CommentViewWindow: UIViewController, UITextViewDelegate {
         window.addSubview(closeButton)
         window.addSubview(titleLine)
         window.addSubview(avatarView)
+        avatarView.addSubview(avatar)
+        avatarView.addSubview(liveCourseAvatarView)
         window.addSubview(teacherNameLabel)
         window.addSubview(subjectLabel)
         window.addSubview(floatRating)
@@ -263,8 +288,19 @@ open class CommentViewWindow: UIViewController, UITextViewDelegate {
         avatarView.snp.makeConstraints { (maker) -> Void in
             maker.centerX.equalTo(window)
             maker.top.equalTo(titleLine.snp.bottom).offset(10)
+            maker.width.equalTo(72)
+            maker.height.equalTo(72)
+        }
+        avatar.snp.makeConstraints { (maker) -> Void in
+            maker.centerX.equalTo(avatarView)
+            maker.top.equalTo(avatarView)
             maker.width.equalTo(MalaLayout_CoursePopupWindowTitleViewHeight)
             maker.height.equalTo(MalaLayout_CoursePopupWindowTitleViewHeight)
+        }
+        liveCourseAvatarView.snp.makeConstraints { (maker) in
+            maker.center.equalTo(avatarView)
+            maker.width.equalTo(72)
+            maker.height.equalTo(45)
         }
         teacherNameLabel.snp.makeConstraints { (maker) -> Void in
             maker.right.equalTo(avatarView.snp.centerX).offset(-5)
@@ -289,14 +325,7 @@ open class CommentViewWindow: UIViewController, UITextViewDelegate {
             maker.bottom.equalTo(buttonSeparatorLine.snp.top).offset(-12)
         }
         textView.snp.makeConstraints { (maker) -> Void in
-            maker.edges.equalTo(textBackground).inset(
-                UIEdgeInsets(
-                    top: 12,
-                    left: 5,
-                    bottom: 12,
-                    right: 5
-                )
-            )
+            maker.edges.equalTo(textBackground).inset(UIEdgeInsets(top: 12, left: 5, bottom: 12, right: 5))
         }
         buttonSeparatorLine.snp.makeConstraints { (maker) -> Void in
             maker.bottom.equalTo(commitButton.snp.top)
@@ -334,7 +363,7 @@ open class CommentViewWindow: UIViewController, UITextViewDelegate {
             maker.width.equalTo(MalaLayout_CommentPopupWindowWidth)
             maker.height.equalTo(MalaLayout_CommentPopupWindowHeight)
         }
-        textBackground.snp.updateConstraints({ (maker) -> Void in
+        textBackground.snp.remakeConstraints({ (maker) -> Void in
             maker.top.equalTo(titleLine.snp.bottom).offset(12)
             maker.left.equalTo(window).offset(18)
             maker.right.equalTo(window).offset(-18)

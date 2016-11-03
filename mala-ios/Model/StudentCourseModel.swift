@@ -39,7 +39,7 @@ open class StudentCourseModel: BaseObjectModel {
     var isExpired: Bool = false
     
     /// 主讲老师
-    var lecturer: BaseObjectModel?
+    var lecturer: TeacherModel?
     
     /// 是否时直播课程标记
     var isLiveCourse: Bool? = false
@@ -129,12 +129,5 @@ open class StudentCourseModel: BaseObjectModel {
     
     override open func setValue(_ value: Any?, forUndefinedKey key: String) {
         println("StudentCourseModel - Set for UndefinedKey: \(key)")
-    }
-    
-    
-    // MARK: - Description
-    override open var description: String {
-        let keys = ["id", "start", "end", "subject", "grade", "school", "isPassed", "isExpired", "isLive"]
-        return "\n"+dictionaryWithValues(forKeys: keys).description+" Date: "+(getDateTimeString(end))+"\n"
     }
 }
