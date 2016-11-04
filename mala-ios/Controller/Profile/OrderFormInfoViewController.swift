@@ -21,18 +21,15 @@ class OrderFormInfoViewController: BaseViewController, OrderFormOperatingViewDel
             id = model?.id ?? 0
             
             /// 渲染底部视图UI
-            
-            
-            confirmView.isTeacherPublished = model?.isTeacherPublished
-            confirmView.orderStatus = model?.orderStatus ?? .confirm
-            confirmView.price = isForConfirm ? MalaCurrentCourse.getAmount() ?? 0 : model?.amount ?? 0
+            confirmView.model = model
+            confirmView.isForConfirm = isForConfirm
         }
     }
     /// 标识是否为确认订单状态
     var isForConfirm: Bool = false {
         didSet {
             /// 渲染底部视图UI
-            confirmView.orderStatus = .confirm
+            confirmView.isForConfirm = isForConfirm
         }
     }
     /// 学校id（仅再次购买时存在）

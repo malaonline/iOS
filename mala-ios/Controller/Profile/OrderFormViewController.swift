@@ -312,7 +312,7 @@ class OrderFormViewController: BaseTableViewController {
         case Section.teacher.rawValue:
             let cell = tableView.dequeueReusableCell(withIdentifier: OrderFormViewCellReuseId, for: indexPath) as! OrderFormViewCell
             cell.selectionStyle = .none
-            cell.model = self.models[indexPath.row]
+            cell.model = models[indexPath.row]
             return cell
             
         case Section.loadMore.rawValue:

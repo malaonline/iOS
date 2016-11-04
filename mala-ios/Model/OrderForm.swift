@@ -132,6 +132,15 @@ class OrderForm: BaseObjectModel {
                 return .penging
                 
             case "p":
+                /// 已完成(不可退费)
+                if
+                    let timeSlots = timeSlots,
+                    let slots = timeSlots.first,
+                    let lastSlots = slots.first,
+                    lastSlots <= Date().timeIntervalSince1970,
+                    isLiveCourse == true {
+                    return .finished
+                }
                 /// 已支付(进行中, 可退费)
                 if isLiveCourse == true {
                     return .paidRefundable
@@ -140,14 +149,7 @@ class OrderForm: BaseObjectModel {
                 if isLiveCourse == false {
                     return .paid
                 }
-                /// 已完成(不可退费)
-                if
-                    let timeSlots = timeSlots,
-                    let slots = timeSlots.last,
-                    let lastSlots = slots.last,
-                    lastSlots > Date().timeIntervalSince1970 {
-                    return .finished
-                }
+                break
                 
             case "r":
                 /// 已退款
