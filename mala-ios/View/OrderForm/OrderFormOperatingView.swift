@@ -142,7 +142,7 @@ class OrderFormOperatingView: UIView {
     private func changeDisplayMode() {
         
         // 仅当订单金额已支付时，老师下架状态才会生效
-        if isTeacherPublished == false && orderStatus != .penging {
+        if isTeacherPublished == false && orderStatus != .penging && orderStatus != .confirm {
             setTeacherDisable()
             return
         }
