@@ -23,7 +23,7 @@ class OrderFormTableView: UITableView, UITableViewDelegate, UITableViewDataSourc
         didSet {
             println("当前支付渠道信息： \(model?.chargeChannel)")
             // 若订单状态为[待支付]或[已关闭]，隐藏支付渠道Cell
-            self.shouldHiddenPaymentChannel = (model?.status == MalaOrderStatus.canceled.rawValue) || (model?.status == MalaOrderStatus.penging.rawValue)
+            self.shouldHiddenPaymentChannel = model?.orderStatus == .canceled || model?.orderStatus == .penging
             
             // 刷新数据渲染UI
             ThemeHUD.showActivityIndicator()
@@ -88,7 +88,7 @@ class OrderFormTableView: UITableView, UITableViewDelegate, UITableViewDataSourc
     
     func numberOfSections(in tableView: UITableView) -> Int {
         var count = shouldHiddenPaymentChannel ? OrderFormCellReuseId.count-1 : OrderFormCellReuseId.count
-        count = model?.status == "c" ? OrderFormCellReuseId.count-2 : count
+        count = model?.orderStatus == .confirm ? OrderFormCellReuseId.count-2 : count
         return count
     }
     

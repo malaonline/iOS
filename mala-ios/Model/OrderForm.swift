@@ -122,6 +122,54 @@ class OrderForm: BaseObjectModel {
         }
     }
     
+    /// 订单状态
+    var orderStatus: MalaOrderStatus? {
+
+        if let status = status {
+            switch status {
+            case "u":
+                /// 待支付
+                return .penging
+                
+            case "p":
+                /// 已支付(进行中, 可退费)
+                if isLiveCourse == true {
+                    return .paidRefundable
+                }
+                /// 已支付(进行中, 不可退费)
+                if isLiveCourse == false {
+                    return .paid
+                }
+                /// 已完成(不可退费)
+                if
+                    let timeSlots = timeSlots,
+                    let slots = timeSlots.last,
+                    let lastSlots = slots.last,
+                    lastSlots > Date().timeIntervalSince1970 {
+                    return .finished
+                }
+                
+            case "r":
+                /// 已退款
+                return .refund
+                
+            case "d":
+                /// 已取消
+                return .canceled
+                
+            case "c":
+                /// 订单预览
+                return .confirm
+                
+            default:
+                return nil
+            }
+        }else {
+            return nil
+        }
+        return nil
+    }
+    
     
     // MARK: - Instance Method
     override init() {
