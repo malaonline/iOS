@@ -123,7 +123,7 @@ class GradeSelectCollectionView: UICollectionView, UICollectionViewDelegate, UIC
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GradeSelectionCellReuseId, for: indexPath) as! GradeSelectionCell
-        cell.grade = prices?[(indexPath as NSIndexPath).row]
+        cell.grade = prices?[indexPath.row]
         // 选中当前选择项
         if indexPath == currentSelectedIndexPath {
             cell.isSelected = true

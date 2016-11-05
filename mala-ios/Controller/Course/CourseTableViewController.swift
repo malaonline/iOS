@@ -216,7 +216,7 @@ open class CourseTableViewController: UIViewController, UITableViewDataSource, U
     }
     open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CourseTableViewCellReuseId, for: indexPath) as! CourseTableViewCell
-        cell.model = model?[(indexPath as NSIndexPath).section][(indexPath as NSIndexPath).row]
+        cell.model = model?[indexPath.section][indexPath.row]
         return cell
     }
     
@@ -248,7 +248,7 @@ open class CourseTableViewController: UIViewController, UITableViewDataSource, U
         return 20
     }
     open func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return CGFloat((model?[(indexPath as NSIndexPath).section][(indexPath as NSIndexPath).row].count ?? 0) * 123)
+        return CGFloat((model?[indexPath.section][indexPath.row].count ?? 0) * 123)
     }
     open func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
         return false

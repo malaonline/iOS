@@ -32,7 +32,7 @@ class SubjectFilterView: BaseFilterView {
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         super.collectionView(collectionView, didSelectItemAt: indexPath)
         MalaFilterIndexObject.subjectIndexPath = indexPath
-        didTapCallBack?(self.subjects![(indexPath as NSIndexPath).row])
+        didTapCallBack?(self.subjects![indexPath.row])
     }
     
     
@@ -52,7 +52,7 @@ class SubjectFilterView: BaseFilterView {
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FilterViewCellReusedId, for: indexPath) as! FilterViewCell
-        cell.model = subjects![(indexPath as NSIndexPath).row]
+        cell.model = subjects![indexPath.row]
         
         if indexPath == MalaFilterIndexObject.subjectIndexPath as IndexPath {
             cell.isSelected = true

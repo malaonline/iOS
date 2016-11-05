@@ -29,6 +29,24 @@ class OrderFormOperatingView: UIView {
             priceLabel.text = price.amountCNY
         }
     }
+    /// 订单详情模型
+    var model: OrderForm? {
+        didSet {
+            /// 渲染底部视图UI
+            isTeacherPublished = model?.isTeacherPublished
+            orderStatus = model?.orderStatus ?? .confirm
+            price = isForConfirm ? MalaCurrentCourse.getAmount() ?? 0 : model?.amount ?? 0
+        }
+    }
+    /// 标识是否为确认订单状态
+    var isForConfirm: Bool = false {
+        didSet {
+            /// 渲染底部视图UI
+            if isForConfirm {
+                orderStatus = .confirm
+            }
+        }
+    }
     /// 订单状态
     var orderStatus: MalaOrderStatus = .canceled {
         didSet {
@@ -70,14 +88,12 @@ class OrderFormOperatingView: UIView {
     private lazy var confirmButton: UIButton = {
         let button = UIButton()
         button.titleLabel?.font = UIFont.systemFont(ofSize: 15)
-        button.addTarget(self, action: #selector(OrderFormOperatingView.pay), for: .touchUpInside)
         return button
     }()
     /// 取消按钮（取消订单）
     private lazy var cancelButton: UIButton = {
         let button = UIButton()
         button.titleLabel?.font = UIFont.systemFont(ofSize: 15)
-        button.addTarget(self, action: #selector(OrderFormOperatingView.cancelOrderForm), for: .touchUpInside)
         return button
     }()
     
@@ -142,11 +158,11 @@ class OrderFormOperatingView: UIView {
     private func changeDisplayMode() {
         
         // 仅当订单金额已支付时，老师下架状态才会生效
-        if isTeacherPublished == false && orderStatus != .penging {
+        if isTeacherPublished == false && orderStatus != .penging && orderStatus != .confirm {
             setTeacherDisable()
             return
         }
-        
+        println("订单状态 - \(orderStatus)")
         switch orderStatus {
         case .penging:
             setOrderPending()
@@ -196,7 +212,7 @@ class OrderFormOperatingView: UIView {
         confirmButton.addTarget(self, action: #selector(OrderFormOperatingView.pay), for: .touchUpInside)
     }
     
-    /// 进行中不可退费样式(only for 1to1)
+    /// 进行中不可退费样式(only for private tuition)
     private func setOrderPaid() {
         cancelButton.isHidden = true
         confirmButton.isHidden = false
@@ -231,7 +247,7 @@ class OrderFormOperatingView: UIView {
     /// 已完成样式(only for live course)
     private func setOrderFinished() {
         cancelButton.isHidden = true
-        confirmButton.isHidden = false
+        confirmButton.isHidden = true
         confirmButton.setTitle("再次购买", for: .normal)
         confirmButton.setTitleColor(UIColor.white, for: .normal)
         confirmButton.setBackgroundImage(UIImage.withColor(MalaColor_E26254_0), for: .normal)
@@ -281,9 +297,17 @@ class OrderFormOperatingView: UIView {
         cancelButton.isHidden = true
         confirmButton.isHidden = false
         confirmButton.setTitle("重新购买", for: .normal)
-        confirmButton.setTitleColor(UIColor.white, for: .normal)
-        confirmButton.setBackgroundImage(UIImage.withColor(MalaColor_E26254_0), for: .normal)
-        confirmButton.addTarget(self, action: #selector(OrderFormOperatingView.buyAgain), for: .touchUpInside)
+        if let isLiveCourse = model?.isLiveCourse {
+            if isLiveCourse {
+                confirmButton.setTitleColor(UIColor.white, for: .normal)
+                confirmButton.setBackgroundImage(UIImage.withColor(MalaColor_CFCFCF_0), for: .normal)
+                confirmButton.isEnabled = false
+            }else {
+                confirmButton.setTitleColor(UIColor.white, for: .normal)
+                confirmButton.setBackgroundImage(UIImage.withColor(MalaColor_E26254_0), for: .normal)
+                confirmButton.addTarget(self, action: #selector(OrderFormOperatingView.buyAgain), for: .touchUpInside)
+            }
+        }
         confirmButton.snp.remakeConstraints { (maker) in
             maker.right.equalTo(self)
             maker.centerY.equalTo(self)
@@ -325,7 +349,6 @@ class OrderFormOperatingView: UIView {
     }
     
     
-    
     // MARK: - Event Response
     /// 立即支付
     @objc func pay() {
@@ -342,5 +365,10 @@ class OrderFormOperatingView: UIView {
     /// 申请退费
     @objc func requestRefund() {
         delegate?.requestRefund()
+    }
+    
+    
+    deinit {
+        println("Order Form Operation View Deinit")
     }
 }

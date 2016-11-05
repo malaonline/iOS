@@ -62,16 +62,16 @@ class ThemeClassSchedule: UICollectionView, UICollectionViewDelegate, UICollecti
         cell.reset()
         
         // 设置Cell列头标题
-        if (indexPath as NSIndexPath).section == 0 {
-            cell.title = ThemeClassScheduleSectionTitles[(indexPath as NSIndexPath).row]
+        if indexPath.section == 0 {
+            cell.title = ThemeClassScheduleSectionTitles[indexPath.row]
             cell.hiddenTitle = false
             cell.button.isHighlighted = true
         }
         
         // 设置Cell行头标题
-        if (indexPath as NSIndexPath).row == 0 && (indexPath as NSIndexPath).section > 0 && (model ?? []) != [] {
+        if indexPath.row == 0 && indexPath.section > 0 && (model ?? []) != [] {
             // 行头数据源
-            let rowTitleModel = model?[0][(indexPath as NSIndexPath).section-1]
+            let rowTitleModel = model?[0][indexPath.section-1]
             cell.start = rowTitleModel?.start
             cell.end = rowTitleModel?.end
             cell.hiddenTime = false
@@ -79,8 +79,8 @@ class ThemeClassSchedule: UICollectionView, UICollectionViewDelegate, UICollecti
         }
         
         // 根据数据源设置显示样式
-        if (indexPath as NSIndexPath).section > 0 && (indexPath as NSIndexPath).row > 0 && (model ?? []) != [] {
-            let itemModel = model?[(indexPath as NSIndexPath).row-1][(indexPath as NSIndexPath).section-1]
+        if indexPath.section > 0 && indexPath.row > 0 && (model ?? []) != [] {
+            let itemModel = model?[indexPath.row-1][indexPath.section-1]
             
             // 若不可选择 - disable
             cell.button.isEnabled = itemModel?.available ?? false
@@ -104,10 +104,10 @@ class ThemeClassSchedule: UICollectionView, UICollectionViewDelegate, UICollecti
         
         
         // 获取数据模型
-        if self.model != nil && (indexPath as NSIndexPath).row >= 1 && (indexPath as NSIndexPath).section >= 1 {
-            let model = self.model![(indexPath as NSIndexPath).row-1][(indexPath as NSIndexPath).section-1]
+        if self.model != nil && indexPath.row >= 1 && indexPath.section >= 1 {
+            let model = self.model![indexPath.row-1][indexPath.section-1]
             println("点击model: \(model)")
-            let weekID = ((indexPath as NSIndexPath).row == 7 ? 0 : (indexPath as NSIndexPath).row)
+            let weekID = indexPath.row == 7 ? 0 : indexPath.row
             model.weekID = weekID
             NotificationCenter.default.post(name: MalaNotification_ClassScheduleDidTap, object: model)
             model.isSelected = cell.button.isSelected
@@ -122,8 +122,8 @@ class ThemeClassSchedule: UICollectionView, UICollectionViewDelegate, UICollecti
         }
         
         // 不可点击表头、行头
-        if (indexPath as NSIndexPath).section > 0 && (indexPath as NSIndexPath).row > 0 {
-            if let itemModel = model?[(indexPath as NSIndexPath).row-1][(indexPath as NSIndexPath).section-1] {
+        if indexPath.section > 0 && indexPath.row > 0 {
+            if let itemModel = model?[indexPath.row-1][indexPath.section-1] {
                 return itemModel.available
             }else {
                 return false

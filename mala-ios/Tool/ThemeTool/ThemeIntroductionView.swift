@@ -100,7 +100,7 @@ class ThemeIntroductionView: BaseViewController, UICollectionViewDelegate, UICol
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ThemeIntroductionViewCellReuseId, for: indexPath) as! ThemeIntroductionViewCell
-        cell.model = self.model[(indexPath as NSIndexPath).row]
+        cell.model = self.model[indexPath.row]
         return cell
     }
     

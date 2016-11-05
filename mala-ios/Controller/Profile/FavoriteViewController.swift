@@ -139,7 +139,7 @@ class FavoriteViewController: BaseTableViewController {
     // MARK: - Delegate
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         
-        switch (indexPath as NSIndexPath).section {
+        switch indexPath.section {
             
         case Section.teacher.rawValue:
             break
@@ -197,11 +197,11 @@ class FavoriteViewController: BaseTableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        switch (indexPath as NSIndexPath).section {
+        switch indexPath.section {
             
         case Section.teacher.rawValue:
             let cell = tableView.dequeueReusableCell(withIdentifier: FavoriteViewCellReuseId, for: indexPath) as! TeacherTableViewCell
-            cell.model = models[(indexPath as NSIndexPath).row]
+            cell.model = models[indexPath.row]
             return cell
             
         case Section.loadMore.rawValue:

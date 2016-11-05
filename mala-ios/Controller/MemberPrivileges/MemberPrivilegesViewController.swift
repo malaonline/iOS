@@ -268,7 +268,7 @@ class MemberPrivilegesViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        switch (indexPath as NSIndexPath).row {
+        switch indexPath.row {
         case 0:
             /// 学习报告
             let cell = tableView.dequeueReusableCell(withIdentifier: MemberPrivilegesLearningReportCellReuseID, for: indexPath) as! LearningReportCell

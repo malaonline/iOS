@@ -75,7 +75,9 @@ class LiveCourseTableView: UITableView, UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: LiveCourseTableViewCellReusedId, for: indexPath) as! LiveCourseTableViewCell
-        cell.model = model[(indexPath as NSIndexPath).row]
+        if indexPath.row < model.count {
+            cell.model = model[indexPath.row]
+        }
         return cell
     }
     

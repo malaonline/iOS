@@ -444,10 +444,10 @@ class TeacherDetailsController: BaseViewController, UIGestureRecognizerDelegate,
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let reuseCell = tableView.dequeueReusableCell(withIdentifier: TeacherDetailsCellReuseId[(indexPath as NSIndexPath).section]!, for: indexPath)
-        (reuseCell as! MalaBaseCell).titleLabel.text = TeacherDetailsCellTitle[(indexPath as NSIndexPath).section+1]
+        let reuseCell = tableView.dequeueReusableCell(withIdentifier: TeacherDetailsCellReuseId[indexPath.section]!, for: indexPath)
+        (reuseCell as! MalaBaseCell).titleLabel.text = TeacherDetailsCellTitle[indexPath.section+1]
         
-        switch (indexPath as NSIndexPath).section {
+        switch indexPath.section {
         case 0:
             
             let cell = reuseCell as! TeacherDetailsSubjectCell

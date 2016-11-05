@@ -23,7 +23,7 @@ class OrderFormTableView: UITableView, UITableViewDelegate, UITableViewDataSourc
         didSet {
             println("当前支付渠道信息： \(model?.chargeChannel)")
             // 若订单状态为[待支付]或[已关闭]，隐藏支付渠道Cell
-            self.shouldHiddenPaymentChannel = (model?.status == MalaOrderStatus.canceled.rawValue) || (model?.status == MalaOrderStatus.penging.rawValue)
+            self.shouldHiddenPaymentChannel = model?.orderStatus == .canceled || model?.orderStatus == .penging
             
             // 刷新数据渲染UI
             ThemeHUD.showActivityIndicator()
@@ -88,18 +88,18 @@ class OrderFormTableView: UITableView, UITableViewDelegate, UITableViewDataSourc
     
     func numberOfSections(in tableView: UITableView) -> Int {
         var count = shouldHiddenPaymentChannel ? OrderFormCellReuseId.count-1 : OrderFormCellReuseId.count
-        count = model?.status == "c" ? OrderFormCellReuseId.count-2 : count
+        count = model?.orderStatus == .confirm ? OrderFormCellReuseId.count-2 : count
         return count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let sectionIndex = ((indexPath as NSIndexPath).section >= 2 && shouldHiddenPaymentChannel) ? (indexPath as NSIndexPath).section+1 : (indexPath as NSIndexPath).section
+        let sectionIndex = (indexPath.section >= 2 && shouldHiddenPaymentChannel) ? indexPath.section+1 : indexPath.section
         
         let reuseCell = tableView.dequeueReusableCell(withIdentifier: OrderFormCellReuseId[sectionIndex]!, for: indexPath)
         reuseCell.selectionStyle = .none
         
-        switch (indexPath as NSIndexPath).section {
+        switch indexPath.section {
         case 0:
             let cell = reuseCell as! OrderFormStatusCell
             cell.model = self.model

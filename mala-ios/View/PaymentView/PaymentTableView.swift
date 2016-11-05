@@ -56,7 +56,7 @@ class PaymentTableView: UITableView, UITableViewDataSource, UITableViewDelegate 
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // 模式匹配
-        switch ((indexPath as NSIndexPath).section, (indexPath as NSIndexPath).row) {
+        switch (indexPath.section, indexPath.row) {
         case (0, 0):
             // 应付金额
             let cell = (tableView.dequeueReusableCell(withIdentifier: paymentAmountCellIdentifier, for: indexPath)) as! PaymentAmountCell
@@ -86,7 +86,7 @@ class PaymentTableView: UITableView, UITableViewDataSource, UITableViewDelegate 
     
     // MARK: - Delegate
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return (indexPath as NSIndexPath).section == 0 ? 47 : 66
+        return indexPath.section == 0 ? 47 : 66
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -108,7 +108,7 @@ class PaymentTableView: UITableView, UITableViewDataSource, UITableViewDelegate 
         }
         
         // 当选择支付方式时
-        guard (indexPath as NSIndexPath).section == 1 else {
+        guard indexPath.section == 1 else {
             return
         }
         

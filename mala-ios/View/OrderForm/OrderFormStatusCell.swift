@@ -64,7 +64,7 @@ class OrderFormStatusCell: UITableViewCell {
     // MARK: Components for Private Tuition
     /// 名称图标
     private lazy var nameIcon: UIImageView = {
-        let imageView = UIImageView(imageName: "live_class")
+        let imageView = UIImageView(imageName: "live_teacher")
         return imageView
     }()
     /// 名称（老师名 或 课程名）
@@ -78,7 +78,7 @@ class OrderFormStatusCell: UITableViewCell {
     }()
     /// 学科信息图标
     private lazy var subjectIcon: UIImageView = {
-        let imageView = UIImageView(imageName: "order_subject")
+        let imageView = UIImageView(imageName: "live_class")
         return imageView
     }()
     /// 学科信息
@@ -320,6 +320,7 @@ class OrderFormStatusCell: UITableViewCell {
         }
         
         /// 课程信息
+        nameIcon.image = UIImage(named: "live_class")
         liveCourseAvatarView.setAvatar(lecturer: model?.liveClass?.lecturerAvatar, assistant: model?.liveClass?.assistantAvatar)
         nameLabel.text = String(format: "课程名称：%@", model?.liveClass?.courseName ?? "")
         roomCapacityLabel.text = String(format: "班       型：%d人", model?.liveClass?.roomCapacity ?? 0)

@@ -115,11 +115,11 @@ class TeacherTableView: UITableView, UITableViewDelegate, UITableViewDataSource 
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        switch (indexPath as NSIndexPath).section {
+        switch indexPath.section {
 
         case Section.teacher.rawValue:
             let cell = tableView.dequeueReusableCell(withIdentifier: TeacherTableViewCellReusedId, for: indexPath) as! TeacherTableViewCell
-            cell.model = teachers[(indexPath as NSIndexPath).row]
+            cell.model = teachers[indexPath.row]
             return cell
             
         case Section.loadMore.rawValue:
@@ -133,7 +133,7 @@ class TeacherTableView: UITableView, UITableViewDelegate, UITableViewDataSource 
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         
-        switch (indexPath as NSIndexPath).section {
+        switch indexPath.section {
             
         case Section.teacher.rawValue:
             break

@@ -433,14 +433,11 @@ class OrderFormViewCell: UITableViewCell {
             topLayoutView.backgroundColor = MalaColor_8FBCDD_0
             statusString.text = "订单待支付"
             statusString.textColor = MalaColor_E26254_0
-            
             cancelButton.isHidden = false
             confirmButton.isHidden = false
-            
             confirmButton.setTitle("立即支付", for: .normal)
             confirmButton.setBackgroundImage(UIImage.withColor(MalaColor_E26254_0), for: .normal)
             confirmButton.setTitleColor(UIColor.white, for: .normal)
-            
             cancelButton.addTarget(self, action: #selector(OrderFormViewCell.cancelOrderForm), for: .touchUpInside)
             confirmButton.addTarget(self, action: #selector(OrderFormViewCell.pay), for: .touchUpInside)
             break
@@ -450,31 +447,36 @@ class OrderFormViewCell: UITableViewCell {
             topLayoutView.backgroundColor = MalaColor_B1D0E8_0
             statusString.text = "交易完成"
             statusString.textColor = MalaColor_8FBCDD_0
-            
             cancelButton.isHidden = true
             confirmButton.isHidden = false
-            
             confirmButton.setTitle("再次购买", for: .normal)
             confirmButton.setBackgroundImage(UIImage.withColor(MalaColor_FFF0EE_0), for: .normal)
             confirmButton.setTitleColor(MalaColor_E26254_0, for: .normal)
-            
             confirmButton.addTarget(self, action: #selector(OrderFormViewCell.buyAgain), for: .touchUpInside)
+            if let isLiveCourse = model?.isLiveCourse, isLiveCourse == true {
+                cancelButton.isHidden = true
+                confirmButton.isHidden = true
+                break
+            }
             break
         
         case .canceled:
             // 已取消
-            topLayoutView.backgroundColor = MalaColor_CFCFCF_0
             statusString.text = "订单已关闭"
+            topLayoutView.backgroundColor = MalaColor_CFCFCF_0
             statusString.textColor = MalaColor_939393_0
-            
             cancelButton.isHidden = true
             confirmButton.isHidden = false
-            
             confirmButton.setTitle("重新购买", for: .normal)
             confirmButton.setBackgroundImage(UIImage.withColor(UIColor.white), for: .normal)
             confirmButton.setTitleColor(MalaColor_E26254_0, for: .normal)
-            
             confirmButton.addTarget(self, action: #selector(OrderFormViewCell.buyAgain), for: .touchUpInside)
+            
+            if let isLiveCourse = model?.isLiveCourse, isLiveCourse == true {
+                cancelButton.isHidden = true
+                confirmButton.isHidden = true
+                break
+            }
             break
         
         case .refund:
@@ -482,7 +484,6 @@ class OrderFormViewCell: UITableViewCell {
             topLayoutView.backgroundColor = MalaColor_B1D0E8_0
             statusString.text = "退款成功"
             statusString.textColor = MalaColor_83B84F_0
-            
             cancelButton.isHidden = true
             confirmButton.isHidden = true
             break

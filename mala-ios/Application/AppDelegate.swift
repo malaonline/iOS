@@ -132,7 +132,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     
     // MARK: - openURL
-    private func application(_ application: UIApplication, openURL url: URL, sourceApplication: String?, annotation: AnyObject) -> Bool {
+    private func application(_ app: UIApplication, openURL url: URL, options: [String : AnyObject]) -> Bool {
         
         // 微信,支付宝 回调
         let canHandleURL = Pingpp.handleOpen(url) { (result, error) -> Void in
@@ -143,7 +143,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return canHandleURL
     }
     
-    private func application(_ app: UIApplication, openURL url: URL, options: [String : AnyObject]) -> Bool {
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
         
         // 微信,支付宝 回调
         let canHandleURL = Pingpp.handleOpen(url) { (result, error) -> Void in

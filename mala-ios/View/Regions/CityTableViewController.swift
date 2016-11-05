@@ -98,8 +98,8 @@ class CityTableViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        MalaCurrentCity = models[(indexPath as NSIndexPath).row]
-        MalaUserDefaults.currentCity.value = models[(indexPath as NSIndexPath).row]
+        MalaCurrentCity = models[indexPath.row]
+        MalaUserDefaults.currentCity.value = models[indexPath.row]
         
         if unSelectRegion {
             pushToSchoolList()
@@ -116,10 +116,10 @@ class CityTableViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CityTableViewCellReuseId, for: indexPath) as! RegionUnitCell
-        cell.city = models[(indexPath as NSIndexPath).row]
+        cell.city = models[indexPath.row]
         
         // Section的最后一个Cell隐藏分割线
-        if ((indexPath as NSIndexPath).row+1) == models.count {
+        if (indexPath.row+1) == models.count {
             cell.hideSeparator()
         }
         

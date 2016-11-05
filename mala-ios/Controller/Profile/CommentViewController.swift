@@ -120,7 +120,7 @@ class CommentViewController: BaseTableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CommentViewCellReuseId, for: indexPath) as! CommentViewCell
         cell.selectionStyle = .none
-        cell.model = self.models[(indexPath as NSIndexPath).row]
+        cell.model = self.models[indexPath.row]
         return cell
     }
 }

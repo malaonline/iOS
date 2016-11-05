@@ -56,7 +56,7 @@ class TeacherDetailsHighScoreTableView: UITableView, UITableViewDelegate, UITabl
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: TeacherDetailsHighScoreTableViewCellReuseId, for: indexPath)
-        let model = models[(indexPath as NSIndexPath).row]
+        let model = models[indexPath.row]
         if model == nil {
             (cell as! TeacherDetailsHighScoreTableViewCell).model = HighScoreModel(name: "-", score: 0, school: "-", admitted: "-")
         }else {

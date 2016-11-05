@@ -21,13 +21,17 @@ class OrderFormInfoViewController: BaseViewController, OrderFormOperatingViewDel
             id = model?.id ?? 0
             
             /// 渲染底部视图UI
-            confirmView.isTeacherPublished = model?.isTeacherPublished
-            confirmView.orderStatus = MalaOrderStatus(rawValue: model?.status ?? "d") ?? .canceled
-            confirmView.price = isForConfirm ? MalaCurrentCourse.getAmount() ?? 0 : model?.amount ?? 0
+            confirmView.model = model
+            confirmView.isForConfirm = isForConfirm
         }
     }
     /// 标识是否为确认订单状态
-    var isForConfirm: Bool = false
+    var isForConfirm: Bool = false {
+        didSet {
+            /// 渲染底部视图UI
+            confirmView.isForConfirm = isForConfirm
+        }
+    }
     /// 学校id（仅再次购买时存在）
     var school: SchoolModel?
     
@@ -74,7 +78,7 @@ class OrderFormInfoViewController: BaseViewController, OrderFormOperatingViewDel
     // MARK: - Private method
     private func setupUserInterface() {
         // Style
-        self.title = isForConfirm ? "确认订单" : "订单详情"
+        title = isForConfirm ? "确认订单" : "订单详情"
         
         // SubViews
         view.addSubview(confirmView)

@@ -48,8 +48,8 @@ class ThemePhotoCollectionView: UICollectionView, UICollectionViewDelegate, UICo
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ThemePhotoCollectionViewCellReuseId, for: indexPath) as! ThemePhotoCollectionViewCell
-        cell.url = urls[(indexPath as NSIndexPath).row]
-        cell.imageView.tag = (indexPath as NSIndexPath).row
+        cell.url = urls[indexPath.row]
+        cell.imageView.tag = indexPath.row
         return cell
     }
     

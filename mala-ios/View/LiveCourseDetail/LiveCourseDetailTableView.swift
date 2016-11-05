@@ -80,10 +80,10 @@ class LiveCourseDetailTableView: UITableView, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let reuseCell = tableView.dequeueReusableCell(withIdentifier: LiveCourseDetailCellReuseId[(indexPath as NSIndexPath).section]!, for: indexPath)
-        (reuseCell as! MalaBaseLiveCourseCell).title = LiveCourseDetailCellTitle[(indexPath as NSIndexPath).section+1]
+        let reuseCell = tableView.dequeueReusableCell(withIdentifier: LiveCourseDetailCellReuseId[indexPath.section]!, for: indexPath)
+        (reuseCell as! MalaBaseLiveCourseCell).title = LiveCourseDetailCellTitle[indexPath.section+1]
         
-        switch (indexPath as NSIndexPath).section {
+        switch indexPath.section {
         case 0:
             let cell = reuseCell as! LiveCourseDetailClassCell
             cell.model = model

@@ -42,6 +42,6 @@ class GradeFilterView: BaseFilterView {
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         super.collectionView(collectionView, didSelectItemAt: indexPath)
         MalaFilterIndexObject.gradeIndexPath = indexPath
-        didTapCallBack?(self.gradeModel((indexPath as NSIndexPath).section, row: (indexPath as NSIndexPath).row)!)
+        didTapCallBack?(self.gradeModel(indexPath.section, row: indexPath.row)!)
     }
 }
