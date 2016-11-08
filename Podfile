@@ -8,7 +8,7 @@ def pods
   pod 'SnapKit', '~> 3.0.2'
   pod 'DateTools'
   pod 'Alamofire', '~> 4.0.1'
-  pod 'Kingfisher'
+  pod 'Kingfisher', '~> 3.1.0'
   pod 'IQKeyboardManager', :git => 'https://github.com/hackiftekhar/IQKeyboardManager.git', :branch => 'swift3'
   pod 'Charts', :git => 'https://github.com/danielgindi/Charts.git', :branch => 'Chart2.2.5-Swift3.0'
   pod 'Google/Analytics'
