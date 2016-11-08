@@ -49,9 +49,18 @@ open class BaseViewController: UIViewController {
             view.addSubview(defaultView)
             
             // AutoLayout
-            defaultView.snp.makeConstraints { (maker) -> Void in
-                maker.center.equalTo(view)
-                maker.size.equalTo(view)
+            
+            if self is LiveCourseViewController {
+                defaultView.snp.makeConstraints { (maker) -> Void in
+                    maker.centerX.equalTo(view)
+                    maker.centerY.equalTo(view).offset(MalaScreenWidth/3)
+                    maker.size.equalTo(view)
+                }
+            }else {
+                defaultView.snp.makeConstraints { (maker) -> Void in
+                    maker.center.equalTo(view)
+                    maker.size.equalTo(view)
+                }
             }
         }
     }
