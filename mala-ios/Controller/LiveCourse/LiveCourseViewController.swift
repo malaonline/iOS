@@ -66,10 +66,10 @@ class LiveCourseViewController: BaseViewController {
         
         // AutoLayout
         tableView.snp.makeConstraints { (maker) -> Void in
-            maker.top.equalTo(view.snp.top)
-            maker.left.equalTo(view.snp.left)
-            maker.bottom.equalTo(view.snp.bottom)
-            maker.right.equalTo(view.snp.right)
+            maker.top.equalTo(view)
+            maker.left.equalTo(view)
+            maker.bottom.equalTo(view)
+            maker.right.equalTo(view)
         }
     }
     
@@ -111,4 +111,11 @@ class LiveCourseViewController: BaseViewController {
         })
     }
     
+    
+    // MARK: - API
+    /// Banner点击事件
+    func bannerDidTap() {
+        // TODO: Banner点击事件
+        println("Banner点击")
+    }
 }

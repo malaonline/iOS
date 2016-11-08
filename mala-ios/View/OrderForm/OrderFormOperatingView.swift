@@ -157,12 +157,14 @@ class OrderFormOperatingView: UIView {
     /// 根据当前订单状态，渲染对应UI样式
     private func changeDisplayMode() {
         
-        // 仅当订单金额已支付时，老师下架状态才会生效
-        if isTeacherPublished == false && orderStatus != .penging && orderStatus != .confirm {
+        // 仅当订单金额已支付, 课程类型为一对一课程时
+        // 老师下架状态才会生效
+        if let isLiveCourse = model?.isLiveCourse, isLiveCourse == false &&
+            isTeacherPublished == false && orderStatus != .penging && orderStatus != .confirm {
             setTeacherDisable()
             return
         }
-        println("订单状态 - \(orderStatus)")
+        
         switch orderStatus {
         case .penging:
             setOrderPending()

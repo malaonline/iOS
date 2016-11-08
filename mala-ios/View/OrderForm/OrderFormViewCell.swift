@@ -24,8 +24,10 @@ class OrderFormViewCell: UITableViewCell {
                 self.orderStatus = orderStatus
             }
             
-            // 老师下架状态
-            disabledLabel.isHidden = !(model?.isTeacherPublished == false)
+            // 仅课程类型为一对一课程时,老师下架状态才会生效
+            if let isLiveCourse = model?.isLiveCourse, isLiveCourse == false  {
+                disabledLabel.isHidden = !(model?.isTeacherPublished == false)
+            }
             
             // 根据课程类型加载数据
             if let isLive = model?.isLiveCourse, isLive == true {
