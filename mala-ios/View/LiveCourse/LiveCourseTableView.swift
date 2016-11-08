@@ -27,6 +27,13 @@ class LiveCourseTableView: UITableView, UITableViewDelegate, UITableViewDataSour
     weak var controller: UIViewController?
     
     
+    // MARK: - Components
+    private lazy var banner: BannerView = {
+        let view = BannerView(frame: CGRect(x: 0, y: 0, width: MalaScreenWidth, height: MalaScreenWidth/3))
+        return view
+    }()
+    
+    
     // MARK: - Instance Method
     override init(frame: CGRect, style: UITableViewStyle) {
         super.init(frame: frame, style: style)
@@ -46,6 +53,7 @@ class LiveCourseTableView: UITableView, UITableViewDelegate, UITableViewDataSour
         backgroundColor = MalaColor_EDEDED_0
         estimatedRowHeight = 200
         separatorStyle = .none
+        tableHeaderView = banner
         contentInset = UIEdgeInsets(top: 6, left: 0, bottom: 48 + 6, right: 0)
         register(LiveCourseTableViewCell.self, forCellReuseIdentifier: LiveCourseTableViewCellReusedId)
     }

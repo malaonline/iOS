@@ -604,6 +604,9 @@
 		F427FFAF1CEDA37400EAB748 /* LearningReportAbilityImproveCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F427FFAE1CEDA37400EAB748 /* LearningReportAbilityImproveCell.swift */; };
 		F427FFB11CEDA47700EAB748 /* MalaBaseCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F427FFB01CEDA47700EAB748 /* MalaBaseCardCell.swift */; };
 		F4312B741CF82AC100E0EAF1 /* TimeScheduleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4312B731CF82AC100E0EAF1 /* TimeScheduleModel.swift */; };
+		F4331AC41DD19B78003F062D /* BannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4331AC31DD19B78003F062D /* BannerView.swift */; };
+		F4331AC51DD19B78003F062D /* BannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4331AC31DD19B78003F062D /* BannerView.swift */; };
+		F4331AC61DD19B78003F062D /* BannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4331AC31DD19B78003F062D /* BannerView.swift */; };
 		F43C987E1D6AD7C40013799E /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F43C987D1D6AD7C40013799E /* libicucore.tbd */; };
 		F43C98801D6AD7DD0013799E /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F43C987F1D6AD7DD0013799E /* libstdc++.tbd */; };
 		F43C98821D6AD7E80013799E /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F43C98811D6AD7E80013799E /* JavaScriptCore.framework */; };
@@ -1039,6 +1042,7 @@
 		F427FFAE1CEDA37400EAB748 /* LearningReportAbilityImproveCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearningReportAbilityImproveCell.swift; sourceTree = "<group>"; };
 		F427FFB01CEDA47700EAB748 /* MalaBaseCardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MalaBaseCardCell.swift; sourceTree = "<group>"; };
 		F4312B731CF82AC100E0EAF1 /* TimeScheduleModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeScheduleModel.swift; sourceTree = "<group>"; };
+		F4331AC31DD19B78003F062D /* BannerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerView.swift; sourceTree = "<group>"; };
 		F43C987D1D6AD7C40013799E /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
 		F43C987F1D6AD7DD0013799E /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
 		F43C98811D6AD7E80013799E /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
@@ -1903,6 +1907,7 @@
 			children = (
 				F465F1481DB4ABEC0025D867 /* LiveCourseTableView.swift */,
 				F465F1491DB4ABEC0025D867 /* LiveCourseTableViewCell.swift */,
+				F4331AC31DD19B78003F062D /* BannerView.swift */,
 			);
 			path = LiveCourse;
 			sourceTree = "<group>";
@@ -2626,6 +2631,7 @@
 				F48F12CF1DAB7A9C006A2F5C /* SKCacheable.swift in Sources */,
 				F45E69E01C8D278A00BD0859 /* ThemeHUD.swift in Sources */,
 				F465F14D1DB4ABEC0025D867 /* LiveCourseTableViewCell.swift in Sources */,
+				F4331AC41DD19B78003F062D /* BannerView.swift in Sources */,
 				F40B53D21C841AD600C20037 /* PaymentAmountCell.swift in Sources */,
 				F4767A471D34930C00FD47F1 /* ThemeTagListView.swift in Sources */,
 				F41CE64C1D86826C00B57F69 /* CityTableViewController.swift in Sources */,
@@ -2857,6 +2863,7 @@
 				F48F12D01DAB7A9C006A2F5C /* SKCacheable.swift in Sources */,
 				35FF7A7E1CF8325A000A70EE /* ThemeHUD.swift in Sources */,
 				F465F14E1DB4ABEC0025D867 /* LiveCourseTableViewCell.swift in Sources */,
+				F4331AC51DD19B78003F062D /* BannerView.swift in Sources */,
 				35FF7A7F1CF8325A000A70EE /* PaymentAmountCell.swift in Sources */,
 				F4767A481D34930C00FD47F1 /* ThemeTagListView.swift in Sources */,
 				F41CE64D1D86826C00B57F69 /* CityTableViewController.swift in Sources */,
@@ -3088,6 +3095,7 @@
 				F48F12D11DAB7A9C006A2F5C /* SKCacheable.swift in Sources */,
 				35FF7B611CF83264000A70EE /* ThemeHUD.swift in Sources */,
 				F465F14F1DB4ABEC0025D867 /* LiveCourseTableViewCell.swift in Sources */,
+				F4331AC61DD19B78003F062D /* BannerView.swift in Sources */,
 				35FF7B621CF83264000A70EE /* PaymentAmountCell.swift in Sources */,
 				F4767A491D34930C00FD47F1 /* ThemeTagListView.swift in Sources */,
 				F41CE64E1D86826C00B57F69 /* CityTableViewController.swift in Sources */,
