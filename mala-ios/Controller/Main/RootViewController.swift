@@ -182,9 +182,9 @@ class RootViewController: UIViewController {
 extension RootViewController: PagingMenuControllerDelegate {
     func willMove(toMenu menuController: UIViewController, fromMenu previousMenuController: UIViewController) {
         if menuController is FindTeacherViewController {
-            rightBarButtonItem.isEnabled = true
+            rightBarButtonItem.customView?.alpha = 1
         }else if menuController is LiveCourseViewController {
-            rightBarButtonItem.isEnabled = false
+            rightBarButtonItem.customView?.alpha = 0
         }
     }
     
