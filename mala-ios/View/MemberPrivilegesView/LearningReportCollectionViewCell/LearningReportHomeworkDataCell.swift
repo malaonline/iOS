@@ -88,10 +88,10 @@ class LearningReportHomeworkDataCell: MalaBaseCardCell {
         pieChartView.animate(xAxisDuration: 0.65)
         
         pieChartView.usePercentValuesEnabled = true
-        pieChartView.drawSliceTextEnabled = false
+        pieChartView.drawEntryLabelsEnabled = false
         pieChartView.rotationEnabled = false
         pieChartView.legend.enabled = false
-        pieChartView.descriptionText = ""
+        pieChartView.chartDescription?.text = ""
         return pieChartView
     }()
     /// 图例容器
@@ -202,7 +202,7 @@ class LearningReportHomeworkDataCell: MalaBaseCardCell {
         
         // Y轴数据
         let yVals = model.map { (data) -> ChartDataEntry in
-            return ChartDataEntry(value: data.rate.doubleValue, xIndex: data.id)
+            return ChartDataEntry(x: data.rate.doubleValue, y: Double(data.id))
         }
         // X轴数据
         let xVals = model.map { (data) -> String in
@@ -210,7 +210,7 @@ class LearningReportHomeworkDataCell: MalaBaseCardCell {
         }
         // 设置数据
         configure()
-        let dataSet = PieChartDataSet(yVals: yVals, label: nil)
+        let dataSet = PieChartDataSet(values: yVals, label: nil)
         dataSet.colors = MalaConfig.chartsColor()
         let data = PieChartData(xVals: xVals, dataSet: dataSet)
         
@@ -229,10 +229,10 @@ class LearningReportHomeworkDataCell: MalaBaseCardCell {
     private func handleNullData() {
         
         // Y轴数据
-        let yVals = ChartDataEntry(value: Double(1), xIndex: 0)
+        let yVals = ChartDataEntry(x: Double(1), y: 0)
         
         // 设置空数据
-        let dataSet = PieChartDataSet(yVals: [yVals], label: nil)
+        let dataSet = PieChartDataSet(values: [yVals], label: nil)
         dataSet.colors = [MalaColor_E5E5E5_3]
         let data = PieChartData(xVals: [""], dataSet: dataSet)
         pieChartView.data = data

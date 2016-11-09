@@ -36,7 +36,7 @@ class LearningReportAbilityStructureCell: MalaBaseReportCardCell {
         let radarChartView = RadarChartView()
         
         radarChartView.animate(xAxisDuration: 0.65)
-        radarChartView.descriptionText = ""
+        radarChartView.chartDescription?.text = ""
         radarChartView.webLineWidth = 1
         radarChartView.innerWebLineWidth = 1
         radarChartView.webAlpha = 1
@@ -51,7 +51,7 @@ class LearningReportAbilityStructureCell: MalaBaseReportCardCell {
         
         let yAxis = radarChartView.yAxis
         yAxis.enabled = false
-        yAxis.axisMinValue = 0
+        yAxis.axisMinimum = 0
         
         radarChartView.legend.enabled = false
         return radarChartView
@@ -102,11 +102,11 @@ class LearningReportAbilityStructureCell: MalaBaseReportCardCell {
         // 数据
         let yVals = model.map { (data) -> ChartDataEntry in
             index += 1
-            return ChartDataEntry(value: Double(data.val), xIndex: index)
+            return ChartDataEntry(x: Double(data.val), y: Double(index))
         }
         
         // 设置UI
-        let dataSet = RadarChartDataSet(yVals: yVals, label: "")
+        let dataSet = RadarChartDataSet(values: yVals, label: "")
         dataSet.lineWidth = 0
         dataSet.fillAlpha = 0.9
         dataSet.setColor(MalaColor_F9877C_0)

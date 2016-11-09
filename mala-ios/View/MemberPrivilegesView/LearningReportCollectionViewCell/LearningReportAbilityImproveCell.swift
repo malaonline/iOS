@@ -46,7 +46,7 @@ class LearningReportAbilityImproveCell: MalaBaseReportCardCell {
             CombinedChartView.DrawOrder.line.rawValue
         ]
         
-        chartView.descriptionText = ""
+        chartView.chartDescription?.text = ""
         chartView.scaleXEnabled = false
         chartView.scaleYEnabled = false
         chartView.dragEnabled = false
@@ -65,8 +65,8 @@ class LearningReportAbilityImproveCell: MalaBaseReportCardCell {
         leftAxis.gridLineDashLengths = [2,2]
         leftAxis.gridColor = MalaColor_E6E9EC_0
         leftAxis.drawGridLinesEnabled = true
-        leftAxis.axisMinValue = 0
-        leftAxis.axisMaxValue = 100
+        leftAxis.axisMinimum = 0
+        leftAxis.axisMaximum = 100
         leftAxis.labelCount = 5
         
         let pFormatter = NumberFormatter()
@@ -140,9 +140,9 @@ class LearningReportAbilityImproveCell: MalaBaseReportCardCell {
         // 设置折线图数据
         let lineVals = model.map({ (data) -> ChartDataEntry in
             aveScoreIndex += 1
-            return ChartDataEntry(value: data.ave_score.doubleValue*100, xIndex: aveScoreIndex)
+            return ChartDataEntry(x: data.ave_score.doubleValue*100, y: Double(aveScoreIndex))
         })
-        let lineDataSet = LineChartDataSet(yVals: lineVals, label: "")
+        let lineDataSet = LineChartDataSet(values: lineVals, label: "")
         lineDataSet.setColor(MalaColor_82C9F9_0)
         lineDataSet.fillAlpha = 1
         lineDataSet.circleRadius = 6
@@ -158,7 +158,7 @@ class LearningReportAbilityImproveCell: MalaBaseReportCardCell {
             myScoreIndex += 1
             return BarChartDataEntry(value: data.my_score.doubleValue*100, xIndex: myScoreIndex)
         })
-        let barDataSet = BarChartDataSet(yVals: barVals, label: "")
+        let barDataSet = BarChartDataSet(values: barVals, label: "")
         barDataSet.drawValuesEnabled = true
         barDataSet.colors = MalaConfig.chartsColor()
         barDataSet.highlightEnabled = false

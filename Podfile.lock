@@ -1,6 +1,9 @@
 PODS:
   - Alamofire (4.0.1)
-  - DateTools (1.7.0)
+  - Charts (3.0.0):
+    - Charts/Core (= 3.0.0)
+  - Charts/Core (3.0.0)
+  - DateTools (2.0.0-beta.3)
   - FirebaseAnalytics (3.4.4):
     - FirebaseCore (~> 3.4)
     - FirebaseInstanceID (~> 1.0)
@@ -21,10 +24,6 @@ PODS:
   - GoogleSymbolUtilities (1.1.2)
   - GoogleUtilities (1.3.2):
     - GoogleSymbolUtilities (~> 1.1)
-  - Charts (3.0.0):
-    - Charts/Core (= 3.0.0)
-  - Charts/Core (3.0.0)
-  - DateTools (2.0.0-beta.3)
   - IQKeyboardManager (4.0.4)
   - Kingfisher (3.1.3)
   - MOBFoundation (2.0.11)
@@ -44,9 +43,9 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (~> 4.0.1)
-  - Google/Analytics
   - Charts (from `https://github.com/danielgindi/Charts.git`, tag `v3.0.0`)
   - DateTools (from `https://github.com/MatthewYork/DateTools.git`, branch `swift`)
+  - Google/Analytics
   - IQKeyboardManager (from `https://github.com/hackiftekhar/IQKeyboardManager.git`, branch `swift3`)
   - Kingfisher (~> 3.1.0)
   - MOBFoundation
@@ -87,6 +86,8 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
+  Charts: 3f0da988b104c8e5f069fcef55da699f597dac67
+  DateTools: fe8ad1e2e77ebb9cf1db6becf077772dd83fdb63
   FirebaseAnalytics: 0533a00b681e08fd0b2cd0444b7ddf0ef9fd7a1a
   FirebaseCore: 5a885548bbc5f0c410b04f8e9ac9d73ff1221907
   FirebaseInstanceID: ba1e640935235e5fac39dfa816fe7660e72e1a8a
@@ -95,8 +96,6 @@ SPEC CHECKSUMS:
   GoogleInterchangeUtilities: d5bc4d88d5b661ab72f9d70c58d02ca8c27ad1f7
   GoogleSymbolUtilities: 631ee17048aa5e9ab133470d768ea997a5ef9b96
   GoogleUtilities: 8bbc733218aad26306f9d4a253823986110e3358
-  Charts: 3f0da988b104c8e5f069fcef55da699f597dac67
-  DateTools: fe8ad1e2e77ebb9cf1db6becf077772dd83fdb63
   IQKeyboardManager: 4a6f83b540283c2645aaeba2bd8dc0f09b5c77f8
   Kingfisher: 007f5851c18c81e7cc106c9cbac1bafea1cce5dc
   MOBFoundation: e213065e65eebd8146ab29d10a8445dc8f385091
@@ -105,6 +104,6 @@ SPEC CHECKSUMS:
   ShareSDK3: e7bcdfeb95338f89efd6fff82b4793d2bfee76f8
   SnapKit: 2e456761aa92d4d4067a7a5594c18769d451a8ad
 
-PODFILE CHECKSUM: 53f5464012677873c5242f075c974a58d5237466
+PODFILE CHECKSUM: 2a40f332c08769b0751947e688f7607f9a58744c
 
 COCOAPODS: 1.1.0.rc.2
