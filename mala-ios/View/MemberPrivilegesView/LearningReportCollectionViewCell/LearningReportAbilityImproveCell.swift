@@ -74,7 +74,7 @@ class LearningReportAbilityImproveCell: MalaBaseReportCardCell {
         pFormatter.maximumFractionDigits = 1
         pFormatter.multiplier = 1
         pFormatter.percentSymbol = "%"
-        leftAxis.valueFormatter = pFormatter
+        leftAxis.valueFormatter = DefaultAxisValueFormatter(formatter: pFormatter)
         
         chartView.rightAxis.enabled = false
         chartView.legend.enabled = false
@@ -156,15 +156,15 @@ class LearningReportAbilityImproveCell: MalaBaseReportCardCell {
         // 设置柱状图数据
         let barVals = model.map({ (data) -> ChartDataEntry in
             myScoreIndex += 1
-            return BarChartDataEntry(value: data.my_score.doubleValue*100, xIndex: myScoreIndex)
+            return BarChartDataEntry(x: Double(myScoreIndex), y: data.my_score.doubleValue*100)
         })
         let barDataSet = BarChartDataSet(values: barVals, label: "")
         barDataSet.drawValuesEnabled = true
         barDataSet.colors = MalaConfig.chartsColor()
         barDataSet.highlightEnabled = false
-        barDataSet.barSpace = 0.4
         let barData = BarChartData()
         barData.addDataSet(barDataSet)
+        barData.barWidth = 0.4
         barData.setDrawValues(false)
         
         // 设置组合图数据

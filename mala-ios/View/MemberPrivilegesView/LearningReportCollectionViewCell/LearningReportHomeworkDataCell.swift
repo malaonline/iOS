@@ -220,7 +220,7 @@ class LearningReportHomeworkDataCell: MalaBaseCardCell {
         pFormatter.maximumFractionDigits = 1
         pFormatter.multiplier = 1
         pFormatter.percentSymbol = "%"
-        data.setValueFormatter(pFormatter)
+        data.setValueFormatter(DefaultValueFormatter(formatter: pFormatter))
         data.setValueFont(UIFont.systemFont(ofSize: 11))
         data.setValueTextColor(UIColor.white)
         pieChartView.data = data
