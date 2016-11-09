@@ -607,6 +607,9 @@
 		F4331AC41DD19B78003F062D /* BannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4331AC31DD19B78003F062D /* BannerView.swift */; };
 		F4331AC51DD19B78003F062D /* BannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4331AC31DD19B78003F062D /* BannerView.swift */; };
 		F4331AC61DD19B78003F062D /* BannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4331AC31DD19B78003F062D /* BannerView.swift */; };
+		F4331B9A1DD322A1003F062D /* Extension+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4331B991DD322A1003F062D /* Extension+Date.swift */; };
+		F4331B9B1DD322A1003F062D /* Extension+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4331B991DD322A1003F062D /* Extension+Date.swift */; };
+		F4331B9C1DD322A1003F062D /* Extension+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4331B991DD322A1003F062D /* Extension+Date.swift */; };
 		F43C987E1D6AD7C40013799E /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F43C987D1D6AD7C40013799E /* libicucore.tbd */; };
 		F43C98801D6AD7DD0013799E /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F43C987F1D6AD7DD0013799E /* libstdc++.tbd */; };
 		F43C98821D6AD7E80013799E /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F43C98811D6AD7E80013799E /* JavaScriptCore.framework */; };
@@ -1043,6 +1046,7 @@
 		F427FFB01CEDA47700EAB748 /* MalaBaseCardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MalaBaseCardCell.swift; sourceTree = "<group>"; };
 		F4312B731CF82AC100E0EAF1 /* TimeScheduleModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeScheduleModel.swift; sourceTree = "<group>"; };
 		F4331AC31DD19B78003F062D /* BannerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerView.swift; sourceTree = "<group>"; };
+		F4331B991DD322A1003F062D /* Extension+Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension+Date.swift"; sourceTree = "<group>"; };
 		F43C987D1D6AD7C40013799E /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
 		F43C987F1D6AD7DD0013799E /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
 		F43C98811D6AD7E80013799E /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
@@ -1406,6 +1410,7 @@
 				F45E69E21C8D2EAF00BD0859 /* Extension+Int.swift */,
 				F45F27F51CA8E07E00F0012C /* Extension+UIVIewController.swift */,
 				F4E106251CC0D390001AD4AF /* Extension+UIDevice.swift */,
+				F4331B991DD322A1003F062D /* Extension+Date.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -2678,6 +2683,7 @@
 				F48F12D81DAB7A9C006A2F5C /* SKDetectingView.swift in Sources */,
 				F40B53B21C7EF00E00C20037 /* MalaSupport.swift in Sources */,
 				F40B53C81C83F98F00C20037 /* PaymentTableView.swift in Sources */,
+				F4331B9A1DD322A1003F062D /* Extension+Date.swift in Sources */,
 				F40D896C1C7DB6E300BD6871 /* MalaConfig.swift in Sources */,
 				F41A01AC1D212B1F0069CF29 /* MalaBaseCell.swift in Sources */,
 				F452CD571CDC5839001A30E8 /* OrderFormViewCell.swift in Sources */,
@@ -2910,6 +2916,7 @@
 				F48F12D91DAB7A9C006A2F5C /* SKDetectingView.swift in Sources */,
 				35FF7AA51CF8325A000A70EE /* MalaSupport.swift in Sources */,
 				35FF7AA61CF8325A000A70EE /* PaymentTableView.swift in Sources */,
+				F4331B9B1DD322A1003F062D /* Extension+Date.swift in Sources */,
 				35FF7AA71CF8325A000A70EE /* MalaConfig.swift in Sources */,
 				F41A01AD1D212B1F0069CF29 /* MalaBaseCell.swift in Sources */,
 				35FF7AA81CF8325A000A70EE /* OrderFormViewCell.swift in Sources */,
@@ -3142,6 +3149,7 @@
 				F48F12DA1DAB7A9C006A2F5C /* SKDetectingView.swift in Sources */,
 				35FF7B881CF83264000A70EE /* MalaSupport.swift in Sources */,
 				35FF7B891CF83264000A70EE /* PaymentTableView.swift in Sources */,
+				F4331B9C1DD322A1003F062D /* Extension+Date.swift in Sources */,
 				35FF7B8A1CF83264000A70EE /* MalaConfig.swift in Sources */,
 				F41A01AE1D212B1F0069CF29 /* MalaBaseCell.swift in Sources */,
 				35FF7B8B1CF83264000A70EE /* OrderFormViewCell.swift in Sources */,
