@@ -111,9 +111,9 @@ public func MalaRandomColor() -> UIColor {
 ///  - parameter date: Date对象
 ///
 ///  - returns: 星期数（0~6, 对应星期日~星期六）
-public func weekdayInt(_ date: NSDate) -> Int {
+public func weekdayInt(_ date: Date) -> Int {
     let calendar = Calendar.current
-    let components: DateComponents = calendar.dateComponents([.weekday], from: date as Date)
+    let components: DateComponents = calendar.dateComponents([.weekday], from: date)
     return components.weekday!-1
 }
 
@@ -152,16 +152,16 @@ func parseStudentCourseTable(_ courseTable: [StudentCourseModel]) -> (model: [[[
             recentCourse = course
         }
         
-        let courseYearAndMonth = String(course.date.year())+String(course.date.month())
-        let courseDay = course.date.day()
+        let courseYearAndMonth = String(course.date.year)+String(course.date.month)
+        let courseDay = course.date.day
         
         if index > 0 {
             
             let previousCourse = courseList[index-1]
             
-            if courseYearAndMonth == String(previousCourse.date.year())+String(previousCourse.date.month()) {
+            if courseYearAndMonth == String(previousCourse.date.year)+String(previousCourse.date.month) {
                 
-                if courseDay == previousCourse.date.day() {
+                if courseDay == previousCourse.date.day {
                     // 同年同月同日
                     datas[currentMonthsIndex][currentDaysIndex].append(course)
                     validate(course: course)
@@ -202,7 +202,7 @@ func parseStudentCourseTable(_ courseTable: [StudentCourseModel]) -> (model: [[[
 ///
 ///  - returns: 时间字符串
 func getTimeString(_ timeStamp: TimeInterval, format: String = "HH:mm") -> String {
-    return NSDate(timeIntervalSince1970: timeStamp).formattedDate(withFormat: format)
+    return Date(timeIntervalSince1970: timeStamp).format(with: format)!
 }
 
 ///  根据时间戳获取时间字符串（例如2000/10/10）
@@ -210,13 +210,13 @@ func getTimeString(_ timeStamp: TimeInterval, format: String = "HH:mm") -> Strin
 ///  - parameter timeStamp: 时间戳
 ///
 ///  - returns: 时间字符串
-func getDateString(_ timeStamp: TimeInterval? = nil, date: NSDate? = nil, format: String = "yyyy/MM/dd") -> String {
+func getDateString(_ timeStamp: TimeInterval? = nil, date: Date? = nil, format: String = "yyyy/MM/dd") -> String {
     if timeStamp != nil {
-        return NSDate(timeIntervalSince1970: timeStamp!).formattedDate(withFormat: format)
+        return Date(timeIntervalSince1970: timeStamp!).format(with: format)!
     }else if date != nil {
-        return date!.formattedDate(withFormat: format)
+        return date!.format(with: format)!
     }else {
-        return NSDate().formattedDate(withFormat: format)
+        return Date().format(with: format)!
     }
 }
 
@@ -226,7 +226,7 @@ func getDateString(_ timeStamp: TimeInterval? = nil, date: NSDate? = nil, format
 ///
 ///  - returns: 时间字符串
 func getDateTimeString(_ timeStamp: TimeInterval, format: String = "yyyy-MM-dd HH:mm:ss") -> String {
-    return NSDate(timeIntervalSince1970: timeStamp).formattedDate(withFormat: format)
+    return Date(timeIntervalSince1970: timeStamp).format(with: format)!
 }
 
 
@@ -311,14 +311,14 @@ func getTimeSchedule(_ timeStamps: [[TimeInterval]]) -> [String] {
 ///  - parameter date:      日期对象
 ///
 ///  - returns: 星期字符串
-func getWeekString(_ timeStamp: TimeInterval? = nil, date: NSDate? = nil) -> String {
+func getWeekString(_ timeStamp: TimeInterval? = nil, date: Date? = nil) -> String {
     
     var weekInt = 0
     
     if let timeStamp = timeStamp {
-        weekInt = NSDate(timeIntervalSince1970: timeStamp).weekday()
+        weekInt = Date(timeIntervalSince1970: timeStamp).weekday
     }else if let date = date {
-        weekInt = date.weekday()
+        weekInt = date.weekday
     }
     weekInt -= 1
     return MalaConfig.malaWeekdays()[weekInt]
@@ -344,14 +344,14 @@ func parseTimeSlots(_ timeSchedule: [[TimeInterval]]) -> (dates: [String], times
     
     for singleTime in sortTimeSlots {
         
-        let currentStartDate = NSDate(timeIntervalSince1970: singleTime[0])
-        let currentEndDate = NSDate(timeIntervalSince1970: singleTime[1])
+        let currentStartDate = Date(timeIntervalSince1970: singleTime[0])
+        let currentEndDate = Date(timeIntervalSince1970: singleTime[1])
         
         var appendedDate: TimeScheduleModel?
         
         // 判断此日期是否已存在于数组中
         for dateResult in list {
-            if currentStartDate.isSameDay(dateResult.date as Date!) {
+            if currentStartDate.isSameDay(date: dateResult.date as Date!) {
                 appendedDate = dateResult
                 break
             }

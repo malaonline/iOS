@@ -17,7 +17,7 @@ extension String {
     ///  - returns: Date对象
     func dateInThisWeek() -> Date {
         
-        let today = NSDate()
+        let today = Date()
         let todayWeekInt = weekdayInt(today)
         let targetWeekInt = (MalaConfig.malaWeekdays().index(of: self) == 0 ? 7 : MalaConfig.malaWeekdays().index(of: self))
         

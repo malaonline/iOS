@@ -49,9 +49,9 @@ open class StudentCourseModel: BaseObjectModel {
     var isCommented: Bool? = false
     
     /// 日期对象
-    var date: NSDate {
+    var date: Date {
         get {
-            return NSDate(timeIntervalSince1970: end)
+            return Date(timeIntervalSince1970: end)
         }
     }
     
@@ -59,9 +59,9 @@ open class StudentCourseModel: BaseObjectModel {
     var status: CourseStatus {
         get {
             // 设置课程状态
-            if date.isToday() && !isPassed {
+            if date.isToday && !isPassed {
                 return .Today
-            }else if date.isEarlierThan(Date()) || isPassed {
+            }else if date.isEarlierThanOrEqual(to: Date()) || isPassed {
                 return .Past
             }else {
                 return .Future
