@@ -62,7 +62,7 @@ class ThemeShareCollectionView: UICollectionView, UICollectionViewDelegate, UICo
         let shareParames = NSMutableDictionary()
         
         shareParames.ssdkSetupShareParams(byText: teacherModel?.shareText,
-                                                images : teacherModel?.avatar,
+                                                images : (teacherModel?.avatar ?? UIImage(named: "avatar_placeholder")),
                                                 url : teacherModel?.shareURL as URL!,
                                                 title : "我在麻辣老师发现一位好老师！",
                                                 type : SSDKContentType.webPage)
