@@ -164,11 +164,12 @@ class LearningReportAbilityImproveCell: MalaBaseReportCardCell {
         barDataSet.highlightEnabled = false
         let barData = BarChartData()
         barData.addDataSet(barDataSet)
-        barData.barWidth = 0.4
+        barData.barWidth = 4
         barData.setDrawValues(false)
         
         // 设置组合图数据
-        let data = CombinedChartData(xVals: getXVals())
+        let data = CombinedChartData()
+        // data.dataSets = getXVals()
         data.lineData = lineData
         data.barData = barData
         combinedChartView.data = data

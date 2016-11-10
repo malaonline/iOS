@@ -115,10 +115,13 @@ class LearningReportAbilityStructureCell: MalaBaseReportCardCell {
         dataSet.drawFilledEnabled = true
         dataSet.highlightEnabled = false
         
-        let data = RadarChartData(xVals: getXVals(), dataSets: [dataSet])
-        data.setValueFont(UIFont.systemFont(ofSize: 10))
-        data.setDrawValues(false)
-        radarChartView.data = data
+//        let data = RadarChartData(xVals: getXVals(), dataSets: [dataSet])
+//        let fesf = RadarChartData(dataSets: [IChartDataSet])
+//        
+//        let data = RadarChartData(dataSet: dataSet)
+//        data.setValueFont(UIFont.systemFont(ofSize: 10))
+//        data.setDrawValues(false)
+//        radarChartView.data = data
     }
     
     // 获取X轴文字信息
