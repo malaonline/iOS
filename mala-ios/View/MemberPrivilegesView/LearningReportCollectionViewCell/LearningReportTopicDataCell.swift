@@ -35,7 +35,7 @@ class LearningReportTopicDataCell: MalaBaseReportCardCell {
         let lineChartView = LineChartView()
         
         lineChartView.animate(xAxisDuration: 0.65)
-        lineChartView.descriptionText = ""
+        lineChartView.chartDescription?.text = ""
         lineChartView.scaleXEnabled = false
         lineChartView.scaleYEnabled = false
         lineChartView.dragEnabled = false
@@ -48,11 +48,14 @@ class LearningReportTopicDataCell: MalaBaseReportCardCell {
         xAxis.labelFont = UIFont.systemFont(ofSize: 10)
         xAxis.labelTextColor = MalaColor_5E5E5E_0
         xAxis.drawGridLinesEnabled = false
-        xAxis.spaceBetweenLabels = 1
+        // xAxis.spaceBetweenLabels = 1
         xAxis.labelPosition = .bottom
         xAxis.gridLineDashLengths = [2,2]
         xAxis.gridColor = MalaColor_E6E9EC_0
         xAxis.drawGridLinesEnabled = true
+        xAxis.axisMaximum = 6
+        xAxis.axisMinimum = 0
+        xAxis.spaceMin = 1
         
         let leftAxis = lineChartView.leftAxis
         leftAxis.labelFont = UIFont.systemFont(ofSize: 9)
@@ -60,7 +63,7 @@ class LearningReportTopicDataCell: MalaBaseReportCardCell {
         leftAxis.gridLineDashLengths = [2,2]
         leftAxis.gridColor = MalaColor_E6E9EC_0
         leftAxis.drawGridLinesEnabled = true
-        leftAxis.axisMinValue = 0
+        leftAxis.axisMinimum = 0
         leftAxis.labelCount = 5
 
         lineChartView.legend.enabled = true
@@ -117,11 +120,11 @@ class LearningReportTopicDataCell: MalaBaseReportCardCell {
         // 总练习数据
         var yValsTotal = model.reversed().map { (data) -> ChartDataEntry in
             totalIndex += 1
-            return ChartDataEntry(value: Double(data.total_item), xIndex: totalIndex)
+            return ChartDataEntry(x: Double(totalIndex), y: Double(data.total_item))
         }
         packageData(&yValsTotal)
 
-        let totalSet = LineChartDataSet(yVals: yValsTotal, label: "答题数量")
+        let totalSet = LineChartDataSet(values: yValsTotal, label: "答题数量")
         totalSet.lineWidth = 0
         totalSet.fillAlpha = 1
         totalSet.setColor(MalaColor_BBDDF6_0)
@@ -133,11 +136,12 @@ class LearningReportTopicDataCell: MalaBaseReportCardCell {
         // 正确练习数据
         var yValsRight = model.reversed().map { (data) -> ChartDataEntry in
             rightIndex += 1
-            return ChartDataEntry(value: Double(data.total_item-data.error_item), xIndex: rightIndex)
+            let item = ChartDataEntry(x: Double(rightIndex), y: Double(data.total_item-data.error_item))
+            return item
         }
         packageData(&yValsRight)
         
-        let rightSet = LineChartDataSet(yVals: yValsRight, label: "正确数量")
+        let rightSet = LineChartDataSet(values: yValsRight, label: "正确数量")
         rightSet.lineWidth = 0
         rightSet.fillAlpha = 1
         rightSet.setColor(MalaColor_75CC97_0)
@@ -146,7 +150,9 @@ class LearningReportTopicDataCell: MalaBaseReportCardCell {
         rightSet.drawValuesEnabled = false
         rightSet.drawFilledEnabled = true
         
-        let data = LineChartData(xVals: getXVals(), dataSets: [totalSet, rightSet])
+        // let data = LineChartData(xVals: getXVals(), dataSets: [totalSet, rightSet])
+        
+        let data = LineChartData(dataSets: [totalSet, rightSet])
         data.setValueTextColor(MalaColor_5E5E5E_0)
         data.setValueFont(UIFont.systemFont(ofSize: 10))
         lineChartView.data = data
@@ -159,8 +165,8 @@ class LearningReportTopicDataCell: MalaBaseReportCardCell {
     
     // 包装数据（在数据首尾分别添加空数据，以保持折线图美观性）
     private func packageData(_ data: inout [ChartDataEntry]) {
-        data.insert(ChartDataEntry(value: 0, xIndex: 0), at: 0)
-        data.append(ChartDataEntry(value: 0, xIndex: data.count))
+        data.insert(ChartDataEntry(x: 0, y: 0), at: 0)
+        data.append(ChartDataEntry(x: Double(data.count), y: 0))
     }
     
     // 获取X轴文字信息

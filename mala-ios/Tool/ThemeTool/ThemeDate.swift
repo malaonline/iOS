@@ -34,8 +34,8 @@ class ThemeDate {
         repeat {
             
             let singleDate = sortDays[index]
-            let firstDate = ThemeDate().getFirstAvailableDate(singleDate).addingWeeks(currentWeekAdding) as NSDate
-            let endDate = firstDate.addingHours(2)!
+            let firstDate = ThemeDate().getFirstAvailableDate(singleDate).addingWeeks(currentWeekAdding)
+            let endDate = firstDate.addingHours(2)
             timeSchedule.append([firstDate.timeIntervalSince1970, endDate.timeIntervalSince1970])
             
             classPeriod -= 2
@@ -58,28 +58,28 @@ class ThemeDate {
     ///  - parameter timeSlot: 上课时间模型
     ///
     ///  - returns: 首个有效开始上课时间
-    private func getFirstAvailableDate(_ timeSlot: ClassScheduleDayModel) -> NSDate {
+    private func getFirstAvailableDate(_ timeSlot: ClassScheduleDayModel) -> Date {
         
         if let lastDateTimeInterval = timeSlot.last_occupied_end {
-            var lastDate = NSDate(timeIntervalSince1970: lastDateTimeInterval.doubleValue)
+            var lastDate = Date(timeIntervalSince1970: lastDateTimeInterval.doubleValue)
             // 下一周的课程开始时间
-            lastDate = lastDate.addingWeeks(1) as NSDate
-            lastDate = lastDate.subtractingHours(2) as NSDate
+            lastDate = lastDate.addingWeeks(1)
+            lastDate = lastDate.subtractingHours(2)
             return lastDate
         }else {
             
-            var date = MalaConfig.malaWeekdays()[timeSlot.weekID].dateInThisWeek() as NSDate
+            var date = MalaConfig.malaWeekdays()[timeSlot.weekID].dateInThisWeek()
             
             // 只有提前两天以上的课程，才会在本周开始授课。
             //（例如在周五预约了周日的课程，仅相隔周六一天不符合要求，将从下周日开始上课）
             //（例如在周四预约了周日的课程，相隔周五、周六两天符合要求，将从本周日开始上课）
             if !couldStartInThisWeek(timeSlot) {
-                date = date.addingWeeks(1) as NSDate
+                date = date.addingWeeks(1)
             }
             
-            let startDateString = getDateString(date: date as NSDate?, format: "yyyy-MM-dd")
+            let startDateString = getDateString(date: date, format: "yyyy-MM-dd")
             let dateString = startDateString + " " + (timeSlot.start ?? "")
-            return dateString.dateWithFormatter("yyyy-MM-dd HH:mm")! as NSDate
+            return dateString.dateWithFormatter("yyyy-MM-dd HH:mm")!
         }
     }
     
@@ -97,15 +97,15 @@ class ThemeDate {
         let date = MalaConfig.malaWeekdays()[timeSlot.weekID].dateInThisWeek()
         
         /// 若首次购课
-        if weekId < (weekdayInt(NSDate())+intervals) {
+        if weekId < (weekdayInt(Date())+intervals) {
             return false
         }
         
-        let dateString = getDateString(date: date as NSDate?, format: "yyyy-MM-dd") + " " + (timeSlot.start ?? "")
-        let selectedDate = dateString.dateWithFormatter("yyyy-MM-dd HH:mm")! as NSDate
+        let dateString = getDateString(date: date, format: "yyyy-MM-dd") + " " + (timeSlot.start ?? "")
+        let selectedDate = dateString.dateWithFormatter("yyyy-MM-dd HH:mm")!
         
         // 若所选时间与当前时间相距不足1小时，则从下周开始计算
-        if selectedDate.hoursLaterThan(Date()) < 1 {
+        if selectedDate.hoursLater(than: Date()) < 1 {
             return false
         }
         return true

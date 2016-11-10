@@ -371,7 +371,7 @@ class CommentViewCell: UITableViewCell {
         
         let dateString = getDateString(start, format: "yyyy-MM-dd")
         let startString = getDateString(start, format: "HH:mm")
-        let endString = getDateString(date: NSDate(timeIntervalSince1970: start).addingHours(2) as NSDate?, format: "HH:mm")
+        let endString = getDateString(date: Date(timeIntervalSince1970: start).addingTimeInterval(3600*2), format: "HH:mm")
         
         timeSlotLabel.text = String(format: "%@", dateString)
         timeLabel.text = String(format: "%@-%@", startString, endString)

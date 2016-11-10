@@ -1,9 +1,9 @@
 PODS:
   - Alamofire (4.0.1)
-  - Charts (2.2.5):
-    - Charts/Core (= 2.2.5)
-  - Charts/Core (2.2.5)
-  - DateTools (1.7.0)
+  - Charts (3.0.0):
+    - Charts/Core (= 3.0.0)
+  - Charts/Core (3.0.0)
+  - DateTools (2.0.0-beta.3)
   - FirebaseAnalytics (3.4.4):
     - FirebaseCore (~> 3.4)
     - FirebaseInstanceID (~> 1.0)
@@ -43,8 +43,8 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (~> 4.0.1)
-  - Charts (from `https://github.com/danielgindi/Charts.git`, branch `Chart2.2.5-Swift3.0`)
-  - DateTools
+  - Charts (from `https://github.com/danielgindi/Charts.git`, tag `v3.0.0`)
+  - DateTools (from `https://github.com/MatthewYork/DateTools.git`, branch `swift`)
   - Google/Analytics
   - IQKeyboardManager (from `https://github.com/hackiftekhar/IQKeyboardManager.git`, branch `swift3`)
   - Kingfisher (~> 3.1.0)
@@ -58,8 +58,11 @@ DEPENDENCIES:
 
 EXTERNAL SOURCES:
   Charts:
-    :branch: Chart2.2.5-Swift3.0
     :git: https://github.com/danielgindi/Charts.git
+    :tag: v3.0.0
+  DateTools:
+    :branch: swift
+    :git: https://github.com/MatthewYork/DateTools.git
   IQKeyboardManager:
     :branch: swift3
     :git: https://github.com/hackiftekhar/IQKeyboardManager.git
@@ -69,8 +72,11 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   Charts:
-    :commit: ab3bb619df2c2d165b41736b6bc25a4218833252
     :git: https://github.com/danielgindi/Charts.git
+    :tag: v3.0.0
+  DateTools:
+    :commit: 7190d93025d82c985e1108a8dc9522129d1b68de
+    :git: https://github.com/MatthewYork/DateTools.git
   IQKeyboardManager:
     :commit: d27180d877c8d36d5be80ee9d8c24d184ac26081
     :git: https://github.com/hackiftekhar/IQKeyboardManager.git
@@ -80,8 +86,8 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
-  Charts: b48fcc8d7190de910ff9e9748f5360c8ea7856e5
-  DateTools: 53288ee8b905fdc75897a1e6b5cc0144b14cba60
+  Charts: 3f0da988b104c8e5f069fcef55da699f597dac67
+  DateTools: fe8ad1e2e77ebb9cf1db6becf077772dd83fdb63
   FirebaseAnalytics: 0533a00b681e08fd0b2cd0444b7ddf0ef9fd7a1a
   FirebaseCore: 5a885548bbc5f0c410b04f8e9ac9d73ff1221907
   FirebaseInstanceID: ba1e640935235e5fac39dfa816fe7660e72e1a8a
@@ -98,6 +104,6 @@ SPEC CHECKSUMS:
   ShareSDK3: e7bcdfeb95338f89efd6fff82b4793d2bfee76f8
   SnapKit: 2e456761aa92d4d4067a7a5594c18769d451a8ad
 
-PODFILE CHECKSUM: 6ce86d4fabc8ce50bccb2182442f5b451a50da75
+PODFILE CHECKSUM: 2a40f332c08769b0751947e688f7607f9a58744c
 
 COCOAPODS: 1.1.0.rc.2
