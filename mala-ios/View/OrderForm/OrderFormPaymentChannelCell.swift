@@ -23,7 +23,7 @@ class OrderFormPaymentChannelCell: UITableViewCell {
                 payChannelLabel.text = "微信"
                 iconView.image = UIImage(named: "wechat_icon")
                 break
-            case .QCPay:
+            case .QRPay:
                 payChannelLabel.text = "家长代付"
                 iconView.image = UIImage(named: "qcpay_icon")
                 break

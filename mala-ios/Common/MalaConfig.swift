@@ -175,7 +175,7 @@ open class MalaConfig {
         return [
             PaymentChannel(imageName: "alipay_icon", title: "支付宝", subTitle: "支付宝安全支付", channel: .Alipay),
             PaymentChannel(imageName: "wechat_icon", title: "微信支付", subTitle: "微信快捷支付", channel: .Wechat),
-            PaymentChannel(imageName: "qcpay_icon", title: "家长代付", subTitle: "扫二维码支付", channel: .QCPay)
+            PaymentChannel(imageName: "qcpay_icon", title: "家长代付", subTitle: "扫二维码支付", channel: .QRPay)
         ]
     }
     
