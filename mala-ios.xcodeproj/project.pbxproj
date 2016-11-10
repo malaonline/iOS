@@ -862,6 +862,21 @@
 		F4C5C2501C75D37000FB833B /* EvaluationFiling3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F4C5C24A1C75D37000FB833B /* EvaluationFiling3@2x.png */; };
 		F4C5C2511C75D37000FB833B /* EvaluationFiling3@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = F4C5C24B1C75D37000FB833B /* EvaluationFiling3@3x.png */; };
 		F4C5C2571C76B87800FB833B /* CouponModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C5C2561C76B87800FB833B /* CouponModel.swift */; };
+		F4CECD861DD452F800E64B58 /* QRPaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CECD851DD452F800E64B58 /* QRPaymentViewController.swift */; };
+		F4CECD871DD452F800E64B58 /* QRPaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CECD851DD452F800E64B58 /* QRPaymentViewController.swift */; };
+		F4CECD881DD452F800E64B58 /* QRPaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CECD851DD452F800E64B58 /* QRPaymentViewController.swift */; };
+		F4CECD8E1DD45C4000E64B58 /* CIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CECD8A1DD45C4000E64B58 /* CIColorExtension.swift */; };
+		F4CECD8F1DD45C4000E64B58 /* CIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CECD8A1DD45C4000E64B58 /* CIColorExtension.swift */; };
+		F4CECD901DD45C4000E64B58 /* CIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CECD8A1DD45C4000E64B58 /* CIColorExtension.swift */; };
+		F4CECD911DD45C4000E64B58 /* CIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CECD8B1DD45C4000E64B58 /* CIImageExtension.swift */; };
+		F4CECD921DD45C4000E64B58 /* CIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CECD8B1DD45C4000E64B58 /* CIImageExtension.swift */; };
+		F4CECD931DD45C4000E64B58 /* CIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CECD8B1DD45C4000E64B58 /* CIImageExtension.swift */; };
+		F4CECD941DD45C4000E64B58 /* QRCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CECD8C1DD45C4000E64B58 /* QRCode.swift */; };
+		F4CECD951DD45C4000E64B58 /* QRCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CECD8C1DD45C4000E64B58 /* QRCode.swift */; };
+		F4CECD961DD45C4000E64B58 /* QRCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CECD8C1DD45C4000E64B58 /* QRCode.swift */; };
+		F4CECD971DD45C4000E64B58 /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CECD8D1DD45C4000E64B58 /* UIImageViewExtension.swift */; };
+		F4CECD981DD45C4000E64B58 /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CECD8D1DD45C4000E64B58 /* UIImageViewExtension.swift */; };
+		F4CECD991DD45C4000E64B58 /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CECD8D1DD45C4000E64B58 /* UIImageViewExtension.swift */; };
 		F4D0D1491C9A4F3E00B25704 /* StudentCourseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D0D1481C9A4F3E00B25704 /* StudentCourseModel.swift */; };
 		F4D0D14B1C9FA60A00B25704 /* CourseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D0D14A1C9FA60A00B25704 /* CourseModel.swift */; };
 		F4D0D14D1C9FA6B700B25704 /* CommentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D0D14C1C9FA6B700B25704 /* CommentModel.swift */; };
@@ -1210,6 +1225,11 @@
 		F4C5C24A1C75D37000FB833B /* EvaluationFiling3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "EvaluationFiling3@2x.png"; sourceTree = "<group>"; };
 		F4C5C24B1C75D37000FB833B /* EvaluationFiling3@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "EvaluationFiling3@3x.png"; sourceTree = "<group>"; };
 		F4C5C2561C76B87800FB833B /* CouponModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CouponModel.swift; sourceTree = "<group>"; };
+		F4CECD851DD452F800E64B58 /* QRPaymentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRPaymentViewController.swift; sourceTree = "<group>"; };
+		F4CECD8A1DD45C4000E64B58 /* CIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CIColorExtension.swift; sourceTree = "<group>"; };
+		F4CECD8B1DD45C4000E64B58 /* CIImageExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CIImageExtension.swift; sourceTree = "<group>"; };
+		F4CECD8C1DD45C4000E64B58 /* QRCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCode.swift; sourceTree = "<group>"; };
+		F4CECD8D1DD45C4000E64B58 /* UIImageViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageViewExtension.swift; sourceTree = "<group>"; };
 		F4D0D1481C9A4F3E00B25704 /* StudentCourseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentCourseModel.swift; sourceTree = "<group>"; };
 		F4D0D14A1C9FA60A00B25704 /* CourseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseModel.swift; sourceTree = "<group>"; };
 		F4D0D14C1C9FA6B700B25704 /* CommentModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentModel.swift; sourceTree = "<group>"; };
@@ -1512,6 +1532,7 @@
 		30E3366C1C27C41800DCF1C5 /* Tool */ = {
 			isa = PBXGroup;
 			children = (
+				F4CECD891DD45C4000E64B58 /* QRCode */,
 				F48F12A91DAB7A9C006A2F5C /* SKPhotoBrowser */,
 				F4F1EBDD1CF6B98500EBDBF6 /* YLProgressBar */,
 				F452CD6B1CE0313E001A30E8 /* WZLBadge */,
@@ -1860,6 +1881,7 @@
 				F46065141C97B168004056B1 /* TeacherDetailsController.swift */,
 				F46065101C97B168004056B1 /* CourseChoosingViewController.swift */,
 				F46065131C97B168004056B1 /* PaymentViewController.swift */,
+				F4CECD851DD452F800E64B58 /* QRPaymentViewController.swift */,
 			);
 			path = FindTeacher;
 			sourceTree = "<group>";
@@ -2046,6 +2068,17 @@
 				F4C5C2441C75D35400FB833B /* EvaluationFiling.plist */,
 			);
 			path = EvaluationFiling;
+			sourceTree = "<group>";
+		};
+		F4CECD891DD45C4000E64B58 /* QRCode */ = {
+			isa = PBXGroup;
+			children = (
+				F4CECD8A1DD45C4000E64B58 /* CIColorExtension.swift */,
+				F4CECD8B1DD45C4000E64B58 /* CIImageExtension.swift */,
+				F4CECD8C1DD45C4000E64B58 /* QRCode.swift */,
+				F4CECD8D1DD45C4000E64B58 /* UIImageViewExtension.swift */,
+			);
+			path = QRCode;
 			sourceTree = "<group>";
 		};
 		F4D0D17F1CA14F7900B25704 /* CommentView */ = {
@@ -2591,6 +2624,7 @@
 				F418F6F71CFC499200CD3B80 /* UIView+WZLBadge.m in Sources */,
 				F418F6F01CFC48C000CD3B80 /* UIBarButtonItem+WZLBadge.m in Sources */,
 				F41CE6471D8680A400B57F69 /* RegionUnitCell.swift in Sources */,
+				F4CECD8E1DD45C4000E64B58 /* CIColorExtension.swift in Sources */,
 				F418F6F21CFC48C000CD3B80 /* UITabBarItem+WZLBadge.m in Sources */,
 				F48F12C61DAB7A9C006A2F5C /* SKAnimator.swift in Sources */,
 				F4F1EBD81CF5AA7B00EBDBF6 /* KMSwizzle.m in Sources */,
@@ -2635,6 +2669,7 @@
 				F49BD55D1CA3C2DF00EB3CCF /* MalaRemoteNotificationHandler.swift in Sources */,
 				F48F12CF1DAB7A9C006A2F5C /* SKCacheable.swift in Sources */,
 				F45E69E01C8D278A00BD0859 /* ThemeHUD.swift in Sources */,
+				F4CECD971DD45C4000E64B58 /* UIImageViewExtension.swift in Sources */,
 				F465F14D1DB4ABEC0025D867 /* LiveCourseTableViewCell.swift in Sources */,
 				F4331AC41DD19B78003F062D /* BannerView.swift in Sources */,
 				F40B53D21C841AD600C20037 /* PaymentAmountCell.swift in Sources */,
@@ -2648,6 +2683,7 @@
 				F427FFA91CEDA34700EAB748 /* LearningReportTopicDataCell.swift in Sources */,
 				F4767A431D348A7B00FD47F1 /* TagListView.swift in Sources */,
 				F46065241C97B168004056B1 /* TeacherDetailsController.swift in Sources */,
+				F4CECD861DD452F800E64B58 /* QRPaymentViewController.swift in Sources */,
 				F48F12C31DAB7A9C006A2F5C /* UIView+Radius.swift in Sources */,
 				F460650C1C96D363004056B1 /* UIImageView+Navi.swift in Sources */,
 				F40B53B01C7EEA2800C20037 /* Extension+NSURLRequest.swift in Sources */,
@@ -2702,6 +2738,7 @@
 				307AB89E1C33CDD200D8397F /* GradePriceModel.swift in Sources */,
 				F40B53D01C841A9800C20037 /* PaymentChannelCell.swift in Sources */,
 				F48F12F31DAB7A9C006A2F5C /* SKPhotoBrowserOptions.swift in Sources */,
+				F4CECD911DD45C4000E64B58 /* CIImageExtension.swift in Sources */,
 				F4D0D1491C9A4F3E00B25704 /* StudentCourseModel.swift in Sources */,
 				F4FF66FB1DB88EAC0036E299 /* LiveCourseDetailLecturerCell.swift in Sources */,
 				304D6D381C3E92D500282925 /* Extension+UIImageView.swift in Sources */,
@@ -2752,6 +2789,7 @@
 				F474E89D1CF2A9ED0025A865 /* SimpleReportResultModel.swift in Sources */,
 				30B5980F1C451A8900169390 /* MemberServiceModel.swift in Sources */,
 				F40B53AE1C7EDA7500C20037 /* MalaNetworking.swift in Sources */,
+				F4CECD941DD45C4000E64B58 /* QRCode.swift in Sources */,
 				F48F12C01DAB7A9C006A2F5C /* UIImage+Rotation.swift in Sources */,
 				F4E106261CC0D390001AD4AF /* Extension+UIDevice.swift in Sources */,
 				F4FF66E81DB87D5F0036E299 /* LiveCourseConfirmView.swift in Sources */,
@@ -2824,6 +2862,7 @@
 				F418F7001CFD2E1800CD3B80 /* UITabBarItem+WZLBadge.m in Sources */,
 				F418F7021CFD2E1800CD3B80 /* CAAnimation+WAnimation.m in Sources */,
 				F41CE6481D8680A400B57F69 /* RegionUnitCell.swift in Sources */,
+				F4CECD8F1DD45C4000E64B58 /* CIColorExtension.swift in Sources */,
 				F418F7051CFD2E1800CD3B80 /* UIView+WZLBadge.m in Sources */,
 				F48F12C71DAB7A9C006A2F5C /* SKAnimator.swift in Sources */,
 				F418F7071CFD2E1800CD3B80 /* TimeScheduleModel.swift in Sources */,
@@ -2868,6 +2907,7 @@
 				35FF7A7D1CF8325A000A70EE /* MalaRemoteNotificationHandler.swift in Sources */,
 				F48F12D01DAB7A9C006A2F5C /* SKCacheable.swift in Sources */,
 				35FF7A7E1CF8325A000A70EE /* ThemeHUD.swift in Sources */,
+				F4CECD981DD45C4000E64B58 /* UIImageViewExtension.swift in Sources */,
 				F465F14E1DB4ABEC0025D867 /* LiveCourseTableViewCell.swift in Sources */,
 				F4331AC51DD19B78003F062D /* BannerView.swift in Sources */,
 				35FF7A7F1CF8325A000A70EE /* PaymentAmountCell.swift in Sources */,
@@ -2881,6 +2921,7 @@
 				35FF7A851CF8325A000A70EE /* TeacherDetailsController.swift in Sources */,
 				F4767A441D348A7B00FD47F1 /* TagListView.swift in Sources */,
 				35FF7A861CF8325A000A70EE /* UIImageView+Navi.swift in Sources */,
+				F4CECD871DD452F800E64B58 /* QRPaymentViewController.swift in Sources */,
 				F48F12C41DAB7A9C006A2F5C /* UIView+Radius.swift in Sources */,
 				35FF7A871CF8325A000A70EE /* Extension+NSURLRequest.swift in Sources */,
 				35FF7A891CF8325A000A70EE /* Common.swift in Sources */,
@@ -2935,6 +2976,7 @@
 				35FF7AB11CF8325A000A70EE /* GradePriceModel.swift in Sources */,
 				35FF7AB21CF8325A000A70EE /* PaymentChannelCell.swift in Sources */,
 				F48F12F41DAB7A9C006A2F5C /* SKPhotoBrowserOptions.swift in Sources */,
+				F4CECD921DD45C4000E64B58 /* CIImageExtension.swift in Sources */,
 				35FF7AB31CF8325A000A70EE /* StudentCourseModel.swift in Sources */,
 				F4FF66FC1DB88EAC0036E299 /* LiveCourseDetailLecturerCell.swift in Sources */,
 				35FF7AB41CF8325A000A70EE /* Extension+UIImageView.swift in Sources */,
@@ -2985,6 +3027,7 @@
 				35FF7AE41CF8325A000A70EE /* SimpleReportResultModel.swift in Sources */,
 				35FF7AE51CF8325A000A70EE /* MemberServiceModel.swift in Sources */,
 				35FF7AE61CF8325A000A70EE /* MalaNetworking.swift in Sources */,
+				F4CECD951DD45C4000E64B58 /* QRCode.swift in Sources */,
 				F48F12C11DAB7A9C006A2F5C /* UIImage+Rotation.swift in Sources */,
 				35FF7AE71CF8325A000A70EE /* Extension+UIDevice.swift in Sources */,
 				F4FF66E91DB87D5F0036E299 /* LiveCourseConfirmView.swift in Sources */,
@@ -3057,6 +3100,7 @@
 				F418F7121CFD2E4500CD3B80 /* CAAnimation+WAnimation.m in Sources */,
 				F418F7151CFD2E4500CD3B80 /* UIView+WZLBadge.m in Sources */,
 				F41CE6491D8680A400B57F69 /* RegionUnitCell.swift in Sources */,
+				F4CECD901DD45C4000E64B58 /* CIColorExtension.swift in Sources */,
 				F418F7191CFD2E4500CD3B80 /* AnimatedGIFImageSerialization.m in Sources */,
 				F48F12C81DAB7A9C006A2F5C /* SKAnimator.swift in Sources */,
 				F418F71A1CFD2E4500CD3B80 /* TimeScheduleModel.swift in Sources */,
@@ -3101,6 +3145,7 @@
 				35FF7B601CF83264000A70EE /* MalaRemoteNotificationHandler.swift in Sources */,
 				F48F12D11DAB7A9C006A2F5C /* SKCacheable.swift in Sources */,
 				35FF7B611CF83264000A70EE /* ThemeHUD.swift in Sources */,
+				F4CECD991DD45C4000E64B58 /* UIImageViewExtension.swift in Sources */,
 				F465F14F1DB4ABEC0025D867 /* LiveCourseTableViewCell.swift in Sources */,
 				F4331AC61DD19B78003F062D /* BannerView.swift in Sources */,
 				35FF7B621CF83264000A70EE /* PaymentAmountCell.swift in Sources */,
@@ -3114,6 +3159,7 @@
 				35FF7B681CF83264000A70EE /* TeacherDetailsController.swift in Sources */,
 				F4767A451D348A7B00FD47F1 /* TagListView.swift in Sources */,
 				35FF7B691CF83264000A70EE /* UIImageView+Navi.swift in Sources */,
+				F4CECD881DD452F800E64B58 /* QRPaymentViewController.swift in Sources */,
 				F48F12C51DAB7A9C006A2F5C /* UIView+Radius.swift in Sources */,
 				35FF7B6A1CF83264000A70EE /* Extension+NSURLRequest.swift in Sources */,
 				35FF7B6C1CF83264000A70EE /* Common.swift in Sources */,
@@ -3168,6 +3214,7 @@
 				35FF7B941CF83264000A70EE /* GradePriceModel.swift in Sources */,
 				35FF7B951CF83264000A70EE /* PaymentChannelCell.swift in Sources */,
 				F48F12F51DAB7A9C006A2F5C /* SKPhotoBrowserOptions.swift in Sources */,
+				F4CECD931DD45C4000E64B58 /* CIImageExtension.swift in Sources */,
 				35FF7B961CF83264000A70EE /* StudentCourseModel.swift in Sources */,
 				F4FF66FD1DB88EAC0036E299 /* LiveCourseDetailLecturerCell.swift in Sources */,
 				35FF7B971CF83264000A70EE /* Extension+UIImageView.swift in Sources */,
@@ -3218,6 +3265,7 @@
 				35FF7BC71CF83264000A70EE /* SimpleReportResultModel.swift in Sources */,
 				35FF7BC81CF83264000A70EE /* MemberServiceModel.swift in Sources */,
 				35FF7BC91CF83264000A70EE /* MalaNetworking.swift in Sources */,
+				F4CECD961DD45C4000E64B58 /* QRCode.swift in Sources */,
 				F48F12C21DAB7A9C006A2F5C /* UIImage+Rotation.swift in Sources */,
 				35FF7BCA1CF83264000A70EE /* Extension+UIDevice.swift in Sources */,
 				F4FF66EA1DB87D5F0036E299 /* LiveCourseConfirmView.swift in Sources */,
