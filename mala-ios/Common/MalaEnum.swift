@@ -28,9 +28,11 @@ enum PaymentMethod: String {
 ///  - See: [取值范围](https://www.pingxx.com/api#api-charges)
 ///  - Wechat: 微信支付
 ///  - Alipay: 支付宝手机支付
+///  - Alipay: 支付宝手机支付
 enum MalaPaymentChannel: String {
     case Wechat = "wx"
     case Alipay = "alipay"
+    case QCPay  = "qcPay"
     case Other  = "other"
 }
 

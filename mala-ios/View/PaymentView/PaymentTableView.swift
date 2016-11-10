@@ -74,9 +74,13 @@ class PaymentTableView: UITableView, UITableViewDataSource, UITableViewDelegate 
             // 微信支付
             let cell = (tableView.dequeueReusableCell(withIdentifier: paymentChannelCellIdentifier, for: indexPath)) as! PaymentChannelCell
             cell.model = MalaConfig.malaPaymentChannels()[1]
+            return cell
+        case (1, 2):
+            // 家长代付
+            let cell = (tableView.dequeueReusableCell(withIdentifier: paymentChannelCellIdentifier, for: indexPath)) as! PaymentChannelCell
+            cell.model = MalaConfig.malaPaymentChannels()[2]
             cell.hideSeparator()
             return cell
-            
         default:
             let cell = (tableView.dequeueReusableCell(withIdentifier: malaBaseCellIdentifier, for: indexPath)) as! MalaBaseCell
             return cell

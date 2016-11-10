@@ -16,13 +16,9 @@ open class MalaConfig {
     class func callMeInSeconds() -> Int {
         return 60
     }
-    ///  支付方式
-    class func paymentChannel() -> [String] {
-        return ["wechat", "alipay"]
-    }
     ///  支付方式数
     class func paymentChannelAmount() -> Int {
-        return paymentChannel().count
+        return malaPaymentChannels().count
     }
     ///  头像最大大小
     class func avatarMaxSize() -> CGSize {
@@ -178,7 +174,8 @@ open class MalaConfig {
     class func malaPaymentChannels() -> [PaymentChannel] {
         return [
             PaymentChannel(imageName: "alipay_icon", title: "支付宝", subTitle: "支付宝安全支付", channel: .Alipay),
-            PaymentChannel(imageName: "wechat_icon", title: "微信支付", subTitle: "微信快捷支付", channel: .Wechat)
+            PaymentChannel(imageName: "wechat_icon", title: "微信支付", subTitle: "微信快捷支付", channel: .Wechat),
+            PaymentChannel(imageName: "qcpay_icon", title: "家长代付", subTitle: "扫二维码支付", channel: .QCPay)
         ]
     }
     
