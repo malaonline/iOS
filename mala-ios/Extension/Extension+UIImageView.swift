@@ -49,7 +49,7 @@ extension UIImageView {
         image = UIImage(named: name ?? "")
     }
     
-    func setImage(withURL url: String? = nil, placeholderImage: String? = "profileAvatar_placeholder", progressBlock: DownloadProgressBlock? = nil, completionHandler: CompletionHandler? = nil) {
+    func setImage(withURL url: String? = nil, placeholderImage: String? = "avatar_placeholder", progressBlock: DownloadProgressBlock? = nil, completionHandler: CompletionHandler? = nil) {
         
         // 使用图片绝对路径作为缓存键值
         guard let url = url, let URL = URL(string: url) else {

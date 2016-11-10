@@ -28,12 +28,12 @@ class LiveCourseAvatarView: UIImageView {
     // MARK: - Components
     /// 主讲老师头像
     private lazy var lecturerAvatar: UIImageView = {
-        let imageView = UIImageView(cornerRadius: 30/2, image: "profileAvatar_placeholder")
+        let imageView = UIImageView(cornerRadius: 30/2, image: "avatar_placeholder")
         return imageView
     }()
     /// 助教老师头像
     private lazy var assistantAvatar: UIImageView = {
-        let imageView = UIImageView(cornerRadius: 30/2, image: "profileAvatar_placeholder")
+        let imageView = UIImageView(cornerRadius: 30/2, image: "avatar_placeholder")
         return imageView
     }()
     

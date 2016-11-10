@@ -28,7 +28,7 @@ class CommentViewCell: UITableViewCell {
                 liveCourseAvatarView.isHidden = false
                 avatarView.isHidden = true
             }else {
-                avatarView.setImage(withURL: model?.teacher?.avatar, placeholderImage: "profileAvatar_placeholder")
+                avatarView.setImage(withURL: model?.teacher?.avatar, placeholderImage: "avatar_placeholder")
                 avatarView.isHidden = false
                 liveCourseAvatarView.isHidden = true
             }
@@ -70,7 +70,7 @@ class CommentViewCell: UITableViewCell {
     private lazy var avatarView: UIImageView = {
         let imageView = UIImageView(
             cornerRadius: 55/2,
-            image: "profileAvatar_placeholder",
+            image: "avatar_placeholder",
             contentMode: .scaleAspectFill
         )
         return imageView

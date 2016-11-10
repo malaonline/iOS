@@ -148,7 +148,7 @@ class OrderFormViewCell: UITableViewCell {
     }()
     /// 老师头像
     private lazy var avatarView: UIImageView = {
-        let imageView = UIImageView(cornerRadius: 55/2, image: "profileAvatar_placeholder")
+        let imageView = UIImageView(cornerRadius: 55/2, image: "avatar_placeholder")
         return imageView
     }()
     /// 双师直播课程头像
@@ -404,7 +404,7 @@ class OrderFormViewCell: UITableViewCell {
         liveCourseAvatarView.isHidden = true
         
         teacherNameString.text = model?.teacherName
-        avatarView.setImage(withURL: model?.avatarURL, placeholderImage: "profileAvatar_placeholder")
+        avatarView.setImage(withURL: model?.avatarURL, placeholderImage: "avatar_placeholder")
 
     }
     
