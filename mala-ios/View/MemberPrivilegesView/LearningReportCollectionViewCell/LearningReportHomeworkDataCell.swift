@@ -204,15 +204,12 @@ class LearningReportHomeworkDataCell: MalaBaseCardCell {
         let yVals = model.map { (data) -> ChartDataEntry in
             return ChartDataEntry(x: data.rate.doubleValue, y: Double(data.id))
         }
-        // X轴数据
-        let xVals = model.map { (data) -> String in
-            return data.name
-        }
+        
         // 设置数据
         configure()
         let dataSet = PieChartDataSet(values: yVals, label: nil)
         dataSet.colors = MalaConfig.chartsColor()
-        let data = PieChartData(xVals: xVals, dataSet: dataSet)
+        let data = PieChartData(dataSets: [dataSet])
         
         // 设置数据显示格式
         let pFormatter = NumberFormatter()
@@ -234,7 +231,7 @@ class LearningReportHomeworkDataCell: MalaBaseCardCell {
         // 设置空数据
         let dataSet = PieChartDataSet(values: [yVals], label: nil)
         dataSet.colors = [MalaColor_E5E5E5_3]
-        let data = PieChartData(xVals: [""], dataSet: dataSet)
+        let data = PieChartData(dataSets: [dataSet])
         pieChartView.data = data
     }
 }
