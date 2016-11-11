@@ -106,23 +106,32 @@ class PaymentTableView: UITableView, UITableViewDataSource, UITableViewDelegate 
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // 所有操作结束弹栈时，取消选中项
-        defer {
-            tableView.deselectRow(at: indexPath, animated: true)
-        }
         
         // 当选择支付方式时
         guard indexPath.section == 1 else {
             return
         }
         
+        // 所有操作结束弹栈时，取消选中项
+        defer {
+            tableView.deselectRow(at: indexPath, animated: true)
+        }
+        
+        guard let cell = tableView.cellForRow(at: indexPath) as? PaymentChannelCell else {
+            return
+        }
+        
+        // 若为扫码支付
+        if cell.model?.channel == .QRPay {
+            
+        }
+        
         // 切换支付方式
         tableView.cellForRow(at: currentSelectedIndexPath)?.isSelected = false
         currentSelectedIndexPath = indexPath
-        let cell = tableView.cellForRow(at: indexPath) as? PaymentChannelCell
-        cell?.isSelected = true
+        cell.isSelected = true
         
         // 更改订单模型 - 支付方式
-        MalaOrderObject.channel = cell?.model?.channel ?? .Other
+        MalaOrderObject.channel = cell.model?.channel ?? .Other
     }
 }

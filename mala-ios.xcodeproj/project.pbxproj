@@ -877,6 +877,9 @@
 		F4CECD971DD45C4000E64B58 /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CECD8D1DD45C4000E64B58 /* UIImageViewExtension.swift */; };
 		F4CECD981DD45C4000E64B58 /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CECD8D1DD45C4000E64B58 /* UIImageViewExtension.swift */; };
 		F4CECD991DD45C4000E64B58 /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CECD8D1DD45C4000E64B58 /* UIImageViewExtension.swift */; };
+		F4CECD9B1DD45DA300E64B58 /* QRCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CECD9A1DD45DA300E64B58 /* QRCodeView.swift */; };
+		F4CECD9C1DD45DA300E64B58 /* QRCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CECD9A1DD45DA300E64B58 /* QRCodeView.swift */; };
+		F4CECD9D1DD45DA300E64B58 /* QRCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CECD9A1DD45DA300E64B58 /* QRCodeView.swift */; };
 		F4D0D1491C9A4F3E00B25704 /* StudentCourseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D0D1481C9A4F3E00B25704 /* StudentCourseModel.swift */; };
 		F4D0D14B1C9FA60A00B25704 /* CourseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D0D14A1C9FA60A00B25704 /* CourseModel.swift */; };
 		F4D0D14D1C9FA6B700B25704 /* CommentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D0D14C1C9FA6B700B25704 /* CommentModel.swift */; };
@@ -1230,6 +1233,7 @@
 		F4CECD8B1DD45C4000E64B58 /* CIImageExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CIImageExtension.swift; sourceTree = "<group>"; };
 		F4CECD8C1DD45C4000E64B58 /* QRCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCode.swift; sourceTree = "<group>"; };
 		F4CECD8D1DD45C4000E64B58 /* UIImageViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageViewExtension.swift; sourceTree = "<group>"; };
+		F4CECD9A1DD45DA300E64B58 /* QRCodeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCodeView.swift; sourceTree = "<group>"; };
 		F4D0D1481C9A4F3E00B25704 /* StudentCourseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentCourseModel.swift; sourceTree = "<group>"; };
 		F4D0D14A1C9FA60A00B25704 /* CourseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseModel.swift; sourceTree = "<group>"; };
 		F4D0D14C1C9FA6B700B25704 /* CommentModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentModel.swift; sourceTree = "<group>"; };
@@ -1681,6 +1685,7 @@
 				F40B53CF1C841A9800C20037 /* PaymentChannelCell.swift */,
 				F404D47E1C8436A700C19C44 /* PaymentBottomView.swift */,
 				F47C2AB61C8445950051A880 /* PaymentChannelSectionHeaderView.swift */,
+				F4CECD9A1DD45DA300E64B58 /* QRCodeView.swift */,
 			);
 			path = PaymentView;
 			sourceTree = "<group>";
@@ -2655,6 +2660,7 @@
 				F40B53AC1C7ED80800C20037 /* MalaService.swift in Sources */,
 				F48BBAD61CE57F6E00774297 /* OrderFormStatusCell.swift in Sources */,
 				F48F12DE1DAB7A9C006A2F5C /* SKLocalPhoto.swift in Sources */,
+				F4CECD9B1DD45DA300E64B58 /* QRCodeView.swift in Sources */,
 				F48F12E41DAB7A9C006A2F5C /* SKPagingScrollView.swift in Sources */,
 				F427FF9A1CEB0B5C00EAB748 /* MemberSerivceCollectionView.swift in Sources */,
 				F4BD4FCE1C74559F00488613 /* AchievementModel.swift in Sources */,
@@ -2893,6 +2899,7 @@
 				35FF7A721CF8325A000A70EE /* MalaService.swift in Sources */,
 				35FF7A741CF8325A000A70EE /* OrderFormStatusCell.swift in Sources */,
 				F48F12DF1DAB7A9C006A2F5C /* SKLocalPhoto.swift in Sources */,
+				F4CECD9C1DD45DA300E64B58 /* QRCodeView.swift in Sources */,
 				F48F12E51DAB7A9C006A2F5C /* SKPagingScrollView.swift in Sources */,
 				35FF7A751CF8325A000A70EE /* MemberSerivceCollectionView.swift in Sources */,
 				35FF7A761CF8325A000A70EE /* AchievementModel.swift in Sources */,
@@ -3131,6 +3138,7 @@
 				35FF7B551CF83264000A70EE /* MalaService.swift in Sources */,
 				35FF7B571CF83264000A70EE /* OrderFormStatusCell.swift in Sources */,
 				F48F12E01DAB7A9C006A2F5C /* SKLocalPhoto.swift in Sources */,
+				F4CECD9D1DD45DA300E64B58 /* QRCodeView.swift in Sources */,
 				F48F12E61DAB7A9C006A2F5C /* SKPagingScrollView.swift in Sources */,
 				35FF7B581CF83264000A70EE /* MemberSerivceCollectionView.swift in Sources */,
 				35FF7B591CF83264000A70EE /* AchievementModel.swift in Sources */,
