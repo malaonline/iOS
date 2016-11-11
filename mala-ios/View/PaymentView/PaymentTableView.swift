@@ -121,11 +121,6 @@ class PaymentTableView: UITableView, UITableViewDataSource, UITableViewDelegate 
             return
         }
         
-        // 若为扫码支付
-        if cell.model?.channel == .QRPay {
-            
-        }
-        
         // 切换支付方式
         tableView.cellForRow(at: currentSelectedIndexPath)?.isSelected = false
         currentSelectedIndexPath = indexPath

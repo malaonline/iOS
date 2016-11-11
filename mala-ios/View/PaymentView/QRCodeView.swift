@@ -11,11 +11,16 @@ import UIKit
 class QRCodeView: UIView {
 
     // MARK: - Property
-    
     /// 要生成二维码的链接
-    var url: String? {
+    var url: String = "" {
         didSet {
-            
+            codeView.image = QRCode(url)?.image
+        }
+    }
+    /// 支付价格
+    var price: Int = 0 {
+        didSet {
+            priceLabel.text = price.amountCNY
         }
     }
     
@@ -57,7 +62,7 @@ class QRCodeView: UIView {
     }()
     /// 二维码
     private lazy var codeView: UIImageView = {
-        let imageView = UIImageView(qrCode: QRCode(URL(string: "eames.im")!)!)
+        let imageView = UIImageView()
         return imageView
     }()
     
@@ -78,6 +83,7 @@ class QRCodeView: UIView {
     private func setupUserInterface() {
         // Style
         backgroundColor = UIColor.white
+        price = ServiceResponseOrder.amount == 0 ? MalaCurrentCourse.getAmount() ?? 0 : ServiceResponseOrder.amount
         
         // SubViews
         addSubview(totalString)
@@ -115,5 +121,4 @@ class QRCodeView: UIView {
             maker.bottom.equalTo(self).offset(-12)
         }
     }
-
 }

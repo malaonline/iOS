@@ -15,14 +15,10 @@ private struct PagingMenuOptions: PagingMenuControllerCustomizable {
         return MalaColor_EDEDED_0
     }
     
-     var lazyLoadingPage: LazyLoadingPage {
-         return .one
-     }
-    
     fileprivate var componentType: ComponentType {
         return .menuView(menuOptions: MenuOptions())
     }
-
+    
     fileprivate struct MenuOptions: MenuViewCustomizable {
         var backgroundColor: UIColor {
             return MalaColor_FDFDFD_0
@@ -55,7 +51,7 @@ private struct PagingMenuOptions: PagingMenuControllerCustomizable {
 
 
 class QRPaymentViewController: BaseViewController {
-
+    
     // MARK: - Components
     /// 二维码信息
     private lazy var qrView: QRCodeView = {
@@ -105,13 +101,16 @@ class QRPaymentViewController: BaseViewController {
         
         setupUserInterface()
         setupPageController()
+        
+        /// 获取支付信息
+        getChargeToken()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
- 
+    
     // MARK: - Private Method
     private func setupUserInterface() {
         // Style
@@ -154,19 +153,115 @@ class QRPaymentViewController: BaseViewController {
     }
     
     
-    @objc private func confirmButtonDidTap() {
+    func getChargeToken() {
         
+        MalaIsPaymentIn = true
+        ThemeHUD.showActivityIndicator()
+        
+        ///  获取支付信息
+        getChargeTokenWithChannel(.WxQR, orderID: ServiceResponseOrder.id, failureHandler: { (reason, errorMessage) -> Void in
+            
+            ThemeHUD.hideActivityIndicator()
+            defaultFailureHandler(reason, errorMessage: errorMessage)
+            
+            // 错误处理
+            if let errorMessage = errorMessage {
+                println("PaymentViewController - getGharge Error \(errorMessage)")
+            }
+            
+        }, completion: { [weak self] (charges) -> Void in
+            println("获取支付信息:\(charges)")
+            
+            DispatchQueue.main.async(execute: { () -> Void in
+                
+                ThemeHUD.hideActivityIndicator()
+                
+                /// 验证返回值是否有效
+                guard let charge = charges else {
+                    self?.ShowTost("支付信息错误，请重试")
+                    return
+                }
+                
+                /// 验证返回结果是否存在result(存在则表示失败)
+                if let _ = charge["result"] as? Bool {
+                    /// 失败弹出提示
+                    if let strongSelf = self {
+                        let alert = JSSAlertView().show(strongSelf,
+                                                        title: "部分课程时间已被占用，请重新选择上课时间",
+                                                        buttonText: "重新选课",
+                                                        iconImage: UIImage(named: "alert_PaymentFail")
+                        )
+                        alert.addAction(strongSelf.forcePop)
+                    }
+                }else {
+                    /// 成功保存Charge对象
+                    MalaPaymentCharge = charge
+                    
+                    /// 验证数据正确性
+                    guard let credential = charge["credential"] as? JSONDictionary else {
+                        println("credential 对象不存在！")
+                        return
+                    }
+                    
+                    /// 获取支付链接，生成二维码
+                    guard let qrPaymentURL = credential["wx_pub_qr"] as? String else {
+                        println("QR URL 不存在！")
+                        return
+                    }
+                    
+                    self?.qrView.url = qrPaymentURL
+                    self?.qrView.price = ServiceResponseOrder.amount == 0 ? MalaCurrentCourse.getAmount() ?? 0 : ServiceResponseOrder.amount
+                }
+            })
+        })
+    }
+    
+    private func cancelOrder() {
+        
+        println("取消订单")
+        ThemeHUD.showActivityIndicator()
+        
+        cancelOrderWithId(ServiceResponseOrder.id, failureHandler: { (reason, errorMessage) in
+            ThemeHUD.hideActivityIndicator()
+            
+            defaultFailureHandler(reason, errorMessage: errorMessage)
+            // 错误处理
+            if let errorMessage = errorMessage {
+                println("PaymentViewController - cancelOrder Error \(errorMessage)")
+            }
+        }, completion:{ [weak self] (result) in
+            ThemeHUD.hideActivityIndicator()
+            println("取消订单结果 - \(result)")
+            DispatchQueue.main.async(execute: { () -> Void in
+                _ = self?.navigationController?.popViewController(animated: true)
+            })
+        })
+    }
+    
+    
+    @objc private func forcePop() {
+        cancelOrder()
+        _ = navigationController?.popViewController(animated: true)
+    }
+    
+    @objc private func confirmButtonDidTap() {
+        println("QR Code - confirmButtonDidTap")
     }
 }
 
 
 // MARK: - PagingMenu Delegate
 extension QRPaymentViewController: PagingMenuControllerDelegate {
+    
     func willMove(toMenuItem menuItemView: MenuItemView, fromMenuItem previousMenuItemView: MenuItemView) {
-        println("willMove - \(menuItemView) - \(previousMenuItemView)")
+        print(#function)
+        print(previousMenuItemView)
+        print(menuItemView)
     }
     
     func didMove(toMenuItem menuItemView: MenuItemView, fromMenuItem previousMenuItemView: MenuItemView) {
-        println("didMove - \(menuItemView) - \(previousMenuItemView)")
+        print(#function)
+        print(previousMenuItemView)
+        print(menuItemView)
     }
 }

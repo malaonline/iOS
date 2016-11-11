@@ -24,6 +24,9 @@ var MalaServiceObject: [OtherServiceModel] = MalaOtherService
 var amount: Int = 0
 /// 订单对象
 var MalaOrderObject: OrderForm = OrderForm()
+/// 支付对象
+///  see - https://www.pingxx.com/api#charges-支付
+var MalaPaymentCharge: JSONDictionary = JSONDictionary()
 /// 服务器返回订单对象
 var ServiceResponseOrder: OrderForm = OrderForm()
 /// 用户拥有奖学金数据模型数组
