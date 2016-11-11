@@ -132,8 +132,16 @@ class PaymentViewController: BaseViewController, PaymentBottomViewDelegate {
     // MARK: - Delegate
     func paymentDidConfirm() {
         
-        // 获取支付信息
-        getChargeToken()
+        if MalaOrderObject.channel == .QRPay {
+            /// 扫码支付
+            let viewController = QRPaymentViewController()
+            viewController.hidesBottomBarWhenPushed = true
+            navigationController?.pushViewController(viewController, animated: true)
+            
+        }else {
+            /// 获取支付信息
+            getChargeToken()
+        }
     }
     
     func getChargeToken() {
@@ -175,8 +183,10 @@ class PaymentViewController: BaseViewController, PaymentBottomViewDelegate {
                         }
                         
                     }else {
+                        /// 保存支付对象
+                        MalaPaymentCharge = charge
                         /// 成功跳转支付
-                        self?.createPayment(charge)
+                        self?.createPayment(MalaPaymentCharge)
                     }
                 }
                 

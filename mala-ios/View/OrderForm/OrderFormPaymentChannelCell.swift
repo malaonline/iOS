@@ -23,6 +23,18 @@ class OrderFormPaymentChannelCell: UITableViewCell {
                 payChannelLabel.text = "微信"
                 iconView.image = UIImage(named: "wechat_icon")
                 break
+            case .AliQR:
+                payChannelLabel.text = "支付宝扫码支付"
+                iconView.image = UIImage(named: "qcpay_icon")
+                break
+            case .WxQR:
+                payChannelLabel.text = "微信扫码支付"
+                iconView.image = UIImage(named: "qcpay_icon")
+                break
+            case .QRPay:
+                payChannelLabel.text = "家长代付"
+                iconView.image = UIImage(named: "qcpay_icon")
+                break
             case .Other:
                 payChannelLabel.text = "其他支付方式"
                 break

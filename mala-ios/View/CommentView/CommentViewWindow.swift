@@ -25,7 +25,7 @@ open class CommentViewWindow: UIViewController, UITextViewDelegate {
                 liveCourseAvatarView.isHidden = false
                 avatar.isHidden = true
             }else {
-                avatar.setImage(withURL: model.teacher?.avatar, placeholderImage: "profileAvatar_placeholder")
+                avatar.setImage(withURL: model.teacher?.avatar, placeholderImage: "avatar_placeholder")
                 avatar.isHidden = false
                 liveCourseAvatarView.isHidden = true
             }   

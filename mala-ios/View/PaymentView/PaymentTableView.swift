@@ -74,9 +74,13 @@ class PaymentTableView: UITableView, UITableViewDataSource, UITableViewDelegate 
             // 微信支付
             let cell = (tableView.dequeueReusableCell(withIdentifier: paymentChannelCellIdentifier, for: indexPath)) as! PaymentChannelCell
             cell.model = MalaConfig.malaPaymentChannels()[1]
+            return cell
+        case (1, 2):
+            // 家长代付
+            let cell = (tableView.dequeueReusableCell(withIdentifier: paymentChannelCellIdentifier, for: indexPath)) as! PaymentChannelCell
+            cell.model = MalaConfig.malaPaymentChannels()[2]
             cell.hideSeparator()
             return cell
-            
         default:
             let cell = (tableView.dequeueReusableCell(withIdentifier: malaBaseCellIdentifier, for: indexPath)) as! MalaBaseCell
             return cell
@@ -102,23 +106,27 @@ class PaymentTableView: UITableView, UITableViewDataSource, UITableViewDelegate 
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // 所有操作结束弹栈时，取消选中项
-        defer {
-            tableView.deselectRow(at: indexPath, animated: true)
-        }
         
         // 当选择支付方式时
         guard indexPath.section == 1 else {
             return
         }
         
+        // 所有操作结束弹栈时，取消选中项
+        defer {
+            tableView.deselectRow(at: indexPath, animated: true)
+        }
+        
+        guard let cell = tableView.cellForRow(at: indexPath) as? PaymentChannelCell else {
+            return
+        }
+        
         // 切换支付方式
         tableView.cellForRow(at: currentSelectedIndexPath)?.isSelected = false
         currentSelectedIndexPath = indexPath
-        let cell = tableView.cellForRow(at: indexPath) as? PaymentChannelCell
-        cell?.isSelected = true
+        cell.isSelected = true
         
         // 更改订单模型 - 支付方式
-        MalaOrderObject.channel = cell?.model?.channel ?? .Other
+        MalaOrderObject.channel = cell.model?.channel ?? .Other
     }
 }

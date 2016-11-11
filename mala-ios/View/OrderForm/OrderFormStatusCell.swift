@@ -106,7 +106,7 @@ class OrderFormStatusCell: UITableViewCell {
     }()
     /// 老师头像
     private lazy var avatarView: UIImageView = {
-        let imageView = UIImageView(cornerRadius: 55/2, image: "profileAvatar_placeholder")
+        let imageView = UIImageView(cornerRadius: 55/2, image: "avatar_placeholder")
         return imageView
     }()
     
@@ -247,7 +247,7 @@ class OrderFormStatusCell: UITableViewCell {
         
         
         /// 课程信息
-        avatarView.setImage(withURL: model?.avatarURL, placeholderImage: "profileAvatar_placeholder")
+        avatarView.setImage(withURL: model?.avatarURL, placeholderImage: "avatar_placeholder")
         nameLabel.text = model?.teacherName
         subjectLabel.text = (model?.gradeName ?? "") + " " + (model?.subjectName ?? "")
         schoolLabel.text = model?.schoolName
