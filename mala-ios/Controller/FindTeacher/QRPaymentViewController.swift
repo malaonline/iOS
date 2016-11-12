@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import PagingMenuController
 
 private struct PagingMenuOptions: PagingMenuControllerCustomizable {
     
@@ -252,16 +251,8 @@ class QRPaymentViewController: BaseViewController {
 
 // MARK: - PagingMenu Delegate
 extension QRPaymentViewController: PagingMenuControllerDelegate {
-    
-    func willMove(toMenuItem menuItemView: MenuItemView, fromMenuItem previousMenuItemView: MenuItemView) {
-        print(#function)
-        print(previousMenuItemView)
-        print(menuItemView)
-    }
-    
+
     func didMove(toMenuItem menuItemView: MenuItemView, fromMenuItem previousMenuItemView: MenuItemView) {
-        print(#function)
-        print(previousMenuItemView)
-        print(menuItemView)
+        print("didMove - \(previousMenuItemView) - \(menuItemView)")
     }
 }
