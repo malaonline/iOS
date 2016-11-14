@@ -118,7 +118,8 @@ class LiveCourseViewController: BaseViewController {
         
         println("Banner点击")
         let webViewController = MalaSingleWebViewController()
-        webViewController.url = MalaConfig.adURL()
+        webViewController.loadURL(url: MalaConfig.adURL())
+        webViewController.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(webViewController, animated: true)
     }
 }

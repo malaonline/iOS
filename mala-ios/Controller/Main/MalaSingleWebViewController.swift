@@ -60,8 +60,8 @@ class MalaSingleWebViewController: UIViewController, WKNavigationDelegate, WKUID
         webView.navigationDelegate = self
         webView.uiDelegate = self
         
+        webView.addObserver(self, forKeyPath: "title", options: .new, context: nil)
         // webView.addObserver(self, forKeyPath: "loading", options: .New, context: nil)
-        // webView.addObserver(self, forKeyPath: "title", options: .New, context: nil)
         // webView.addObserver(self, forKeyPath: "estimatedProgress", options: .New, context: nil)
     }
     
@@ -100,6 +100,12 @@ class MalaSingleWebViewController: UIViewController, WKNavigationDelegate, WKUID
     
     private func showHTML() {
         webView.loadHTMLString(HTMLString, baseURL: MalaBaseURL as URL)
+    }
+    
+    
+    // MARK: - API
+    open func loadURL(url: String) {
+        webView.load(URLRequest(url: URL(string: url)!))
     }
     
     
