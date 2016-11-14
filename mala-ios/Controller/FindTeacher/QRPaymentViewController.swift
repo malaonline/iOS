@@ -83,7 +83,7 @@ class QRPaymentViewController: BaseViewController {
     /// 支付按钮
     private lazy var confirmButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = MalaColor_9BC3E1_0
+        button.setBackgroundImage(UIImage.withColor(MalaColor_9BC3E1_0), for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 15)
         button.setTitle("支付完成", for: .normal)
         button.setTitleColor(UIColor.white, for: .normal)
@@ -145,6 +145,7 @@ class QRPaymentViewController: BaseViewController {
         let options = PagingMenuOptions()
         let pagingMenuController = PagingMenuController(options: options)
         pagingMenuController.delegate = self
+        pagingMenuController.view.frame.size = CGSize(width: MalaScreenWidth, height: 64)
         
         addChildViewController(pagingMenuController)
         view.addSubview(pagingMenuController.view)
@@ -236,14 +237,65 @@ class QRPaymentViewController: BaseViewController {
         })
     }
     
+    private func validateOrderStatus() {
+        
+        ThemeHUD.showActivityIndicator()
+        
+        // 获取订单信息
+        getOrderInfo(ServiceResponseOrder.id, failureHandler: { (reason, errorMessage) -> Void in
+            ThemeHUD.hideActivityIndicator()
+            
+            defaultFailureHandler(reason, errorMessage: errorMessage)
+            // 错误处理
+            if let errorMessage = errorMessage {
+                println("QRPaymentViewController - validateOrderStatus Error \(errorMessage)")
+            }
+        }, completion: { [weak self] order -> Void in
+            println("订单状态获取成功 \(order.status)")
+            
+            // 根据[订单状态]和[课程是否被抢占标记]来判断支付结果
+            DispatchQueue.main.async { () -> Void in
+                ThemeHUD.hideActivityIndicator()
+                
+                let handler = HandlePingppBehaviour()
+                handler.currentViewController = self
+                
+                // 判断订单状态
+                // 尚未支付
+                if order.status == MalaOrderStatus.penging.rawValue {
+                    self?.ShowTost("请完成付款后，点击支付完成")
+                    return
+                }
+                // 支付成功
+                if order.status == MalaOrderStatus.paid.rawValue {
+                    
+                    if order.isTeacherPublished == false {
+                        // 老师已下架
+                        handler.showTeacherDisabledAlert()
+                    }else if order.isTimeslotAllocated == false {
+                        // 课程被抢买
+                        handler.showHasBeenPreemptedAlert()
+                    }else {
+                        // 支付成功
+                        handler.showSuccessAlert()
+                    }
+                }else {
+                    self?.ShowTost("请重试")
+                    return
+                }
+            }
+        })
+    }
     
+    
+    // MARK: -  Events Response
     @objc private func forcePop() {
         cancelOrder()
         _ = navigationController?.popViewController(animated: true)
     }
     
     @objc private func confirmButtonDidTap() {
-        println("QR Code - confirmButtonDidTap")
+        validateOrderStatus()
     }
 }
 
@@ -254,7 +306,7 @@ extension QRPaymentViewController: PagingMenuControllerDelegate {
     func didMove(toMenuItem menuItemView: MenuItemView, fromMenuItem previousMenuItemView: MenuItemView) {
         
         guard let title = menuItemView.titleLabel.text else {
-            println("didMove no title")
+            println("didMove - MenuItemView no title")
             return
         }
         

@@ -126,7 +126,7 @@ class HandlePingppBehaviour: NSObject {
         alert.addAction(popToCourseChoosingViewController)
     }
     
-    ///  课程被抢买弹窗
+    ///  老师已下架
     func showTeacherDisabledAlert() {
         ThemeHUD.hideActivityIndicator()
         guard self.currentViewController != nil else {

@@ -199,6 +199,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // 开启键盘自动管理
         IQKeyboardManager.shared().isEnabled = true
+        
+        ToastManager.shared.duration = 1.0
     }
         
     
