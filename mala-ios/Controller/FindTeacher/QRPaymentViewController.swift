@@ -151,14 +151,13 @@ class QRPaymentViewController: BaseViewController {
         pagingMenuController.didMove(toParentViewController: self)
     }
     
-    
-    func getChargeToken() {
+    func getChargeToken(channel: MalaPaymentChannel = .WxQR) {
         
         MalaIsPaymentIn = true
         ThemeHUD.showActivityIndicator()
         
         ///  获取支付信息
-        getChargeTokenWithChannel(.WxQR, orderID: ServiceResponseOrder.id, failureHandler: { (reason, errorMessage) -> Void in
+        getChargeTokenWithChannel(channel, orderID: ServiceResponseOrder.id, failureHandler: { (reason, errorMessage) -> Void in
             
             ThemeHUD.hideActivityIndicator()
             defaultFailureHandler(reason, errorMessage: errorMessage)
@@ -253,6 +252,24 @@ class QRPaymentViewController: BaseViewController {
 extension QRPaymentViewController: PagingMenuControllerDelegate {
 
     func didMove(toMenuItem menuItemView: MenuItemView, fromMenuItem previousMenuItemView: MenuItemView) {
-        print("didMove - \(previousMenuItemView) - \(menuItemView)")
+        
+        guard let title = menuItemView.titleLabel.text else {
+            println("didMove no title")
+            return
+        }
+        
+        switch title {
+        case "微信支付":
+            getChargeToken(channel: .WxQR)
+            break
+            
+        case "支付宝支付":
+            getChargeToken(channel: .AliQR)
+            break
+            
+        default:
+            break
+        }
+        
     }
 }
