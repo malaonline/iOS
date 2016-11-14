@@ -60,9 +60,9 @@ class MalaSingleWebViewController: UIViewController, WKNavigationDelegate, WKUID
         webView.navigationDelegate = self
         webView.uiDelegate = self
         
-        webView.addObserver(self, forKeyPath: "title", options: .new, context: nil)
-        // webView.addObserver(self, forKeyPath: "loading", options: .New, context: nil)
-        // webView.addObserver(self, forKeyPath: "estimatedProgress", options: .New, context: nil)
+        // webView.addObserver(self, forKeyPath: "title", options: .new, context: nil)
+        // webView.addObserver(self, forKeyPath: "loading", options: .new, context: nil)
+        // webView.addObserver(self, forKeyPath: "estimatedProgress", options: .new, context: nil)
     }
     
     private func setupUserInterface() {
