@@ -276,6 +276,7 @@ class QRPaymentViewController: BaseViewController {
                 // 订单已失效
                 if order.status == MalaOrderStatus.canceled.rawValue {
                     self?.ShowTost("订单已失效，请重新下单")
+                    _ = self?.navigationController?.popToViewController(LiveCourseViewController(), animated: true)
                     return
                 }
                 // 支付成功

@@ -57,6 +57,10 @@ class PaymentViewController: BaseViewController, PaymentBottomViewDelegate {
         self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
         /// 默认选中项
         MalaOrderObject.channel = .Alipay
+        
+        if let controllers = navigationController?.viewControllers {
+            MalaOverViewController = controllers[(controllers.count - 2)]
+        }
     }
     
     private func setupUserInterface() {
