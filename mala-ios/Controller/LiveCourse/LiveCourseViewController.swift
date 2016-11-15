@@ -115,7 +115,11 @@ class LiveCourseViewController: BaseViewController {
     // MARK: - API
     /// Banner点击事件
     func bannerDidTap() {
-        // TODO: Banner点击事件
+        
         println("Banner点击")
+        let webViewController = MalaSingleWebViewController()
+        webViewController.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(webViewController, animated: true)
+        webViewController.loadURL(url: MalaConfig.adURL())
     }
 }

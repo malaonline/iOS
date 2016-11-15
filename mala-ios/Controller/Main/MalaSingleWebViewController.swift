@@ -60,9 +60,9 @@ class MalaSingleWebViewController: UIViewController, WKNavigationDelegate, WKUID
         webView.navigationDelegate = self
         webView.uiDelegate = self
         
-        // webView.addObserver(self, forKeyPath: "loading", options: .New, context: nil)
-        // webView.addObserver(self, forKeyPath: "title", options: .New, context: nil)
-        // webView.addObserver(self, forKeyPath: "estimatedProgress", options: .New, context: nil)
+        // webView.addObserver(self, forKeyPath: "title", options: .new, context: nil)
+        // webView.addObserver(self, forKeyPath: "loading", options: .new, context: nil)
+        // webView.addObserver(self, forKeyPath: "estimatedProgress", options: .new, context: nil)
     }
     
     private func setupUserInterface() {
@@ -71,8 +71,8 @@ class MalaSingleWebViewController: UIViewController, WKNavigationDelegate, WKUID
         
         // Autolayout
         webView.snp.makeConstraints { (maker) -> Void in
-            maker.center.equalTo(self.view.snp.center)
-            maker.size.equalTo(self.view.snp.size)
+            maker.center.equalTo(view)
+            maker.size.equalTo(view)
         }
     }
     
@@ -100,6 +100,14 @@ class MalaSingleWebViewController: UIViewController, WKNavigationDelegate, WKUID
     
     private func showHTML() {
         webView.loadHTMLString(HTMLString, baseURL: MalaBaseURL as URL)
+    }
+    
+    
+    // MARK: - API
+    open func loadURL(url: String) {
+        delay(0.5) { [weak self] () -> Void in
+            _ = self?.webView.load(URLRequest(url: URL(string: url)!))
+        }
     }
     
     

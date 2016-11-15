@@ -32,6 +32,16 @@ open class MalaConfig {
     class func editProfileAvatarSize() -> CGFloat {
         return 100
     }
+    /// 广告信息URL
+    class func adURL() -> String {
+        #if USE_PRD_SERVER
+            return "https://www.malalaoshi.com/m/ad"
+        #elseif USE_STAGE_SERVER
+            return "https://stage.malalaoshi.com/m/ad"
+        #else
+            return "https://dev.malalaoshi.com/m/ad"
+        #endif
+    }
     ///  app版本号
     class func aboutAPPVersion() -> String {
         let version = String(describing: Bundle.main.infoDictionary!["CFBundleShortVersionString"]!)

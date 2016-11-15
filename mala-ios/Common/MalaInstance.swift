@@ -47,6 +47,8 @@ var MalaOrderOverView: OrderForm = OrderForm()
 
 /// 支付页面控制器，用于APPDelegate处理回调
 weak var MalaPaymentController: PaymentViewController?
+/// 支付前的预览页面控制器，用于订单超时后的返回处理
+weak var MalaOverViewController: UIViewController?
 /// 筛选条件选择下标记录
 var MalaFilterIndexObject = filterSelectedIndexObject()
 

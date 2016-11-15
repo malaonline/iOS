@@ -226,7 +226,7 @@ class HandlePingppBehaviour: NSObject {
                 appDelegate.switchTabBarControllerWithIndex(1)
             }
             ThemeHUD.hideActivityIndicator()
-          }
+        }
     }
     
     ///  退回到选课页面
