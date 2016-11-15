@@ -264,23 +264,37 @@ func updateAvatarWithImageData(_ imageData: Data, failureHandler: ((Reason, Stri
         return
     }
     
+    let fileName = "avatar.jpg"
     let headers: HTTPHeaders = ["Authorization": "Token \(token)"]
-    let url: URLConvertible = MalaBaseUrl + "/profiles/\(profileID)"
-    
-    Alamofire.upload(imageData, to: url, method: .patch, headers: headers).responseJSON { (response) in
+    let uploadURL: URLConvertible = MalaBaseUrl + "/profiles/\(profileID)"
+
+    Alamofire.upload(multipartFormData: { (multipartFormData) in
         
-        println("upload - response: \(response)")
+        multipartFormData.append(imageData, withName: "avatar", fileName: fileName, mimeType: "image/jpeg")
         
-        guard
-            let data = response.data,
-            let json = decodeJSON(data),
-            let uploadResult = json["done"] as? String else {
-                failureHandler?(.couldNotParseJSON, nil)
-                return
+    }, to: uploadURL, method: .patch, headers: headers, encodingCompletion: { (encodingResult) in
+        
+        println("encodingResult: \(encodingResult)")
+
+        switch encodingResult {
+        case .success(request: let upload, streamingFromDisk: _, streamFileURL: _):
+            
+            upload.responseJSON(completionHandler: { (response) in
+                
+                guard let data = response.data,
+                    let json = decodeJSON(data),
+                    let uploadResult = json["done"] as? String else {
+                        failureHandler?(.couldNotParseJSON, nil)
+                        return
+                }
+                let result = (uploadResult == "true" ? true : false)
+                completion(result)
+            })
+            
+        case .failure(let encodingError):
+            failureHandler?(.other(nil), "\(encodingError)")
         }
-        let result = (uploadResult == "true" ? true : false)
-        completion(result)
-    }
+    })
 }
 
 ///  保存学生姓名
