@@ -99,8 +99,15 @@ class PaymentViewController: BaseViewController, PaymentBottomViewDelegate {
             }
         }, completion:{ [weak self] (result) in
             ThemeHUD.hideActivityIndicator()
-            println("取消订单结果 - \(result)")
+            
             DispatchQueue.main.async(execute: { () -> Void in
+                if result {
+                    MalaUnpaidOrderCount -= 1
+                    self?.ShowTost("订单取消成功")
+                }else {
+                    self?.ShowTost("订单取消失败")
+                }
+                
                 _ = self?.navigationController?.popViewController(animated: true)
             })
         })

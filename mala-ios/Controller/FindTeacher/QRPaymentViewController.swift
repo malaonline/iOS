@@ -177,7 +177,7 @@ class QRPaymentViewController: BaseViewController {
                 
                 /// 验证返回值是否有效
                 guard let charge = charges else {
-                    self?.ShowTost("支付信息错误，请重试")
+                    self?.ShowTost("支付信息请求错误")
                     return
                 }
                 
@@ -198,13 +198,13 @@ class QRPaymentViewController: BaseViewController {
                     
                     /// 验证数据正确性
                     guard let credential = charge["credential"] as? JSONDictionary else {
-                        println("credential 对象不存在！")
+                        self?.ShowTost("支付凭证请求错误")
                         return
                     }
                     
                     /// 获取支付链接，生成二维码
                     guard let qrPaymentURL = credential["wx_pub_qr"] as? String else {
-                        println("QR URL 不存在！")
+                        self?.ShowTost("二维码请求错误")
                         return
                     }
                     
@@ -230,8 +230,15 @@ class QRPaymentViewController: BaseViewController {
             }
         }, completion:{ [weak self] (result) in
             ThemeHUD.hideActivityIndicator()
-            println("取消订单结果 - \(result)")
+            
             DispatchQueue.main.async(execute: { () -> Void in
+                if result {
+                    MalaUnpaidOrderCount -= 1
+                    self?.ShowTost("订单取消成功")
+                }else {
+                    self?.ShowTost("订单取消失败")
+                }
+                
                 _ = self?.navigationController?.popViewController(animated: true)
             })
         })
@@ -266,6 +273,11 @@ class QRPaymentViewController: BaseViewController {
                     self?.ShowTost("请完成付款后，点击支付完成")
                     return
                 }
+                // 订单已失效
+                if order.status == MalaOrderStatus.canceled.rawValue {
+                    self?.ShowTost("订单已失效，请重新下单")
+                    return
+                }
                 // 支付成功
                 if order.status == MalaOrderStatus.paid.rawValue {
                     
@@ -280,7 +292,7 @@ class QRPaymentViewController: BaseViewController {
                         handler.showSuccessAlert()
                     }
                 }else {
-                    self?.ShowTost("请重试")
+                    self?.ShowTost("订单状态错误，请重试")
                     return
                 }
             }
