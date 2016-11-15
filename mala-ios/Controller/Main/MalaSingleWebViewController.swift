@@ -71,8 +71,8 @@ class MalaSingleWebViewController: UIViewController, WKNavigationDelegate, WKUID
         
         // Autolayout
         webView.snp.makeConstraints { (maker) -> Void in
-            maker.center.equalTo(self.view.snp.center)
-            maker.size.equalTo(self.view.snp.size)
+            maker.center.equalTo(view)
+            maker.size.equalTo(view)
         }
     }
     
@@ -105,7 +105,9 @@ class MalaSingleWebViewController: UIViewController, WKNavigationDelegate, WKUID
     
     // MARK: - API
     open func loadURL(url: String) {
-        webView.load(URLRequest(url: URL(string: url)!))
+        delay(0.5) { [weak self] () -> Void in
+            _ = self?.webView.load(URLRequest(url: URL(string: url)!))
+        }
     }
     
     
