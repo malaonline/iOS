@@ -145,7 +145,7 @@ class QRPaymentViewController: BaseViewController {
         let options = PagingMenuOptions()
         let pagingMenuController = PagingMenuController(options: options)
         pagingMenuController.delegate = self
-        pagingMenuController.view.frame.size = CGSize(width: MalaScreenWidth, height: 64)
+        pagingMenuController.view.frame.size = CGSize(width: MalaScreenWidth, height: 200)
         
         addChildViewController(pagingMenuController)
         view.addSubview(pagingMenuController.view)
@@ -203,13 +203,29 @@ class QRPaymentViewController: BaseViewController {
                     }
                     
                     /// 获取支付链接，生成二维码
-                    guard let qrPaymentURL = credential["wx_pub_qr"] as? String else {
-                        self?.ShowTost("二维码请求错误")
-                        return
+                    switch channel {
+                    case .WxQR:
+                        guard let qrPaymentURL = credential["wx_pub_qr"] as? String else {
+                            self?.ShowTost("微信支付二维码 请求错误")
+                            return
+                        }
+                        self?.qrView.url = qrPaymentURL
+                        self?.qrView.price = ServiceResponseOrder.amount == 0 ? MalaCurrentCourse.getAmount() ?? 0 : ServiceResponseOrder.amount
+                        break
+                        
+                    case .AliQR:
+                        guard let qrPaymentURL = credential["alipay_qr"] as? String else {
+                            self?.ShowTost("支付宝二维码 请求错误")
+                            return
+                        }
+                        self?.qrView.url = qrPaymentURL
+                        self?.qrView.price = ServiceResponseOrder.amount == 0 ? MalaCurrentCourse.getAmount() ?? 0 : ServiceResponseOrder.amount
+                        break
+                        
+                    default:
+                        self?.ShowTost("二维码 请求错误")
+                        break
                     }
-                    
-                    self?.qrView.url = qrPaymentURL
-                    self?.qrView.price = ServiceResponseOrder.amount == 0 ? MalaCurrentCourse.getAmount() ?? 0 : ServiceResponseOrder.amount
                 }
             })
         })

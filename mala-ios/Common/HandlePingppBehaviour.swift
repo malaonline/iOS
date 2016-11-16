@@ -15,11 +15,7 @@ class HandlePingppBehaviour: NSObject {
     /// 当前重试次数
     var currentRetry = 0
     /// 当前视图控制器
-    weak var currentViewController: UIViewController? {
-        didSet {
-            println("视图控制器 - \(currentViewController)")
-        }
-    }
+    weak var currentViewController: UIViewController?
     
     ///  处理支付结果回调
     ///
@@ -114,11 +110,11 @@ class HandlePingppBehaviour: NSObject {
     ///  课程被抢买弹窗
     func showHasBeenPreemptedAlert() {
         ThemeHUD.hideActivityIndicator()
-        guard self.currentViewController != nil else {
+        guard let viewController = currentViewController else {
             return
         }
         
-        let alert = JSSAlertView().show(currentViewController!,
+        let alert = JSSAlertView().show(viewController,
                                         title: "您想要购买的课程已被他人抢买，支付金额将原路退回",
                                         buttonText: "我知道了",
                                         iconImage: UIImage(named: "alert_CourseBeenSeized")
@@ -129,11 +125,11 @@ class HandlePingppBehaviour: NSObject {
     ///  老师已下架
     func showTeacherDisabledAlert() {
         ThemeHUD.hideActivityIndicator()
-        guard self.currentViewController != nil else {
+        guard let viewController = currentViewController else {
             return
         }
         
-        let alert = JSSAlertView().show(currentViewController!,
+        let alert = JSSAlertView().show(viewController,
                                         title: "购课失败！该老师已下架，支付金额将原路退回",
                                         buttonText: "我知道了",
                                         iconImage: UIImage(named: "alert_CourseBeenSeized")
@@ -144,51 +140,40 @@ class HandlePingppBehaviour: NSObject {
     ///  支付取消弹窗
     func showCancelAlert() {
         ThemeHUD.hideActivityIndicator()
-        guard self.currentViewController != nil else {
+        guard let viewController = currentViewController else {
             return
         }
         
-        let _ = JSSAlertView().show(currentViewController!,
+        let _ = JSSAlertView().show(viewController,
                                     title: "支付已取消",
                                     buttonText: "我知道了",
                                     iconImage: UIImage(named: "alert_PaymentFail")
         )
-        // alert.addAction(popToRootViewController)
     }
     
     ///  支付成功弹窗
     func showSuccessAlert() {
         ThemeHUD.hideActivityIndicator()
-        guard self.currentViewController != nil else {
+        guard let viewController = currentViewController else {
             return
         }
         
-        // 若首次购买该科目课程，跳转到首页。否则跳转到课表页。
-//        if MalaIsHasBeenEvaluatedThisSubject == true {
-//            let alert = JSSAlertView().show(currentViewController!,
-//                                            title: "恭喜您已支付成功！销售顾问会稍后跟您电话确认课前评测时间",
-//                                            buttonText: "知道了",
-//                                            iconImage: UIImage(named: "alert_PaymentSuccess_firstTime")
-//            )
-//            alert.addAction(popToRootViewController)
-//        }else {
-            let alert = JSSAlertView().show(currentViewController!,
-                                            title: "恭喜您已支付成功！您的课表已经安排好，快去查看吧！",
-                                            buttonText: "知道了",
-                                            iconImage: UIImage(named: "alert_PaymentSuccess")
-            )
-            alert.addAction(switchToClassSchedule)
-//        }
+        let alert = JSSAlertView().show(viewController,
+                                        title: "恭喜您已支付成功！您的课表已经安排好，快去查看吧！",
+                                        buttonText: "知道了",
+                                        iconImage: UIImage(named: "alert_PaymentSuccess")
+        )
+        alert.addAction(switchToClassSchedule)
     }
     
     ///  支付失败弹窗
     func showFailAlert() {
         ThemeHUD.hideActivityIndicator()
-        guard self.currentViewController != nil else {
+        guard let viewController = currentViewController else {
             return
         }
         
-        let alert = JSSAlertView().show(currentViewController!,
+        let alert = JSSAlertView().show(viewController,
                                         title: "支付失败，请重试！",
                                         buttonText: "刷新",
                                         iconImage: UIImage(named: "alert_PaymentFail")
@@ -198,25 +183,20 @@ class HandlePingppBehaviour: NSObject {
     
     ///  退回首页
     func popToRootViewController() {
-        guard self.currentViewController != nil else {
+        guard let viewController = currentViewController else {
             return
         }
         
         // 回调回App时若直接PopToRootViewController会出现TabBar莫名自动添加一个item的问题，暂时使用此方式解决问题。
         ThemeHUD.showActivityIndicator()
         delay(0.5) { () -> Void in
-            _ = self.currentViewController!.navigationController?.popToRootViewController(animated: true)
+            _ = viewController.navigationController?.popToRootViewController(animated: true)
             ThemeHUD.hideActivityIndicator()
         }
     }
     
     /// 切换到课程表页面
     func switchToClassSchedule() {
-        
-        guard self.currentViewController != nil else {
-            return
-        }
-        
         ThemeHUD.showActivityIndicator()
         
         delay(0.5) { () -> Void in
@@ -231,9 +211,9 @@ class HandlePingppBehaviour: NSObject {
     
     ///  退回到选课页面
     func popToCourseChoosingViewController() {
-        guard self.currentViewController != nil else {
+        guard let viewController = currentViewController else {
             return
         }
-        _ = currentViewController!.navigationController?.popViewController(animated: true)
+        _ = viewController.navigationController?.popViewController(animated: true)
     }
 }

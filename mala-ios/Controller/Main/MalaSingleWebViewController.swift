@@ -9,7 +9,7 @@
 import UIKit
 import WebKit
 
-class MalaSingleWebViewController: UIViewController, WKNavigationDelegate, WKUIDelegate {
+class MalaSingleWebViewController: BaseViewController, WKNavigationDelegate, WKUIDelegate {
 
     // MARK: - Property
     /// HTML代码请求路径。注意此属性并非webView地址
@@ -60,7 +60,7 @@ class MalaSingleWebViewController: UIViewController, WKNavigationDelegate, WKUID
         webView.navigationDelegate = self
         webView.uiDelegate = self
         
-        // webView.addObserver(self, forKeyPath: "title", options: .new, context: nil)
+        webView.addObserver(self, forKeyPath: "title", options: .new, context: nil)
         // webView.addObserver(self, forKeyPath: "loading", options: .new, context: nil)
         // webView.addObserver(self, forKeyPath: "estimatedProgress", options: .new, context: nil)
     }
@@ -137,5 +137,9 @@ class MalaSingleWebViewController: UIViewController, WKNavigationDelegate, WKUID
         default:
             break
         }
+    }
+    
+    deinit {
+        webView.removeObserver(self, forKeyPath: "title", context: nil)
     }
 }

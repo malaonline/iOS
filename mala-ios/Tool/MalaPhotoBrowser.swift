@@ -119,8 +119,8 @@ open class MalaPhotoBrowserFlowLayout: UICollectionViewFlowLayout {
         scrollDirection = .vertical
         let itemCountInRow: CGFloat = 3
         let itemMargin: CGFloat = 10
-        let itemWidth: CGFloat = (MalaScreenWidth - itemMargin*(itemCountInRow+1))/itemCountInRow
-        let itemHeight: CGFloat = (MalaScreenWidth - itemMargin*(itemCountInRow+1))/itemCountInRow
+        let itemWidth: CGFloat = ((MalaScreenWidth - itemMargin*(itemCountInRow+1))/itemCountInRow)-2
+        let itemHeight: CGFloat = ((MalaScreenWidth - itemMargin*(itemCountInRow+1))/itemCountInRow)-2
         itemSize = CGSize(width: itemWidth, height: itemHeight)
         minimumInteritemSpacing = itemMargin
         minimumLineSpacing = itemMargin
@@ -139,7 +139,7 @@ open class MalaPhotoBrowserCell: UICollectionViewCell {
     /// 当前Cell图片URL
     var imageURL: String = "" {
         didSet {
-            contentImageView.setImage(withURL: imageURL)
+            contentImageView.setImage(withURL: imageURL, placeholderImage: "detailPicture_placeholder")
         }
     }
     

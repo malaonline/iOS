@@ -171,6 +171,6 @@ class FilterResultController: BaseViewController {
     deinit {
         println("FilterResultController - Deinit")
         // 重置选择条件模型
-        MalaFilterIndexObject = filterSelectedIndexObject()
+        MalaFilterIndexObject.reset()
     }
 }

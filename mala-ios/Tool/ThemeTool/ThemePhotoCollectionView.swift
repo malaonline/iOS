@@ -67,7 +67,7 @@ class ThemePhotoCollectionViewCell: UICollectionViewCell {
     /// 图片URL
     var url: String = "" {
         didSet {
-            imageView.setImage(withURL: url)
+            imageView.setImage(withURL: url, placeholderImage: "detailPicture_placeholder")
         }
     }
     

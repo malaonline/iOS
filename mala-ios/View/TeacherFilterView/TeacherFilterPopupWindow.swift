@@ -294,5 +294,8 @@ open class TeacherFilterPopupWindow: UIViewController {
     
     deinit{
         println("TeacherFilterPopupWindow - Deinit")
+        
+        // 重置选择条件模型
+        MalaFilterIndexObject.reset()
     }
 }
