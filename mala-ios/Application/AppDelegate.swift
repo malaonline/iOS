@@ -14,17 +14,16 @@ import Google
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    var window: UIWindow?
+    @nonobjc var window: BaseWindow?
     var deviceToken: Data?
     var notRegisteredPush = true
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
         
         // Setup Window
-        window = UIWindow(frame: UIScreen.main.bounds)
+        window = BaseWindow(frame: UIScreen.main.bounds)
         window?.backgroundColor = UIColor.white
         let mainViewController = MainViewController()
-        MalaMainViewController = mainViewController
         window?.rootViewController = mainViewController
         window?.makeKeyAndVisible()
 

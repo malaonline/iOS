@@ -643,6 +643,9 @@
 		F4402D851C5729A200E7D3DB /* ClassScheduleDayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4402D841C5729A200E7D3DB /* ClassScheduleDayModel.swift */; };
 		F4402DAE1C58A64200E7D3DB /* KWStepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4402DAD1C58A64200E7D3DB /* KWStepper.swift */; };
 		F4402DFE1C5A0DE200E7D3DB /* Extension+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4402DFD1C5A0DE200E7D3DB /* Extension+String.swift */; };
+		F4428C911DDC8E54000FEFA4 /* BaseWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4428C901DDC8E54000FEFA4 /* BaseWindow.swift */; };
+		F4428C921DDC8E54000FEFA4 /* BaseWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4428C901DDC8E54000FEFA4 /* BaseWindow.swift */; };
+		F4428C931DDC8E54000FEFA4 /* BaseWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4428C901DDC8E54000FEFA4 /* BaseWindow.swift */; };
 		F44DC7C21D59C6D400E5979B /* DOFavoriteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44DC7C11D59C6D400E5979B /* DOFavoriteButton.swift */; };
 		F44DC7C31D59C6D400E5979B /* DOFavoriteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44DC7C11D59C6D400E5979B /* DOFavoriteButton.swift */; };
 		F44DC7C41D59C6D400E5979B /* DOFavoriteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44DC7C11D59C6D400E5979B /* DOFavoriteButton.swift */; };
@@ -1133,6 +1136,7 @@
 		F4402E161C5A16A700E7D3DB /* parentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = parentTests.swift; sourceTree = "<group>"; };
 		F4402E181C5A16A700E7D3DB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F4402E1E1C5A178900E7D3DB /* ThemeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeTests.swift; sourceTree = "<group>"; };
+		F4428C901DDC8E54000FEFA4 /* BaseWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseWindow.swift; sourceTree = "<group>"; };
 		F44DC7C11D59C6D400E5979B /* DOFavoriteButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DOFavoriteButton.swift; sourceTree = "<group>"; };
 		F452CD521CDC4CD2001A30E8 /* OrderFormViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderFormViewController.swift; sourceTree = "<group>"; };
 		F452CD561CDC5839001A30E8 /* OrderFormViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OrderFormViewCell.swift; path = ../OrderForm/OrderFormViewCell.swift; sourceTree = "<group>"; };
@@ -2204,6 +2208,7 @@
 			children = (
 				F4E1061B1CBBA35B001AD4AF /* BaseViewController.swift */,
 				F4E1061F1CBBA497001AD4AF /* BaseTableViewController.swift */,
+				F4428C901DDC8E54000FEFA4 /* BaseWindow.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -2817,6 +2822,7 @@
 				F40B53C81C83F98F00C20037 /* PaymentTableView.swift in Sources */,
 				F4331B9A1DD322A1003F062D /* Extension+Date.swift in Sources */,
 				F40D896C1C7DB6E300BD6871 /* MalaConfig.swift in Sources */,
+				F4428C911DDC8E54000FEFA4 /* BaseWindow.swift in Sources */,
 				F41A01AC1D212B1F0069CF29 /* MalaBaseCell.swift in Sources */,
 				F452CD571CDC5839001A30E8 /* OrderFormViewCell.swift in Sources */,
 				F4B3C67F1CFD439B00C1B423 /* SingleTopicData.swift in Sources */,
@@ -3071,6 +3077,7 @@
 				35FF7AA61CF8325A000A70EE /* PaymentTableView.swift in Sources */,
 				F4331B9B1DD322A1003F062D /* Extension+Date.swift in Sources */,
 				35FF7AA71CF8325A000A70EE /* MalaConfig.swift in Sources */,
+				F4428C921DDC8E54000FEFA4 /* BaseWindow.swift in Sources */,
 				F41A01AD1D212B1F0069CF29 /* MalaBaseCell.swift in Sources */,
 				35FF7AA81CF8325A000A70EE /* OrderFormViewCell.swift in Sources */,
 				F4B3C6801CFD439B00C1B423 /* SingleTopicData.swift in Sources */,
@@ -3325,6 +3332,7 @@
 				35FF7B891CF83264000A70EE /* PaymentTableView.swift in Sources */,
 				F4331B9C1DD322A1003F062D /* Extension+Date.swift in Sources */,
 				35FF7B8A1CF83264000A70EE /* MalaConfig.swift in Sources */,
+				F4428C931DDC8E54000FEFA4 /* BaseWindow.swift in Sources */,
 				F41A01AE1D212B1F0069CF29 /* MalaBaseCell.swift in Sources */,
 				35FF7B8B1CF83264000A70EE /* OrderFormViewCell.swift in Sources */,
 				F4B3C6811CFD439B00C1B423 /* SingleTopicData.swift in Sources */,
