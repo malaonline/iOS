@@ -229,7 +229,11 @@ open class CourseTableViewController: UIViewController, UITableViewDataSource, U
     }
     open func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         // 实时调整当前第一个显示的Cell日期为导航栏标题日期
-        currentDate = (tableView.visibleCells.first as? CourseTableViewCell)?.model?[0].end
+        if let date = (tableView.visibleCells.first as? CourseTableViewCell)?.model?[0].end {
+            currentDate = date
+        }else {
+            currentDate = Date().timeIntervalSince1970
+        }
         // 当最近一节课程划出屏幕时，显示“回到最近课程”按钮
         if indexPath == recentlyCourseIndexPath {
             goTopButton.isHidden = true
