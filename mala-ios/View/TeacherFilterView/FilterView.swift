@@ -274,4 +274,12 @@ open class filterSelectedIndexObject: NSObject {
     var gradeIndexPath = IndexPath()
     var subjectIndexPath = IndexPath()
     var tags: [String] = []
+    
+    
+    /// 重置
+    func reset() {
+        gradeIndexPath = IndexPath()
+        subjectIndexPath = IndexPath()
+        tags = []
+    }
 }
