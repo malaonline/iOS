@@ -22,7 +22,7 @@ class LiveCourseTableViewCell: UITableViewCell {
             lecturerAvatar.setImage(withURL: model.lecturerAvatar, placeholderImage: "avatar_placeholder")
             assistantAvatar.setImage(withURL: model.assistantAvatar, placeholderImage: "avatar_placeholder")
             lecturerNameLabel.text = model.lecturerName
-            assistantNameLabel.text = model.assistantName
+            assistantNameLabel.text = String(format: "助教:%@", (model.assistantName ?? 0))
             lecturerTitleLabel.text = model.lecturerTitle
             classLevelLabel.text = String(format: "%d人小班", model.roomCapacity ?? 0)
             
