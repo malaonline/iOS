@@ -9,7 +9,7 @@
 import UIKit
 
 // MARK: - Common Instance
-var MalaMainViewController: MainViewController = MainViewController()
+var MalaMainViewController: MainViewController?
 
 
 // MARK: - Instance

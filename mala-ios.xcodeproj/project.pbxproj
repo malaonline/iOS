@@ -646,6 +646,9 @@
 		F4428C911DDC8E54000FEFA4 /* BaseWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4428C901DDC8E54000FEFA4 /* BaseWindow.swift */; };
 		F4428C921DDC8E54000FEFA4 /* BaseWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4428C901DDC8E54000FEFA4 /* BaseWindow.swift */; };
 		F4428C931DDC8E54000FEFA4 /* BaseWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4428C901DDC8E54000FEFA4 /* BaseWindow.swift */; };
+		F4428C991DDD500D000FEFA4 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4428C981DDD500D000FEFA4 /* UserNotifications.framework */; };
+		F4428C9A1DDD501C000FEFA4 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4428C981DDD500D000FEFA4 /* UserNotifications.framework */; };
+		F4428C9B1DDD5023000FEFA4 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4428C981DDD500D000FEFA4 /* UserNotifications.framework */; };
 		F44DC7C21D59C6D400E5979B /* DOFavoriteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44DC7C11D59C6D400E5979B /* DOFavoriteButton.swift */; };
 		F44DC7C31D59C6D400E5979B /* DOFavoriteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44DC7C11D59C6D400E5979B /* DOFavoriteButton.swift */; };
 		F44DC7C41D59C6D400E5979B /* DOFavoriteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44DC7C11D59C6D400E5979B /* DOFavoriteButton.swift */; };
@@ -1137,6 +1140,7 @@
 		F4402E181C5A16A700E7D3DB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F4402E1E1C5A178900E7D3DB /* ThemeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeTests.swift; sourceTree = "<group>"; };
 		F4428C901DDC8E54000FEFA4 /* BaseWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseWindow.swift; sourceTree = "<group>"; };
+		F4428C981DDD500D000FEFA4 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		F44DC7C11D59C6D400E5979B /* DOFavoriteButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DOFavoriteButton.swift; sourceTree = "<group>"; };
 		F452CD521CDC4CD2001A30E8 /* OrderFormViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderFormViewController.swift; sourceTree = "<group>"; };
 		F452CD561CDC5839001A30E8 /* OrderFormViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OrderFormViewCell.swift; path = ../OrderForm/OrderFormViewCell.swift; sourceTree = "<group>"; };
@@ -1334,6 +1338,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F4428C991DDD500D000FEFA4 /* UserNotifications.framework in Frameworks */,
 				F43C98821D6AD7E80013799E /* JavaScriptCore.framework in Frameworks */,
 				F43C98801D6AD7DD0013799E /* libstdc++.tbd in Frameworks */,
 				F43C987E1D6AD7C40013799E /* libicucore.tbd in Frameworks */,
@@ -1353,6 +1358,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F4428C9A1DDD501C000FEFA4 /* UserNotifications.framework in Frameworks */,
 				F43C98881D6AD82E0013799E /* JavaScriptCore.framework in Frameworks */,
 				F43C98871D6AD8270013799E /* libstdc++.tbd in Frameworks */,
 				F43C98861D6AD8220013799E /* libicucore.tbd in Frameworks */,
@@ -1372,6 +1378,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F4428C9B1DDD5023000FEFA4 /* UserNotifications.framework in Frameworks */,
 				35FF7B2A1CF83264000A70EE /* CFNetwork.framework in Frameworks */,
 				F464BD751DA8CE6B00032C88 /* CoreMotion.framework in Frameworks */,
 				F43C98841D6AD8130013799E /* libstdc++.tbd in Frameworks */,
@@ -1699,6 +1706,7 @@
 		D07419656EA549B65E42E332 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F4428C981DDD500D000FEFA4 /* UserNotifications.framework */,
 				F464BD761DA8D10500032C88 /* UIKit.framework */,
 				F464BD741DA8CE6B00032C88 /* CoreMotion.framework */,
 				F464BD721DA8CE5600032C88 /* libsqlite3.0.tbd */,
