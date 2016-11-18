@@ -126,18 +126,16 @@ class OrderFormInfoViewController: BaseViewController, OrderFormOperatingViewDel
     
     ///  作为订单预览展示时，加载伪数据
     private func loadOrderOverView() {
-        
-        println("订单预览")
         //  课时
         guard MalaCurrentCourse.classPeriod != 0 else {
-            ShowToast("订单信息有误")
+            ShowToast("课时信息有误")
             return
         }
         
         // 上课时间
         let timeslots = MalaCurrentCourse.selectedTime.map{$0.id}
         guard timeslots.count != 0 else {
-            ShowToast("订单信息有误")
+            ShowToast("上课时间信息有误")
             return
         }
         
@@ -160,7 +158,7 @@ class OrderFormInfoViewController: BaseViewController, OrderFormOperatingViewDel
             ThemeHUD.hideActivityIndicator()
             
             guard let timesSchedule = timeSlots else {
-                self?.ShowToast("上课时间获取有误，请重试！")
+                self?.ShowToast("上课时间获取有误，请重试")
                 return
             }
             
@@ -200,48 +198,42 @@ class OrderFormInfoViewController: BaseViewController, OrderFormOperatingViewDel
     
     private func createOrder() {
         
-        println("创建订单")
         ThemeHUD.showActivityIndicator()
         
         ///  创建订单
         createOrderWithForm(MalaOrderObject.jsonDictionary(), failureHandler: { [weak self] (reason, errorMessage) -> Void in
-            
             ThemeHUD.hideActivityIndicator()
             defaultFailureHandler(reason, errorMessage: errorMessage)
             
             // 错误处理
             if let errorMessage = errorMessage {
-                println("PaymentViewController - CreateOrder Error \(errorMessage)")
+                println("OrderFormInfoViewController - CreateOrder Error \(errorMessage)")
             }
-            
             DispatchQueue.main.async(execute: { () -> Void in
-                self?.ShowToast("创建订单失败, 请重试！")
+                self?.ShowToast("网络不稳定, 请重试")
             })
+        }, completion: { [weak self] (order) -> Void in
+            ThemeHUD.hideActivityIndicator()
             
-            }, completion: { [weak self] (order) -> Void in
-                
-                ThemeHUD.hideActivityIndicator()
-                
-                if let errorCode = order.code {
-                    if errorCode == -1 {
-                        DispatchQueue.main.async(execute: { () -> Void in
-                            self?.ShowToast("该老师部分时段已被占用，请重新选择上课时间")
-                        })
-                    }else if errorCode == -2 {
-                        DispatchQueue.main.async(execute: { () -> Void in
-                            self?.ShowToast("奖学金使用信息有误，请重新选择")
-                            _ = self?.navigationController?.popViewController(animated: true)
-                        })
-                    }
-                }else {
-                    ThemeHUD.hideActivityIndicator()
-                    println("创建订单成功:\(order)")
-                    ServiceResponseOrder = order
+            if let errorCode = order.code {
+                if errorCode == -1 {
                     DispatchQueue.main.async(execute: { () -> Void in
-                        self?.launchPaymentController()
+                        self?.ShowToast("该老师部分时段已被占用，请重新选择上课时间")
+                    })
+                }else if errorCode == -2 {
+                    DispatchQueue.main.async(execute: { () -> Void in
+                        self?.ShowToast("奖学金使用信息有误，请重新选择")
+                        _ = self?.navigationController?.popViewController(animated: true)
                     })
                 }
-            })
+            }else {
+                println("创建订单成功:\(order)")
+                ServiceResponseOrder = order
+                DispatchQueue.main.async(execute: { () -> Void in
+                    self?.launchPaymentController()
+                })
+            }
+        })
     }
     
     private func launchPaymentController() {

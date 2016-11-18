@@ -422,7 +422,7 @@ class CourseChoosingViewController: BaseViewController, CourseChoosingConfirmVie
         // 条件校验, 设置订单模型
         // 选择授课年级
         guard let gradeCourseID = MalaCurrentCourse.grade?.id else {
-            ShowToast("请选择授课年级！")
+            ShowToast("请选择授课年级")
             return
         }
         // 选择上课地点
@@ -431,20 +431,19 @@ class CourseChoosingViewController: BaseViewController, CourseChoosingConfirmVie
         }else if let schoolID = MalaCurrentSchool?.id {
             MalaOrderObject.school  = schoolID
         }else {
-            ShowToast("请选择上课地点！")
+            ShowToast("请选择上课地点")
             return
         }
         // 选择上课时间
         guard MalaCurrentCourse.selectedTime.count != 0 else {
-            ShowToast("请选择上课时间！")
+            ShowToast("请选择上课时间")
             return
         }
         // 课时数应不小于已选上课时间（此情况文案暂时自定，通常情况此Toast不会触发）
         guard MalaCurrentCourse.classPeriod >= MalaCurrentCourse.selectedTime.count*2 else {
-            ShowToast("课时数不得少于已选上课时间！")
+            ShowToast("课时数不得少于已选上课时间")
             return
         }
-        
         
         MalaOrderObject.teacher = (teacherModel?.id) ?? 0
         MalaOrderObject.grade = gradeCourseID

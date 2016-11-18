@@ -177,7 +177,7 @@ class QRPaymentViewController: BaseViewController {
                 
                 /// 验证返回值是否有效
                 guard let charge = charges else {
-                    self?.ShowToast("支付信息请求错误")
+                    self?.ShowToast("支付信息获取错误")
                     return
                 }
                 
@@ -198,7 +198,7 @@ class QRPaymentViewController: BaseViewController {
                     
                     /// 验证数据正确性
                     guard let credential = charge["credential"] as? JSONDictionary else {
-                        self?.ShowToast("支付凭证请求错误")
+                        self?.ShowToast("支付凭证获取错误")
                         return
                     }
                     
@@ -206,7 +206,7 @@ class QRPaymentViewController: BaseViewController {
                     switch channel {
                     case .WxQR:
                         guard let qrPaymentURL = credential["wx_pub_qr"] as? String else {
-                            self?.ShowToast("微信支付二维码 请求错误")
+                            self?.ShowToast("微信支付二维码获取错误")
                             return
                         }
                         self?.qrView.url = qrPaymentURL
@@ -215,7 +215,7 @@ class QRPaymentViewController: BaseViewController {
                         
                     case .AliQR:
                         guard let qrPaymentURL = credential["alipay_qr"] as? String else {
-                            self?.ShowToast("支付宝二维码 请求错误")
+                            self?.ShowToast("支付宝二维码获取错误")
                             return
                         }
                         self?.qrView.url = qrPaymentURL
@@ -223,7 +223,7 @@ class QRPaymentViewController: BaseViewController {
                         break
                         
                     default:
-                        self?.ShowToast("二维码 请求错误")
+                        self?.ShowToast("二维码获取错误")
                         break
                     }
                 }
