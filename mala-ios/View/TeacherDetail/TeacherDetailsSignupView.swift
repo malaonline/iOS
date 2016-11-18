@@ -22,14 +22,12 @@ class TeacherDetailsSignupView: UIView {
     /// 是否已上架标识
     var isPublished: Bool = false {
         didSet {
-            println("已上架标识 - \(isPublished)")
             adjustUIWithPublished()
         }
     }
     /// 是否已收藏标识
     var isFavorite: Bool = false {
         didSet {
-            println("已收藏标识 - \(isFavorite)")
             adjustUIWithFavorite()
         }
     }

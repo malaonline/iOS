@@ -83,7 +83,7 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
         model = MalaConfig.profileData()
         tableView.reloadData()
         profileHeaderView.refreshDataWithUserDefaults()
-        self.navigationController?.showTabBadgePoint = MalaUnpaidOrderCount > 0
+        self.navigationController?.showTabBadgePoint = (MalaUnpaidOrderCount > 0 || MalaToCommentCount > 0)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -94,7 +94,7 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
     
     // MARK: - Private Method
     private func configure() {
-                
+        
         // register
         tableView.register(ProfileViewCell.self, forCellReuseIdentifier: ProfileViewTableViewCellReuseID)
         tableView.register(ProfileItemViewCell.self, forCellReuseIdentifier: ProfileViewTableViewItemCellReuseID)
@@ -154,15 +154,7 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
     ///  - parameter completion: 完成闭包
     private func updateAvatar(_ completion:() -> Void) {
         if let avatarURLString = MalaUserDefaults.avatar.value {
-            
-            println("avatarURLString: \(avatarURLString)")
-
             profileHeaderView.avatarURL = avatarURLString
-//            let avatarSize = MalaConfig.editProfileAvatarSize()
-//            let avatarStyle: AvatarStyle = .RoundedRectangle(size: CGSize(width: avatarSize, height: avatarSize), cornerRadius: avatarSize * 0.5, borderWidth: 0)
-//            let plainAvatar = PlainAvatar(avatarURLString: avatarURLString, avatarStyle: avatarStyle)
-//            avatarImageView.navi_setAvatar(plainAvatar, withFadeTransitionDuration: avatarFadeTransitionDuration)
-            
             completion()
         }
     }

@@ -43,7 +43,6 @@ class ProfileItemCollectionViewCell: UICollectionViewCell {
     /// 标题标签
     private lazy var titleLabel: UILabel = {
         let label = UILabel(
-            text: "",
             fontSize: 14,
             textColor: MalaColor_636363_0
         )

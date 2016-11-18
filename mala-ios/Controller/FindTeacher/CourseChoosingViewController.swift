@@ -269,7 +269,6 @@ class CourseChoosingViewController: BaseViewController, CourseChoosingConfirmVie
                 println("CourseChoosingViewController - loadUserEvaluatedStatus Error \(errorMessage)")
             }
         }, completion: { [weak self] (bool) -> Void in
-            println("用户是否首次购买此学科课程？ \(bool)")
             MalaIsHasBeenEvaluatedThisSubject = bool
             self?.requiredCount += 1
         })
