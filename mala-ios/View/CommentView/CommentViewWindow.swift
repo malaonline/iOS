@@ -508,26 +508,24 @@ open class CommentViewWindow: UIViewController, UITextViewDelegate {
             self?.ShowToast("评价失败，请重试")
             self?.commitButton.isEnabled = true
             
-            }, completion: { [weak self] (bool) -> Void in
-                println("评论创建结果：\(bool)")
+        }, completion: { [weak self] (bool) -> Void in
                 
-                DispatchQueue.main.async(execute: { () -> Void in
-                    if bool {
-                        // 设置评价数据，用于Cell状态更新后显示评论
-                        self?.model.comment = comment
-                        MalaToCommentCount -= 1
-                        
-                        self?.ShowToast("评价成功")
-                        delay(1.0, work: { () -> Void in
-                            self?.finishedAction?()
-                            self?.animateDismiss()
-                        })
-                    }else {
-                        self?.ShowToast("评价失败，请重试")
-                        self?.commitButton.isEnabled = true
-                    }
-                })
+            DispatchQueue.main.async(execute: { () -> Void in
+                if bool {
+                    // 设置评价数据，用于Cell状态更新后显示评论
+                    self?.model.comment = comment
+                    
+                    self?.ShowToast("评价成功")
+                    delay(1.0, work: { () -> Void in
+                        self?.finishedAction?()
+                        self?.animateDismiss()
+                    })
+                }else {
+                    self?.ShowToast("评价失败，请重试")
+                    self?.commitButton.isEnabled = true
+                }
             })
+        })
     }
     
     
