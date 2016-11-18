@@ -533,6 +533,9 @@
 		BE0345859A399C0553F20A0B /* Pods_parent_stage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61B118D1E2CC01D0D747BD92 /* Pods_parent_stage.framework */; };
 		F402C9961C4F69C100E229FA /* TeacherTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F402C9941C4F69C100E229FA /* TeacherTableView.swift */; };
 		F404D47F1C8436A700C19C44 /* PaymentBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F404D47E1C8436A700C19C44 /* PaymentBottomView.swift */; };
+		F407DA041DDE9FDB00C4ABB5 /* ProfileItemViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F407DA031DDE9FDB00C4ABB5 /* ProfileItemViewCell.swift */; };
+		F407DA051DDE9FDB00C4ABB5 /* ProfileItemViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F407DA031DDE9FDB00C4ABB5 /* ProfileItemViewCell.swift */; };
+		F407DA061DDE9FDB00C4ABB5 /* ProfileItemViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F407DA031DDE9FDB00C4ABB5 /* ProfileItemViewCell.swift */; };
 		F40B53AC1C7ED80800C20037 /* MalaService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40B53AB1C7ED80800C20037 /* MalaService.swift */; };
 		F40B53AE1C7EDA7500C20037 /* MalaNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40B53AD1C7EDA7500C20037 /* MalaNetworking.swift */; };
 		F40B53B01C7EEA2800C20037 /* Extension+NSURLRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40B53AF1C7EEA2800C20037 /* Extension+NSURLRequest.swift */; };
@@ -1075,6 +1078,7 @@
 		F12B72CA706C78F519A08F8A /* Pods-parent-prd.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-parent-prd.debug.xcconfig"; path = "Pods/Target Support Files/Pods-parent-prd/Pods-parent-prd.debug.xcconfig"; sourceTree = "<group>"; };
 		F402C9941C4F69C100E229FA /* TeacherTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeacherTableView.swift; sourceTree = "<group>"; };
 		F404D47E1C8436A700C19C44 /* PaymentBottomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentBottomView.swift; sourceTree = "<group>"; };
+		F407DA031DDE9FDB00C4ABB5 /* ProfileItemViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileItemViewCell.swift; sourceTree = "<group>"; };
 		F40B53AB1C7ED80800C20037 /* MalaService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MalaService.swift; sourceTree = "<group>"; };
 		F40B53AD1C7EDA7500C20037 /* MalaNetworking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MalaNetworking.swift; sourceTree = "<group>"; };
 		F40B53AF1C7EEA2800C20037 /* Extension+NSURLRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension+NSURLRequest.swift"; sourceTree = "<group>"; };
@@ -1774,6 +1778,7 @@
 				F4B58F741C9822ED009B5B8D /* AboutTitleView.swift */,
 				F48BBAD11CE4309B00774297 /* CouponRulesPopupWindow.swift */,
 				F4ADCFD51D0D6E6E004D517A /* InfoModifyViewWindow.swift */,
+				F407DA031DDE9FDB00C4ABB5 /* ProfileItemViewCell.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -2925,6 +2930,7 @@
 				F45E69DE1C8D278A00BD0859 /* ThemeClassSchedule.swift in Sources */,
 				F43F44C11D06B14A00B7A358 /* CommentViewController.swift in Sources */,
 				F47C2AB71C8445950051A880 /* PaymentChannelSectionHeaderView.swift in Sources */,
+				F407DA041DDE9FDB00C4ABB5 /* ProfileItemViewCell.swift in Sources */,
 				30445B1A1C4A3AC8002CD290 /* GradeFilterView.swift in Sources */,
 				307AB8991C33CD5C00D8397F /* CommonFlowLayout.swift in Sources */,
 				F4B3C67B1CFD416F00C1B423 /* SingleTimeIntervalData.swift in Sources */,
@@ -3180,6 +3186,7 @@
 				35FF7AF11CF8325A000A70EE /* ThemeClassSchedule.swift in Sources */,
 				F43F44C21D06B14A00B7A358 /* CommentViewController.swift in Sources */,
 				35FF7AF21CF8325A000A70EE /* PaymentChannelSectionHeaderView.swift in Sources */,
+				F407DA051DDE9FDB00C4ABB5 /* ProfileItemViewCell.swift in Sources */,
 				35FF7AF31CF8325A000A70EE /* GradeFilterView.swift in Sources */,
 				35FF7AF41CF8325A000A70EE /* CommonFlowLayout.swift in Sources */,
 				F4B3C67C1CFD416F00C1B423 /* SingleTimeIntervalData.swift in Sources */,
@@ -3435,6 +3442,7 @@
 				35FF7BD41CF83264000A70EE /* ThemeClassSchedule.swift in Sources */,
 				F43F44C31D06B14A00B7A358 /* CommentViewController.swift in Sources */,
 				35FF7BD51CF83264000A70EE /* PaymentChannelSectionHeaderView.swift in Sources */,
+				F407DA061DDE9FDB00C4ABB5 /* ProfileItemViewCell.swift in Sources */,
 				35FF7BD61CF83264000A70EE /* GradeFilterView.swift in Sources */,
 				35FF7BD71CF83264000A70EE /* CommonFlowLayout.swift in Sources */,
 				F4B3C67D1CFD416F00C1B423 /* SingleTimeIntervalData.swift in Sources */,
