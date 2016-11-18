@@ -174,7 +174,7 @@ class OrderFormViewController: BaseTableViewController {
                 viewController.hidesBottomBarWhenPushed = true
                 self?.navigationController?.pushViewController(viewController, animated: true)
             }else {
-                self?.ShowTost("订单信息有误，请刷新后重试")
+                self?.ShowToast("订单信息有误，请刷新后重试")
             }
         }
         
@@ -198,7 +198,7 @@ class OrderFormViewController: BaseTableViewController {
                 })
                 
             }else {
-                self?.ShowTost("订单信息有误，请刷新后重试")
+                self?.ShowToast("订单信息有误，请刷新后重试")
             }
         }
     }
@@ -218,15 +218,9 @@ class OrderFormViewController: BaseTableViewController {
             }
         }, completion:{ [weak self] (result) in
             ThemeHUD.hideActivityIndicator()
-
             DispatchQueue.main.async(execute: { () -> Void in
-                if result {
-                    MalaUnpaidOrderCount -= 1
-                    self?.ShowTost("订单取消成功")
-                    self?.loadOrderForm()
-                }else {
-                    self?.ShowTost("订单取消失败")
-                }
+                self?.ShowToast(result == true ? "订单取消成功" : "订单取消失败")
+                _ = self?.navigationController?.popViewController(animated: true)
             })
         })
     }

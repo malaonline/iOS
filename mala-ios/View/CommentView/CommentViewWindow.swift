@@ -480,17 +480,17 @@ open class CommentViewWindow: UIViewController, UITextViewDelegate {
     private func saveComment() {
         // 验证数据并创建评论模型
         guard model.id != 0 else {
-            ShowTost("网络环境较差，请稍后重试")
+            ShowToast("网络环境较差，请稍后重试")
             commitButton.isEnabled = true
             return
         }
         guard floatRating.rating > 0 else {
-            ShowTost("请给该课程打个分吧")
+            ShowToast("请给该课程打个分吧")
             commitButton.isEnabled = true
             return
         }
         guard textView.text != MalaCommonString_CommentPlaceholder else {
-            ShowTost("请给该课程写几句评价吧")
+            ShowToast("请给该课程写几句评价吧")
             commitButton.isEnabled = true
             return
         }
@@ -505,7 +505,7 @@ open class CommentViewWindow: UIViewController, UITextViewDelegate {
                 println("CommentViewWindow - saveComment Error \(errorMessage)")
             }
             
-            self?.ShowTost("评价失败，请重试")
+            self?.ShowToast("评价失败，请重试")
             self?.commitButton.isEnabled = true
             
             }, completion: { [weak self] (bool) -> Void in
@@ -517,13 +517,13 @@ open class CommentViewWindow: UIViewController, UITextViewDelegate {
                         self?.model.comment = comment
                         MalaToCommentCount -= 1
                         
-                        self?.ShowTost("评价成功")
+                        self?.ShowToast("评价成功")
                         delay(1.0, work: { () -> Void in
                             self?.finishedAction?()
                             self?.animateDismiss()
                         })
                     }else {
-                        self?.ShowTost("评价失败，请重试")
+                        self?.ShowToast("评价失败，请重试")
                         self?.commitButton.isEnabled = true
                     }
                 })

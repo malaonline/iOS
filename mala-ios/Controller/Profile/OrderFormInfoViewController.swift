@@ -130,14 +130,14 @@ class OrderFormInfoViewController: BaseViewController, OrderFormOperatingViewDel
         println("订单预览")
         //  课时
         guard MalaCurrentCourse.classPeriod != 0 else {
-            ShowTost("订单信息有误")
+            ShowToast("订单信息有误")
             return
         }
         
         // 上课时间
         let timeslots = MalaCurrentCourse.selectedTime.map{$0.id}
         guard timeslots.count != 0 else {
-            ShowTost("订单信息有误")
+            ShowToast("订单信息有误")
             return
         }
         
@@ -160,7 +160,7 @@ class OrderFormInfoViewController: BaseViewController, OrderFormOperatingViewDel
             ThemeHUD.hideActivityIndicator()
             
             guard let timesSchedule = timeSlots else {
-                self?.ShowTost("上课时间获取有误，请重试！")
+                self?.ShowToast("上课时间获取有误，请重试！")
                 return
             }
             
@@ -191,15 +191,9 @@ class OrderFormInfoViewController: BaseViewController, OrderFormOperatingViewDel
             }
         }, completion:{ [weak self] (result) in
             ThemeHUD.hideActivityIndicator()
-            
             DispatchQueue.main.async(execute: { () -> Void in
-                if result {
-                    MalaUnpaidOrderCount -= 1
-                    self?.ShowTost("订单取消成功")
-                    self?.confirmView.orderStatus = .canceled
-                }else {
-                    self?.ShowTost("订单取消失败")
-                }
+                self?.ShowToast(result == true ? "订单取消成功" : "订单取消失败")
+                _ = self?.navigationController?.popViewController(animated: true)
             })
         })
     }
@@ -221,7 +215,7 @@ class OrderFormInfoViewController: BaseViewController, OrderFormOperatingViewDel
             }
             
             DispatchQueue.main.async(execute: { () -> Void in
-                self?.ShowTost("创建订单失败, 请重试！")
+                self?.ShowToast("创建订单失败, 请重试！")
             })
             
             }, completion: { [weak self] (order) -> Void in
@@ -231,11 +225,11 @@ class OrderFormInfoViewController: BaseViewController, OrderFormOperatingViewDel
                 if let errorCode = order.code {
                     if errorCode == -1 {
                         DispatchQueue.main.async(execute: { () -> Void in
-                            self?.ShowTost("该老师部分时段已被占用，请重新选择上课时间")
+                            self?.ShowToast("该老师部分时段已被占用，请重新选择上课时间")
                         })
                     }else if errorCode == -2 {
                         DispatchQueue.main.async(execute: { () -> Void in
-                            self?.ShowTost("奖学金使用信息有误，请重新选择")
+                            self?.ShowToast("奖学金使用信息有误，请重新选择")
                             _ = self?.navigationController?.popViewController(animated: true)
                         })
                     }
@@ -290,7 +284,7 @@ class OrderFormInfoViewController: BaseViewController, OrderFormOperatingViewDel
             viewController.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(viewController, animated: true)
         }else {
-            self.ShowTost("订单信息有误，请刷新后重试")
+            self.ShowToast("订单信息有误，请刷新后重试")
         }
     }
     

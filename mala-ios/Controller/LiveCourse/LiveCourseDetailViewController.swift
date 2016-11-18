@@ -103,7 +103,7 @@ class LiveCourseDetailViewController: BaseViewController, LiveCourseConfirmViewD
             }
             
             DispatchQueue.main.async(execute: { () -> Void in
-                self?.ShowTost("创建订单失败, 请重试！")
+                self?.ShowToast("创建订单失败, 请重试！")
             })
             
             }, completion: { [weak self] (order) -> Void in
@@ -113,11 +113,11 @@ class LiveCourseDetailViewController: BaseViewController, LiveCourseConfirmViewD
                 if let errorCode = order.code {
                     if errorCode == -1 {
                         DispatchQueue.main.async(execute: { () -> Void in
-                            self?.ShowTost("该老师部分时段已被占用，请重新选择上课时间")
+                            self?.ShowToast("该老师部分时段已被占用，请重新选择上课时间")
                         })
                     }else if errorCode == -2 {
                         DispatchQueue.main.async(execute: { () -> Void in
-                            self?.ShowTost("奖学金使用信息有误，请重新选择")
+                            self?.ShowToast("奖学金使用信息有误，请重新选择")
                             _ = self?.navigationController?.popViewController(animated: true)
                         })
                     }

@@ -856,6 +856,7 @@ func cancelOrderWithId(_ orderID: Int, failureHandler: ((Reason, String?) -> Voi
     /// 返回值解析器
     let parse: (JSONDictionary) -> Bool = { data in
         if let result = data["ok"] as? Bool {
+            if result { MalaUnpaidOrderCount -= 1 }
             return result
         }
         return false

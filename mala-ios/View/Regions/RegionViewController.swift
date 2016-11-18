@@ -187,7 +187,7 @@ class RegionViewController: UIViewController, UITableViewDelegate, UITableViewDa
         currentCityLabel.text = MalaCurrentCity?.name ?? "未选择"
         
         guard let city = MalaCurrentCity else {
-            ShowTost("地区选择有误，请重试")
+            ShowToast("地区选择有误，请重试")
             return
         }
         

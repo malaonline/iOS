@@ -169,7 +169,7 @@ class MemberPrivilegesViewController: UITableViewController {
             
             DispatchQueue.main.async(execute: { () -> Void in
                 self?.reportStatus = .Error
-                self?.ShowTost("当前无法访问题目数据，请稍后再试")
+                self?.ShowToast("当前无法访问题目数据，请稍后再试")
             })
             
         }, completion: { [weak self] (results) in
@@ -217,7 +217,7 @@ class MemberPrivilegesViewController: UITableViewController {
             
             DispatchQueue.main.async(execute: { () -> Void in
                 self?.reportStatus = .Error
-                self?.ShowTost("当前无法访问题目数据，请稍后再试")
+                self?.ShowToast("当前无法访问题目数据，请稍后再试")
             })
         }, completion: { [weak self] (report) in
             println("学科学习报告：\(report)")
