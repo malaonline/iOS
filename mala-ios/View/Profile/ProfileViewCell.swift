@@ -14,25 +14,24 @@ class ProfileViewCell: UITableViewCell {
     /// [个人中心]Cell数据模型
     var model: ProfileElementModel = ProfileElementModel() {
         didSet {
-            self.titleLabel.text = model.title
-            self.infoLabel.text = model.detail
+            titleLabel.text = model.title
+            infoLabel.text = model.detail
             
             // 新消息样式
             if model.title == "我的订单" {
                 
-                self.infoLabel.isHidden = !(MalaUnpaidOrderCount > 0)
+                infoLabel.isHidden = !(MalaUnpaidOrderCount > 0)
                 
                 if MalaUnpaidOrderCount > 0 {
-                    self.titleLabel.showBadge()
-                    self.titleLabel.badgeBgColor = MalaColor_E26254_0
-                    self.titleLabel.badge.snp.makeConstraints({ (maker) in
+                    titleLabel.showBadge()
+                    titleLabel.badgeBgColor = MalaColor_E26254_0
+                    titleLabel.badge.snp.makeConstraints({ (maker) in
                         maker.top.equalTo(titleLabel).offset(-1)
                         maker.right.equalTo(titleLabel).offset(7)
                         maker.height.equalTo(7)
                         maker.width.equalTo(7)
                     })
-                    
-                    self.infoLabel.textColor = MalaColor_E26254_0
+                    infoLabel.textColor = MalaColor_E26254_0
                 }
             }
         }
@@ -76,9 +75,9 @@ class ProfileViewCell: UITableViewCell {
     // MARK: - Private Method
     private func setupUserInterface() {
         // Style
-        self.accessoryType = .disclosureIndicator
-        self.selectionStyle = .none
-        self.separatorInset = UIEdgeInsets(top: 0, left: 12, bottom: 0, right: 12)
+        accessoryType = .disclosureIndicator
+        selectionStyle = .none
+        separatorInset = UIEdgeInsets(top: 0, left: 12, bottom: 0, right: 12)
         
         // SubViews
         contentView.addSubview(titleLabel)

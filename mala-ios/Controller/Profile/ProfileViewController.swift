@@ -83,7 +83,7 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
         model = MalaConfig.profileData()
         tableView.reloadData()
         profileHeaderView.refreshDataWithUserDefaults()
-        self.navigationController?.showTabBadgePoint = MalaUnpaidOrderCount > 0
+        self.navigationController?.showTabBadgePoint = (MalaUnpaidOrderCount > 0 || MalaToCommentCount > 0)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -94,7 +94,7 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
     
     // MARK: - Private Method
     private func configure() {
-                
+        
         // register
         tableView.register(ProfileViewCell.self, forCellReuseIdentifier: ProfileViewTableViewCellReuseID)
         tableView.register(ProfileItemViewCell.self, forCellReuseIdentifier: ProfileViewTableViewItemCellReuseID)
@@ -137,7 +137,7 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
                 
                 // 若对应项被冻结，则点击无效
                 if model.disabled, let message = model.disabledMessage {
-                    self?.ShowTost(message)
+                    self?.ShowToast(message)
                     return
                 }
                 
@@ -154,15 +154,7 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
     ///  - parameter completion: 完成闭包
     private func updateAvatar(_ completion:() -> Void) {
         if let avatarURLString = MalaUserDefaults.avatar.value {
-            
-            println("avatarURLString: \(avatarURLString)")
-
             profileHeaderView.avatarURL = avatarURLString
-//            let avatarSize = MalaConfig.editProfileAvatarSize()
-//            let avatarStyle: AvatarStyle = .RoundedRectangle(size: CGSize(width: avatarSize, height: avatarSize), cornerRadius: avatarSize * 0.5, borderWidth: 0)
-//            let plainAvatar = PlainAvatar(avatarURLString: avatarURLString, avatarStyle: avatarStyle)
-//            avatarImageView.navi_setAvatar(plainAvatar, withFadeTransitionDuration: avatarFadeTransitionDuration)
-            
             completion()
         }
     }
@@ -382,47 +374,5 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
     
     deinit {
         NotificationCenter.default.removeObserver(self, name: MalaNotification_PushProfileItemController, object: nil)
-    }
-}
-
-
-class ProfileItemViewCell: UITableViewCell {
-    
-    // MARK: - Property
-    var model: [ProfileElementModel]? {
-        didSet {
-            collectionView.model = model
-        }
-    }
-    
-    
-    // MARK: - Components
-    private lazy var collectionView: ProfileItemCollectionView = {
-        let collectionView = ProfileItemCollectionView(frame: CGRect(x: 0, y: 0, width: MalaScreenWidth, height: 114), collectionViewLayout: CommonFlowLayout(type: .profileItem))
-        return collectionView
-    }()
-    
-    
-    // MARK: - Instance Method
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        setupUserInterface()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    
-    // MARK: - Private Method
-    private func setupUserInterface() {
-        
-        contentView.addSubview(collectionView)
-        
-        collectionView.snp.makeConstraints { (maker) -> Void in
-            maker.center.equalTo(contentView)
-            maker.width.equalTo(MalaScreenWidth)
-            maker.height.equalTo(114)
-        }
     }
 }

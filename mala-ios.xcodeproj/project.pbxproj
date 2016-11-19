@@ -533,6 +533,12 @@
 		BE0345859A399C0553F20A0B /* Pods_parent_stage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61B118D1E2CC01D0D747BD92 /* Pods_parent_stage.framework */; };
 		F402C9961C4F69C100E229FA /* TeacherTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F402C9941C4F69C100E229FA /* TeacherTableView.swift */; };
 		F404D47F1C8436A700C19C44 /* PaymentBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F404D47E1C8436A700C19C44 /* PaymentBottomView.swift */; };
+		F407DA041DDE9FDB00C4ABB5 /* ProfileItemViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F407DA031DDE9FDB00C4ABB5 /* ProfileItemViewCell.swift */; };
+		F407DA051DDE9FDB00C4ABB5 /* ProfileItemViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F407DA031DDE9FDB00C4ABB5 /* ProfileItemViewCell.swift */; };
+		F407DA061DDE9FDB00C4ABB5 /* ProfileItemViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F407DA031DDE9FDB00C4ABB5 /* ProfileItemViewCell.swift */; };
+		F407DA081DDEA12B00C4ABB5 /* ProfileItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F407DA071DDEA12B00C4ABB5 /* ProfileItemCollectionViewCell.swift */; };
+		F407DA091DDEA12B00C4ABB5 /* ProfileItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F407DA071DDEA12B00C4ABB5 /* ProfileItemCollectionViewCell.swift */; };
+		F407DA0A1DDEA12B00C4ABB5 /* ProfileItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F407DA071DDEA12B00C4ABB5 /* ProfileItemCollectionViewCell.swift */; };
 		F40B53AC1C7ED80800C20037 /* MalaService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40B53AB1C7ED80800C20037 /* MalaService.swift */; };
 		F40B53AE1C7EDA7500C20037 /* MalaNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40B53AD1C7EDA7500C20037 /* MalaNetworking.swift */; };
 		F40B53B01C7EEA2800C20037 /* Extension+NSURLRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40B53AF1C7EEA2800C20037 /* Extension+NSURLRequest.swift */; };
@@ -646,6 +652,9 @@
 		F4428C911DDC8E54000FEFA4 /* BaseWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4428C901DDC8E54000FEFA4 /* BaseWindow.swift */; };
 		F4428C921DDC8E54000FEFA4 /* BaseWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4428C901DDC8E54000FEFA4 /* BaseWindow.swift */; };
 		F4428C931DDC8E54000FEFA4 /* BaseWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4428C901DDC8E54000FEFA4 /* BaseWindow.swift */; };
+		F4428C991DDD500D000FEFA4 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4428C981DDD500D000FEFA4 /* UserNotifications.framework */; };
+		F4428C9A1DDD501C000FEFA4 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4428C981DDD500D000FEFA4 /* UserNotifications.framework */; };
+		F4428C9B1DDD5023000FEFA4 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4428C981DDD500D000FEFA4 /* UserNotifications.framework */; };
 		F44DC7C21D59C6D400E5979B /* DOFavoriteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44DC7C11D59C6D400E5979B /* DOFavoriteButton.swift */; };
 		F44DC7C31D59C6D400E5979B /* DOFavoriteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44DC7C11D59C6D400E5979B /* DOFavoriteButton.swift */; };
 		F44DC7C41D59C6D400E5979B /* DOFavoriteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44DC7C11D59C6D400E5979B /* DOFavoriteButton.swift */; };
@@ -1072,6 +1081,8 @@
 		F12B72CA706C78F519A08F8A /* Pods-parent-prd.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-parent-prd.debug.xcconfig"; path = "Pods/Target Support Files/Pods-parent-prd/Pods-parent-prd.debug.xcconfig"; sourceTree = "<group>"; };
 		F402C9941C4F69C100E229FA /* TeacherTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeacherTableView.swift; sourceTree = "<group>"; };
 		F404D47E1C8436A700C19C44 /* PaymentBottomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentBottomView.swift; sourceTree = "<group>"; };
+		F407DA031DDE9FDB00C4ABB5 /* ProfileItemViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileItemViewCell.swift; sourceTree = "<group>"; };
+		F407DA071DDEA12B00C4ABB5 /* ProfileItemCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		F40B53AB1C7ED80800C20037 /* MalaService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MalaService.swift; sourceTree = "<group>"; };
 		F40B53AD1C7EDA7500C20037 /* MalaNetworking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MalaNetworking.swift; sourceTree = "<group>"; };
 		F40B53AF1C7EEA2800C20037 /* Extension+NSURLRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension+NSURLRequest.swift"; sourceTree = "<group>"; };
@@ -1137,6 +1148,7 @@
 		F4402E181C5A16A700E7D3DB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F4402E1E1C5A178900E7D3DB /* ThemeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeTests.swift; sourceTree = "<group>"; };
 		F4428C901DDC8E54000FEFA4 /* BaseWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseWindow.swift; sourceTree = "<group>"; };
+		F4428C981DDD500D000FEFA4 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		F44DC7C11D59C6D400E5979B /* DOFavoriteButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DOFavoriteButton.swift; sourceTree = "<group>"; };
 		F452CD521CDC4CD2001A30E8 /* OrderFormViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderFormViewController.swift; sourceTree = "<group>"; };
 		F452CD561CDC5839001A30E8 /* OrderFormViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OrderFormViewCell.swift; path = ../OrderForm/OrderFormViewCell.swift; sourceTree = "<group>"; };
@@ -1334,6 +1346,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F4428C991DDD500D000FEFA4 /* UserNotifications.framework in Frameworks */,
 				F43C98821D6AD7E80013799E /* JavaScriptCore.framework in Frameworks */,
 				F43C98801D6AD7DD0013799E /* libstdc++.tbd in Frameworks */,
 				F43C987E1D6AD7C40013799E /* libicucore.tbd in Frameworks */,
@@ -1353,6 +1366,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F4428C9A1DDD501C000FEFA4 /* UserNotifications.framework in Frameworks */,
 				F43C98881D6AD82E0013799E /* JavaScriptCore.framework in Frameworks */,
 				F43C98871D6AD8270013799E /* libstdc++.tbd in Frameworks */,
 				F43C98861D6AD8220013799E /* libicucore.tbd in Frameworks */,
@@ -1372,6 +1386,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F4428C9B1DDD5023000FEFA4 /* UserNotifications.framework in Frameworks */,
 				35FF7B2A1CF83264000A70EE /* CFNetwork.framework in Frameworks */,
 				F464BD751DA8CE6B00032C88 /* CoreMotion.framework in Frameworks */,
 				F43C98841D6AD8130013799E /* libstdc++.tbd in Frameworks */,
@@ -1699,6 +1714,7 @@
 		D07419656EA549B65E42E332 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F4428C981DDD500D000FEFA4 /* UserNotifications.framework */,
 				F464BD761DA8D10500032C88 /* UIKit.framework */,
 				F464BD741DA8CE6B00032C88 /* CoreMotion.framework */,
 				F464BD721DA8CE5600032C88 /* libsqlite3.0.tbd */,
@@ -1766,6 +1782,8 @@
 				F4B58F741C9822ED009B5B8D /* AboutTitleView.swift */,
 				F48BBAD11CE4309B00774297 /* CouponRulesPopupWindow.swift */,
 				F4ADCFD51D0D6E6E004D517A /* InfoModifyViewWindow.swift */,
+				F407DA031DDE9FDB00C4ABB5 /* ProfileItemViewCell.swift */,
+				F407DA071DDEA12B00C4ABB5 /* ProfileItemCollectionViewCell.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -2795,6 +2813,7 @@
 				F4D0D17E1CA148DF00B25704 /* FloatRatingView.swift in Sources */,
 				F48F12D51DAB7A9C006A2F5C /* SKDetectingImageView.swift in Sources */,
 				F402C9961C4F69C100E229FA /* TeacherTableView.swift in Sources */,
+				F407DA081DDEA12B00C4ABB5 /* ProfileItemCollectionViewCell.swift in Sources */,
 				F4D0E43C1C8426E0002CD297 /* PaymentChannel.swift in Sources */,
 				F48F12FD1DAB8E5A006A2F5C /* PageControl.swift in Sources */,
 				F46065291C97B168004056B1 /* CouponViewController.swift in Sources */,
@@ -2917,6 +2936,7 @@
 				F45E69DE1C8D278A00BD0859 /* ThemeClassSchedule.swift in Sources */,
 				F43F44C11D06B14A00B7A358 /* CommentViewController.swift in Sources */,
 				F47C2AB71C8445950051A880 /* PaymentChannelSectionHeaderView.swift in Sources */,
+				F407DA041DDE9FDB00C4ABB5 /* ProfileItemViewCell.swift in Sources */,
 				30445B1A1C4A3AC8002CD290 /* GradeFilterView.swift in Sources */,
 				307AB8991C33CD5C00D8397F /* CommonFlowLayout.swift in Sources */,
 				F4B3C67B1CFD416F00C1B423 /* SingleTimeIntervalData.swift in Sources */,
@@ -3050,6 +3070,7 @@
 				35FF7A8F1CF8325A000A70EE /* TeacherTableView.swift in Sources */,
 				F48F12D61DAB7A9C006A2F5C /* SKDetectingImageView.swift in Sources */,
 				35FF7A901CF8325A000A70EE /* PaymentChannel.swift in Sources */,
+				F407DA091DDEA12B00C4ABB5 /* ProfileItemCollectionViewCell.swift in Sources */,
 				35FF7A911CF8325A000A70EE /* CouponViewController.swift in Sources */,
 				F48F12FE1DAB8E5A006A2F5C /* PageControl.swift in Sources */,
 				35FF7A921CF8325A000A70EE /* MemberSerivceCell.swift in Sources */,
@@ -3172,6 +3193,7 @@
 				35FF7AF11CF8325A000A70EE /* ThemeClassSchedule.swift in Sources */,
 				F43F44C21D06B14A00B7A358 /* CommentViewController.swift in Sources */,
 				35FF7AF21CF8325A000A70EE /* PaymentChannelSectionHeaderView.swift in Sources */,
+				F407DA051DDE9FDB00C4ABB5 /* ProfileItemViewCell.swift in Sources */,
 				35FF7AF31CF8325A000A70EE /* GradeFilterView.swift in Sources */,
 				35FF7AF41CF8325A000A70EE /* CommonFlowLayout.swift in Sources */,
 				F4B3C67C1CFD416F00C1B423 /* SingleTimeIntervalData.swift in Sources */,
@@ -3305,6 +3327,7 @@
 				35FF7B721CF83264000A70EE /* TeacherTableView.swift in Sources */,
 				F48F12D71DAB7A9C006A2F5C /* SKDetectingImageView.swift in Sources */,
 				35FF7B731CF83264000A70EE /* PaymentChannel.swift in Sources */,
+				F407DA0A1DDEA12B00C4ABB5 /* ProfileItemCollectionViewCell.swift in Sources */,
 				35FF7B741CF83264000A70EE /* CouponViewController.swift in Sources */,
 				F48F12FF1DAB8E5A006A2F5C /* PageControl.swift in Sources */,
 				35FF7B751CF83264000A70EE /* MemberSerivceCell.swift in Sources */,
@@ -3427,6 +3450,7 @@
 				35FF7BD41CF83264000A70EE /* ThemeClassSchedule.swift in Sources */,
 				F43F44C31D06B14A00B7A358 /* CommentViewController.swift in Sources */,
 				35FF7BD51CF83264000A70EE /* PaymentChannelSectionHeaderView.swift in Sources */,
+				F407DA061DDE9FDB00C4ABB5 /* ProfileItemViewCell.swift in Sources */,
 				35FF7BD61CF83264000A70EE /* GradeFilterView.swift in Sources */,
 				35FF7BD71CF83264000A70EE /* CommonFlowLayout.swift in Sources */,
 				F4B3C67D1CFD416F00C1B423 /* SingleTimeIntervalData.swift in Sources */,

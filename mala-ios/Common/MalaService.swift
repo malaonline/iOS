@@ -747,7 +747,12 @@ func createComment(_ comment: CommentModel, failureHandler: ((Reason, String?) -
     ] as [String : Any]
     
     let parse: (JSONDictionary) -> Bool = { data in
-        return true //(data != nil)
+        if let _ = data["id"] as? Int {
+            MalaToCommentCount -= 1
+            return true
+        }else {
+            return false
+        }
     }
     
     let resource = authJsonResource(path: "comments", method: .POST, requestParameters: (requestParameters as JSONDictionary), parse: parse)
@@ -856,6 +861,7 @@ func cancelOrderWithId(_ orderID: Int, failureHandler: ((Reason, String?) -> Voi
     /// 返回值解析器
     let parse: (JSONDictionary) -> Bool = { data in
         if let result = data["ok"] as? Bool {
+            if result { MalaUnpaidOrderCount -= 1 }
             return result
         }
         return false

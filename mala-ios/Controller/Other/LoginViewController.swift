@@ -433,7 +433,7 @@ class LoginViewController: UIViewController {
     
     deinit {
         popAction?()
-        MalaMainViewController.loadUnpaindOrder()
+        MalaMainViewController?.loadUnpaindOrder()
         println("LoginViewController - Deinit")
     }
 }

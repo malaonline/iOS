@@ -10,7 +10,7 @@ import Foundation
 
 extension UIViewController {
     
-    public func ShowTost(_ message: String) {
+    public func ShowToast(_ message: String) {
         
         if let naviView = self.navigationController?.view {
             naviView.makeToast(message)

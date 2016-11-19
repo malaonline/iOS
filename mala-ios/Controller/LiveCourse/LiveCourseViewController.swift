@@ -56,7 +56,6 @@ class LiveCourseViewController: BaseViewController {
         
         // 下拉刷新
         tableView.addPullRefresh{ [weak self] in
-            println("下拉刷新")
             self?.loadLiveClasses()
             self?.tableView.stopPullRefreshEver()
         }
@@ -100,9 +99,6 @@ class LiveCourseViewController: BaseViewController {
                 println("LiveCourseViewController - loadLiveClasses Error \(errorMessage)")
             }
         }, completion: { [weak self] (classList, count) in
-            
-            println("获取双师直播 - \(classList) - \(count)")
-            
             /// 记录数据量
             if count != 0 {
                 self?.allCount = count

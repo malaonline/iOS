@@ -480,17 +480,17 @@ open class CommentViewWindow: UIViewController, UITextViewDelegate {
     private func saveComment() {
         // 验证数据并创建评论模型
         guard model.id != 0 else {
-            ShowTost("网络环境较差，请稍后重试")
+            ShowToast("课程信息错误，请稍后重试")
             commitButton.isEnabled = true
             return
         }
         guard floatRating.rating > 0 else {
-            ShowTost("请给该课程打个分吧")
+            ShowToast("请给课程打个分吧")
             commitButton.isEnabled = true
             return
         }
         guard textView.text != MalaCommonString_CommentPlaceholder else {
-            ShowTost("请给该课程写几句评价吧")
+            ShowToast("请给课程写几句评价吧")
             commitButton.isEnabled = true
             return
         }
@@ -505,29 +505,27 @@ open class CommentViewWindow: UIViewController, UITextViewDelegate {
                 println("CommentViewWindow - saveComment Error \(errorMessage)")
             }
             
-            self?.ShowTost("评价失败，请重试")
+            self?.ShowToast("网络不稳定，请重试")
             self?.commitButton.isEnabled = true
             
-            }, completion: { [weak self] (bool) -> Void in
-                println("评论创建结果：\(bool)")
+        }, completion: { [weak self] (bool) -> Void in
                 
-                DispatchQueue.main.async(execute: { () -> Void in
-                    if bool {
-                        // 设置评价数据，用于Cell状态更新后显示评论
-                        self?.model.comment = comment
-                        MalaToCommentCount -= 1
-                        
-                        self?.ShowTost("评价成功")
-                        delay(1.0, work: { () -> Void in
-                            self?.finishedAction?()
-                            self?.animateDismiss()
-                        })
-                    }else {
-                        self?.ShowTost("评价失败，请重试")
-                        self?.commitButton.isEnabled = true
-                    }
-                })
+            DispatchQueue.main.async(execute: { () -> Void in
+                if bool {
+                    // 设置评价数据，用于Cell状态更新后显示评论
+                    self?.model.comment = comment
+                    
+                    self?.ShowToast("评价成功")
+                    delay(1.0, work: { () -> Void in
+                        self?.finishedAction?()
+                        self?.animateDismiss()
+                    })
+                }else {
+                    self?.ShowToast("评价失败，请重试")
+                    self?.commitButton.isEnabled = true
+                }
             })
+        })
     }
     
     
