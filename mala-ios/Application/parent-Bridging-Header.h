@@ -12,10 +12,7 @@
 #import "JPUSHService.h"
 #import "WZLBadgeImport.h"
 #import "YLProgressBar.h"
-
-
-// ShareSDK 头文件
 #import <ShareSDK/ShareSDK.h>
 #import <ShareSDKConnector/ShareSDKConnector.h>
-//微信SDK头文件
 #import "WXApi.h"
+#import <KSCrash/KSCrashInstallationStandard.h>
