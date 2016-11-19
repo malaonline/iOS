@@ -616,6 +616,7 @@
 		F4331B9A1DD322A1003F062D /* Extension+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4331B991DD322A1003F062D /* Extension+Date.swift */; };
 		F4331B9B1DD322A1003F062D /* Extension+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4331B991DD322A1003F062D /* Extension+Date.swift */; };
 		F4331B9C1DD322A1003F062D /* Extension+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4331B991DD322A1003F062D /* Extension+Date.swift */; };
+		F43525D21DE028D5002116E5 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F464BD701DA8CE3A00032C88 /* libc++.tbd */; };
 		F43C987E1D6AD7C40013799E /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F43C987D1D6AD7C40013799E /* libicucore.tbd */; };
 		F43C98801D6AD7DD0013799E /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F43C987F1D6AD7DD0013799E /* libstdc++.tbd */; };
 		F43C98821D6AD7E80013799E /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F43C98811D6AD7E80013799E /* JavaScriptCore.framework */; };
@@ -1346,6 +1347,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F40B53BB1C83ED2F00C20037 /* SystemConfiguration.framework in Frameworks */,
+				F43525D21DE028D5002116E5 /* libc++.tbd in Frameworks */,
 				F4428C991DDD500D000FEFA4 /* UserNotifications.framework in Frameworks */,
 				F43C98821D6AD7E80013799E /* JavaScriptCore.framework in Frameworks */,
 				F43C98801D6AD7DD0013799E /* libstdc++.tbd in Frameworks */,
@@ -1356,7 +1359,6 @@
 				F4D0D1A11CA2BFFA00B25704 /* libz.tbd in Frameworks */,
 				35B134181CAAE767001D2D34 /* CoreTelephony.framework in Frameworks */,
 				F40B53BC1C83ED3600C20037 /* Security.framework in Frameworks */,
-				F40B53BB1C83ED2F00C20037 /* SystemConfiguration.framework in Frameworks */,
 				F40B53BA1C83ED2600C20037 /* CFNetwork.framework in Frameworks */,
 				005D41E09EB2398DD895FAE4 /* Pods_parent_dev.framework in Frameworks */,
 			);

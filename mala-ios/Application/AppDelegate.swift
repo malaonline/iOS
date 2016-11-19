@@ -10,6 +10,7 @@ import UIKit
 import IQKeyboardManager
 import Google
 import UserNotifications
+import KSCrash
 
 
 @UIApplicationMain
@@ -196,6 +197,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 _ = MalaRemoteNotificationHandler().handleRemoteNotification(userInfo)
             }
         }
+        
+        // Crash Report
+        let installation = KSCrashInstallationStandard.sharedInstance()
+        installation?.url = NSURL(string: "https://collector.bughd.com/kscrash?key=58aca1df617af73f8cdf7c54a1f54560") as? URL
+        installation?.install()
+        installation?.sendAllReports(completion: nil)
     }
 
     

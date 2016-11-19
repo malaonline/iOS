@@ -26,6 +26,67 @@ PODS:
     - GoogleSymbolUtilities (~> 1.1)
   - IQKeyboardManager (4.0.4)
   - Kingfisher (3.1.3)
+  - KSCrash (1.8.13):
+    - KSCrash/Installations (= 1.8.13)
+  - KSCrash/Installations (1.8.13):
+    - KSCrash/Recording
+    - KSCrash/Reporting
+  - KSCrash/Recording (1.8.13)
+  - KSCrash/Reporting (1.8.13):
+    - KSCrash/Recording
+    - KSCrash/Reporting/Filters (= 1.8.13)
+    - KSCrash/Reporting/MessageUI (= 1.8.13)
+    - KSCrash/Reporting/Sinks (= 1.8.13)
+    - KSCrash/Reporting/Tools (= 1.8.13)
+  - KSCrash/Reporting/Filters (1.8.13):
+    - KSCrash/Recording
+    - KSCrash/Reporting/Filters/Alert (= 1.8.13)
+    - KSCrash/Reporting/Filters/AppleFmt (= 1.8.13)
+    - KSCrash/Reporting/Filters/Base (= 1.8.13)
+    - KSCrash/Reporting/Filters/Basic (= 1.8.13)
+    - KSCrash/Reporting/Filters/GZip (= 1.8.13)
+    - KSCrash/Reporting/Filters/JSON (= 1.8.13)
+    - KSCrash/Reporting/Filters/Sets (= 1.8.13)
+    - KSCrash/Reporting/Filters/Stringify (= 1.8.13)
+    - KSCrash/Reporting/Filters/Tools (= 1.8.13)
+  - KSCrash/Reporting/Filters/Alert (1.8.13):
+    - KSCrash/Recording
+    - KSCrash/Reporting/Filters/Base
+  - KSCrash/Reporting/Filters/AppleFmt (1.8.13):
+    - KSCrash/Recording
+    - KSCrash/Reporting/Filters/Base
+  - KSCrash/Reporting/Filters/Base (1.8.13):
+    - KSCrash/Recording
+  - KSCrash/Reporting/Filters/Basic (1.8.13):
+    - KSCrash/Recording
+    - KSCrash/Reporting/Filters/Base
+  - KSCrash/Reporting/Filters/GZip (1.8.13):
+    - KSCrash/Recording
+    - KSCrash/Reporting/Filters/Base
+  - KSCrash/Reporting/Filters/JSON (1.8.13):
+    - KSCrash/Recording
+    - KSCrash/Reporting/Filters/Base
+  - KSCrash/Reporting/Filters/Sets (1.8.13):
+    - KSCrash/Recording
+    - KSCrash/Reporting/Filters/AppleFmt
+    - KSCrash/Reporting/Filters/Base
+    - KSCrash/Reporting/Filters/Basic
+    - KSCrash/Reporting/Filters/GZip
+    - KSCrash/Reporting/Filters/JSON
+    - KSCrash/Reporting/Filters/Stringify
+  - KSCrash/Reporting/Filters/Stringify (1.8.13):
+    - KSCrash/Recording
+    - KSCrash/Reporting/Filters/Base
+  - KSCrash/Reporting/Filters/Tools (1.8.13):
+    - KSCrash/Recording
+  - KSCrash/Reporting/MessageUI (1.8.13):
+    - KSCrash/Recording
+  - KSCrash/Reporting/Sinks (1.8.13):
+    - KSCrash/Recording
+    - KSCrash/Reporting/Filters
+    - KSCrash/Reporting/Tools
+  - KSCrash/Reporting/Tools (1.8.13):
+    - KSCrash/Recording
   - MOBFoundation (2.0.11)
   - Pingpp/Alipay (2.2.8):
     - Pingpp/Core
@@ -47,6 +108,7 @@ DEPENDENCIES:
   - Google/Analytics
   - IQKeyboardManager (from `https://github.com/hackiftekhar/IQKeyboardManager.git`, branch `swift3`)
   - Kingfisher (~> 3.1.0)
+  - KSCrash (~> 1.8.13)
   - MOBFoundation
   - Pingpp/Alipay
   - Pingpp/Wx
@@ -90,11 +152,12 @@ SPEC CHECKSUMS:
   GoogleUtilities: 8bbc733218aad26306f9d4a253823986110e3358
   IQKeyboardManager: 4a6f83b540283c2645aaeba2bd8dc0f09b5c77f8
   Kingfisher: 007f5851c18c81e7cc106c9cbac1bafea1cce5dc
+  KSCrash: 4c3a83f133b60f4bd57e05235ebf8d46e36d378d
   MOBFoundation: e213065e65eebd8146ab29d10a8445dc8f385091
   Pingpp: b5ad287bd6969d69cff1f2438ea63147976711c9
   ShareSDK3: e7bcdfeb95338f89efd6fff82b4793d2bfee76f8
   SnapKit: 2e456761aa92d4d4067a7a5594c18769d451a8ad
 
-PODFILE CHECKSUM: 2c76c80aeed70b043242aef7ee4196bd9ea46fb7
+PODFILE CHECKSUM: 714dbbdf40ef9f1e0abf1643512a52109033a93e
 
 COCOAPODS: 1.1.0.rc.2

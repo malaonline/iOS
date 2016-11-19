@@ -9,7 +9,7 @@ if [[ "$TRAVIS_BRANCH" != "master" ]]; then
 fi
 
 PROVISIONING_PROFILE="$HOME/Library/MobileDevice/Provisioning Profiles/$PROFILE_NAME.mobileprovision"
-OUTPUTDIR="$PWD/build/Debug-iphoneos"
+OUTPUTDIR="$PWD/build/Release-iphoneos"
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 rvm use system

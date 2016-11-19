@@ -18,6 +18,7 @@ def pods
   pod 'ShareSDK3'
   pod 'ShareSDK3/ShareSDKPlatforms/WeChat'
   # pod 'PagingMenuController'
+  pod 'KSCrash', '~> 1.8.13'
 end
 
 target 'parent-dev' do
