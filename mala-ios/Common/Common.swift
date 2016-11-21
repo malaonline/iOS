@@ -55,6 +55,7 @@ let MalaNotification_RefreshStudentName = NSNotification.Name(rawValue: "com.mal
 let MalaNotification_PushProfileItemController = NSNotification.Name(rawValue: "com.malalaoshi.app.PushProfileItemController")
 let MalaNotification_ReloadLearningReport = NSNotification.Name(rawValue: "com.malalaoshi.app.ReloadLearningReport")
 let MalaNotification_LoadTeachers = NSNotification.Name(rawValue: "com.malalaoshi.app.LoadTeachers")
+let MalaNotification_MakePhoneCall = NSNotification.Name(rawValue: "com.malalaoshi.app.MakePhoneCall")
 
 
 // MARK: - Screen Name For Analytics

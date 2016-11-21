@@ -14,17 +14,13 @@ class LiveCourseDetailClassCell: MalaBaseLiveCourseCell {
     /// 课程模型
     var model: LiveClassModel? {
         didSet{
-            guard let model = model else {
-                return
-            }
+            guard let model = model else { return }
             
             title = model.courseName
             roomCapacityLabel.text = String(format: "%d人小班  ", model.roomCapacity ?? 0)
             courseGradeLabel.text = (model.courseGrade ?? "")+"  "
             dateLabel.text = String(format: "%@-%@", getDateString(model.courseStart), getDateString(model.courseEnd))
             scheduleLabel.text = model.coursePeriod?.trim().replacingOccurrences(of: ";", with: "\n")
-            
-            
             checkinLabel.text = String(format: "%d人", model.studentsCount ?? 0)
         }
     }
@@ -119,8 +115,6 @@ class LiveCourseDetailClassCell: MalaBaseLiveCourseCell {
     
     // MARK: - Private Method
     private func setupUserInterface() {
-        // Style
-        
         // SubViews
         content.addSubview(roomCapacityLabel)
         content.addSubview(courseGradeLabel)

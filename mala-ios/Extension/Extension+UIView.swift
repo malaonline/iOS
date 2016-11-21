@@ -28,4 +28,8 @@ extension UIView {
         self.layer.shadowColor = color.cgColor
         self.layer.shadowOpacity = opacity
     }
+    
+    func addTapEvent(target: Any?, action: Selector?) {
+        self.addGestureRecognizer(UITapGestureRecognizer(target: target, action: action))
+    }
 }

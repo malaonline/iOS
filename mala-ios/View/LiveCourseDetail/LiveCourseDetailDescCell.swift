@@ -14,9 +14,7 @@ class LiveCourseDetailDescCell: MalaBaseLiveCourseCell {
     /// 课程模型
     var model: LiveClassModel? {
         didSet{
-            guard let model = model else {
-                return
-            }
+            guard let model = model else { return }
             courseDescView.text = model.courseDesc
         }
     }
@@ -28,7 +26,7 @@ class LiveCourseDetailDescCell: MalaBaseLiveCourseCell {
         let label = UILabel(
             text: "",
             font: UIFont(name: "STHeitiSC-Light", size: 14),
-            textColor: MalaColor_939393_0
+            textColor: MalaColor_636363_0
         )
         label.numberOfLines = 0
         return label
@@ -38,7 +36,6 @@ class LiveCourseDetailDescCell: MalaBaseLiveCourseCell {
     // MARK: - Instance Method
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
         setupUserInterface()
     }
     
@@ -49,8 +46,6 @@ class LiveCourseDetailDescCell: MalaBaseLiveCourseCell {
     
     // MARK: - Private Method
     private func setupUserInterface() {
-        // Style
-        
         // SubViews
         content.addSubview(courseDescView)
         
