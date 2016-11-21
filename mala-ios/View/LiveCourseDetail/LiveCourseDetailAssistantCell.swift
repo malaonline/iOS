@@ -88,7 +88,7 @@ class LiveCourseDetailAssistantCell: MalaBaseLiveCourseCell {
             maker.height.equalTo(15)
         }
         descLabel.snp.makeConstraints { (maker) in
-            maker.top.equalTo(assistantNameLabel.snp.bottom).offset(12)
+            maker.top.equalTo(assistantNameLabel.snp.bottom).offset(6)
             maker.left.equalTo(assistantNameLabel)
             maker.right.equalTo(phoneLayer.snp.left).offset(-18)
             maker.bottom.equalTo(content)

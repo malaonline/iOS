@@ -81,7 +81,7 @@ class LiveCourseDetailLecturerCell: MalaBaseLiveCourseCell {
             maker.height.equalTo(15)
         }
         lecturerBioView.snp.makeConstraints { (maker) in
-            maker.top.equalTo(lecturerNameLabel.snp.bottom).offset(12)
+            maker.top.equalTo(lecturerNameLabel.snp.bottom).offset(9)
             maker.left.equalTo(lecturerNameLabel)
             maker.right.equalTo(lecturerAvatar.snp.left).offset(-18)
             maker.bottom.equalTo(content)
