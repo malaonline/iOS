@@ -21,15 +21,26 @@ class RegionUnitCell: UITableViewCell {
     var school: SchoolModel = SchoolModel() {
         didSet {
             titleLabel.text = school.name
+            addressLabel.text = school.address
         }
     }
     
+    
     // MARK: - Components
-    /// 标题label
+    /// 地点名称
     private lazy var titleLabel: UILabel = {
-        let titleLabel = UILabel()
-        titleLabel.font = UIFont.systemFont(ofSize: 14)
-        titleLabel.textColor = MalaColor_636363_0
+        let label = UILabel(
+            fontSize: 14,
+            textColor: MalaColor_333333_0
+        )
+        return label
+    }()
+    /// 地址名称
+    private lazy var addressLabel: UILabel = {
+        let titleLabel = UILabel(
+            fontSize: 12,
+            textColor: MalaColor_636363_0
+        )
         return titleLabel
     }()
     /// 分割线
@@ -58,19 +69,28 @@ class RegionUnitCell: UITableViewCell {
         
         // SubViews
         contentView.addSubview(titleLabel)
+        contentView.addSubview(addressLabel)
         contentView.addSubview(separatorLine)
         
         // Autolayout
         titleLabel.snp.makeConstraints { (maker) in
+            maker.top.equalTo(contentView).offset(13)
+            maker.left.equalTo(contentView).offset(12)
             maker.height.equalTo(14)
-            maker.centerY.equalTo(contentView)
-            maker.left.equalTo(contentView).offset(13)
+            maker.bottom.equalTo(addressLabel.snp.top).offset(-6)
+        }
+        addressLabel.snp.makeConstraints { (maker) in
+            maker.top.equalTo(titleLabel.snp.bottom).offset(6)
+            maker.left.equalTo(contentView).offset(12)
+            maker.height.equalTo(12)
+            maker.bottom.equalTo(separatorLine.snp.top).offset(-13)
         }
         separatorLine.snp.makeConstraints { (maker) in
-            maker.bottom.equalTo(contentView)
+            maker.top.equalTo(addressLabel.snp.bottom).offset(13)
             maker.left.equalTo(contentView).offset(12)
             maker.right.equalTo(contentView).offset(12)
             maker.height.equalTo(MalaScreenOnePixel)
+            maker.bottom.equalTo(contentView)
         }
     }
     
