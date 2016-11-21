@@ -14,12 +14,14 @@ class LiveCourseDetailTableView: UITableView, UITableViewDelegate, UITableViewDa
         0: "LiveCourseDetailClassCellReuseId",          // 班级名称
         1: "LiveCourseDetailDescCellReuseId",           // 课程介绍
         2: "LiveCourseDetailLecturerCellReuseId",       // 直播名师
+        3: "LiveCourseAssistantCellReuseId",            // 助教
     ]
     
     let LiveCourseDetailCellTitle = [
         1: "班级名称",
         2: "课程介绍",
         3: "直播名师",
+        4: "联系助教",
     ]
     
     // MARK: - Property
@@ -54,6 +56,7 @@ class LiveCourseDetailTableView: UITableView, UITableViewDelegate, UITableViewDa
         register(LiveCourseDetailClassCell.self, forCellReuseIdentifier: LiveCourseDetailCellReuseId[0]!)
         register(LiveCourseDetailDescCell.self, forCellReuseIdentifier: LiveCourseDetailCellReuseId[1]!)
         register(LiveCourseDetailLecturerCell.self, forCellReuseIdentifier: LiveCourseDetailCellReuseId[2]!)
+        register(LiveCourseDetailAssistantCell.self, forCellReuseIdentifier: LiveCourseDetailCellReuseId[3]!)
     }
     
     // MARK: - Delegate
@@ -96,6 +99,11 @@ class LiveCourseDetailTableView: UITableView, UITableViewDelegate, UITableViewDa
             
         case 2:
             let cell = reuseCell as! LiveCourseDetailLecturerCell
+            cell.model = model
+            return cell
+            
+        case 3:
+            let cell = reuseCell as! LiveCourseDetailAssistantCell
             cell.model = model
             return cell
             
