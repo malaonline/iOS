@@ -617,6 +617,9 @@
 		F4331B9B1DD322A1003F062D /* Extension+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4331B991DD322A1003F062D /* Extension+Date.swift */; };
 		F4331B9C1DD322A1003F062D /* Extension+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4331B991DD322A1003F062D /* Extension+Date.swift */; };
 		F43525D21DE028D5002116E5 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F464BD701DA8CE3A00032C88 /* libc++.tbd */; };
+		F43525D41DE2CA55002116E5 /* LiveCourseDetailAssistantCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43525D31DE2CA55002116E5 /* LiveCourseDetailAssistantCell.swift */; };
+		F43525D51DE2CA55002116E5 /* LiveCourseDetailAssistantCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43525D31DE2CA55002116E5 /* LiveCourseDetailAssistantCell.swift */; };
+		F43525D61DE2CA55002116E5 /* LiveCourseDetailAssistantCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43525D31DE2CA55002116E5 /* LiveCourseDetailAssistantCell.swift */; };
 		F43C987E1D6AD7C40013799E /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F43C987D1D6AD7C40013799E /* libicucore.tbd */; };
 		F43C98801D6AD7DD0013799E /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F43C987F1D6AD7DD0013799E /* libstdc++.tbd */; };
 		F43C98821D6AD7E80013799E /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F43C98811D6AD7E80013799E /* JavaScriptCore.framework */; };
@@ -1125,6 +1128,7 @@
 		F4312B731CF82AC100E0EAF1 /* TimeScheduleModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeScheduleModel.swift; sourceTree = "<group>"; };
 		F4331AC31DD19B78003F062D /* BannerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerView.swift; sourceTree = "<group>"; };
 		F4331B991DD322A1003F062D /* Extension+Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension+Date.swift"; sourceTree = "<group>"; };
+		F43525D31DE2CA55002116E5 /* LiveCourseDetailAssistantCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveCourseDetailAssistantCell.swift; sourceTree = "<group>"; };
 		F43C987D1D6AD7C40013799E /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
 		F43C987F1D6AD7DD0013799E /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
 		F43C98811D6AD7E80013799E /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
@@ -2259,6 +2263,7 @@
 				F4FF66F21DB87EB80036E299 /* LiveCourseDetailClassCell.swift */,
 				F4FF66F61DB88E960036E299 /* LiveCourseDetailDescCell.swift */,
 				F4FF66FA1DB88EAC0036E299 /* LiveCourseDetailLecturerCell.swift */,
+				F43525D31DE2CA55002116E5 /* LiveCourseDetailAssistantCell.swift */,
 				F4FF66E61DB87D5F0036E299 /* LiveCourseConfirmView.swift */,
 			);
 			path = LiveCourseDetail;
@@ -2962,6 +2967,7 @@
 				F4CECE571DD74FFF00E64B58 /* MenuItemMultipliable.swift in Sources */,
 				30AE09341C2AC94F00FD607D /* FilterViewCell.swift in Sources */,
 				F46065261C97B168004056B1 /* MainViewController.swift in Sources */,
+				F43525D41DE2CA55002116E5 /* LiveCourseDetailAssistantCell.swift in Sources */,
 				304D6D351C3E65ED00282925 /* TeacherDetailsHeaderView.swift in Sources */,
 				F4402DFE1C5A0DE200E7D3DB /* Extension+String.swift in Sources */,
 				3037B59C1C3BAAB3005672D9 /* TeacherDetailsTagsCell.swift in Sources */,
@@ -3219,6 +3225,7 @@
 				F4CECE581DD74FFF00E64B58 /* MenuItemMultipliable.swift in Sources */,
 				35FF7B051CF8325A000A70EE /* FilterViewCell.swift in Sources */,
 				35FF7B061CF8325A000A70EE /* MainViewController.swift in Sources */,
+				F43525D51DE2CA55002116E5 /* LiveCourseDetailAssistantCell.swift in Sources */,
 				35FF7B071CF8325A000A70EE /* TeacherDetailsHeaderView.swift in Sources */,
 				35FF7B081CF8325A000A70EE /* Extension+String.swift in Sources */,
 				35FF7B091CF8325A000A70EE /* TeacherDetailsTagsCell.swift in Sources */,
@@ -3476,6 +3483,7 @@
 				F4CECE591DD74FFF00E64B58 /* MenuItemMultipliable.swift in Sources */,
 				35FF7BE81CF83264000A70EE /* FilterViewCell.swift in Sources */,
 				35FF7BE91CF83264000A70EE /* MainViewController.swift in Sources */,
+				F43525D61DE2CA55002116E5 /* LiveCourseDetailAssistantCell.swift in Sources */,
 				35FF7BEA1CF83264000A70EE /* TeacherDetailsHeaderView.swift in Sources */,
 				35FF7BEB1CF83264000A70EE /* Extension+String.swift in Sources */,
 				35FF7BEC1CF83264000A70EE /* TeacherDetailsTagsCell.swift in Sources */,
