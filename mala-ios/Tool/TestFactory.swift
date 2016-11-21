@@ -38,27 +38,6 @@ class TestFactory {
         ]
     }
     
-    class func testLiveClass() -> LiveClassModel {
-        return LiveClassModel(
-            lecturerAvatar: "http://s3.cn-north-1.amazonaws.com.cn/dev-upload/avatars/avatar21_161101?X-Amz-Expires=86400&X-Amz-Signature=517143d11c51518bba37c9f71c4b9f59327daf9c8b9ed9afe183127e14a49412&X-Amz-SignedHeaders=host&X-Amz-Date=20161018T040232Z&X-Amz-Credential=AKIAOSV3WMTYCF7T4LTA/20161018/cn-north-1/s3/aws4_request&X-Amz-Algorithm=AWS4-HMAC-SHA256",
-            lecturerName: "刘孟军",
-            lecturerTitle: "CCTV日语频道著名主持人",
-            assistantAvatar: "http://s3.cn-north-1.amazonaws.com.cn/dev-upload/avatars/avatar22_11290?X-Amz-Expires=86400&X-Amz-Signature=0e082c8967e8d8bac5be78d225ef5a104d5c9069dd0a2d21c2ac928e24ff10d3&X-Amz-SignedHeaders=host&X-Amz-Date=20161018T041156Z&X-Amz-Credential=AKIAOSV3WMTYCF7T4LTA/20161018/cn-north-1/s3/aws4_request&X-Amz-Algorithm=AWS4-HMAC-SHA256",
-            assistantName: "王新宇",
-            roomCapacity: 20,
-            courseName: "标准日本语中高级加强班周六上午班",
-            courseStart: 1477101600,
-            courseEnd: 1477713600,
-            courseGrade: "全年级",
-            courseFee: 48000,
-            courseLessons: 16,
-            coursePeriod: "每周六 10:00-12:00",
-            courseDesc: "课程介绍 blah blah课程介绍 blah blah课程介绍 blah blah课程介绍 blah blah课程介绍 blah blah课程介绍 blah blah课程介绍 blah blah课程介绍 blah blah课程介绍 blah blah课程介绍 blah blah课程介绍 blah blah课程介绍 blah blah课程介绍 blah blah课程介绍 blah blah课程介绍 blah blah课程介绍 blah blah",
-            studentsCount: 13,
-            lecturerBio: "多年海外留学经历\n非常多年海外留学经历\n特别特别多年海外留学经历"
-        )
-    }
-    
     class func testPrices() -> [GradeModel] {
         return [
             GradeModel(id: 2, name: "一年级", price: [

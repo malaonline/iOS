@@ -18,7 +18,7 @@ class LiveCourseDetailViewController: BaseViewController, LiveCourseConfirmViewD
         }
     }
     /// 教师详情数据模型
-    var model: LiveClassModel = TestFactory.testLiveClass() {
+    var model: LiveClassModel = LiveClassModel() {
         didSet {
             tableView.model = model
             confirmView.model = model

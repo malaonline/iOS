@@ -12,12 +12,9 @@ class LiveCourseTableViewCell: UITableViewCell {
     
     // MARK: - Property
     /// 老师简介模型
-    var model: LiveClassModel? = TestFactory.testLiveClass() {
-        didSet{
-            
-            guard let model = model else {
-                return
-            }
+    var model: LiveClassModel? {
+        didSet {
+            guard let model = model else { return }
             
             lecturerAvatar.setImage(withURL: model.lecturerAvatar, placeholderImage: "avatar_placeholder")
             assistantAvatar.setImage(withURL: model.assistantAvatar, placeholderImage: "avatar_placeholder")
