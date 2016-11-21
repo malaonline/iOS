@@ -83,6 +83,29 @@ class LiveCourseDetailViewController: BaseViewController, LiveCourseConfirmViewD
     
     private func setupNotification() {
         
+        // 拨打助教电话
+        NotificationCenter.default.addObserver(
+            forName: MalaNotification_MakePhoneCall,
+            object: nil,
+            queue: nil
+        ) { [weak self] (notification) -> Void in
+            
+            guard
+                let phone = notification.object as? String,
+                let url = URL(string: String(format: "tel:%@", phone)) else { return }
+            
+            // ActionSheet
+            let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+            let phoneCallAction: UIAlertAction = UIAlertAction(title: phone, style: .default) { (action) -> Void in
+                UIApplication.shared.openURL(url)
+            }
+            alertController.addAction(phoneCallAction)
+            let cancelAction: UIAlertAction = UIAlertAction(title: "取消", style: .cancel) { action -> Void in
+                self?.dismiss(animated: true, completion: nil)
+            }
+            alertController.addAction(cancelAction)
+            self?.present(alertController, animated: true, completion: nil)
+        }
     }
     
     ///  创建订单

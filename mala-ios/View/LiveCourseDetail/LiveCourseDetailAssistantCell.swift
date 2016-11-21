@@ -56,9 +56,10 @@ class LiveCourseDetailAssistantCell: MalaBaseLiveCourseCell {
             frame: CGRect(x: 0, y: 0, width: 57, height: 57),
             image: "live_phone"
         )
+        imageView.addTapEvent(target: self, action: #selector(LiveCourseDetailAssistantCell.phoneDidTap))
+        imageView.isUserInteractionEnabled = true
         return imageView
     }()
-    
     
     
     // MARK: - Instance Method
@@ -103,5 +104,11 @@ class LiveCourseDetailAssistantCell: MalaBaseLiveCourseCell {
             maker.height.equalTo(36)
             maker.width.equalTo(36)
         }
+    }
+    
+    
+    // MARK: - Events Response
+    @objc private func phoneDidTap() {
+        NotificationCenter.default.post(name: MalaNotification_MakePhoneCall, object: model?.assistantPhone)
     }
 }

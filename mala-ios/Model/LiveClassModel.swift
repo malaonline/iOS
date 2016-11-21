@@ -16,7 +16,7 @@ class LiveClassModel: BaseObjectModel {
     var lecturerTitle: String?
     var assistantAvatar: String?
     var assistantName: String?
-    var assistantPhone: Int?
+    var assistantPhone: String?
     var roomCapacity: Int?
     
     var courseName: String?
@@ -91,8 +91,8 @@ class LiveClassModel: BaseObjectModel {
             assistantName = string
             return
         }
-        if key == "assistant_phone", let int = value as? Int {
-            assistantPhone = int
+        if key == "assistant_phone", let string = value as? String {
+            assistantPhone = string
             return
         }
         if key == "room_capacity", let int = value as? Int {
