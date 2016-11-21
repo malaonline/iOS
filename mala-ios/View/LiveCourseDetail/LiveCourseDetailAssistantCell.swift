@@ -15,9 +15,8 @@ class LiveCourseDetailAssistantCell: MalaBaseLiveCourseCell {
     var model: LiveClassModel? {
         didSet{
             guard let model = model else { return }
-            
             assistantNameLabel.text = String(format: "助教：%@", model.assistantName ?? "")
-            assistantAvatar.setImage(withURL: model.lecturerAvatar, placeholderImage: "avatar_placeholder")
+            assistantAvatar.setImage(withURL: model.assistantAvatar, placeholderImage: "avatar_placeholder")
         }
     }
     
@@ -27,8 +26,8 @@ class LiveCourseDetailAssistantCell: MalaBaseLiveCourseCell {
     private lazy var assistantNameLabel: UILabel = {
         let label = UILabel(
             text: "助教",
-            font: UIFont(name: "PingFang-SC-Light", size: 15),
-            textColor: MalaColor_9BC3E1_0
+            font: UIFont(name: "PingFang-SC-Light", size: 14),
+            textColor: MalaColor_636363_0
         )
         return label
     }()
@@ -36,7 +35,7 @@ class LiveCourseDetailAssistantCell: MalaBaseLiveCourseCell {
     private lazy var descLabel: UILabel = {
         let label = UILabel(
             text: "对订单有疑问？快打电话咨询助教老师吧！",
-            font: UIFont(name: "STHeitiSC-Light", size: 14),
+            font: UIFont(name: "STHeitiSC-Light", size: 13),
             textColor: MalaColor_939393_0
         )
         label.numberOfLines = 0
@@ -46,7 +45,7 @@ class LiveCourseDetailAssistantCell: MalaBaseLiveCourseCell {
     private lazy var assistantAvatar: UIImageView = {
         let imageView = UIImageView(
             frame: CGRect(x: 0, y: 0, width: 36, height: 36),
-            cornerRadius: 28,
+            cornerRadius: 18,
             image: "avatar_placeholder"
         )
         return imageView
@@ -55,7 +54,6 @@ class LiveCourseDetailAssistantCell: MalaBaseLiveCourseCell {
     private lazy var phoneLayer: UIImageView = {
         let imageView = UIImageView(
             frame: CGRect(x: 0, y: 0, width: 57, height: 57),
-            cornerRadius: 28,
             image: "live_phone"
         )
         return imageView
@@ -76,9 +74,6 @@ class LiveCourseDetailAssistantCell: MalaBaseLiveCourseCell {
     
     // MARK: - Private Method
     private func setupUserInterface() {
-        // Style
-        
-        
         // SubViews
         content.addSubview(assistantNameLabel)
         content.addSubview(descLabel)
