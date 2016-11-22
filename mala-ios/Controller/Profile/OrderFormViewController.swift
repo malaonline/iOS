@@ -170,7 +170,7 @@ class OrderFormViewController: BaseTableViewController {
             let viewController = CourseChoosingViewController()
             if let model = notification.object as? OrderForm {
                 viewController.teacherId = model.teacher
-                viewController.school = SchoolModel(id: model.school, name: model.schoolName , address: "")
+                viewController.school = SchoolModel(id: model.school, name: model.schoolName , address: model.schoolAddress)
                 viewController.hidesBottomBarWhenPushed = true
                 self?.navigationController?.pushViewController(viewController, animated: true)
             }else {

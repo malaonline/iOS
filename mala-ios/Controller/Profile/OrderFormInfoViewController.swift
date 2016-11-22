@@ -273,7 +273,7 @@ class OrderFormInfoViewController: BaseViewController, OrderFormOperatingViewDel
         if let id = model?.teacher  {
             viewController.teacherModel?.subject = model?.subjectName
             viewController.teacherId = id
-            viewController.school = SchoolModel(id: model?.school, name: model?.schoolName , address: "")
+            viewController.school = SchoolModel(id: model?.school, name: model?.schoolName , address: model?.schoolAddress)
             viewController.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(viewController, animated: true)
         }else {
