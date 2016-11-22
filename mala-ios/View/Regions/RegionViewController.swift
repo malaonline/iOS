@@ -126,6 +126,7 @@ class RegionViewController: UIViewController, UITableViewDelegate, UITableViewDa
         tableView.backgroundColor = MalaColor_F6F7F9_0
         tableView.separatorStyle = .none
         tableView.separatorColor = MalaColor_E5E5E5_0
+        tableView.estimatedRowHeight = 60
         tableView.register(RegionUnitCell.self, forCellReuseIdentifier: SchoolTableViewCellReuseId)
         
         

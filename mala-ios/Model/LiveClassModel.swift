@@ -19,6 +19,8 @@ class LiveClassModel: BaseObjectModel {
     var assistantPhone: String?
     var roomCapacity: Int?
     
+    var schoolName: String?
+    var schoolAddress: String?
     var courseName: String?
     var courseStart: TimeInterval?
     var courseEnd: TimeInterval?
@@ -30,6 +32,12 @@ class LiveClassModel: BaseObjectModel {
     var courseDesc: String?
     var studentsCount: Int?
     var lecturerBio: String?
+    
+    var attrAddressString: NSMutableAttributedString {
+        get {
+            return makeAddressAttrString(schoolName, schoolAddress)
+        }
+    }
     
     
     // MARK: - Instance Method
@@ -45,30 +53,7 @@ class LiveClassModel: BaseObjectModel {
     required public init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    convenience init(lecturerAvatar: String?, lecturerName: String?, lecturerTitle: String?, assistantAvatar: String?, assistantName: String?, roomCapacity: Int?, courseName: String?, courseStart: TimeInterval?, courseEnd: TimeInterval?, courseGrade: String?, courseFee: Int?, courseLessons: Int?, coursePeriod: String?, courseDesc: String?,studentsCount: Int?, lecturerBio: String?) {
-        
-        self.init()
-        self.lecturerAvatar = lecturerAvatar
-        self.lecturerName = lecturerName
-        self.lecturerTitle = lecturerTitle
-        self.assistantAvatar = assistantAvatar
-        self.assistantName = assistantName
-        self.roomCapacity = roomCapacity
-        
-        self.courseName = courseName
-        self.courseStart = courseStart
-        self.courseEnd = courseEnd
-        self.courseGrade = courseGrade
-        self.courseFee = courseFee
-        self.courseLessons = courseLessons
-        
-        self.coursePeriod = coursePeriod
-        self.courseDesc = courseDesc
-        self.studentsCount = studentsCount
-        self.lecturerBio = lecturerBio
-    }
-    
+
     override func setValue(_ value: Any?, forKey key: String) {
         // 老师信息
         if key == "lecturer_avatar", let string = value as? String {
@@ -100,6 +85,14 @@ class LiveClassModel: BaseObjectModel {
             return
         }
         // 班级信息
+        if key == "school_name", let string = value as? String {
+            schoolName = string
+            return
+        }
+        if key == "school_address", let string = value as? String {
+            schoolAddress = string
+            return
+        }
         if key == "course_name", let string = value as? String {
             courseName = string
             return

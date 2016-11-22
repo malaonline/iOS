@@ -14,9 +14,7 @@ class CourseChoosingViewController: BaseViewController, CourseChoosingConfirmVie
     /// 教师id
     var teacherId: Int? {
         didSet {
-            guard let _ = teacherId else {
-                return
-            }
+            guard let _ = teacherId else { return }
             
             let operationTeacher = BlockOperation(block: loadTeacherDetail)
             let operationTimeSlots = BlockOperation(block: loadClassSchedule)
@@ -101,7 +99,6 @@ class CourseChoosingViewController: BaseViewController, CourseChoosingConfirmVie
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         ThemeHUD.showActivityIndicator()
         
         MalaCurrentInitAction = { [weak self] in
@@ -116,7 +113,6 @@ class CourseChoosingViewController: BaseViewController, CourseChoosingConfirmVie
         
         setupUserInterface()
         setupNotification()
-        
         operationQueue.addOperation(loadCoupons)
     }
     
@@ -129,7 +125,6 @@ class CourseChoosingViewController: BaseViewController, CourseChoosingConfirmVie
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
     
@@ -138,12 +133,11 @@ class CourseChoosingViewController: BaseViewController, CourseChoosingConfirmVie
         // Style
         makeStatusBarBlack()
         title = MalaCommonString_CourseChoosing
+        confirmView.delegate = self
         
         // SubViews
         view.addSubview(confirmView)
         view.addSubview(tableView)
-        
-        confirmView.delegate = self
         
         // Autolayout
         confirmView.snp.makeConstraints { (maker) -> Void in
@@ -162,9 +156,7 @@ class CourseChoosingViewController: BaseViewController, CourseChoosingConfirmVie
     
     private func loadTeacherDetail() {
         
-        guard let id = self.teacherId else {
-            return
-        }
+        guard let id = self.teacherId else { return }
         
         loadTeacherDetailData(id, failureHandler: { (reason, errorMessage) in
             ThemeHUD.hideActivityIndicator()

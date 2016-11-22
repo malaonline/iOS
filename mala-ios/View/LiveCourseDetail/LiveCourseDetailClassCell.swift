@@ -22,6 +22,7 @@ class LiveCourseDetailClassCell: MalaBaseLiveCourseCell {
             dateLabel.text = String(format: "%@-%@", getDateString(model.courseStart), getDateString(model.courseEnd))
             scheduleLabel.text = model.coursePeriod?.trim().replacingOccurrences(of: ";", with: "\n")
             checkinLabel.text = String(format: "%d人", model.studentsCount ?? 0)
+            schoolLabel.attributedText = model.attrAddressString
         }
     }
     
@@ -99,7 +100,22 @@ class LiveCourseDetailClassCell: MalaBaseLiveCourseCell {
         )
         return label
     }()
-    
+    /// 上课地点图标
+    private lazy var schoolIcon: UIImageView = {
+        let imageView = UIImageView(imageName: "live_location")
+        return imageView
+    }()
+    /// 上课地点标签
+    private lazy var schoolLabel: UILabel = {
+        let label = UILabel(
+            text: "上课地点",
+            font: UIFont(name: "PingFang-SC-Light", size: 14),
+            textColor: MalaColor_636363_0
+        )
+        label.numberOfLines = 0
+        
+        return label
+    }()
     
     // MARK: - Instance Method
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
@@ -124,6 +140,8 @@ class LiveCourseDetailClassCell: MalaBaseLiveCourseCell {
         content.addSubview(checkinIcon)
         content.addSubview(checkinStringLabel)
         content.addSubview(checkinLabel)
+        content.addSubview(schoolIcon)
+        content.addSubview(schoolLabel)
         
         // Autolayout
         roomCapacityLabel.snp.makeConstraints { (maker) in
@@ -156,10 +174,9 @@ class LiveCourseDetailClassCell: MalaBaseLiveCourseCell {
             maker.left.equalTo(content)
             maker.height.equalTo(15)
             maker.width.equalTo(15)
-            maker.bottom.equalTo(content)
         }
         checkinStringLabel.snp.makeConstraints { (maker) in
-            maker.left.equalTo(checkinIcon.snp.right).offset(6)
+            maker.left.equalTo(scheduleLabel)
             maker.centerY.equalTo(checkinIcon)
             maker.height.equalTo(15)
         }
@@ -167,6 +184,18 @@ class LiveCourseDetailClassCell: MalaBaseLiveCourseCell {
             maker.left.equalTo(checkinStringLabel.snp.right)
             maker.centerY.equalTo(checkinStringLabel)
             maker.height.equalTo(15)
+        }
+        schoolIcon.snp.makeConstraints { (maker) in
+            maker.top.equalTo(checkinIcon.snp.bottom).offset(12)
+            maker.left.equalTo(content)
+            maker.width.equalTo(15)
+            maker.height.equalTo(15)
+        }
+        schoolLabel.snp.makeConstraints { (maker) in
+            maker.top.equalTo(schoolIcon)
+            maker.left.equalTo(checkinStringLabel)
+            maker.right.equalTo(content)
+            maker.bottom.equalTo(content)
         }
     }
 }

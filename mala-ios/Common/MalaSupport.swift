@@ -507,9 +507,80 @@ func adjustTopicScoreData(_ data: [SingleTopicScoreData]) -> [SingleTopicScoreDa
 ///
 ///  - parameter value: 屏幕名称
 func sendScreenTrack(_ value: String? = "其它页面") {
-    // #if USE_PRD_SERVER
-        // let tracker = GAI.sharedInstance().defaultTracker
-        // tracker?.set(kGAIScreenName, value: value)
-        // tracker?.send(GAIDictionaryBuilder.createScreenView().build())
-    // #endif
+     #if USE_PRD_SERVER
+         let tracker = GAI.sharedInstance().defaultTracker
+         tracker?.set(kGAIScreenName, value: value)
+         tracker?.send(GAIDictionaryBuilder.createScreenView().build())
+     #endif
+}
+
+
+func makeAddressAttrString(_ schoolName: String?, _ schoolAddress: String?) -> NSMutableAttributedString {
+    
+    let string = (schoolName ?? "") + "\n" + (schoolAddress ?? "")
+    let attrString: NSMutableAttributedString = NSMutableAttributedString(string: string)
+    let location = (string as NSString).range(of: "\n").location
+    let length = string.characters.count
+    let leftLength = length - location
+    
+    attrString.addAttribute(
+        NSForegroundColorAttributeName,
+        value: MalaColor_636363_0,
+        range: NSMakeRange(0, location)
+    )
+    attrString.addAttribute(
+        NSFontAttributeName,
+        value: UIFont.systemFont(ofSize: 14),
+        range: NSMakeRange(0, location)
+    )
+    attrString.addAttribute(
+        NSForegroundColorAttributeName,
+        value: MalaColor_939393_0,
+        range: NSMakeRange(location, leftLength)
+    )
+    attrString.addAttribute(
+        NSFontAttributeName,
+        value: UIFont.systemFont(ofSize: 12),
+        range: NSMakeRange(location, leftLength)
+    )
+    
+    let paragraphStyle = NSMutableParagraphStyle()
+    paragraphStyle.lineSpacing = 6
+    attrString.addAttribute(
+        NSParagraphStyleAttributeName,
+        value: paragraphStyle,
+        range: NSMakeRange(0, length)
+    )
+    return attrString
+}
+
+func makeTeacherAttrString(_ LecturerName: String?, _ assistantName: String?) -> NSMutableAttributedString {
+    
+    let string = String(format: "%@ (助教%@)", (LecturerName ?? ""), (assistantName ?? ""))
+    let attrString: NSMutableAttributedString = NSMutableAttributedString(string: string)
+    let location = (string as NSString).range(of: "(").location
+    let length = string.characters.count
+    let leftLength = length - location
+    
+    attrString.addAttribute(
+        NSForegroundColorAttributeName,
+        value: MalaColor_636363_0,
+        range: NSMakeRange(0, location)
+    )
+    attrString.addAttribute(
+        NSFontAttributeName,
+        value: UIFont.systemFont(ofSize: 13),
+        range: NSMakeRange(0, location)
+    )
+    attrString.addAttribute(
+        NSForegroundColorAttributeName,
+        value: MalaColor_939393_0,
+        range: NSMakeRange(location, leftLength)
+    )
+    attrString.addAttribute(
+        NSFontAttributeName,
+        value: UIFont.systemFont(ofSize: 13),
+        range: NSMakeRange(location, leftLength)
+    )
+    return attrString
 }

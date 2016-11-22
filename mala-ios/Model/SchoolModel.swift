@@ -16,6 +16,7 @@ class SchoolModel: BaseObjectModel {
     var thumbnail: String?
     var region: Int = 0
     var center: Bool = false
+    
     var longitude: NSNumber? {
         didSet {
             getDistance()
@@ -60,6 +61,7 @@ class SchoolModel: BaseObjectModel {
     
     required internal init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+        self.address = aDecoder.decodeObject(forKey: "address") as? String
     }
     
     private func getDistance() {
@@ -77,6 +79,13 @@ class SchoolModel: BaseObjectModel {
     // MARK: - Override
     override func setValue(_ value: Any?, forUndefinedKey key: String) {
         println("SchoolModel - Set for UndefinedKey: \(key)")
+    }
+    
+    
+    // MARK: - Coding
+    open override func encode(with aCoder: NSCoder) {
+        super.encode(with: aCoder)
+        aCoder.encode(address, forKey: "address")
     }
     
     

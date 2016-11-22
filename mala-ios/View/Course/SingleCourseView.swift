@@ -92,6 +92,7 @@ class SingleCourseView: UIView {
             fontSize: 13,
             textColor: MalaColor_6C6C6C_0
         )
+        label.numberOfLines = 0
         return label
     }()
     
@@ -172,21 +173,19 @@ class SingleCourseView: UIView {
             maker.left.equalTo(headerBackground)
             maker.width.equalTo(13)
             maker.height.equalTo(15)
-            maker.bottom.equalTo(self).offset(-20)
         }
         schoolLabel.snp.makeConstraints { (maker) in
-            maker.centerY.equalTo(schoolIcon)
+            maker.top.equalTo(schoolIcon)
             maker.left.equalTo(schoolIcon.snp.right).offset(5)
-            maker.height.equalTo(13)
+            maker.right.equalTo(self)
+            maker.bottom.equalTo(self).offset(-20)
         }
     }
     
     ///  加载课程数据
     private func setupCourseInfo() {
         
-        guard let course = model else {
-            return
-        }
+        guard let course = model else { return }
         
         // 课程类型
         if course.isLiveCourse == true {
@@ -203,7 +202,7 @@ class SingleCourseView: UIView {
         // 课程信息
         subjectLabel.text = String(format: "%@%@", course.grade, course.subject)
         timeSlotLabel.text = String(format: "%@-%@", getDateString(course.start, format: "HH:mm"), getDateString(course.end, format: "HH:mm"))
-        schoolLabel.text = model?.school
+        schoolLabel.attributedText = model?.attrAddressString
         
         // 课程状态
         switch course.status {

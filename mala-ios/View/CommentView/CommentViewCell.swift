@@ -14,30 +14,27 @@ class CommentViewCell: UITableViewCell {
     /// 单个课程模型
     var model: StudentCourseModel? {
         didSet {
-            
-            guard let _ = model else {
-                return
-            }
+            guard let model = model else { return }
             
             // 评价状态
             changeDisplayMode()
             
             // 课程类型
-            if let isLive = model?.isLiveCourse, isLive == true {
-                liveCourseAvatarView.setAvatar(lecturer: model?.lecturer?.avatar, assistant: model?.teacher?.avatar)
+            if let isLive = model.isLiveCourse, isLive == true {
+                liveCourseAvatarView.setAvatar(lecturer: model.lecturer?.avatar, assistant: model.teacher?.avatar)
                 liveCourseAvatarView.isHidden = false
                 avatarView.isHidden = true
             }else {
-                avatarView.setImage(withURL: model?.teacher?.avatar, placeholderImage: "avatar_placeholder")
+                avatarView.setImage(withURL: model.teacher?.avatar, placeholderImage: "avatar_placeholder")
                 avatarView.isHidden = false
                 liveCourseAvatarView.isHidden = true
             }
             
             // 课程模型
-            teacherLabel.text = model?.teacher?.name
-            subjectLabel.text = (model?.grade ?? "") + " " + (model?.subject ?? "")
+            teacherLabel.text = model.teacher?.name
+            subjectLabel.text = model.grade + " " + model.subject
             setDateString()
-            schoolLabel.text = model?.school
+            schoolLabel.attributedText = model.attrAddressString
         }
     }
     
@@ -143,6 +140,7 @@ class CommentViewCell: UITableViewCell {
             fontSize: 13,
             textColor: MalaColor_6C6C6C_0
         )
+        label.numberOfLines = 0
         return label
     }()
     /// 中部分割线
@@ -258,7 +256,6 @@ class CommentViewCell: UITableViewCell {
         mainLayoutView.snp.makeConstraints { (maker) in
             maker.top.equalTo(content)
             maker.left.equalTo(content)
-            maker.height.equalTo(252)
             maker.right.equalTo(content)
             maker.bottom.equalTo(separatorLine.snp.top)
         }
@@ -343,7 +340,7 @@ class CommentViewCell: UITableViewCell {
         schoolLabel.snp.makeConstraints { (maker) in
             maker.top.equalTo(schoolIcon)
             maker.left.equalTo(schoolIcon.snp.right).offset(10)
-            maker.height.equalTo(13)
+            maker.right.equalTo(avatarView.snp.left).offset(-10)
             maker.bottom.equalTo(mainLayoutView).offset(-14)
         }
         expiredLabel.snp.makeConstraints { (maker) in
@@ -364,15 +361,10 @@ class CommentViewCell: UITableViewCell {
     
     ///  设置日期样式
     private func setDateString() {
-        
-        guard let start = model?.start else {
-            return
-        }
-        
+        guard let start = model?.start else { return }
         let dateString = getDateString(start, format: "yyyy-MM-dd")
         let startString = getDateString(start, format: "HH:mm")
         let endString = getDateString(date: Date(timeIntervalSince1970: start).addingTimeInterval(3600*2), format: "HH:mm")
-        
         timeSlotLabel.text = String(format: "%@", dateString)
         timeLabel.text = String(format: "%@-%@", startString, endString)
     }
@@ -425,6 +417,7 @@ class CommentViewCell: UITableViewCell {
         }
     }
     
+    
     // MARK: - Event Response
     ///  去评价
     @objc private func toComment() {
@@ -438,6 +431,7 @@ class CommentViewCell: UITableViewCell {
         commentWindow.isJustShow = false
         commentWindow.show()
     }
+    
     ///  查看评价
     @objc private func showComment() {
         let commentWindow = CommentViewWindow(contentView: UIView())

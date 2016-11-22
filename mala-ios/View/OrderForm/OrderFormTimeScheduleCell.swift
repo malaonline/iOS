@@ -49,7 +49,7 @@ class OrderFormTimeScheduleCell: UITableViewCell {
         let label = UILabel(
             text: "上课时间",
             fontSize: 15,
-            textColor: MalaColor_333333_0
+            textColor: MalaColor_84B3D7_0
         )
         return label
     }()
