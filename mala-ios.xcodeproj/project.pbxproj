@@ -2369,7 +2369,7 @@
 						CreatedOnToolsVersion = 7.1.1;
 						DevelopmentTeam = 85KXKD6J43;
 						LastSwiftMigration = 0800;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 0;
@@ -3665,8 +3665,8 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = parent/parent.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				DEVELOPMENT_TEAM = 85KXKD6J43;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(SRCROOT)/mala-ios/Application/parent-dev-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -3678,8 +3678,8 @@
 				OTHER_SWIFT_FLAGS = "$(inherited) -DUSE_DEV_SERVER";
 				PRODUCT_BUNDLE_IDENTIFIER = com.malalaoshi.app.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "342736a3-7ef8-446f-83a1-f356a80bafa9";
-				PROVISIONING_PROFILE_SPECIFIER = "Mala_Dev-AdHoc";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				SWIFT_OBJC_BRIDGING_HEADER = "mala-ios/Application/parent-Bridging-Header.h";

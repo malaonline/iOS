@@ -1,18 +1,12 @@
 language: objective-c
-cache: cocoapods
-rvm: "3.0"
-osx_image: xcode8
+osx_image: xcode8.1
 xcode_workspace: mala-ios.xcworkspace
 xcode_scheme: parent-dev
+cache: cocoapods
+rvm: "3.0"
 before_install:
-# - brew --version
-# - xctool -version
-# - xcodebuild -version -sdk
-# - rvm list known
-- gem install xcpretty
 - security list-keychain
 install:
-- sudo gem install cocoapods --pre
 - pod repo remove master
 - travis_wait 30 pod setup
 - pod --version
@@ -24,9 +18,10 @@ before_script:
 - openssl aes-256-cbc -k $ENCRYPTION_SECRET -in scripts/profile/exportOptions.plist.enc -d -a -out exportOptions.plist
 - ./scripts/add-key.sh
 script:
-- xcodebuild  -workspace mala-ios.xcworkspace -scheme parent-dev -sdk iphoneos -configuration Release archive -archivePath $BUILD_PATH -derivedDataPath "$DERIVED_DATA_PATH" PROVISIONING_PROFILE=$PROFILE_ID | xcpretty -c
+#- xcodebuild -workspace mala-ios.xcworkspace -scheme parent-dev -sdk iphoneos -configuration Release archive -archivePath $BUILD_PATH -derivedDataPath "$DERIVED_DATA_PATH" PROVISIONING_PROFILE=$PROFILE_ID | xcpretty -c
+- xcodebuild -workspace mala-ios.xcworkspace -scheme parent-dev -configuration Release clean archive -archivePath $BUILD_PATH DEVELOPMENT_TEAM=$DEVELOPMENT_TEAM | xcpretty -c
 after_success:
-- ./scripts/sign-and-upload.sh -exportArchive -archivePath "$PWD/build/parent.xcarchive" -exportPath "$PWD/build/ipa" -exportOptionsPlist exportOptions.plist
+- ./scripts/sign-and-upload.sh -exportArchive -archivePath "$PWD/build/parent.xcarchive" -exportOptionsPlist exportOptions.plist -exportPath "$PWD/build/ipa"
 after_script:
 - ./scripts/remove-key.sh
 env:
