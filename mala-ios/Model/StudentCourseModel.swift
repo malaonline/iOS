@@ -26,6 +26,9 @@ open class StudentCourseModel: BaseObjectModel {
     /// 上课地点
     var school: String = ""
     
+    /// 上课地点 - 详细地址
+    var schoolAddress: String = ""
+    
     /// 是否完成标记
     var isPassed: Bool = false
     
@@ -43,6 +46,7 @@ open class StudentCourseModel: BaseObjectModel {
     
     /// 是否时直播课程标记
     var isLiveCourse: Bool? = false
+    
     
     // MARK: Convenience Property
     /// 是否评价标记
@@ -69,6 +73,12 @@ open class StudentCourseModel: BaseObjectModel {
         }
     }
     
+    var attrAddressString: NSMutableAttributedString {
+        get {
+            return makeAddressAttrString(school, schoolAddress)
+        }
+    }
+    
     
     // MARK: - Constructed
     override init() {
@@ -82,19 +92,6 @@ open class StudentCourseModel: BaseObjectModel {
     override init(dict: [String: AnyObject]) {
         super.init()
         setValuesForKeys(dict)
-    }
-    
-    convenience init(id: Int, start: TimeInterval, end: TimeInterval, subject: String, grade: String, school: String, is_passed: Bool, is_commented: Bool = false, is_expired: Bool) {
-        self.init()
-        self.id = id
-        self.start = start
-        self.end = end
-        self.subject = subject
-        self.grade = grade
-        self.school = school
-        self.isPassed = is_passed
-        self.isCommented = is_commented
-        self.isExpired = is_expired
     }
     
     
@@ -124,6 +121,11 @@ open class StudentCourseModel: BaseObjectModel {
             lecturer = TeacherModel(dict: dict)
             return
         }
+        if key == "school_address", let string = value as? String {
+            schoolAddress = string
+            return
+        }
+        
         super.setValue(value, forKey: key)
     }
     

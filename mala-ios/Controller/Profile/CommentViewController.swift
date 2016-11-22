@@ -60,10 +60,11 @@ class CommentViewController: BaseTableViewController {
     
     // MARK: - Private Method
     private func configure() {
-        tableView.backgroundColor = MalaColor_EDEDED_0
-        tableView.separatorStyle = .none
-        tableView.contentInset = UIEdgeInsets(top: 6, left: 0, bottom: 6, right: 0)
         refreshControl = refresher
+        tableView.separatorStyle = .none
+        tableView.estimatedRowHeight = 208
+        tableView.backgroundColor = MalaColor_EDEDED_0
+        tableView.contentInset = UIEdgeInsets(top: 6, left: 0, bottom: 6, right: 0)
         tableView.register(CommentViewCell.self, forCellReuseIdentifier: CommentViewCellReuseId)
     }
     
@@ -104,17 +105,11 @@ class CommentViewController: BaseTableViewController {
             self?.models = courseList
         })
     }
-    
-    
-    // MARK: - Delegate
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 188
-    }
-    
+
     
     // MARK: - DataSource
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.models.count
+        return models.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

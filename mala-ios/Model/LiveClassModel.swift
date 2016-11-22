@@ -33,44 +33,9 @@ class LiveClassModel: BaseObjectModel {
     var studentsCount: Int?
     var lecturerBio: String?
     
-    
     var attrAddressString: NSMutableAttributedString {
         get {
-            let string = (schoolName ?? "") + "\n" + (schoolAddress ?? "")
-            let attrString: NSMutableAttributedString = NSMutableAttributedString(string: string)
-            let location = (string as NSString).range(of: "\n").location
-            let length = string.characters.count
-            let leftLength = length - location
-            
-            attrString.addAttribute(
-                NSForegroundColorAttributeName,
-                value: MalaColor_636363_0,
-                range: NSMakeRange(0, location)
-            )
-            attrString.addAttribute(
-                NSFontAttributeName,
-                value: UIFont.systemFont(ofSize: 14),
-                range: NSMakeRange(0, location)
-            )
-            attrString.addAttribute(
-                NSForegroundColorAttributeName,
-                value: MalaColor_939393_0,
-                range: NSMakeRange(location, leftLength)
-            )
-            attrString.addAttribute(
-                NSFontAttributeName,
-                value: UIFont.systemFont(ofSize: 12),
-                range: NSMakeRange(location, leftLength)
-            )
-            
-            let paragraphStyle = NSMutableParagraphStyle()
-            paragraphStyle.lineSpacing = 6
-            attrString.addAttribute(
-                NSParagraphStyleAttributeName,
-                value: paragraphStyle,
-                range: NSMakeRange(0, length)
-            )
-            return attrString
+            return makeAddressAttrString(schoolName, schoolAddress)
         }
     }
     
