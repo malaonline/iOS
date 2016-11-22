@@ -72,8 +72,11 @@ class OrderForm: BaseObjectModel {
     /// 年级名
     var gradeName: String?
     
-    /// 学校名
+    /// 上课地点
     var schoolName: String?
+    
+    /// 上课地点 - 详细地址
+    var schoolAddress: String?
     
     /// 老师头像URL
     var avatarURL: String?
@@ -172,6 +175,18 @@ class OrderForm: BaseObjectModel {
         return nil
     }
     
+    var attrAddressString: NSMutableAttributedString {
+        get {
+            return makeAddressAttrString(schoolName, schoolAddress)
+        }
+    }
+    
+    var attrTeacherString: NSMutableAttributedString {
+        get {
+            return makeTeacherAttrString(liveClass?.lecturerName, liveClass?.assistantName)
+        }
+    }
+    
     
     // MARK: - Instance Method
     override init() {
@@ -241,12 +256,12 @@ class OrderForm: BaseObjectModel {
             schoolName = string
             return
         }
+        if key == "school_address", let string = value as? String {
+            schoolAddress = string
+            return
+        }
         if key == "grade" {
-            if let string = value as? String {
-                gradeName = string
-            }else {
-                gradeName = ""
-            }
+            if let string = value as? String { gradeName = string } else { gradeName = "" }
             return
         }
         if key == "order_id", let string = value as? String {

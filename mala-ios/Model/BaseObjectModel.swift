@@ -26,7 +26,6 @@ open class BaseObjectModel: NSObject, NSCoding {
     }
     
     required public init(coder aDecoder: NSCoder) {
-        println("")
         self.id = Int(aDecoder.decodeInt32(forKey: "id"))
         self.name = aDecoder.decodeObject(forKey: "name") as? String
     }

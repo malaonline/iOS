@@ -553,3 +553,34 @@ func makeAddressAttrString(_ schoolName: String?, _ schoolAddress: String?) -> N
     )
     return attrString
 }
+
+func makeTeacherAttrString(_ LecturerName: String?, _ assistantName: String?) -> NSMutableAttributedString {
+    
+    let string = String(format: "%@ (助教%@)", (LecturerName ?? ""), (assistantName ?? ""))
+    let attrString: NSMutableAttributedString = NSMutableAttributedString(string: string)
+    let location = (string as NSString).range(of: "(").location
+    let length = string.characters.count
+    let leftLength = length - location
+    
+    attrString.addAttribute(
+        NSForegroundColorAttributeName,
+        value: MalaColor_636363_0,
+        range: NSMakeRange(0, location)
+    )
+    attrString.addAttribute(
+        NSFontAttributeName,
+        value: UIFont.systemFont(ofSize: 13),
+        range: NSMakeRange(0, location)
+    )
+    attrString.addAttribute(
+        NSForegroundColorAttributeName,
+        value: MalaColor_939393_0,
+        range: NSMakeRange(location, leftLength)
+    )
+    attrString.addAttribute(
+        NSFontAttributeName,
+        value: UIFont.systemFont(ofSize: 13),
+        range: NSMakeRange(location, leftLength)
+    )
+    return attrString
+}
