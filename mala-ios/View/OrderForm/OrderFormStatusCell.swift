@@ -42,7 +42,7 @@ class OrderFormStatusCell: UITableViewCell {
         let label = UILabel(
             text: "订单状态",
             fontSize: 15,
-            textColor: MalaColor_333333_0
+            textColor: MalaColor_84B3D7_0
         )
         return label
     }()
@@ -334,23 +334,28 @@ class OrderFormStatusCell: UITableViewCell {
         if let status = MalaOrderStatus(rawValue: (model?.status ?? "")) {
             switch status {
             case .penging:
-                statusLabel.text = "订单待支付"
+                statusLabel.text = "待支付"
+                statusLabel.textColor = MalaColor_E36A5D_0
                 break
                 
             case .paid:
                 statusLabel.text = "支付成功"
+                statusLabel.textColor = MalaColor_7bb045_0
                 break
                 
             case .canceled:
-                statusLabel.text = "订单已关闭"
+                statusLabel.text = "已关闭"
+                statusLabel.textColor = MalaColor_939393_0
                 break
                 
             case .refund:
-                statusLabel.text = "退款成功"
+                statusLabel.text = "已退款"
+                statusLabel.textColor = MalaColor_7bb045_0
                 break
                 
             case .confirm:
                 statusLabel.text = "确认订单"
+                statusLabel.textColor = MalaColor_E36A5D_0
                 break
                 
             default:
