@@ -131,14 +131,14 @@ class CourseTableViewCell: UITableViewCell {
                     maker.top.equalTo(lastCourseView.snp.bottom)
                     maker.left.equalTo(courseLayoutView)
                     maker.right.equalTo(courseLayoutView)
-                    maker.height.equalTo(123)
+                    maker.height.equalTo(MalaConfig.singleCourseCellHeight())
                 }
             }else {
                 view.snp.makeConstraints { (maker) in
                     maker.top.equalTo(courseLayoutView)
                     maker.left.equalTo(courseLayoutView)
                     maker.right.equalTo(courseLayoutView)
-                    maker.height.equalTo(123)
+                    maker.height.equalTo(MalaConfig.singleCourseCellHeight())
                 }
             }
             lastCourseView = view

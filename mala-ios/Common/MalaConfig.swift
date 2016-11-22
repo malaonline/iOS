@@ -32,6 +32,10 @@ open class MalaConfig {
     class func editProfileAvatarSize() -> CGFloat {
         return 100
     }
+    /// 课表单节课程 - 视图高度
+    class func singleCourseCellHeight() -> CGFloat {
+        return 145.5
+    }
     /// 广告信息URL
     class func adURL() -> String {
         #if USE_PRD_SERVER
