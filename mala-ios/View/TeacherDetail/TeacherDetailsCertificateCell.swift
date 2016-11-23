@@ -13,9 +13,7 @@ class TeacherDetailsCertificateCell: MalaBaseCell {
     // MARK: - Property
     var models: [AchievementModel?] = [] {
         didSet {
-            guard models.count != oldValue.count else {
-                return
-            }
+            guard models.count != oldValue.count else { return }
             
             /// 解析数据
             for model in models {

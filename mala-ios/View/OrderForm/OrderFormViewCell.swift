@@ -40,9 +40,9 @@ class OrderFormViewCell: UITableViewCell {
     /// 订单状态
     private var orderStatus: MalaOrderStatus = .canceled {
         didSet {
-            DispatchQueue.main.async(execute: { [weak self] () -> Void in
-                self?.changeDisplayMode()
-            })
+            DispatchQueue.main.async {
+                self.changeDisplayMode()
+            }
         }
     }
     
@@ -404,7 +404,7 @@ class OrderFormViewCell: UITableViewCell {
         liveCourseAvatarView.isHidden = true
         
         teacherNameString.text = model?.teacherName
-        avatarView.setImage(withURL: model?.avatarURL, placeholderImage: "avatar_placeholder")
+        avatarView.setImage(withURL: model?.avatarURL)
 
     }
     

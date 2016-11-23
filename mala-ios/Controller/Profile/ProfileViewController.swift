@@ -16,7 +16,7 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
     // MARK: - Property
     /// [个人中心结构数据]
     private var model: [[ProfileElementModel]] = MalaConfig.profileData()
-    
+    var isFetching: Bool = false
     
     // MARK: - Components
     /// [个人中心]头部视图
@@ -80,10 +80,10 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
         super.viewWillAppear(animated)
         
         // 每次显示[个人]页面时，刷新个人信息
+        loadUnpaindOrder()
         model = MalaConfig.profileData()
         tableView.reloadData()
         profileHeaderView.refreshDataWithUserDefaults()
-        self.navigationController?.showTabBadgePoint = (MalaUnpaidOrderCount > 0 || MalaToCommentCount > 0)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -147,6 +147,29 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
                 self?.navigationController?.pushViewController(viewController, animated: true)
             }
         }
+    }
+    
+    /// 查询用户是否有未处理订单／评价
+    func loadUnpaindOrder() {
+        
+        if !MalaUserDefaults.isLogined { return }
+        if isFetching { return }
+        isFetching = true
+        
+        getUserNewMessageCount({ (reason, errorMessage) in
+            defaultFailureHandler(reason, errorMessage: errorMessage)
+            // 错误处理
+            if let errorMessage = errorMessage {
+                println("ProfileViewController - loadUnpaindOrder Error \(errorMessage)")
+            }
+            self.isFetching = false
+        }, completion: { (order, comment) in
+            println("未支付订单数量：\(order) - 待评价数量：\(comment)")
+            self.isFetching = false
+            MalaUnpaidOrderCount = order
+            MalaToCommentCount = comment
+            self.navigationController?.showTabBadgePoint = (MalaUnpaidOrderCount > 0 || MalaToCommentCount > 0)
+        })
     }
     
     ///  更新本地AvatarView的图片
@@ -331,16 +354,16 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
                 
                 defaultFailureHandler(reason, errorMessage: errorMessage)
                 
-                DispatchQueue.main.async { [weak self] in
-                    self?.profileHeaderView.refreshAvatar = false
+                DispatchQueue.main.async {
+                    self.profileHeaderView.refreshAvatar = false
                 }
                 
                 }, completion: { newAvatarURLString in
                     DispatchQueue.main.async {
                         getAndSaveProfileInfo()
-                        DispatchQueue.main.async { [weak self] in
-                            self?.profileHeaderView.avatar = UIImage(data: imageData) ?? UIImage()
-                            self?.profileHeaderView.refreshAvatar = false
+                        DispatchQueue.main.async {
+                            self.profileHeaderView.avatar = UIImage(data: imageData) ?? UIImage()
+                            self.profileHeaderView.refreshAvatar = false
                         }
                         println("newAvatarURLString: \(newAvatarURLString)")
                     }

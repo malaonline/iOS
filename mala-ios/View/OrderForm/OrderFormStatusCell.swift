@@ -255,7 +255,7 @@ class OrderFormStatusCell: UITableViewCell {
         }
         
         /// 课程信息
-        avatarView.setImage(withURL: model?.avatarURL, placeholderImage: "avatar_placeholder")
+        avatarView.setImage(withURL: model?.avatarURL)
         teacherLabel.text = model?.teacherName
         subjectLabel.text = (model?.gradeName ?? "") + " " + (model?.subjectName ?? "")
         schoolLabel.attributedText = model?.attrAddressString

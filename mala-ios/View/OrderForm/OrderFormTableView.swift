@@ -28,9 +28,9 @@ class OrderFormTableView: UITableView, UITableViewDelegate, UITableViewDataSourc
             // 刷新数据渲染UI
             ThemeHUD.showActivityIndicator()
             self.reloadData()
-            delay(0.5) { [weak self] in
-                self?.shouldHiddenTimeSlots = false
-                self?.reloadSections(IndexSet(integer: 1), with: .fade)
+            delay(0.5) {
+                self.shouldHiddenTimeSlots = false
+                self.reloadSections(IndexSet(integer: 1), with: .fade)
                 ThemeHUD.hideActivityIndicator()
             }
         }

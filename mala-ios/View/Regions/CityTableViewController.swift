@@ -17,9 +17,9 @@ class CityTableViewController: UIViewController, UITableViewDelegate, UITableVie
     // 城市数据模型
     var models: [BaseObjectModel] = [] {
         didSet {
-            DispatchQueue.main.async(execute: { [weak self] () -> Void in
-                self?.tableView.reloadData()
-            })
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
         }
     }
     // 选择闭包
@@ -139,8 +139,8 @@ class CityTableViewController: UIViewController, UITableViewDelegate, UITableVie
             if let errorMessage = errorMessage {
                 println("CityTableViewController - loadCitylist Error \(errorMessage)")
             }
-        }, completion:{ [weak self] (cities) in
-            self?.models = cities.reversed()
+        }, completion: { (cities) in
+            self.models = cities.reversed()
             println("城市列表 - \(cities)")
         })
     }

@@ -74,10 +74,7 @@ class CourseChoosingServiceTableViewCell: UITableViewCell {
     // MARK: Property
     var service: OtherServiceModel? {
         didSet{
-            
-            guard let model = service else {
-                return
-            }
+            guard let model = service else { return }
             
             if model.type == .coupon {
                 configure()

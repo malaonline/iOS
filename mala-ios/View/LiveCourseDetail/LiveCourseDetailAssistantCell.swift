@@ -16,7 +16,7 @@ class LiveCourseDetailAssistantCell: MalaBaseLiveCourseCell {
         didSet{
             guard let model = model else { return }
             assistantNameLabel.text = String(format: "助教：%@", model.assistantName ?? "")
-            assistantAvatar.setImage(withURL: model.assistantAvatar, placeholderImage: "avatar_placeholder")
+            assistantAvatar.setImage(withURL: model.assistantAvatar)
         }
     }
     
@@ -34,7 +34,7 @@ class LiveCourseDetailAssistantCell: MalaBaseLiveCourseCell {
     /// 说明文字
     private lazy var descLabel: UILabel = {
         let label = UILabel(
-            text: "对订单有疑问？快打电话咨询助教老师吧！",
+            text: "对课程有疑问？快打电话咨询助教老师吧！",
             font: UIFont(name: "STHeitiSC-Light", size: 13),
             textColor: MalaColor_939393_0
         )

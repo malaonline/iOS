@@ -16,7 +16,7 @@ class TeacherDetailsHeaderView: UIView {
     var model: TeacherDetailModel = TeacherDetailModel() {
         didSet {
             /// 教师头像URL
-            avatarView.setImage(withURL: model.avatar, placeholderImage: "avatar_placeholder")
+            avatarView.setImage(withURL: model.avatar)
             
             /// 教师姓名
             nameLabel.text = model.name
@@ -62,7 +62,7 @@ class TeacherDetailsHeaderView: UIView {
         imageView.contentMode = .scaleAspectFill
         imageView.tag = 999
         imageView.isUserInteractionEnabled = true
-        imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(TeacherDetailsHeaderView.avatarDidTap)))
+        imageView.addTapEvent(target: self, action: #selector(TeacherDetailsHeaderView.avatarDidTap))
         return imageView
     }()
     /// 头像背景

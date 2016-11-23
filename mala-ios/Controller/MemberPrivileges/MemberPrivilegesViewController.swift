@@ -35,9 +35,9 @@ class MemberPrivilegesViewController: UITableViewController {
     /// 学习报告状态
     var reportStatus: MalaLearningReportStatus = .LoggingIn {
         didSet {
-            DispatchQueue.main.async(execute: { [weak self] () -> Void in
-                self?.tableView.reloadData()
-            })
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
         }
     }
     /// 是否已Push新控制器标示（屏蔽pop到本页面时的数据刷新动作）
@@ -159,7 +159,7 @@ class MemberPrivilegesViewController: UITableViewController {
             return
         }
         
-        getStudyReportOverview({ [weak self] (reason, errorMessage) in
+        getStudyReportOverview({ (reason, errorMessage) in
             
             defaultFailureHandler(reason, errorMessage: errorMessage)
             // 错误处理
@@ -167,10 +167,10 @@ class MemberPrivilegesViewController: UITableViewController {
                 println("MemberPrivilegesViewController - loadStudyReportOverview Error \(errorMessage)")
             }
             
-            DispatchQueue.main.async(execute: { () -> Void in
-                self?.reportStatus = .Error
-                self?.ShowToast("当前无法访问题目数据，请稍后再试")
-            })
+            DispatchQueue.main.async {
+                self.reportStatus = .Error
+                self.ShowToast("当前无法访问题目数据，请稍后再试")
+            }
             
         }, completion: { [weak self] (results) in
             
@@ -208,21 +208,21 @@ class MemberPrivilegesViewController: UITableViewController {
     // 获取学科学习报告
     private func loadSubjectReport() {
         
-        getSubjectReport(1, failureHandler: { [weak self] (reason, errorMessage) in
+        getSubjectReport(1, failureHandler: { (reason, errorMessage) in
             defaultFailureHandler(reason, errorMessage: errorMessage)
             // 错误处理
             if let errorMessage = errorMessage {
                 println("MemberPrivilegesViewController - loadSubjectReport Error \(errorMessage)")
             }
             
-            DispatchQueue.main.async(execute: { () -> Void in
-                self?.reportStatus = .Error
-                self?.ShowToast("当前无法访问题目数据，请稍后再试")
-            })
-        }, completion: { [weak self] (report) in
+            DispatchQueue.main.async {
+                self.reportStatus = .Error
+                self.ShowToast("当前无法访问题目数据，请稍后再试")
+            }
+        }, completion: { (report) in
             println("学科学习报告：\(report)")
-            self?.report = report
-            self?.reportStatus = .MathSigned
+            self.report = report
+            self.reportStatus = .MathSigned
         })
     }
     

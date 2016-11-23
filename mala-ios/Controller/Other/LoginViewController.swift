@@ -154,7 +154,7 @@ class LoginViewController: UIViewController {
         protocolString.textColor = MalaColor_88BCDE_95
         protocolString.text = "麻辣老师用户协议"
         protocolString.isUserInteractionEnabled = true
-        protocolString.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(LoginViewController.protocolDidTap)))
+        protocolString.addTapEvent(target: self, action: #selector(LoginViewController.protocolDidTap))
         return protocolString
     }()
     
@@ -360,12 +360,13 @@ class LoginViewController: UIViewController {
             if let errorMessage = errorMessage {
                 println("LoginViewController - SendCode Error \(errorMessage)")
             }
-        }, completion: { [weak self] bool in
+        }, completion: { bool in
             ThemeHUD.hideActivityIndicator()
-            println("send Verifycode -  \(bool)")
-            DispatchQueue.main.async(execute: { [weak self] () -> Void in
-                self?.codeTextField.becomeFirstResponder()
-            })
+            
+            self.ShowToast(bool ? "验证码发送成功" : "验证码发送失败")
+            DispatchQueue.main.async {
+                self.codeTextField.becomeFirstResponder()
+            }
         })
     }
 
@@ -387,33 +388,32 @@ class LoginViewController: UIViewController {
         ThemeHUD.showActivityIndicator()
         
         // 验证SMS
-        verifyMobile(self.phoneTextField.text!, verifyCode: self.codeTextField.text!, failureHandler: { [weak self] (reason, errorMessage) -> Void in
-            
+        verifyMobile(self.phoneTextField.text!, verifyCode: self.codeTextField.text!, failureHandler: { (reason, errorMessage) -> Void in
             ThemeHUD.hideActivityIndicator()
             defaultFailureHandler(reason, errorMessage: errorMessage)
-            
             // 错误处理
             if let errorMessage = errorMessage {
                 println("LoginViewController - VerifyCode Error \(errorMessage)")
             }
-            
+            // 状态恢复
             DispatchQueue.main.async {
-                self?.codeError.isHidden = false
-                self?.codeTextField.text = ""
+                self.codeError.isHidden = false
+                self.codeTextField.text = ""
             }
-        }, completion: { [weak self] (loginUser) -> Void in
+        }, completion: { (loginUser) -> Void in
             ThemeHUD.hideActivityIndicator()
+            
             println("SMS验证成功，用户Token：\(loginUser)")
+            
             saveTokenAndUserInfo(loginUser)
             MalaUserDefaults.isLogouted = false
             
             if loginUser.firstLogin == true {
-                self?.switchViewToSaveName()
+                self.switchViewToSaveName()
             }else {
-                self?.dismiss(animated: true, completion: nil)
+                self.dismiss(animated: true, completion: nil)
                 getInfoWhenLoginSuccess()
             }
-            
             MalaCurrentInitAction?()
         })
     }
@@ -424,10 +424,10 @@ class LoginViewController: UIViewController {
     }
     
     func switchViewToSaveName() {
-        DispatchQueue.main.async { [weak self] () -> Void in
+        DispatchQueue.main.async {
             let view = SaveNameView()
             view.controller = self
-            self?.view = view
+            self.view = view
         }
     }
     

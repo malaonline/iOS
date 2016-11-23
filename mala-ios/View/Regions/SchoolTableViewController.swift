@@ -16,9 +16,9 @@ class SchoolTableViewController: UIViewController, UITableViewDelegate, UITableV
     // 学校数据模型
     var models: [SchoolModel] = [] {
         didSet {
-            DispatchQueue.main.async(execute: { [weak self] () -> Void in
-                self?.tableView.reloadData()
-            })
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
         }
     }
     // 选择闭包
@@ -98,15 +98,14 @@ class SchoolTableViewController: UIViewController, UITableViewDelegate, UITableV
         getSchools(region.id, failureHandler: { (reason, errorMessage) in
             ThemeHUD.hideActivityIndicator()
             defaultFailureHandler(reason, errorMessage: errorMessage)
-            
             // 错误处理
             if let errorMessage = errorMessage {
                 println("CityTableViewController - getSchools Error \(errorMessage)")
             }
-            }, completion:{ [weak self] (schools) in
-                self?.models = schools.reversed()
-                println("校区列表 - \(schools)")
-            })
+        }, completion: { (schools) in
+            self.models = schools.reversed()
+            println("校区列表 - \(schools)")
+        })
     }
     
     

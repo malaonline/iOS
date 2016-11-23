@@ -98,12 +98,12 @@ class LiveCourseViewController: BaseViewController {
             if let errorMessage = errorMessage {
                 println("LiveCourseViewController - loadLiveClasses Error \(errorMessage)")
             }
-        }, completion: { [weak self] (classList, count) in
+        }, completion: { (classList, count) in
             /// 记录数据量
             if count != 0 {
-                self?.allCount = count
+                self.allCount = count
             }
-            self?.model = classList
+            self.model = classList
         })
     }
     

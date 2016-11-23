@@ -33,9 +33,9 @@ class LearningReportCell: UITableViewCell {
     /// 学习报告状态
     var reportStatus: MalaLearningReportStatus = .LoggingIn {
         didSet {
-            DispatchQueue.main.async(execute: { [weak self] () -> Void in
-                self?.changeDisplayMode()
-            })
+            DispatchQueue.main.async {
+                self.changeDisplayMode()
+            }
         }
     }
     

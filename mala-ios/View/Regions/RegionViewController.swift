@@ -28,9 +28,9 @@ class RegionViewController: UIViewController, UITableViewDelegate, UITableViewDa
     // 学校数据模型
     var models: [SchoolModel] = [] {
         didSet {
-            DispatchQueue.main.async(execute: { [weak self] () -> Void in
-                self?.tableView.reloadData()
-            })
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
         }
     }
     // 选择闭包
@@ -42,7 +42,7 @@ class RegionViewController: UIViewController, UITableViewDelegate, UITableViewDa
     private lazy var cityView: UIView = {
         let view = UIView()
         view.isUserInteractionEnabled = true
-        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(RegionViewController.pushToCityPickView)))
+        view.addTapEvent(target: self, action: #selector(RegionViewController.pushToCityPickView))
         return view
     }()
     private lazy var cityLabel: UILabel = {
@@ -184,7 +184,6 @@ class RegionViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     // 获取学校列表
     private func loadSchoolList() {
-        
         currentCityLabel.text = MalaCurrentCity?.name ?? "未选择"
         
         guard let city = MalaCurrentCity else {
@@ -195,15 +194,14 @@ class RegionViewController: UIViewController, UITableViewDelegate, UITableViewDa
         getSchools(city.id, failureHandler: { (reason, errorMessage) in
             ThemeHUD.hideActivityIndicator()
             defaultFailureHandler(reason, errorMessage: errorMessage)
-            
             // 错误处理
             if let errorMessage = errorMessage {
                 println("CityTableViewController - getSchools Error \(errorMessage)")
             }
-            }, completion:{ [weak self] (schools) in
-                self?.models = schools.reversed()
-                println("校区列表 - \(schools)")
-            })
+        }, completion: { (schools) in
+            self.models = schools.reversed()
+            println("校区列表 - \(schools)")
+        })
     }
     
     

@@ -51,9 +51,7 @@ open class KWStepper: UIControl {
     open var value: Double = 0 {
         didSet {
             // 数值相同时不在重复触发后续事件
-            guard value != oldValue else {
-                return
-            }
+            guard value != oldValue else { return }
             
             if value > oldValue {
                 delegate?.KWStepperDidIncrement?()

@@ -50,9 +50,9 @@ class OrderFormOperatingView: UIView {
     /// 订单状态
     var orderStatus: MalaOrderStatus = .canceled {
         didSet {
-            DispatchQueue.main.async(execute: { [weak self] () -> Void in
-                self?.changeDisplayMode()
-            })
+            DispatchQueue.main.async {
+                self.changeDisplayMode()
+            }
         }
     }
     /// 老师上架状态标记

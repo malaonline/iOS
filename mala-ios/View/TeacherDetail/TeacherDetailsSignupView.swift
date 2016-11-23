@@ -43,8 +43,8 @@ class TeacherDetailsSignupView: UIView {
     /// 收藏操作区域
     private lazy var likeView: UIView = {
         let view = UIView()
-//        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(TeacherDetailsSignupView.likeButtonDidTap)))
-//        view.userInteractionEnabled = true
+        // view.addTapEvent(target: self, action: #selector(TeacherDetailsSignupView.likeButtonDidTap))
+        // view.userInteractionEnabled = true
         return view
     }()
     /// 收藏文字描述

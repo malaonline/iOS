@@ -89,6 +89,10 @@ class PaymentTableView: UITableView, UITableViewDataSource, UITableViewDelegate 
 
     
     // MARK: - Delegate
+    func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+        return (indexPath.section == 0) ? false : true
+    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return indexPath.section == 0 ? 47 : 66
     }

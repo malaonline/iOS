@@ -105,7 +105,7 @@ class MainViewController: UITabBarController, UITabBarControllerDelegate {
         self.setViewControllers(viewControllers, animated: false)
     }
     
-    /// 查询用户是否有未支付订单
+    /// 查询用户是否有未处理订单／评价
     func loadUnpaindOrder() {
                 
         if !MalaUserDefaults.isLogined {
@@ -118,7 +118,7 @@ class MainViewController: UITabBarController, UITabBarControllerDelegate {
             if let errorMessage = errorMessage {
                 println("MainViewController - loadUnpaindOrder Error \(errorMessage)")
             }
-        }, completion: { [weak self] (order, comment) in
+        }, completion: { (order, comment) in
             println("未支付订单数量：\(order), 待评价数量：\(comment)")
             
             MalaUnpaidOrderCount = order
@@ -126,10 +126,10 @@ class MainViewController: UITabBarController, UITabBarControllerDelegate {
             
             if order != 0, let viewController = getActivityViewController() {
                 DispatchQueue.main.async {
-                    self?.popAlert(viewController)
+                    self.popAlert(viewController)
                 }
             }
-            self?.profileViewController.showTabBadgePoint = (MalaUnpaidOrderCount > 0 || MalaToCommentCount > 0)
+            self.profileViewController.showTabBadgePoint = (MalaUnpaidOrderCount > 0 || MalaToCommentCount > 0)
         })
     }
     

@@ -14,10 +14,7 @@ class CouponViewCell: UITableViewCell {
     /// 奖学金模型
     var model: CouponModel? {
         didSet {
-            
-            guard let model = model, let status = model.status else {
-                return
-            }
+            guard let model = model, let status = model.status else { return }
             
             // 设置奖学金对象模型数据
             priceLabel.text = model.amountString

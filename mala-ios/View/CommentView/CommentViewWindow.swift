@@ -25,7 +25,7 @@ open class CommentViewWindow: UIViewController, UITextViewDelegate {
                 liveCourseAvatarView.isHidden = false
                 avatar.isHidden = true
             }else {
-                avatar.setImage(withURL: model.teacher?.avatar, placeholderImage: "avatar_placeholder")
+                avatar.setImage(withURL: model.teacher?.avatar)
                 avatar.isHidden = false
                 liveCourseAvatarView.isHidden = true
             }   
@@ -343,12 +343,12 @@ open class CommentViewWindow: UIViewController, UITextViewDelegate {
         // Animate
         if animated {
             self.window.setNeedsUpdateConstraints()
-            UIView.animate(withDuration: 0.35, animations: { [weak self] () -> Void in
-                self?.avatarView.alpha = 1
-                self?.teacherNameLabel.alpha = 1
-                self?.subjectLabel.alpha = 1
-                self?.floatRating.alpha = 1
-                self?.window.layoutIfNeeded()
+            UIView.animate(withDuration: 0.35, animations: { () -> Void in
+                self.avatarView.alpha = 1
+                self.teacherNameLabel.alpha = 1
+                self.subjectLabel.alpha = 1
+                self.floatRating.alpha = 1
+                self.window.layoutIfNeeded()
             }) 
         }
     }
@@ -394,12 +394,12 @@ open class CommentViewWindow: UIViewController, UITextViewDelegate {
         
         // Animate
         self.window.setNeedsUpdateConstraints()
-        UIView.animate(withDuration: 0.35, animations: { [weak self] () -> Void in
-            self?.avatarView.alpha = 0
-            self?.teacherNameLabel.alpha = 0
-            self?.subjectLabel.alpha = 0
-            self?.floatRating.alpha = 0
-            self?.window.layoutIfNeeded()
+        UIView.animate(withDuration: 0.35, animations: { () -> Void in
+            self.avatarView.alpha = 0
+            self.teacherNameLabel.alpha = 0
+            self.subjectLabel.alpha = 0
+            self.floatRating.alpha = 0
+            self.window.layoutIfNeeded()
         }) 
     }
     
@@ -450,13 +450,11 @@ open class CommentViewWindow: UIViewController, UITextViewDelegate {
     
     private func animateDismiss() {
         UIView.animate(withDuration: 0.35, animations: { () -> Void in
-            
             self.view.alpha = 0
             self.window.transform = CGAffineTransform()
-            
-            }, completion: { [weak self] (bool) -> Void in
-                self?.closeAlert(0)
-            })
+        }, completion: { (bool) -> Void in
+            self.closeAlert(0)
+        })
     }
     
     private func closeAlert(_ buttonIndex: Int) {
@@ -497,7 +495,7 @@ open class CommentViewWindow: UIViewController, UITextViewDelegate {
         let comment = CommentModel(id: 0, timeslot: model.id, score: Int(floatRating.rating), content: textView.text)
         
         /// 创建评论
-        createComment(comment, failureHandler: { [weak self] (reason, errorMessage) -> Void in
+        createComment(comment, failureHandler: { (reason, errorMessage) -> Void in
             defaultFailureHandler(reason, errorMessage: errorMessage)
             
             // 错误处理
@@ -505,26 +503,25 @@ open class CommentViewWindow: UIViewController, UITextViewDelegate {
                 println("CommentViewWindow - saveComment Error \(errorMessage)")
             }
             
-            self?.ShowToast("网络不稳定，请重试")
-            self?.commitButton.isEnabled = true
-            
-        }, completion: { [weak self] (bool) -> Void in
+            self.ShowToast("网络不稳定，请重试")
+            self.commitButton.isEnabled = true
+        }, completion: { (bool) -> Void in
                 
-            DispatchQueue.main.async(execute: { () -> Void in
+            DispatchQueue.main.async {
                 if bool {
                     // 设置评价数据，用于Cell状态更新后显示评论
-                    self?.model.comment = comment
+                    self.model.comment = comment
                     
-                    self?.ShowToast("评价成功")
+                    self.ShowToast("评价成功")
                     delay(1.0, work: { () -> Void in
-                        self?.finishedAction?()
-                        self?.animateDismiss()
+                        self.finishedAction?()
+                        self.animateDismiss()
                     })
                 }else {
-                    self?.ShowToast("评价失败，请重试")
-                    self?.commitButton.isEnabled = true
+                    self.ShowToast("评价失败，请重试")
+                    self.commitButton.isEnabled = true
                 }
-            })
+            }
         })
     }
     

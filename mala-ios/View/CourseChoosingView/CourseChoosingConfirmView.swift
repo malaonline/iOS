@@ -20,9 +20,9 @@ class CourseChoosingConfirmView: UIView {
     /// 需支付金额
     var price: Int = 0 {
         didSet{
-            DispatchQueue.main.async(execute: { [weak self] () -> Void in
-                self?.priceLabel.text = self?.price.amountCNY
-            })
+            DispatchQueue.main.async {
+                self.priceLabel.text = self.price.amountCNY
+            }
         }
     }
     private var myContext = 0

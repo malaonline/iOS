@@ -115,12 +115,11 @@ class OrderFormInfoViewController: BaseViewController, OrderFormOperatingViewDel
             if let errorMessage = errorMessage {
                 println("HandlePingppBehaviour - validateOrderStatus Error \(errorMessage)")
             }
-            }, completion: { [weak self] order -> Void in
-                println("订单获取成功 \(order)")
-                
-                DispatchQueue.main.async { [weak self] in
-                    self?.model = order
-                }
+        }, completion: { order -> Void in
+            println("订单获取成功 \(order)")
+            DispatchQueue.main.async {
+                self.model = order
+            }
         })
     }
     
@@ -154,22 +153,22 @@ class OrderFormInfoViewController: BaseViewController, OrderFormOperatingViewDel
                 println("OrderFormInfoViewController - loadOrderOverView Error \(errorMessage)")
             }
             
-        }, completion: { [weak self] (timeSlots) in
+        }, completion: { (timeSlots) in
             ThemeHUD.hideActivityIndicator()
             
             guard let timesSchedule = timeSlots else {
-                self?.ShowToast("上课时间获取有误，请重试")
+                self.ShowToast("上课时间获取有误，请重试")
                 return
             }
             
             MalaOrderOverView.timeSlots = timesSchedule
             MalaOrderOverView.hours = MalaCurrentCourse.classPeriod
-            MalaOrderOverView.schoolName = (self?.school != nil) ? self?.school!.name : MalaCurrentSchool?.name
-            MalaOrderOverView.schoolAddress = (self?.school != nil) ? self?.school!.address : MalaCurrentSchool?.address
+            MalaOrderOverView.schoolName = (self.school != nil) ? self.school!.name : MalaCurrentSchool?.name
+            MalaOrderOverView.schoolAddress = (self.school != nil) ? self.school!.address : MalaCurrentSchool?.address
             MalaOrderOverView.status = "c"
             
-            DispatchQueue.main.async { [weak self] in
-                self?.model = MalaOrderOverView
+            DispatchQueue.main.async {
+                self.model = MalaOrderOverView
             }
         })
     }
@@ -188,12 +187,13 @@ class OrderFormInfoViewController: BaseViewController, OrderFormOperatingViewDel
             if let errorMessage = errorMessage {
                 println("OrderFormInfoViewController - cancelOrder Error \(errorMessage)")
             }
-        }, completion:{ [weak self] (result) in
+        }, completion:{ (result) in
             ThemeHUD.hideActivityIndicator()
-            DispatchQueue.main.async(execute: { () -> Void in
-                self?.ShowToast(result == true ? "订单取消成功" : "订单取消失败")
-                _ = self?.navigationController?.popViewController(animated: true)
-            })
+            
+            DispatchQueue.main.async {
+                self.ShowToast(result == true ? "订单取消成功" : "订单取消失败")
+                _ = self.navigationController?.popViewController(animated: true)
+            }
         })
     }
     
@@ -202,7 +202,7 @@ class OrderFormInfoViewController: BaseViewController, OrderFormOperatingViewDel
         ThemeHUD.showActivityIndicator()
         
         ///  创建订单
-        createOrderWithForm(MalaOrderObject.jsonDictionary(), failureHandler: { [weak self] (reason, errorMessage) -> Void in
+        createOrderWithForm(MalaOrderObject.jsonDictionary(), failureHandler: { (reason, errorMessage) -> Void in
             ThemeHUD.hideActivityIndicator()
             defaultFailureHandler(reason, errorMessage: errorMessage)
             
@@ -210,9 +210,9 @@ class OrderFormInfoViewController: BaseViewController, OrderFormOperatingViewDel
             if let errorMessage = errorMessage {
                 println("OrderFormInfoViewController - CreateOrder Error \(errorMessage)")
             }
-            DispatchQueue.main.async(execute: { () -> Void in
-                self?.ShowToast("网络不稳定, 请重试")
-            })
+            DispatchQueue.main.async {
+                self.ShowToast("网络不稳定, 请重试")
+            }
         }, completion: { [weak self] (order) -> Void in
             ThemeHUD.hideActivityIndicator()
             
@@ -273,7 +273,7 @@ class OrderFormInfoViewController: BaseViewController, OrderFormOperatingViewDel
         if let id = model?.teacher  {
             viewController.teacherModel?.subject = model?.subjectName
             viewController.teacherId = id
-            viewController.school = SchoolModel(id: model?.school, name: model?.schoolName , address: "")
+            viewController.school = SchoolModel(id: model?.school, name: model?.schoolName , address: model?.schoolAddress)
             viewController.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(viewController, animated: true)
         }else {

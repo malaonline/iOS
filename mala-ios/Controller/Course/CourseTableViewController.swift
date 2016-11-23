@@ -17,18 +17,18 @@ open class CourseTableViewController: UIViewController, UITableViewDataSource, U
     /// 上课时间表数据模型
     var model: [[[StudentCourseModel]]]? {
         didSet {
-            DispatchQueue.main.async(execute: { [weak self] () -> Void in
+            DispatchQueue.main.async {
                 ThemeHUD.hideActivityIndicator()
-                if self?.model?.count == 0 {
-                    self?.defaultView.isHidden = false
-                    self?.goTopButton.isHidden = true
+                if self.model?.count == 0 {
+                    self.defaultView.isHidden = false
+                    self.goTopButton.isHidden = true
                 }else {
-                    self?.defaultView.isHidden = true
-                    self?.goTopButton.isHidden = false
-                    self?.tableView.reloadData()
-                    self?.scrollToToday()
+                    self.defaultView.isHidden = true
+                    self.goTopButton.isHidden = false
+                    self.tableView.reloadData()
+                    self.scrollToToday()
                 }
-            })
+            }
         }
     }
     /// 距当前时间最近的一节未上课程下标
@@ -198,11 +198,11 @@ open class CourseTableViewController: UIViewController, UITableViewDataSource, U
                 println("CourseTableViewController - loadStudentCourseTable Error \(errorMessage)")
             }
             ThemeHUD.hideActivityIndicator()
-        }, completion: { [weak self] (courseList) -> Void in
+        }, completion: { (courseList) -> Void in
             // 解析学生上课时间表
             let result = parseStudentCourseTable(courseList)
-            self?.recentlyCourseIndexPath = result.recently
-            self?.model = result.model
+            self.recentlyCourseIndexPath = result.recently
+            self.model = result.model
         })
     }
     
@@ -263,9 +263,9 @@ open class CourseTableViewController: UIViewController, UITableViewDataSource, U
     // MARK: - Event Response
     ///  滚动到近日首个未上课程
     @objc private func scrollToToday() {
-        DispatchQueue.main.async(execute: { [weak self] () -> Void in
-            self?.tableView.scrollToRow(at: self?.recentlyCourseIndexPath ?? IndexPath(row: 0, section: 0), at: .top, animated: true)
-        })
+        DispatchQueue.main.async {
+            self.tableView.scrollToRow(at: self.recentlyCourseIndexPath ?? IndexPath(row: 0, section: 0), at: .top, animated: true)
+        }
     }
     ///  跳转到挑选老师页面
     @objc private func switchToFindTeacher() {

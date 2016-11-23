@@ -16,14 +16,14 @@ class CommentViewController: BaseTableViewController {
     /// 优惠券模型数组
     var models: [StudentCourseModel] = [] {
         didSet {
-            DispatchQueue.main.async(execute: { [weak self] () -> Void in
-                if self?.models.count == 0 {
-                    self?.showDefaultView()
+            DispatchQueue.main.async {
+                if self.models.count == 0 {
+                    self.showDefaultView()
                 }else {
-                    self?.hideDefaultView()
-                    self?.tableView.reloadData()
+                    self.hideDefaultView()
+                    self.tableView.reloadData()
                 }
-            })
+            }
         }
     }
     /// 是否正在拉取数据
@@ -88,21 +88,20 @@ class CommentViewController: BaseTableViewController {
         
         
         ///  获取学生课程信息
-        getStudentCourseTable(true, failureHandler: { [weak self] (reason, errorMessage) -> Void in
+        getStudentCourseTable(true, failureHandler: { (reason, errorMessage) -> Void in
             defaultFailureHandler(reason, errorMessage: errorMessage)
             // 错误处理
             if let errorMessage = errorMessage {
                 println("CommentViewController - loadCourse Error \(errorMessage)")
             }
             // 显示缺省值
-            self?.models = []
-            self?.refreshControl?.endRefreshing()
-            self?.isFetching = false
-        }, completion: { [weak self] (courseList) -> Void in
-            
-            self?.refreshControl?.endRefreshing()
-            self?.isFetching = false
-            self?.models = courseList
+            self.models = []
+            self.refreshControl?.endRefreshing()
+            self.isFetching = false
+        }, completion: { (courseList) -> Void in
+            self.refreshControl?.endRefreshing()
+            self.isFetching = false
+            self.models = courseList
         })
     }
 

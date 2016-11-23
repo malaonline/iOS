@@ -14,15 +14,12 @@ class TeacherTableViewCell: UITableViewCell {
     /// 老师简介模型
     var model: TeacherModel? {
         didSet{
-            
-            guard let model = model else {
-                return
-            }
+            guard let model = model else { return }
             
             courseLabel.setTitle((model.grades_shortname ?? "")+" • "+(model.subject ?? ""), for: UIControlState())
             nameLabel.text = model.name
             levelLabel.text = String(format: "  T%d  ", model.level)
-            avatarView.setImage(withURL: model.avatar, placeholderImage: "avatar_placeholder")
+            avatarView.setImage(withURL: model.avatar)
             
             let string = String(MinPrice: model.min_price.money, MaxPrice: model.max_price.money)
             let attrString: NSMutableAttributedString = NSMutableAttributedString(string: string)

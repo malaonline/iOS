@@ -64,7 +64,7 @@ class RootViewController: UIViewController {
     /// 上课地点选择按钮
     private lazy var regionPickButton: RegionPicker = {
         let picker = RegionPicker()
-        picker.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(RootViewController.regionsPickButtonDidTap)))
+        picker.addTapEvent(target: self, action: #selector(RootViewController.regionsPickButtonDidTap))
         return picker
     }()
     fileprivate lazy var rightBarButtonItem: UIBarButtonItem = {
@@ -140,9 +140,7 @@ class RootViewController: UIViewController {
         if let _ = MalaUserDefaults.currentSchool.value {
             
             // 启动时如果已选择过地点，则不显示地点选择面板
-            if isStartup {
-                return
-            }
+            if isStartup { return }
             
             // 地点选择器
             let viewController = RegionViewController()

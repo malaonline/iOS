@@ -22,14 +22,14 @@ class FavoriteViewController: BaseTableViewController {
     /// 收藏老师模型列表
     var models: [TeacherModel] = [] {
         didSet {
-            DispatchQueue.main.async(execute: { [weak self] () -> Void in
-                if self?.models.count == 0 {
-                    self?.showDefaultView()
+            DispatchQueue.main.async {
+                if self.models.count == 0 {
+                    self.showDefaultView()
                 }else {
-                    self?.hideDefaultView()
-                    self?.tableView.reloadData()
+                    self.hideDefaultView()
+                    self.tableView.reloadData()
                 }
-            })
+            }
         }
     }
     /// 是否正在拉取数据
@@ -99,39 +99,39 @@ class FavoriteViewController: BaseTableViewController {
             currentPageIndex = 1
         }
         
-        getFavoriteTeachers(currentPageIndex, failureHandler: { [weak self] (reason, errorMessage) in
+        getFavoriteTeachers(currentPageIndex, failureHandler: { (reason, errorMessage) in
             defaultFailureHandler(reason, errorMessage: errorMessage)
             // 错误处理
             if let errorMessage = errorMessage {
                 println("FavoriteViewController - loadFavoriteTeachers Error \(errorMessage)")
             }
-            DispatchQueue.main.async(execute: { () -> Void in
-                // 显示缺省值
-                self?.refreshControl?.endRefreshing()
-                self?.isFetching = false
-            })
-        }, completion: { [weak self] (teachers, count) in
+            // 显示缺省值
+            DispatchQueue.main.async {
+                self.refreshControl?.endRefreshing()
+                self.isFetching = false
+            }
+        }, completion: { (teachers, count) in
             println("收藏列表 － \(teachers)")
             
             /// 记录数据量
             if count != 0 {
-                self?.allOrderFormCount = count
+                self.allOrderFormCount = count
             }
             ///  加载更多
             if isLoadMore {
                 for teacher in teachers {
-                    self?.models.append(teacher)
+                    self.models.append(teacher)
                 }
-                ///  如果不是加载更多，则刷新数据
             }else {
-                self?.models = teachers
+                ///  如果不是加载更多，则刷新数据
+                self.models = teachers
             }
             
-            DispatchQueue.main.async(execute: { () -> Void in
+            DispatchQueue.main.async {
                 finish?()
-                self?.refreshControl?.endRefreshing()
-                self?.isFetching = false
-            })
+                self.refreshControl?.endRefreshing()
+                self.isFetching = false
+            }
         })
     }
     

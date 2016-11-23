@@ -40,7 +40,7 @@ class SchoolModel: BaseObjectModel {
         setValuesForKeys(dict)
     }
     
-    convenience init(id: Int? = 0, name: String? = "", address: String) {
+    convenience init(id: Int? = 0, name: String? = "", address: String? = "") {
         self.init()
         self.id = id ?? 0
         self.name = name ?? ""

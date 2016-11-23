@@ -17,7 +17,7 @@ class LiveCourseDetailLecturerCell: MalaBaseLiveCourseCell {
             guard let model = model else { return }
             lecturerNameLabel.text = model.lecturerName
             lecturerBioView.text = model.lecturerBio?.trim().replacingOccurrences(of: ";", with: "\n")
-            lecturerAvatar.setImage(withURL: model.lecturerAvatar, placeholderImage: "avatar_placeholder")
+            lecturerAvatar.setImage(withURL: model.lecturerAvatar)
         }
     }
     
