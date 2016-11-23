@@ -19,7 +19,7 @@ class AboutViewController: BaseViewController, UIScrollViewDelegate {
     }()
     /// 应用logo
     private lazy var appLogoView: UIImageView = {
-        let imageView = UIImageView(imageName: "AppIcon60x60")
+        let imageView = UIImageView(imageName: MalaConfig.appIcon())
         return imageView
     }()
     /// 应用版本号label

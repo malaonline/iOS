@@ -46,6 +46,16 @@ open class MalaConfig {
             return "https://dev.malalaoshi.com/m/ad"
         #endif
     }
+    /// App图标名称
+    class func appIcon() -> String {
+        #if USE_PRD_SERVER
+            return "AppIcon60x60"
+        #elseif USE_STAGE_SERVER
+            return "AppIcon-stage60x60"
+        #else
+            return "AppIcon-dev60x60"
+        #endif
+    }
     ///  app版本号
     class func aboutAPPVersion() -> String {
         let version = String(describing: Bundle.main.infoDictionary!["CFBundleShortVersionString"]!)
