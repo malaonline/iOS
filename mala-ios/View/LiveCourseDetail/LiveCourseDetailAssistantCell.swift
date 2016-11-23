@@ -16,7 +16,7 @@ class LiveCourseDetailAssistantCell: MalaBaseLiveCourseCell {
         didSet{
             guard let model = model else { return }
             assistantNameLabel.text = String(format: "助教：%@", model.assistantName ?? "")
-            assistantAvatar.setImage(withURL: model.assistantAvatar, placeholderImage: "avatar_placeholder")
+            assistantAvatar.setImage(withURL: model.assistantAvatar)
         }
     }
     

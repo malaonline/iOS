@@ -404,7 +404,7 @@ class OrderFormViewCell: UITableViewCell {
         liveCourseAvatarView.isHidden = true
         
         teacherNameString.text = model?.teacherName
-        avatarView.setImage(withURL: model?.avatarURL, placeholderImage: "avatar_placeholder")
+        avatarView.setImage(withURL: model?.avatarURL)
 
     }
     

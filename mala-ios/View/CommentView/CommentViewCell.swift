@@ -25,7 +25,7 @@ class CommentViewCell: UITableViewCell {
                 liveCourseAvatarView.isHidden = false
                 avatarView.isHidden = true
             }else {
-                avatarView.setImage(withURL: model.teacher?.avatar, placeholderImage: "avatar_placeholder")
+                avatarView.setImage(withURL: model.teacher?.avatar)
                 avatarView.isHidden = false
                 liveCourseAvatarView.isHidden = true
             }

@@ -16,7 +16,7 @@ class TeacherDetailsHeaderView: UIView {
     var model: TeacherDetailModel = TeacherDetailModel() {
         didSet {
             /// 教师头像URL
-            avatarView.setImage(withURL: model.avatar, placeholderImage: "avatar_placeholder")
+            avatarView.setImage(withURL: model.avatar)
             
             /// 教师姓名
             nameLabel.text = model.name

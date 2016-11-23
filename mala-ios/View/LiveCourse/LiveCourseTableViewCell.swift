@@ -16,8 +16,8 @@ class LiveCourseTableViewCell: UITableViewCell {
         didSet {
             guard let model = model else { return }
             
-            lecturerAvatar.setImage(withURL: model.lecturerAvatar, placeholderImage: "avatar_placeholder")
-            assistantAvatar.setImage(withURL: model.assistantAvatar, placeholderImage: "avatar_placeholder")
+            lecturerAvatar.setImage(withURL: model.lecturerAvatar)
+            assistantAvatar.setImage(withURL: model.assistantAvatar)
             lecturerNameLabel.text = model.lecturerName
             assistantNameLabel.text = String(format: "助教:%@", (model.assistantName ?? 0))
             lecturerTitleLabel.text = model.lecturerTitle
