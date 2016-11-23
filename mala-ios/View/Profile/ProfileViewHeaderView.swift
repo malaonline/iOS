@@ -51,7 +51,7 @@ class ProfileViewHeaderView: UIView {
         imageView.layer.masksToBounds = true
         imageView.isUserInteractionEnabled = true
         imageView.contentMode = .scaleAspectFill
-        imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(ProfileViewHeaderView.avatarViewDidTap(_:))))
+        imageView.addTapEvent(target: self, action: #selector(ProfileViewHeaderView.avatarViewDidTap(_:)))
         return imageView
     }()
     /// 头像背景
@@ -68,7 +68,7 @@ class ProfileViewHeaderView: UIView {
         label.font = UIFont.systemFont(ofSize: 14)
         label.textAlignment = .center
         label.isUserInteractionEnabled = true
-        label.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(ProfileViewHeaderView.nameEditButtonDidTap(_:))))
+        label.addTapEvent(target: self, action: #selector(ProfileViewHeaderView.nameEditButtonDidTap(_:)))
         return label
     }()
     /// 姓名修改按钮

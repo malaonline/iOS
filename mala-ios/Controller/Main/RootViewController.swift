@@ -64,7 +64,7 @@ class RootViewController: UIViewController {
     /// 上课地点选择按钮
     private lazy var regionPickButton: RegionPicker = {
         let picker = RegionPicker()
-        picker.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(RootViewController.regionsPickButtonDidTap)))
+        picker.addTapEvent(target: self, action: #selector(RootViewController.regionsPickButtonDidTap))
         return picker
     }()
     fileprivate lazy var rightBarButtonItem: UIBarButtonItem = {

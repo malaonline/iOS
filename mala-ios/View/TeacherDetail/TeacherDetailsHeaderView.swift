@@ -62,7 +62,7 @@ class TeacherDetailsHeaderView: UIView {
         imageView.contentMode = .scaleAspectFill
         imageView.tag = 999
         imageView.isUserInteractionEnabled = true
-        imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(TeacherDetailsHeaderView.avatarDidTap)))
+        imageView.addTapEvent(target: self, action: #selector(TeacherDetailsHeaderView.avatarDidTap))
         return imageView
     }()
     /// 头像背景

@@ -42,7 +42,7 @@ class RegionViewController: UIViewController, UITableViewDelegate, UITableViewDa
     private lazy var cityView: UIView = {
         let view = UIView()
         view.isUserInteractionEnabled = true
-        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(RegionViewController.pushToCityPickView)))
+        view.addTapEvent(target: self, action: #selector(RegionViewController.pushToCityPickView))
         return view
     }()
     private lazy var cityLabel: UILabel = {

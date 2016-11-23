@@ -154,7 +154,7 @@ class LoginViewController: UIViewController {
         protocolString.textColor = MalaColor_88BCDE_95
         protocolString.text = "麻辣老师用户协议"
         protocolString.isUserInteractionEnabled = true
-        protocolString.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(LoginViewController.protocolDidTap)))
+        protocolString.addTapEvent(target: self, action: #selector(LoginViewController.protocolDidTap))
         return protocolString
     }()
     
