@@ -20,10 +20,7 @@ class LiveCourseConfirmView: UIView {
     /// 课程模型
     var model: LiveClassModel? {
         didSet{
-            
-            guard let model = model else {
-                return
-            }
+            guard let model = model else { return }
             
             priceLabel.text = String(format: "%@/", model.courseFee?.priceCNY ?? "")
             lessionsLabel.text = String(format: "%d次", model.courseLessons ?? 0)

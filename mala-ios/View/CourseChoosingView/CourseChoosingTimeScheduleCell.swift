@@ -22,10 +22,7 @@ class CourseChoosingTimeScheduleCell: MalaBaseCell {
     /// 展开标记
     var isOpen: Bool = true {
         didSet {
-            
-            guard let timeLineView = timeLineView else {
-                return
-            }
+            guard let timeLineView = timeLineView else { return }
             
             if isOpen {
                 timeLineView.isHidden = false

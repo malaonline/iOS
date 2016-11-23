@@ -140,9 +140,7 @@ class RootViewController: UIViewController {
         if let _ = MalaUserDefaults.currentSchool.value {
             
             // 启动时如果已选择过地点，则不显示地点选择面板
-            if isStartup {
-                return
-            }
+            if isStartup { return }
             
             // 地点选择器
             let viewController = RegionViewController()

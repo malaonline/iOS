@@ -15,9 +15,7 @@ class OrderFormOtherInfoCell: UITableViewCell {
     var model: OrderForm? {
         didSet {
             
-            guard let model = model else {
-                return
-            }
+            guard let model = model else { return }
             
             /// 订单状态
             if let status = MalaOrderStatus(rawValue: (model.status ?? "")) {

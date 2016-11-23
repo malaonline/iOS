@@ -14,10 +14,7 @@ class TeacherTableViewCell: UITableViewCell {
     /// 老师简介模型
     var model: TeacherModel? {
         didSet{
-            
-            guard let model = model else {
-                return
-            }
+            guard let model = model else { return }
             
             courseLabel.setTitle((model.grades_shortname ?? "")+" • "+(model.subject ?? ""), for: UIControlState())
             nameLabel.text = model.name
