@@ -7,12 +7,12 @@ rvm: "3.0"
 before_install:
 - security list-keychain
 install:
-- pod repo remove master
-- travis_wait 30 pod setup
+# - pod repo remove master
+# - travis_wait 30 pod setup
 - pod --version
 - pod install
 before_script:
-- openssl aes-256-cbc -k $ENCRYPTION_SECRET -in scripts/profile/mala_dev_AdHoc.mobileprovision.enc -d -a -out scripts/profile/Mala_DevAdHoc.mobileprovision
+# - openssl aes-256-cbc -k $ENCRYPTION_SECRET -in scripts/profile/mala_dev_AdHoc.mobileprovision.enc -d -a -out scripts/profile/Mala_DevAdHoc.mobileprovision
 - openssl aes-256-cbc -k $ENCRYPTION_SECRET -in scripts/certs/dist.cer.enc -d -a -out scripts/certs/dist.cer
 - openssl aes-256-cbc -k $ENCRYPTION_SECRET -in scripts/certs/dist.p12.enc -d -a -out scripts/certs/dist.p12
 - openssl aes-256-cbc -k $ENCRYPTION_SECRET -in scripts/profile/exportOptions.plist.enc -d -a -out exportOptions.plist
