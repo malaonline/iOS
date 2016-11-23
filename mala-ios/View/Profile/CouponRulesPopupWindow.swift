@@ -200,13 +200,11 @@ open class CouponRulesPopupWindow: UIViewController, UITextViewDelegate {
     
     @objc private func animateDismiss() {
         UIView.animate(withDuration: 0.35, animations: { () -> Void in
-            
             self.view.alpha = 0
             self.window.transform = CGAffineTransform()
-            
-            }, completion: { [weak self] (bool) -> Void in
-                self?.closeAlert(0)
-            })
+        }, completion: { (bool) -> Void in
+            self.closeAlert(0)
+        })
     }
     
     private func closeAlert(_ buttonIndex: Int) {

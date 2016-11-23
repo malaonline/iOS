@@ -14,9 +14,9 @@ open class ThemeHorizontalBarChartView: UIView {
     /// 数据
     var vals: [ThemeHorizontalBarData] = [] {
         didSet{
-            DispatchQueue.main.async(execute: { [weak self] () -> Void in
-                self?.setupData()
-            })
+            DispatchQueue.main.async {
+                self.setupData()
+            }
         }
     }
     

@@ -86,15 +86,14 @@ class MalaSingleWebViewController: BaseViewController, WKNavigationDelegate, WKU
             if let errorMessage = errorMessage {
                 println("MalaSingleWebViewController - loadHTML Error \(errorMessage)")
             }
-        }, completion: { [weak self] (string) -> Void in
-            
-            DispatchQueue.main.async(execute: { () -> Void in
+        }, completion: { (string) -> Void in
+            DispatchQueue.main.async {
                 if let htmlString = string {
-                    self?.HTMLString = htmlString
+                    self.HTMLString = htmlString
                 }else {
-                    self?.ShowToast("网络不稳定，请重试")
+                    self.ShowToast("网络不稳定，请重试")
                 }
-            })
+            }
         })
     }
     

@@ -16,14 +16,14 @@ class CouponViewController: BaseTableViewController {
     /// 优惠券模型数组
     var models: [CouponModel] = MalaUserCoupons {
         didSet {
-            DispatchQueue.main.async(execute: { [weak self] () -> Void in
-                if self?.models.count == 0 {
-                    self?.showDefaultView()
+            DispatchQueue.main.async {
+                if self.models.count == 0 {
+                    self.showDefaultView()
                 }else {
-                    self?.hideDefaultView()
-                    self?.tableView.reloadData()
+                    self.hideDefaultView()
+                    self.tableView.reloadData()
                 }
-            })
+            }
         }
     }
     /// 当前选择项IndexPath标记
@@ -99,26 +99,21 @@ class CouponViewController: BaseTableViewController {
         refreshControl?.beginRefreshing()
 
         ///  获取优惠券信息
-        getCouponList(onlyValid, failureHandler: { [weak self] (reason, errorMessage) -> Void in
+        getCouponList(onlyValid, failureHandler: { (reason, errorMessage) -> Void in
             defaultFailureHandler(reason, errorMessage: errorMessage)
-            
             // 错误处理
             if let errorMessage = errorMessage {
                 println("CouponViewController - loadCoupons Error \(errorMessage)")
             }
             // 显示缺省值
-            self?.models = MalaUserCoupons
-            self?.refreshControl?.endRefreshing()
-            self?.isFetching = false
-        }, completion: { [weak self] (coupons) -> Void in
-            if self?.justShow == true {
-                MalaUserCoupons = coupons
-            }else {
-                MalaUserCoupons = parseCouponlist(coupons)
-            }
-            self?.models = MalaUserCoupons
-            self?.refreshControl?.endRefreshing()
-            self?.isFetching = false
+            self.models = MalaUserCoupons
+            self.refreshControl?.endRefreshing()
+            self.isFetching = false
+        }, completion: { (coupons) -> Void in
+            MalaUserCoupons = self.justShow ? coupons : parseCouponlist(coupons)
+            self.models = MalaUserCoupons
+            self.refreshControl?.endRefreshing()
+            self.isFetching = false
         })
 
     }

@@ -225,13 +225,11 @@ open class InfoModifyViewWindow: UIViewController, UITextViewDelegate {
     
     private func animateDismiss() {
         UIView.animate(withDuration: 0.35, animations: { () -> Void in
-            
             self.view.alpha = 0
             self.window.transform = CGAffineTransform()
-            
-            }, completion: { [weak self] (bool) -> Void in
-                self?.closeAlert(0)
-            })
+        }, completion: { (bool) -> Void in
+            self.closeAlert(0)
+        })
     }
     
     private func closeAlert(_ buttonIndex: Int) {
@@ -253,16 +251,16 @@ open class InfoModifyViewWindow: UIViewController, UITextViewDelegate {
             if let errorMessage = errorMessage {
                 println("InfoModifyViewWindow - saveStudentName Error \(errorMessage)")
             }
-        }, completion: { [weak self] (bool) -> Void in
+        }, completion: { (bool) -> Void in
             println("学生姓名保存 - \(bool)")
             
             MalaUserDefaults.studentName.value = name
             NotificationCenter.default.post(name: MalaNotification_RefreshStudentName, object: nil)
             
             ThemeHUD.hideActivityIndicator()
-            DispatchQueue.main.async(execute: { () -> Void in
-                self?.animateDismiss()
-            })
+            DispatchQueue.main.async {
+                self.animateDismiss()
+            }
         })
     }
     

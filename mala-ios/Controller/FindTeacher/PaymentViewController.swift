@@ -101,12 +101,12 @@ class PaymentViewController: BaseViewController, PaymentBottomViewDelegate {
             if let errorMessage = errorMessage {
                 println("PaymentViewController - cancelOrder Error \(errorMessage)")
             }
-        }, completion:{ [weak self] (result) in
+        }, completion:{ (result) in
             ThemeHUD.hideActivityIndicator()
-            DispatchQueue.main.async(execute: { () -> Void in
-                self?.ShowToast(result == true ? "订单取消成功" : "订单取消失败")
-                _ = self?.navigationController?.popViewController(animated: true)
-            })
+            DispatchQueue.main.async {
+                self.ShowToast(result == true ? "订单取消成功" : "订单取消失败")
+                _ = self.navigationController?.popViewController(animated: true)
+            }
         })
     }
 
@@ -165,10 +165,10 @@ class PaymentViewController: BaseViewController, PaymentBottomViewDelegate {
                 println("PaymentViewController - getGharge Error \(errorMessage)")
             }
             
-        }, completion: { [weak self] (charges) -> Void in
+        }, completion: { (charges) -> Void in
                 println("获取支付信息:\(charges)")
             
-            DispatchQueue.main.async(execute: { () -> Void in
+            DispatchQueue.main.async {
                 
                 ThemeHUD.hideActivityIndicator()
                 
@@ -177,24 +177,20 @@ class PaymentViewController: BaseViewController, PaymentBottomViewDelegate {
                     /// 验证返回结果是否存在result(存在则表示失败)
                     if let _ = charge["result"] as? Bool {
                         /// 失败弹出提示
-                        if let strongSelf = self {
-                            let alert = JSSAlertView().show(strongSelf,
-                                title: "部分课程时间已被占用，请重新选择上课时间",
-                                buttonText: "重新选课",
-                                iconImage: UIImage(named: "alert_PaymentFail")
-                            )
-                            alert.addAction(strongSelf.forcePop)
-                        }
-                        
+                        let alert = JSSAlertView().show(self,
+                                                        title: "部分课程时间已被占用，请重新选择上课时间",
+                                                        buttonText: "重新选课",
+                                                        iconImage: UIImage(named: "alert_PaymentFail")
+                        )
+                        alert.addAction(self.forcePop)
                     }else {
                         /// 保存支付对象
                         MalaPaymentCharge = charge
                         /// 成功跳转支付
-                        self?.createPayment(MalaPaymentCharge)
+                        self.createPayment(MalaPaymentCharge)
                     }
                 }
-                
-            })
+            }
         })
     }
     

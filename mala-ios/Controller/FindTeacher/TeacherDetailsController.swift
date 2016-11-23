@@ -30,22 +30,18 @@ class TeacherDetailsController: BaseViewController, UIGestureRecognizerDelegate,
     var teacherID: Int = 0
     var model: TeacherDetailModel = MalaConfig.defaultTeacherDetail() {
         didSet {
-            DispatchQueue.main.async(execute: { [weak self] () -> Void in
+            DispatchQueue.main.async {
+                MalaOrderOverView.avatarURL = self.model.avatar
+                MalaOrderOverView.teacherName = self.model.name
+                MalaOrderOverView.subjectName = self.model.subject
+                MalaOrderOverView.teacher = self.model.id
                 
-                guard let strongSelf = self else {
-                    return
-                }
-                MalaOrderOverView.avatarURL = strongSelf.model.avatar
-                MalaOrderOverView.teacherName = strongSelf.model.name
-                MalaOrderOverView.subjectName = strongSelf.model.subject
-                MalaOrderOverView.teacher = strongSelf.model.id
+                self.tableHeaderView.model = self.model
+                self.tableView.reloadData()
                 
-                strongSelf.tableHeaderView.model = strongSelf.model
-                strongSelf.tableView.reloadData()
-                
-                strongSelf.isPublished = strongSelf.model.published
-                strongSelf.isFavorite = strongSelf.model.favorite
-            })
+                self.isPublished = self.model.published
+                self.isFavorite = self.model.favorite
+            }
         }
     }
     /// 是否已上架标识
@@ -280,14 +276,14 @@ class TeacherDetailsController: BaseViewController, UIGestureRecognizerDelegate,
             defaultFailureHandler(reason, errorMessage: errorMessage)
             // 错误处理
             if let errorMessage = errorMessage {
-                println("CourseChoosingViewController - loadTeacherDetail Error \(errorMessage)")
+                println("TeacherDetailsController - loadTeacherDetail Error \(errorMessage)")
             }
-        }, completion: { [weak self] (model) in
+        }, completion: { (model) in
             ThemeHUD.hideActivityIndicator()
             if let model = model {
-                self?.model = model
+                self.model = model
             }
-            self?.requiredCount += 1
+            self.requiredCount += 1
         })
     }
     
@@ -306,7 +302,7 @@ class TeacherDetailsController: BaseViewController, UIGestureRecognizerDelegate,
         removeFavoriteTeacher(teacherID, failureHandler: { (reason, errorMessage) in
             // 错误处理
             if let errorMessage = errorMessage {
-                println("TeacherDetailsController - likeTeacher Error \(errorMessage)")
+                println("TeacherDetailsController - dislikeTeacher Error \(errorMessage)")
             }
         }, completion: { (bool) in
             println("取消收藏老师 - \(bool)")
@@ -367,14 +363,14 @@ class TeacherDetailsController: BaseViewController, UIGestureRecognizerDelegate,
     func likeButtonDidTap(_ sender: DOFavoriteButton) {
         
         // 收藏／取消收藏
-        let action = { [weak self] in
+        let action = {
             // 更改数据模型，发送请求
-            if self?.isFavorite == true {
-                self?.dislikeTeacher()
-                self?.isFavorite = false
+            if self.isFavorite == true {
+                self.dislikeTeacher()
+                self.isFavorite = false
             }else {
-                self?.likeTeacher()
-                self?.isFavorite = true
+                self.likeTeacher()
+                self.isFavorite = true
             }
         }
         

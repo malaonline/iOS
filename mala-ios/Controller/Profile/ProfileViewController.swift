@@ -156,19 +156,19 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
         if isFetching { return }
         isFetching = true
         
-        getUserNewMessageCount({ [weak self] (reason, errorMessage) in
+        getUserNewMessageCount({ (reason, errorMessage) in
             defaultFailureHandler(reason, errorMessage: errorMessage)
             // 错误处理
             if let errorMessage = errorMessage {
                 println("ProfileViewController - loadUnpaindOrder Error \(errorMessage)")
             }
-            self?.isFetching = false
-        }, completion: { [weak self] (order, comment) in
+            self.isFetching = false
+        }, completion: { (order, comment) in
             println("未支付订单数量：\(order) - 待评价数量：\(comment)")
-            self?.isFetching = false
+            self.isFetching = false
             MalaUnpaidOrderCount = order
             MalaToCommentCount = comment
-            self?.navigationController?.showTabBadgePoint = (MalaUnpaidOrderCount > 0 || MalaToCommentCount > 0)
+            self.navigationController?.showTabBadgePoint = (MalaUnpaidOrderCount > 0 || MalaToCommentCount > 0)
         })
     }
     
@@ -354,16 +354,16 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
                 
                 defaultFailureHandler(reason, errorMessage: errorMessage)
                 
-                DispatchQueue.main.async { [weak self] in
-                    self?.profileHeaderView.refreshAvatar = false
+                DispatchQueue.main.async {
+                    self.profileHeaderView.refreshAvatar = false
                 }
                 
                 }, completion: { newAvatarURLString in
                     DispatchQueue.main.async {
                         getAndSaveProfileInfo()
-                        DispatchQueue.main.async { [weak self] in
-                            self?.profileHeaderView.avatar = UIImage(data: imageData) ?? UIImage()
-                            self?.profileHeaderView.refreshAvatar = false
+                        DispatchQueue.main.async {
+                            self.profileHeaderView.avatar = UIImage(data: imageData) ?? UIImage()
+                            self.profileHeaderView.refreshAvatar = false
                         }
                         println("newAvatarURLString: \(newAvatarURLString)")
                     }

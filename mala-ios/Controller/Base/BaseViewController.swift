@@ -93,16 +93,16 @@ open class BaseViewController: UIViewController {
     
     // MARK: - API
     func showDefaultView() {
-        DispatchQueue.main.async { [weak self] in
-            self?.setupDefaultViewIfNeed()
-            self?.defaultView.isHidden = false
+        DispatchQueue.main.async {
+            self.setupDefaultViewIfNeed()
+            self.defaultView.isHidden = false
         }
     }
     
     func hideDefaultView() {
-        DispatchQueue.main.async { [weak self] in
-            self?.setupDefaultViewIfNeed()
-            self?.defaultView.isHidden = true
+        DispatchQueue.main.async {
+            self.setupDefaultViewIfNeed()
+            self.defaultView.isHidden = true
         } 
     }
 }

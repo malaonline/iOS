@@ -191,12 +191,12 @@ class CourseChoosingViewController: BaseViewController, CourseChoosingConfirmVie
             if let errorMessage = errorMessage {
                 println("CourseChoosingViewController - getTeacherGradePrice Error \(errorMessage)")
             }
-        },completion: { [weak self] (grades) -> Void in
+        },completion: { (grades) -> Void in
             MalaCurrentCourse.grades = grades
             // 获取到价格阶梯数据后，自动切换到指定年级
             MalaCurrentCourse.switchGradePrices()
-            self?.refreshTableView()
-            self?.requiredCount += 1
+            self.refreshTableView()
+            self.requiredCount += 1
         })
     }
     
@@ -220,9 +220,9 @@ class CourseChoosingViewController: BaseViewController, CourseChoosingConfirmVie
             if let errorMessage = errorMessage {
                 println("CourseChoosingViewController - getTeacherAvailableTimeInSchool Error \(errorMessage)")
             }
-        },completion: { [weak self] (timeSchedule) -> Void in
-            self?.classScheduleModel = timeSchedule
-            self?.requiredCount += 1
+        },completion: { (timeSchedule) -> Void in
+            self.classScheduleModel = timeSchedule
+            self.requiredCount += 1
         })
     }
     
@@ -236,9 +236,9 @@ class CourseChoosingViewController: BaseViewController, CourseChoosingConfirmVie
             if let errorMessage = errorMessage {
                 println("CourseChoosingViewController - loadCoupons Error \(errorMessage)")
             }
-        }, completion: { [weak self] (coupons) -> Void in
+        }, completion: { (coupons) -> Void in
             MalaUserCoupons = coupons
-            self?.requiredCount += 1
+            self.requiredCount += 1
         })
     }
     
@@ -260,9 +260,9 @@ class CourseChoosingViewController: BaseViewController, CourseChoosingConfirmVie
             if let errorMessage = errorMessage {
                 println("CourseChoosingViewController - loadUserEvaluatedStatus Error \(errorMessage)")
             }
-        }, completion: { [weak self] (bool) -> Void in
+        }, completion: { (bool) -> Void in
             MalaIsHasBeenEvaluatedThisSubject = bool
-            self?.requiredCount += 1
+            self.requiredCount += 1
         })
     }
     
@@ -362,14 +362,14 @@ class CourseChoosingViewController: BaseViewController, CourseChoosingConfirmVie
                 // 若选课或课时已改变则请求上课时间表，并展开cell
                 if let isOpen = self?.tableView.isOpenTimeScheduleCell, isOpen != bool && bool {
                     // 请求上课时间表，并展开cell
-                    DispatchQueue.main.async(execute: { () -> Void in
+                    DispatchQueue.main.async { () -> Void in
                         if bool && self?.isNeedReloadTimeSchedule == true {
                             let array = ThemeDate.dateArray(MalaCurrentCourse.selectedTime, period: Int(MalaCurrentCourse.classPeriod))
                             self?.tableView.timeScheduleResult = array
                             self?.isNeedReloadTimeSchedule = false
                         }
                         self?.tableView.isOpenTimeScheduleCell = true
-                    })
+                    }
                 }else {
                     self?.tableView.isOpenTimeScheduleCell = false
                 }
@@ -403,9 +403,9 @@ class CourseChoosingViewController: BaseViewController, CourseChoosingConfirmVie
     }
     
     private func refreshTableView() {
-        DispatchQueue.main.async(execute: { [weak self] () -> Void in
-            self?.tableView.reloadData()
-        })
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
     
     // MARK: - Delegate

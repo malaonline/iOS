@@ -160,7 +160,7 @@ class FilterResultController: BaseViewController {
                 self?.tableView.reloadData()
             }
             
-            DispatchQueue.main.async { [weak self] () -> Void in
+            DispatchQueue.main.async { () -> Void in
                 self?.showDefatultViewWhenModelIsEmpty()
                 finish?()
             }

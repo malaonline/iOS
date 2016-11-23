@@ -232,7 +232,6 @@ class QRPaymentViewController: BaseViewController {
     }
     
     private func cancelOrder() {
-        
         println("取消订单")
         ThemeHUD.showActivityIndicator()
         
@@ -244,12 +243,12 @@ class QRPaymentViewController: BaseViewController {
             if let errorMessage = errorMessage {
                 println("PaymentViewController - cancelOrder Error \(errorMessage)")
             }
-        }, completion:{ [weak self] (result) in
+        }, completion: { (result) in
             ThemeHUD.hideActivityIndicator()
-            DispatchQueue.main.async(execute: { () -> Void in
-                self?.ShowToast(result == true ? "订单取消成功" : "订单取消失败")
-                _ = self?.navigationController?.popViewController(animated: true)
-            })
+            DispatchQueue.main.async {
+                self.ShowToast(result == true ? "订单取消成功" : "订单取消失败")
+                _ = self.navigationController?.popViewController(animated: true)
+            }
         })
     }
     

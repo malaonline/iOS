@@ -120,23 +120,20 @@ class SaveNameView: UIView, UITextFieldDelegate {
     
     @objc private func finishButtonDidTap() {
         let name = (inputField.text ?? "")
-        
-        
         ThemeHUD.showActivityIndicator()
         
         saveStudentName(name, failureHandler: { (reason, errorMessage) -> Void in
             ThemeHUD.hideActivityIndicator()
-            
             // 错误处理
             if let errorMessage = errorMessage {
                 println("SaveNameView - saveStudentName Error \(errorMessage)")
             }
-        }, completion: { [weak self] (bool) -> Void in
-                println("学生姓名保存 - \(bool)")
-                MalaUserDefaults.studentName.value = name
-                getInfoWhenLoginSuccess()
-                self?.closeButtonDidClick()
-                ThemeHUD.hideActivityIndicator()
+        }, completion: { (bool) -> Void in
+            println("学生姓名保存 - \(bool)")
+            MalaUserDefaults.studentName.value = name
+            getInfoWhenLoginSuccess()
+            self.closeButtonDidClick()
+            ThemeHUD.hideActivityIndicator()
         })
     }
     

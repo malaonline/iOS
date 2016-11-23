@@ -114,7 +114,7 @@ class LiveCourseDetailViewController: BaseViewController, LiveCourseConfirmViewD
         ThemeHUD.showActivityIndicator()
         let order = OrderForm(classId: model.id)
         
-        createOrderWithForm(order.jsonForLiveCourse(), failureHandler: { [weak self] (reason, errorMessage) -> Void in
+        createOrderWithForm(order.jsonForLiveCourse(), failureHandler: { (reason, errorMessage) -> Void in
             ThemeHUD.hideActivityIndicator()
             defaultFailureHandler(reason, errorMessage: errorMessage)
             // 错误处理
@@ -122,7 +122,7 @@ class LiveCourseDetailViewController: BaseViewController, LiveCourseConfirmViewD
                 println("LiveCourseDetailViewController - CreateOrder Error \(errorMessage)")
             }
             DispatchQueue.main.async {
-                self?.ShowToast("网络不稳定, 请重试")
+                self.ShowToast("网络不稳定, 请重试")
             }
         }, completion: { [weak self] (order) -> Void in
             ThemeHUD.hideActivityIndicator()

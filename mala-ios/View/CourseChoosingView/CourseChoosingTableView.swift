@@ -31,18 +31,18 @@ class CourseChoosingTableView: UITableView, UITableViewDelegate, UITableViewData
     /// 教师详情模型
     var teacherModel: TeacherDetailModel? {
         didSet {
-            DispatchQueue.main.async(execute: { [weak self] () -> Void in
-                self?.reloadData()
-                })
+            DispatchQueue.main.async {
+                self.reloadData()
+            }
         }
     }
     /// 上课时间Cell展开标识
     var isOpenTimeScheduleCell: Bool = true {
         didSet {
             if isOpenTimeScheduleCell != oldValue {
-                DispatchQueue.main.async(execute: { [weak self] () -> Void in
-                    self?.reloadSections(IndexSet(integer: 3), with: .fade)
-                })
+                DispatchQueue.main.async {
+                    self.reloadSections(IndexSet(integer: 3), with: .fade)
+                }
             }
         }
     }
@@ -50,9 +50,9 @@ class CourseChoosingTableView: UITableView, UITableViewDelegate, UITableViewData
     var classScheduleModel: [[ClassScheduleDayModel]] = [] {
         didSet {
             // 刷新 [选择上课地点][选择小时][上课时间] Cell
-            DispatchQueue.main.async(execute: { [weak self] () -> Void in
-                self?.reloadSections(IndexSet(integer: 1), with: .fade)
-            })
+            DispatchQueue.main.async {
+                self.reloadSections(IndexSet(integer: 1), with: .fade)
+            }
 
         }
     }
@@ -60,9 +60,9 @@ class CourseChoosingTableView: UITableView, UITableViewDelegate, UITableViewData
     var timeScheduleResult: [[TimeInterval]] = [] {
         didSet {
             // 刷新 [上课时间] Cell
-            DispatchQueue.main.async(execute: { [weak self] () -> Void in
-                self?.reloadSections(IndexSet(integer: 3), with: .fade)
-            })
+            DispatchQueue.main.async {
+                self.reloadSections(IndexSet(integer: 3), with: .fade)
+            }
 
         }
     }

@@ -68,22 +68,6 @@ func cleanCaches() {
 }
 
 
-// MARK: - Alert Message
-func showSaveResult(_ viewController: UIViewController?, result: Bool, property: String) {
-    guard viewController != nil else {
-        return
-    }
-    
-    DispatchQueue.main.async { () -> Void in
-        let string = result ? "成功" : "失败"
-        _ = JSSAlertView().show(
-            viewController!,
-            title: String(format: "%@保存%@", property, string)
-        )
-    }
-}
-
-
 // MARK: - Common TextAttribute
 public func commonTextStyle() -> [String: AnyObject]? {
     let AttributeDictionary = NSMutableDictionary()

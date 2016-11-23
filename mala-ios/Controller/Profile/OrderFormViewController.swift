@@ -22,14 +22,14 @@ class OrderFormViewController: BaseTableViewController {
     /// 优惠券模型数组
     var models: [OrderForm] = [] {
         didSet {
-            DispatchQueue.main.async(execute: { [weak self] () -> Void in
-                if self?.models.count == 0 {
-                    self?.showDefaultView()
+            DispatchQueue.main.async {
+                if self.models.count == 0 {
+                    self.showDefaultView()
                 }else {
-                    self?.hideDefaultView()
-                    self?.tableView.reloadData()
+                    self.hideDefaultView()
+                    self.tableView.reloadData()
                 }
-            })
+            }
         }
     }
     /// 当前选择项IndexPath标记
@@ -110,39 +110,39 @@ class OrderFormViewController: BaseTableViewController {
         }
         
         ///  获取用户订单列表
-        getOrderList(currentPageIndex, failureHandler: { [weak self] (reason, errorMessage) in
+        getOrderList(currentPageIndex, failureHandler: { (reason, errorMessage) in
             defaultFailureHandler(reason, errorMessage: errorMessage)
             
             // 错误处理
             if let errorMessage = errorMessage {
                 println("OrderFormViewController - loadOrderForm Error \(errorMessage)")
             }
-            DispatchQueue.main.async(execute: { () -> Void in
-                self?.refreshControl?.endRefreshing()
-                self?.isFetching = false
-            })
-        }, completion: { [weak self] (orderList, count) in
+            DispatchQueue.main.async {
+                self.refreshControl?.endRefreshing()
+                self.isFetching = false
+            }
+        }, completion: { (orderList, count) in
             
             /// 记录数据量
             if count != 0 {
-                self?.allOrderFormCount = count
+                self.allOrderFormCount = count
             }
             
             ///  加载更多
             if isLoadMore {
                 for order in orderList {
-                    self?.models.append(order)
+                    self.models.append(order)
                 }
             ///  如果不是加载更多，则刷新数据
             }else {
-                self?.models = orderList
+                self.models = orderList
             }
             
-            DispatchQueue.main.async(execute: { () -> Void in
+            DispatchQueue.main.async {
                 finish?()
-                self?.refreshControl?.endRefreshing()
-                self?.isFetching = false
-            })
+                self.refreshControl?.endRefreshing()
+                self.isFetching = false
+            }
         })
     }
     
@@ -216,12 +216,13 @@ class OrderFormViewController: BaseTableViewController {
             if let errorMessage = errorMessage {
                 println("OrderFormViewController - cancelOrder Error \(errorMessage)")
             }
-        }, completion:{ [weak self] (result) in
+        }, completion: { (result) in
             ThemeHUD.hideActivityIndicator()
-            DispatchQueue.main.async(execute: { () -> Void in
-                self?.ShowToast(result == true ? "订单取消成功" : "订单取消失败")
-                _ = self?.navigationController?.popViewController(animated: true)
-            })
+            
+            DispatchQueue.main.async {
+                self.ShowToast(result == true ? "订单取消成功" : "订单取消失败")
+                _ = self.navigationController?.popViewController(animated: true)
+            }
         })
     }
     

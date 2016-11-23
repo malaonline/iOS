@@ -14,8 +14,8 @@ class SingleCourseView: UIView {
     /// 单次课程数据模型
     var model: StudentCourseModel? {
         didSet {
-            DispatchQueue.main.async { [weak self] in
-                self?.setupCourseInfo()
+            DispatchQueue.main.async {
+                self.setupCourseInfo()
             }
         }
     }
