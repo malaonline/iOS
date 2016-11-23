@@ -105,7 +105,7 @@ class MainViewController: UITabBarController, UITabBarControllerDelegate {
         self.setViewControllers(viewControllers, animated: false)
     }
     
-    /// 查询用户是否有未支付订单
+    /// 查询用户是否有未处理订单／评价
     func loadUnpaindOrder() {
                 
         if !MalaUserDefaults.isLogined {
