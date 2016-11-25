@@ -71,43 +71,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     
-    // MARK: - APNs
-    func registerJPush(withDeciveToken deviceToken: Data, id: String) {
-        println("Register JPUSH - \ndeviceToken: \(deviceToken)\nid:\(id)\n")
-        JPUSHService.registerDeviceToken(deviceToken)
-        JPUSHService.setTags(Set(["iOS"]), alias: id, fetchCompletionHandle: { (resCode, tags, alias) -> Void in
-            println("JPUSH setTags CallBack: \nrescode: \(resCode), \ntags: \(tags), \nalias: \(alias)\n")
-        })
-    }
-    
-    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        
-        if let id = MalaUserDefaults.parentID.value, notRegisteredPush {
-            notRegisteredPush = false
-            registerJPush(withDeciveToken: deviceToken, id: String(id))
-        }
-        
-        // 记录设备token，用于初次登录或注册有 pusherID 后，或“注销再登录”
-        self.deviceToken = deviceToken
-    }
-    
-    private func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any], fetchCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
-        
-        println("Did Receive Remote Notification - \(userInfo)")
-        JPUSHService.handleRemoteNotification(userInfo)
-        
-        if MalaUserDefaults.isLogined {
-            if MalaRemoteNotificationHandler().handleRemoteNotification(userInfo as [NSObject : AnyObject]) {
-                completionHandler(UIBackgroundFetchResult.newData)
-            }
-        }
-    }
-    
-    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
-        println(String(format: "Fail To Register For Remote Notifications With Error: %@", error as CVarArg))
-    }
-    
-    
     // MARK: - openURL
     private func application(_ app: UIApplication, openURL url: URL, options: [String : AnyObject]) -> Bool {
         
@@ -140,10 +103,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             var configureError:NSError?
             GGLContext.sharedInstance().configureWithError(&configureError)
             assert(configureError == nil, "Error configuring Google services: \(configureError)")
-            
         #endif
         
-        Pingpp.setDebugMode(true)
+        #if USE_DEV_SERVER
+            Pingpp.setDebugMode(true)
+        #endif
+        
         IQKeyboardManager.shared().isEnabled = true
         ToastManager.shared.duration = 1.0
         
@@ -190,7 +155,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         #endif
         
         if let options = launchOptions, MalaUserDefaults.isLogined {
-            
             // 记录启动通知类型
             if let notification = options[UIApplicationLaunchOptionsKey.remoteNotification] as? UILocalNotification,
                 let userInfo = notification.userInfo {
@@ -219,7 +183,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     
-    // MARK: - Public Method
+    
+}
+
+
+// MARK: - Public Method
+extension AppDelegate {
     /// 显示登陆页面
     func showLoginView() {
         
@@ -245,29 +214,66 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func switchTabBarControllerWithIndex(_ index: Int) {
         guard let tabbarController = window?.rootViewController as? MainViewController
             , index <= ((tabbarController.viewControllers?.count ?? 0)-1) && index >= 0 else {
-            return
+                return
         }
         tabbarController.selectedIndex = index
     }
 }
 
 
+// MARK: - JPUSHRegisterDelegate
 extension AppDelegate: JPUSHRegisterDelegate {
     
     @available(iOS 10.0, *)
     func jpushNotificationCenter(_ center: UNUserNotificationCenter!, willPresent notification: UNNotification!, withCompletionHandler completionHandler: ((Int) -> Void)!) {
         let userInfo = notification.request.content.userInfo
-        if notification.request.trigger is UNPushNotificationTrigger {
-            JPUSHService.handleRemoteNotification(userInfo)
-        }
+        println("JPush willPresent - \(userInfo)")
+        guard notification.request.trigger is UNPushNotificationTrigger else { return }
+        JPUSHService.handleRemoteNotification(userInfo)
+        completionHandler(Int(UNNotificationPresentationOptions.alert.rawValue))
     }
     
     @available(iOS 10.0, *)
     func jpushNotificationCenter(_ center: UNUserNotificationCenter!, didReceive response: UNNotificationResponse!, withCompletionHandler completionHandler: (() -> Void)!) {
         let userInfo = response.notification.request.content.userInfo
+        println("JPush didReceive - \(userInfo)")
         if response.notification.request.trigger is UNPushNotificationTrigger {
             JPUSHService.handleRemoteNotification(userInfo)
         }
         completionHandler()
+    }
+}
+
+
+// MARK: - APNs
+extension AppDelegate {
+    
+    func registerJPush(withDeciveToken deviceToken: Data, id: String) {
+        JPUSHService.registerDeviceToken(deviceToken)
+        JPUSHService.setTags(Set(["iOS"]), alias: id, fetchCompletionHandle: { (resCode, tags, alias) -> Void in
+            println("JPUSH setTags CallBack: \nrescode: \(resCode), \ntags: \(tags), \nalias: \(alias)\n")
+        })
+    }
+    
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        if let id = MalaUserDefaults.userID.value, notRegisteredPush {
+            notRegisteredPush = false
+            registerJPush(withDeciveToken: deviceToken, id: String(id))
+        }
+        // 记录设备token，用于初次登录或注册有 userID 后，或“注销再登录”
+        self.deviceToken = deviceToken
+    }
+    
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        println("Did Receive Remote Notification - \(userInfo)")
+        JPUSHService.handleRemoteNotification(userInfo)
+        
+        guard MalaUserDefaults.isLogined else { return }
+        guard MalaRemoteNotificationHandler().handleRemoteNotification(userInfo as [NSObject : AnyObject]) else { return }
+        completionHandler(UIBackgroundFetchResult.newData)
+    }
+    
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        println(String(format: "Fail To Register For Remote Notifications With Error: %@", error as CVarArg))
     }
 }
