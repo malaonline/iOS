@@ -66,7 +66,7 @@ open class MalaRemoteNotificationHandler: NSObject {
         
         // 消息内容
         var title: String? = "通知消息"
-        var subTitle: String? = ""
+        // var subTitle: String? = ""
         var body: String? = "你有一条新消息"
         
         // 获取通知消息 [标题]、[副标题]、[消息内容]
@@ -74,7 +74,7 @@ open class MalaRemoteNotificationHandler: NSObject {
             body = alert
         }else if let alert = apsInfo["alert"] as? [AnyHashable: Any] {
             title = alert["title"] as? String
-            subTitle = alert["subtitle"] as? String
+            // subTitle = alert["subtitle"] as? String
             body = alert["body"] as? String
         }
         
@@ -123,7 +123,8 @@ open class MalaRemoteNotificationHandler: NSObject {
             action = {
                 // 课表页
                 appDelegate.switchTabBarControllerWithIndex(0)
-                guard let viewController = getActivityViewController() else { return }
+                guard let viewController = getActivityViewController() as? RootViewController else { return }
+                viewController.switchToLiveCourseMenu()
             }
         }
         
