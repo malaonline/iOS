@@ -112,6 +112,23 @@ public enum userInfoType {
     case studentSchoolName
 }
 
+///  通知类型
+///
+///  - Changed:     调课完成 -> 课表
+///  - Stoped:      退费成功 -> 订单详情
+///  - Finished:    课程结束 -> 我的评价
+///  - Starting:    上课通知 -> 课表
+///  - Maturity:    奖学金到期 -> 我的奖学金
+///  - Livecourse:  双师课程活动 -> 课表
+public enum RemoteNotificationType: Int {
+    case changed = 1
+    case refunds = 2
+    case finished = 3
+    case starting = 4
+    case maturity = 5
+    case livecourse = 6
+}
+
 
 // MARK: - ClassSchedule
 ///  课程进度状态

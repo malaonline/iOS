@@ -405,14 +405,13 @@ class LoginViewController: UIViewController {
             
             println("SMS验证成功，用户Token：\(loginUser)")
             
-            saveTokenAndUserInfo(loginUser)
+            saveTokenAndUserInfo(loginUser) 
             MalaUserDefaults.isLogouted = false
             
             if loginUser.firstLogin == true {
                 self.switchViewToSaveName()
             }else {
-                self.dismiss(animated: true, completion: nil)
-                getInfoWhenLoginSuccess()
+                self.close(animated: true)
             }
             MalaCurrentInitAction?()
         })
@@ -428,6 +427,13 @@ class LoginViewController: UIViewController {
             let view = SaveNameView()
             view.controller = self
             self.view = view
+        }
+    }
+    
+    func close(animated flag: Bool, completion: (() -> Void)? = nil) {
+        DispatchQueue.main.async {
+            getInfoWhenLoginSuccess()
+            super.dismiss(animated: flag, completion: completion)
         }
     }
     

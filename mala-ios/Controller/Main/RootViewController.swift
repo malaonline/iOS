@@ -14,10 +14,6 @@ private struct PagingMenuOptions: PagingMenuControllerCustomizable {
         return MalaColor_EDEDED_0
     }
     
-    // var lazyLoadingPage: LazyLoadingPage {
-    //     return .one
-    // }
-    
     fileprivate var componentType: ComponentType {
         return .all(menuOptions: MenuOptions(), pagingControllers: pagingControllers)
     }
@@ -78,6 +74,11 @@ class RootViewController: UIViewController {
         )
         return button
     }()
+    fileprivate lazy var menu: PagingMenuController = {
+        let options = PagingMenuOptions()
+        let controller = PagingMenuController(options: options)
+        return controller
+    }()
     
     
     // MARK: - Life Cycle
@@ -95,6 +96,7 @@ class RootViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
 
+    
     // MARK: - Private Method
     private func setupUserInterface() {
         // Style
@@ -111,21 +113,17 @@ class RootViewController: UIViewController {
     }
     
     private func setupPageController() {
-        let options = PagingMenuOptions()
-        let pagingMenuController = PagingMenuController(options: options)
-        pagingMenuController.delegate = self
-        
-        addChildViewController(pagingMenuController)
-        view.addSubview(pagingMenuController.view)
-        pagingMenuController.didMove(toParentViewController: self)
+        menu.delegate = self
+        addChildViewController(menu)
+        view.addSubview(menu.view)
+        menu.didMove(toParentViewController: self)
     }
     
     private func getCurrentLocation() {
         proposeToAccess(.location(.whenInUse), agreed: {
-            
             MalaLocationService.turnOn()
-            }, rejected: {
-                self.alertCanNotAccessLocation()
+        }, rejected: {
+            self.alertCanNotAccessLocation()
         })
     }
     
@@ -155,23 +153,47 @@ class RootViewController: UIViewController {
                 completion: nil
             )
         }else {
-            // 初次启动时
-            let viewController = CityTableViewController()
-            viewController.didSelectAction = { [weak self] in
-                self?.loadTeachers()
-                self?.regionPickButton.schoolName = MalaCurrentSchool?.name
-            }
-            
-            navigationController?.present(
-                UINavigationController(rootViewController: viewController),
-                animated: true,
-                completion: nil
-            )
+            regionPickForce()
         }
     }
     
     @objc private func filterButtonDidTap() {
         TeacherFilterPopupWindow(contentView: FilterView(frame: CGRect.zero)).show()
+    }
+    
+    
+    // MARK: - API
+    /// 强制选择上课地点
+    public func regionPickForce() {
+        // 初次启动时
+        let viewController = CityTableViewController()
+        viewController.didSelectAction = { [weak self] in
+            self?.loadTeachers()
+            self?.regionPickButton.schoolName = MalaCurrentSchool?.name
+        }
+        
+        navigationController?.present(
+            UINavigationController(rootViewController: viewController),
+            animated: true,
+            completion: nil
+        )
+    }
+    /// 切换到双师课程列表
+    public func switchToPrivateTuitionMenu() {
+        menu.move(toPage: 0)
+    }
+    /// 切换到一对一老师列表
+    public func switchToLiveCourseMenu() {
+        menu.move(toPage: 1)
+    }
+    /// 远程通知处理方法
+    /// 若已选择地点则切换到双师课程列表，未选择地点则强制选择地点
+    public func handleRemoteNotification() {
+        if let _ = MalaUserDefaults.currentSchool.value {
+            switchToLiveCourseMenu()
+        }else {
+            regionPickForce()
+        }
     }
 }
 
