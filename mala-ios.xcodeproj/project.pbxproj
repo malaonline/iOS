@@ -1003,7 +1003,6 @@
 		230C79F8DFCE666838AA02E6 /* Pods-parentTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-parentTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-parentTests/Pods-parentTests.release.xcconfig"; sourceTree = "<group>"; };
 		27E1EB202C2BF124A400C17B /* Pods-parent-dev.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-parent-dev.debug.xcconfig"; path = "Pods/Target Support Files/Pods-parent-dev/Pods-parent-dev.debug.xcconfig"; sourceTree = "<group>"; };
 		2BB469CB0C8AEB9D96BB02D2 /* Pods_parent_dev.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_parent_dev.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		2E65424D1C219BA3007AE628 /* TeacherCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeacherCollectionCell.swift; sourceTree = "<group>"; };
 		2ECF91491C2ACE7000904C3A /* TeacherModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeacherModel.swift; sourceTree = "<group>"; };
 		3027F6511C3F680400296ED3 /* TeacherDetailsSignupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeacherDetailsSignupView.swift; sourceTree = "<group>"; };
 		3037B5821C3A84C2005672D9 /* SMSResultModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMSResultModel.swift; sourceTree = "<group>"; };
@@ -1046,21 +1045,6 @@
 		30EB98B61C3CEBD6003977FF /* MATabListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MATabListView.swift; path = "mala-ios/Tool/MATabListView.swift"; sourceTree = SOURCE_ROOT; };
 		30F9E6C41C23BF6F0022A3BF /* Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 		351888221CAA2FD40055E098 /* JPUSHService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPUSHService.h; sourceTree = "<group>"; };
-		357E6A141C0FF1FF0009AF9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		357E6A221C0FF3010009AF9A /* AddressListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressListViewController.swift; sourceTree = "<group>"; };
-		357E6A231C0FF3010009AF9A /* CouponListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CouponListViewController.swift; sourceTree = "<group>"; };
-		357E6A241C0FF3010009AF9A /* MemberServiceDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberServiceDetailViewController.swift; sourceTree = "<group>"; };
-		357E6A251C0FF3010009AF9A /* MemberServiceListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberServiceListViewController.swift; sourceTree = "<group>"; };
-		357E6A261C0FF3010009AF9A /* OrderDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderDetailViewController.swift; sourceTree = "<group>"; };
-		357E6A271C0FF3010009AF9A /* PaymentMethodViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentMethodViewController.swift; sourceTree = "<group>"; };
-		357E6A281C0FF3010009AF9A /* PaymentResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentResultViewController.swift; sourceTree = "<group>"; };
-		357E6A291C0FF3010009AF9A /* PlaceOrderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceOrderViewController.swift; sourceTree = "<group>"; };
-		357E6A2A1C0FF3010009AF9A /* RateCourseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RateCourseViewController.swift; sourceTree = "<group>"; };
-		357E6A2B1C0FF3010009AF9A /* RenewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RenewViewController.swift; sourceTree = "<group>"; };
-		357E6A2C1C0FF3010009AF9A /* ScreenTeacherViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenTeacherViewController.swift; sourceTree = "<group>"; };
-		357E6A2D1C0FF3010009AF9A /* TeacherCommentListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeacherCommentListViewController.swift; sourceTree = "<group>"; };
-		357E6A2E1C0FF3010009AF9A /* TeacherDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeacherDetailViewController.swift; sourceTree = "<group>"; };
-		357E6A2F1C0FF3010009AF9A /* TeacherListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeacherListViewController.swift; sourceTree = "<group>"; };
 		35B134171CAAE767001D2D34 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		35B1341A1CAAE94C001D2D34 /* libc++abi.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++abi.tbd"; path = "usr/lib/libc++abi.tbd"; sourceTree = SDKROOT; };
 		35CAE4B31CAAB4360071772D /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
@@ -1267,6 +1251,7 @@
 		F491A8B91C73439F00B5D520 /* refreshImage@3x.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "refreshImage@3x.gif"; sourceTree = "<group>"; };
 		F491A8BC1C734EB500B5D520 /* AnimatedGIFImageSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimatedGIFImageSerialization.h; sourceTree = "<group>"; };
 		F491A8BD1C734EB500B5D520 /* AnimatedGIFImageSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnimatedGIFImageSerialization.m; sourceTree = "<group>"; };
+		F4934DE31DEBC5740011C409 /* parent.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = parent.entitlements; sourceTree = "<group>"; };
 		F49432D71D237B34001C4D22 /* FilterBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterBar.swift; sourceTree = "<group>"; };
 		F49432DB1D237BBE001C4D22 /* ConditionObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConditionObject.swift; sourceTree = "<group>"; };
 		F49BD55C1CA3C2DF00EB3CCF /* MalaRemoteNotificationHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MalaRemoteNotificationHandler.swift; sourceTree = "<group>"; };
@@ -1322,7 +1307,6 @@
 		F4D0D17D1CA148DF00B25704 /* FloatRatingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatRatingView.swift; sourceTree = "<group>"; };
 		F4D0D1A01CA2BFFA00B25704 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		F4D0D1A21CA2C02400B25704 /* PushConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PushConfig.plist; sourceTree = "<group>"; };
-		F4D0D1A41CA3947100B25704 /* parent.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = parent.entitlements; path = ../../parent/parent.entitlements; sourceTree = "<group>"; };
 		F4D0E43B1C8426E0002CD297 /* PaymentChannel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentChannel.swift; sourceTree = "<group>"; };
 		F4D678581CEACCF2009EC956 /* LearningReportCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearningReportCell.swift; sourceTree = "<group>"; };
 		F4D6785A1CEACD0E009EC956 /* MemberSerivceCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberSerivceCell.swift; sourceTree = "<group>"; };
@@ -1430,15 +1414,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2E65424A1C219781007AE628 /* TeacherListView */ = {
-			isa = PBXGroup;
-			children = (
-				357E6A2F1C0FF3010009AF9A /* TeacherListViewController.swift */,
-				2E65424D1C219BA3007AE628 /* TeacherCollectionCell.swift */,
-			);
-			name = TeacherListView;
-			sourceTree = "<group>";
-		};
 		3037B58D1C3B9C83005672D9 /* TeacherDetail */ = {
 			isa = PBXGroup;
 			children = (
@@ -1457,7 +1432,7 @@
 		304135811C23AE6400830C43 /* Application */ = {
 			isa = PBXGroup;
 			children = (
-				F4D0D1A41CA3947100B25704 /* parent.entitlements */,
+				F4934DE31DEBC5740011C409 /* parent.entitlements */,
 				304135821C23AE6400830C43 /* AppDelegate.swift */,
 				3037B5871C3B7341005672D9 /* teacher-Bridging-Header.h */,
 				3037B5881C3B7341005672D9 /* parent-Bridging-Header.h */,
@@ -1647,28 +1622,6 @@
 			path = Tool;
 			sourceTree = "<group>";
 		};
-		35D7A3221C0FE851007D7679 /* parent */ = {
-			isa = PBXGroup;
-			children = (
-				357E6A131C0FF1FF0009AF9A /* Main.storyboard */,
-				2E65424A1C219781007AE628 /* TeacherListView */,
-				357E6A221C0FF3010009AF9A /* AddressListViewController.swift */,
-				357E6A231C0FF3010009AF9A /* CouponListViewController.swift */,
-				357E6A241C0FF3010009AF9A /* MemberServiceDetailViewController.swift */,
-				357E6A251C0FF3010009AF9A /* MemberServiceListViewController.swift */,
-				357E6A261C0FF3010009AF9A /* OrderDetailViewController.swift */,
-				357E6A271C0FF3010009AF9A /* PaymentMethodViewController.swift */,
-				357E6A281C0FF3010009AF9A /* PaymentResultViewController.swift */,
-				357E6A291C0FF3010009AF9A /* PlaceOrderViewController.swift */,
-				357E6A2A1C0FF3010009AF9A /* RateCourseViewController.swift */,
-				357E6A2B1C0FF3010009AF9A /* RenewViewController.swift */,
-				357E6A2C1C0FF3010009AF9A /* ScreenTeacherViewController.swift */,
-				357E6A2D1C0FF3010009AF9A /* TeacherCommentListViewController.swift */,
-				357E6A2E1C0FF3010009AF9A /* TeacherDetailViewController.swift */,
-			);
-			path = parent;
-			sourceTree = "<group>";
-		};
 		35D7A3421C0FE851007D7679 /* parentUITests */ = {
 			isa = PBXGroup;
 			children = (
@@ -1682,7 +1635,6 @@
 			isa = PBXGroup;
 			children = (
 				A5927B9C1BEC8BD900E9BDB4 /* mala-ios */,
-				35D7A3221C0FE851007D7679 /* parent */,
 				35D7A3421C0FE851007D7679 /* parentUITests */,
 				F4402E151C5A16A700E7D3DB /* parentTests */,
 				A5927B9B1BEC8BD900E9BDB4 /* Products */,
@@ -3642,17 +3594,6 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXVariantGroup section */
-		357E6A131C0FF1FF0009AF9A /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				357E6A141C0FF1FF0009AF9A /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
 /* Begin XCBuildConfiguration section */
 		35D7A3471C0FE851007D7679 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -3663,7 +3604,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-dev";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = parent/parent.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "mala-ios/Application/parent.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = "";
@@ -3698,7 +3639,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-dev";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = parent/parent.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "mala-ios/Application/parent.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = "";
@@ -3731,7 +3672,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-stage";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = parent/parent.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "mala-ios/Application/parent.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = "";
@@ -3765,7 +3706,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-stage";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = parent/parent.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "mala-ios/Application/parent.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = "";
@@ -3798,7 +3739,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = parent/parent.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "mala-ios/Application/parent.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = "";
@@ -3832,7 +3773,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = parent/parent.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "mala-ios/Application/parent.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = "";
@@ -3875,6 +3816,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = "mala-ios/Application/parent.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
@@ -3926,6 +3868,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = "mala-ios/Application/parent.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
