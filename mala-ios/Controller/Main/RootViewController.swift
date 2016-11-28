@@ -153,18 +153,7 @@ class RootViewController: UIViewController {
                 completion: nil
             )
         }else {
-            // 初次启动时
-            let viewController = CityTableViewController()
-            viewController.didSelectAction = { [weak self] in
-                self?.loadTeachers()
-                self?.regionPickButton.schoolName = MalaCurrentSchool?.name
-            }
-            
-            navigationController?.present(
-                UINavigationController(rootViewController: viewController),
-                animated: true,
-                completion: nil
-            )
+            regionPickForce()
         }
     }
     
@@ -174,12 +163,37 @@ class RootViewController: UIViewController {
     
     
     // MARK: - API
+    /// 强制选择上课地点
+    public func regionPickForce() {
+        // 初次启动时
+        let viewController = CityTableViewController()
+        viewController.didSelectAction = { [weak self] in
+            self?.loadTeachers()
+            self?.regionPickButton.schoolName = MalaCurrentSchool?.name
+        }
+        
+        navigationController?.present(
+            UINavigationController(rootViewController: viewController),
+            animated: true,
+            completion: nil
+        )
+    }
     /// 切换到双师课程列表
     public func switchToPrivateTuitionMenu() {
         menu.move(toPage: 0)
     }
+    /// 切换到一对一老师列表
     public func switchToLiveCourseMenu() {
         menu.move(toPage: 1)
+    }
+    /// 远程通知处理方法
+    /// 若已选择地点则切换到双师课程列表，未选择地点则强制选择地点
+    public func handleRemoteNotification() {
+        if let _ = MalaUserDefaults.currentSchool.value {
+            switchToLiveCourseMenu()
+        }else {
+            regionPickForce()
+        }
     }
 }
 
