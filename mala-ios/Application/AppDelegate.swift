@@ -180,10 +180,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // TabBar
         UITabBar.appearance().tintColor = MalaColor_82B4D9_0
-    }
-    
-    
-    
+    }  
 }
 
 
