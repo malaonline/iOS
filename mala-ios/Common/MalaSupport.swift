@@ -570,3 +570,7 @@ func makeTeacherAttrString(_ LecturerName: String?, _ assistantName: String?) ->
     )
     return attrString
 }
+
+func setIfNeed(_ str: inout String?, bak: String) {
+    str = (str == nil ? bak : str)
+}
