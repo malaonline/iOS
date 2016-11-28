@@ -12,28 +12,10 @@ import UIKit
 open class MalaRemoteNotificationHandler: NSObject {
 
     // MARK: - Property
-    
     /// 通知类型键
     open let kNotificationType = "type"
     /// 附带参数键（暂时仅当type为2时，附带code为订单号）
     open let kNotificationCode = "code"
-    
-    ///  通知类型
-    ///
-    ///  - Changed:     调课完成 -> 课表
-    ///  - Stoped:      退费成功 -> 订单详情
-    ///  - Finished:    课程结束 -> 我的评价
-    ///  - Starting:    上课通知 -> 课表
-    ///  - Maturity:    奖学金到期 -> 我的奖学金
-    ///  - Evaluation:  测评建档 -> 课表
-    public enum RemoteNotificationType: Int {
-        case changed = 1
-        case refunds = 2
-        case finished = 3
-        case starting = 4
-        case maturity = 5
-        case evaluation = 6
-    }
     
     /// 远程推送通知处理对象
     private var remoteNotificationTypeHandler: RemoteNotificationType? {
@@ -95,8 +77,8 @@ open class MalaRemoteNotificationHandler: NSObject {
                         }
                     }
                     
-                case .evaluation:
-                    title = "测评建档"
+                case .livecourse:
+                    title = "双师课程活动"
                 }
                 
                 // 若当前在前台，弹出提示
