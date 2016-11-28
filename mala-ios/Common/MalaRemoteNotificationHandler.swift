@@ -124,7 +124,7 @@ open class MalaRemoteNotificationHandler: NSObject {
                 // 课表页
                 appDelegate.switchTabBarControllerWithIndex(0)
                 guard let viewController = getActivityViewController() as? RootViewController else { return }
-                viewController.switchToLiveCourseMenu()
+                viewController.handleRemoteNotification()
             }
         }
         
