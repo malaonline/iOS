@@ -182,7 +182,7 @@ public func apiRequest<A>(_ modifyRequest: (NSMutableURLRequest) -> (), baseURL:
                         completion(result)
                     } else {
                         let dataString = NSString(data: responseData, encoding: String.Encoding.utf8.rawValue)
-                        println(dataString)
+                        println("\(dataString)\n")
                         
                         failure(Reason.couldNotParseJSON, errorMessageInData(data))
                         println("\(resource)\n")
