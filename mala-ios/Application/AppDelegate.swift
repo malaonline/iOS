@@ -227,6 +227,7 @@ extension AppDelegate: JPUSHRegisterDelegate {
         println("JPush willPresent - \(userInfo)")
         guard notification.request.trigger is UNPushNotificationTrigger else { return }
         JPUSHService.handleRemoteNotification(userInfo)
+        _ = MalaRemoteNotificationHandler().handleRemoteNotification(userInfo)
         completionHandler(Int(UNNotificationPresentationOptions.alert.rawValue))
     }
     
@@ -236,6 +237,7 @@ extension AppDelegate: JPUSHRegisterDelegate {
         println("JPush didReceive - \(userInfo)")
         if response.notification.request.trigger is UNPushNotificationTrigger {
             JPUSHService.handleRemoteNotification(userInfo)
+            _ = MalaRemoteNotificationHandler().handleRemoteNotification(userInfo)
         }
         completionHandler()
     }
