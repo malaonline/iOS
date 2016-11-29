@@ -307,7 +307,7 @@ open class MalaConfig {
             IntroductionModel(
                 title: "敬请期待",
                 image: "StayTuned",
-                subTitle: "敬请期待..."
+                subTitle: ""
             )
         ]
     }
