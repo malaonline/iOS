@@ -22,14 +22,7 @@ class FavoriteViewController: BaseTableViewController {
     /// 收藏老师模型列表
     var models: [TeacherModel] = [] {
         didSet {
-            DispatchQueue.main.async {
-                if self.models.count == 0 {
-                    self.showDefaultView()
-                }else {
-                    self.hideDefaultView()
-                    self.tableView.reloadData()
-                }
-            }
+            handleModels(models, tableView: tableView)
         }
     }
     /// 是否正在拉取数据
@@ -37,7 +30,7 @@ class FavoriteViewController: BaseTableViewController {
     /// 当前显示页数
     var currentPageIndex = 1
     /// 所有老师数据总量
-    var allOrderFormCount = 0
+    var allCount = 0
     
     
     // MARK: - Components
@@ -86,9 +79,7 @@ class FavoriteViewController: BaseTableViewController {
         
         
         // 屏蔽[正在刷新]时的操作
-        guard isFetching == false else {
-            return
-        }
+        guard isFetching == false else { return }
 
         isFetching = true
         refreshControl?.beginRefreshing()
@@ -111,12 +102,9 @@ class FavoriteViewController: BaseTableViewController {
                 self.isFetching = false
             }
         }, completion: { (teachers, count) in
-            println("收藏列表 － \(teachers)")
-            
             /// 记录数据量
-            if count != 0 {
-                self.allOrderFormCount = count
-            }
+            self.allCount == max(count, self.allCount)
+
             ///  加载更多
             if isLoadMore {
                 for teacher in teachers {
@@ -145,17 +133,15 @@ class FavoriteViewController: BaseTableViewController {
             break
             
         case Section.loadMore.rawValue:
-            if let cell = cell as? ThemeReloadView {
-                println("load more orderForm")
+            guard let cell = cell as? ThemeReloadView else { return }
                 
-                if !cell.activityIndicator.isAnimating {
-                    cell.activityIndicator.startAnimating()
-                }
-                
-                loadFavoriteTeachers(isLoadMore: true, finish: {
-                    cell.activityIndicator.stopAnimating()
-                })
+            if !cell.activityIndicator.isAnimating {
+                cell.activityIndicator.startAnimating()
             }
+            
+            loadFavoriteTeachers(isLoadMore: true, finish: {
+                cell.activityIndicator.stopAnimating()
+            })
             
         default:
             break
@@ -184,11 +170,7 @@ class FavoriteViewController: BaseTableViewController {
             return models.count
             
         case Section.loadMore.rawValue:
-            if allOrderFormCount == models.count {
-                return 0
-            }else {
-                return models.isEmpty ? 0 : 1
-            }
+            return allCount == models.count ? 0 : (models.isEmpty ? 0 : 1)
             
         default:
             return 0

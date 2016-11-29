@@ -22,14 +22,7 @@ class OrderFormViewController: BaseTableViewController {
     /// 优惠券模型数组
     var models: [OrderForm] = [] {
         didSet {
-            DispatchQueue.main.async {
-                if self.models.count == 0 {
-                    self.showDefaultView()
-                }else {
-                    self.hideDefaultView()
-                    self.tableView.reloadData()
-                }
-            }
+            handleModels(models, tableView: tableView)
         }
     }
     /// 当前选择项IndexPath标记
@@ -41,8 +34,8 @@ class OrderFormViewController: BaseTableViewController {
     var isFetching: Bool = false
     /// 当前显示页数
     var currentPageIndex = 1
-    /// 所有老师数据总量
-    var allOrderFormCount = 0
+    /// 数据总量
+    var allCount = 0
     /// 当前选择订单的上课地点信息
     var school: SchoolModel?
     
@@ -97,9 +90,7 @@ class OrderFormViewController: BaseTableViewController {
     @objc private func loadOrderForm(_ page: Int = 1, isLoadMore: Bool = false, finish: (()->())? = nil) {
         
         // 屏蔽[正在刷新]时的操作
-        guard isFetching == false else {
-            return
-        }
+        guard isFetching == false else { return }
         isFetching = true
         refreshControl?.beginRefreshing()
         
@@ -122,11 +113,8 @@ class OrderFormViewController: BaseTableViewController {
                 self.isFetching = false
             }
         }, completion: { (orderList, count) in
-            
             /// 记录数据量
-            if count != 0 {
-                self.allOrderFormCount = count
-            }
+            self.allCount = max(self.allCount, count)
             
             ///  加载更多
             if isLoadMore {
@@ -282,18 +270,13 @@ class OrderFormViewController: BaseTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         switch section {
             
         case Section.teacher.rawValue:
             return models.count 
             
         case Section.loadMore.rawValue:
-            if allOrderFormCount == models.count {
-                return 0
-            }else {
-                return models.isEmpty ? 0 : 1
-            }
+            return allCount == models.count ? 0 : (models.isEmpty ? 0 : 1)
             
         default:
             return 0

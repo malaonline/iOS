@@ -65,10 +65,7 @@ class SchoolModel: BaseObjectModel {
     }
     
     private func getDistance() {
-        guard longitude != nil && latitude != nil && MalaLoginLocation != nil else {
-            return
-        }
-        
+        guard longitude != nil && latitude != nil && MalaLoginLocation != nil else { return }
         // 计算上课地点距用户当前位置距离
         let targetLocation = CLLocation(latitude: latitude!.doubleValue, longitude: longitude!.doubleValue)
         let distance: CLLocationDistance = MalaLoginLocation?.distance(from: targetLocation) ?? 0.0

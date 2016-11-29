@@ -53,7 +53,7 @@ open class BaseViewController: UIViewController {
             if self is LiveCourseViewController {
                 defaultView.snp.makeConstraints { (maker) -> Void in
                     maker.centerX.equalTo(view)
-                    maker.centerY.equalTo(view).offset(MalaScreenWidth/3)
+                    maker.centerY.equalTo(view).offset(64)
                     maker.size.equalTo(view)
                 }
             }else {
@@ -92,17 +92,24 @@ open class BaseViewController: UIViewController {
     
     
     // MARK: - API
-    func showDefaultView() {
+    func handleModels(_ models: [Any], tableView: UITableView) {
         DispatchQueue.main.async {
-            self.setupDefaultViewIfNeed()
-            self.defaultView.isHidden = false
+            if models.count == 0 {
+                self.showDefaultView()
+            }else {
+                self.hideDefaultView()
+            }
+            tableView.reloadData()
         }
     }
     
-    func hideDefaultView() {
-        DispatchQueue.main.async {
-            self.setupDefaultViewIfNeed()
-            self.defaultView.isHidden = true
-        } 
+    private func showDefaultView() {
+        setupDefaultViewIfNeed()
+        defaultView.isHidden = false
+    }
+    
+    private func hideDefaultView() {
+        setupDefaultViewIfNeed()
+        defaultView.isHidden = true
     }
 }

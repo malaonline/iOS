@@ -289,9 +289,7 @@ open class InfoModifyViewWindow: UIViewController, UITextViewDelegate {
     
     ///  用户输入事件
     @objc private func inputFieldDidChange() {
-        guard let name = nameLabel.text else {
-            return
-        }
+        guard let name = nameLabel.text else { return }
         saveButton.isEnabled = validateName(name)
     }
     

@@ -16,14 +16,7 @@ class CommentViewController: BaseTableViewController {
     /// 优惠券模型数组
     var models: [StudentCourseModel] = [] {
         didSet {
-            DispatchQueue.main.async {
-                if self.models.count == 0 {
-                    self.showDefaultView()
-                }else {
-                    self.hideDefaultView()
-                    self.tableView.reloadData()
-                }
-            }
+            handleModels(models, tableView: tableView)
         }
     }
     /// 是否正在拉取数据
@@ -79,9 +72,7 @@ class CommentViewController: BaseTableViewController {
     @objc private func loadCourse() {
         
         // 屏蔽[正在刷新]时的操作
-        guard isFetching == false else {
-            return
-        }
+        guard isFetching == false else { return }
         isFetching = true
         
         refreshControl?.beginRefreshing()

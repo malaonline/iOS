@@ -62,9 +62,7 @@ class TeacherModel: BaseObjectModel {
     
     override func setValue(_ value: Any?, forKey key: String) {
         // keep the price's value to 0(Int), if the value is null
-        if (key == "min_price" || key == "max_price") && value == nil {
-            return
-        }
+        if (key == "min_price" || key == "max_price") && value == nil { return }
         if key == "avatar" {
             if let urlString = value as? String {
                 avatar = urlString

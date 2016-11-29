@@ -141,7 +141,6 @@
 		35FDCED51CAD0A2300A25FE8 /* MemberServiceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B5980D1C451A8900169390 /* MemberServiceModel.swift */; };
 		35FDCED61CAD0A2300A25FE8 /* MalaNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40B53AD1C7EDA7500C20037 /* MalaNetworking.swift */; };
 		35FDCED71CAD0A2300A25FE8 /* Avatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46065051C96D363004056B1 /* Avatar.swift */; };
-		35FDCED91CAD0A2300A25FE8 /* PaymentBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F404D47E1C8436A700C19C44 /* PaymentBottomView.swift */; };
 		35FDCEDA1CAD0A2300A25FE8 /* MalaAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47C2ABC1C85785A0051A880 /* MalaAlert.swift */; };
 		35FDCEDB1CAD0A2300A25FE8 /* SubjectFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30445B1B1C4A3B3D002CD290 /* SubjectFilterView.swift */; };
 		35FDCEDC1CAD0A2300A25FE8 /* MalaDataCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45E69CF1C88293C00BD0859 /* MalaDataCenter.swift */; };
@@ -322,7 +321,6 @@
 		35FF7AE61CF8325A000A70EE /* MalaNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40B53AD1C7EDA7500C20037 /* MalaNetworking.swift */; };
 		35FF7AE71CF8325A000A70EE /* Extension+UIDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E106251CC0D390001AD4AF /* Extension+UIDevice.swift */; };
 		35FF7AE81CF8325A000A70EE /* Avatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46065051C96D363004056B1 /* Avatar.swift */; };
-		35FF7AEA1CF8325A000A70EE /* PaymentBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F404D47E1C8436A700C19C44 /* PaymentBottomView.swift */; };
 		35FF7AEB1CF8325A000A70EE /* MalaAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47C2ABC1C85785A0051A880 /* MalaAlert.swift */; };
 		35FF7AEC1CF8325A000A70EE /* SubjectFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30445B1B1C4A3B3D002CD290 /* SubjectFilterView.swift */; };
 		35FF7AED1CF8325A000A70EE /* MalaDataCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45E69CF1C88293C00BD0859 /* MalaDataCenter.swift */; };
@@ -490,7 +488,6 @@
 		35FF7BC91CF83264000A70EE /* MalaNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40B53AD1C7EDA7500C20037 /* MalaNetworking.swift */; };
 		35FF7BCA1CF83264000A70EE /* Extension+UIDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E106251CC0D390001AD4AF /* Extension+UIDevice.swift */; };
 		35FF7BCB1CF83264000A70EE /* Avatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46065051C96D363004056B1 /* Avatar.swift */; };
-		35FF7BCD1CF83264000A70EE /* PaymentBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F404D47E1C8436A700C19C44 /* PaymentBottomView.swift */; };
 		35FF7BCE1CF83264000A70EE /* MalaAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47C2ABC1C85785A0051A880 /* MalaAlert.swift */; };
 		35FF7BCF1CF83264000A70EE /* SubjectFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30445B1B1C4A3B3D002CD290 /* SubjectFilterView.swift */; };
 		35FF7BD01CF83264000A70EE /* MalaDataCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45E69CF1C88293C00BD0859 /* MalaDataCenter.swift */; };
@@ -532,7 +529,6 @@
 		A2A4F7446A4B188ACFB1088E /* Pods_parentTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E70F673BEA60E7C90A5D42A1 /* Pods_parentTests.framework */; };
 		BE0345859A399C0553F20A0B /* Pods_parent_stage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61B118D1E2CC01D0D747BD92 /* Pods_parent_stage.framework */; };
 		F402C9961C4F69C100E229FA /* TeacherTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F402C9941C4F69C100E229FA /* TeacherTableView.swift */; };
-		F404D47F1C8436A700C19C44 /* PaymentBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F404D47E1C8436A700C19C44 /* PaymentBottomView.swift */; };
 		F407DA041DDE9FDB00C4ABB5 /* ProfileItemViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F407DA031DDE9FDB00C4ABB5 /* ProfileItemViewCell.swift */; };
 		F407DA051DDE9FDB00C4ABB5 /* ProfileItemViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F407DA031DDE9FDB00C4ABB5 /* ProfileItemViewCell.swift */; };
 		F407DA061DDE9FDB00C4ABB5 /* ProfileItemViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F407DA031DDE9FDB00C4ABB5 /* ProfileItemViewCell.swift */; };
@@ -1068,7 +1064,6 @@
 		E70F673BEA60E7C90A5D42A1 /* Pods_parentTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_parentTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F12B72CA706C78F519A08F8A /* Pods-parent-prd.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-parent-prd.debug.xcconfig"; path = "Pods/Target Support Files/Pods-parent-prd/Pods-parent-prd.debug.xcconfig"; sourceTree = "<group>"; };
 		F402C9941C4F69C100E229FA /* TeacherTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeacherTableView.swift; sourceTree = "<group>"; };
-		F404D47E1C8436A700C19C44 /* PaymentBottomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentBottomView.swift; sourceTree = "<group>"; };
 		F407DA031DDE9FDB00C4ABB5 /* ProfileItemViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileItemViewCell.swift; sourceTree = "<group>"; };
 		F407DA071DDEA12B00C4ABB5 /* ProfileItemCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		F40B53AB1C7ED80800C20037 /* MalaService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MalaService.swift; sourceTree = "<group>"; };
@@ -1722,7 +1717,6 @@
 				F40B53C71C83F98F00C20037 /* PaymentTableView.swift */,
 				F40B53D11C841AD600C20037 /* PaymentAmountCell.swift */,
 				F40B53CF1C841A9800C20037 /* PaymentChannelCell.swift */,
-				F404D47E1C8436A700C19C44 /* PaymentBottomView.swift */,
 				F47C2AB61C8445950051A880 /* PaymentChannelSectionHeaderView.swift */,
 				F4CECD9A1DD45DA300E64B58 /* QRCodeView.swift */,
 			);
@@ -2879,7 +2873,6 @@
 				F46065091C96D363004056B1 /* Avatar.swift in Sources */,
 				F44DC7C21D59C6D400E5979B /* DOFavoriteButton.swift in Sources */,
 				F43C98971D6C2FAE0013799E /* ThemeShareCollectionView.swift in Sources */,
-				F404D47F1C8436A700C19C44 /* PaymentBottomView.swift in Sources */,
 				F48F12CC1DAB7A9C006A2F5C /* SKCache.swift in Sources */,
 				F47C2ABD1C85785A0051A880 /* MalaAlert.swift in Sources */,
 				30445B1D1C4A3B3D002CD290 /* SubjectFilterView.swift in Sources */,
@@ -3137,7 +3130,6 @@
 				35FF7AE81CF8325A000A70EE /* Avatar.swift in Sources */,
 				F44DC7C31D59C6D400E5979B /* DOFavoriteButton.swift in Sources */,
 				F43C98981D6C2FAE0013799E /* ThemeShareCollectionView.swift in Sources */,
-				35FF7AEA1CF8325A000A70EE /* PaymentBottomView.swift in Sources */,
 				F48F12CD1DAB7A9C006A2F5C /* SKCache.swift in Sources */,
 				35FF7AEB1CF8325A000A70EE /* MalaAlert.swift in Sources */,
 				35FF7AEC1CF8325A000A70EE /* SubjectFilterView.swift in Sources */,
@@ -3395,7 +3387,6 @@
 				35FF7BCB1CF83264000A70EE /* Avatar.swift in Sources */,
 				F44DC7C41D59C6D400E5979B /* DOFavoriteButton.swift in Sources */,
 				F43C98991D6C2FAE0013799E /* ThemeShareCollectionView.swift in Sources */,
-				35FF7BCD1CF83264000A70EE /* PaymentBottomView.swift in Sources */,
 				F48F12CE1DAB7A9C006A2F5C /* SKCache.swift in Sources */,
 				35FF7BCE1CF83264000A70EE /* MalaAlert.swift in Sources */,
 				35FF7BCF1CF83264000A70EE /* SubjectFilterView.swift in Sources */,
@@ -3554,7 +3545,6 @@
 				35FDCED51CAD0A2300A25FE8 /* MemberServiceModel.swift in Sources */,
 				35FDCED61CAD0A2300A25FE8 /* MalaNetworking.swift in Sources */,
 				35FDCED71CAD0A2300A25FE8 /* Avatar.swift in Sources */,
-				35FDCED91CAD0A2300A25FE8 /* PaymentBottomView.swift in Sources */,
 				35FDCEDA1CAD0A2300A25FE8 /* MalaAlert.swift in Sources */,
 				35FDCEDB1CAD0A2300A25FE8 /* SubjectFilterView.swift in Sources */,
 				35FDCEDC1CAD0A2300A25FE8 /* MalaDataCenter.swift in Sources */,

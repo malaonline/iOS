@@ -9,22 +9,23 @@
 import UIKit
 
 private let LiveCourseTableViewCellReusedId = "LiveCourseTableViewCellReusedId"
+private let LiveCourseTableViewLoadmoreCellReusedId = "LiveCourseTableViewLoadmoreCellReusedId"
 
 class LiveCourseTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
     
+    private enum Section: Int {
+        case liveCourse
+        case loadMore
+    }
+    
     // MARK: - Property
     /// 数据模型数组
-    var model: [LiveClassModel] = [] {
+    var models: [LiveClassModel] = [] {
         didSet {
-            reloadData()
-            if model.count == 0 {
-                (controller as? LiveCourseViewController)?.showDefaultView()
-            }else {
-                (controller as? LiveCourseViewController)?.hideDefaultView()
-            }
+            controller?.handleModels(models, tableView: self)
         }
     }
-    weak var controller: UIViewController?
+    weak var controller: LiveCourseViewController?
     
     
     // MARK: - Components
@@ -56,6 +57,7 @@ class LiveCourseTableView: UITableView, UITableViewDelegate, UITableViewDataSour
         tableHeaderView = banner
         contentInset = UIEdgeInsets(top: 6, left: 0, bottom: 48 + 6, right: 0)
         register(LiveCourseTableViewCell.self, forCellReuseIdentifier: LiveCourseTableViewCellReusedId)
+        register(ThemeReloadView.self, forCellReuseIdentifier: LiveCourseTableViewLoadmoreCellReusedId)
     }
     
     
@@ -64,11 +66,29 @@ class LiveCourseTableView: UITableView, UITableViewDelegate, UITableViewDataSour
         return true
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let classModel = (tableView.cellForRow(at: indexPath) as? LiveCourseTableViewCell)?.model else {
-            return
-        }
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         
+        switch indexPath.section {
+        case Section.liveCourse.rawValue:
+            break
+            
+        case Section.loadMore.rawValue:
+            guard let cell = cell as? ThemeReloadView else { return }
+            
+            if !cell.activityIndicator.isAnimating {
+                cell.activityIndicator.startAnimating()
+            }
+            
+            controller?.loadLiveClasses(isLoadMore: true, finish: { 
+                cell.activityIndicator.stopAnimating()
+            })
+        default:
+            break
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let classModel = (tableView.cellForRow(at: indexPath) as? LiveCourseTableViewCell)?.model else { return }
         let viewController = LiveCourseDetailViewController()
         viewController.model = classModel
         viewController.hidesBottomBarWhenPushed = true
@@ -77,16 +97,42 @@ class LiveCourseTableView: UITableView, UITableViewDelegate, UITableViewDataSour
     
     
     // MARK: - DataSource
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return model.count
+        switch section {
+            
+        case Section.liveCourse.rawValue:
+            return models.count
+            
+        case Section.loadMore.rawValue:
+            return controller?.allCount == models.count ? 0 : (models.isEmpty ? 0 : 1)
+            
+        default:
+            return 0
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: LiveCourseTableViewCellReusedId, for: indexPath) as! LiveCourseTableViewCell
-        if indexPath.row < model.count {
-            cell.model = model[indexPath.row]
+        
+        switch indexPath.section {
+            
+        case Section.liveCourse.rawValue:
+            let cell = tableView.dequeueReusableCell(withIdentifier: LiveCourseTableViewCellReusedId, for: indexPath) as! LiveCourseTableViewCell
+            if indexPath.row < models.count {
+                cell.model = models[indexPath.row]
+            }
+            return cell
+            
+        case Section.loadMore.rawValue:
+            let cell = tableView.dequeueReusableCell(withIdentifier: LiveCourseTableViewLoadmoreCellReusedId, for: indexPath) as! ThemeReloadView
+            return cell
+            
+        default:
+            return UITableViewCell()
         }
-        return cell
     }
     
     

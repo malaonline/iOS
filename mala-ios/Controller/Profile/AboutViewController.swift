@@ -43,9 +43,11 @@ class AboutViewController: BaseViewController, UIScrollViewDelegate {
         return label
     }()
     /// 描述 文字背景
-    private lazy var textBackground: UIImageView = {
-        let imageView = UIImageView(imageName: "aboutText_Background")
-        return imageView
+    private lazy var textBackground: UIView = {
+        let view = UIView(UIColor.white)
+        view.layer.borderColor = MalaColor_979797_0.cgColor
+        view.layer.borderWidth = MalaScreenOnePixel
+        return view
     }()
     /// 描述标题
     private lazy var titleView: AboutTitleView = {
@@ -60,7 +62,7 @@ class AboutViewController: BaseViewController, UIScrollViewDelegate {
             fontSize: 13,
             textColor: MalaColor_939393_0,
             textAlignment: .center,
-            backgroundColor: MalaColor_F2F2F2_0
+            backgroundColor: UIColor.clear
         )
         label.numberOfLines = 0
         return label

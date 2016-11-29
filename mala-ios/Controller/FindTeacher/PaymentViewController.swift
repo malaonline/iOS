@@ -8,10 +8,7 @@
 
 import UIKit
 
-class PaymentViewController: BaseViewController, PaymentBottomViewDelegate {
-    
-    // MARK: - Property
-    
+class PaymentViewController: BaseViewController {
     
     // MARK: - Components
     /// 支付信息TableView
@@ -19,10 +16,17 @@ class PaymentViewController: BaseViewController, PaymentBottomViewDelegate {
         let paymentTableView = PaymentTableView(frame: CGRect.zero, style: .grouped)
         return paymentTableView
     }()
-    /// 支付页面底部视图
-    private lazy var paymentConfirmView: PaymentBottomView = {
-        let paymentConfirmView = PaymentBottomView()
-        return paymentConfirmView
+    /// 支付按钮
+    private lazy var confirmButton: UIButton = {
+        let button = UIButton()
+        button.setBackgroundImage(UIImage.withColor(MalaColor_9BC3E1_0), for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 15)
+        button.setTitle("立即支付", for: .normal)
+        button.setTitleColor(UIColor.white, for: .normal)
+        button.layer.cornerRadius = 4
+        button.layer.masksToBounds = true
+        button.addTarget(self, action: #selector(PaymentViewController.paymentDidConfirm), for: .touchUpInside)
+        return button
     }()
     /// 弹栈闭包
     var popAction: (()->())?
@@ -31,7 +35,6 @@ class PaymentViewController: BaseViewController, PaymentBottomViewDelegate {
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         configure()
         setupUserInterface()
     }
@@ -47,7 +50,6 @@ class PaymentViewController: BaseViewController, PaymentBottomViewDelegate {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        
     }
     
     
@@ -67,18 +69,17 @@ class PaymentViewController: BaseViewController, PaymentBottomViewDelegate {
         // Style
         title = "支付"
         view.backgroundColor = UIColor.white
-        paymentConfirmView.delegate = self
         
         // SubViews
         view.addSubview(paymentTableView)
-        view.addSubview(paymentConfirmView)
+        view.insertSubview(confirmButton, aboveSubview: paymentTableView)
         
         // Autolayout
-        paymentConfirmView.snp.makeConstraints { (maker) -> Void in
-            maker.height.equalTo(47)
-            maker.left.equalTo(view)
-            maker.right.equalTo(view)
-            maker.bottom.equalTo(view)
+        confirmButton.snp.makeConstraints { (maker) in
+            maker.centerX.equalTo(view)
+            maker.height.equalTo(44)
+            maker.width.equalTo(view).multipliedBy(0.85)
+            maker.bottom.equalTo(view).multipliedBy(0.95)
         }
         paymentTableView.snp.makeConstraints { (maker) -> Void in
             maker.left.equalTo(view)
@@ -89,7 +90,6 @@ class PaymentViewController: BaseViewController, PaymentBottomViewDelegate {
     }
     
     private func cancelOrder() {
-        
         println("取消订单")
         ThemeHUD.showActivityIndicator()
         
@@ -113,7 +113,6 @@ class PaymentViewController: BaseViewController, PaymentBottomViewDelegate {
     
     // MARK: - Override
     override func popSelf() {
-        
         MalaAlert.confirmOrCancel(
             title: "取消订单",
             message: "确认取消订单吗？",
@@ -124,7 +123,6 @@ class PaymentViewController: BaseViewController, PaymentBottomViewDelegate {
                 self?.cancelOrder()
             }, cancelAction: { () -> Void in
         })
-  
     }
     
     @objc private func forcePop() {
@@ -134,14 +132,12 @@ class PaymentViewController: BaseViewController, PaymentBottomViewDelegate {
 
     
     // MARK: - Delegate
-    func paymentDidConfirm() {
-        
+    @objc private func paymentDidConfirm() {
         if MalaOrderObject.channel == .QRPay {
             /// 扫码支付
             let viewController = QRPaymentViewController()
             viewController.hidesBottomBarWhenPushed = true
             navigationController?.pushViewController(viewController, animated: true)
-            
         }else {
             /// 获取支付信息
             getChargeToken()
@@ -149,7 +145,6 @@ class PaymentViewController: BaseViewController, PaymentBottomViewDelegate {
     }
     
     func getChargeToken() {
-        
         println("获取支付信息")
         MalaIsPaymentIn = true
         ThemeHUD.showActivityIndicator()

@@ -87,11 +87,7 @@ class FilterResultController: BaseViewController {
     }
     
     private func showDefatultViewWhenModelIsEmpty() {
-        if tableView.teachers.count == 0 {
-            showDefaultView()
-        }else {
-            hideDefaultView()
-        }
+        handleModels(tableView.teachers, tableView: tableView)
     }
     
     

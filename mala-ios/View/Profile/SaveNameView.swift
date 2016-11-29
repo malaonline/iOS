@@ -112,9 +112,7 @@ class SaveNameView: UIView, UITextFieldDelegate {
     
     // MARK: - Event Response
     @objc private func inputFieldDidChange() {
-        guard let name = inputField.text else {
-            return
-        }
+        guard let name = inputField.text else { return }
         finishButton.isEnabled = validateName(name)
     }
     
