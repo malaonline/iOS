@@ -114,7 +114,7 @@ class OrderFormViewController: BaseTableViewController {
             }
         }, completion: { (orderList, count) in
             /// 记录数据量
-            self.allCount = max(allCount, count)
+            self.allCount = max(self.allCount, count)
             
             ///  加载更多
             if isLoadMore {
