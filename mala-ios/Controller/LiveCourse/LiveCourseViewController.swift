@@ -108,9 +108,7 @@ class LiveCourseViewController: BaseViewController {
             }
         }, completion: { (classList, count) in            
             /// 记录数据量
-            if count != 0 {
-                self.allCount = count
-            }
+            self.allCount == max(count, self.allCount)
             
             if isLoadMore {
                 ///  加载更多
