@@ -289,7 +289,7 @@ class LoginViewController: UIViewController {
         }
         
         // 正式手机号
-        let mobileRegex = "^((13[0-9])|(15[^4,\\D])|(18[0,0-9]))\\d{8}$"
+        let mobileRegex = "^1[3|4|5|7|8][0-9]\\d{8}$"
         let mobileTest = NSPredicate(format: "SELF MATCHES %@", mobileRegex)
         return mobileTest.evaluate(with: mobile)
     }
@@ -363,8 +363,8 @@ class LoginViewController: UIViewController {
         }, completion: { bool in
             ThemeHUD.hideActivityIndicator()
             
-            self.ShowToast(bool ? "验证码发送成功" : "验证码发送失败")
             DispatchQueue.main.async {
+                self.ShowToast(bool ? "验证码发送成功" : "验证码发送失败")
                 self.codeTextField.becomeFirstResponder()
             }
         })
