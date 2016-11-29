@@ -53,7 +53,7 @@ open class BaseViewController: UIViewController {
             if self is LiveCourseViewController {
                 defaultView.snp.makeConstraints { (maker) -> Void in
                     maker.centerX.equalTo(view)
-                    maker.centerY.equalTo(view).offset(MalaScreenWidth/3)
+                    maker.centerY.equalTo(view).offset(64)
                     maker.size.equalTo(view)
                 }
             }else {

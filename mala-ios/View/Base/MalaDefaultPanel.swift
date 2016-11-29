@@ -94,14 +94,14 @@ class MalaDefaultPanel: UIView {
         addSubview(descLabel)
         
         // Autolayout
-        label.snp.makeConstraints { (maker) -> Void in
-            maker.centerY.equalTo(self).offset(-50)
-            maker.centerX.equalTo(self)
-            maker.height.equalTo(13)
-        }
         imageView.snp.makeConstraints { (maker) -> Void in
             maker.centerX.equalTo(self)
-            maker.bottom.equalTo(label.snp.top).offset(-8)
+            maker.centerY.equalTo(self).offset(-64)
+        }
+        label.snp.makeConstraints { (maker) -> Void in
+            maker.top.equalTo(imageView.snp.bottom).offset(8)
+            maker.centerX.equalTo(self)
+            maker.height.equalTo(13)
         }
         descLabel.snp.makeConstraints { (maker) -> Void in
             maker.top.equalTo(label.snp.bottom).offset(12)
