@@ -72,6 +72,17 @@ open class BaseTableViewController: UITableViewController {
     
     
     // MARK: - API
+    func handleModels(_ models: [Any], tableView: UITableView) {
+        DispatchQueue.main.async {
+            if models.count == 0 {
+                self.showDefaultView()
+            }else {
+                self.hideDefaultView()
+            }
+            tableView.reloadData()
+        }
+    }
+    
     func showDefaultView() {
         setupDefaultViewIfNeed()
         defaultView.isHidden = false

@@ -16,14 +16,7 @@ class CouponViewController: BaseTableViewController {
     /// 优惠券模型数组
     var models: [CouponModel] = MalaUserCoupons {
         didSet {
-            DispatchQueue.main.async {
-                if self.models.count == 0 {
-                    self.showDefaultView()
-                }else {
-                    self.hideDefaultView()
-                    self.tableView.reloadData()
-                }
-            }
+            handleModels(models, tableView: tableView)
         }
     }
     /// 当前选择项IndexPath标记
@@ -113,7 +106,6 @@ class CouponViewController: BaseTableViewController {
             self.refreshControl?.endRefreshing()
             self.isFetching = false
         })
-
     }
     
     

@@ -22,14 +22,7 @@ class FavoriteViewController: BaseTableViewController {
     /// 收藏老师模型列表
     var models: [TeacherModel] = [] {
         didSet {
-            DispatchQueue.main.async {
-                if self.models.count == 0 {
-                    self.showDefaultView()
-                }else {
-                    self.hideDefaultView()
-                    self.tableView.reloadData()
-                }
-            }
+            handleModels(models, tableView: tableView)
         }
     }
     /// 是否正在拉取数据
