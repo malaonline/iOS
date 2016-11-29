@@ -11,15 +11,16 @@ import UIKit
 class LiveCourseViewController: BaseViewController {
     
     // MARK: - Property
-    var model: [LiveClassModel] = [] {
+    var models: [LiveClassModel] = [] {
         didSet {
-            tableView.model = model
+            tableView.models = models
         }
     }
     /// 当前显示页数
     var currentPageIndex = 1
     /// 数据总量
     var allCount = 0
+    var isFetching = false
     
     
     // MARK: - Components
@@ -82,28 +83,49 @@ class LiveCourseViewController: BaseViewController {
     }
     
     ///  获取双师直播班级列表
-    private func loadLiveClasses(_ page: Int = 1, isLoadMore: Bool = false, finish: (()->())? = nil) {
+    func loadLiveClasses(_ page: Int = 1, isLoadMore: Bool = false, finish: (()->())? = nil) {
+        
+        // 屏蔽[正在刷新]时的操作
+        guard isFetching == false else { return }
+        isFetching = true
         
         if isLoadMore {
             currentPageIndex += 1
         }else {
             currentPageIndex = 1
         }
-        
+
         ///  获取用户订单列表
         getLiveClasses(currentPageIndex, failureHandler: { (reason, errorMessage) in
             defaultFailureHandler(reason, errorMessage: errorMessage)
-            
             // 错误处理
             if let errorMessage = errorMessage {
                 println("LiveCourseViewController - loadLiveClasses Error \(errorMessage)")
             }
-        }, completion: { (classList, count) in
+            DispatchQueue.main.async {
+                finish?()
+                self.isFetching = false
+            }
+        }, completion: { (classList, count) in            
             /// 记录数据量
             if count != 0 {
                 self.allCount = count
             }
-            self.model = classList
+            
+            if isLoadMore {
+                ///  加载更多
+                for course in classList {
+                    self.models.append(course)
+                }
+            }else {
+                ///  如果不是加载更多，则刷新数据
+                self.models = classList
+            }
+            
+            DispatchQueue.main.async {
+                finish?()
+                self.isFetching = false
+            }
         })
     }
     
