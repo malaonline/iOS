@@ -86,9 +86,7 @@ class FavoriteViewController: BaseTableViewController {
         
         
         // 屏蔽[正在刷新]时的操作
-        guard isFetching == false else {
-            return
-        }
+        guard isFetching == false else { return }
 
         isFetching = true
         refreshControl?.beginRefreshing()

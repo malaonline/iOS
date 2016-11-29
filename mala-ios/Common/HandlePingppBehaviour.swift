@@ -110,9 +110,7 @@ class HandlePingppBehaviour: NSObject {
     ///  课程被抢买弹窗
     func showHasBeenPreemptedAlert() {
         ThemeHUD.hideActivityIndicator()
-        guard let viewController = currentViewController else {
-            return
-        }
+        guard let viewController = currentViewController else { return }
         
         let alert = JSSAlertView().show(viewController,
                                         title: "您想要购买的课程已被他人抢买，支付金额将原路退回",
@@ -125,9 +123,7 @@ class HandlePingppBehaviour: NSObject {
     ///  老师已下架
     func showTeacherDisabledAlert() {
         ThemeHUD.hideActivityIndicator()
-        guard let viewController = currentViewController else {
-            return
-        }
+        guard let viewController = currentViewController else { return }
         
         let alert = JSSAlertView().show(viewController,
                                         title: "购课失败！该老师已下架，支付金额将原路退回",
@@ -140,9 +136,7 @@ class HandlePingppBehaviour: NSObject {
     ///  支付取消弹窗
     func showCancelAlert() {
         ThemeHUD.hideActivityIndicator()
-        guard let viewController = currentViewController else {
-            return
-        }
+        guard let viewController = currentViewController else { return }
         
         let _ = JSSAlertView().show(viewController,
                                     title: "支付已取消",
@@ -154,9 +148,7 @@ class HandlePingppBehaviour: NSObject {
     ///  支付成功弹窗
     func showSuccessAlert() {
         ThemeHUD.hideActivityIndicator()
-        guard let viewController = currentViewController else {
-            return
-        }
+        guard let viewController = currentViewController else { return }
         
         let alert = JSSAlertView().show(viewController,
                                         title: "恭喜您已支付成功！您的课表已经安排好，快去查看吧！",
@@ -169,9 +161,7 @@ class HandlePingppBehaviour: NSObject {
     ///  支付失败弹窗
     func showFailAlert() {
         ThemeHUD.hideActivityIndicator()
-        guard let viewController = currentViewController else {
-            return
-        }
+        guard let viewController = currentViewController else { return }
         
         let alert = JSSAlertView().show(viewController,
                                         title: "支付失败，请重试！",
@@ -183,9 +173,7 @@ class HandlePingppBehaviour: NSObject {
     
     ///  退回首页
     func popToRootViewController() {
-        guard let viewController = currentViewController else {
-            return
-        }
+        guard let viewController = currentViewController else { return }
         
         // 回调回App时若直接PopToRootViewController会出现TabBar莫名自动添加一个item的问题，暂时使用此方式解决问题。
         ThemeHUD.showActivityIndicator()
@@ -211,9 +199,7 @@ class HandlePingppBehaviour: NSObject {
     
     ///  退回到选课页面
     func popToCourseChoosingViewController() {
-        guard let viewController = currentViewController else {
-            return
-        }
+        guard let viewController = currentViewController else { return }
         _ = viewController.navigationController?.popViewController(animated: true)
     }
 }

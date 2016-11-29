@@ -38,9 +38,7 @@ class ThemeShare: NSObject, UIGestureRecognizerDelegate {
     
     class func showShareBoardWhileBlockingUI(_ blockingUI: Bool) {
                 
-        if self.sharedInstance.isShowing {
-            return
-        }
+        if self.sharedInstance.isShowing { return }
         
         DispatchQueue.main.async {
             if

@@ -79,9 +79,7 @@ class CommentViewController: BaseTableViewController {
     @objc private func loadCourse() {
         
         // 屏蔽[正在刷新]时的操作
-        guard isFetching == false else {
-            return
-        }
+        guard isFetching == false else { return }
         isFetching = true
         
         refreshControl?.beginRefreshing()

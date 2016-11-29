@@ -42,10 +42,7 @@ class MalaLocationService: NSObject, CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
-        guard let newLocation = locations.last else {
-            return
-        }
+        guard let newLocation = locations.last else { return }
         MalaLoginLocation = newLocation
         locationManager.stopUpdatingLocation()
     }

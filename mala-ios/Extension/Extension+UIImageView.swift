@@ -57,9 +57,7 @@ extension UIImageView {
             return
         }
         let splitArray = URL.absoluteString.components(separatedBy: "?")
-        guard let pureURL = splitArray.first, !pureURL.isEmpty else {
-            return
-        }
+        guard let pureURL = splitArray.first, !pureURL.isEmpty else { return }
         
         // 加载图片资源
         let resource = ImageResource(downloadURL: URL, cacheKey: pureURL)

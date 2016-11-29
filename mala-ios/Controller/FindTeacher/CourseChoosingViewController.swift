@@ -244,12 +244,8 @@ class CourseChoosingViewController: BaseViewController, CourseChoosingConfirmVie
     
     private func loadUserEvaluatedStatus() {
         /// 若测评建档结果存在，则不发送请求
-        guard MalaIsHasBeenEvaluatedThisSubject == nil else {
-            return
-        }
-        guard let subjectId = MalaConfig.malaSubjectName()[(teacherModel?.subject) ?? ""] else {
-            return
-        }
+        guard MalaIsHasBeenEvaluatedThisSubject == nil else { return }
+        guard let subjectId = MalaConfig.malaSubjectName()[(teacherModel?.subject) ?? ""] else { return }
         
         ///  判断用户是否首次购买此学科课程
         isHasBeenEvaluatedWithSubject(subjectId, failureHandler: { (reason, errorMessage) -> Void in

@@ -77,10 +77,7 @@ class TeacherTableView: UITableView, UITableViewDelegate, UITableViewDataSource 
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let teacherId = (tableView.cellForRow(at: indexPath) as? TeacherTableViewCell)?.model?.id else {
-            return
-        }
-        
+        guard let teacherId = (tableView.cellForRow(at: indexPath) as? TeacherTableViewCell)?.model?.id else { return }
         let viewController = TeacherDetailsController()
         viewController.teacherID = teacherId
         viewController.hidesBottomBarWhenPushed = true

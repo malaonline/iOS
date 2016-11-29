@@ -97,9 +97,7 @@ class OrderFormViewController: BaseTableViewController {
     @objc private func loadOrderForm(_ page: Int = 1, isLoadMore: Bool = false, finish: (()->())? = nil) {
         
         // 屏蔽[正在刷新]时的操作
-        guard isFetching == false else {
-            return
-        }
+        guard isFetching == false else { return }
         isFetching = true
         refreshControl?.beginRefreshing()
         

@@ -61,9 +61,7 @@ class CourseChoosingObject: NSObject {
     /// 切换当前价格梯度（与年级相对应）
     func switchGradePrices() {
         
-        guard let currentGradeId = grade?.id, let grades = grades else {
-            return
-        }
+        guard let currentGradeId = grade?.id, let grades = grades else { return }
         
         for grade in grades {
             if grade.id == currentGradeId {

@@ -108,9 +108,7 @@ class MainViewController: UITabBarController, UITabBarControllerDelegate {
     /// 查询用户是否有未处理订单／评价
     func loadUnpaindOrder() {
                 
-        if !MalaUserDefaults.isLogined {
-            return
-        }
+        if !MalaUserDefaults.isLogined { return }
         
         getUserNewMessageCount({ (reason, errorMessage) in
             defaultFailureHandler(reason, errorMessage: errorMessage)

@@ -91,9 +91,7 @@ class CouponViewController: BaseTableViewController {
     @objc private func loadCoupons() {
         
         // 屏蔽[正在刷新]时的操作
-        guard isFetching == false else {
-            return
-        }
+        guard isFetching == false else { return }
         isFetching = true
 
         refreshControl?.beginRefreshing()
@@ -126,21 +124,15 @@ class CouponViewController: BaseTableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         ///  若只用于显示，直接return
-        if justShow {
-            return
-        }
+        if justShow { return }
         
         let cell = tableView.cellForRow(at: indexPath) as? CouponViewCell
 
         // 不可选择被冻结的奖学金
-        guard cell?.disabled == false else {
-            return
-        }
+        guard cell?.disabled == false else { return }
         
         // 只有未使用的才可选中
-        guard cell?.model?.status == .unused else {
-            return
-        }
+        guard cell?.model?.status == .unused else { return }
         
         // 选中当前选择Cell，并取消其他Cell选择
         if indexPath == currentSelectedIndexPath {

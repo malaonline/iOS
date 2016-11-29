@@ -96,9 +96,7 @@ class CourseTableViewCell: UITableViewCell {
     ///  根据课程状态渲染UI
     private func changeUI() {
         
-        guard let course = model?[0] else {
-            return
-        }
+        guard let course = model?[0] else { return }
         
         switch course.status {
         case .Past:

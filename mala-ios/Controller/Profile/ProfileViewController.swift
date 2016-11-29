@@ -239,9 +239,7 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
         let model = cell.model
         
         // 若对应项被冻结，则点击无效
-        if model.disabled {
-            return
-        }
+        if model.disabled { return }
         
         // 跳转到对应的ViewController
         if let type = model.controller as? UIViewController.Type {

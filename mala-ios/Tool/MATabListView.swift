@@ -108,10 +108,7 @@ class MATabListView: UIView {
     
     // MARK: - Event Response
     @objc private func labelDidTap(_ gesture: UITapGestureRecognizer) {
-        
-        guard let label = gesture.view as? UILabel else {
-            return
-        }
+        guard let label = gesture.view as? UILabel else { return }
         delegate?.tagDidTap?(label, tabListView: self)
     }
 }

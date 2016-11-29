@@ -65,9 +65,7 @@ class LiveCourseTableView: UITableView, UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let classModel = (tableView.cellForRow(at: indexPath) as? LiveCourseTableViewCell)?.model else {
-            return
-        }
+        guard let classModel = (tableView.cellForRow(at: indexPath) as? LiveCourseTableViewCell)?.model else { return }
         
         let viewController = LiveCourseDetailViewController()
         viewController.model = classModel

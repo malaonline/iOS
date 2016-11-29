@@ -85,14 +85,8 @@ open class MalaPhotoBrowser: BaseViewController, UICollectionViewDataSource, UIC
     
     // MARK: - Delegate
     open func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-        guard let cell = collectionView.cellForItem(at: indexPath) as? MalaPhotoBrowserCell else {
-            return
-        }
-        
-        guard let originImage = cell.contentImageView.image else {
-            return
-        }
+        guard let cell = collectionView.cellForItem(at: indexPath) as? MalaPhotoBrowserCell else { return }
+        guard let originImage = cell.contentImageView.image else { return }
         
         /// 图片浏览器
         SKPhotoBrowserOptions.displayStatusbar = false

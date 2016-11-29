@@ -113,9 +113,7 @@ class MalaSingleWebViewController: BaseViewController, WKNavigationDelegate, WKU
     // MARK: - KVO
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         
-        guard keyPath != nil else {
-            return
-        }
+        guard keyPath != nil else { return }
         
         switch keyPath! {
         case "title":
