@@ -83,12 +83,12 @@ open class BaseTableViewController: UITableViewController {
         }
     }
     
-    func showDefaultView() {
+    private func showDefaultView() {
         setupDefaultViewIfNeed()
         defaultView.isHidden = false
     }
     
-    func hideDefaultView() {
+    private func hideDefaultView() {
         setupDefaultViewIfNeed()
         defaultView.isHidden = true
     }
