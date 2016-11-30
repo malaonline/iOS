@@ -191,12 +191,12 @@ class CourseChoosingViewController: BaseViewController, CourseChoosingConfirmVie
             if let errorMessage = errorMessage {
                 println("CourseChoosingViewController - getTeacherGradePrice Error \(errorMessage)")
             }
-        },completion: { (grades) -> Void in
+        },completion: { [weak self] (grades) -> Void in
             MalaCurrentCourse.grades = grades
             // 获取到价格阶梯数据后，自动切换到指定年级
             MalaCurrentCourse.switchGradePrices()
-            self.refreshTableView()
-            self.requiredCount += 1
+            self?.refreshTableView()
+            self?.requiredCount += 1
         })
     }
     
@@ -220,9 +220,9 @@ class CourseChoosingViewController: BaseViewController, CourseChoosingConfirmVie
             if let errorMessage = errorMessage {
                 println("CourseChoosingViewController - getTeacherAvailableTimeInSchool Error \(errorMessage)")
             }
-        },completion: { (timeSchedule) -> Void in
-            self.classScheduleModel = timeSchedule
-            self.requiredCount += 1
+        },completion: { [weak self] (timeSchedule) -> Void in
+            self?.classScheduleModel = timeSchedule
+            self?.requiredCount += 1
         })
     }
     
@@ -236,9 +236,9 @@ class CourseChoosingViewController: BaseViewController, CourseChoosingConfirmVie
             if let errorMessage = errorMessage {
                 println("CourseChoosingViewController - loadCoupons Error \(errorMessage)")
             }
-        }, completion: { (coupons) -> Void in
+        }, completion: { [weak self] (coupons) -> Void in
             MalaUserCoupons = coupons
-            self.requiredCount += 1
+            self?.requiredCount += 1
         })
     }
     
@@ -256,9 +256,9 @@ class CourseChoosingViewController: BaseViewController, CourseChoosingConfirmVie
             if let errorMessage = errorMessage {
                 println("CourseChoosingViewController - loadUserEvaluatedStatus Error \(errorMessage)")
             }
-        }, completion: { (bool) -> Void in
+        }, completion: { [weak self] (bool) -> Void in
             MalaIsHasBeenEvaluatedThisSubject = bool
-            self.requiredCount += 1
+            self?.requiredCount += 1
         })
     }
     
