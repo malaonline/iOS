@@ -103,7 +103,7 @@ class FavoriteViewController: BaseTableViewController {
             }
         }, completion: { (teachers, count) in
             /// 记录数据量
-            self.allCount == max(count, self.allCount)
+            self.allCount = max(count, self.allCount)
 
             ///  加载更多
             if isLoadMore {
