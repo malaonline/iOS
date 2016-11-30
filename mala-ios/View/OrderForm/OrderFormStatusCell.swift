@@ -249,7 +249,7 @@ class OrderFormStatusCell: UITableViewCell {
         }
         avatarView.snp.makeConstraints { (maker) in
             maker.centerY.equalTo(subjectIcon)
-            maker.right.equalTo(separatorLine)
+            maker.centerX.equalTo(statusLabel)
             maker.height.equalTo(55)
             maker.width.equalTo(55)
         }
