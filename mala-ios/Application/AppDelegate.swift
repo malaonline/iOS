@@ -148,12 +148,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         // 配置JPush
-        #if DevDebug
-            JPUSHService.setup(withOption: launchOptions, appKey: Mala_JPush_AppKey, channel: "AppStore", apsForProduction: false)
-        #else
-            JPUSHService.setup(withOption: launchOptions, appKey: Mala_JPush_AppKey, channel: "AppStore", apsForProduction: true)
-        #endif
-        
+        JPUSHService.setup(withOption: launchOptions, appKey: Mala_JPush_AppKey, channel: "AppStore", apsForProduction: true)
+
         if let options = launchOptions, MalaUserDefaults.isLogined {
             // 记录启动通知类型
             if let notification = options[UIApplicationLaunchOptionsKey.remoteNotification] as? UILocalNotification,

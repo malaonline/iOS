@@ -15,7 +15,6 @@ class CourseChoosingObject: NSObject {
     /// 授课年级
     dynamic var grade: GradeModel? {
         didSet {
-            println("MalaCurrentCourse - Grade - \(grade)")
             switchGradePrices()
         }
     }

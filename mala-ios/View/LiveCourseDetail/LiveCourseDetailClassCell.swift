@@ -168,6 +168,7 @@ class LiveCourseDetailClassCell: MalaBaseLiveCourseCell {
         scheduleLabel.snp.makeConstraints { (maker) in
             maker.top.equalTo(dateLabel.snp.bottom).offset(12)
             maker.left.equalTo(dateLabel)
+            maker.right.equalTo(line)
         }
         checkinIcon.snp.makeConstraints { (maker) in
             maker.top.equalTo(scheduleLabel.snp.bottom).offset(12)
