@@ -133,26 +133,23 @@ class FindTeacherViewController: BaseViewController {
                 
                 ///  加载更多
                 if resultModel.results != nil {
-                    var teachers: [TeacherModel] = []
                     for object in ResultModel(dict: dict).results! {
                         if let dict = object as? [String: AnyObject] {
-                            teachers.append(TeacherModel(dict: dict))
+                            self?.tableView.teachers.append(TeacherModel(dict: dict))
                         }
                     }
-                    self?.tableView.teachers = teachers
                 }
             }else {
+                
                 ///  如果不是加载更多，则刷新数据
                 self?.tableView.teachers = []
-                var teachers: [TeacherModel] = []
                 /// 解析数据
                 if resultModel.results != nil {
                     for object in ResultModel(dict: dict).results! {
                         if let dict = object as? [String: AnyObject] {
-                            teachers.append(TeacherModel(dict: dict))
+                            self?.tableView.teachers.append(TeacherModel(dict: dict))
                         }
                     }
-                    self?.tableView.teachers = teachers
                 }
                 self?.tableView.reloadData()
             }

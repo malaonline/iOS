@@ -43,7 +43,7 @@ open class MalaConfig {
         #elseif USE_STAGE_SERVER
             return "https://stage.malalaoshi.com/m/ad"
         #else
-            return "https://dev.malalaoshi.com/m/ad"
+            return "http://dev.malalaoshi.com/m/ad"
         #endif
     }
     /// App图标名称

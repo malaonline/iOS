@@ -45,7 +45,7 @@ class TeacherDetailModel: BaseObjectModel {
             #elseif USE_STAGE_SERVER
                 return URL(string: String(format: "https://stage.malalaoshi.com/wechat/teacher/?teacherid=%d", id))
             #else
-                return URL(string: String(format: "https://dev.malalaoshi.com/wechat/teacher/?teacherid=%d", id))
+                return URL(string: String(format: "http://dev.malalaoshi.com/wechat/teacher/?teacherid=%d", id))
             #endif
             
         }
