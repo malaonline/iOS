@@ -54,7 +54,7 @@ class OrderFormPaymentChannelCell: UITableViewCell {
         let label = UILabel(
             text: "支付方式",
             fontSize: 15,
-            textColor: MalaColor_84B3D7_0
+            textColor: UIColor(named: .ThemeTextBlue)
         )
         return label
     }()
@@ -68,7 +68,7 @@ class OrderFormPaymentChannelCell: UITableViewCell {
         let label = UILabel(
             text: "支付方式",
             fontSize: 13,
-            textColor: MalaColor_636363_0
+            textColor: UIColor(named: .ArticleText)
         )
         return label
     }()
@@ -88,7 +88,7 @@ class OrderFormPaymentChannelCell: UITableViewCell {
     // MARK: - Private Method
     private func setupUserInterface() {
         // Style
-        contentView.backgroundColor = MalaColor_F2F2F2_0
+        contentView.backgroundColor = UIColor(named: .CardBackground)
         
         // SubViews
         contentView.addSubview(content)

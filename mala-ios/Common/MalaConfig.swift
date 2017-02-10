@@ -314,15 +314,15 @@ open class MalaConfig {
     
     class func chartsColor() -> [UIColor] {
         return [
-            MalaColor_F8DB6B_0,
-            MalaColor_6DC9CE_0,
-            MalaColor_F9877C_0,
-            MalaColor_69CC99_0,
-            MalaColor_88BCDE_0,
-            MalaColor_8BA3CA_0,
-            MalaColor_F7AF63_0,
-            MalaColor_BA9CDA_0,
-            MalaColor_C09C8B_0,
+            UIColor(named: .ChartYellow),
+            UIColor(named: .ChartCyan),
+            UIColor(named: .ChartRed),
+            UIColor(named: .ChartGreen),
+            UIColor(named: .ChartBlue),
+            UIColor(named: .ChartGrayBlue),
+            UIColor(named: .ChartOrange),
+            UIColor(named: .ChartPurple),
+            UIColor(named: .ChartGrayRed),
         ]
     }
     

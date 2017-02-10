@@ -24,7 +24,7 @@ class SingleCourseView: UIView {
     // MARK: - Components
     /// 信息背景视图
     private lazy var headerBackground: UIView = {
-        let view = UIView(MalaColor_CFCFCF_0)
+        let view = UIView(UIColor(named: .Disabled))
         view.layer.cornerRadius = 2
         view.layer.masksToBounds = true
         return view
@@ -34,7 +34,7 @@ class SingleCourseView: UIView {
         let label = UILabel(
             text: "学科",
             fontSize: 14,
-            textColor: MalaColor_FFFFFF_9
+            textColor: UIColor(named: .WhiteTranslucent9)
         )
         return label
     }()
@@ -53,7 +53,7 @@ class SingleCourseView: UIView {
         let label = UILabel(
             text: "老师姓名",
             fontSize: 14,
-            textColor: MalaColor_6C6C6C_0
+            textColor: UIColor(named: .ArticleSubTitle)
         )
         return label
     }()
@@ -62,7 +62,7 @@ class SingleCourseView: UIView {
         let label = UILabel(
             text: "助教老师姓名",
             fontSize: 13,
-            textColor: MalaColor_939393_0
+            textColor: UIColor(named: .HeaderTitle)
         )
         return label
     }()
@@ -76,7 +76,7 @@ class SingleCourseView: UIView {
         let label = UILabel(
             text: "上课时间",
             fontSize: 13,
-            textColor: MalaColor_6C6C6C_0
+            textColor: UIColor(named: .ArticleSubTitle)
         )
         return label
     }()
@@ -90,7 +90,7 @@ class SingleCourseView: UIView {
         let label = UILabel(
             text: "上课地点",
             fontSize: 13,
-            textColor: MalaColor_6C6C6C_0
+            textColor: UIColor(named: .ArticleSubTitle)
         )
         label.numberOfLines = 0
         return label
@@ -207,15 +207,15 @@ class SingleCourseView: UIView {
         // 课程状态
         switch course.status {
         case .Past:
-            headerBackground.backgroundColor = MalaColor_CFCFCF_0
+            headerBackground.backgroundColor = UIColor(named: .Disabled)
             break
             
         case .Today:
-            headerBackground.backgroundColor = MalaColor_6DB2E5_0
+            headerBackground.backgroundColor = UIColor(named: .ThemeDeepBlue)
             break
             
         case .Future:
-            headerBackground.backgroundColor = MalaColor_6DB2E5_0
+            headerBackground.backgroundColor = UIColor(named: .ThemeDeepBlue)
             break
         }
     }

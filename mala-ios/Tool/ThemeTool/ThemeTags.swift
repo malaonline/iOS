@@ -141,7 +141,7 @@ class ThemeTags: UIView {
             target: self,
             action: #selector(ThemeTags.buttonDidTap(_:))
         )
-        button.setTitleColor(MalaColor_9D9D9D_0, for: .normal)
+        button.setTitleColor(UIColor(named: .HeaderTitle), for: .normal)
         self.addSubview(button)
         self.buttons[title] = button
         

@@ -171,11 +171,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private func customAppearance() {
         
         // NavigationBar
-        UINavigationBar.appearance().tintColor = MalaColor_6C6C6C_0
+        UINavigationBar.appearance().tintColor = UIColor(named: .ArticleSubTitle)
         UINavigationBar.appearance().setBackgroundImage(UIImage.withColor(UIColor.white), for: .default)
         
         // TabBar
-        UITabBar.appearance().tintColor = MalaColor_82B4D9_0
+        UITabBar.appearance().tintColor = UIColor(named: .ThemeBlue)
     }  
 }
 

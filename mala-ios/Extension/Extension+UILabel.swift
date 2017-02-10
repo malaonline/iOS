@@ -15,7 +15,7 @@ extension UILabel {
     ///  - returns: UILabel
     class func subTitleLabel() -> UILabel {
         let label = UILabel()
-        label.textColor = MalaColor_939393_0
+        label.textColor = UIColor(named: .HeaderTitle)
         label.font = UIFont.systemFont(ofSize: 14)
         label.textAlignment = .center
         return label

@@ -167,7 +167,7 @@ class TeacherDetailsController: BaseViewController, UIGestureRecognizerDelegate,
         // Style
         signupView.delegate = self
         tableView.estimatedRowHeight = 240
-        tableView.backgroundColor = MalaColor_EDEDED_0
+        tableView.backgroundColor = UIColor(named: .RegularBackground)
         tableView.separatorStyle = .none
         tableView.delegate = self
         tableView.dataSource = self

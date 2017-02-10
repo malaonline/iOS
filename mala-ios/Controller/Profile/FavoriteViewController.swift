@@ -65,7 +65,7 @@ class FavoriteViewController: BaseTableViewController {
         defaultView.text = "您收藏的老师会出现在这里哦"
         defaultView.descText = "快去老师详情页收藏吧"
         
-        tableView.backgroundColor = MalaColor_EDEDED_0
+        tableView.backgroundColor = UIColor(named: .RegularBackground)
         tableView.separatorStyle = .none
         tableView.estimatedRowHeight = 200
         refreshControl = refresher

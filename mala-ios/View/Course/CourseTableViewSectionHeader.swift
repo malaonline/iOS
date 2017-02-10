@@ -55,7 +55,7 @@ class CourseTableViewSectionHeader: UITableViewHeaderFooterView {
         let label = UILabel(
             text: "",
             fontSize: 20,
-            textColor: MalaColor_000000_0
+            textColor: UIColor.black
         )
         return label
     }()

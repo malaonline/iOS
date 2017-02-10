@@ -32,7 +32,7 @@ class CourseChoosingServiceTableView: UITableView, UITableViewDelegate, UITableV
         delegate = self
         dataSource = self
         bounces = false
-        separatorColor = MalaColor_E5E5E5_0
+        separatorColor = UIColor(named: .SeparatorLine)
         register(CourseChoosingServiceTableViewCell.self, forCellReuseIdentifier: CourseChoosingServiceTableViewCellReuseId)
     }
     
@@ -120,7 +120,7 @@ class CourseChoosingServiceTableViewCell: UITableViewCell {
     private lazy var titleLabel: UILabel = {
         let label = UILabel(
             fontSize: 14,
-            textColor: MalaColor_6C6C6C_0
+            textColor: UIColor(named: .ArticleSubTitle)
         )
         return label
     }()
@@ -134,7 +134,7 @@ class CourseChoosingServiceTableViewCell: UITableViewCell {
         let label = UILabel(
             text: "",
             fontSize: 14,
-            textColor: MalaColor_333333_0
+            textColor: UIColor(named: .ArticleTitle)
         )
         return label
     }()
@@ -143,7 +143,7 @@ class CourseChoosingServiceTableViewCell: UITableViewCell {
         let label = UILabel(
             text: "",
             fontSize: 14,
-            textColor: MalaColor_333333_0
+            textColor: UIColor(named: .ArticleTitle)
         )
         return label
     }()

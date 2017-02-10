@@ -35,7 +35,7 @@ class LiveCourseDetailClassCell: MalaBaseLiveCourseCell {
             font: UIFont(name: "PingFang-SC-Light", size: 14),
             textColor: UIColor.white,
             textAlignment: .center,
-            backgroundColor: MalaColor_9BC3E1_0,
+            backgroundColor: UIColor(named: .ThemeBlue),
             cornerRadius: 3
         )
         return label
@@ -47,7 +47,7 @@ class LiveCourseDetailClassCell: MalaBaseLiveCourseCell {
             font: UIFont(name: "PingFang-SC-Light", size: 14),
             textColor: UIColor.white,
             textAlignment: .center,
-            backgroundColor: MalaColor_9BC3E1_0,
+            backgroundColor: UIColor(named: .ThemeBlue),
             cornerRadius: 3
         )
         return label
@@ -62,7 +62,7 @@ class LiveCourseDetailClassCell: MalaBaseLiveCourseCell {
         let label = UILabel(
             text: "课程日期",
             font: UIFont(name: "PingFang-SC-Light", size: 15),
-            textColor: MalaColor_636363_0
+            textColor: UIColor(named: .ArticleText)
         )
         return label
     }()
@@ -71,7 +71,7 @@ class LiveCourseDetailClassCell: MalaBaseLiveCourseCell {
         let label = UILabel(
             text: "上课时间",
             font: UIFont(name: "PingFang-SC-Light", size: 15),
-            textColor: MalaColor_939393_0,
+            textColor: UIColor(named: .HeaderTitle),
             opacity: 0.8
         )
         label.numberOfLines = 0
@@ -87,7 +87,7 @@ class LiveCourseDetailClassCell: MalaBaseLiveCourseCell {
         let label = UILabel(
             text: "已报: ",
             font: UIFont(name: "PingFang-SC-Light", size: 15),
-            textColor: MalaColor_636363_0
+            textColor: UIColor(named: .ArticleText)
         )
         return label
     }()
@@ -96,7 +96,7 @@ class LiveCourseDetailClassCell: MalaBaseLiveCourseCell {
         let label = UILabel(
             text: "人数",
             font: UIFont(name: "PingFang-SC-Light", size: 15),
-            textColor: MalaColor_E26254_0
+            textColor: UIColor(named: .ThemeRed)
         )
         return label
     }()
@@ -110,7 +110,7 @@ class LiveCourseDetailClassCell: MalaBaseLiveCourseCell {
         let label = UILabel(
             text: "上课地点",
             font: UIFont(name: "PingFang-SC-Light", size: 14),
-            textColor: MalaColor_636363_0
+            textColor: UIColor(named: .ArticleText)
         )
         label.numberOfLines = 0
         

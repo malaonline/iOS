@@ -24,14 +24,14 @@ class ProfileViewCell: UITableViewCell {
                 
                 if MalaUnpaidOrderCount > 0 {
                     titleLabel.showBadge()
-                    titleLabel.badgeBgColor = MalaColor_E26254_0
+                    titleLabel.badgeBgColor = UIColor(named: .ThemeRed)
                     titleLabel.badge.snp.makeConstraints({ (maker) in
                         maker.top.equalTo(titleLabel).offset(-1)
                         maker.right.equalTo(titleLabel).offset(7)
                         maker.height.equalTo(7)
                         maker.width.equalTo(7)
                     })
-                    infoLabel.textColor = MalaColor_E26254_0
+                    infoLabel.textColor = UIColor(named: .ThemeRed)
                 }
             }
         }
@@ -43,19 +43,19 @@ class ProfileViewCell: UITableViewCell {
     private lazy var titleLabel: UILabel = {
         let titleLabel = UILabel()
         titleLabel.font = UIFont.systemFont(ofSize: 14)
-        titleLabel.textColor = MalaColor_636363_0
+        titleLabel.textColor = UIColor(named: .ArticleText)
         return titleLabel
     }()
     /// 信息label
     private lazy var infoLabel: UILabel = {
         let infoLabel = UILabel()
         infoLabel.font = UIFont.systemFont(ofSize: 13)
-        infoLabel.textColor = MalaColor_D4D4D4_0
+        infoLabel.textColor = UIColor(named: .InfoText)
         return infoLabel
     }()
     /// 分割线
     lazy var separatorLine: UIView = {
-        let separatorLine = UIView(MalaColor_E5E5E5_0)
+        let separatorLine = UIView(UIColor(named: .SeparatorLine))
         return separatorLine
     }()
     
@@ -111,6 +111,6 @@ class ProfileViewCell: UITableViewCell {
     // MARK: - Override
     override func prepareForReuse() {
         super.prepareForReuse()
-        infoLabel.textColor = MalaColor_D4D4D4_0
+        infoLabel.textColor = UIColor(named: .InfoText)
     }
 }

@@ -36,12 +36,12 @@ class LiveCourseTableViewCell: UITableViewCell {
     /// 卡片容器
     private lazy var content: UIView = {
         let view = UIView(UIColor.white)
-        view.addShadow(color: MalaColor_D7D7D7_0)
+        view.addShadow(color: UIColor(named: .ShadowGray))
         return view
     }()
     /// 教师信息布局容器
     private lazy var teacherContent: UIView = {
-        let view = UIView(MalaColor_5FAEEA_0)
+        let view = UIView(UIColor(named: .LiveClassCardBlue))
         view.clipsToBounds = true
         return view
     }()
@@ -61,7 +61,7 @@ class LiveCourseTableViewCell: UITableViewCell {
     }()
     /// 老师头像背景
     private lazy var lecturerAvatarBackground: UIView = {
-        let view = UIView(MalaColor_A8D0FF_0, cornerRadius: 35)
+        let view = UIView(UIColor(named: .LiveAvatarBack), cornerRadius: 35)
         return view
     }()
     /// 直播图标
@@ -80,7 +80,7 @@ class LiveCourseTableViewCell: UITableViewCell {
     }()
     /// 助教头像背景
     private lazy var assistantAvatarBackground: UIView = {
-        let view = UIView(MalaColor_A8D0FF_0, cornerRadius: 29)
+        let view = UIView(UIColor(named: .LiveAvatarBack), cornerRadius: 29)
         return view
     }()
     /// 老师姓名
@@ -126,9 +126,9 @@ class LiveCourseTableViewCell: UITableViewCell {
             font: UIFont(name: "PingFang-SC-Light", size: 10),
             textColor: UIColor.white,
             textAlignment: .center,
-            backgroundColor: MalaColor_7ED321_0
+            backgroundColor: UIColor(named: .LiveClassCapacity)
         )
-        label.addShadow(color: MalaColor_3E8CC7_0)
+        label.addShadow(color: UIColor(named: .LiveClassCapacityShadow))
         return label
     }()
     /// 课程名称
@@ -136,7 +136,7 @@ class LiveCourseTableViewCell: UITableViewCell {
         let label = UILabel(
             text: "课程名称",
             font: UIFont(name: "PingFang-SC-Light", size: 17),
-            textColor: MalaColor_636363_0
+            textColor: UIColor(named: .ArticleText)
         )
         return label
     }()
@@ -150,7 +150,7 @@ class LiveCourseTableViewCell: UITableViewCell {
         let label = UILabel(
             text: "课程日期",
             font: UIFont(name: "PingFang-SC-Light", size: 12),
-            textColor: MalaColor_778CA4_0
+            textColor: UIColor(named: .ArticleSubTitle)
         )
         return label
     }()
@@ -159,9 +159,9 @@ class LiveCourseTableViewCell: UITableViewCell {
         let label = UILabel(
             text: "课程年级区间",
             font: UIFont(name: "PingFang-SC-Light", size: 12),
-            textColor: MalaColor_8DBEDE_0,
+            textColor: UIColor(named: .OptionSelectColor),
             textAlignment: .center,
-            borderColor: MalaColor_8DBEDE_0,
+            borderColor: UIColor(named: .OptionSelectColor),
             borderWidth: MalaScreenOnePixel,
             cornerRadius: 2
         )
@@ -172,7 +172,7 @@ class LiveCourseTableViewCell: UITableViewCell {
         let label = UILabel(
             text: "价格/",
             font: UIFont(name: "PingFang-SC-Light", size: 20),
-            textColor: MalaColor_E26254_0,
+            textColor: UIColor(named: .ThemeRed),
             textAlignment: .right
         )
         return label
@@ -182,7 +182,7 @@ class LiveCourseTableViewCell: UITableViewCell {
         let label = UILabel(
             text: "次数",
             font: UIFont(name: "PingFang-SC-Light", size: 14),
-            textColor: MalaColor_E26254_0,
+            textColor: UIColor(named: .ThemeRed),
             textAlignment: .right
         )
         return label
@@ -204,7 +204,7 @@ class LiveCourseTableViewCell: UITableViewCell {
     // MARK: - Private Method
     private func setupUserInterface() {
         // Style
-        contentView.backgroundColor = MalaColor_EDEDED_0
+        contentView.backgroundColor = UIColor(named: .RegularBackground)
         selectionStyle = .none
         
         // SubViews

@@ -16,7 +16,7 @@ class ThemeRefreshView: UIView {
     private lazy var label: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 13)
-        label.textColor = MalaColor_939393_0
+        label.textColor = UIColor(named: .HeaderTitle)
         label.text = "下拉可刷新"
         label.sizeToFit()
         return label

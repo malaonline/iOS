@@ -40,7 +40,7 @@ class LiveCourseConfirmView: UIView {
         let label = UILabel(
             text: "价格/",
             font: UIFont(name: "PingFang-SC-Light", size: 18),
-            textColor: MalaColor_E26254_0,
+            textColor: UIColor(named: .ThemeRed),
             textAlignment: .right
         )
         return label
@@ -50,7 +50,7 @@ class LiveCourseConfirmView: UIView {
         let label = UILabel(
             text: "次数",
             font: UIFont(name: "PingFang-SC-Light", size: 10),
-            textColor: MalaColor_E26254_0,
+            textColor: UIColor(named: .ThemeRed),
             textAlignment: .right
         )
         return label
@@ -61,8 +61,8 @@ class LiveCourseConfirmView: UIView {
             title: "立即购买",
             titleColor: UIColor.white,
             selectedTitleColor: UIColor.white,
-            bgColor: MalaColor_9BC3E1_0,
-            selectedBgColor: MalaColor_9BC3E1_0
+            bgColor: UIColor(named: .ThemeBlue),
+            selectedBgColor: UIColor(named: .ThemeBlue)
         )
         button.titleLabel?.font = UIFont(name: "FZLTXHK", size: 15)
         button.addTarget(self, action: #selector(LiveCourseConfirmView.buttonDidTap), for: .touchUpInside)

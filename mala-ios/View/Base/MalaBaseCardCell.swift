@@ -33,7 +33,7 @@ class MalaBaseCardCell: UICollectionViewCell {
     // MARK: - Private Method
     private func setupUserInterface() {
         // Style
-        contentView.backgroundColor = MalaColor_F2F2F2_0
+        contentView.backgroundColor = UIColor(named: .CardBackground)
         
         // SubViews
         contentView.addSubview(layoutView)

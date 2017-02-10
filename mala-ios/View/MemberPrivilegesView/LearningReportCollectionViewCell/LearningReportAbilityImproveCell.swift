@@ -55,15 +55,15 @@ class LearningReportAbilityImproveCell: MalaBaseReportCardCell {
         
         let xAxis = chartView.xAxis
         xAxis.labelFont = UIFont.systemFont(ofSize: 8)
-        xAxis.labelTextColor = MalaColor_5E5E5E_0
+        xAxis.labelTextColor = UIColor(named: .ChartLabel)
         xAxis.drawGridLinesEnabled = false
         xAxis.labelPosition = .bottom
         
         let leftAxis = chartView.leftAxis
         leftAxis.labelFont = UIFont.systemFont(ofSize: 10)
-        leftAxis.labelTextColor = MalaColor_5E5E5E_0
+        leftAxis.labelTextColor = UIColor(named: .ChartLabel)
         leftAxis.gridLineDashLengths = [2,2]
-        leftAxis.gridColor = MalaColor_E6E9EC_0
+        leftAxis.gridColor = UIColor(named: .ChartLegendGray)
         leftAxis.drawGridLinesEnabled = true
         leftAxis.axisMinimum = 0
         leftAxis.axisMaximum = 100
@@ -143,7 +143,7 @@ class LearningReportAbilityImproveCell: MalaBaseReportCardCell {
             return ChartDataEntry(x: data.ave_score.doubleValue*100, y: Double(aveScoreIndex))
         })
         let lineDataSet = LineChartDataSet(values: lineVals, label: "")
-        lineDataSet.setColor(MalaColor_82C9F9_0)
+        lineDataSet.setColor(UIColor(named: .ChartLegentLightBlue))
         lineDataSet.fillAlpha = 1
         lineDataSet.circleRadius = 6
         lineDataSet.mode = .cubicBezier
@@ -220,7 +220,7 @@ open class CombinedLegendView: UIView {
         
         button.setTitle(title, for: UIControlState())
         button.titleLabel?.font = UIFont.systemFont(ofSize: 10)
-        button.setTitleColor(MalaColor_5E5E5E_0, for: UIControlState())
+        button.setTitleColor(UIColor(named: .ChartLabel), for: UIControlState())
         
         button.sizeToFit()
         self.addSubview(button)

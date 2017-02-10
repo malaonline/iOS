@@ -46,12 +46,12 @@ class LearningReportTopicDataCell: MalaBaseReportCardCell {
         
         let xAxis = lineChartView.xAxis
         xAxis.labelFont = UIFont.systemFont(ofSize: 10)
-        xAxis.labelTextColor = MalaColor_5E5E5E_0
+        xAxis.labelTextColor = UIColor(named: .ChartLabel)
         xAxis.drawGridLinesEnabled = false
         // xAxis.spaceBetweenLabels = 1
         xAxis.labelPosition = .bottom
         xAxis.gridLineDashLengths = [2,2]
-        xAxis.gridColor = MalaColor_E6E9EC_0
+        xAxis.gridColor = UIColor(named: .ChartLegendGray)
         xAxis.drawGridLinesEnabled = true
         xAxis.axisMaximum = 6
         xAxis.axisMinimum = 0
@@ -59,9 +59,9 @@ class LearningReportTopicDataCell: MalaBaseReportCardCell {
         
         let leftAxis = lineChartView.leftAxis
         leftAxis.labelFont = UIFont.systemFont(ofSize: 9)
-        leftAxis.labelTextColor = MalaColor_939393_0
+        leftAxis.labelTextColor = UIColor(named: .HeaderTitle)
         leftAxis.gridLineDashLengths = [2,2]
-        leftAxis.gridColor = MalaColor_E6E9EC_0
+        leftAxis.gridColor = UIColor(named: .ChartLegendGray)
         leftAxis.drawGridLinesEnabled = true
         leftAxis.axisMinimum = 0
         leftAxis.labelCount = 5
@@ -70,7 +70,7 @@ class LearningReportTopicDataCell: MalaBaseReportCardCell {
         lineChartView.legend.form = .circle
         lineChartView.legend.formSize = 8
         lineChartView.legend.font = NSUIFont.systemFont(ofSize: 10)
-        lineChartView.legend.textColor = MalaColor_5E5E5E_0
+        lineChartView.legend.textColor = UIColor(named: .ChartLabel)
         lineChartView.legend.horizontalAlignment = .right
         lineChartView.legend.verticalAlignment = .top
         lineChartView.legend.orientation = .horizontal
@@ -127,8 +127,8 @@ class LearningReportTopicDataCell: MalaBaseReportCardCell {
         let totalSet = LineChartDataSet(values: yValsTotal, label: "答题数量")
         totalSet.lineWidth = 0
         totalSet.fillAlpha = 1
-        totalSet.setColor(MalaColor_BBDDF6_0)
-        totalSet.fillColor = MalaColor_BBDDF6_0
+        totalSet.setColor(UIColor(named: .ReportTopicData))
+        totalSet.fillColor = UIColor(named: .ReportTopicData)
         totalSet.drawCirclesEnabled = false
         totalSet.drawValuesEnabled = false
         totalSet.drawFilledEnabled = true
@@ -144,8 +144,8 @@ class LearningReportTopicDataCell: MalaBaseReportCardCell {
         let rightSet = LineChartDataSet(values: yValsRight, label: "正确数量")
         rightSet.lineWidth = 0
         rightSet.fillAlpha = 1
-        rightSet.setColor(MalaColor_75CC97_0)
-        rightSet.fillColor = MalaColor_75CC97_0
+        rightSet.setColor(UIColor(named: .ChartLegendGreen))
+        rightSet.fillColor = UIColor(named: .ChartLegendGreen)
         rightSet.drawCirclesEnabled = false
         rightSet.drawValuesEnabled = false
         rightSet.drawFilledEnabled = true
@@ -153,7 +153,7 @@ class LearningReportTopicDataCell: MalaBaseReportCardCell {
         // let data = LineChartData(xVals: getXVals(), dataSets: [totalSet, rightSet])
         
         let data = LineChartData(dataSets: [totalSet, rightSet])
-        data.setValueTextColor(MalaColor_5E5E5E_0)
+        data.setValueTextColor(UIColor(named: .ChartLabel))
         data.setValueFont(UIFont.systemFont(ofSize: 10))
         lineChartView.data = data
     }

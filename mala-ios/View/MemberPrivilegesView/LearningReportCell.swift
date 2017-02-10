@@ -49,7 +49,7 @@ class LearningReportCell: UITableViewCell {
     private lazy var button: UIButton = {
         let button = UIButton()
         
-        button.backgroundColor = MalaColor_8DC1DE_0
+        button.backgroundColor = UIColor(named: .ThemeBlue)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
         button.setTitle("查看我的学习报告", for: UIControlState())
         button.setTitleColor(UIColor.white, for: UIControlState())
@@ -73,13 +73,13 @@ class LearningReportCell: UITableViewCell {
         let label = UILabel(
             text: "学习报告",
             fontSize: 15,
-            textColor: MalaColor_333333_0
+            textColor: UIColor(named: .ArticleTitle)
         )
         return label
     }()
     /// 中央垂直分割线
     private lazy var separator: UIView = {
-        let view = UIView(MalaColor_E5E5E5_0)
+        let view = UIView(UIColor(named: .SeparatorLine))
         return view
     }()
     /// 答题数标签
@@ -87,7 +87,7 @@ class LearningReportCell: UITableViewCell {
         let label = UILabel(
             text: "0",
             fontSize: 35,
-            textColor: MalaColor_333333_0
+            textColor: UIColor(named: .ArticleTitle)
         )
         label.textAlignment = .center
         return label
@@ -97,7 +97,7 @@ class LearningReportCell: UITableViewCell {
         let label = UILabel(
             text: "0％",
             fontSize: 35,
-            textColor: MalaColor_333333_0
+            textColor: UIColor(named: .ArticleTitle)
         )
         label.textAlignment = .center
         return label
@@ -108,7 +108,7 @@ class LearningReportCell: UITableViewCell {
         button.setImage(UIImage(named: "answerNumber"), for: UIControlState())
         button.setTitle("答题数", for: UIControlState())
         button.titleLabel?.font = UIFont.systemFont(ofSize: 13)
-        button.setTitleColor(MalaColor_636363_0, for: UIControlState())
+        button.setTitleColor(UIColor(named: .ArticleText), for: UIControlState())
         button.imageEdgeInsets = UIEdgeInsets(top: 0, left: -6, bottom: 0, right: 6)
         return button
     }()
@@ -118,7 +118,7 @@ class LearningReportCell: UITableViewCell {
         button.setImage(UIImage(named: "correctRate"), for: UIControlState())
         button.setTitle("正确率", for: UIControlState())
         button.titleLabel?.font = UIFont.systemFont(ofSize: 13)
-        button.setTitleColor(MalaColor_636363_0, for: UIControlState())
+        button.setTitleColor(UIColor(named: .ArticleText), for: UIControlState())
         button.imageEdgeInsets = UIEdgeInsets(top: 0, left: -6, bottom: 0, right: 6)
         return button
     }()
@@ -137,7 +137,7 @@ class LearningReportCell: UITableViewCell {
         let label = UILabel(
             text: "登录可查看专属学习报告哦",
             fontSize: 12,
-            textColor: MalaColor_4DA3D9_0
+            textColor: UIColor(named: .PageControl)
         )
         return label
     }()
@@ -165,7 +165,7 @@ class LearningReportCell: UITableViewCell {
     // MARK: - Private Method
     private func setupUserInterface() {
         // Style
-        contentView.backgroundColor = MalaColor_EDEDED_0
+        contentView.backgroundColor = UIColor(named: .RegularBackground)
         content.backgroundColor = UIColor.white
         
         // SubViews

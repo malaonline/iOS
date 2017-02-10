@@ -46,7 +46,7 @@ class LearningReportAbilityStructureCell: MalaBaseReportCardCell {
                 
         let xAxis = radarChartView.xAxis
         xAxis.labelFont = UIFont.systemFont(ofSize: 12)
-        xAxis.labelTextColor = MalaColor_5E5E5E_0
+        xAxis.labelTextColor = UIColor(named: .ChartLabel)
         xAxis.labelWidth = 20
         
         let yAxis = radarChartView.yAxis
@@ -109,8 +109,8 @@ class LearningReportAbilityStructureCell: MalaBaseReportCardCell {
         let dataSet = RadarChartDataSet(values: yVals, label: "")
         dataSet.lineWidth = 0
         dataSet.fillAlpha = 0.9
-        dataSet.setColor(MalaColor_F9877C_0)
-        dataSet.fillColor = MalaColor_F9877C_0
+        dataSet.setColor(UIColor(named: .ChartRed))
+        dataSet.fillColor = UIColor(named: .ChartRed)
         dataSet.drawValuesEnabled = false
         dataSet.drawFilledEnabled = true
         dataSet.highlightEnabled = false

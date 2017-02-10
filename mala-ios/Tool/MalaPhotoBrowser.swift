@@ -58,7 +58,7 @@ open class MalaPhotoBrowser: BaseViewController, UICollectionViewDataSource, UIC
     
     private func setupUserInterface() {
         // Style
-        collectionView.backgroundColor = MalaColor_EDEDED_0
+        collectionView.backgroundColor = UIColor(named: .RegularBackground)
         
         // SubViews
         view.addSubview(collectionView)

@@ -50,7 +50,7 @@ class MalaDefaultPanel: UIView {
     private lazy var label: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 13)
-        label.textColor = MalaColor_939393_0
+        label.textColor = UIColor(named: .HeaderTitle)
         label.textAlignment = .center
         return label
     }()
@@ -58,7 +58,7 @@ class MalaDefaultPanel: UIView {
     private lazy var descLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 13)
-        label.textColor = MalaColor_939393_0
+        label.textColor = UIColor(named: .HeaderTitle)
         label.textAlignment = .center
         return label
     }()
@@ -67,9 +67,9 @@ class MalaDefaultPanel: UIView {
         let button = UIButton()
         button.layer.cornerRadius = 18
         button.layer.masksToBounds = true
-        button.layer.borderColor = MalaColor_8DBEDE_0.cgColor
+        button.layer.borderColor = UIColor(named: .OptionSelectColor).cgColor
         button.layer.borderWidth = 1
-        button.setTitleColor(MalaColor_8DBEDE_0, for: UIControlState())
+        button.setTitleColor(UIColor(named: .OptionSelectColor), for: UIControlState())
         return button
     }()
     

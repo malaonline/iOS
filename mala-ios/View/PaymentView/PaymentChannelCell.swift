@@ -37,14 +37,14 @@ class PaymentChannelCell: UITableViewCell {
     private lazy var titleLabel: UILabel = {
         let titleLabel = UILabel()
         titleLabel.font = UIFont.systemFont(ofSize: 14)
-        titleLabel.textColor = MalaColor_333333_0
+        titleLabel.textColor = UIColor(named: .ArticleTitle)
         return titleLabel
     }()
     /// 支付方式描述
     private lazy var subTitleLabel: UILabel = {
         let subTitleLabel = UILabel()
         subTitleLabel.font = UIFont.systemFont(ofSize: 13)
-        subTitleLabel.textColor = MalaColor_6C6C6C_0
+        subTitleLabel.textColor = UIColor(named: .ArticleSubTitle)
         return subTitleLabel
     }()
     /// 选择按钮
@@ -58,7 +58,7 @@ class PaymentChannelCell: UITableViewCell {
     }()
     /// 分割线
     lazy var separatorLine: UIView = {
-        let separatorLine = UIView(MalaColor_E5E5E5_0)
+        let separatorLine = UIView(UIColor(named: .SeparatorLine))
         return separatorLine
     }()
     

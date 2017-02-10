@@ -27,7 +27,7 @@ class AboutViewController: BaseViewController, UIScrollViewDelegate {
         let label = UILabel(
             text: MalaConfig.aboutAPPVersion(),
             fontSize: 14,
-            textColor: MalaColor_333333_0
+            textColor: UIColor(named: .ArticleTitle)
         )
         return label
     }()
@@ -36,7 +36,7 @@ class AboutViewController: BaseViewController, UIScrollViewDelegate {
         let label = UILabel(
             text: MalaConfig.aboutCopyRightString(),
             fontSize: 12,
-            textColor: MalaColor_939393_0,
+            textColor: UIColor(named: .HeaderTitle),
             textAlignment: .center
         )
         label.numberOfLines = 2
@@ -45,7 +45,7 @@ class AboutViewController: BaseViewController, UIScrollViewDelegate {
     /// 描述 文字背景
     private lazy var textBackground: UIView = {
         let view = UIView(UIColor.white)
-        view.layer.borderColor = MalaColor_979797_0.cgColor
+        view.layer.borderColor = UIColor(named: .HeaderTitle).cgColor
         view.layer.borderWidth = MalaScreenOnePixel
         return view
     }()
@@ -60,7 +60,7 @@ class AboutViewController: BaseViewController, UIScrollViewDelegate {
         let label = UILabel(
             text: MalaConfig.aboutDescriptionHTMLString(),
             fontSize: 13,
-            textColor: MalaColor_939393_0,
+            textColor: UIColor(named: .HeaderTitle),
             textAlignment: .center,
             backgroundColor: UIColor.clear
         )
@@ -84,7 +84,7 @@ class AboutViewController: BaseViewController, UIScrollViewDelegate {
     // MARK: - Private
     private func setupUserInterface() {
         // Style
-        scrollView.backgroundColor = MalaColor_F2F2F2_0
+        scrollView.backgroundColor = UIColor(named: .CardBackground)
         
         
         // SubViews

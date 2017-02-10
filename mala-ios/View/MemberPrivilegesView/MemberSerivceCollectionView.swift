@@ -122,7 +122,7 @@ class MemberSerivceCollectionViewSectionHeader: UICollectionReusableView {
     
     // MARK: - Private Method
     private func setupUserInterface() {
-        backgroundColor = MalaColor_E5E5E5_0
+        backgroundColor = UIColor(named: .SeparatorLine)
     }
 }
 
@@ -141,7 +141,7 @@ class MemberSerivceCollectionViewCell: UICollectionViewCell {
     override internal var isSelected: Bool {
         didSet {
             if isSelected {
-                contentView.backgroundColor = MalaColor_E5E5E5_0
+                contentView.backgroundColor = UIColor(named: .SeparatorLine)
             }else {
                 contentView.backgroundColor = UIColor.white
             }
@@ -160,14 +160,14 @@ class MemberSerivceCollectionViewCell: UICollectionViewCell {
         let label = UILabel(
             text: "",
             fontSize: 13,
-            textColor: MalaColor_636363_0
+            textColor: UIColor(named: .ArticleText)
         )
         label.textAlignment = .center
         return label
     }()
     /// 侧分割线
     lazy var separator: UIView = {
-        let view = UIView(MalaColor_E5E5E5_0)
+        let view = UIView(UIColor(named: .SeparatorLine))
         return view
     }()
     

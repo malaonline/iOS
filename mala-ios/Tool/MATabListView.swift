@@ -51,7 +51,7 @@ class MATabListView: UIView {
             
             let label = UILabel(frame: CGRect.zero)
             label.textAlignment = .left
-            label.textColor = MalaColor_636363_0
+            label.textColor = UIColor(named: .ArticleText)
             label.font = UIFont.systemFont(ofSize: 14)
             
             label.text = string
@@ -64,13 +64,13 @@ class MATabListView: UIView {
             
             if let isDisplayBorder = delegate?.tagShourldDisplayBorder?(label, tabListView: self), isDisplayBorder {
                 
-                label.textColor = MalaColor_939393_0
+                label.textColor = UIColor(named: .HeaderTitle)
                 
                 size.height += 10
                 x = previousFrame.maxX == 0 ? previousFrame.maxX : previousFrame.maxX+RightPadding
                 
                 label.layer.borderWidth = 1
-                label.layer.borderColor = MalaColor_C4C4C4_0.cgColor
+                label.layer.borderColor = UIColorFromHex(0xC4C4C4).cgColor
                 label.layer.cornerRadius = 3
                 label.layer.masksToBounds = true
                 label.textAlignment = .center

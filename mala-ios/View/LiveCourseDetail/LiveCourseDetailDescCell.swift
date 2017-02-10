@@ -26,7 +26,7 @@ class LiveCourseDetailDescCell: MalaBaseLiveCourseCell {
         let label = UILabel(
             text: "",
             font: UIFont(name: "STHeitiSC-Light", size: 14),
-            textColor: MalaColor_636363_0
+            textColor: UIColor(named: .ArticleText)
         )
         label.numberOfLines = 0
         return label

@@ -66,24 +66,24 @@ class TeacherDetailsSubjectCell: MalaBaseCell {
     private lazy var elementarySchool: ThemeTagListView = {
         let tagsView = ThemeTagListView()
         tagsView.imageName = "detail_class1"
-        tagsView.labelBackgroundColor = MalaColor_F9B7B7_0
-        tagsView.textColor = MalaColor_E25C5C_0
+        tagsView.labelBackgroundColor = UIColor(named: .SubjectLightRed)
+        tagsView.textColor = UIColor(named: .SubjectRed)
         return tagsView
     }()
     /// 初中
     private lazy var juniorSchool: ThemeTagListView = {
         let tagsView = ThemeTagListView()
         tagsView.imageName = "detail_class2"
-        tagsView.labelBackgroundColor = MalaColor_B1D8F3_0
-        tagsView.textColor = MalaColor_2B7BB4_0
+        tagsView.labelBackgroundColor = UIColor(named: .SubjectTagBlue)
+        tagsView.textColor = UIColor(named: .SubjectBlue)
         return tagsView
     }()
     /// 高中
     private lazy var seniorSchool: ThemeTagListView = {
         let tagsView = ThemeTagListView()
         tagsView.imageName = "detail_class3"
-        tagsView.labelBackgroundColor = MalaColor_BFE7CA_0
-        tagsView.textColor = MalaColor_259746_0
+        tagsView.labelBackgroundColor = UIColor(named: .SubjectLightGreen)
+        tagsView.textColor = UIColor(named: .SubjectGreen)
         return tagsView
     }()
     

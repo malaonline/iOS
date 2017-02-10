@@ -64,7 +64,7 @@ class ProfileViewHeaderView: UIView {
     /// 姓名label控件
     private lazy var nameLabel: UILabel = {
         let label = UILabel()
-        label.textColor = MalaColor_82B4D9_0
+        label.textColor = UIColor(named: .ThemeBlue)
         label.font = UIFont.systemFont(ofSize: 14)
         label.textAlignment = .center
         label.isUserInteractionEnabled = true

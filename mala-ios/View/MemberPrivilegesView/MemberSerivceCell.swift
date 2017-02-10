@@ -21,7 +21,7 @@ class MemberSerivceCell: UITableViewCell {
         let label = UILabel(
             text: "会员专享",
             fontSize: 15,
-            textColor: MalaColor_333333_0
+            textColor: UIColor(named: .ArticleTitle)
         )
         return label
     }()
@@ -46,7 +46,7 @@ class MemberSerivceCell: UITableViewCell {
     // MARK: - Private Method
     private func setupUserInterface() {
         // Style
-        contentView.backgroundColor = MalaColor_EDEDED_0
+        contentView.backgroundColor = UIColor(named: .RegularBackground)
         content.backgroundColor = UIColor.white
         
         // SubViews

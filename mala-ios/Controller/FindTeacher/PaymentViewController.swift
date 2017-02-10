@@ -19,7 +19,7 @@ class PaymentViewController: BaseViewController {
     /// 支付按钮
     private lazy var confirmButton: UIButton = {
         let button = UIButton()
-        button.setBackgroundImage(UIImage.withColor(MalaColor_9BC3E1_0), for: .normal)
+        button.setBackgroundImage(UIImage.withColor(UIColor(named: .ThemeBlue)), for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 15)
         button.setTitle("立即支付", for: .normal)
         button.setTitleColor(UIColor.white, for: .normal)

@@ -40,7 +40,7 @@ class CourseChoosingConfirmView: UIView {
         let stringLabel = UILabel(
             text: "还需支付:",
             fontSize: 14,
-            textColor: MalaColor_333333_0
+            textColor: UIColor(named: .ArticleTitle)
         )
         return stringLabel
     }()
@@ -49,7 +49,7 @@ class CourseChoosingConfirmView: UIView {
         let priceLabel = UILabel(
             text: "￥0.00",
             fontSize: 14,
-            textColor: MalaColor_E26254_0,
+            textColor: UIColor(named: .ThemeRed),
             textAlignment: .left
         )
         return priceLabel
@@ -57,7 +57,7 @@ class CourseChoosingConfirmView: UIView {
     /// 确定按钮
     private lazy var confirmButton: UIButton = {
         let confirmButton = UIButton()
-        confirmButton.backgroundColor = MalaColor_E26254_0
+        confirmButton.backgroundColor = UIColor(named: .ThemeRed)
         confirmButton.titleLabel?.font = UIFont.systemFont(ofSize: 16)
         confirmButton.setTitle("确定", for: UIControlState())
         confirmButton.setTitleColor(UIColor.white, for: UIControlState())

@@ -56,7 +56,7 @@ class CommentViewController: BaseTableViewController {
         refreshControl = refresher
         tableView.separatorStyle = .none
         tableView.estimatedRowHeight = 208
-        tableView.backgroundColor = MalaColor_EDEDED_0
+        tableView.backgroundColor = UIColor(named: .RegularBackground)
         tableView.contentInset = UIEdgeInsets(top: 6, left: 0, bottom: 6, right: 0)
         tableView.register(CommentViewCell.self, forCellReuseIdentifier: CommentViewCellReuseId)
     }

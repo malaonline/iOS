@@ -30,10 +30,10 @@ open class InfoModifyViewWindow: UIViewController, UITextViewDelegate {
     private lazy var cancelButton: UIButton = {
         let button = UIButton()
         button.setTitle("取消", for: UIControlState())
-        // cancelButton.setTitleColor(MalaColor_8FBCDD_0, forState: .Normal)
-        button.setTitleColor(MalaColor_B7B7B7_0, for: UIControlState())
-        button.setBackgroundImage(UIImage.withColor(MalaColor_FFFFFF_9), for: UIControlState())
-        button.setBackgroundImage(UIImage.withColor(MalaColor_F8F8F8_0), for: .highlighted)
+        // cancelButton.setTitleColor(UIColor(named: .ThemeBlue), forState: .Normal)
+        button.setTitleColor(UIColor(named: .DescGray), for: UIControlState())
+        button.setBackgroundImage(UIImage.withColor(UIColor(named: .WhiteTranslucent9)), for: UIControlState())
+        button.setBackgroundImage(UIImage.withColor(UIColor(named: .HighlightGray)), for: .highlighted)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 15)
         button.addTarget(self, action: #selector(InfoModifyViewWindow.cancelButtonDidTap), for: .touchUpInside)
         return button
@@ -42,12 +42,12 @@ open class InfoModifyViewWindow: UIViewController, UITextViewDelegate {
     private lazy var saveButton: UIButton = {
         let button = UIButton()
         button.setTitle("保存", for: UIControlState())
-        button.setTitleColor(MalaColor_8FBCDD_0, for: UIControlState())
-        button.setTitleColor(MalaColor_B7B7B7_0, for: .highlighted)
-        button.setTitleColor(MalaColor_B7B7B7_0, for: .disabled)
-        button.setBackgroundImage(UIImage.withColor(MalaColor_FFFFFF_9), for: UIControlState())
-        button.setBackgroundImage(UIImage.withColor(MalaColor_F8F8F8_0), for: .highlighted)
-        button.setBackgroundImage(UIImage.withColor(MalaColor_F8F8F8_0), for: .disabled)
+        button.setTitleColor(UIColor(named: .ThemeBlue), for: UIControlState())
+        button.setTitleColor(UIColor(named: .DescGray), for: .highlighted)
+        button.setTitleColor(UIColor(named: .DescGray), for: .disabled)
+        button.setBackgroundImage(UIImage.withColor(UIColor(named: .WhiteTranslucent9)), for: UIControlState())
+        button.setBackgroundImage(UIImage.withColor(UIColor(named: .HighlightGray)), for: .highlighted)
+        button.setBackgroundImage(UIImage.withColor(UIColor(named: .HighlightGray)), for: .disabled)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 15)
         button.addTarget(self, action: #selector(InfoModifyViewWindow.saveButtonDidTap), for: .touchUpInside)
         return button
@@ -58,20 +58,20 @@ open class InfoModifyViewWindow: UIViewController, UITextViewDelegate {
     }()
     /// 按钮顶部装饰线
     private lazy var buttonTopLine: UIView = {
-        let buttonTopLine = UIView(MalaColor_8FBCDD_0)
+        let buttonTopLine = UIView(UIColor(named: .ThemeBlue))
         return buttonTopLine
     }()
     /// 按钮间隔装饰线
     private lazy var buttonSeparatorLine: UIView = {
-        let buttonSeparatorLine = UIView(MalaColor_8FBCDD_0)
+        let buttonSeparatorLine = UIView(UIColor(named: .ThemeBlue))
         return buttonSeparatorLine
     }()
     /// 姓名文本框
     private lazy var nameLabel: UITextField = {
         let textField = UITextField()
         textField.textAlignment = .center
-        textField.textColor = MalaColor_636363_0
-        textField.tintColor = MalaColor_82B4D9_0
+        textField.textColor = UIColor(named: .ArticleText)
+        textField.tintColor = UIColor(named: .ThemeBlue)
         textField.text = self.nameString
         textField.font = UIFont.systemFont(ofSize: 14)
         textField.addTarget(self, action: #selector(InfoModifyViewWindow.inputFieldDidChange), for: .editingChanged)
@@ -79,7 +79,7 @@ open class InfoModifyViewWindow: UIViewController, UITextViewDelegate {
     }()
     /// 姓名底部装饰线
     private lazy var nameLine: UIView = {
-        let view = UIView(MalaColor_82B4D9_0)
+        let view = UIView(UIColor(named: .ThemeBlue))
         return view
     }()
     /// 提示文字标签
@@ -87,7 +87,7 @@ open class InfoModifyViewWindow: UIViewController, UITextViewDelegate {
         let label = UILabel(
             text: "* 请输入2-4位中文字符",
             fontSize: 11,
-            textColor: MalaColor_E26254_0
+            textColor: UIColor(named: .ThemeRed)
         )
         return label
     }()

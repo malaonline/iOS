@@ -55,7 +55,7 @@ class OrderFormOtherInfoCell: UITableViewCell {
         let label = UILabel(
             text: "订单编号：",
             font: UIFont(name: "PingFang-SC-Regular", size: 13),
-            textColor: MalaColor_939393_0,
+            textColor: UIColor(named: .HeaderTitle),
             opacity: 0.8
         )
         return label
@@ -65,7 +65,7 @@ class OrderFormOtherInfoCell: UITableViewCell {
         let label = UILabel(
             text: "创建时间：",
             font: UIFont(name: "PingFang-SC-Regular", size: 13),
-            textColor: MalaColor_939393_0,
+            textColor: UIColor(named: .HeaderTitle),
             opacity: 0.8
         )
         return label
@@ -75,7 +75,7 @@ class OrderFormOtherInfoCell: UITableViewCell {
         let label = UILabel(
             text: "支付时间：",
             font: UIFont(name: "PingFang-SC-Regular", size: 13),
-            textColor: MalaColor_939393_0,
+            textColor: UIColor(named: .HeaderTitle),
             opacity: 0.8
         )
         return label
@@ -96,7 +96,7 @@ class OrderFormOtherInfoCell: UITableViewCell {
     // MARK: - Private Method
     private func setupUserInterface() {
         // Style
-        contentView.backgroundColor = MalaColor_F2F2F2_0
+        contentView.backgroundColor = UIColor(named: .CardBackground)
         
         // SubViews
         contentView.addSubview(content)

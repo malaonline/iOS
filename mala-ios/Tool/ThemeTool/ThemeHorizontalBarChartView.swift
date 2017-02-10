@@ -93,7 +93,7 @@ open class ThemeHorizontalBar: UIView {
         let label = UILabel(
             text: "",
             fontSize: 11,
-            textColor: MalaColor_939393_0
+            textColor: UIColor(named: .HeaderTitle)
         )
         return label
     }()
@@ -103,10 +103,10 @@ open class ThemeHorizontalBar: UIView {
         bar.indicatorTextDisplayMode = .progress
         bar.behavior = .indeterminate
         bar.stripesOrientation = .left
-        bar.progressTintColor = MalaColor_E5E5E5_0
-        bar.trackTintColor = MalaColor_E5E5E5_0
-        bar.stripesColor = MalaColor_E5E5E5_0
-        bar.progressTintColors = [MalaColor_75CC97_0]
+        bar.progressTintColor = UIColor(named: .SeparatorLine)
+        bar.trackTintColor = UIColor(named: .SeparatorLine)
+        bar.stripesColor = UIColor(named: .SeparatorLine)
+        bar.progressTintColors = [UIColor(named: .ChartLegendGreen)]
         bar.indicatorTextLabel.font = UIFont(name: "HelveticaNeue-Light", size: 9)
         bar.hideGloss = true
         return bar
@@ -116,7 +116,7 @@ open class ThemeHorizontalBar: UIView {
         let label = UILabel(
             text: "",
             fontSize: 10,
-            textColor: MalaColor_97A8BB_0
+            textColor: UIColor(named: .ChartPercentText)
         )
         label.textAlignment = .right
         return label

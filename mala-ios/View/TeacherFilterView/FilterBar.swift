@@ -31,7 +31,7 @@ class FilterBar: UIView {
     private lazy var gradeButton: UIButton = {
         let gradeButton = UIButton(
             title: "小学一年级",
-            borderColor: MalaColor_8FBCDD_0,
+            borderColor: UIColor(named: .ThemeBlue),
             target: self,
             action: #selector(FilterBar.buttonDidTap(_:))
         )
@@ -41,7 +41,7 @@ class FilterBar: UIView {
     private lazy var subjectButton: UIButton = {
         let subjectButton = UIButton(
             title: "科  目",
-            borderColor: MalaColor_8FBCDD_0,
+            borderColor: UIColor(named: .ThemeBlue),
             target: self,
             action: #selector(FilterBar.buttonDidTap(_:))
         )
@@ -51,7 +51,7 @@ class FilterBar: UIView {
     private lazy var styleButton: UIButton = {
         let styleButton = UIButton(
             title: "不  限",
-            borderColor: MalaColor_8FBCDD_0,
+            borderColor: UIColor(named: .ThemeBlue),
             target: self,
             action: #selector(FilterBar.buttonDidTap(_:))
         )

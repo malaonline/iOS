@@ -126,7 +126,7 @@ class ThemeShareCollectionViewCell: UICollectionViewCell {
         let label = UILabel(
             text: "",
             fontSize: 13,
-            textColor: MalaColor_6C6C6C_0
+            textColor: UIColor(named: .ArticleSubTitle)
         )
         label.textAlignment = .center
         return label

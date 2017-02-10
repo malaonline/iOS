@@ -27,7 +27,7 @@ class LearningReportTitlePageCell: MalaBaseCardCell {
         let label = UILabel(
             text: "",
             fontSize: 16,
-            textColor: MalaColor_5E5E5E_0
+            textColor: UIColor(named: .ChartLabel)
         )
         return label
     }()
@@ -43,7 +43,7 @@ class LearningReportTitlePageCell: MalaBaseCardCell {
             fontSize: 10,
             textColor: UIColor.white
         )
-        label.backgroundColor = MalaColor_FDAF6B_0
+        label.backgroundColor = UIColor(named: .ChartDateText)
         label.textAlignment = .center
         return label
     }()
@@ -57,7 +57,7 @@ class LearningReportTitlePageCell: MalaBaseCardCell {
         let label = UILabel(
             text: "学生姓名：",
             fontSize: 12,
-            textColor: MalaColor_8DBEDE_0
+            textColor: UIColor(named: .OptionSelectColor)
         )
         return label
     }()
@@ -66,7 +66,7 @@ class LearningReportTitlePageCell: MalaBaseCardCell {
         let label = UILabel(
             text: "",
             fontSize: 12,
-            textColor: MalaColor_939393_0
+            textColor: UIColor(named: .HeaderTitle)
         )
         return label
     }()
@@ -80,7 +80,7 @@ class LearningReportTitlePageCell: MalaBaseCardCell {
         let label = UILabel(
             text: "所在年级：",
             fontSize: 12,
-            textColor: MalaColor_8DBEDE_0
+            textColor: UIColor(named: .OptionSelectColor)
         )
         return label
     }()
@@ -89,7 +89,7 @@ class LearningReportTitlePageCell: MalaBaseCardCell {
         let label = UILabel(
             text: "",
             fontSize: 12,
-            textColor: MalaColor_939393_0
+            textColor: UIColor(named: .HeaderTitle)
         )
         return label
     }()
@@ -115,7 +115,7 @@ class LearningReportTitlePageCell: MalaBaseCardCell {
     // MARK: - Private Method
     private func setupUserInterface() {
         // Style
-        contentView.backgroundColor = MalaColor_F2F2F2_0
+        contentView.backgroundColor = UIColor(named: .CardBackground)
         
         // SubViews
         layoutView.addSubview(titleLabel)

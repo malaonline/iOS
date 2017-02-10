@@ -72,13 +72,12 @@ open class TeacherFilterPopupWindow: UIViewController {
         let themeTitle = UILabel()
         themeTitle.font = UIFont(name: "HelveticaNeue", size: 15)
         themeTitle.backgroundColor = UIColor.white
-        themeTitle.textColor = MalaColor_939393_0
+        themeTitle.textColor = UIColor(named: .HeaderTitle)
         themeTitle.text = self.tTitle
         return themeTitle
     }()
     private lazy var separator: UIView = {
-        let separator = UIView()
-        separator.backgroundColor = MalaColor_DADADA_0
+        let separator = UIView(UIColor(named: .SeparatorLine))
         return separator
     }()
     private lazy var contentContainer: UIView = {
@@ -90,11 +89,11 @@ open class TeacherFilterPopupWindow: UIViewController {
         let pageControl = UIPageControl()
         pageControl.currentPage = 0
         pageControl.numberOfPages = 3
-        pageControl.pageIndicatorTintColor = MalaColor_C7DEEE_0
-        pageControl.currentPageIndicatorTintColor = MalaColor_82B4D9_0
+        pageControl.pageIndicatorTintColor = UIColorFromHex(0xC7DEEE)
+        pageControl.currentPageIndicatorTintColor = UIColor(named: .ThemeBlue)
         
         // 添加横线
-        let view = UIView(MalaColor_C7DEEE_0)
+        let view = UIView(UIColor(named: .SeparatorLine))
         pageControl.addSubview(view)
         view.snp.makeConstraints({ (maker) in
             maker.left.equalTo(pageControl)

@@ -147,7 +147,7 @@ class FilterSectionHeaderView: UICollectionReusableView {
         let titleLabel = UILabel(
             text: "小学",
             fontSize: 13,
-            textColor: MalaColor_939393_0,
+            textColor: UIColor(named: .HeaderTitle),
             textAlignment: .center
         )
         titleLabel.sizeToFit()

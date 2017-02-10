@@ -529,6 +529,12 @@
 		A2A4F7446A4B188ACFB1088E /* Pods_parentTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E70F673BEA60E7C90A5D42A1 /* Pods_parentTests.framework */; };
 		BE0345859A399C0553F20A0B /* Pods_parent_stage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61B118D1E2CC01D0D747BD92 /* Pods_parent_stage.framework */; };
 		F402C9961C4F69C100E229FA /* TeacherTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F402C9941C4F69C100E229FA /* TeacherTableView.swift */; };
+		F40360CF1E4DA2E600664152 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40360CE1E4DA2E600664152 /* Colors.swift */; };
+		F40360D01E4DA2E600664152 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40360CE1E4DA2E600664152 /* Colors.swift */; };
+		F40360D11E4DA2E600664152 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40360CE1E4DA2E600664152 /* Colors.swift */; };
+		F40360D31E4DA3AB00664152 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40360D21E4DA3AB00664152 /* Images.swift */; };
+		F40360D41E4DA3AB00664152 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40360D21E4DA3AB00664152 /* Images.swift */; };
+		F40360D51E4DA3AB00664152 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40360D21E4DA3AB00664152 /* Images.swift */; };
 		F407DA041DDE9FDB00C4ABB5 /* ProfileItemViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F407DA031DDE9FDB00C4ABB5 /* ProfileItemViewCell.swift */; };
 		F407DA051DDE9FDB00C4ABB5 /* ProfileItemViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F407DA031DDE9FDB00C4ABB5 /* ProfileItemViewCell.swift */; };
 		F407DA061DDE9FDB00C4ABB5 /* ProfileItemViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F407DA031DDE9FDB00C4ABB5 /* ProfileItemViewCell.swift */; };
@@ -1064,6 +1070,8 @@
 		E70F673BEA60E7C90A5D42A1 /* Pods_parentTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_parentTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F12B72CA706C78F519A08F8A /* Pods-parent-prd.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-parent-prd.debug.xcconfig"; path = "Pods/Target Support Files/Pods-parent-prd/Pods-parent-prd.debug.xcconfig"; sourceTree = "<group>"; };
 		F402C9941C4F69C100E229FA /* TeacherTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeacherTableView.swift; sourceTree = "<group>"; };
+		F40360CE1E4DA2E600664152 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		F40360D21E4DA3AB00664152 /* Images.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
 		F407DA031DDE9FDB00C4ABB5 /* ProfileItemViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileItemViewCell.swift; sourceTree = "<group>"; };
 		F407DA071DDEA12B00C4ABB5 /* ProfileItemCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		F40B53AB1C7ED80800C20037 /* MalaService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MalaService.swift; sourceTree = "<group>"; };
@@ -1531,6 +1539,7 @@
 		304135871C23AE6400830C43 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				F40360CD1E4DA2B000664152 /* UI */,
 				F4C5C2431C75D35400FB833B /* EvaluationFiling */,
 				F4D0D19B1CA2BF0500B25704 /* JPush */,
 				F4FF66D51DB751DC0036E299 /* pulltorefresharrow.png */,
@@ -1709,6 +1718,15 @@
 				9CC92B14F9947764A79215B8 /* Pods-parent-stage.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		F40360CD1E4DA2B000664152 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				F40360D21E4DA3AB00664152 /* Images.swift */,
+				F40360CE1E4DA2E600664152 /* Colors.swift */,
+			);
+			path = UI;
 			sourceTree = "<group>";
 		};
 		F40B53C61C83F96300C20037 /* PaymentView */ = {
@@ -2732,6 +2750,7 @@
 				F4CECE6C1DD74FFF00E64B58 /* PageLoadable.swift in Sources */,
 				30E336761C28061700DCF1C5 /* GradeModel.swift in Sources */,
 				F465F13F1DB4A5F20025D867 /* LiveClassModel.swift in Sources */,
+				F40360D31E4DA3AB00664152 /* Images.swift in Sources */,
 				F48BBAD41CE57D1500774297 /* OrderFormTableView.swift in Sources */,
 				F40D896E1C7EAFB100BD6871 /* MalaLog.swift in Sources */,
 				307AB8A01C33CDD200D8397F /* HighScoreModel.swift in Sources */,
@@ -2755,6 +2774,7 @@
 				F46065241C97B168004056B1 /* TeacherDetailsController.swift in Sources */,
 				F4CECD861DD452F800E64B58 /* QRPaymentViewController.swift in Sources */,
 				F48F12C31DAB7A9C006A2F5C /* UIView+Radius.swift in Sources */,
+				F40360CF1E4DA2E600664152 /* Colors.swift in Sources */,
 				F460650C1C96D363004056B1 /* UIImageView+Navi.swift in Sources */,
 				F40B53B01C7EEA2800C20037 /* Extension+NSURLRequest.swift in Sources */,
 				F49432D81D237B34001C4D22 /* FilterBar.swift in Sources */,
@@ -2989,6 +3009,7 @@
 				F4CECE6D1DD74FFF00E64B58 /* PageLoadable.swift in Sources */,
 				35FF7A781CF8325A000A70EE /* GradeModel.swift in Sources */,
 				F465F1401DB4A5F20025D867 /* LiveClassModel.swift in Sources */,
+				F40360D41E4DA3AB00664152 /* Images.swift in Sources */,
 				35FF7A791CF8325A000A70EE /* OrderFormTableView.swift in Sources */,
 				35FF7A7A1CF8325A000A70EE /* MalaLog.swift in Sources */,
 				35FF7A7B1CF8325A000A70EE /* HighScoreModel.swift in Sources */,
@@ -3012,6 +3033,7 @@
 				35FF7A861CF8325A000A70EE /* UIImageView+Navi.swift in Sources */,
 				F4CECD871DD452F800E64B58 /* QRPaymentViewController.swift in Sources */,
 				F48F12C41DAB7A9C006A2F5C /* UIView+Radius.swift in Sources */,
+				F40360D01E4DA2E600664152 /* Colors.swift in Sources */,
 				35FF7A871CF8325A000A70EE /* Extension+NSURLRequest.swift in Sources */,
 				35FF7A891CF8325A000A70EE /* Common.swift in Sources */,
 				F49432D91D237B34001C4D22 /* FilterBar.swift in Sources */,
@@ -3246,6 +3268,7 @@
 				F4CECE6E1DD74FFF00E64B58 /* PageLoadable.swift in Sources */,
 				35FF7B5B1CF83264000A70EE /* GradeModel.swift in Sources */,
 				F465F1411DB4A5F20025D867 /* LiveClassModel.swift in Sources */,
+				F40360D51E4DA3AB00664152 /* Images.swift in Sources */,
 				35FF7B5C1CF83264000A70EE /* OrderFormTableView.swift in Sources */,
 				35FF7B5D1CF83264000A70EE /* MalaLog.swift in Sources */,
 				35FF7B5E1CF83264000A70EE /* HighScoreModel.swift in Sources */,
@@ -3269,6 +3292,7 @@
 				35FF7B691CF83264000A70EE /* UIImageView+Navi.swift in Sources */,
 				F4CECD881DD452F800E64B58 /* QRPaymentViewController.swift in Sources */,
 				F48F12C51DAB7A9C006A2F5C /* UIView+Radius.swift in Sources */,
+				F40360D11E4DA2E600664152 /* Colors.swift in Sources */,
 				35FF7B6A1CF83264000A70EE /* Extension+NSURLRequest.swift in Sources */,
 				35FF7B6C1CF83264000A70EE /* Common.swift in Sources */,
 				F49432DA1D237B34001C4D22 /* FilterBar.swift in Sources */,

@@ -77,7 +77,7 @@ class CityTableViewController: UIViewController, UITableViewDelegate, UITableVie
         // tableView Style
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.backgroundColor = MalaColor_F6F7F9_0
+        tableView.backgroundColor = UIColor(named: .BaseBoard)
         tableView.separatorStyle = .none
         tableView.register(RegionUnitCell.self, forCellReuseIdentifier: CityTableViewCellReuseId)
         

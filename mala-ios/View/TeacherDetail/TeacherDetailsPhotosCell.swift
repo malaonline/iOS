@@ -26,7 +26,7 @@ class TeacherDetailsPhotosCell: MalaBaseCell {
         let button = UIButton()
         button.setImage(UIImage(named: "rightArrow"), for: UIControlState())
         button.setTitle("更多", for: UIControlState())
-        button.setTitleColor(MalaColor_939393_0, for: UIControlState())
+        button.setTitleColor(UIColor(named: .HeaderTitle), for: UIControlState())
         button.titleLabel?.font = UIFont.systemFont(ofSize: 12)
         button.titleEdgeInsets = UIEdgeInsets(top: 0, left: -10, bottom: 0, right: 10)
         button.imageEdgeInsets = UIEdgeInsets(top: 0, left: 24, bottom: 0, right: -24)

@@ -28,7 +28,7 @@ class LiveCourseDetailLecturerCell: MalaBaseLiveCourseCell {
         let label = UILabel(
             text: "老师姓名",
             font: UIFont(name: "PingFang-SC-Light", size: 15),
-            textColor: MalaColor_333333_0
+            textColor: UIColor(named: .ArticleTitle)
         )
         return label
     }()
@@ -37,7 +37,7 @@ class LiveCourseDetailLecturerCell: MalaBaseLiveCourseCell {
         let label = UILabel(
             text: "",
             font: UIFont(name: "STHeitiSC-Light", size: 14),
-            textColor: MalaColor_636363_0
+            textColor: UIColor(named: .ArticleText)
         )
         label.numberOfLines = 0
         return label

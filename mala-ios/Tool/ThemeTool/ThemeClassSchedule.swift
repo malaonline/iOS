@@ -38,8 +38,8 @@ class ThemeClassSchedule: UICollectionView, UICollectionViewDelegate, UICollecti
     private func configure() {
         delegate = self
         dataSource = self
-        backgroundColor = MalaColor_88BCDE_0
-        self.layer.borderColor = MalaColor_88BCDE_0.cgColor
+        backgroundColor = UIColor(named: .ChartBlue)
+        self.layer.borderColor = UIColor(named: .ChartBlue).cgColor
         self.layer.borderWidth = 1
         
         register(ThemeClassScheduleCell.self, forCellWithReuseIdentifier: ThemeClassScheduleCellReuseId)
@@ -185,9 +185,9 @@ class ThemeClassScheduleCell: UICollectionViewCell {
     lazy var button: UIButton = {
         let button = UIButton()
         button.setBackgroundImage(UIImage.withColor(UIColor.white), for: UIControlState())
-        button.setBackgroundImage(UIImage.withColor(MalaColor_EDEDED_0), for: .disabled)
-        button.setBackgroundImage(UIImage.withColor(MalaColor_ABD0E8_0), for: .selected)
-        button.setBackgroundImage(UIImage.withColor(MalaColor_88BCDE_0), for: .highlighted)
+        button.setBackgroundImage(UIImage.withColor(UIColor(named: .RegularBackground)), for: .disabled)
+        button.setBackgroundImage(UIImage.withColor(UIColor(named: .ThemeBlue)), for: .selected)
+        button.setBackgroundImage(UIImage.withColor(UIColor(named: .ChartBlue)), for: .highlighted)
         button.isUserInteractionEnabled = false
         return button
     }()
@@ -205,7 +205,7 @@ class ThemeClassScheduleCell: UICollectionViewCell {
         let startLabel = UILabel()
         startLabel.text = "00:00"
         startLabel.font = UIFont.systemFont(ofSize: 12)
-        startLabel.textColor = MalaColor_939393_0
+        startLabel.textColor = UIColor(named: .HeaderTitle)
         startLabel.backgroundColor = UIColor.clear
         startLabel.isHidden = true
         startLabel.textAlignment = .center
@@ -216,7 +216,7 @@ class ThemeClassScheduleCell: UICollectionViewCell {
         let endLabel = UILabel()
         endLabel.text = "00:00"
         endLabel.font = UIFont.systemFont(ofSize: 12)
-        endLabel.textColor = MalaColor_939393_0
+        endLabel.textColor = UIColor(named: .HeaderTitle)
         endLabel.backgroundColor = UIColor.clear
         endLabel.isHidden = true
         endLabel.textAlignment = .center

@@ -78,7 +78,7 @@ class OrderFormViewController: BaseTableViewController {
         defaultView.imageName = "no_order"
         defaultView.text = "没有订单"
         
-        tableView.backgroundColor = MalaColor_EDEDED_0
+        tableView.backgroundColor = UIColor(named: .RegularBackground)
         tableView.separatorStyle = .none
         refreshControl = refresher
         

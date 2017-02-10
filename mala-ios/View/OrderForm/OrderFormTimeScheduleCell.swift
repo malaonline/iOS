@@ -41,7 +41,7 @@ class OrderFormTimeScheduleCell: UITableViewCell {
     }()
     /// 分割线
     private lazy var separatorLine: UIView = {
-        let view = UIView(MalaColor_F2F2F2_0)
+        let view = UIView(UIColor(named: .CardBackground))
         return view
     }()
     /// cell标题
@@ -49,7 +49,7 @@ class OrderFormTimeScheduleCell: UITableViewCell {
         let label = UILabel(
             text: "上课时间",
             fontSize: 15,
-            textColor: MalaColor_84B3D7_0
+            textColor: UIColor(named: .ThemeTextBlue)
         )
         return label
     }()
@@ -58,7 +58,7 @@ class OrderFormTimeScheduleCell: UITableViewCell {
         let label = UILabel(
             text: "0",
             fontSize: 13,
-            textColor: MalaColor_333333_0
+            textColor: UIColor(named: .ArticleTitle)
         )
         return label
     }()
@@ -66,7 +66,7 @@ class OrderFormTimeScheduleCell: UITableViewCell {
         let label = UILabel(
             text: "共计",
             fontSize: 13,
-            textColor: MalaColor_6C6C6C_0
+            textColor: UIColor(named: .ArticleSubTitle)
         )
         return label
     }()
@@ -74,7 +74,7 @@ class OrderFormTimeScheduleCell: UITableViewCell {
         let label = UILabel(
             text: "课时",
             fontSize: 13,
-            textColor: MalaColor_6C6C6C_0
+            textColor: UIColor(named: .ArticleSubTitle)
         )
         return label
     }()
@@ -96,7 +96,7 @@ class OrderFormTimeScheduleCell: UITableViewCell {
     // MARK: - Private Method
     private func setupUserInterface() {
         // Style
-        contentView.backgroundColor = MalaColor_F2F2F2_0
+        contentView.backgroundColor = UIColor(named: .CardBackground)
         
         // SubViews
         contentView.addSubview(content)

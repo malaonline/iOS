@@ -11,7 +11,7 @@ import UIKit
 private struct PagingMenuOptions: PagingMenuControllerCustomizable {
     
     var backgroundColor: UIColor {
-        return MalaColor_EDEDED_0
+        return UIColor(named: .RegularBackground)
     }
     
     fileprivate var componentType: ComponentType {
@@ -20,10 +20,10 @@ private struct PagingMenuOptions: PagingMenuControllerCustomizable {
     
     fileprivate struct MenuOptions: MenuViewCustomizable {
         var backgroundColor: UIColor {
-            return MalaColor_FDFDFD_0
+            return UIColor(named: .OptionBackground)
         }
         var selectedBackgroundColor: UIColor {
-            return MalaColor_FDFDFD_0
+            return UIColor(named: .OptionBackground)
         }
         var displayMode: MenuDisplayMode {
             return .segmentedControl
@@ -32,18 +32,31 @@ private struct PagingMenuOptions: PagingMenuControllerCustomizable {
             return [MenuItem1(), MenuItem2()]
         }
         var focusMode: MenuFocusMode {
-            return .underline(height: 2, color: MalaColor_8DBEDE_0, horizontalPadding: 30, verticalPadding: 0)
+            return .underline(
+                height: 2,
+                color: UIColor(named: .OptionSelectColor),
+                horizontalPadding: 30,
+                verticalPadding: 0
+            )
         }
     }
     
     fileprivate struct MenuItem1: MenuItemViewCustomizable {
         var displayMode: MenuItemDisplayMode {
-            return .text(title: MenuItemText(text: "微信支付", color: MalaColor_7E7E7E_0, selectedColor: MalaColor_8DBEDE_0))
+            return .text(title: MenuItemText(
+                text: "微信支付",
+                color: UIColor(named: .OptionTitle),
+                selectedColor: UIColor(named: .OptionSelectColor)
+            ))
         }
     }
     fileprivate struct MenuItem2: MenuItemViewCustomizable {
         var displayMode: MenuItemDisplayMode {
-            return .text(title: MenuItemText(text: "支付宝支付", color: MalaColor_7E7E7E_0, selectedColor: MalaColor_8DBEDE_0))
+            return .text(title: MenuItemText(
+                text: "支付宝支付",
+                color: UIColor(named: .OptionTitle),
+                selectedColor: UIColor(named: .OptionSelectColor)
+            ))
         }
     }
 }
@@ -61,14 +74,14 @@ class QRPaymentViewController: BaseViewController {
     private lazy var tipFinishString: UILabel = {
         let label = UILabel(
             font: UIFont(name: "PingFang-SC-Regular", size: 12),
-            textColor: MalaColor_636363_0
+            textColor: UIColor(named: .ArticleText)
         )
         
         let string = "家长完成支付后 点击支付完成按钮"
         let attrString = NSMutableAttributedString(string: string)
         attrString.addAttribute(
             NSForegroundColorAttributeName,
-            value: MalaColor_9BC3E1_0,
+            value: UIColor(named: .ThemeBlue),
             range: NSMakeRange(10, 4)
         )
         attrString.addAttribute(
@@ -83,7 +96,7 @@ class QRPaymentViewController: BaseViewController {
     /// 支付按钮
     private lazy var confirmButton: UIButton = {
         let button = UIButton()
-        button.setBackgroundImage(UIImage.withColor(MalaColor_9BC3E1_0), for: .normal)
+        button.setBackgroundImage(UIImage.withColor(UIColor(named: .ThemeBlue)), for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 15)
         button.setTitle("支付完成", for: .normal)
         button.setTitleColor(UIColor.white, for: .normal)
@@ -114,7 +127,7 @@ class QRPaymentViewController: BaseViewController {
     private func setupUserInterface() {
         // Style
         title = "扫码支付"
-        view.backgroundColor = MalaColor_F2F2F2_0
+        view.backgroundColor = UIColor(named: .CardBackground)
         
         // SubViews
         view.addSubview(qrView)

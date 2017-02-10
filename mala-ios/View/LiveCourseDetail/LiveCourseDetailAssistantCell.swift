@@ -27,7 +27,7 @@ class LiveCourseDetailAssistantCell: MalaBaseLiveCourseCell {
         let label = UILabel(
             text: "助教",
             font: UIFont(name: "PingFang-SC-Light", size: 14),
-            textColor: MalaColor_636363_0
+            textColor: UIColor(named: .ArticleText)
         )
         return label
     }()
@@ -36,7 +36,7 @@ class LiveCourseDetailAssistantCell: MalaBaseLiveCourseCell {
         let label = UILabel(
             text: "对课程有疑问？快打电话咨询助教老师吧！",
             font: UIFont(name: "STHeitiSC-Light", size: 13),
-            textColor: MalaColor_939393_0
+            textColor: UIColor(named: .HeaderTitle)
         )
         label.numberOfLines = 0
         return label

@@ -81,11 +81,11 @@ open class CourseTableViewController: UIViewController, UITableViewDataSource, U
     private lazy var saveButton: UIButton = {
         let saveButton = UIButton(
             title: "今天",
-            titleColor: MalaColor_82B4D9_0,
+            titleColor: UIColor(named: .ThemeBlue),
             target: self,
             action: #selector(CourseTableViewController.scrollToToday)
         )
-        saveButton.setTitleColor(MalaColor_E0E0E0_95, for: .disabled)
+        saveButton.setTitleColor(UIColor(named: .Disabled), for: .disabled)
         return saveButton
     }()
     /// 导航栏TitleView
@@ -93,7 +93,7 @@ open class CourseTableViewController: UIViewController, UITableViewDataSource, U
         let label = UILabel(
             text: "课表",
             fontSize: 16,
-            textColor: MalaColor_000000_0
+            textColor: UIColor.black
         )
         return label
     }()

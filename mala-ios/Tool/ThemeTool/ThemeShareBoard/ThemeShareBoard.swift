@@ -22,7 +22,7 @@ class ThemeShareBoard: UIView {
     // MARK: - Components
     /// 父布局容器（白色卡片）
     private lazy var content: UIView = {
-        let view = UIView(MalaColor_F2F2F2_95)
+        let view = UIView(UIColor(named: .SharedBoard))
         return view
     }()
     /// 标题标签
@@ -30,7 +30,7 @@ class ThemeShareBoard: UIView {
         let label = UILabel(
             text: "分享到",
             fontSize: 15,
-            textColor: MalaColor_939393_0
+            textColor: UIColor(named: .HeaderTitle)
         )
         return label
     }()

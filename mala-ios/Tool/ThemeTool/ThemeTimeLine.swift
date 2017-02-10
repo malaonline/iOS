@@ -98,8 +98,8 @@ class ThemeTimeLine: UIView, CAAnimationDelegate {
             let label = UILabel()
             label.text = string
             label.numberOfLines = 0
-            label.textColor = MalaColor_6C6C6C_0
-//            label.textColor = i < currentStatus ? MalaColor_6C6C6C_0 : MalaColor_E5E5E5_0
+            label.textColor = UIColor(named: .ArticleSubTitle)
+//            label.textColor = i < currentStatus ? UIColor(named: .ArticleSubTitle) : UIColor(named: .SeparatorLine)
             label.textAlignment = .left
             label.font = UIFont.systemFont(ofSize: 14)
             self.progressDescriptionViewContainer.addSubview(label)
@@ -178,8 +178,8 @@ class ThemeTimeLine: UIView, CAAnimationDelegate {
             let label = UILabel()
             label.text = string
             label.numberOfLines = 0
-            label.textColor = MalaColor_333333_0
-//            label.textColor = i < currentStatus ? MalaColor_82B4D9_0 : MalaColor_E5E5E5_0
+            label.textColor = UIColor(named: .ArticleTitle)
+//            label.textColor = i < currentStatus ? UIColor(named: .ThemeBlue) : UIColor(named: .SeparatorLine)
             label.textAlignment = .right
             label.font = UIFont.systemFont(ofSize: 12)
             self.timeViewContainer.addSubview(label)

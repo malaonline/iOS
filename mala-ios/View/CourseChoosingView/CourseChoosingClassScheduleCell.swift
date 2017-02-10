@@ -119,7 +119,7 @@ open class LegendView: UIView {
         
         button.setTitle(title, for: UIControlState())
         button.titleLabel?.font = UIFont.systemFont(ofSize: 12)
-        button.setTitleColor(MalaColor_939393_0, for: UIControlState())
+        button.setTitleColor(UIColor(named: .HeaderTitle), for: UIControlState())
         
         button.sizeToFit()
         button.frame.origin.x = (currentX == 3 ? currentX : currentX+(offset ?? 12)+3)
