@@ -48,8 +48,8 @@ class CourseChoosingTimeScheduleCell: MalaBaseCell {
     /// 展开按钮
     private lazy var detailButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(named: "dropArrow"), for: UIControlState())
-        button.setImage(UIImage(named: "upArrow"), for: .selected)
+        button.setImage(UIImage(asset: .dropArrow), for: UIControlState())
+        button.setImage(UIImage(asset: .upArrow), for: .selected)
         button.addTarget(self, action: #selector(CourseChoosingTimeScheduleCell.detailButtonDidTap), for: .touchUpInside)
         return button
     }()

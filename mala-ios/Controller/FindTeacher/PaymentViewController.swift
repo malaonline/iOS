@@ -175,7 +175,7 @@ class PaymentViewController: BaseViewController {
                         let alert = JSSAlertView().show(self,
                                                         title: "部分课程时间已被占用，请重新选择上课时间",
                                                         buttonText: "重新选课",
-                                                        iconImage: UIImage(named: "alert_PaymentFail")
+                                                        iconImage: UIImage(asset: .alertPaymentFail)
                         )
                         alert.addAction(self.forcePop)
                     }else {

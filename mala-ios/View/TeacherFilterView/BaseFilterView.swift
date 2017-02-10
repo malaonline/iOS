@@ -126,11 +126,11 @@ class FilterSectionHeaderView: UICollectionReusableView {
             titleLabel.text = sectionTitleText
             switch sectionTitleText {
             case "小学":
-                iconView.image = UIImage(named: "primarySchool")
+                iconView.image = UIImage(asset: .primarySchool)
             case "初中":
-                iconView.image = UIImage(named: "juniorHigh")
+                iconView.image = UIImage(asset: .juniorHigh)
             case "高中":
-                iconView.image = UIImage(named: "seniorHigh")
+                iconView.image = UIImage(asset: .seniorHigh)
             default:
                 break
             }

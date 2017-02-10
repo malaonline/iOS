@@ -142,7 +142,7 @@ open class MalaPhotoBrowserCell: UICollectionViewCell {
     /// 图片视图
     lazy var contentImageView: UIImageView = {
         let contentImageView = UIImageView.placeHolder()
-        contentImageView.image = UIImage(named: "detailPicture_placeholder")
+        contentImageView.image = UIImage(asset: .detailPicturePlaceholder)
         return contentImageView
     }()
     

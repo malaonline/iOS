@@ -47,23 +47,23 @@ open class TeacherFilterPopupWindow: UIViewController {
     }()
     private lazy var closeButton: UIButton = {
         let closeButton = UIButton()
-        closeButton.setBackgroundImage(UIImage(named: "close_normal"), for: .normal)
-        closeButton.setBackgroundImage(UIImage(named: "close_press"), for: .selected)
+        closeButton.setBackgroundImage(UIImage(asset: .closeNormal), for: .normal)
+        closeButton.setBackgroundImage(UIImage(asset: .closePress), for: .selected)
         closeButton.addTarget(self, action: #selector(TeacherFilterPopupWindow.pressed(_:)), for: .touchUpInside)
         return closeButton
     }()
     private lazy var cancelButton: UIButton = {
         let cancelButton = UIButton()
-        cancelButton.setBackgroundImage(UIImage(named: "leftArrow_normal"), for: .normal)
-        cancelButton.setBackgroundImage(UIImage(named: "leftArrow_press"), for: .selected)
+        cancelButton.setBackgroundImage(UIImage(asset: .leftArrowNormal), for: .normal)
+        cancelButton.setBackgroundImage(UIImage(asset: .leftArrowPress), for: .selected)
         cancelButton.addTarget(self, action: #selector(TeacherFilterPopupWindow.cancelButtonDidTap), for: .touchUpInside)
         cancelButton.isHidden = true
         return cancelButton
     }()
     private lazy var confirmButton: UIButton = {
         let confirmButton = UIButton()
-        confirmButton.setBackgroundImage(UIImage(named: "confirm_normal"), for: .normal)
-        confirmButton.setBackgroundImage(UIImage(named: "confirm_press"), for: .selected)
+        confirmButton.setBackgroundImage(UIImage(asset: .confirmNormal), for: .normal)
+        confirmButton.setBackgroundImage(UIImage(asset: .confirmPress), for: .selected)
         confirmButton.addTarget(self, action: #selector(TeacherFilterPopupWindow.confirmButtonDidTap), for: .touchUpInside)
         confirmButton.isHidden = true
         return confirmButton

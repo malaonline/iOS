@@ -127,7 +127,7 @@ class ThemeIntroductionViewCell: UICollectionViewCell {
     /// 会员专享模型
     var model: IntroductionModel? {
         didSet {
-            imageView.image = UIImage(named: (model?.image ?? "")+"_detail")
+            imageView.image = UIImage(named: (model?.image?.rawValue ?? "") + "_detail")
             titleLabel.text = model?.title
             detailLabel.text = model?.subTitle
         }

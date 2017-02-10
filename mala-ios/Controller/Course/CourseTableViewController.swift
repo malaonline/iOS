@@ -48,7 +48,7 @@ open class CourseTableViewController: UIViewController, UITableViewDataSource, U
     /// "跳转最近的未上课程"按钮
     private lazy var goTopButton: UIButton = {
         let button = UIButton()
-        button.setBackgroundImage(UIImage(named: "goTop"), for: UIControlState())
+        button.setBackgroundImage(UIImage(asset: .goTop), for: UIControlState())
         button.addTarget(self, action: #selector(CourseTableViewController.scrollToToday), for: .touchUpInside)
         button.isHidden = true
         return button

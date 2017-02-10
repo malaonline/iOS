@@ -172,7 +172,7 @@ class ThemeClassScheduleCell: UICollectionViewCell {
     var reserved: Bool = false {
         didSet {
             if reserved {
-                button.setBackgroundImage(UIImage(named: "timeSlot_bought"), for: UIControlState())
+                button.setBackgroundImage(UIImage(asset: .timeSlotBought), for: UIControlState())
             }else {
                 button.setBackgroundImage(UIImage.withColor(UIColor.white), for: UIControlState())
             }

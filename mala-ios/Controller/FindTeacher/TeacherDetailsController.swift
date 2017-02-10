@@ -486,13 +486,13 @@ class TeacherDetailsController: BaseViewController, UIGestureRecognizerDelegate,
     }
 
     override func turnBackButtonBlack() {
-        leftBarButton.setImage(UIImage(named: "leftArrow_black"), for: UIControlState())
-        shareButton.setImage(UIImage(named: "share_press"), for: UIControlState())
+        leftBarButton.setImage(UIImage(asset: .leftArrowBlack), for: UIControlState())
+        shareButton.setImage(UIImage(asset: .sharePress), for: UIControlState())
     }
     
     override func turnBackButtonWhite() {
-        leftBarButton.setImage(UIImage(named: "leftArrow_white"), for: UIControlState())
-        shareButton.setImage(UIImage(named: "share_normal"), for: UIControlState())
+        leftBarButton.setImage(UIImage(asset: .leftArrowWhite), for: UIControlState())
+        shareButton.setImage(UIImage(asset: .shareNormal), for: UIControlState())
     }
     
     deinit {

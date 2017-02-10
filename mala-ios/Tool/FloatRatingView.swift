@@ -153,8 +153,8 @@ open class FloatRatingView: UIView {
     private func setupUserInterface() {
         
         // Required float rating view params
-        self.emptyImage = UIImage(named: "starEmpty")
-        self.fullImage = UIImage(named: "starFull")
+        self.emptyImage = UIImage(asset: .starEmpty)
+        self.fullImage = UIImage(asset: .starFull)
         
         // Optional params
         self.contentMode = UIViewContentMode.scaleAspectFit

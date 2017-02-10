@@ -29,7 +29,7 @@ class ProfileViewHeaderView: UIView {
         }
     }
     /// 用户头像
-    var avatar: UIImage = UIImage(named: "profileAvatar_placeholder") ?? UIImage() {
+    var avatar: UIImage = UIImage(asset: .profileAvatarPlaceholder) ?? UIImage() {
         didSet {
             avatarView.image = avatar
         }
@@ -74,7 +74,7 @@ class ProfileViewHeaderView: UIView {
     /// 姓名修改按钮
     private lazy var editButton: UIButton = {
         let button = UIButton()
-        button.setBackgroundImage(UIImage(named: "edit_icon"), for: UIControlState())
+        button.setBackgroundImage(UIImage(asset: .editIcon), for: UIControlState())
         button.addTarget(self, action: #selector(ProfileViewHeaderView.nameEditButtonDidTap(_:)), for: .touchUpInside)
         return button
     }()

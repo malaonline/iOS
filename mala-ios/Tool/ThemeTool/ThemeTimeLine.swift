@@ -140,7 +140,7 @@ class ThemeTimeLine: UIView, CAAnimationDelegate {
             
             /// 最后一个时间点
             if i == (self.dataCount-1) {
-                line.image = UIImage(named: "time_point")
+                line.image = UIImage(asset: .timePoint)
                 line.snp.makeConstraints({ (maker) in
                     maker.centerX.equalTo(progressViewContainer)
                     maker.width.equalTo(9)

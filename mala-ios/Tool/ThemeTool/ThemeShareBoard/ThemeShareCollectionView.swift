@@ -62,7 +62,7 @@ class ThemeShareCollectionView: UICollectionView, UICollectionViewDelegate, UICo
         let shareParames = NSMutableDictionary()
         
         shareParames.ssdkSetupShareParams(byText: teacherModel?.shareText,
-                                                images : (teacherModel?.avatar ?? UIImage(named: "avatar_placeholder")),
+                                                images : (teacherModel?.avatar ?? UIImage(asset: .avatarPlaceholder)),
                                                 url : teacherModel?.shareURL as URL!,
                                                 title : "我在麻辣老师发现一位好老师！",
                                                 type : SSDKContentType.webPage)
@@ -109,7 +109,7 @@ class ThemeShareCollectionViewCell: UICollectionViewCell {
     /// 会员专享模型
     var model: IntroductionModel? {
         didSet {
-            iconView.image = UIImage(named: model?.image ?? "")
+            iconView.image = UIImage(asset: model?.image ?? .none)
             titleLabel.text = model?.title
         }
     }

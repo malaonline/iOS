@@ -78,7 +78,7 @@ open class CommentViewWindow: UIViewController, UITextViewDelegate {
     /// 关闭按钮
     private lazy var closeButton: UIButton = {
         let button = UIButton()
-        button.setBackgroundImage(UIImage(named: "close"), for: UIControlState())
+        button.setBackgroundImage(UIImage(asset: .close), for: UIControlState())
         button.addTarget(self, action: #selector(CommentViewWindow.closeButtonDidTap), for: .touchUpInside)
         return button
     }()

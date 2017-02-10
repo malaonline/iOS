@@ -50,8 +50,8 @@ class PaymentChannelCell: UITableViewCell {
     /// 选择按钮
     private lazy var selectButton: UIButton = {
         let selectButton = UIButton()
-        selectButton.setBackgroundImage(UIImage(named: "unselected"), for: UIControlState())
-        selectButton.setBackgroundImage(UIImage(named: "selected"), for: .selected)
+        selectButton.setBackgroundImage(UIImage(asset: .unselected), for: UIControlState())
+        selectButton.setBackgroundImage(UIImage(asset: .selected), for: .selected)
         // 冻结按钮交互功能，其只作为视觉显示效果使用
         selectButton.isUserInteractionEnabled = false
         return selectButton

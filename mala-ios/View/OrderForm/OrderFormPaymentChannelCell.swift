@@ -17,23 +17,23 @@ class OrderFormPaymentChannelCell: UITableViewCell {
             switch channel {
             case .Alipay:
                 payChannelLabel.text = "支付宝"
-                iconView.image = UIImage(named: "alipay_icon")
+                iconView.image = UIImage(asset: .alipayIcon)
                 break
             case .Wechat:
                 payChannelLabel.text = "微信"
-                iconView.image = UIImage(named: "wechat_icon")
+                iconView.image = UIImage(asset: .wechatIcon)
                 break
             case .AliQR:
                 payChannelLabel.text = "支付宝扫码支付"
-                iconView.image = UIImage(named: "qcpay_icon")
+                iconView.image = UIImage(asset: .qcpayIcon)
                 break
             case .WxQR:
                 payChannelLabel.text = "微信扫码支付"
-                iconView.image = UIImage(named: "qcpay_icon")
+                iconView.image = UIImage(asset: .qcpayIcon)
                 break
             case .QRPay:
                 payChannelLabel.text = "家长代付"
-                iconView.image = UIImage(named: "qcpay_icon")
+                iconView.image = UIImage(asset: .qcpayIcon)
                 break
             case .Other:
                 payChannelLabel.text = "其他支付方式"

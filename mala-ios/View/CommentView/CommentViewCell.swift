@@ -53,9 +53,9 @@ class CommentViewCell: UITableViewCell {
     /// 课程评价状态标示
     private lazy var statusIcon: UIButton = {
         let button = UIButton()
-        button.setBackgroundImage(UIImage(named: "uncomment"), for: UIControlState())
-        button.setBackgroundImage(UIImage(named: "commented"), for: .highlighted)
-        button.setBackgroundImage(UIImage(named: "comment_expired"), for: .disabled)
+        button.setBackgroundImage(UIImage(asset: .uncomment), for: UIControlState())
+        button.setBackgroundImage(UIImage(asset: .commented), for: .highlighted)
+        button.setBackgroundImage(UIImage(asset: .commentExpired), for: .disabled)
         button.setTitle("待 评", for: UIControlState())
         button.setTitle("已 评", for: .highlighted)
         button.setTitle("过 期", for: .disabled)

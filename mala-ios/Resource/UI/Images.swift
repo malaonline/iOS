@@ -19,7 +19,8 @@
 // swiftlint:disable line_length
 
 // swiftlint:disable type_body_length
-enum Asset: String {
+enum ImageAsset: String {
+    case none = ""
     case evaluationFiling1 = "EvaluationFiling1"
     case evaluationFiling2 = "EvaluationFiling2"
     case evaluationFiling3 = "EvaluationFiling3"
@@ -155,6 +156,8 @@ enum Asset: String {
     case radioButtonSelected = "radioButton_selected"
     case radioButtonTap = "radioButton_tap"
     case refreshImage = "refreshImage"
+    case refreshGif2x = "refreshImage@2x.gif"
+    case refreshGif3x = "refreshImage@3x.gif"
     case reportTitleBackground = "reportTitle_background"
     case reportTitleIcon = "reportTitle_icon"
     case rightArrow = "rightArrow"
@@ -200,7 +203,7 @@ enum Asset: String {
 // swiftlint:enable type_body_length
 
 extension Image {
-    convenience init!(asset: Asset) {
+    convenience init!(asset: ImageAsset) {
         self.init(named: asset.rawValue)
     }
 }

@@ -223,27 +223,27 @@ class CouponViewCell: UITableViewCell {
     ///  不可用样式(当前选课条件不满足使用条件)
     private func setStyleDisable() {
         titleLabel.textColor = UIColor(named: .CouponGray)
-        content.image = UIImage(named: "coupon_unvalid")
+        content.image = UIImage(asset: .couponUnvalid)
         statusIcon.isHidden = true
     }
     ///  过期样式(不可用)
     private func setStyleExpired() {
         titleLabel.textColor = UIColor(named: .CouponGray)
-        content.image = UIImage(named: "coupon_unvalid")
+        content.image = UIImage(asset: .couponUnvalid)
         statusIcon.isHidden = false
-        statusIcon.image = UIImage(named: "coupon_expired")
+        statusIcon.image = UIImage(asset: .couponExpired)
     }
     ///  已使用样式(不可用)
     private func setStyleUsed() {
         titleLabel.textColor = UIColor(named: .CouponGray)
-        content.image = UIImage(named: "coupon_unvalid")
+        content.image = UIImage(asset: .couponUnvalid)
         statusIcon.isHidden = false
-        statusIcon.image = UIImage(named: "coupon_used")
+        statusIcon.image = UIImage(asset: .couponUsed)
     }
     ///  未使用样式(可用)
     private func setStyleUnused() {
         titleLabel.textColor = UIColor(named: .ThemeDeepBlue)
-        content.image = UIImage(named: "coupon_valid")
+        content.image = UIImage(asset: .couponValid)
         statusIcon.isHidden = true
     }
 }

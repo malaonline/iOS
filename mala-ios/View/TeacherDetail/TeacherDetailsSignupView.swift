@@ -59,7 +59,7 @@ class TeacherDetailsSignupView: UIView {
     }()
     /// 收藏按钮
     private lazy var likeButton: DOFavoriteButton = {
-        let button = DOFavoriteButton(frame: CGRect(x: 0, y: 0, width: 44, height: 44), image: UIImage(named: "heart"))
+        let button = DOFavoriteButton(frame: CGRect(x: 0, y: 0, width: 44, height: 44), image: UIImage(asset: .heart))
         button.imageColorOn = UIColor(named: .ThemeLikeColor)
         button.circleColor = UIColor(named: .ThemeLikeColor)
         button.lineColor = UIColor(named: .ThemeLikeColor)

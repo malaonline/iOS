@@ -105,7 +105,7 @@ class LearningReportCell: UITableViewCell {
     /// 答题数图例
     private lazy var answerNumberLegend: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(named: "answerNumber"), for: UIControlState())
+        button.setImage(UIImage(asset: .answerNumber), for: UIControlState())
         button.setTitle("答题数", for: UIControlState())
         button.titleLabel?.font = UIFont.systemFont(ofSize: 13)
         button.setTitleColor(UIColor(named: .ArticleText), for: UIControlState())
@@ -115,7 +115,7 @@ class LearningReportCell: UITableViewCell {
     /// 正确率图例
     private lazy var correctRateLegend: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(named: "correctRate"), for: UIControlState())
+        button.setImage(UIImage(asset: .correctRate), for: UIControlState())
         button.setTitle("正确率", for: UIControlState())
         button.titleLabel?.font = UIFont.systemFont(ofSize: 13)
         button.setTitleColor(UIColor(named: .ArticleText), for: UIControlState())

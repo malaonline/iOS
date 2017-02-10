@@ -74,15 +74,15 @@ open class PeriodStepper: UIView, UITextFieldDelegate {
     /// 计数器减按钮
     private lazy  var decrementButton: UIButton = {
         let decrementButton = UIButton()
-        decrementButton.setImage(UIImage(named: "minus"), for: UIControlState())
-        decrementButton.setBackgroundImage(UIImage(named: "grayBackground"), for: UIControlState())
+        decrementButton.setImage(UIImage(asset: .minus), for: UIControlState())
+        decrementButton.setBackgroundImage(UIImage(asset: .grayBackground), for: UIControlState())
         return decrementButton
     }()
     /// 计数器加按钮
     private lazy var incrementButton: UIButton = {
         let incrementButton = UIButton()
-        incrementButton.setImage(UIImage(named: "plus"), for: UIControlState())
-        incrementButton.setBackgroundImage(UIImage(named: "grayBackground"), for: UIControlState())
+        incrementButton.setImage(UIImage(asset: .plus), for: UIControlState())
+        incrementButton.setBackgroundImage(UIImage(asset: .grayBackground), for: UIControlState())
         return incrementButton
     }()
     

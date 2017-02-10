@@ -96,7 +96,7 @@ class EvaluationFilingServiceCell: MalaBaseCell {
     var model: IntroductionModel? {
         didSet {
             title = model?.title
-            contentImageView.image = UIImage(named: (model?.image ?? ""))
+            contentImageView.image = UIImage(asset: model?.image ?? .none)
             contentLabel.text = model?.subTitle
         }
     }

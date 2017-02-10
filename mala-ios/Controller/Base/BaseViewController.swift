@@ -83,11 +83,11 @@ open class BaseViewController: UIViewController {
     }
     
     @objc func turnBackButtonBlack() {
-        backBarButton.setImage(UIImage(named: "leftArrow_black"), for: UIControlState())
+        backBarButton.setImage(UIImage(asset: .leftArrowBlack), for: UIControlState())
     }
     
     @objc func turnBackButtonWhite() {
-        backBarButton.setImage(UIImage(named: "leftArrow"), for: UIControlState())
+        backBarButton.setImage(UIImage(asset: .leftArrow), for: UIControlState())
     }
     
     

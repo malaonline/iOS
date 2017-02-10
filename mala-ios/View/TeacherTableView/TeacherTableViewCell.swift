@@ -60,7 +60,7 @@ class TeacherTableViewCell: UITableViewCell {
     /// 授课年级及科目label
     private lazy var courseLabel: UIButton = {
         let courseLabel = UIButton()
-        courseLabel.setBackgroundImage(UIImage(named: "tagsTitle"), for: UIControlState())
+        courseLabel.setBackgroundImage(UIImage(asset: .tagsTitle), for: UIControlState())
         courseLabel.titleLabel?.font = UIFont.systemFont(ofSize: 11)
         courseLabel.titleEdgeInsets = UIEdgeInsets(top: -1, left: 0, bottom: 1, right: 0)
         courseLabel.isUserInteractionEnabled = false
@@ -92,7 +92,7 @@ class TeacherTableViewCell: UITableViewCell {
         avatarView.frame = CGRect(x: 0, y: 0, width: MalaLayout_AvatarSize, height: MalaLayout_AvatarSize)
         avatarView.layer.cornerRadius = MalaLayout_AvatarSize * 0.5
         avatarView.layer.masksToBounds = true
-        avatarView.image = UIImage(named: "avatar_placeholder")
+        avatarView.image = UIImage(asset: .avatarPlaceholder)
         avatarView.contentMode = .scaleAspectFill
         return avatarView
     }()
@@ -190,6 +190,6 @@ class TeacherTableViewCell: UITableViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        avatarView.image = UIImage(named: "avatar_placeholder")
+        avatarView.image = UIImage(asset: .avatarPlaceholder)
     }
 }

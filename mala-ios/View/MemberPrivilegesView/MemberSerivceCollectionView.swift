@@ -133,7 +133,7 @@ class MemberSerivceCollectionViewCell: UICollectionViewCell {
     /// 会员专享模型
     var model: IntroductionModel? {
         didSet {
-            iconView.image = UIImage(named: model?.image ?? "")
+            iconView.image = UIImage(asset: model?.image ?? .none)
             titleLabel.text = model?.title
         }
     }

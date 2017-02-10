@@ -136,7 +136,7 @@ class MainViewController: UITabBarController, UITabBarControllerDelegate {
         let alert = JSSAlertView().show(viewController,
                                         title: "您有订单尚未支付",
                                         buttonText: "查看订单",
-                                        iconImage: UIImage(named: "alert_PaymentSuccess")
+                                        iconImage: UIImage(asset: .alertPaymentSuccess)
         )
         alert.addAction(switchToProfile)
     }

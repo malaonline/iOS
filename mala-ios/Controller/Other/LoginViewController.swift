@@ -82,7 +82,7 @@ class LoginViewController: UIViewController {
     /// [手机号错误] 提示
     private lazy var phoneError: UIButton = {
         let phoneError = UIButton()
-        phoneError.setImage(UIImage(named: "error"), for: UIControlState())
+        phoneError.setImage(UIImage(asset: .error), for: UIControlState())
         phoneError.setTitleColor(UIColor(named: .OrderStatusRed), for: UIControlState())
         phoneError.titleLabel?.font = UIFont.systemFont(ofSize: 11)
         phoneError.setTitle("手机号错误", for: UIControlState())
@@ -109,7 +109,7 @@ class LoginViewController: UIViewController {
     /// [验证码错误] 提示
     private lazy var codeError: UIButton = {
         let codeError = UIButton()
-        codeError.setImage(UIImage(named: "error"), for: UIControlState())
+        codeError.setImage(UIImage(asset: .error), for: UIControlState())
         codeError.setTitleColor(UIColor(named: .OrderStatusRed), for: UIControlState())
         codeError.titleLabel?.font = UIFont.systemFont(ofSize: 11)
         codeError.setTitle("验证码错误", for: UIControlState())

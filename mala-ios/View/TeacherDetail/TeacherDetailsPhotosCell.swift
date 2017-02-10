@@ -24,7 +24,7 @@ class TeacherDetailsPhotosCell: MalaBaseCell {
     // MARK: - Components
     private lazy var detailButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(named: "rightArrow"), for: UIControlState())
+        button.setImage(UIImage(asset: .rightArrow), for: UIControlState())
         button.setTitle("更多", for: UIControlState())
         button.setTitleColor(UIColor(named: .HeaderTitle), for: UIControlState())
         button.titleLabel?.font = UIFont.systemFont(ofSize: 12)

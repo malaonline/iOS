@@ -349,6 +349,6 @@ class LiveCourseTableViewCell: UITableViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        lecturerAvatar.image = UIImage(named: "avatar_placeholder")
+        lecturerAvatar.image = UIImage(asset: .avatarPlaceholder)
     }
 }

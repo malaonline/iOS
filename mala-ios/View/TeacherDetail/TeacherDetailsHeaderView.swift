@@ -24,11 +24,11 @@ class TeacherDetailsHeaderView: UIView {
             
             /// 教师性别
             if model.gender == "f" {
-                genderIcon.image = UIImage(named: "gender_female")
+                genderIcon.image = UIImage(asset: .genderFemale)
             }else if model.gender == "m" {
-                genderIcon.image = UIImage(named: "gender_male")
+                genderIcon.image = UIImage(asset: .genderMale)
             }else {
-                genderIcon.image = UIImage(named: "")
+                genderIcon.image = UIImage(asset: .none)
             }
             
             /// 教授学科
