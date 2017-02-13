@@ -40,7 +40,7 @@ class OrderFormStatusCell: UITableViewCell {
         let label = UILabel(
             text: "订单状态",
             fontSize: 15,
-            textColor: MalaColor_84B3D7_0
+            textColor: UIColor(named: .ThemeTextBlue)
         )
         return label
     }()
@@ -49,13 +49,13 @@ class OrderFormStatusCell: UITableViewCell {
         let label = UILabel(
             text: "状态",
             fontSize: 13,
-            textColor: MalaColor_E36A5C_0
+            textColor: UIColor(named: .OrderStatusRed)
         )
         return label
     }()
     /// 分割线
     private lazy var separatorLine: UIView = {
-        let view = UIView(MalaColor_F2F2F2_0)
+        let view = UIView(UIColor(named: .CardBackground))
         return view
     }()
     
@@ -69,7 +69,7 @@ class OrderFormStatusCell: UITableViewCell {
     private lazy var teacherLabel: UILabel = {
         let label = UILabel(
             fontSize: 13,
-            textColor: MalaColor_6C6C6C_0
+            textColor: UIColor(named: .ArticleSubTitle)
         )
         return label
     }()
@@ -83,7 +83,7 @@ class OrderFormStatusCell: UITableViewCell {
         let label = UILabel(
             text: "年级-学科",
             fontSize: 13,
-            textColor: MalaColor_6C6C6C_0
+            textColor: UIColor(named: .ArticleSubTitle)
         )
         return label
     }()
@@ -97,7 +97,7 @@ class OrderFormStatusCell: UITableViewCell {
         let label = UILabel(
             text: "上课地点",
             fontSize: 13,
-            textColor: MalaColor_6C6C6C_0
+            textColor: UIColor(named: .ArticleSubTitle)
         )
         label.numberOfLines = 0
         return label
@@ -118,7 +118,7 @@ class OrderFormStatusCell: UITableViewCell {
     private lazy var classLabel: UILabel = {
         let label = UILabel(
             fontSize: 13,
-            textColor: MalaColor_6C6C6C_0
+            textColor: UIColor(named: .ArticleSubTitle)
         )
         return label
     }()
@@ -131,7 +131,7 @@ class OrderFormStatusCell: UITableViewCell {
     private lazy var roomCapacityLabel: UILabel = {
         let label = UILabel(
             fontSize: 13,
-            textColor: MalaColor_636363_0
+            textColor: UIColor(named: .ArticleText)
         )
         return label
     }()
@@ -144,7 +144,7 @@ class OrderFormStatusCell: UITableViewCell {
     private lazy var courseLessonsLabel: UILabel = {
         let label = UILabel(
             fontSize: 13,
-            textColor: MalaColor_636363_0
+            textColor: UIColor(named: .ArticleText)
         )
         return label
     }()
@@ -168,7 +168,7 @@ class OrderFormStatusCell: UITableViewCell {
     // MARK: - Private Method
     private func setupUserInterface() {
         // Style
-        contentView.backgroundColor = MalaColor_F2F2F2_0
+        contentView.backgroundColor = UIColor(named: .CardBackground)
         
         // SubViews
         contentView.addSubview(content)
@@ -356,27 +356,27 @@ class OrderFormStatusCell: UITableViewCell {
             switch status {
             case .penging:
                 statusLabel.text = "待支付"
-                statusLabel.textColor = MalaColor_E36A5D_0
+                statusLabel.textColor = UIColor(named: .OrderStatusRed)
                 break
                 
             case .paid:
                 statusLabel.text = "支付成功"
-                statusLabel.textColor = MalaColor_7bb045_0
+                statusLabel.textColor = UIColor(named: .OrderGreen)
                 break
                 
             case .canceled:
                 statusLabel.text = "已关闭"
-                statusLabel.textColor = MalaColor_939393_0
+                statusLabel.textColor = UIColor(named: .HeaderTitle)
                 break
                 
             case .refund:
                 statusLabel.text = "已退款"
-                statusLabel.textColor = MalaColor_7bb045_0
+                statusLabel.textColor = UIColor(named: .OrderGreen)
                 break
                 
             case .confirm:
                 statusLabel.text = "确认订单"
-                statusLabel.textColor = MalaColor_E36A5D_0
+                statusLabel.textColor = UIColor(named: .OrderStatusRed)
                 break
                 
             default:

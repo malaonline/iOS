@@ -96,7 +96,7 @@ class EvaluationFilingServiceCell: MalaBaseCell {
     var model: IntroductionModel? {
         didSet {
             title = model?.title
-            contentImageView.image = UIImage(named: (model?.image ?? ""))
+            contentImageView.image = UIImage(asset: model?.image ?? .none)
             contentLabel.text = model?.subTitle
         }
     }
@@ -112,7 +112,7 @@ class EvaluationFilingServiceCell: MalaBaseCell {
     private lazy var contentLabel: UILabel = {
         let contentLabel = UILabel(
             fontSize: 13,
-            textColor: MalaColor_6C6C6C_0
+            textColor: UIColor(named: .ArticleSubTitle)
         )
         contentLabel.numberOfLines = 0
         return contentLabel

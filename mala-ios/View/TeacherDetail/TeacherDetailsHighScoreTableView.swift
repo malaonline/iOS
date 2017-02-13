@@ -99,7 +99,7 @@ class TeacherDetailsHighScoreTableViewCell: UITableViewCell {
     private lazy var admittedLabel: UILabel = UILabel.subTitleLabel()
     lazy var separator: UIView = {
         let separatorLine = UIView()
-        separatorLine.backgroundColor = MalaColor_E5E5E5_0
+        separatorLine.backgroundColor = UIColor(named: .SeparatorLine)
         return separatorLine
     }()
     
@@ -169,8 +169,8 @@ class TeacherDetailsHighScoreTableViewCell: UITableViewCell {
         schoolLabel.text = titles[2]
         admittedLabel.text = titles[3]
         for view in self.contentView.subviews {
-            (view as? UILabel)?.textColor = MalaColor_333333_0
+            (view as? UILabel)?.textColor = UIColor(named: .ArticleTitle)
         }
-        contentView.backgroundColor = MalaColor_F6F6F6_96
+        contentView.backgroundColor = UIColor(named: .BaseBoard)
     }
 }

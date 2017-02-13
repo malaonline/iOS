@@ -61,7 +61,7 @@ class OrderFormViewCell: UITableViewCell {
     }()
     /// 顶部订单编号布局容器
     private lazy var topLayoutView: UIView = {
-        let view = UIView(MalaColor_B1D0E8_0)
+        let view = UIView(UIColor(named: .ThemeBlue))
         return view
     }()
     /// "订单编号"文字
@@ -91,7 +91,7 @@ class OrderFormViewCell: UITableViewCell {
         let label = UILabel(
             text: "教师姓名：",
             font: UIFont.systemFont(ofSize: 11),
-            textColor: MalaColor_636363_0
+            textColor: UIColor(named: .ArticleText)
         )
         return label
     }()
@@ -99,7 +99,7 @@ class OrderFormViewCell: UITableViewCell {
     private lazy var teacherNameString: UILabel = {
         let label = UILabel(
             font: UIFont.systemFont(ofSize: 11),
-            textColor: MalaColor_939393_0
+            textColor: UIColor(named: .HeaderTitle)
         )
         return label
     }()
@@ -108,7 +108,7 @@ class OrderFormViewCell: UITableViewCell {
         let label = UILabel(
             text: "课程名称：",
             font: UIFont.systemFont(ofSize: 11),
-            textColor: MalaColor_636363_0
+            textColor: UIColor(named: .ArticleText)
         )
         return label
     }()
@@ -116,7 +116,7 @@ class OrderFormViewCell: UITableViewCell {
     private lazy var subjectString: UILabel = {
         let label = UILabel(
             font: UIFont.systemFont(ofSize: 11),
-            textColor: MalaColor_939393_0
+            textColor: UIColor(named: .HeaderTitle)
         )
         return label
     }()
@@ -125,7 +125,7 @@ class OrderFormViewCell: UITableViewCell {
         let label = UILabel(
             text: "上课地点：",
             font: UIFont.systemFont(ofSize: 11),
-            textColor: MalaColor_636363_0
+            textColor: UIColor(named: .ArticleText)
         )
         return label
     }()
@@ -133,7 +133,7 @@ class OrderFormViewCell: UITableViewCell {
     private lazy var schoolString: UILabel = {
         let label = UILabel(
             font: UIFont.systemFont(ofSize: 11),
-            textColor: MalaColor_939393_0
+            textColor: UIColor(named: .HeaderTitle)
         )
         return label
     }()
@@ -142,7 +142,7 @@ class OrderFormViewCell: UITableViewCell {
         let label = UILabel(
             text: "订单状态",
             font: UIFont.systemFont(ofSize: 12),
-            textColor: MalaColor_939393_0
+            textColor: UIColor(named: .HeaderTitle)
         )
         return label
     }()
@@ -158,7 +158,7 @@ class OrderFormViewCell: UITableViewCell {
     }()
     /// 中部分割线
     private lazy var separatorLine: UIView = {
-        let view = UIView(MalaColor_DADADA_0)
+        let view = UIView(UIColor(named: .SeparatorLine))
         return view
     }()
     
@@ -172,7 +172,7 @@ class OrderFormViewCell: UITableViewCell {
         let label = UILabel(
             text: "共计：",
             font: UIFont.systemFont(ofSize: 12),
-            textColor: MalaColor_636363_0
+            textColor: UIColor(named: .ArticleText)
         )
         return label
     }()
@@ -181,7 +181,7 @@ class OrderFormViewCell: UITableViewCell {
         let label = UILabel(
             text: "共计：",
             font: UIFont.systemFont(ofSize: 16),
-            textColor: MalaColor_333333_0
+            textColor: UIColor(named: .ArticleTitle)
         )
         return label
     }()
@@ -190,7 +190,7 @@ class OrderFormViewCell: UITableViewCell {
         let label = UILabel(
             text: "该老师已下架",
             fontSize: 12,
-            textColor: MalaColor_939393_0
+            textColor: UIColor(named: .HeaderTitle)
         )
         label.isHidden = true
         return label
@@ -199,14 +199,14 @@ class OrderFormViewCell: UITableViewCell {
     private lazy var confirmButton: UIButton = {
         let button = UIButton()
         
-        button.layer.borderColor = MalaColor_E26254_0.cgColor
+        button.layer.borderColor = UIColor(named: .ThemeRed).cgColor
         button.layer.borderWidth = MalaScreenOnePixel
         button.layer.cornerRadius = 3
         button.layer.masksToBounds = true
         
         button.titleLabel?.font = UIFont.systemFont(ofSize: 12)
         button.setTitle("再次购买", for: .normal)
-        button.setTitleColor(MalaColor_E26254_0, for: .normal)
+        button.setTitleColor(UIColor(named: .ThemeRed), for: .normal)
         button.addTarget(self, action: #selector(OrderFormViewCell.buyAgain), for: .touchUpInside)
         return button
     }()
@@ -214,14 +214,14 @@ class OrderFormViewCell: UITableViewCell {
     private lazy var cancelButton: UIButton = {
         let button = UIButton()
         
-        button.layer.borderColor = MalaColor_939393_0.cgColor
+        button.layer.borderColor = UIColor(named: .HeaderTitle).cgColor
         button.layer.borderWidth = MalaScreenOnePixel
         button.layer.cornerRadius = 3
         button.layer.masksToBounds = true
         
         button.titleLabel?.font = UIFont.systemFont(ofSize: 12)
         button.setTitle("取消订单", for: .normal)
-        button.setTitleColor(MalaColor_939393_0, for: .normal)
+        button.setTitleColor(UIColor(named: .HeaderTitle), for: .normal)
         button.addTarget(self, action: #selector(OrderFormViewCell.cancelOrderForm), for: .touchUpInside)
         return button
     }()
@@ -241,7 +241,7 @@ class OrderFormViewCell: UITableViewCell {
     // MARK: - Private Method
     private func setupUserInterface() {
         // Style
-        contentView.backgroundColor = MalaColor_EDEDED_0
+        contentView.backgroundColor = UIColor(named: .RegularBackground)
         
         // SubViews
         contentView.addSubview(separatorView)
@@ -432,13 +432,13 @@ class OrderFormViewCell: UITableViewCell {
         switch orderStatus {
         case .penging:
             // 待付款
-            topLayoutView.backgroundColor = MalaColor_8FBCDD_0
+            topLayoutView.backgroundColor = UIColor(named: .ThemeBlue)
             statusString.text = "订单待支付"
-            statusString.textColor = MalaColor_E26254_0
+            statusString.textColor = UIColor(named: .ThemeRed)
             cancelButton.isHidden = false
             confirmButton.isHidden = false
             confirmButton.setTitle("立即支付", for: .normal)
-            confirmButton.setBackgroundImage(UIImage.withColor(MalaColor_E26254_0), for: .normal)
+            confirmButton.setBackgroundImage(UIImage.withColor(UIColor(named: .ThemeRed)), for: .normal)
             confirmButton.setTitleColor(UIColor.white, for: .normal)
             cancelButton.addTarget(self, action: #selector(OrderFormViewCell.cancelOrderForm), for: .touchUpInside)
             confirmButton.addTarget(self, action: #selector(OrderFormViewCell.pay), for: .touchUpInside)
@@ -446,14 +446,14 @@ class OrderFormViewCell: UITableViewCell {
         
         case .paid:
             // 已付款
-            topLayoutView.backgroundColor = MalaColor_B1D0E8_0
+            topLayoutView.backgroundColor = UIColor(named: .ThemeBlue)
             statusString.text = "交易完成"
-            statusString.textColor = MalaColor_8FBCDD_0
+            statusString.textColor = UIColor(named: .ThemeBlue)
             cancelButton.isHidden = true
             confirmButton.isHidden = false
             confirmButton.setTitle("再次购买", for: .normal)
-            confirmButton.setBackgroundImage(UIImage.withColor(MalaColor_FFF0EE_0), for: .normal)
-            confirmButton.setTitleColor(MalaColor_E26254_0, for: .normal)
+            confirmButton.setBackgroundImage(UIImage.withColor(UIColor(named: .ThemeRedHighlight)), for: .normal)
+            confirmButton.setTitleColor(UIColor(named: .ThemeRed), for: .normal)
             confirmButton.addTarget(self, action: #selector(OrderFormViewCell.buyAgain), for: .touchUpInside)
             if let isLiveCourse = model?.isLiveCourse, isLiveCourse == true {
                 cancelButton.isHidden = true
@@ -465,13 +465,13 @@ class OrderFormViewCell: UITableViewCell {
         case .canceled:
             // 已取消
             statusString.text = "订单已关闭"
-            topLayoutView.backgroundColor = MalaColor_CFCFCF_0
-            statusString.textColor = MalaColor_939393_0
+            topLayoutView.backgroundColor = UIColor(named: .Disabled)
+            statusString.textColor = UIColor(named: .HeaderTitle)
             cancelButton.isHidden = true
             confirmButton.isHidden = false
             confirmButton.setTitle("重新购买", for: .normal)
             confirmButton.setBackgroundImage(UIImage.withColor(UIColor.white), for: .normal)
-            confirmButton.setTitleColor(MalaColor_E26254_0, for: .normal)
+            confirmButton.setTitleColor(UIColor(named: .ThemeRed), for: .normal)
             confirmButton.addTarget(self, action: #selector(OrderFormViewCell.buyAgain), for: .touchUpInside)
             
             if let isLiveCourse = model?.isLiveCourse, isLiveCourse == true {
@@ -483,9 +483,9 @@ class OrderFormViewCell: UITableViewCell {
         
         case .refund:
             // 已退款
-            topLayoutView.backgroundColor = MalaColor_B1D0E8_0
+            topLayoutView.backgroundColor = UIColor(named: .ThemeBlue)
             statusString.text = "退款成功"
-            statusString.textColor = MalaColor_83B84F_0
+            statusString.textColor = UIColor(named: .OrderGreen)
             cancelButton.isHidden = true
             confirmButton.isHidden = true
             break

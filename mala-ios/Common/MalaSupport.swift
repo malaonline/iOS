@@ -71,7 +71,7 @@ func cleanCaches() {
 // MARK: - Common TextAttribute
 public func commonTextStyle() -> [String: AnyObject]? {
     let AttributeDictionary = NSMutableDictionary()
-    AttributeDictionary[NSForegroundColorAttributeName] = MalaColor_6C6C6C_0
+    AttributeDictionary[NSForegroundColorAttributeName] = UIColor(named: .ArticleSubTitle)
     return AttributeDictionary.copy() as? [String : AnyObject]
 }
 
@@ -511,7 +511,7 @@ func makeAddressAttrString(_ schoolName: String?, _ schoolAddress: String?) -> N
     
     attrString.addAttribute(
         NSForegroundColorAttributeName,
-        value: MalaColor_636363_0,
+        value: UIColor(named: .ArticleText),
         range: NSMakeRange(0, location)
     )
     attrString.addAttribute(
@@ -521,7 +521,7 @@ func makeAddressAttrString(_ schoolName: String?, _ schoolAddress: String?) -> N
     )
     attrString.addAttribute(
         NSForegroundColorAttributeName,
-        value: MalaColor_939393_0,
+        value: UIColor(named: .HeaderTitle),
         range: NSMakeRange(location, leftLength)
     )
     attrString.addAttribute(
@@ -550,7 +550,7 @@ func makeTeacherAttrString(_ LecturerName: String?, _ assistantName: String?) ->
     
     attrString.addAttribute(
         NSForegroundColorAttributeName,
-        value: MalaColor_636363_0,
+        value: UIColor(named: .ArticleText),
         range: NSMakeRange(0, location)
     )
     attrString.addAttribute(
@@ -560,7 +560,7 @@ func makeTeacherAttrString(_ LecturerName: String?, _ assistantName: String?) ->
     )
     attrString.addAttribute(
         NSForegroundColorAttributeName,
-        value: MalaColor_939393_0,
+        value: UIColor(named: .HeaderTitle),
         range: NSMakeRange(location, leftLength)
     )
     attrString.addAttribute(

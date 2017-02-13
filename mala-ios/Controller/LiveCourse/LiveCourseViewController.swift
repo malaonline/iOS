@@ -51,7 +51,7 @@ class LiveCourseViewController: BaseViewController {
     // MARK: - Private Method
     private func setupUserInterface() {
         // Style
-        view.backgroundColor = MalaColor_EDEDED_0
+        view.backgroundColor = UIColor(named: .RegularBackground)
         defaultView.imageName = "filter_no_result"
         defaultView.text = "当前城市暂无直播课程！"
         

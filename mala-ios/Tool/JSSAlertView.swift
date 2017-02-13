@@ -303,7 +303,7 @@ class JSSAlertView: UIViewController {
         
         // Title
         self.titleLabel = UILabel()
-        titleLabel.textColor = MalaColor_939393_0
+        titleLabel.textColor = UIColor(named: .HeaderTitle)
         titleLabel.numberOfLines = 0
         titleLabel.textAlignment = title.characters.count > 10 ? .left : .center
         titleLabel.font = UIFont(name: self.titleFont, size: 13)

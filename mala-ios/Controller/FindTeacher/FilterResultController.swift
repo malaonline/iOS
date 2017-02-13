@@ -27,7 +27,7 @@ class FilterResultController: BaseViewController {
     /// 筛选条件面板
     private lazy var filterBar: FilterBar = {
         let filterBar = FilterBar(frame: CGRect.zero)
-        filterBar.backgroundColor = MalaColor_EDEDED_0
+        filterBar.backgroundColor = UIColor(named: .RegularBackground)
         filterBar.controller = self
         return filterBar
     }()
@@ -56,7 +56,7 @@ class FilterResultController: BaseViewController {
     private func setupUserInterface() {
         // style
         title = MalaCommonString_FilterResult
-        view.backgroundColor = MalaColor_EDEDED_0
+        view.backgroundColor = UIColor(named: .RegularBackground)
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 4, right: 0)
         defaultView.imageName = "filter_no_result"
         defaultView.text = "请重新设定筛选条件！"

@@ -40,23 +40,23 @@ open class CouponRulesPopupWindow: UIViewController, UITextViewDelegate {
     private lazy var descTextView: UITextView = {
         let textView = UITextView()
         textView.font = UIFont.systemFont(ofSize: 13)
-        textView.textColor = MalaColor_939393_0
+        textView.textColor = UIColor(named: .HeaderTitle)
         textView.isEditable = false
         return textView
     }()
     /// 提交按钮装饰线
     private lazy var buttonSeparatorLine: UIView = {
-        let view = UIView(MalaColor_8FBCDD_0)
+        let view = UIView(UIColor(named: .ThemeBlue))
         return view
     }()
     /// 提交按钮
     private lazy var confirmButton: UIButton = {
         let button = UIButton()
         button.setTitle("知道了", for: UIControlState())
-        button.setTitleColor(MalaColor_8FBCDD_0, for: UIControlState())
-        button.setTitleColor(MalaColor_B7B7B7_0, for: .disabled)
-        button.setBackgroundImage(UIImage.withColor(MalaColor_FFFFFF_9), for: UIControlState())
-        button.setBackgroundImage(UIImage.withColor(MalaColor_F8F8F8_0), for: .highlighted)
+        button.setTitleColor(UIColor(named: .ThemeBlue), for: UIControlState())
+        button.setTitleColor(UIColor(named: .DescGray), for: .disabled)
+        button.setBackgroundImage(UIImage.withColor(UIColor(named: .WhiteTranslucent9)), for: UIControlState())
+        button.setBackgroundImage(UIImage.withColor(UIColor(named: .HighlightGray)), for: .highlighted)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 15)
         button.addTarget(self, action: #selector(CouponRulesPopupWindow.animateDismiss), for: .touchUpInside)
         return button

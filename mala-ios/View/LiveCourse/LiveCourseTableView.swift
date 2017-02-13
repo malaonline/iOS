@@ -51,7 +51,7 @@ class LiveCourseTableView: UITableView, UITableViewDelegate, UITableViewDataSour
     private func configration() {
         delegate = self
         dataSource = self
-        backgroundColor = MalaColor_EDEDED_0
+        backgroundColor = UIColor(named: .RegularBackground)
         estimatedRowHeight = 200
         separatorStyle = .none
         tableHeaderView = banner

@@ -42,7 +42,7 @@ class CommentViewCell: UITableViewCell {
     /// 主要布局容器
     private lazy var content: UIView = {
         let view = UIView(UIColor.white)
-        view.addShadow(color: MalaColor_D7D7D7_0)
+        view.addShadow(color: UIColor(named: .ShadowGray))
         return view
     }()
     /// 课程信息布局容器
@@ -53,9 +53,9 @@ class CommentViewCell: UITableViewCell {
     /// 课程评价状态标示
     private lazy var statusIcon: UIButton = {
         let button = UIButton()
-        button.setBackgroundImage(UIImage(named: "uncomment"), for: UIControlState())
-        button.setBackgroundImage(UIImage(named: "commented"), for: .highlighted)
-        button.setBackgroundImage(UIImage(named: "comment_expired"), for: .disabled)
+        button.setBackgroundImage(UIImage(asset: .uncomment), for: UIControlState())
+        button.setBackgroundImage(UIImage(asset: .commented), for: .highlighted)
+        button.setBackgroundImage(UIImage(asset: .commentExpired), for: .disabled)
         button.setTitle("待 评", for: UIControlState())
         button.setTitle("已 评", for: .highlighted)
         button.setTitle("过 期", for: .disabled)
@@ -87,7 +87,7 @@ class CommentViewCell: UITableViewCell {
         let label = UILabel(
             text: "教师姓名",
             fontSize: 13,
-            textColor: MalaColor_8FBCDD_0
+            textColor: UIColor(named: .ThemeBlue)
         )
         return label
     }()
@@ -101,7 +101,7 @@ class CommentViewCell: UITableViewCell {
         let label = UILabel(
             text: "年级-学科",
             fontSize: 13,
-            textColor: MalaColor_6C6C6C_0
+            textColor: UIColor(named: .ArticleSubTitle)
         )
         return label
     }()
@@ -115,7 +115,7 @@ class CommentViewCell: UITableViewCell {
         let label = UILabel(
             text: "上课时间",
             fontSize: 13,
-            textColor: MalaColor_6C6C6C_0
+            textColor: UIColor(named: .ArticleSubTitle)
         )
         return label
     }()
@@ -124,7 +124,7 @@ class CommentViewCell: UITableViewCell {
         let label = UILabel(
             text: "",
             fontSize: 13,
-            textColor: MalaColor_939393_0
+            textColor: UIColor(named: .HeaderTitle)
         )
         return label
     }()
@@ -138,14 +138,14 @@ class CommentViewCell: UITableViewCell {
         let label = UILabel(
             text: "上课地点",
             fontSize: 13,
-            textColor: MalaColor_6C6C6C_0
+            textColor: UIColor(named: .ArticleSubTitle)
         )
         label.numberOfLines = 0
         return label
     }()
     /// 中部分割线
     private lazy var separatorLine: UIView = {
-        let view = UIView(MalaColor_DADADA_0)
+        let view = UIView(UIColor(named: .SeparatorLine))
         return view
     }()
     /// 评分面板
@@ -165,22 +165,22 @@ class CommentViewCell: UITableViewCell {
         let label = UILabel(
             text: "评价已过期",
             fontSize: 12,
-            textColor: MalaColor_939393_0
+            textColor: UIColor(named: .HeaderTitle)
         )
         return label
     }()
     /// 评论按钮
     private lazy var commentButton: UIButton = {
         let button = UIButton()
-        button.layer.borderColor = MalaColor_E26254_0.cgColor
+        button.layer.borderColor = UIColor(named: .ThemeRed).cgColor
         button.layer.borderWidth = MalaScreenOnePixel
         button.layer.cornerRadius = 3
         button.layer.masksToBounds = true
         
         button.setBackgroundImage(UIImage.withColor(UIColor.white), for: UIControlState())
-        button.setBackgroundImage(UIImage.withColor(MalaColor_FFF0EE_0), for: .highlighted)
+        button.setBackgroundImage(UIImage.withColor(UIColor(named: .ThemeRedHighlight)), for: .highlighted)
         button.setTitle("去评价", for: UIControlState())
-        button.setTitleColor(MalaColor_E26254_0, for: UIControlState())
+        button.setTitleColor(UIColor(named: .ThemeRed), for: UIControlState())
         button.titleLabel?.font = UIFont.systemFont(ofSize: 12)
         button.addTarget(self, action: #selector(CommentViewCell.toComment), for: .touchUpInside)
         button.isHidden = true
@@ -189,15 +189,15 @@ class CommentViewCell: UITableViewCell {
     /// 查看评论按钮
     private lazy var showCommentButton: UIButton = {
         let button = UIButton()
-        button.layer.borderColor = MalaColor_82B4D9_0.cgColor
+        button.layer.borderColor = UIColor(named: .ThemeBlue).cgColor
         button.layer.borderWidth = MalaScreenOnePixel
         button.layer.cornerRadius = 3
         button.layer.masksToBounds = true
         
         button.setBackgroundImage(UIImage.withColor(UIColor.white), for: UIControlState())
-        button.setBackgroundImage(UIImage.withColor(MalaColor_E6F1FC_0), for: .highlighted)
+        button.setBackgroundImage(UIImage.withColor(UIColor(named: .CommitHighlightBlue)), for: .highlighted)
         button.setTitle("查看评价", for: UIControlState())
-        button.setTitleColor(MalaColor_82B4D9_0, for: UIControlState())
+        button.setTitleColor(UIColor(named: .ThemeBlue), for: UIControlState())
         button.titleLabel?.font = UIFont.systemFont(ofSize: 12)
         button.addTarget(self, action: #selector(CommentViewCell.showComment), for: .touchUpInside)
         button.isHidden = true
@@ -219,7 +219,7 @@ class CommentViewCell: UITableViewCell {
     // MARK: - Private Method
     private func setupUserInterface() {
         // Style
-        contentView.backgroundColor = MalaColor_EDEDED_0
+        contentView.backgroundColor = UIColor(named: .RegularBackground)
         
         // SubViews
         contentView.addSubview(content)

@@ -53,16 +53,16 @@ class TeacherDetailsSignupView: UIView {
         button.setTitle("收藏", for: UIControlState())
         button.setTitle("已收藏", for: .selected)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 10)
-        button.setTitleColor(MalaColor_6C6C6C_0, for: UIControlState())
+        button.setTitleColor(UIColor(named: .ArticleSubTitle), for: UIControlState())
         button.isUserInteractionEnabled = false
         return button
     }()
     /// 收藏按钮
     private lazy var likeButton: DOFavoriteButton = {
-        let button = DOFavoriteButton(frame: CGRect(x: 0, y: 0, width: 44, height: 44), image: UIImage(named: "heart"))
-        button.imageColorOn = MalaColor_F76E6D_0
-        button.circleColor = MalaColor_F76E6D_0
-        button.lineColor = MalaColor_F76E6D_0
+        let button = DOFavoriteButton(frame: CGRect(x: 0, y: 0, width: 44, height: 44), image: UIImage(asset: .heart))
+        button.imageColorOn = UIColor(named: .ThemeLikeColor)
+        button.circleColor = UIColor(named: .ThemeLikeColor)
+        button.lineColor = UIColor(named: .ThemeLikeColor)
         button.addTarget(self, action: #selector(TeacherDetailsSignupView.likeButtonDidTap(_:)), for: .touchUpInside)
         // TODO: temp disable likeButton
         button.isUserInteractionEnabled = false
@@ -73,10 +73,10 @@ class TeacherDetailsSignupView: UIView {
         let button = UIButton()
         button.setTitle("马上报名", for: UIControlState())
         button.setTitle("该老师已下架", for: .disabled)
-        button.setTitleColor(MalaColor_FFFFFF_9, for: UIControlState())
-        button.setBackgroundImage(UIImage.withColor(MalaColor_7FB4DC_0), for: UIControlState())
-        button.setBackgroundImage(UIImage.withColor(MalaColor_E0E0E0_0), for: .disabled)
-        button.setBackgroundImage(UIImage.withColor(MalaColor_B2CDE1_0), for: .highlighted)
+        button.setTitleColor(UIColor(named: .WhiteTranslucent9), for: UIControlState())
+        button.setBackgroundImage(UIImage.withColor(UIColor(named: .ThemeDeepBlue)), for: UIControlState())
+        button.setBackgroundImage(UIImage.withColor(UIColor(named: .Disabled)), for: .disabled)
+        button.setBackgroundImage(UIImage.withColor(UIColor(named: .ThemeBlue)), for: .highlighted)
         button.addTarget(self, action: #selector(TeacherDetailsSignupView.signupButtonDidTap(_:)), for: .touchUpInside)
         return button
     }()
@@ -96,7 +96,7 @@ class TeacherDetailsSignupView: UIView {
     // MARK: - Private Method
     private func setupUserInterface() {
         // Style
-        self.backgroundColor = MalaColor_F6F6F6_96
+        self.backgroundColor = UIColor(named: .BaseBoard)
 
         // SubViews
         addSubview(topLine)

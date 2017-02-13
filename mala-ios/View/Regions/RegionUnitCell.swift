@@ -31,7 +31,7 @@ class RegionUnitCell: UITableViewCell {
     private lazy var titleLabel: UILabel = {
         let label = UILabel(
             fontSize: 14,
-            textColor: MalaColor_333333_0
+            textColor: UIColor(named: .ArticleTitle)
         )
         return label
     }()
@@ -39,13 +39,13 @@ class RegionUnitCell: UITableViewCell {
     private lazy var addressLabel: UILabel = {
         let titleLabel = UILabel(
             fontSize: 12,
-            textColor: MalaColor_636363_0
+            textColor: UIColor(named: .ArticleText)
         )
         return titleLabel
     }()
     /// 分割线
     lazy var separatorLine: UIView = {
-        let separatorLine = UIView(MalaColor_E5E5E5_0)
+        let separatorLine = UIView(UIColor(named: .SeparatorLine))
         return separatorLine
     }()
     

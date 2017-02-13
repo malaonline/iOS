@@ -47,23 +47,23 @@ open class TeacherFilterPopupWindow: UIViewController {
     }()
     private lazy var closeButton: UIButton = {
         let closeButton = UIButton()
-        closeButton.setBackgroundImage(UIImage(named: "close_normal"), for: .normal)
-        closeButton.setBackgroundImage(UIImage(named: "close_press"), for: .selected)
+        closeButton.setBackgroundImage(UIImage(asset: .closeNormal), for: .normal)
+        closeButton.setBackgroundImage(UIImage(asset: .closePress), for: .selected)
         closeButton.addTarget(self, action: #selector(TeacherFilterPopupWindow.pressed(_:)), for: .touchUpInside)
         return closeButton
     }()
     private lazy var cancelButton: UIButton = {
         let cancelButton = UIButton()
-        cancelButton.setBackgroundImage(UIImage(named: "leftArrow_normal"), for: .normal)
-        cancelButton.setBackgroundImage(UIImage(named: "leftArrow_press"), for: .selected)
+        cancelButton.setBackgroundImage(UIImage(asset: .leftArrowNormal), for: .normal)
+        cancelButton.setBackgroundImage(UIImage(asset: .leftArrowPress), for: .selected)
         cancelButton.addTarget(self, action: #selector(TeacherFilterPopupWindow.cancelButtonDidTap), for: .touchUpInside)
         cancelButton.isHidden = true
         return cancelButton
     }()
     private lazy var confirmButton: UIButton = {
         let confirmButton = UIButton()
-        confirmButton.setBackgroundImage(UIImage(named: "confirm_normal"), for: .normal)
-        confirmButton.setBackgroundImage(UIImage(named: "confirm_press"), for: .selected)
+        confirmButton.setBackgroundImage(UIImage(asset: .confirmNormal), for: .normal)
+        confirmButton.setBackgroundImage(UIImage(asset: .confirmPress), for: .selected)
         confirmButton.addTarget(self, action: #selector(TeacherFilterPopupWindow.confirmButtonDidTap), for: .touchUpInside)
         confirmButton.isHidden = true
         return confirmButton
@@ -72,13 +72,12 @@ open class TeacherFilterPopupWindow: UIViewController {
         let themeTitle = UILabel()
         themeTitle.font = UIFont(name: "HelveticaNeue", size: 15)
         themeTitle.backgroundColor = UIColor.white
-        themeTitle.textColor = MalaColor_939393_0
+        themeTitle.textColor = UIColor(named: .HeaderTitle)
         themeTitle.text = self.tTitle
         return themeTitle
     }()
     private lazy var separator: UIView = {
-        let separator = UIView()
-        separator.backgroundColor = MalaColor_DADADA_0
+        let separator = UIView(UIColor(named: .SeparatorLine))
         return separator
     }()
     private lazy var contentContainer: UIView = {
@@ -90,11 +89,11 @@ open class TeacherFilterPopupWindow: UIViewController {
         let pageControl = UIPageControl()
         pageControl.currentPage = 0
         pageControl.numberOfPages = 3
-        pageControl.pageIndicatorTintColor = MalaColor_C7DEEE_0
-        pageControl.currentPageIndicatorTintColor = MalaColor_82B4D9_0
+        pageControl.pageIndicatorTintColor = UIColorFromHex(0xC7DEEE)
+        pageControl.currentPageIndicatorTintColor = UIColor(named: .ThemeBlue)
         
         // 添加横线
-        let view = UIView(MalaColor_C7DEEE_0)
+        let view = UIView(UIColor(named: .SeparatorLine))
         pageControl.addSubview(view)
         view.snp.makeConstraints({ (maker) in
             maker.left.equalTo(pageControl)

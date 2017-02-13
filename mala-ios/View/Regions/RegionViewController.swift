@@ -49,7 +49,7 @@ class RegionViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let label = UILabel(
             text: "当前城市",
             fontSize: 15,
-            textColor: MalaColor_333333_0
+            textColor: UIColor(named: .ArticleTitle)
         )
         return label
     }()
@@ -57,7 +57,7 @@ class RegionViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let label = UILabel(
             text: "",
             fontSize: 15,
-            textColor: MalaColor_71B3E3_0
+            textColor: UIColor(named: .ThemeDeepBlue)
         )
         return label
     }()
@@ -74,7 +74,7 @@ class RegionViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let label = UILabel(
             text: "点击切换校区",
             fontSize: 13,
-            textColor: MalaColor_6C6C6C_0
+            textColor: UIColor(named: .ArticleSubTitle)
         )
         return label
     }()
@@ -112,7 +112,7 @@ class RegionViewController: UIViewController, UITableViewDelegate, UITableViewDa
     private func setupUserInterface() {
         // Style
         title = "选择校区"
-        view.backgroundColor = MalaColor_F6F7F9_0
+        view.backgroundColor = UIColor(named: .BaseBoard)
         cityView.backgroundColor = UIColor.white
         let leftBarButtonItem = UIBarButtonItem(customView: popButton)
         navigationItem.leftBarButtonItem = leftBarButtonItem
@@ -123,9 +123,9 @@ class RegionViewController: UIViewController, UITableViewDelegate, UITableViewDa
         tableView.delegate = self
         tableView.dataSource = self
         tableView.bounces = false
-        tableView.backgroundColor = MalaColor_F6F7F9_0
+        tableView.backgroundColor = UIColor(named: .BaseBoard)
         tableView.separatorStyle = .none
-        tableView.separatorColor = MalaColor_E5E5E5_0
+        tableView.separatorColor = UIColor(named: .SeparatorLine)
         tableView.estimatedRowHeight = 60
         tableView.register(RegionUnitCell.self, forCellReuseIdentifier: SchoolTableViewCellReuseId)
         

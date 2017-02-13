@@ -12,7 +12,7 @@ class IntroductionModel: NSObject {
 
     // MARK: - Property
     var title: String?
-    var image: String?
+    var image: ImageAsset?
     var subTitle: String?
     var sharePlatformType: SSDKPlatformType = SSDKPlatformType.typeAny
     
@@ -27,7 +27,7 @@ class IntroductionModel: NSObject {
         setValuesForKeys(dict)
     }
     
-    convenience init(title: String?, image: String?, subTitle: String?, platformType: SSDKPlatformType = .typeAny) {
+    convenience init(title: String?, image: ImageAsset?, subTitle: String?, platformType: SSDKPlatformType = .typeAny) {
         self.init()
         self.title = title
         self.image = image

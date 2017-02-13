@@ -36,9 +36,9 @@ class LearningReportKnowledgeCell: MalaBaseReportCardCell {
         let label = UILabel(
             text: "注：21/50，即 答对题/总题目数",
             fontSize: 10,
-            textColor: MalaColor_5E5E5E_0
+            textColor: UIColor(named: .ChartLabel)
         )
-        label.backgroundColor = MalaColor_E8F2F8_0
+        label.backgroundColor = UIColor(named: .ReportLabelBack)
         label.textAlignment = .center
         label.layer.cornerRadius = 11
         label.layer.masksToBounds = true

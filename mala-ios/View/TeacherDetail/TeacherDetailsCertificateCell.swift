@@ -33,8 +33,8 @@ class TeacherDetailsCertificateCell: MalaBaseCell {
     /// 标签容器
     lazy var tagsView: TagListView = {
         let tagsView = TagListView(frame: CGRect(x: 0, y: 0, width: MalaLayout_CardCellWidth, height: 0))
-        tagsView.labelBackgroundColor = MalaColor_FCDFB7_0
-        tagsView.textColor = MalaColor_EF8F1D_0
+        tagsView.labelBackgroundColor = UIColor(named: .CertificateBack)
+        tagsView.textColor = UIColor(named: .CertificateLabel)
         tagsView.iconName = "image_icon"
         tagsView.commonTarget = self
         tagsView.commonAction = #selector(TeacherDetailsCertificateCell.tagDidTap(_:))

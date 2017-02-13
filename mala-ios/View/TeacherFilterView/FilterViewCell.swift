@@ -33,10 +33,10 @@ open class FilterViewCell: UICollectionViewCell {
         let button = UIButton()
         button.titleLabel?.font = UIFont.systemFont(ofSize: 13)
         button.titleLabel?.textAlignment = .center
-        button.setTitleColor(MalaColor_939393_0, for: UIControlState())
+        button.setTitleColor(UIColor(named: .HeaderTitle), for: UIControlState())
         button.setTitle("小学一年级", for: UIControlState())
-        button.setImage(UIImage(named: "radioButton_normal"), for: UIControlState())
-        button.setImage(UIImage(named: "radioButton_selected"), for: .selected)
+        button.setImage(UIImage(asset: .radioButtonNormal), for: UIControlState())
+        button.setImage(UIImage(asset: .radioButtonSelected), for: .selected)
         button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 12, bottom: 0, right: -12)
         button.sizeToFit()
         // 冻结按钮交互功能，其只作为视觉显示效果使用

@@ -29,7 +29,7 @@ class ProfileViewHeaderView: UIView {
         }
     }
     /// 用户头像
-    var avatar: UIImage = UIImage(named: "profileAvatar_placeholder") ?? UIImage() {
+    var avatar: UIImage = UIImage(asset: .profileAvatarPlaceholder) ?? UIImage() {
         didSet {
             avatarView.image = avatar
         }
@@ -64,7 +64,7 @@ class ProfileViewHeaderView: UIView {
     /// 姓名label控件
     private lazy var nameLabel: UILabel = {
         let label = UILabel()
-        label.textColor = MalaColor_82B4D9_0
+        label.textColor = UIColor(named: .ThemeBlue)
         label.font = UIFont.systemFont(ofSize: 14)
         label.textAlignment = .center
         label.isUserInteractionEnabled = true
@@ -74,7 +74,7 @@ class ProfileViewHeaderView: UIView {
     /// 姓名修改按钮
     private lazy var editButton: UIButton = {
         let button = UIButton()
-        button.setBackgroundImage(UIImage(named: "edit_icon"), for: UIControlState())
+        button.setBackgroundImage(UIImage(asset: .editIcon), for: UIControlState())
         button.addTarget(self, action: #selector(ProfileViewHeaderView.nameEditButtonDidTap(_:)), for: .touchUpInside)
         return button
     }()

@@ -37,28 +37,28 @@ class PaymentChannelCell: UITableViewCell {
     private lazy var titleLabel: UILabel = {
         let titleLabel = UILabel()
         titleLabel.font = UIFont.systemFont(ofSize: 14)
-        titleLabel.textColor = MalaColor_333333_0
+        titleLabel.textColor = UIColor(named: .ArticleTitle)
         return titleLabel
     }()
     /// 支付方式描述
     private lazy var subTitleLabel: UILabel = {
         let subTitleLabel = UILabel()
         subTitleLabel.font = UIFont.systemFont(ofSize: 13)
-        subTitleLabel.textColor = MalaColor_6C6C6C_0
+        subTitleLabel.textColor = UIColor(named: .ArticleSubTitle)
         return subTitleLabel
     }()
     /// 选择按钮
     private lazy var selectButton: UIButton = {
         let selectButton = UIButton()
-        selectButton.setBackgroundImage(UIImage(named: "unselected"), for: UIControlState())
-        selectButton.setBackgroundImage(UIImage(named: "selected"), for: .selected)
+        selectButton.setBackgroundImage(UIImage(asset: .unselected), for: UIControlState())
+        selectButton.setBackgroundImage(UIImage(asset: .selected), for: .selected)
         // 冻结按钮交互功能，其只作为视觉显示效果使用
         selectButton.isUserInteractionEnabled = false
         return selectButton
     }()
     /// 分割线
     lazy var separatorLine: UIView = {
-        let separatorLine = UIView(MalaColor_E5E5E5_0)
+        let separatorLine = UIView(UIColor(named: .SeparatorLine))
         return separatorLine
     }()
     

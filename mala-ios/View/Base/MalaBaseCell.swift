@@ -22,7 +22,7 @@ class MalaBaseCell: UITableViewCell {
     // MARK: - Components
     /// 头部视图
     lazy var headerView: UIView = {
-        let view = UIView(MalaColor_F6F6F6_96)
+        let view = UIView(UIColor(named: .BaseBoard))
         return view
     }()
     /// 标题标签
@@ -30,7 +30,7 @@ class MalaBaseCell: UITableViewCell {
         let label = UILabel(
             text: "",
             fontSize: 14,
-            textColor: MalaColor_939393_0
+            textColor: UIColor(named: .HeaderTitle)
         )
         return label
     }()
@@ -79,7 +79,7 @@ class MalaBaseCell: UITableViewCell {
     }
     
     func adjustForCourseChoosing() {
-        titleLabel.textColor = MalaColor_333333_0
+        titleLabel.textColor = UIColor(named: .ArticleTitle)
         titleLabel.font = UIFont.systemFont(ofSize: 15)
         headerView.backgroundColor = UIColor.white
         

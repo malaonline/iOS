@@ -115,7 +115,7 @@ class HandlePingppBehaviour: NSObject {
         let alert = JSSAlertView().show(viewController,
                                         title: "您想要购买的课程已被他人抢买，支付金额将原路退回",
                                         buttonText: "我知道了",
-                                        iconImage: UIImage(named: "alert_CourseBeenSeized")
+                                        iconImage: UIImage(asset: .alertCourseBeenSeized)
         )
         alert.addAction(popToCourseChoosingViewController)
     }
@@ -128,7 +128,7 @@ class HandlePingppBehaviour: NSObject {
         let alert = JSSAlertView().show(viewController,
                                         title: "购课失败！该老师已下架，支付金额将原路退回",
                                         buttonText: "我知道了",
-                                        iconImage: UIImage(named: "alert_CourseBeenSeized")
+                                        iconImage: UIImage(asset: .alertCourseBeenSeized)
         )
         alert.addAction(popToRootViewController)
     }
@@ -141,7 +141,7 @@ class HandlePingppBehaviour: NSObject {
         let _ = JSSAlertView().show(viewController,
                                     title: "支付已取消",
                                     buttonText: "我知道了",
-                                    iconImage: UIImage(named: "alert_PaymentFail")
+                                    iconImage: UIImage(asset: .alertPaymentFail)
         )
     }
     
@@ -153,7 +153,7 @@ class HandlePingppBehaviour: NSObject {
         let alert = JSSAlertView().show(viewController,
                                         title: "恭喜您已支付成功！您的课表已经安排好，快去查看吧！",
                                         buttonText: "知道了",
-                                        iconImage: UIImage(named: "alert_PaymentSuccess")
+                                        iconImage: UIImage(asset: .alertPaymentSuccess)
         )
         alert.addAction(switchToClassSchedule)
     }
@@ -166,7 +166,7 @@ class HandlePingppBehaviour: NSObject {
         let alert = JSSAlertView().show(viewController,
                                         title: "支付失败，请重试！",
                                         buttonText: "刷新",
-                                        iconImage: UIImage(named: "alert_PaymentFail")
+                                        iconImage: UIImage(asset: .alertPaymentFail)
         )
         alert.addAction(popToRootViewController)
     }

@@ -89,7 +89,7 @@ class PriceResultView: UIView {
         let stringLabel = UILabel(
             text: "原价:",
             fontSize: 14,
-            textColor: MalaColor_333333_0
+            textColor: UIColor(named: .ArticleTitle)
         )
         return stringLabel
     }()
@@ -98,7 +98,7 @@ class PriceResultView: UIView {
         let priceLabel = UILabel(
             text: "￥0.00",
             fontSize: 14,
-            textColor: MalaColor_E36A5D_0
+            textColor: UIColor(named: .OrderStatusRed)
         )
         return priceLabel
     }()

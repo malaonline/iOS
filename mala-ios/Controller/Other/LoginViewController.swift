@@ -45,17 +45,17 @@ class LoginViewController: UIViewController {
     }()
     /// 容器顶部装饰线
     private lazy var topSeparator: UIView = {
-        let topSeparator = UIView(MalaColor_E5E5E5_0)
+        let topSeparator = UIView(UIColor(named: .SeparatorLine))
         return topSeparator
     }()
     /// 容器中部装饰线
     private lazy var middleSeparator: UIView = {
-        let middleSeparator = UIView(MalaColor_E5E5E5_0)
+        let middleSeparator = UIView(UIColor(named: .SeparatorLine))
         return middleSeparator
     }()
     /// 容器底部装饰线
     private lazy var bottomSeparator: UIView = {
-        let bottomSeparator = UIView(MalaColor_E5E5E5_0)
+        let bottomSeparator = UIView(UIColor(named: .SeparatorLine))
         return bottomSeparator
     }()
     /// 手机图标
@@ -66,14 +66,14 @@ class LoginViewController: UIViewController {
     /// [获取验证码] 按钮
     private lazy var codeGetButton: UIButton = {
         let codeGetButton = UIButton()
-        codeGetButton.layer.borderColor = MalaColor_8DBEDF_0.cgColor
+        codeGetButton.layer.borderColor = UIColor(named: .LoginBlue).cgColor
         codeGetButton.layer.borderWidth = 1.0
         codeGetButton.layer.cornerRadius = 3.0
         codeGetButton.layer.masksToBounds = true
         codeGetButton.setTitle(" 获取验证码 ", for: UIControlState())
         codeGetButton.setTitleColor(UIColor.white, for: UIControlState())
-        codeGetButton.setTitleColor(MalaColor_8DBEDF_0, for: .disabled)
-        codeGetButton.setBackgroundImage(UIImage.withColor(MalaColor_8DBEDF_0), for: UIControlState())
+        codeGetButton.setTitleColor(UIColor(named: .LoginBlue), for: .disabled)
+        codeGetButton.setBackgroundImage(UIImage.withColor(UIColor(named: .LoginBlue)), for: UIControlState())
         codeGetButton.setBackgroundImage(UIImage.withColor(UIColor.white), for: .disabled)
         codeGetButton.titleLabel?.font = UIFont.systemFont(ofSize: 12)
         codeGetButton.addTarget(self, action: #selector(LoginViewController.codeGetButtonDidTap), for: .touchUpInside)
@@ -82,8 +82,8 @@ class LoginViewController: UIViewController {
     /// [手机号错误] 提示
     private lazy var phoneError: UIButton = {
         let phoneError = UIButton()
-        phoneError.setImage(UIImage(named: "error"), for: UIControlState())
-        phoneError.setTitleColor(MalaColor_E36A5D_0, for: UIControlState())
+        phoneError.setImage(UIImage(asset: .error), for: UIControlState())
+        phoneError.setTitleColor(UIColor(named: .OrderStatusRed), for: UIControlState())
         phoneError.titleLabel?.font = UIFont.systemFont(ofSize: 11)
         phoneError.setTitle("手机号错误", for: UIControlState())
         phoneError.imageEdgeInsets = UIEdgeInsets(top: 0, left: -2, bottom: 0, right: 2)
@@ -96,7 +96,7 @@ class LoginViewController: UIViewController {
         phoneTextField.keyboardType = .numberPad
         phoneTextField.placeholder = "请输入手机号"
         phoneTextField.font = UIFont.systemFont(ofSize: 14)
-        phoneTextField.textColor = MalaColor_6C6C6C_0
+        phoneTextField.textColor = UIColor(named: .ArticleSubTitle)
         phoneTextField.addTarget(self, action: #selector(UITextInputDelegate.textDidChange(_:)), for: .editingChanged)
         phoneTextField.clearButtonMode = .never
         return phoneTextField
@@ -109,8 +109,8 @@ class LoginViewController: UIViewController {
     /// [验证码错误] 提示
     private lazy var codeError: UIButton = {
         let codeError = UIButton()
-        codeError.setImage(UIImage(named: "error"), for: UIControlState())
-        codeError.setTitleColor(MalaColor_E36A5D_0, for: UIControlState())
+        codeError.setImage(UIImage(asset: .error), for: UIControlState())
+        codeError.setTitleColor(UIColor(named: .OrderStatusRed), for: UIControlState())
         codeError.titleLabel?.font = UIFont.systemFont(ofSize: 11)
         codeError.setTitle("验证码错误", for: UIControlState())
         codeError.imageEdgeInsets = UIEdgeInsets(top: 0, left: -2, bottom: 0, right: 2)
@@ -122,7 +122,7 @@ class LoginViewController: UIViewController {
         let codeTextField = UITextField()
         codeTextField.keyboardType = .numberPad
         codeTextField.placeholder = "请输入验证码"
-        codeTextField.textColor = MalaColor_6C6C6C_0
+        codeTextField.textColor = UIColor(named: .ArticleSubTitle)
         codeTextField.font = UIFont.systemFont(ofSize: 14)
         codeTextField.addTarget(self, action: #selector(UITextInputDelegate.textDidChange(_:)), for: .editingChanged)
         return codeTextField
@@ -134,8 +134,8 @@ class LoginViewController: UIViewController {
         verifyButton.layer.masksToBounds = true
         verifyButton.setTitle("验证", for: UIControlState())
         verifyButton.setTitleColor(UIColor.white, for: UIControlState())
-        verifyButton.setBackgroundImage(UIImage.withColor(MalaColor_8DBEDF_0), for: .disabled)
-        verifyButton.setBackgroundImage(UIImage.withColor(MalaColor_88BCDE_95), for: UIControlState())
+        verifyButton.setBackgroundImage(UIImage.withColor(UIColor(named: .LoginBlue)), for: .disabled)
+        verifyButton.setBackgroundImage(UIImage.withColor(UIColor(named: .ThemeBlueTranslucent95)), for: UIControlState())
         verifyButton.addTarget(self, action: #selector(LoginViewController.verifyButtonDidTap), for: .touchUpInside)
         return verifyButton
     }()
@@ -143,7 +143,7 @@ class LoginViewController: UIViewController {
     private lazy var protocolLabel: UILabel = {
         let protocolLabel = UILabel()
         protocolLabel.font = UIFont.systemFont(ofSize: 12)
-        protocolLabel.textColor = MalaColor_939393_0
+        protocolLabel.textColor = UIColor(named: .HeaderTitle)
         protocolLabel.text = "轻触上面验证按钮即表示你同意"
         return protocolLabel
     }()
@@ -151,7 +151,7 @@ class LoginViewController: UIViewController {
     private lazy var protocolString: UILabel = {
         let protocolString = UILabel()
         protocolString.font = UIFont.systemFont(ofSize: 12)
-        protocolString.textColor = MalaColor_88BCDE_95
+        protocolString.textColor = UIColor(named: .ThemeBlueTranslucent95)
         protocolString.text = "麻辣老师用户协议"
         protocolString.isUserInteractionEnabled = true
         protocolString.addTapEvent(target: self, action: #selector(LoginViewController.protocolDidTap))
@@ -176,7 +176,7 @@ class LoginViewController: UIViewController {
     private func setupUserInterface() {
         // Style
         self.title = "验证"
-        self.view.backgroundColor = MalaColor_EDEDED_0
+        self.view.backgroundColor = UIColor(named: .RegularBackground)
         let leftBarButtonItem = UIBarButtonItem(customView:UIButton(imageName: "close", target: self, action: #selector(LoginViewController.closeButtonDidClick)))
         navigationItem.leftBarButtonItem = leftBarButtonItem
         UIApplication.shared.statusBarStyle = UIStatusBarStyle.default

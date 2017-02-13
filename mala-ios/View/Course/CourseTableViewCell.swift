@@ -31,7 +31,7 @@ class CourseTableViewCell: UITableViewCell {
         let label = UILabel(
             text: "1",
             fontSize: 24,
-            textColor: MalaColor_939393_0
+            textColor: UIColor(named: .HeaderTitle)
         )
         return label
     }()
@@ -40,7 +40,7 @@ class CourseTableViewCell: UITableViewCell {
         let label = UILabel(
             text: "周一",
             fontSize: 14,
-            textColor: MalaColor_939393_0
+            textColor: UIColor(named: .HeaderTitle)
         )
         return label
     }()
@@ -100,18 +100,18 @@ class CourseTableViewCell: UITableViewCell {
         
         switch course.status {
         case .Past:
-            dateLabel.textColor = MalaColor_939393_0
-            weekLabel.textColor = MalaColor_939393_0
+            dateLabel.textColor = UIColor(named: .HeaderTitle)
+            weekLabel.textColor = UIColor(named: .HeaderTitle)
             break
             
         case .Today:
-            dateLabel.textColor = MalaColor_6DB2E5_0
-            weekLabel.textColor = MalaColor_6DB2E5_0
+            dateLabel.textColor = UIColor(named: .ThemeDeepBlue)
+            weekLabel.textColor = UIColor(named: .ThemeDeepBlue)
             break
             
         case .Future:
-            dateLabel.textColor = MalaColor_333333_0
-            weekLabel.textColor = MalaColor_333333_0
+            dateLabel.textColor = UIColor(named: .ArticleTitle)
+            weekLabel.textColor = UIColor(named: .ArticleTitle)
             break
         }
     }

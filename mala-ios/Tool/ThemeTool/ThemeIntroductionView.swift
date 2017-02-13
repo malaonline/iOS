@@ -73,7 +73,7 @@ class ThemeIntroductionView: BaseViewController, UICollectionViewDelegate, UICol
     private func setupUserInterface() {
         // Style
         collectionView.backgroundColor = UIColor.white
-        pageControl.tintColor = MalaColor_2AAADD_0
+        pageControl.tintColor = UIColor(named: .PageControl)
         
         // SubViews
         view.addSubview(collectionView)
@@ -127,7 +127,7 @@ class ThemeIntroductionViewCell: UICollectionViewCell {
     /// 会员专享模型
     var model: IntroductionModel? {
         didSet {
-            imageView.image = UIImage(named: (model?.image ?? "")+"_detail")
+            imageView.image = UIImage(named: (model?.image?.rawValue ?? "") + "_detail")
             titleLabel.text = model?.title
             detailLabel.text = model?.subTitle
         }
@@ -150,7 +150,7 @@ class ThemeIntroductionViewCell: UICollectionViewCell {
         let label = UILabel(
             text: "简介标题",
             fontSize: 16,
-            textColor: MalaColor_2AAADD_0
+            textColor: UIColor(named: .PageControl)
         )
         label.textAlignment = .center
         return label
@@ -160,7 +160,7 @@ class ThemeIntroductionViewCell: UICollectionViewCell {
         let label = UILabel(
             text: "简介内容",
             fontSize: 14,
-            textColor: MalaColor_2AAADD_0
+            textColor: UIColor(named: .PageControl)
         )
         label.numberOfLines = 0
         label.textAlignment = .center

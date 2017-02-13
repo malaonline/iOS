@@ -48,7 +48,7 @@ open class CourseTableViewController: UIViewController, UITableViewDataSource, U
     /// "跳转最近的未上课程"按钮
     private lazy var goTopButton: UIButton = {
         let button = UIButton()
-        button.setBackgroundImage(UIImage(named: "goTop"), for: UIControlState())
+        button.setBackgroundImage(UIImage(asset: .goTop), for: UIControlState())
         button.addTarget(self, action: #selector(CourseTableViewController.scrollToToday), for: .touchUpInside)
         button.isHidden = true
         return button
@@ -81,11 +81,11 @@ open class CourseTableViewController: UIViewController, UITableViewDataSource, U
     private lazy var saveButton: UIButton = {
         let saveButton = UIButton(
             title: "今天",
-            titleColor: MalaColor_82B4D9_0,
+            titleColor: UIColor(named: .ThemeBlue),
             target: self,
             action: #selector(CourseTableViewController.scrollToToday)
         )
-        saveButton.setTitleColor(MalaColor_E0E0E0_95, for: .disabled)
+        saveButton.setTitleColor(UIColor(named: .Disabled), for: .disabled)
         return saveButton
     }()
     /// 导航栏TitleView
@@ -93,7 +93,7 @@ open class CourseTableViewController: UIViewController, UITableViewDataSource, U
         let label = UILabel(
             text: "课表",
             fontSize: 16,
-            textColor: MalaColor_000000_0
+            textColor: UIColor.black
         )
         return label
     }()

@@ -74,11 +74,11 @@ class CourseChoosingClassScheduleCell: MalaBaseCell {
     }
     
     private func setupLegends() {
-        legendView.addLegend(image: "legend_active", title: "可选")
-        legendView.addLegend(image: "legend_disabled", title: "已售")
-        legendView.addLegend(image: "legend_selected", title: "已选")
-        let buttonBought = legendView.addLegend(image: "legend_bought", title: "已买")
-        let ButtonDesc = legendView.addLegend(image: "desc_icon", offset: 3)
+        legendView.addLegend(image: .legendActive, title: "可选")
+        legendView.addLegend(image: .legendDisabled, title: "已售")
+        legendView.addLegend(image: .legendSelected, title: "已选")
+        let buttonBought = legendView.addLegend(image: .legendBought, title: "已买")
+        let ButtonDesc = legendView.addLegend(image: .descIcon, offset: 3)
         buttonBought.addTarget(self, action: #selector(CourseChoosingClassScheduleCell.showBoughtDescription), for: .touchUpInside)
         ButtonDesc.addTarget(self, action: #selector(CourseChoosingClassScheduleCell.showBoughtDescription), for: .touchUpInside)
     }
@@ -92,7 +92,7 @@ class CourseChoosingClassScheduleCell: MalaBaseCell {
 
 
 // MARK: - LegendView
-open class LegendView: UIView {
+class LegendView: UIView {
     
     // MARK: - Property
     private var currentX: CGFloat = 3
@@ -108,10 +108,10 @@ open class LegendView: UIView {
     }
     
     @discardableResult
-    open func addLegend(image imageName: String, title: String? = nil, offset: CGFloat? = 12) -> UIButton {
+    func addLegend(image imageName: ImageAsset, title: String? = nil, offset: CGFloat? = 12) -> UIButton {
         let button = UIButton()
         button.adjustsImageWhenHighlighted = false
-        button.setImage(UIImage(named: imageName), for: UIControlState())
+        button.setImage(UIImage(asset: imageName), for: UIControlState())
         if title != nil {
             button.imageEdgeInsets = UIEdgeInsets(top: 0, left: -3, bottom: 0, right: 3)
             button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 3, bottom: 0, right: -3)
@@ -119,7 +119,7 @@ open class LegendView: UIView {
         
         button.setTitle(title, for: UIControlState())
         button.titleLabel?.font = UIFont.systemFont(ofSize: 12)
-        button.setTitleColor(MalaColor_939393_0, for: UIControlState())
+        button.setTitleColor(UIColor(named: .HeaderTitle), for: UIControlState())
         
         button.sizeToFit()
         button.frame.origin.x = (currentX == 3 ? currentX : currentX+(offset ?? 12)+3)

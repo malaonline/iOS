@@ -31,7 +31,7 @@ class QRCodeView: UIView {
         let label = UILabel(
             text: "共计",
             font: UIFont(name: "PingFang-SC-Regular", size: 13),
-            textColor: MalaColor_333333_0,
+            textColor: UIColor(named: .ArticleTitle),
             textAlignment: .right
         )
         return label
@@ -41,14 +41,14 @@ class QRCodeView: UIView {
         let label = UILabel(
             text: "¥ 480.00",
             font: UIFont(name: "PingFang-SC-Regular", size: 18),
-            textColor: MalaColor_E26254_0,
+            textColor: UIColor(named: .ThemeRed),
             textAlignment: .left
         )
         return label
     }()
     /// 分割线
     private lazy var line: UIView = {
-        let view = UIView(MalaColor_E5E5E5_0)
+        let view = UIView(UIColor(named: .SeparatorLine))
         return view
     }()
     /// 支付提示文字
@@ -56,7 +56,7 @@ class QRCodeView: UIView {
         let label = UILabel(
             text: "请扫下方二维码进行支付",
             font: UIFont(name: "PingFang-SC-Regular", size: 12),
-            textColor: MalaColor_636363_0
+            textColor: UIColor(named: .ArticleText)
         )
         return label
     }()

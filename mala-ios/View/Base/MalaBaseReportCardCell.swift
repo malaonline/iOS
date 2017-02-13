@@ -16,19 +16,19 @@ class MalaBaseReportCardCell: MalaBaseCardCell {
         let label = UILabel(
             text: "报告标题",
             fontSize: 16,
-            textColor: MalaColor_5E5E5E_0
+            textColor: UIColor(named: .ChartLabel)
         )
         return label
     }()
     /// 分割线
     lazy var separatorLine: UIView = {
-        let view = UIView(MalaColor_EDEDED_0)
+        let view = UIView(UIColor(named: .RegularBackground))
         return view
     }()
     /// 描述视图
     lazy var descView: UIView = {
-        let view = UIView(MalaColor_F8FAFD_0)
-        view.addShadow(color: MalaColor_D7D7D7_0)
+        let view = UIView(UIColor(named: .BaseBoard))
+        view.addShadow(color: UIColor(named: .ShadowGray))
         return view
     }()
     /// 曲别针图标
@@ -41,7 +41,7 @@ class MalaBaseReportCardCell: MalaBaseCardCell {
         let label = UILabel(
             text: "解读：",
             fontSize: 12,
-            textColor: MalaColor_363B4E_0
+            textColor: UIColor(named: .ReportDesc)
         )
         return label
     }()
@@ -50,7 +50,7 @@ class MalaBaseReportCardCell: MalaBaseCardCell {
         let label = UILabel(
             text: "解读内容",
             fontSize: 10,
-            textColor: MalaColor_5E5E5E_0
+            textColor: UIColor(named: .ChartLabel)
         )
         label.numberOfLines = 0
         return label

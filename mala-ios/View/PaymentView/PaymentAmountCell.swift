@@ -24,7 +24,7 @@ class PaymentAmountCell: UITableViewCell {
     private lazy var titleLabel: UILabel = {
         let titleLabel = UILabel()
         titleLabel.font = UIFont.systemFont(ofSize: 15)
-        titleLabel.textColor = MalaColor_333333_0
+        titleLabel.textColor = UIColor(named: .ArticleTitle)
         titleLabel.text = "应付金额"
         return titleLabel
     }()
@@ -32,7 +32,7 @@ class PaymentAmountCell: UITableViewCell {
     private lazy var amountLabel: UILabel = {
         let amountLabel = UILabel()
         amountLabel.font = UIFont.systemFont(ofSize: 14)
-        amountLabel.textColor = MalaColor_E36A5D_0
+        amountLabel.textColor = UIColor(named: .OrderStatusRed)
         amountLabel.text = "￥0.01"
         return amountLabel
     }()

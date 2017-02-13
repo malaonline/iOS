@@ -61,9 +61,9 @@ class SchoolTableViewController: UIViewController, UITableViewDelegate, UITableV
         // tableView Style
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.backgroundColor = MalaColor_F6F7F9_0
+        tableView.backgroundColor = UIColor(named: .BaseBoard)
         tableView.separatorStyle = .none
-        tableView.separatorColor = MalaColor_E5E5E5_0
+        tableView.separatorColor = UIColor(named: .SeparatorLine)
         tableView.estimatedRowHeight = 60
         tableView.register(RegionUnitCell.self, forCellReuseIdentifier: SchoolTableViewCellReuseId)
         

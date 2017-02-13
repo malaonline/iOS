@@ -80,8 +80,8 @@ class LearningReportViewController: BaseViewController, UICollectionViewDelegate
     
     private func setupUserInterface() {
         // Style
-        collectionView.backgroundColor = MalaColor_F2F2F2_0
-        pageControl.tintColor = MalaColor_2AAADD_0
+        collectionView.backgroundColor = UIColor(named: .CardBackground)
+        pageControl.tintColor = UIColor(named: .PageControl)
         
         // SubViews
         view.addSubview(collectionView)

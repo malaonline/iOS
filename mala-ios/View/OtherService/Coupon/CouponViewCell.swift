@@ -107,7 +107,7 @@ class CouponViewCell: UITableViewCell {
         let label = UILabel(
             text: "",
             fontSize: 17,
-            textColor: MalaColor_6DB2E5_0
+            textColor: UIColor(named: .ThemeDeepBlue)
         )
         return label
     }()
@@ -116,7 +116,7 @@ class CouponViewCell: UITableViewCell {
         let label = UILabel(
             text: "",
             fontSize: 13,
-            textColor: MalaColor_999999_0
+            textColor: UIColor(named: .CouponGray)
         )
         return label
     }()
@@ -148,7 +148,7 @@ class CouponViewCell: UITableViewCell {
     // MARK: - Private Method
     private func setupUserInterface() {
         // Style
-        contentView.backgroundColor = MalaColor_EDEDED_0
+        contentView.backgroundColor = UIColor(named: .RegularBackground)
         
         // SubViews
         contentView.addSubview(separatorView)
@@ -222,28 +222,28 @@ class CouponViewCell: UITableViewCell {
     }
     ///  不可用样式(当前选课条件不满足使用条件)
     private func setStyleDisable() {
-        titleLabel.textColor = MalaColor_999999_0
-        content.image = UIImage(named: "coupon_unvalid")
+        titleLabel.textColor = UIColor(named: .CouponGray)
+        content.image = UIImage(asset: .couponUnvalid)
         statusIcon.isHidden = true
     }
     ///  过期样式(不可用)
     private func setStyleExpired() {
-        titleLabel.textColor = MalaColor_999999_0
-        content.image = UIImage(named: "coupon_unvalid")
+        titleLabel.textColor = UIColor(named: .CouponGray)
+        content.image = UIImage(asset: .couponUnvalid)
         statusIcon.isHidden = false
-        statusIcon.image = UIImage(named: "coupon_expired")
+        statusIcon.image = UIImage(asset: .couponExpired)
     }
     ///  已使用样式(不可用)
     private func setStyleUsed() {
-        titleLabel.textColor = MalaColor_999999_0
-        content.image = UIImage(named: "coupon_unvalid")
+        titleLabel.textColor = UIColor(named: .CouponGray)
+        content.image = UIImage(asset: .couponUnvalid)
         statusIcon.isHidden = false
-        statusIcon.image = UIImage(named: "coupon_used")
+        statusIcon.image = UIImage(asset: .couponUsed)
     }
     ///  未使用样式(可用)
     private func setStyleUnused() {
-        titleLabel.textColor = MalaColor_6DB2E5_0
-        content.image = UIImage(named: "coupon_valid")
+        titleLabel.textColor = UIColor(named: .ThemeDeepBlue)
+        content.image = UIImage(asset: .couponValid)
         statusIcon.isHidden = true
     }
 }

@@ -45,8 +45,8 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
         
         button.setTitle("退  出", for: UIControlState())
         button.setTitleColor(UIColor.white, for: UIControlState())
-        button.setBackgroundImage(UIImage.withColor(MalaColor_82B4D9_0), for: UIControlState())
-        button.setBackgroundImage(UIImage.withColor(UIColor(rgbHexValue: 0x82B4D9, alpha: 0.6)), for: .highlighted)
+        button.setBackgroundImage(UIImage.withColor(UIColor(named: .ThemeBlue)), for: UIControlState())
+        button.setBackgroundImage(UIImage.withColor(UIColor(named: .ThemeBlue)), for: .highlighted)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
         
         button.addTarget(self, action: #selector(ProfileViewController.logoutButtonDidTap), for: .touchUpInside)
@@ -104,7 +104,7 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
         // Style
         tableView.tableHeaderView = profileHeaderView
         tableView.tableFooterView = profileFooterView
-        tableView.backgroundColor = MalaColor_F2F2F2_0
+        tableView.backgroundColor = UIColor(named: .CardBackground)
         tableView.separatorStyle = .none
         
         // SubViews
@@ -218,7 +218,7 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
     // MARK: - Delegate
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 8))
-        view.backgroundColor = MalaColor_F2F2F2_0
+        view.backgroundColor = UIColor(named: .CardBackground)
         return view
     }
     

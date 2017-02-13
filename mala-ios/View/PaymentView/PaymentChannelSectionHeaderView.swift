@@ -15,7 +15,7 @@ class PaymentChannelSectionHeaderView: UIView {
     private lazy var titleLabel: UILabel = {
         let titleLabel = UILabel()
         titleLabel.font = UIFont.systemFont(ofSize: 13)
-        titleLabel.textColor = MalaColor_6C6C6C_0
+        titleLabel.textColor = UIColor(named: .ArticleSubTitle)
         titleLabel.text = "选择支付方式"
         return titleLabel
     }()

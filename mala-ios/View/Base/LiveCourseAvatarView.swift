@@ -51,7 +51,7 @@ class LiveCourseAvatarView: UIImageView {
     // MARK: - Private
     private func setupUserInterface() {
         // Style
-        image = UIImage(named: "live_avatarBackground")
+        image = UIImage(asset: .liveAvatarBackground)
         
         // SubViews
         addSubview(lecturerAvatar)

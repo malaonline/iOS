@@ -23,7 +23,7 @@ class MalaBaseLiveCourseCell: UITableViewCell {
     /// 卡片布局容器
     lazy var cardContent: UIView = {
         let view = UIView(UIColor.white)
-        view.addShadow(color: MalaColor_D7D7D7_0)
+        view.addShadow(color: UIColor(named: .ShadowGray))
         return view
     }()
     /// 标题标签
@@ -31,13 +31,13 @@ class MalaBaseLiveCourseCell: UITableViewCell {
         let label = UILabel(
             text: "title",
             font: UIFont(name: "PingFang-SC-Light", size: 15),
-            textColor: MalaColor_7DB7E2_0
+            textColor: UIColor(named: .LiveDetailCardTitle)
         )
         return label
     }()
     /// 分割线
     lazy var line: UIView = {
-        let view = UIView(MalaColor_F2F2F2_0)
+        let view = UIView(UIColor(named: .CardBackground))
         return view
     }()
     /// 布局容器
@@ -64,7 +64,7 @@ class MalaBaseLiveCourseCell: UITableViewCell {
     private func setupUserInterface() {
         // Style
         selectionStyle = .none
-        contentView.backgroundColor = MalaColor_EDEDED_0
+        contentView.backgroundColor = UIColor(named: .RegularBackground)
         
         // SubViews
         contentView.addSubview(cardContent)

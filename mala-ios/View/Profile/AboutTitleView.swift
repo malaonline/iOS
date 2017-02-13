@@ -25,7 +25,7 @@ class AboutTitleView: UIView {
     private var titleLabel: UILabel = {
         let titleLabel = UILabel(
             fontSize: 14,
-            textColor: MalaColor_6C6C6C_0
+            textColor: UIColor(named: .ArticleSubTitle)
         )
         return titleLabel
     }()

@@ -24,11 +24,11 @@ class TeacherDetailsHeaderView: UIView {
             
             /// 教师性别
             if model.gender == "f" {
-                genderIcon.image = UIImage(named: "gender_female")
+                genderIcon.image = UIImage(asset: .genderFemale)
             }else if model.gender == "m" {
-                genderIcon.image = UIImage(named: "gender_male")
+                genderIcon.image = UIImage(asset: .genderMale)
             }else {
-                genderIcon.image = UIImage(named: "")
+                genderIcon.image = UIImage(asset: .none)
             }
             
             /// 教授学科
@@ -95,21 +95,21 @@ class TeacherDetailsHeaderView: UIView {
     /// 科目label
     private lazy var subjectLabel: UILabel = {
         let label = UILabel()
-        label.textColor = MalaColor_939393_0
+        label.textColor = UIColor(named: .HeaderTitle)
         label.font = UIFont.systemFont(ofSize: 12)
         return label
     }()
     /// 价格label
     private lazy var priceLabel: UILabel = {
         let label = UILabel()
-        label.textColor = MalaColor_939393_0
+        label.textColor = UIColor(named: .HeaderTitle)
         label.font = UIFont.systemFont(ofSize: 12)
         label.textAlignment = .left
         return label
     }()
     /// 分割线
     private lazy var separatorLine: UIView = {
-        let view = UIView(MalaColor_E5E5E5_0)
+        let view = UIView(UIColor(named: .SeparatorLine))
         return view
     }()
     /// 教龄进度条
@@ -117,8 +117,8 @@ class TeacherDetailsHeaderView: UIView {
         let progress = KYCircularProgress(frame: CGRect(x: 0, y: 0, width: 50, height: 50), showProgressGuide: true)
         progress.lineWidth = 2.5
         progress.guideLineWidth = 2.5
-        progress.colors = [MalaColor_FA7A7A_0]
-        progress.progressGuideColor = MalaColor_EEEEEE_0
+        progress.colors = [UIColor(named: .TeachingAgeRed)]
+        progress.progressGuideColor = UIColor(named: .ProgressGray)
         progress.startAngle = -M_PI_2
         progress.endAngle = -M_PI_2
         progress.progress = 0.35
@@ -134,7 +134,7 @@ class TeacherDetailsHeaderView: UIView {
         let label = UILabel(
             text: "教龄",
             fontSize: 14,
-            textColor: MalaColor_828282_0
+            textColor: UIColor(named: .HeaderTitle)
         )
         return label
     }()
@@ -143,7 +143,7 @@ class TeacherDetailsHeaderView: UIView {
         let label = UILabel(
             text: "0年",
             fontSize: 14,
-            textColor: MalaColor_828282_0
+            textColor: UIColor(named: .HeaderTitle)
         )
         return label
     }()
@@ -152,8 +152,8 @@ class TeacherDetailsHeaderView: UIView {
         let progress = KYCircularProgress(frame: CGRect(x: 0, y: 0, width: 50, height: 50), showProgressGuide: true)
         progress.lineWidth = 2.5
         progress.guideLineWidth = 2.5
-        progress.colors = [MalaColor_FDDC55_0]
-        progress.progressGuideColor = MalaColor_EEEEEE_0
+        progress.colors = [UIColor(named: .LevelYellow)]
+        progress.progressGuideColor = UIColor(named: .ProgressGray)
         progress.startAngle = -M_PI_2
         progress.endAngle = -M_PI_2
         progress.progress = 0.35
@@ -169,7 +169,7 @@ class TeacherDetailsHeaderView: UIView {
         let label = UILabel(
             text: "级别",
             fontSize: 14,
-            textColor: MalaColor_828282_0
+            textColor: UIColor(named: .HeaderTitle)
         )
         return label
     }()
@@ -178,7 +178,7 @@ class TeacherDetailsHeaderView: UIView {
         let label = UILabel(
             text: "T1",
             fontSize: 14,
-            textColor: MalaColor_828282_0
+            textColor: UIColor(named: .HeaderTitle)
         )
         return label
     }()

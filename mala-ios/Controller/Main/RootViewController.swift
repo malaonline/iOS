@@ -11,7 +11,7 @@ import UIKit
 private struct PagingMenuOptions: PagingMenuControllerCustomizable {
     
     var backgroundColor: UIColor {
-        return MalaColor_EDEDED_0
+        return UIColor(named: .RegularBackground)
     }
     
     fileprivate var componentType: ComponentType {
@@ -26,10 +26,10 @@ private struct PagingMenuOptions: PagingMenuControllerCustomizable {
     
     fileprivate struct MenuOptions: MenuViewCustomizable {
         var backgroundColor: UIColor {
-            return MalaColor_FDFDFD_0
+            return UIColor(named: .OptionBackground)
         }
         var selectedBackgroundColor: UIColor {
-            return MalaColor_FDFDFD_0
+            return UIColor(named: .OptionBackground)
         }
         var displayMode: MenuDisplayMode {
             return .segmentedControl
@@ -38,18 +38,18 @@ private struct PagingMenuOptions: PagingMenuControllerCustomizable {
             return [MenuItem1(), MenuItem2()]
         }
         var focusMode: MenuFocusMode {
-            return .underline(height: 2, color: MalaColor_8DBEDE_0, horizontalPadding: 30, verticalPadding: 0)
+            return .underline(height: 2, color: UIColor(named: .OptionSelectColor), horizontalPadding: 30, verticalPadding: 0)
         }
     }
     
     fileprivate struct MenuItem1: MenuItemViewCustomizable {
         var displayMode: MenuItemDisplayMode {
-            return .text(title: MenuItemText(text: "一对一", color: MalaColor_7E7E7E_0, selectedColor: MalaColor_8DBEDE_0))
+            return .text(title: MenuItemText(text: "一对一", color: UIColor(named: .OptionTitle), selectedColor: UIColor(named: .OptionSelectColor)))
         }
     }
     fileprivate struct MenuItem2: MenuItemViewCustomizable {
         var displayMode: MenuItemDisplayMode {
-            return .text(title: MenuItemText(text: "双师直播", color: MalaColor_7E7E7E_0, selectedColor: MalaColor_8DBEDE_0))
+            return .text(title: MenuItemText(text: "双师直播", color: UIColor(named: .OptionTitle), selectedColor: UIColor(named: .OptionSelectColor)))
         }
     }
 }
@@ -100,7 +100,7 @@ class RootViewController: UIViewController {
     // MARK: - Private Method
     private func setupUserInterface() {
         // Style
-        navigationController?.navigationBar.shadowImage = UIImage.withColor(MalaColor_F4F4F4_0)
+        navigationController?.navigationBar.shadowImage = UIImage.withColor(UIColor(named: .NavigationShadow))
         
         // TitleView
         navigationItem.titleView = regionPickButton

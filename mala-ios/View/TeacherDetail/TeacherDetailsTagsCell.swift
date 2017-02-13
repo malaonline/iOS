@@ -24,8 +24,8 @@ class TeacherDetailsTagsCell: MalaBaseCell {
     lazy var tagsView: ThemeTagListView = {
         let tagsView = ThemeTagListView()
         tagsView.imageName = "tags_icon"
-        tagsView.labelBackgroundColor = MalaColor_BCD0DE_0
-        tagsView.textColor = MalaColor_5789AC_0
+        tagsView.labelBackgroundColor = UIColor(named: .SubjectTagBlue)
+        tagsView.textColor = UIColor(named: .StyleTag)
         return tagsView
     }()
     

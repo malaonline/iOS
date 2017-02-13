@@ -43,13 +43,13 @@ class LearningReportHomeworkDataCell: MalaBaseCardCell {
         let label = UILabel(
             text: "作业数据分析",
             fontSize: 16,
-            textColor: MalaColor_5E5E5E_0
+            textColor: UIColor(named: .ChartLabel)
         )
         return label
     }()
     /// 分割线
     private lazy var separatorLine: UIView = {
-        let view = UIView(MalaColor_EDEDED_0)
+        let view = UIView(UIColor(named: .RegularBackground))
         return view
     }()
     /// 学习信息标签
@@ -57,9 +57,9 @@ class LearningReportHomeworkDataCell: MalaBaseCardCell {
         let label = UILabel(
             text: "",
             fontSize: 10,
-            textColor: MalaColor_5E5E5E_0
+            textColor: UIColor(named: .ChartLabel)
         )
-        label.backgroundColor = MalaColor_E8F2F8_0
+        label.backgroundColor = UIColor(named: .ReportLabelBack)
         label.textAlignment = .center
         label.layer.cornerRadius = 11
         label.layer.masksToBounds = true
@@ -75,7 +75,7 @@ class LearningReportHomeworkDataCell: MalaBaseCardCell {
         let label = UILabel(
             text: "",
             fontSize: 10,
-            textColor: MalaColor_8DBEDE_0
+            textColor: UIColor(named: .OptionSelectColor)
         )
         return label
     }()
@@ -131,7 +131,7 @@ class LearningReportHomeworkDataCell: MalaBaseCardCell {
     
     private func setupUserInterface() {
         // Style
-        contentView.backgroundColor = MalaColor_F2F2F2_0
+        contentView.backgroundColor = UIColor(named: .CardBackground)
         
         // SubViews
         layoutView.addSubview(titleLabel)
@@ -230,7 +230,7 @@ class LearningReportHomeworkDataCell: MalaBaseCardCell {
         
         // 设置空数据
         let dataSet = PieChartDataSet(values: [yVals], label: nil)
-        dataSet.colors = [MalaColor_E5E5E5_3]
+        dataSet.colors = [UIColor(named: .SeparatorLine)]
         let data = PieChartData(dataSets: [dataSet])
         pieChartView.data = data
     }
@@ -276,7 +276,7 @@ open class PieLegendView: UIView {
         
         button.setTitle(title, for: UIControlState())
         button.titleLabel?.font = UIFont.systemFont(ofSize: 12)
-        button.setTitleColor(MalaColor_939393_0, for: UIControlState())
+        button.setTitleColor(UIColor(named: .HeaderTitle), for: UIControlState())
         
         button.sizeToFit()
         currentY = CGFloat(Int(Int(self.viewCount)/3)*20)

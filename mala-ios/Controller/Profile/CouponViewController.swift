@@ -40,11 +40,11 @@ class CouponViewController: BaseTableViewController {
     private lazy var rulesButton: UIButton = {
         let button = UIButton(
             title: "使用规则",
-            titleColor: MalaColor_82B4D9_0,
+            titleColor: UIColor(named: .ThemeBlue),
             target: self,
             action: #selector(CouponViewController.showCouponRules)
         )
-        button.setTitleColor(MalaColor_E0E0E0_95, for: .disabled)
+        button.setTitleColor(UIColor(named: .Disabled), for: .disabled)
         return button
     }()
     
@@ -65,7 +65,7 @@ class CouponViewController: BaseTableViewController {
     // MARK: - Private Method
     private func configure() {
         title = "奖学金"
-        tableView.backgroundColor = MalaColor_EDEDED_0
+        tableView.backgroundColor = UIColor(named: .RegularBackground)
         tableView.separatorStyle = .none
         refreshControl = refresher
         tableView.register(CouponViewCell.self, forCellReuseIdentifier: CouponViewCellReuseId)

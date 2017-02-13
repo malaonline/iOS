@@ -85,7 +85,7 @@ class MemberPrivilegesViewController: UITableViewController {
     
     private func setupUserInterface() {
         // Style
-        tableView.backgroundColor = MalaColor_EDEDED_0
+        tableView.backgroundColor = UIColor(named: .RegularBackground)
         tableView.separatorStyle = .none
     }
     

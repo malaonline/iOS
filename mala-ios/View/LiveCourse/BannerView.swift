@@ -19,7 +19,7 @@ class BannerView: UIView {
         button.layer.shadowRadius = 2
         button.layer.shadowOffset = CGSize(width: 2, height: 2)
         button.layer.shadowOpacity = 0.3
-        button.setImage(UIImage(named: "live_banner"), for: .normal)
+        button.setImage(UIImage(asset: .liveBanner), for: .normal)
         return button
     }()
     
@@ -39,7 +39,7 @@ class BannerView: UIView {
     // MARK: - Private
     private func setupUserInterface() {
         // Style
-        backgroundColor = MalaColor_EDEDED_0
+        backgroundColor = UIColor(named: .RegularBackground)
         
         // SubViews
         addSubview(button)

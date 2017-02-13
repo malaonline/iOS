@@ -70,7 +70,7 @@ open class CommentViewWindow: UIViewController, UITextViewDelegate {
         let label = UILabel(
             text: "评价",
             fontSize: 16,
-            textColor: MalaColor_8FBCDD_0,
+            textColor: UIColor(named: .ThemeBlue),
             textAlignment: .center
         )
         return label
@@ -78,13 +78,13 @@ open class CommentViewWindow: UIViewController, UITextViewDelegate {
     /// 关闭按钮
     private lazy var closeButton: UIButton = {
         let button = UIButton()
-        button.setBackgroundImage(UIImage(named: "close"), for: UIControlState())
+        button.setBackgroundImage(UIImage(asset: .close), for: UIControlState())
         button.addTarget(self, action: #selector(CommentViewWindow.closeButtonDidTap), for: .touchUpInside)
         return button
     }()
     /// 顶部装饰线
     private lazy var titleLine: UIView = {
-        let view = UIView(MalaColor_8FBCDD_0)
+        let view = UIView(UIColor(named: .ThemeBlue))
         return view
     }()
     /// 老师信息及评分控件容器
@@ -116,7 +116,7 @@ open class CommentViewWindow: UIViewController, UITextViewDelegate {
         let label = UILabel(
             text: "老师姓名",
             fontSize : 13,
-            textColor: MalaColor_939393_0
+            textColor: UIColor(named: .HeaderTitle)
         )
         return label
     }()
@@ -125,7 +125,7 @@ open class CommentViewWindow: UIViewController, UITextViewDelegate {
         let label = UILabel(
             text: "教授科目",
             fontSize : 13,
-            textColor: MalaColor_BEBEBE_0
+            textColor: UIColor(named: .HeaderTitle)
         )
         return label
     }()
@@ -145,13 +145,13 @@ open class CommentViewWindow: UIViewController, UITextViewDelegate {
         textView.delegate = self
         textView.textContainerInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         textView.font = UIFont.systemFont(ofSize: 13)
-        textView.textColor = MalaColor_D4D4D4_0
+        textView.textColor = UIColor(named: .InfoText)
         textView.text = "请写下对老师的感受吧，对他人的帮助很大哦~最多可输入200字"
         return textView
     }()
     /// 提交按钮装饰线
     private lazy var buttonSeparatorLine: UIView = {
-        let view = UIView(MalaColor_8FBCDD_0)
+        let view = UIView(UIColor(named: .ThemeBlue))
         return view
     }()
     /// 提交按钮
@@ -159,11 +159,11 @@ open class CommentViewWindow: UIViewController, UITextViewDelegate {
         let button = UIButton()
         button.setTitle("提  交", for: UIControlState())
         button.setTitle("提交中", for: .disabled)
-        button.setTitleColor(MalaColor_BCD7EB_0, for: UIControlState())
-        button.setTitleColor(MalaColor_B7B7B7_0, for: .disabled)
-        button.setBackgroundImage(UIImage.withColor(MalaColor_FFFFFF_9), for: UIControlState())
-        button.setBackgroundImage(UIImage.withColor(MalaColor_F8F8F8_0), for: .highlighted)
-        button.setBackgroundImage(UIImage.withColor(MalaColor_F8F8F8_0), for: .disabled)
+        button.setTitleColor(UIColor(named: .CommitButtonNormal), for: UIControlState())
+        button.setTitleColor(UIColor(named: .DescGray), for: .disabled)
+        button.setBackgroundImage(UIImage.withColor(UIColor(named: .WhiteTranslucent9)), for: UIControlState())
+        button.setBackgroundImage(UIImage.withColor(UIColor(named: .HighlightGray)), for: .highlighted)
+        button.setBackgroundImage(UIImage.withColor(UIColor(named: .HighlightGray)), for: .disabled)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 15)
         button.addTarget(self, action: #selector(CommentViewWindow.commitButtonDidTap(_:)), for: .touchUpInside)
         return button
@@ -428,7 +428,7 @@ open class CommentViewWindow: UIViewController, UITextViewDelegate {
             
             // 评价文本框
             textView.isUserInteractionEnabled = false
-            textView.textColor = MalaColor_939393_0
+            textView.textColor = UIColor(named: .HeaderTitle)
             
             // 评分组件
             floatRating.editable = false
@@ -465,10 +465,10 @@ open class CommentViewWindow: UIViewController, UITextViewDelegate {
     
     private func adjustTextViewPlaceholder(isShow: Bool) {
         if isShow {
-            textView.textColor = MalaColor_D4D4D4_0
+            textView.textColor = UIColor(named: .InfoText)
             textView.text = MalaCommonString_CommentPlaceholder
         }else {
-            textView.textColor = MalaColor_939393_0
+            textView.textColor = UIColor(named: .HeaderTitle)
             if textView.text == MalaCommonString_CommentPlaceholder {
                 textView.text = ""
             }

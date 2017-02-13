@@ -27,7 +27,7 @@ class RegionPicker: UIView {
         let label = UILabel(
             text: String(format: "校区:%@", MalaCurrentSchool?.name ?? "未选择"),
             fontSize: 15,
-            textColor: MalaColor_333333_0
+            textColor: UIColor(named: .ArticleTitle)
         )
         return label
     }()
