@@ -33,6 +33,8 @@ class LiveClassModel: BaseObjectModel {
     var studentsCount: Int?
     var lecturerBio: String?
     
+    var isPaid: Bool?
+    
     var attrAddressString: NSMutableAttributedString {
         get {
             return makeAddressAttrString(schoolName, schoolAddress)
@@ -132,6 +134,10 @@ class LiveClassModel: BaseObjectModel {
         }
         if key == "lecturer_bio", let string = value as? String {
             lecturerBio = string
+            return
+        }
+        if key == "is_paid", let bool = value as? Bool {
+            isPaid = bool
             return
         }
         super.setValue(value, forKey: key)
