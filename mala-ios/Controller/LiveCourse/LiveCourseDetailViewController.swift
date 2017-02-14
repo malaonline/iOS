@@ -11,12 +11,8 @@ import UIKit
 class LiveCourseDetailViewController: BaseViewController, LiveCourseConfirmViewDelegate {
     
     // MARK: - Property
-    /// 教师id
-    var classId: Int? {
-        didSet {
-            
-        }
-    }
+    /// 课程id
+    var classId = 0
     /// 教师详情数据模型
     var model: LiveClassModel = LiveClassModel() {
         didSet {
@@ -41,7 +37,10 @@ class LiveCourseDetailViewController: BaseViewController, LiveCourseConfirmViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        ThemeHUD.showActivityIndicator()
+        
         setupUserInterface()
+        loadClassDetail()
         setupNotification()
     }
     
@@ -79,6 +78,20 @@ class LiveCourseDetailViewController: BaseViewController, LiveCourseConfirmViewD
             maker.right.equalTo(view)
             maker.height.equalTo(44)
         }
+    }
+    
+    private func loadClassDetail() {
+        getLiveClassDetail(classId, failureHandler: { (reason, errorMessage) in
+            ThemeHUD.hideActivityIndicator()
+            defaultFailureHandler(reason, errorMessage: errorMessage)
+            // 错误处理
+            if let errorMessage = errorMessage {
+                println("LiveCourseDetailViewController - loadClassDetail Error \(errorMessage)")
+            }
+        }, completion: { [weak self] (model) in
+            ThemeHUD.hideActivityIndicator()
+            self?.model = model
+        })
     }
     
     private func setupNotification() {
