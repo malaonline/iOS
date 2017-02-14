@@ -16,8 +16,10 @@ class LiveCourseDetailViewController: BaseViewController, LiveCourseConfirmViewD
     /// 教师详情数据模型
     var model: LiveClassModel = LiveClassModel() {
         didSet {
-            tableView.model = model
-            confirmView.model = model
+            DispatchQueue.main.async { [weak self] in
+                self?.tableView.model = self?.model
+                self?.confirmView.model = self?.model
+            }
         }
     }
     
@@ -90,6 +92,7 @@ class LiveCourseDetailViewController: BaseViewController, LiveCourseConfirmViewD
             }
         }, completion: { [weak self] (model) in
             ThemeHUD.hideActivityIndicator()
+            println("编号：\(model.id) - \(model.isPaid)")
             self?.model = model
         })
     }

@@ -28,9 +28,7 @@ class LiveCourseDetailTableView: UITableView, UITableViewDelegate, UITableViewDa
     /// 教师详情模型
     var model: LiveClassModel? {
         didSet {
-            DispatchQueue.main.async {
-                self.reloadData()
-            }
+            self.reloadData()
         }
     }
     

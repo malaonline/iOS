@@ -33,7 +33,7 @@ class LiveClassModel: BaseObjectModel {
     var studentsCount: Int?
     var lecturerBio: String?
     
-    var isPaid: Bool?
+    var isPaid: Bool = true
     
     var attrAddressString: NSMutableAttributedString {
         get {
@@ -48,7 +48,7 @@ class LiveClassModel: BaseObjectModel {
     }
     
     override init(dict: [String: AnyObject]) {
-        super.init()
+        super.init(dict: dict)
         setValuesForKeys(dict)
     }
     

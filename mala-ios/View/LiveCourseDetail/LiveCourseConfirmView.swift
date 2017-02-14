@@ -21,9 +21,10 @@ class LiveCourseConfirmView: UIView {
     var model: LiveClassModel? {
         didSet{
             guard let model = model else { return }
-            
+                        
             priceLabel.text = String(format: "%@/", model.courseFee?.priceCNY ?? "")
             lessionsLabel.text = String(format: "%d次", model.courseLessons ?? 0)
+            confirmButton.isEnabled = !model.isPaid
         }
     }
     weak var delegate: LiveCourseConfirmViewDelegate?
@@ -64,8 +65,11 @@ class LiveCourseConfirmView: UIView {
             bgColor: UIColor(named: .ThemeBlue),
             selectedBgColor: UIColor(named: .ThemeBlue)
         )
+        button.setTitle("已购买", for: .disable)
+        button.setBackgroundImage(UIImage.withColor(UIColor(named: .Disabled)), for: .disabled)
         button.titleLabel?.font = UIFont(name: "FZLTXHK", size: 15)
         button.addTarget(self, action: #selector(LiveCourseConfirmView.buttonDidTap), for: .touchUpInside)
+        button.isEnabled = false
         return button
     }()
     
