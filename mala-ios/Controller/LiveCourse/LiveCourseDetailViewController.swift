@@ -39,8 +39,6 @@ class LiveCourseDetailViewController: BaseViewController, LiveCourseConfirmViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        ThemeHUD.showActivityIndicator()
-        
         setupUserInterface()
         loadClassDetail()
         setupNotification()
@@ -83,6 +81,9 @@ class LiveCourseDetailViewController: BaseViewController, LiveCourseConfirmViewD
     }
     
     private func loadClassDetail() {
+        
+        ThemeHUD.showActivityIndicator()
+        
         getLiveClassDetail(classId, failureHandler: { (reason, errorMessage) in
             ThemeHUD.hideActivityIndicator()
             defaultFailureHandler(reason, errorMessage: errorMessage)
@@ -92,7 +93,6 @@ class LiveCourseDetailViewController: BaseViewController, LiveCourseConfirmViewD
             }
         }, completion: { [weak self] (model) in
             ThemeHUD.hideActivityIndicator()
-            println("编号：\(model.id) - \(model.isPaid)")
             self?.model = model
         })
     }
@@ -178,6 +178,9 @@ class LiveCourseDetailViewController: BaseViewController, LiveCourseConfirmViewD
         // 验证是否已登陆
         if !MalaUserDefaults.isLogined {
             let loginController = LoginViewController()
+            loginController.popAction = { [weak self] in
+                self?.loadClassDetail()
+            }
             self.present(
                 UINavigationController(rootViewController: loginController),
                 animated: true,
