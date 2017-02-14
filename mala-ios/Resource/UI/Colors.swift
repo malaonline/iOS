@@ -42,7 +42,7 @@ enum ColorName: UInt32 {
     case OptionTitle = 0x7E7E7EFF
     case OptionBackground = 0xFDFDFDFF
     case ChartLabel = 0x5E5E5EFF
-    case LevelYellow = 0xfDDC55FF
+    case LevelYellow = 0xFDDC55FF
     case TeachingAgeRed = 0xFA7A7AFF
     case ProgressGray = 0xEEEEEEFF
     case OrderGreen = 0x7BB045FF
@@ -55,9 +55,9 @@ enum ColorName: UInt32 {
     case LiveAvatarBack = 0xA8D0FFFF
     case SubjectTagBlue = 0xB1D8F3FF
     case DescGray = 0xB7B7B7FF
-    case ReportTopicData = 0xBBDDF6F
+    case ReportTopicData = 0xBBDDF6FF
     case ThemeRed = 0xE26254FF
-    case ThemeRedHighlight = 0xFCEFED
+    case ThemeRedHighlight = 0xFCEFEDFF
     case ThemeBlue = 0x9BC3E1FF
     case ThemeGreen = 0x9EC379FF
     case ThemeTextBlue = 0x84B3D7FF
@@ -80,7 +80,7 @@ enum ColorName: UInt32 {
     case ChartYellow = 0xF8DB6BFF
     case ChartCyan = 0x6DC9CEFF
     case ChartRed = 0xF9877CFF
-    case ChartGreen = 0x69cc99ff
+    case ChartGreen = 0x69CC99FF
     case ChartBlue = 0x88BCDEFF
     case ChartGrayBlue = 0x8BA3CAFF
     case ChartOrange = 0xF7AF63FF
@@ -93,7 +93,7 @@ enum ColorName: UInt32 {
     case InfoText = 0xD4D4D4FF
     case ShadowGray = 0xD7D7D7FF
     case OrderStatusRed = 0xE36A5CFF
-    case HighlightGray = 0xF8F8F8F
+    case HighlightGray = 0xF8F8F8FF
     case ChartLegendGray = 0xE6E9ECFF
     case CommitHighlightBlue = 0xE6F1FCFF
     case ReportLabelBack = 0xE8F2F8FF
