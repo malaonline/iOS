@@ -254,13 +254,6 @@ class TeacherDetailsController: BaseViewController, UIGestureRecognizerDelegate,
                     }
                     
                     /// 图片浏览器
-                    SKPhotoBrowserOptions.displayAction = false
-                    SKPhotoBrowserOptions.displayBackAndForwardButton = false
-                    SKPhotoBrowserOptions.displayDeleteButton = false
-                    SKPhotoBrowserOptions.displayStatusbar = false
-                    SKPhotoBrowserOptions.displayStatusbar = false
-                    SKPhotoBrowserOptions.bounceAnimation = false
-                    
                     let browser = SKPhotoBrowser(originImage: originImage, photos: images ?? [], animatedFromView: imageView)
                     browser.initializePageIndex(imageView.tag)
                     browser.navigationController?.isNavigationBarHidden = true

@@ -89,12 +89,6 @@ open class MalaPhotoBrowser: BaseViewController, UICollectionViewDataSource, UIC
         guard let originImage = cell.contentImageView.image else { return }
         
         /// 图片浏览器
-        SKPhotoBrowserOptions.displayStatusbar = false
-        SKPhotoBrowserOptions.displayAction = false
-        SKPhotoBrowserOptions.bounceAnimation = false
-        SKPhotoBrowserOptions.displayDeleteButton = false
-        SKPhotoBrowserOptions.displayBackAndForwardButton = false
-        
         let browser = SKPhotoBrowser(originImage: originImage, photos: images, animatedFromView: cell)
         browser.initializePageIndex(indexPath.row)
         browser.delegate = self
