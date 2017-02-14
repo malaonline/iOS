@@ -671,6 +671,26 @@ func getLiveClasses(_ page: Int = 1, failureHandler: ((Reason, String?) -> Void)
         apiRequest({_ in}, baseURL: MalaBaseURL, resource: resource, failure: defaultFailureHandler, completion: completion)
     }
 }
+/// 获取指定直播课程详细信息
+///
+/// - Parameters:
+///   - id:             班级详情
+///   - failureHandler: 失败处理闭包
+///   - completion:     成功处理闭包
+func getLiveClassDetail(_ id: Int = 0, failureHandler: ((Reason, String?) -> Void)?, completion: @escaping (LiveClassModel) -> Void) {
+    
+    let parse: (JSONDictionary) -> (LiveClassModel) = { data in
+        return LiveClassModel(dict: data)
+    }
+    
+    let resource = authJsonResource(path: "/liveclasses/\(id)", method: .GET, requestParameters: nullDictionary(), parse: parse)
+    
+    if let failureHandler = failureHandler {
+        apiRequest({_ in}, baseURL: MalaBaseURL, resource: resource, failure: failureHandler, completion: completion)
+    } else {
+        apiRequest({_ in}, baseURL: MalaBaseURL, resource: resource, failure: defaultFailureHandler, completion: completion)
+    }
+}
 
 
 // MARK: - Course
@@ -1287,17 +1307,20 @@ let parseTeacherGradePrice: (JSONDictionary) -> [GradeModel] = { resultInfo in
 }
 /// 双师直播班级列表JSON解析器
 let parseLiveClassList: (JSONDictionary) -> ([LiveClassModel], Int) = { resultInfo in
+
+    var classList: [LiveClassModel] = []
     
-    var classes: [LiveClassModel] = []
-    var count = 0
+    guard
+        let classes = resultInfo["results"] as? [JSONDictionary],
+        let count = resultInfo["count"] as? Int, count != 0 else {
+        return (classList, 0)
+    }
     
-    if
-        let allCount = resultInfo["count"] as? Int,
-        let results = resultInfo["results"] as? [JSONDictionary], results.count > 0 {
-        count = allCount
-        for course in results {
-            classes.append(LiveClassModel(dict: course))
+    for course in classes {
+        if let _ = course["id"] as? Int {
+            classList.append(LiveClassModel(dict: course))
         }
     }
-    return (classes, count)
+
+    return (classList, count)
 }

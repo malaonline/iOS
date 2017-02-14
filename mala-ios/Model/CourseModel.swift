@@ -33,7 +33,7 @@ open class CourseModel: BaseObjectModel {
     }
     
     override init(dict: [String: AnyObject]) {
-        super.init()
+        super.init(dict: dict)
         setValuesForKeys(dict)
     }
     

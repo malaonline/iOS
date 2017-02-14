@@ -178,3 +178,17 @@ enum MalaStudyReportAbility: String {
     case data = "data"
     case unkown = "unkown"
 }
+
+
+/// 下单异常错误吗
+///
+/// - timeslotConflict: 该老师部分时段已被占用
+/// - couponInvalid: 奖学金使用信息有误
+/// - liveClassFull: 所报双师课程已满
+/// - alreadyJoin: 已报名该门双师课程
+enum OrderErrorCode: Int {
+    case timeslotConflict   = -1
+    case couponConflict     = -2
+    case liveClassFull      = -3
+    case alreadyJoin        = -4
+}

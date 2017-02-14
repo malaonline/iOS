@@ -11,17 +11,15 @@ import UIKit
 class LiveCourseDetailViewController: BaseViewController, LiveCourseConfirmViewDelegate {
     
     // MARK: - Property
-    /// 教师id
-    var classId: Int? {
-        didSet {
-            
-        }
-    }
+    /// 课程id
+    var classId = 0
     /// 教师详情数据模型
     var model: LiveClassModel = LiveClassModel() {
         didSet {
-            tableView.model = model
-            confirmView.model = model
+            DispatchQueue.main.async { [weak self] in
+                self?.tableView.model = self?.model
+                self?.confirmView.model = self?.model
+            }
         }
     }
     
@@ -42,6 +40,7 @@ class LiveCourseDetailViewController: BaseViewController, LiveCourseConfirmViewD
         super.viewDidLoad()
         
         setupUserInterface()
+        loadClassDetail()
         setupNotification()
     }
     
@@ -79,6 +78,23 @@ class LiveCourseDetailViewController: BaseViewController, LiveCourseConfirmViewD
             maker.right.equalTo(view)
             maker.height.equalTo(44)
         }
+    }
+    
+    private func loadClassDetail() {
+        
+        ThemeHUD.showActivityIndicator()
+        
+        getLiveClassDetail(classId, failureHandler: { (reason, errorMessage) in
+            ThemeHUD.hideActivityIndicator()
+            defaultFailureHandler(reason, errorMessage: errorMessage)
+            // 错误处理
+            if let errorMessage = errorMessage {
+                println("LiveCourseDetailViewController - loadClassDetail Error \(errorMessage)")
+            }
+        }, completion: { [weak self] (model) in
+            ThemeHUD.hideActivityIndicator()
+            self?.model = model
+        })
     }
     
     private func setupNotification() {
@@ -128,16 +144,24 @@ class LiveCourseDetailViewController: BaseViewController, LiveCourseConfirmViewD
             ThemeHUD.hideActivityIndicator()
             
             // 订单创建错误
-            if let errorCode = order.code {
-                if errorCode == -1 {
-                    DispatchQueue.main.async(execute: { () -> Void in
-                        self?.ShowToast("该老师部分时段已被占用，请重新选择上课时间")
-                    })
-                }else if errorCode == -2 {
-                    DispatchQueue.main.async(execute: { () -> Void in
-                        self?.ShowToast("奖学金使用信息有误，请重新选择")
-                        _ = self?.navigationController?.popViewController(animated: true)
-                    })
+            if let code = order.code {
+                var message = ""
+                if let errorCode = OrderErrorCode(rawValue: code) {
+                    switch errorCode {
+                    case .timeslotConflict:
+                            message = "该老师部分时段已被占用，请重新选择上课时间"
+                    case .couponConflict:
+                            message = "奖学金使用信息有误，请重新选择"
+                    case .liveClassFull:
+                            message = "所选课程名额已满，请选择其他课程"
+                    case .alreadyJoin:
+                            message = "您已报名参加该课程，请勿重复购买"
+                    }
+                }else {
+                    message = "网络环境较差，请稍后重试"
+                }
+                DispatchQueue.main.async{
+                    self?.ShowToast(message)
                 }
             }else {
                 println("创建订单成功:\(order)")
@@ -162,6 +186,9 @@ class LiveCourseDetailViewController: BaseViewController, LiveCourseConfirmViewD
         // 验证是否已登陆
         if !MalaUserDefaults.isLogined {
             let loginController = LoginViewController()
+            loginController.popAction = { [weak self] in
+                self?.loadClassDetail()
+            }
             self.present(
                 UINavigationController(rootViewController: loginController),
                 animated: true,

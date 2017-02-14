@@ -76,13 +76,6 @@ class TeacherDetailsCertificateCell: MalaBaseCell {
         
         /// 图片浏览器
         if let index = sender.view?.tag {
-            SKPhotoBrowserOptions.displayStatusbar = false
-            SKPhotoBrowserOptions.enableSingleTapDismiss = true
-            SKPhotoBrowserOptions.displayAction = false
-            SKPhotoBrowserOptions.bounceAnimation = false
-            SKPhotoBrowserOptions.displayDeleteButton = false
-            SKPhotoBrowserOptions.displayBackAndForwardButton = false
-            
             let browser = SKPhotoBrowser(photos: images)
             browser.initializePageIndex(index)
             browser.navigationController?.isNavigationBarHidden = true
