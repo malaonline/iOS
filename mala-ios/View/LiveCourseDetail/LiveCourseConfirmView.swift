@@ -65,7 +65,7 @@ class LiveCourseConfirmView: UIView {
             bgColor: UIColor(named: .ThemeBlue),
             selectedBgColor: UIColor(named: .ThemeBlue)
         )
-        button.setTitle("已购买", for: .disable)
+        button.setTitle("已购买", for: .disabled)
         button.setBackgroundImage(UIImage.withColor(UIColor(named: .Disabled)), for: .disabled)
         button.titleLabel?.font = UIFont(name: "FZLTXHK", size: 15)
         button.addTarget(self, action: #selector(LiveCourseConfirmView.buttonDidTap), for: .touchUpInside)
