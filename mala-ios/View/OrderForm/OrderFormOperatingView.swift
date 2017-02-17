@@ -207,141 +207,82 @@ class OrderFormOperatingView: UIView {
         cancelButton.setTitleColor(UIColor.white, for: .normal)
         cancelButton.setBackgroundImage(UIImage.withColor(UIColor(named: .ThemeBlue)), for: .normal)
         cancelButton.addTarget(self, action: #selector(OrderFormOperatingView.cancelOrderForm), for: .touchUpInside)
-        confirmButton.isHidden = false
-        confirmButton.setTitle("去支付", for: .normal)
-        confirmButton.setTitleColor(UIColor.white, for: .normal)
-        confirmButton.setBackgroundImage(UIImage.withColor(UIColor(named: .ThemeBlue)), for: .normal)
-        confirmButton.addTarget(self, action: #selector(OrderFormOperatingView.pay), for: .touchUpInside)
+        
+        setButton("去支付", UIColor(named: .ThemeBlue), enabled: false, action: #selector(OrderFormOperatingView.pay), relayout: false)
     }
     
     /// 进行中不可退费样式(only for private tuition)
     private func setOrderPaid() {
-        cancelButton.isHidden = true
-        confirmButton.isHidden = false
-        confirmButton.setTitle("再次购买", for: .normal)
-        confirmButton.setTitleColor(UIColor.white, for: .normal)
-        confirmButton.setBackgroundImage(UIImage.withColor(UIColor(named: .ThemeRed)), for: .normal)
-        confirmButton.addTarget(self, action: #selector(OrderFormOperatingView.buyAgain), for: .touchUpInside)
-        confirmButton.snp.remakeConstraints { (maker) in
-            maker.right.equalTo(self)
-            maker.centerY.equalTo(self)
-            maker.width.equalTo(self).multipliedBy(0.5)
-            maker.height.equalTo(self)
-        }
+        setButton("再次购买", UIColor(named: .ThemeRed), action: #selector(OrderFormOperatingView.buyAgain))
     }
     
     /// 进行中可退费样式(only for live course)
     private func setOrderPaidRefundable() {
-        cancelButton.isHidden = true
-        confirmButton.isHidden = false
-        confirmButton.setTitle("申请退费", for: .normal)
-        confirmButton.setTitleColor(UIColor.white, for: .normal)
-        confirmButton.setBackgroundImage(UIImage.withColor(UIColor(named: .ThemeGreen)), for: .normal)
-        confirmButton.addTarget(self, action: #selector(OrderFormOperatingView.requestRefund), for: .touchUpInside)
-        confirmButton.snp.remakeConstraints { (maker) in
-            maker.right.equalTo(self)
-            maker.centerY.equalTo(self)
-            maker.width.equalTo(self).multipliedBy(0.5)
-            maker.height.equalTo(self)
-        }
+        setButton("申请退费", UIColor(named: .ThemeGreen), action: #selector(OrderFormOperatingView.requestRefund))
     }
     
     /// 已完成样式(only for live course)
     private func setOrderFinished() {
+        setButton("再次购买", UIColor(named: .ThemeRed), hidden: true, action: #selector(OrderFormOperatingView.buyAgain))
         cancelButton.isHidden = true
-        confirmButton.isHidden = true
-        confirmButton.setTitle("再次购买", for: .normal)
-        confirmButton.setTitleColor(UIColor.white, for: .normal)
-        confirmButton.setBackgroundImage(UIImage.withColor(UIColor(named: .ThemeRed)), for: .normal)
-        confirmButton.addTarget(self, action: #selector(OrderFormOperatingView.buyAgain), for: .touchUpInside)
-        confirmButton.snp.remakeConstraints { (maker) in
-            maker.right.equalTo(self)
-            maker.centerY.equalTo(self)
-            maker.width.equalTo(self).multipliedBy(0.5)
-            maker.height.equalTo(self)
-        }
     }
     
     /// 退费审核中样式(only for live course)
     private func setOrderRefunding() {
-        cancelButton.isHidden = true
-        confirmButton.isHidden = false
-        confirmButton.isEnabled = false
-        confirmButton.setTitle("审核中...", for: .normal)
-        confirmButton.setTitleColor(UIColor.white, for: .normal)
-        confirmButton.setBackgroundImage(UIImage.withColor(UIColor(named: .Disabled)), for: .normal)
-        confirmButton.snp.remakeConstraints { (maker) in
-            maker.right.equalTo(self)
-            maker.centerY.equalTo(self)
-            maker.width.equalTo(self).multipliedBy(0.5)
-            maker.height.equalTo(self)
-        }
+        setButton("审核中...", UIColor(named: .Disabled), enabled: false)
     }
     
     /// 已退费样式
     private func setOrderRefund() {
-        cancelButton.isHidden = true
-        confirmButton.isHidden = false
-        confirmButton.isEnabled = false
-        confirmButton.setTitle("已退费", for: .normal)
-        confirmButton.setTitleColor(UIColor.white, for: .normal)
-        confirmButton.setBackgroundImage(UIImage.withColor(UIColor(named: .ThemeGreen)), for: .normal)
-        confirmButton.snp.remakeConstraints { (maker) in
-            maker.right.equalTo(self)
-            maker.centerY.equalTo(self)
-            maker.width.equalTo(self).multipliedBy(0.5)
-            maker.height.equalTo(self)
-        }
+        setButton("已退费", UIColor(named: .ThemeGreen), enabled: false)
     }
     
     /// 已取消样式
     private func setOrderCanceled() {
-        cancelButton.isHidden = true
-        confirmButton.isHidden = false
-        confirmButton.setTitle("重新购买", for: .normal)
+        var color = UIColor(named: .Disabled)
+        var action: Selector?
+        var enable = true
+        
         if let isLiveCourse = model?.isLiveCourse {
-            if isLiveCourse {
-                confirmButton.setTitleColor(UIColor.white, for: .normal)
-                confirmButton.setBackgroundImage(UIImage.withColor(UIColor(named: .Disabled)), for: .normal)
-                confirmButton.isEnabled = false
+            if !isLiveCourse {
+                color = UIColor(named: .ThemeRed)
+                action = #selector(OrderFormOperatingView.buyAgain)
             }else {
-                confirmButton.setTitleColor(UIColor.white, for: .normal)
-                confirmButton.setBackgroundImage(UIImage.withColor(UIColor(named: .ThemeRed)), for: .normal)
-                confirmButton.addTarget(self, action: #selector(OrderFormOperatingView.buyAgain), for: .touchUpInside)
+                enable = false
             }
         }
-        confirmButton.snp.remakeConstraints { (maker) in
-            maker.right.equalTo(self)
-            maker.centerY.equalTo(self)
-            maker.width.equalTo(self).multipliedBy(0.5)
-            maker.height.equalTo(self)
-        }
+        setButton("重新购买", color, enabled: enable, action: action)
     }
     
     /// 订单预览样式
     private func setOrderConfirm() {
-        cancelButton.isHidden = true
-        confirmButton.isHidden = false
-        confirmButton.setTitle("提交订单", for: .normal)
-        confirmButton.setTitleColor(UIColor.white, for: .normal)
-        confirmButton.setBackgroundImage(UIImage.withColor(UIColor(named: .ThemeRed)), for: .normal)
-        confirmButton.addTarget(self, action: #selector(OrderFormOperatingView.pay), for: .touchUpInside)
-        confirmButton.snp.remakeConstraints { (maker) in
-            maker.right.equalTo(self)
-            maker.centerY.equalTo(self)
-            maker.width.equalTo(self).multipliedBy(0.5)
-            maker.height.equalTo(self)
-        }
+        setButton("提交订单", UIColor(named: .ThemeRed), action: #selector(OrderFormOperatingView.pay))
     }
     
     /// 教师已下架样式
     private func setTeacherDisable() {
+        setButton("该老师已下架", UIColor(named: .Disabled), enabled: false)
+    }
+    
+    private func setButton( _ title: String, _ bgColor: UIColor, _ titleColor: UIColor = UIColor.white, enabled: Bool? = nil, hidden: Bool = false,
+                            action: Selector? = nil, relayout: Bool = true) {
         cancelButton.isHidden = true
         confirmButton.isHidden = false
-        confirmButton.isEnabled = false
-        confirmButton.setTitle("该老师已下架", for: .normal)
-        confirmButton.setTitleColor(UIColor.white, for: .normal)
-        confirmButton.setBackgroundImage(UIImage.withColor(UIColor(named: .Disabled)), for: .normal)
+        
+        confirmButton.isHidden = hidden
+        if let enabled = enabled {
+            confirmButton.isEnabled = enabled
+        }
+        if let action = action {
+            confirmButton.addTarget(self, action: action, for: .touchUpInside)
+        }
+        
+        confirmButton.setTitle(title, for: .normal)
+        confirmButton.setBackgroundImage(UIImage.withColor(bgColor), for: .normal)
+        confirmButton.setTitleColor(titleColor, for: .normal)
+        
+        guard relayout == true else { return }
+        
         confirmButton.snp.remakeConstraints { (maker) in
             maker.right.equalTo(self)
             maker.centerY.equalTo(self)
