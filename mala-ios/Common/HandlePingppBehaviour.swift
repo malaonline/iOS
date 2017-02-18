@@ -10,8 +10,10 @@ import UIKit
 
 class HandlePingppBehaviour: NSObject {
 
-    /// 最大重试次数
-    let maxRetry = 3
+    /// 最大自动重试次数
+    let maxAutoRetry = 3
+    /// 最大手动重试次数
+    let maxRetry = 1
     /// 当前重试次数
     var currentRetry = 0
     /// 当前视图控制器
@@ -93,8 +95,9 @@ class HandlePingppBehaviour: NSObject {
                         self.showSuccessAlert()
                     }
                 }else {
-                    if self.currentRetry == self.maxRetry {
+                    if self.currentRetry == self.maxAutoRetry {
                         // 支付失败
+                        self.currentRetry = 0
                         self.showFailAlert()
                     }else {
                         // 重新获取订单状态
@@ -163,12 +166,21 @@ class HandlePingppBehaviour: NSObject {
         ThemeHUD.hideActivityIndicator()
         guard let viewController = currentViewController else { return }
         
+        var actionSet = ("支付失败，请重试！", "刷新", validateOrderStatus)
+        
+        // 若已达到最大手动重连限制次数，则返回首页。否则用户可以手动刷新。
+        if self.currentRetry == self.maxRetry {
+            actionSet = ("支付失败，订单信息将会稍后更新", "知道了", popToRootViewController)
+        }else {
+            currentRetry += 1
+        }
+        
         let alert = JSSAlertView().show(viewController,
-                                        title: "支付失败，请重试！",
-                                        buttonText: "刷新",
+                                        title: actionSet.0,
+                                        buttonText: actionSet.1,
                                         iconImage: UIImage(asset: .alertPaymentFail)
         )
-        alert.addAction(popToRootViewController)
+        alert.addAction(actionSet.2)
     }
     
     ///  退回首页
