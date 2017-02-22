@@ -49,8 +49,7 @@ class TeacherDetailsSubjectCell: MalaBaseCell {
                 
                 // 添加label
                 self.setupTags(elementarySchool, strings: &elementarySchools)
-                
-                let height = (MalaScreenWidth <= 375 && elementarySchools.count > 4) ? 55 : 25
+                height = (MalaScreenWidth <= 375 && elementarySchools.count > 4) ? 55 : 25
                 elementarySchool.snp.updateConstraints { (maker) in
                     maker.height.equalTo(height)
                 }
@@ -86,6 +85,7 @@ class TeacherDetailsSubjectCell: MalaBaseCell {
         tagsView.textColor = UIColor(named: .SubjectGreen)
         return tagsView
     }()
+    private var height = 25
     
     
     // MARK: - Constructed
@@ -164,7 +164,7 @@ class TeacherDetailsSubjectCell: MalaBaseCell {
                 maker.top.equalTo(content)
                 maker.left.equalTo(content)
                 maker.right.equalTo(content)
-                maker.height.equalTo(25)
+                maker.height.equalTo(height)
                 maker.bottom.equalTo(content)
             }
             
