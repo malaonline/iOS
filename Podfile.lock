@@ -3,29 +3,25 @@ PODS:
   - Charts (3.0.0):
     - Charts/Core (= 3.0.0)
   - Charts/Core (3.0.0)
-  - DateTools (2.0.0-beta.3)
-  - FirebaseAnalytics (3.4.4):
-    - FirebaseCore (~> 3.4)
+  - DateToolsSwift (2.0.0)
+  - FirebaseAnalytics (3.7.0):
+    - FirebaseCore (~> 3.5)
     - FirebaseInstanceID (~> 1.0)
-    - GoogleInterchangeUtilities (~> 1.2)
-    - GoogleSymbolUtilities (~> 1.1)
-  - FirebaseCore (3.4.3):
-    - GoogleInterchangeUtilities (~> 1.2)
-    - GoogleUtilities (~> 1.2)
-  - FirebaseInstanceID (1.0.8)
+    - GoogleToolboxForMac/NSData+zlib (~> 2.1)
+  - FirebaseCore (3.5.0):
+    - GoogleToolboxForMac/NSData+zlib (~> 2.1)
+  - FirebaseInstanceID (1.0.9)
   - Google/Analytics (3.0.3):
     - Google/Core
     - GoogleAnalytics (~> 3.12)
   - Google/Core (3.0.3):
     - FirebaseAnalytics (~> 3.2)
   - GoogleAnalytics (3.17.0)
-  - GoogleInterchangeUtilities (1.2.2):
-    - GoogleSymbolUtilities (~> 1.1)
-  - GoogleSymbolUtilities (1.1.2)
-  - GoogleUtilities (1.3.2):
-    - GoogleSymbolUtilities (~> 1.1)
+  - GoogleToolboxForMac/Defines (2.1.1)
+  - GoogleToolboxForMac/NSData+zlib (2.1.1):
+    - GoogleToolboxForMac/Defines (= 2.1.1)
   - IQKeyboardManager (4.0.4)
-  - Kingfisher (3.1.3)
+  - Kingfisher (3.1.4)
   - KSCrash (1.8.13):
     - KSCrash/Installations (= 1.8.13)
   - KSCrash/Installations (1.8.13):
@@ -87,24 +83,29 @@ PODS:
     - KSCrash/Reporting/Tools
   - KSCrash/Reporting/Tools (1.8.13):
     - KSCrash/Recording
-  - MOBFoundation (2.0.11)
-  - Pingpp/Alipay (2.2.8):
+  - MOBFoundation (2.2.15)
+  - Pingpp/Alipay (2.2.10):
     - Pingpp/Core
-  - Pingpp/Core (2.2.8):
-    - Pingpp/Network
-  - Pingpp/Network (2.2.8)
-  - Pingpp/Wx (2.2.8):
+  - Pingpp/Core (2.2.10)
+  - Pingpp/Wx (2.2.10):
     - Pingpp/Core
-  - ShareSDK3 (3.4.1):
-    - ShareSDK3/ShareSDK (= 3.4.1)
-  - ShareSDK3/ShareSDK (3.4.1)
-  - ShareSDK3/ShareSDKPlatforms/WeChat (3.4.1)
+  - ShareSDK3 (3.6.1):
+    - MOBFoundation
+    - ShareSDK3/ShareSDK (= 3.6.1)
+  - ShareSDK3/ShareSDK (3.6.1):
+    - MOBFoundation
+  - ShareSDK3/ShareSDKExtension (3.6.1):
+    - MOBFoundation
+  - ShareSDK3/ShareSDKPlatforms/WeChat (3.6.1):
+    - MOBFoundation
+  - ShareSDK3/ShareSDKUI (3.6.1):
+    - MOBFoundation
   - SnapKit (3.0.2)
 
 DEPENDENCIES:
   - Alamofire (~> 4.0.1)
   - Charts (from `https://github.com/danielgindi/Charts.git`, tag `v3.0.0`)
-  - DateTools (from `https://github.com/MatthewYork/DateTools.git`, branch `swift`)
+  - DateToolsSwift
   - Google/Analytics
   - IQKeyboardManager (from `https://github.com/hackiftekhar/IQKeyboardManager.git`, branch `swift3`)
   - Kingfisher (~> 3.1.0)
@@ -113,16 +114,15 @@ DEPENDENCIES:
   - Pingpp/Alipay
   - Pingpp/Wx
   - ShareSDK3
+  - ShareSDK3/ShareSDKExtension
   - ShareSDK3/ShareSDKPlatforms/WeChat
+  - ShareSDK3/ShareSDKUI
   - SnapKit (~> 3.0.2)
 
 EXTERNAL SOURCES:
   Charts:
     :git: https://github.com/danielgindi/Charts.git
     :tag: v3.0.0
-  DateTools:
-    :branch: swift
-    :git: https://github.com/MatthewYork/DateTools.git
   IQKeyboardManager:
     :branch: swift3
     :git: https://github.com/hackiftekhar/IQKeyboardManager.git
@@ -131,9 +131,6 @@ CHECKOUT OPTIONS:
   Charts:
     :git: https://github.com/danielgindi/Charts.git
     :tag: v3.0.0
-  DateTools:
-    :commit: 7190d93025d82c985e1108a8dc9522129d1b68de
-    :git: https://github.com/MatthewYork/DateTools.git
   IQKeyboardManager:
     :commit: d27180d877c8d36d5be80ee9d8c24d184ac26081
     :git: https://github.com/hackiftekhar/IQKeyboardManager.git
@@ -141,23 +138,21 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
   Charts: 3f0da988b104c8e5f069fcef55da699f597dac67
-  DateTools: fe8ad1e2e77ebb9cf1db6becf077772dd83fdb63
-  FirebaseAnalytics: 0533a00b681e08fd0b2cd0444b7ddf0ef9fd7a1a
-  FirebaseCore: 5a885548bbc5f0c410b04f8e9ac9d73ff1221907
-  FirebaseInstanceID: ba1e640935235e5fac39dfa816fe7660e72e1a8a
+  DateToolsSwift: 27336736d877c8734159da1f37afbda2aa704649
+  FirebaseAnalytics: 0d1b7d81d5021155be37702a94ba1ec16d45365d
+  FirebaseCore: 1c0a13bf59bb95cdd19577252499f0ec6a03e999
+  FirebaseInstanceID: 2d0518b1378fe9d685ef40cbdd63d2fdc1125339
   Google: 813c467362eabc11385f5a5cc9ad0cb651a58f4e
   GoogleAnalytics: f42cc53a87a51fe94334821868d9c8481ff47a7b
-  GoogleInterchangeUtilities: d5bc4d88d5b661ab72f9d70c58d02ca8c27ad1f7
-  GoogleSymbolUtilities: 631ee17048aa5e9ab133470d768ea997a5ef9b96
-  GoogleUtilities: 8bbc733218aad26306f9d4a253823986110e3358
+  GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
   IQKeyboardManager: 4a6f83b540283c2645aaeba2bd8dc0f09b5c77f8
-  Kingfisher: 007f5851c18c81e7cc106c9cbac1bafea1cce5dc
+  Kingfisher: 6c67e3e57f2d81a9cfdfa25052cd86f33ceac9bb
   KSCrash: 4c3a83f133b60f4bd57e05235ebf8d46e36d378d
-  MOBFoundation: e213065e65eebd8146ab29d10a8445dc8f385091
-  Pingpp: b5ad287bd6969d69cff1f2438ea63147976711c9
-  ShareSDK3: e7bcdfeb95338f89efd6fff82b4793d2bfee76f8
+  MOBFoundation: 4975874f74c991f562151f6a4549e9a6ad743fd8
+  Pingpp: a267566fbab76c4c3b65adb0655635b1d5ba7fdc
+  ShareSDK3: dea6a14cc4385fa6493e10895ba11d07ef34d149
   SnapKit: 2e456761aa92d4d4067a7a5594c18769d451a8ad
 
-PODFILE CHECKSUM: 714dbbdf40ef9f1e0abf1643512a52109033a93e
+PODFILE CHECKSUM: 92ccc2f07a91fd87536dc40d93a90b9ef8df8eb8
 
 COCOAPODS: 1.2.0.beta.1

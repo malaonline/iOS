@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import DateTools
+import DateToolsSwift
 
 class ThemeDate {
 
