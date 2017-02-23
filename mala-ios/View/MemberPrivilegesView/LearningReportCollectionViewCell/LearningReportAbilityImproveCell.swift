@@ -53,11 +53,19 @@ class LearningReportAbilityImproveCell: MalaBaseReportCardCell {
         chartView.drawBarShadowEnabled = false
         chartView.drawValueAboveBarEnabled = true
         
+        let labels = self.getXVals()
+        
         let xAxis = chartView.xAxis
+        xAxis.labelCount = labels.count
+        xAxis.spaceMin = 0.4
+        xAxis.spaceMax = 0.6
+        xAxis.granularityEnabled = true
+        xAxis.granularity = 1
         xAxis.labelFont = UIFont.systemFont(ofSize: 8)
         xAxis.labelTextColor = UIColor(named: .ChartLabel)
         xAxis.drawGridLinesEnabled = false
         xAxis.labelPosition = .bottom
+        xAxis.valueFormatter = IndexAxisValueFormatter(values: labels)
         
         let leftAxis = chartView.leftAxis
         leftAxis.labelFont = UIFont.systemFont(ofSize: 10)
@@ -138,11 +146,11 @@ class LearningReportAbilityImproveCell: MalaBaseReportCardCell {
         var myScoreIndex = -1
         
         // 设置折线图数据
-        let lineVals = model.map({ (data) -> ChartDataEntry in
+        let lineEntries = model.map({ (data) -> ChartDataEntry in
             aveScoreIndex += 1
-            return ChartDataEntry(x: data.ave_score.doubleValue*100, y: Double(aveScoreIndex))
+            return ChartDataEntry(x: Double(aveScoreIndex), y: data.ave_score.doubleValue*100)
         })
-        let lineDataSet = LineChartDataSet(values: lineVals, label: "")
+        let lineDataSet = LineChartDataSet(values: lineEntries, label: "")
         lineDataSet.setColor(UIColor(named: .ChartLegentLightBlue))
         lineDataSet.fillAlpha = 1
         lineDataSet.circleRadius = 6
@@ -154,22 +162,20 @@ class LearningReportAbilityImproveCell: MalaBaseReportCardCell {
         lineData.setDrawValues(false)
         
         // 设置柱状图数据
-        let barVals = model.map({ (data) -> ChartDataEntry in
+        let barEntries = model.map({ (data) -> BarChartDataEntry in
             myScoreIndex += 1
             return BarChartDataEntry(x: Double(myScoreIndex), y: data.my_score.doubleValue*100)
         })
-        let barDataSet = BarChartDataSet(values: barVals, label: "")
+        let barDataSet = BarChartDataSet(values: barEntries, label: "")
         barDataSet.drawValuesEnabled = true
         barDataSet.colors = MalaConfig.chartsColor()
         barDataSet.highlightEnabled = false
         let barData = BarChartData()
         barData.addDataSet(barDataSet)
-        barData.barWidth = 4
         barData.setDrawValues(false)
         
         // 设置组合图数据
         let data = CombinedChartData()
-        // data.dataSets = getXVals()
         data.lineData = lineData
         data.barData = barData
         combinedChartView.data = data
