@@ -6,17 +6,22 @@ inhibit_all_warnings!
 
 def pods
   pod 'SnapKit', '~> 3.0.2'
-  pod 'DateTools', :git => 'https://github.com/MatthewYork/DateTools.git', :branch => 'swift'
+  pod 'DateToolsSwift'
   pod 'Alamofire', '~> 4.0.1'
   pod 'Kingfisher', '~> 3.1.0'
   pod 'IQKeyboardManager', :git => 'https://github.com/hackiftekhar/IQKeyboardManager.git', :branch => 'swift3'
   pod 'Charts', :git => 'https://github.com/danielgindi/Charts.git', :tag => 'v3.0.0'
   pod 'Google/Analytics'
+  
   pod 'Pingpp/Alipay'
   pod 'Pingpp/Wx'
-  pod 'MOBFoundation'
+  
   pod 'ShareSDK3'
+  pod 'MOBFoundation'
+  pod 'ShareSDK3/ShareSDKUI'
+  pod 'ShareSDK3/ShareSDKExtension'
   pod 'ShareSDK3/ShareSDKPlatforms/WeChat'
+  
   # pod 'PagingMenuController'
   pod 'KSCrash', '~> 1.8.13'
 end

@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import DateTools
+import DateToolsSwift
 import Kingfisher
 import Google
 

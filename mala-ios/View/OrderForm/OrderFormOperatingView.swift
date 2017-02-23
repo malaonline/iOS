@@ -123,13 +123,13 @@ class OrderFormOperatingView: UIView {
         addSubview(confirmButton)
         
         // Autolayout
-        priceContainer.snp.makeConstraints({ (maker) -> Void in
+        priceContainer.snp.makeConstraints{ (maker) -> Void in
             maker.top.equalTo(self)
             maker.left.equalTo(self)
             maker.width.equalTo(self).multipliedBy(0.44)
             maker.height.equalTo(44)
             maker.bottom.equalTo(self)
-        })
+        }
         stringLabel.snp.makeConstraints { (maker) in
             maker.right.equalTo(priceLabel.snp.left)
             maker.centerY.equalTo(priceContainer)
