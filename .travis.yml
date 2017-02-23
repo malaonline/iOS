@@ -10,6 +10,7 @@ install:
 # - pod repo remove master
 # - travis_wait 30 pod setup
 - pod --version
+- travis_wait 30 pod update
 - pod install
 before_script:
 # - openssl aes-256-cbc -k $ENCRYPTION_SECRET -in scripts/profile/mala_dev_AdHoc.mobileprovision.enc -d -a -out scripts/profile/Mala_DevAdHoc.mobileprovision
