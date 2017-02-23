@@ -41,19 +41,20 @@ class LearningReportAbilityStructureCell: MalaBaseReportCardCell {
         radarChartView.innerWebLineWidth = 1
         radarChartView.webAlpha = 1
         radarChartView.rotationEnabled = false
-        radarChartView.innerWebColor = UIColor.white
-        radarChartView.webColor = UIColor.white
-                
+        radarChartView.legend.enabled = false
+        radarChartView.innerWebColor = UIColor(named: .ChartRadarInner)
+        radarChartView.webColor = UIColor(named: .ChartRadarInner)
+        
         let xAxis = radarChartView.xAxis
         xAxis.labelFont = UIFont.systemFont(ofSize: 12)
         xAxis.labelTextColor = UIColor(named: .ChartLabel)
         xAxis.labelWidth = 20
+        xAxis.valueFormatter = IndexAxisValueFormatter(values: self.getXVals())
         
         let yAxis = radarChartView.yAxis
         yAxis.enabled = false
         yAxis.axisMinimum = 0
-        
-        radarChartView.legend.enabled = false
+
         return radarChartView
     }()
     
@@ -100,13 +101,13 @@ class LearningReportAbilityStructureCell: MalaBaseReportCardCell {
         
         var index = -1
         // 数据
-        let yVals = model.map { (data) -> ChartDataEntry in
+        let entries = model.map { (data) -> RadarChartDataEntry in
             index += 1
-            return ChartDataEntry(x: Double(data.val), y: Double(index))
+            return RadarChartDataEntry(value: Double(data.val))
         }
         
         // 设置UI
-        let dataSet = RadarChartDataSet(values: yVals, label: "")
+        let dataSet = RadarChartDataSet(values: entries, label: "")
         dataSet.lineWidth = 0
         dataSet.fillAlpha = 0.9
         dataSet.setColor(UIColor(named: .ChartRed))
@@ -115,13 +116,10 @@ class LearningReportAbilityStructureCell: MalaBaseReportCardCell {
         dataSet.drawFilledEnabled = true
         dataSet.highlightEnabled = false
         
-//        let data = RadarChartData(xVals: getXVals(), dataSets: [dataSet])
-//        let fesf = RadarChartData(dataSets: [IChartDataSet])
-//        
-//        let data = RadarChartData(dataSet: dataSet)
-//        data.setValueFont(UIFont.systemFont(ofSize: 10))
-//        data.setDrawValues(false)
-//        radarChartView.data = data
+        let data = RadarChartData(dataSets: [dataSet])
+        data.setValueFont(UIFont.systemFont(ofSize: 10))
+        data.setDrawValues(false)
+        radarChartView.data = data
     }
     
     // 获取X轴文字信息
