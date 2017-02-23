@@ -9,8 +9,8 @@ def pods
   pod 'DateToolsSwift'
   pod 'Alamofire', '~> 4.0.1'
   pod 'Kingfisher', '~> 3.1.0'
-  pod 'IQKeyboardManager', :git => 'https://github.com/hackiftekhar/IQKeyboardManager.git', :branch => 'swift3'
-  pod 'Charts', :git => 'https://github.com/danielgindi/Charts.git', :tag => 'v3.0.0'
+  pod 'IQKeyboardManagerSwift', '~> 4.0.8'
+  pod 'Charts', '~> 3.0.1'
   pod 'Google/Analytics'
   
   pod 'Pingpp/Alipay'

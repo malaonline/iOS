@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import IQKeyboardManager
+import IQKeyboardManagerSwift
 import Google
 import UserNotifications
 import KSCrash
@@ -109,7 +109,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             Pingpp.setDebugMode(true)
         #endif
         
-        IQKeyboardManager.shared().isEnabled = true
+        IQKeyboardManager.sharedManager().enable = true
         ToastManager.shared.duration = 1.0
         
         // 社会化组件
