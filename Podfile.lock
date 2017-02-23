@@ -111,8 +111,8 @@ DEPENDENCIES:
   - Kingfisher (~> 3.1.0)
   - KSCrash (~> 1.8.13)
   - MOBFoundation
-  - Pingpp/Alipay
-  - Pingpp/Wx
+  - Pingpp/Alipay (~> 2.2.10)
+  - Pingpp/Wx (~> 2.2.10)
   - ShareSDK3
   - ShareSDK3/ShareSDKExtension
   - ShareSDK3/ShareSDKPlatforms/WeChat
@@ -137,6 +137,6 @@ SPEC CHECKSUMS:
   ShareSDK3: dea6a14cc4385fa6493e10895ba11d07ef34d149
   SnapKit: 2e456761aa92d4d4067a7a5594c18769d451a8ad
 
-PODFILE CHECKSUM: 3e780ddd8bd0af467bea948422dbc822fa9e0e10
+PODFILE CHECKSUM: 7cd58e71aa1cb55842aa2b6d5af5b89c11f92318
 
 COCOAPODS: 1.2.0.beta.1

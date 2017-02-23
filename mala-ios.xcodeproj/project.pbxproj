@@ -661,6 +661,9 @@
 		F4428C991DDD500D000FEFA4 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4428C981DDD500D000FEFA4 /* UserNotifications.framework */; };
 		F4428C9A1DDD501C000FEFA4 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4428C981DDD500D000FEFA4 /* UserNotifications.framework */; };
 		F4428C9B1DDD5023000FEFA4 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4428C981DDD500D000FEFA4 /* UserNotifications.framework */; };
+		F44D9FAF1E5EBE14006A7E23 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F464BD6E1DA8CDD500032C88 /* QuartzCore.framework */; };
+		F44D9FB01E5EBE4A006A7E23 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F464BD741DA8CE6B00032C88 /* CoreMotion.framework */; };
+		F44D9FB11E5EBE75006A7E23 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F464BD721DA8CE5600032C88 /* libsqlite3.0.tbd */; };
 		F44DC7C21D59C6D400E5979B /* DOFavoriteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44DC7C11D59C6D400E5979B /* DOFavoriteButton.swift */; };
 		F44DC7C31D59C6D400E5979B /* DOFavoriteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44DC7C11D59C6D400E5979B /* DOFavoriteButton.swift */; };
 		F44DC7C41D59C6D400E5979B /* DOFavoriteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44DC7C11D59C6D400E5979B /* DOFavoriteButton.swift */; };
@@ -1338,17 +1341,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35B1341E1CAAEA21001D2D34 /* libsqlite3.tbd in Frameworks */,
+				F43C98801D6AD7DD0013799E /* libstdc++.tbd in Frameworks */,
+				F44D9FB11E5EBE75006A7E23 /* libsqlite3.0.tbd in Frameworks */,
+				F44D9FB01E5EBE4A006A7E23 /* CoreMotion.framework in Frameworks */,
+				35B134181CAAE767001D2D34 /* CoreTelephony.framework in Frameworks */,
+				F44D9FAF1E5EBE14006A7E23 /* QuartzCore.framework in Frameworks */,
 				F40B53BB1C83ED2F00C20037 /* SystemConfiguration.framework in Frameworks */,
 				F43525D21DE028D5002116E5 /* libc++.tbd in Frameworks */,
 				F4428C991DDD500D000FEFA4 /* UserNotifications.framework in Frameworks */,
 				F43C98821D6AD7E80013799E /* JavaScriptCore.framework in Frameworks */,
-				F43C98801D6AD7DD0013799E /* libstdc++.tbd in Frameworks */,
 				F43C987E1D6AD7C40013799E /* libicucore.tbd in Frameworks */,
 				F464BD6B1DA8C1FF00032C88 /* jpush-ios-2.1.9.a in Frameworks */,
-				35B1341E1CAAEA21001D2D34 /* libsqlite3.tbd in Frameworks */,
 				35B1341D1CAAE9FE001D2D34 /* libc++.1.tbd in Frameworks */,
 				F4D0D1A11CA2BFFA00B25704 /* libz.tbd in Frameworks */,
-				35B134181CAAE767001D2D34 /* CoreTelephony.framework in Frameworks */,
 				F40B53BC1C83ED3600C20037 /* Security.framework in Frameworks */,
 				F40B53BA1C83ED2600C20037 /* CFNetwork.framework in Frameworks */,
 				005D41E09EB2398DD895FAE4 /* Pods_parent_dev.framework in Frameworks */,
@@ -3834,7 +3840,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;

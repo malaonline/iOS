@@ -13,8 +13,8 @@ def pods
   pod 'Charts', '~> 3.0.1'
   pod 'Google/Analytics'
   
-  pod 'Pingpp/Alipay'
-  pod 'Pingpp/Wx'
+  pod 'Pingpp/Alipay', '~> 2.2.10'
+  pod 'Pingpp/Wx', '~> 2.2.10'
   
   pod 'ShareSDK3'
   pod 'MOBFoundation'
