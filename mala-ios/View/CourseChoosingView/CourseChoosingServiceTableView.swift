@@ -49,7 +49,7 @@ class CourseChoosingServiceTableView: UITableView, UITableViewDelegate, UITableV
             (viewController as? CouponViewController)?.justShow = false
             (viewController as? CouponViewController)?.onlyValid = true
             viewController.hidesBottomBarWhenPushed = true
-            self.viewController?.navigationController?.pushViewController(viewController, animated: true)
+            self.viewController()?.navigationController?.pushViewController(viewController, animated: true)
         }
     }
     

@@ -55,7 +55,7 @@ class BannerView: UIView {
     
     
     @objc private func buttonDidTap() {
-        (viewController as? LiveCourseViewController)?.bannerDidTap()
+        (viewController() as? LiveCourseViewController)?.bannerDidTap()
     }
     
 }

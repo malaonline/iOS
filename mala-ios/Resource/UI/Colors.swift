@@ -90,6 +90,7 @@ enum ColorName: UInt32 {
     case ChartLegentLightBlue = 0x82C9F9FF
     case ChartDateText = 0xFDAF6BFF
     case ChartPercentText = 0x97A8BBFF
+    case ChartRadarInner = 0xC9E4E8FF
     case InfoText = 0xD4D4D4FF
     case ShadowGray = 0xD7D7D7FF
     case OrderStatusRed = 0xE36A5CFF
