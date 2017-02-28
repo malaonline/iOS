@@ -472,10 +472,7 @@ class TeacherDetailsController: BaseViewController, UIGestureRecognizerDelegate,
     
     // MARK: - Event Respones
     @objc private func shareButtonDidTap() {
-        
-        // 初始化分享面板
-        ThemeShare.showShareBoard()
-        ThemeShare.sharedInstance.teacherModel = self.model
+        showShareActionSheet(model: model)
     }
 
     override func turnBackButtonBlack() {
