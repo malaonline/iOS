@@ -12,7 +12,11 @@
 #import "JPUSHService.h"
 #import "WZLBadgeImport.h"
 #import "YLProgressBar.h"
-#import <ShareSDK/ShareSDK.h>
-#import <ShareSDKConnector/ShareSDKConnector.h>
-#import "WXApi.h"
 #import <KSCrash/KSCrashInstallationStandard.h>
+
+// ShareSDK
+#import <ShareSDK/ShareSDK.h>
+#import <ShareSDKUI/ShareSDK+SSUI.h>
+#import <ShareSDKConnector/ShareSDKConnector.h>
+#import <ShareSDKUI/SSUIShareActionSheetStyle.h>
+#import "WXApi.h"

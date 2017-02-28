@@ -8,46 +8,76 @@
 
 import Foundation
 
+
+extension UIViewController {
+    
+    public func showShareActionSheet(model: BaseObjectModel) {
+        
+        guard let model = model as? TeacherDetailModel else {
+            println("Model is not match TeacherDetailModel.")
+            return
+        }
+        
+        // 创建分享参数
+        let shareParames = NSMutableDictionary()
+        shareParames.ssdkSetupShareParams(byText: model.shareText,
+                                          images : (model.avatar ?? UIImage(asset: .avatarPlaceholder)),
+                                          url : model.shareURL as URL!,
+                                          title : "我在麻辣老师发现一位好老师！",
+                                          type : SSDKContentType.webPage)
+        // 简洁样式菜单
+        SSUIShareActionSheetStyle.setShareActionSheetStyle(.simple)
+        // 分享菜单
+        ShareSDK.showShareActionSheet(self.view, items: nil, shareParams: shareParames) { (state, platformType, userData, contentEntity, error, end) in
+            switch state {
+            case .begin:
+                println("开始")
+            case .success:
+                self.ShowToast("分享成功")
+            case .fail:
+                self.ShowToast("分享失败")
+            case .cancel:
+                println("分享已经取消")
+            }
+        }
+    }
+}
+
 extension UIViewController {
     
     public func ShowToast(_ message: String) {
-        
-        if let naviView = self.navigationController?.view {
-            naviView.makeToast(message)
-        }else if let view = self.view {
-            view.makeToast(message)
-        }
+        currentView?.makeToast(message)
     }
     
     public func showActivity() {
-        
-        if let naviView = self.navigationController?.view {
-            naviView.makeToastActivity(.center)
-        }else if let view = self.view {
-            view.makeToastActivity(.center)
-        }
+        currentView?.makeToastActivity(.center)
     }
     
     public func hideActivity() {
-        
-        if let naviView = self.navigationController?.view {
-            naviView.hideToastActivity()
-        }else if let view = self.view {
-            view.hideToastActivity()
+        currentView?.hideToastActivity()
+    }
+    
+    // MARK: - Convenience View
+    private var currentView: UIView? {
+        get {
+            if let naviView = self.navigationController?.view {
+                return naviView
+            }else if let view = self.view {
+                return view
+            }else {
+                return nil
+            }
         }
     }
     
-    
     // MARK: - Badge Point
-    var showTabBadgePoint : Bool {
+    var showTabBadgePoint: Bool {
         get {
             return !tabBadgePointView.isHidden
         }
         set {
-            DispatchQueue.main.async(execute: { [weak self] () -> Void in
-                guard let strongSelf = self else {
-                    return
-                }
+            DispatchQueue.main.async{ [weak self] () -> Void in
+                guard let strongSelf = self else { return }
                 if newValue && strongSelf.tabBadgePointView.superview == nil {
                     strongSelf.tabBadgePointView.center = strongSelf.tabBadgePointViewCenter
                     if let tbb = strongSelf.tabBarButton {
@@ -55,12 +85,11 @@ extension UIViewController {
                     }
                 }
                 strongSelf.tabBadgePointView.isHidden = newValue == false
-            })
+            }
         }
     }
     
-    var tabBadgePointView : UIView {
-        
+    var tabBadgePointView: UIView {
         get {
             var _tabBadgePointView = objc_getAssociatedObject(self, &AssociatedKeys.tabBadgePointViewAssociatedKey)
             if _tabBadgePointView == nil {
@@ -78,8 +107,7 @@ extension UIViewController {
         }
     }
     
-    var tabBadgePointViewOffset : UIOffset {
-        
+    var tabBadgePointViewOffset: UIOffset {
         get {
             if let obj = objc_getAssociatedObject(self, &AssociatedKeys.tabBadgePointViewOffsetAssociatedKey) {
                 return (obj as AnyObject).uiOffsetValue
@@ -93,7 +121,7 @@ extension UIViewController {
         }
     }
     
-    var isEmbedInTabBarController : Bool {
+    var isEmbedInTabBarController: Bool {
         var _isEmbedInTabBarController = false
         if let tbc = self.tabBarController, let vcs = tbc.viewControllers {
             for i in 0 ..< vcs.count {
@@ -108,8 +136,7 @@ extension UIViewController {
         return _isEmbedInTabBarController
     }
     
-    var tabIndex : Int {
-        
+    var tabIndex: Int {
         get {
             if isEmbedInTabBarController == false {
                 print("LxTabBadgePoint：This viewController not embed in tabBarController")
@@ -123,67 +150,50 @@ extension UIViewController {
         }
     }
     
-    var tabBarButton : UIView? {
+    var tabBarButton: UIView? {
         get {
-            if let tbc = tabBarController {
-                var tabBarButtonArray = [UIView]()
-                for subView in tbc.tabBar.subviews {
-                    if let className = NSString(cString: object_getClassName(subView), encoding: String.Encoding.utf8.rawValue) {
-                        if className.hasPrefix("UITabBarButton") {
-                            tabBarButtonArray.append(subView)
-                        }
-                    }
-                }
-                
-                tabBarButtonArray.sort(by: { (subView1, subView2) -> Bool in
-                    return subView1.frame.minX < subView2.frame.minX
-                })
-                
-                if tabIndex >= 0 && tabIndex < tabBarButtonArray.count {
-                    return tabBarButtonArray[tabIndex]
-                }else {
-                    print("Extension: TabBadgePoint：Not found corresponding tabBarButton!")
-                    return nil
+            guard let tbc = tabBarController else { return nil }
+            
+            var tabBarButtonArray = [UIView]()
+            for subView in tbc.tabBar.subviews {
+                if let className = NSString(cString: object_getClassName(subView), encoding: String.Encoding.utf8.rawValue),
+                    className.hasPrefix("UITabBarButton") {
+                    tabBarButtonArray.append(subView)
                 }
             }
-            else {
-                
+            tabBarButtonArray.sort{ $0.frame.minX < $1.frame.minX }
+            
+            if tabIndex >= 0 && tabIndex < tabBarButtonArray.count {
+                return tabBarButtonArray[tabIndex]
+            }else {
+                print("Extension: TabBadgePoint：Not found corresponding tabBarButton!")
                 return nil
             }
         }
     }
     
     // MARK: BadgePoint Private Method
-    
-    private var tabBadgePointViewCenter : CGPoint {
-        
+    private var tabBadgePointViewCenter: CGPoint {
         get {
-            if let tbb = tabBarButton {
-                
-                var tabBadgePointViewCenter = CGPoint(x: tbb.bounds.midX + 14, y : 8.5)
-                tabBadgePointViewCenter.x += tabBadgePointViewOffset.horizontal
-                tabBadgePointViewCenter.y += tabBadgePointViewOffset.vertical
-                return tabBadgePointViewCenter
-            }
-            else {
+            guard let tbb = tabBarButton else {
                 return CGPoint(x: 36, y: 8.5)
             }
+            
+            var tabBadgePointViewCenter = CGPoint(x: tbb.bounds.midX + 14, y : 8.5)
+            tabBadgePointViewCenter.x += tabBadgePointViewOffset.horizontal
+            tabBadgePointViewCenter.y += tabBadgePointViewOffset.vertical
+            return tabBadgePointViewCenter
         }
     }
     
     private func defaultTabBadgePointView() -> UIView {
-        
         let defaultTabBadgePointViewRadius = 4.5
-        
         let defaultTabBadgePointViewFrame = CGRect(origin: CGPoint.zero, size: CGSize(width: defaultTabBadgePointViewRadius * 2, height: defaultTabBadgePointViewRadius * 2))
-        
         let defaultTabBadgePointView = UIView(frame: defaultTabBadgePointViewFrame)
         defaultTabBadgePointView.backgroundColor = UIColor.red
         defaultTabBadgePointView.layer.cornerRadius = CGFloat(defaultTabBadgePointViewRadius)
         defaultTabBadgePointView.layer.masksToBounds = true
-        
         defaultTabBadgePointView.isHidden = true
-        
         return defaultTabBadgePointView
     }
     
