@@ -13,7 +13,7 @@ import UIKit
 ///  - Send:   发送验证码
 ///  - Verify: 验证
 enum VerifyCodeMethod: String {
-    case Send = "send"
+    case Send   = "send"
     case Verify = "verify"
 }
 
@@ -121,11 +121,11 @@ public enum userInfoType {
 ///  - Maturity:    奖学金到期 -> 我的奖学金
 ///  - Livecourse:  双师课程活动 -> 课表
 public enum RemoteNotificationType: Int {
-    case changed = 1
-    case refunds = 2
-    case finished = 3
-    case starting = 4
-    case maturity = 5
+    case changed    = 1
+    case refunds    = 2
+    case finished   = 3
+    case starting   = 4
+    case maturity   = 5
     case livecourse = 6
 }
 
@@ -137,8 +137,8 @@ public enum RemoteNotificationType: Int {
 ///  - today:  今天
 ///  - future: 未上
 public enum CourseStatus: String {
-    case Past = "past"
-    case Today = "today"
+    case Past   = "past"
+    case Today  = "today"
     case Future = "future"
 }
 
@@ -153,12 +153,12 @@ public enum CourseStatus: String {
 ///  - UnSignedMath: 报名非数学
 ///  - MathSigned:   报名数学
 enum MalaLearningReportStatus: String {
-    case Error = "er"
-    case LoggingIn = "li"
-    case UnLogged = "ul"
-    case UnSigned = "l"
-    case UnSignedMath = "us"
-    case MathSigned = "sm"
+    case Error          = "er"
+    case LoggingIn      = "li"
+    case UnLogged       = "ul"
+    case UnSigned       = "l"
+    case UnSignedMath   = "us"
+    case MathSigned     = "sm"
 }
 ///  学习报告-能力结构
 ///
@@ -170,13 +170,13 @@ enum MalaLearningReportStatus: String {
 ///  - data:     数据分析能力
 ///  - unkown:   未知(内部处理异常使用)
 enum MalaStudyReportAbility: String {
-    case abstract = "abstract"
-    case reason = "reason"
-    case appl = "appl"
-    case spatial = "spatial"
-    case calc = "calc"
-    case data = "data"
-    case unkown = "unkown"
+    case abstract   = "abstract"
+    case reason     = "reason"
+    case appl       = "appl"
+    case spatial    = "spatial"
+    case calc       = "calc"
+    case data       = "data"
+    case unkown     = "unkown"
 }
 
 

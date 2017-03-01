@@ -52,7 +52,7 @@ class AboutViewController: BaseViewController, UIScrollViewDelegate {
     /// 描述标题
     private lazy var titleView: AboutTitleView = {
         let view = AboutTitleView()
-        view.title = MalaCommonString_Malalaoshi
+        view.title = L10n.mala
         return view
     }()
     /// 关于描述label

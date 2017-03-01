@@ -55,7 +55,7 @@ class FilterResultController: BaseViewController {
     // MARK: - Private Method
     private func setupUserInterface() {
         // style
-        title = MalaCommonString_FilterResult
+        title = L10n.Teacher.filterResult
         view.backgroundColor = UIColor(named: .RegularBackground)
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 4, right: 0)
         defaultView.imageName = "filter_no_result"

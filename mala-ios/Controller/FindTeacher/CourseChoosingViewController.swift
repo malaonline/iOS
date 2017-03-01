@@ -132,7 +132,7 @@ class CourseChoosingViewController: BaseViewController, CourseChoosingConfirmVie
     private func setupUserInterface() {
         // Style
         makeStatusBarBlack()
-        title = MalaCommonString_CourseChoosing
+        title = L10n.Teacher.choosing
         confirmView.delegate = self
         
         // SubViews

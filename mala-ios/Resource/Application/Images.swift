@@ -15,11 +15,9 @@
     typealias Image = NSImage
 #endif
 
-// swiftlint:disable file_length
-// swiftlint:disable line_length
 
-// swiftlint:disable type_body_length
 enum ImageAsset: String {
+    
     case none = ""
     case evaluationFiling1 = "EvaluationFiling1"
     case evaluationFiling2 = "EvaluationFiling2"
@@ -200,7 +198,7 @@ enum ImageAsset: String {
         return Image(asset: self)
     }
 }
-// swiftlint:enable type_body_length
+
 
 extension Image {
     convenience init!(asset: ImageAsset) {

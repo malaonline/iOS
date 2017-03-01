@@ -114,7 +114,7 @@ extension UIViewController {
     func alertCanNotAccessCameraRoll() {
 
         DispatchQueue.main.async {
-            MalaAlert.confirmOrCancel(title: "照片访问失败", message: "请在设置-隐私-照片里打开权限", confirmTitle: "去更改", cancelTitle: "取消", inViewController: self, withConfirmAction: {
+            MalaAlert.confirmOrCancel(title: "照片访问失败", message: "请在设置-隐私-照片里打开权限", confirmTitle: "去更改", cancelTitle: L10n.cancel, inViewController: self, withConfirmAction: {
 
                 UIApplication.shared.openURL(URL(string: UIApplicationOpenSettingsURLString)!)
 
@@ -126,7 +126,7 @@ extension UIViewController {
     func alertCanNotOpenCamera() {
 
         DispatchQueue.main.async {
-            MalaAlert.confirmOrCancel(title: "拍照失败", message: "请在设置-隐私-相机里打开权限", confirmTitle: "去更改", cancelTitle: "取消", inViewController: self, withConfirmAction: {
+            MalaAlert.confirmOrCancel(title: "拍照失败", message: "请在设置-隐私-相机里打开权限", confirmTitle: "去更改", cancelTitle: L10n.cancel, inViewController: self, withConfirmAction: {
 
                 UIApplication.shared.openURL(URL(string: UIApplicationOpenSettingsURLString)!)
 
@@ -138,7 +138,7 @@ extension UIViewController {
     func alertCanNotAccessMicrophone() {
 
         DispatchQueue.main.async {
-            MalaAlert.confirmOrCancel(title: "麦克风访问失败", message: "请在设置-隐私-麦克风里打开权限", confirmTitle: "去更改", cancelTitle: "取消", inViewController: self, withConfirmAction: {
+            MalaAlert.confirmOrCancel(title: "麦克风访问失败", message: "请在设置-隐私-麦克风里打开权限", confirmTitle: "去更改", cancelTitle: L10n.cancel, inViewController: self, withConfirmAction: {
 
                 UIApplication.shared.openURL(URL(string: UIApplicationOpenSettingsURLString)!)
 
@@ -162,7 +162,7 @@ extension UIViewController {
     func alertCanNotAccessLocation() {
 
         DispatchQueue.main.async {
-            MalaAlert.confirmOrCancel(title: "地理位置获取失败", message: "请在设置-隐私-定位服务里打开权限", confirmTitle: "去更改", cancelTitle: "取消", inViewController: self, withConfirmAction: {
+            MalaAlert.confirmOrCancel(title: "地理位置获取失败", message: "请在设置-隐私-定位服务里打开权限", confirmTitle: "去更改", cancelTitle: L10n.cancel, inViewController: self, withConfirmAction: {
 
                 UIApplication.shared.openURL(URL(string: UIApplicationOpenSettingsURLString)!)
 

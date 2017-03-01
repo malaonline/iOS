@@ -199,7 +199,7 @@ open class MalaConfig {
     class func malaPaymentChannels() -> [PaymentChannel] {
         return [
             PaymentChannel(imageName: "alipay_icon", title: "支付宝", subTitle: "支付宝安全支付", channel: .Alipay),
-            PaymentChannel(imageName: "wechat_icon", title: "微信支付", subTitle: "微信快捷支付", channel: .Wechat),
+            PaymentChannel(imageName: "wechat_icon", title: L10n.Pay.Channel.wechat, subTitle: "微信快捷支付", channel: .Wechat),
             PaymentChannel(imageName: "qcpay_icon", title: "家长代付", subTitle: "扫二维码支付", channel: .QRPay)
         ]
     }
@@ -259,13 +259,7 @@ open class MalaConfig {
             ]
         ]
     }
-    
-    class func shareItems() -> [IntroductionModel] {
-        return [
-            IntroductionModel(title: "微信好友", image: .snsIconWechatSession, subTitle: "", platformType: .subTypeWechatSession),
-            IntroductionModel(title: "朋友圈", image: .snsIconWechatTimeline, subTitle: "", platformType: .subTypeWechatTimeline),
-        ]
-    }
+
     
     class func memberServiceData() -> [IntroductionModel] {
         return [
@@ -328,21 +322,29 @@ open class MalaConfig {
     
     class func homeworkDataChartsTitle() -> [String] {
         return [
-            "实数", "函数初步", "多边形", "相似", "全等", "相似", "几何变换", "圆", "其它"
+            L10n.Chart.realNumber,
+            L10n.Chart.function,
+            L10n.Chart.polygon,
+            L10n.Chart.circle,
+            L10n.Chart.congruent,
+            L10n.Chart.similar,
+            L10n.Chart.Geo.transfor,
+            L10n.Chart.Geo.operation,
+            L10n.other
         ]
     }
     
     ///  ［作业数据分析页面］样本数据
     class func homeworkSampleData() -> [SingleHomeworkData] {
         return [
-            SingleHomeworkData(id: 1, name: "实数", rate: NSNumber(value: 0.15 as Double)),
-            SingleHomeworkData(id: 2, name: "函数初步", rate: NSNumber(value: 0.20 as Double)),
-            SingleHomeworkData(id: 3, name: "多边形", rate: NSNumber(value: 0.13 as Double)),
-            SingleHomeworkData(id: 4, name: "圆", rate: NSNumber(value: 0.06 as Double)),
-            SingleHomeworkData(id: 5, name: "全等", rate: NSNumber(value: 0.2 as Double)),
-            SingleHomeworkData(id: 6, name: "相似", rate: NSNumber(value: 0.06 as Double)),
-            SingleHomeworkData(id: 7, name: "几何变换", rate: NSNumber(value: 0.12 as Double)),
-            SingleHomeworkData(id: 8, name: "几何操作", rate: NSNumber(value: 0.08 as Double))
+            SingleHomeworkData(id: 1, name: L10n.Chart.realNumber, rate: NSNumber(value: 0.15 as Double)),
+            SingleHomeworkData(id: 2, name: L10n.Chart.function, rate: NSNumber(value: 0.20 as Double)),
+            SingleHomeworkData(id: 3, name: L10n.Chart.polygon, rate: NSNumber(value: 0.13 as Double)),
+            SingleHomeworkData(id: 4, name: L10n.Chart.circle, rate: NSNumber(value: 0.06 as Double)),
+            SingleHomeworkData(id: 5, name: L10n.Chart.congruent, rate: NSNumber(value: 0.2 as Double)),
+            SingleHomeworkData(id: 6, name: L10n.Chart.similar, rate: NSNumber(value: 0.06 as Double)),
+            SingleHomeworkData(id: 7, name: L10n.Chart.Geo.transfor, rate: NSNumber(value: 0.12 as Double)),
+            SingleHomeworkData(id: 8, name: L10n.Chart.Geo.operation, rate: NSNumber(value: 0.08 as Double))
         ]
     }
     
@@ -360,28 +362,28 @@ open class MalaConfig {
     ///  ［知识点分析页面］样本数据
     class func knowledgeSampleData() -> [SingleTopicData] {
         return [
-            SingleTopicData(id: "1", name: "实数", totalItem: 100, rightItem: 49),
-            SingleTopicData(id: "2", name: "函数初步", totalItem: 90, rightItem: 20),
-            SingleTopicData(id: "3", name: "圆", totalItem: 100, rightItem: 80),
-            SingleTopicData(id: "4", name: "多边形", totalItem: 105, rightItem: 60),
-            SingleTopicData(id: "5", name: "全等", totalItem: 100, rightItem: 30),
-            SingleTopicData(id: "6", name: "相似", totalItem: 125, rightItem: 95),
-            SingleTopicData(id: "7", name: "几何变换", totalItem: 80, rightItem: 40),
-            SingleTopicData(id: "8", name: "几何操作", totalItem: 70, rightItem: 40),
+            SingleTopicData(id: "1", name: L10n.Chart.realNumber, totalItem: 100, rightItem: 49),
+            SingleTopicData(id: "2", name: L10n.Chart.function, totalItem: 90, rightItem: 20),
+            SingleTopicData(id: "3", name: L10n.Chart.circle, totalItem: 100, rightItem: 80),
+            SingleTopicData(id: "4", name: L10n.Chart.polygon, totalItem: 105, rightItem: 60),
+            SingleTopicData(id: "5", name: L10n.Chart.congruent, totalItem: 100, rightItem: 30),
+            SingleTopicData(id: "6", name: L10n.Chart.similar, totalItem: 125, rightItem: 95),
+            SingleTopicData(id: "7", name: L10n.Chart.Geo.transfor, totalItem: 80, rightItem: 40),
+            SingleTopicData(id: "8", name: L10n.Chart.Geo.operation, totalItem: 70, rightItem: 40),
         ]
     }
     
     ///  ［知识点分析页面］默认数据
     class func knowledgeDefaultData() -> [SingleTopicData] {
         return [
-            SingleTopicData(id: "1", name: "实数", totalItem: 100, rightItem: 0),
-            SingleTopicData(id: "2", name: "函数初步", totalItem: 100, rightItem: 0),
-            SingleTopicData(id: "3", name: "圆", totalItem: 100, rightItem: 0),
-            SingleTopicData(id: "4", name: "多边形", totalItem: 100, rightItem: 0),
-            SingleTopicData(id: "5", name: "全等", totalItem: 100, rightItem: 0),
-            SingleTopicData(id: "6", name: "相似", totalItem: 100, rightItem: 0),
-            SingleTopicData(id: "7", name: "几何变换", totalItem: 100, rightItem: 0),
-            SingleTopicData(id: "8", name: "几何操作", totalItem: 100, rightItem: 0),
+            SingleTopicData(id: "1", name: L10n.Chart.realNumber, totalItem: 100, rightItem: 0),
+            SingleTopicData(id: "2", name: L10n.Chart.function, totalItem: 100, rightItem: 0),
+            SingleTopicData(id: "3", name: L10n.Chart.circle, totalItem: 100, rightItem: 0),
+            SingleTopicData(id: "4", name: L10n.Chart.polygon, totalItem: 100, rightItem: 0),
+            SingleTopicData(id: "5", name: L10n.Chart.congruent, totalItem: 100, rightItem: 0),
+            SingleTopicData(id: "6", name: L10n.Chart.similar, totalItem: 100, rightItem: 0),
+            SingleTopicData(id: "7", name: L10n.Chart.Geo.transfor, totalItem: 100, rightItem: 0),
+            SingleTopicData(id: "8", name: L10n.Chart.Geo.operation, totalItem: 100, rightItem: 0),
         ]
     }
     
@@ -400,14 +402,14 @@ open class MalaConfig {
     ///  ［提分点分析页面］样本数据
     class func scoreSampleData() -> [SingleTopicScoreData] {
         return [
-            SingleTopicScoreData(id: "1", name: "实数", score: NSNumber(value: 0.47 as Double), aveScore: NSNumber(value: 0.72 as Double)),
-            SingleTopicScoreData(id: "2", name: "函数初步", score: NSNumber(value: 0.23 as Double), aveScore: NSNumber(value: 0.64 as Double)),
-            SingleTopicScoreData(id: "3", name: "圆", score: NSNumber(value: 0.80 as Double), aveScore: NSNumber(value: 0.70 as Double)),
-            SingleTopicScoreData(id: "4", name: "多边形", score: NSNumber(value: 0.56 as Double), aveScore: NSNumber(value: 0.59 as Double)),
-            SingleTopicScoreData(id: "5", name: "全等", score: NSNumber(value: 0.27 as Double), aveScore: NSNumber(value: 0.51 as Double)),
-            SingleTopicScoreData(id: "6", name: "相似", score: NSNumber(value: 0.77 as Double), aveScore: NSNumber(value: 0.62 as Double)),
-            SingleTopicScoreData(id: "7", name: "几何变换", score: NSNumber(value: 0.50 as Double), aveScore: NSNumber(value: 0.77 as Double)),
-            SingleTopicScoreData(id: "8", name: "几何操作", score: NSNumber(value: 0.55 as Double), aveScore: NSNumber(value: 0.21 as Double))
+            SingleTopicScoreData(id: "1", name: L10n.Chart.realNumber, score: NSNumber(value: 0.47 as Double), aveScore: NSNumber(value: 0.72 as Double)),
+            SingleTopicScoreData(id: "2", name: L10n.Chart.function, score: NSNumber(value: 0.23 as Double), aveScore: NSNumber(value: 0.64 as Double)),
+            SingleTopicScoreData(id: "3", name: L10n.Chart.circle, score: NSNumber(value: 0.80 as Double), aveScore: NSNumber(value: 0.70 as Double)),
+            SingleTopicScoreData(id: "4", name: L10n.Chart.polygon, score: NSNumber(value: 0.56 as Double), aveScore: NSNumber(value: 0.59 as Double)),
+            SingleTopicScoreData(id: "5", name: L10n.Chart.congruent, score: NSNumber(value: 0.27 as Double), aveScore: NSNumber(value: 0.51 as Double)),
+            SingleTopicScoreData(id: "6", name: L10n.Chart.similar, score: NSNumber(value: 0.77 as Double), aveScore: NSNumber(value: 0.62 as Double)),
+            SingleTopicScoreData(id: "7", name: L10n.Chart.Geo.transfor, score: NSNumber(value: 0.50 as Double), aveScore: NSNumber(value: 0.77 as Double)),
+            SingleTopicScoreData(id: "8", name: L10n.Chart.Geo.operation, score: NSNumber(value: 0.55 as Double), aveScore: NSNumber(value: 0.21 as Double))
         ]
     }
 }

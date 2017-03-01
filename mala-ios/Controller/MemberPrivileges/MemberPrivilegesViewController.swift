@@ -101,7 +101,7 @@ class MemberPrivilegesViewController: UITableViewController {
                 let viewController = ThemeIntroductionView()
                 viewController.hidesBottomBarWhenPushed = true
                 viewController.index = index
-                viewController.title = "会员专享"
+                viewController.title = L10n.member
                 self?.navigationController?.pushViewController(viewController, animated: true)
             }
         }

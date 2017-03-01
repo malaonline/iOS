@@ -91,7 +91,7 @@ open class CourseTableViewController: UIViewController, UITableViewDataSource, U
     /// 导航栏TitleView
     private lazy var titleLabel: UILabel = {
         let label = UILabel(
-            text: "课表",
+            text: L10n.schedule,
             fontSize: 16,
             textColor: UIColor.black
         )

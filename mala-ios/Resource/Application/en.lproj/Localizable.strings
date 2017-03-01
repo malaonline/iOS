@@ -1,0 +1,67 @@
+// Common
+"mala" = "麻辣老师";
+"title" = "标题";
+"cancel" = "取消";
+"other" = "其它";
+
+// teacher
+"teacher" = "找老师";
+"teacher.filterResult" = "筛选结果";
+"teacher.choosing" = "课程购买";
+"teacher.evaluation" = "测评建档服务";
+
+// schedule
+"schedule" = "课表";
+
+// member
+"member" = "会员专享";
+
+// profile
+"profile" = "我的";
+"profile.like" = "我的收藏";
+"profile.like.default.text" = "您收藏的老师会出现在这里哦";
+"profile.like.default.sub" = "快去老师详情页收藏吧";
+
+// login
+"login.phone" = "手机号";
+"login.code" = "验证码";
+
+// comment
+"comment.placeholder" = "请写下对老师的感受吧，对他人的帮助很大哦~最多可输入200字";
+
+// chart
+"chart.realNumber" = "实数";
+"chart.func" = "函数初步";
+"chart.polygon" = "多边形";
+"chart.circle" = "圆";
+"chart.congruent" = "全等";
+"chart.similar" = "相似";
+"chart.geo.transfor" = "几何变换";
+"chart.geo.operation" = "几何操作";
+
+// alert
+
+
+// toast
+"toast.error.notReachable" = "网络环境较差，请稍后重试";
+
+// order
+"order.error.timeslot" = "该老师部分时段已被占用，请重新选择上课时间";
+"order.error.coupon" = "奖学金使用信息有误，请重新选择";
+"order.error.full" = "所选课程名额已满，请选择其他课程";
+"order.error.bought" = "您已报名参加该课程，请勿重复购买";
+
+// pay
+"pay.channel.alipay" = "支付宝支付";
+"pay.channel.wechat" = "微信支付";
+"pay.result.success" = "支付完成";
+"pay.Normal.error.expire" = "订单已失效，请重新下单";
+"pay.Normal.error.unknown" = "订单状态错误，请重试";
+"pay.QRCode.info" = "家长完成支付后 点击支付完成按钮";
+"pay.QRCode.error.info" = "支付信息获取错误";
+"pay.QRCode.error.credential" = "支付凭证获取错误";
+"pay.QRCode.error.wechat" = "微信支付二维码获取错误";
+"pay.QRCode.error.alipay" = "支付宝二维码获取错误";
+"pay.QRCode.error.get" = "二维码获取错误";
+"pay.QRCode.alert.unpaid" = "请完成付款后，点击支付完成";
+

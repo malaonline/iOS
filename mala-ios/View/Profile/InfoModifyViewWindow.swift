@@ -29,7 +29,7 @@ open class InfoModifyViewWindow: UIViewController, UITextViewDelegate {
     /// 取消按钮.[取消]
     private lazy var cancelButton: UIButton = {
         let button = UIButton()
-        button.setTitle("取消", for: UIControlState())
+        button.setTitle(L10n.cancel, for: UIControlState())
         // cancelButton.setTitleColor(UIColor(named: .ThemeBlue), forState: .Normal)
         button.setTitleColor(UIColor(named: .DescGray), for: UIControlState())
         button.setBackgroundImage(UIImage.withColor(UIColor(named: .WhiteTranslucent9)), for: UIControlState())

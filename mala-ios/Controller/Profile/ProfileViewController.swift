@@ -324,7 +324,7 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
         alertController.addAction(takePhotoAction)
         
         // 设置Action - 取消
-        let cancelAction: UIAlertAction = UIAlertAction(title: "取消", style: .cancel) { action -> Void in
+        let cancelAction: UIAlertAction = UIAlertAction(title: L10n.cancel, style: .cancel) { action -> Void in
             self.dismiss(animated: true, completion: nil)
         }
         alertController.addAction(cancelAction)
@@ -374,10 +374,10 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
     // MARK: - Event Response
     @objc private func logoutButtonDidTap() {
         MalaAlert.confirmOrCancel(
-            title: "麻辣老师",
+            title: L10n.mala,
             message: "确认退出当前账号吗？",
             confirmTitle: "退出登录",
-            cancelTitle: "取消",
+            cancelTitle: L10n.cancel,
             inViewController: self,
             withConfirmAction: { () -> Void in
                 

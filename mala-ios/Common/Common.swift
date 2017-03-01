@@ -76,22 +76,6 @@ let SAMyCommentsViewName = "我的评价(iOS)"
 let MalaErrorDetail_InvalidPage = "Invalid page"
 
 
-// MARK: - Common String
-let MalaCommonString_Malalaoshi = "麻辣老师"
-let MalaCommonString_FindTeacher = "找老师"
-let MalaCommonString_ClassSchedule = "课表"
-let MalaCommonString_MemberPrivileges = "会员专享"
-let MalaCommonString_Profile = "我的"
-let MalaCommonString_Title = "标题"
-let MalaCommonString_PhoneNumber = "手机号"
-let MalaCommonString_Cancel = "取消"
-let MalaCommonString_VerifyCode = "验证码"
-let MalaCommonString_FilterResult = "筛选结果"
-let MalaCommonString_CourseChoosing = "课程购买"
-let MalaCommonString_EvaluationFiling = "测评建档服务"
-let MalaCommonString_CommentPlaceholder = "请写下对老师的感受吧，对他人的帮助很大哦~最多可输入200字"
-
-
 // MARK: - Common layout
 let MalaLayout_CardCellWidth: CGFloat = MalaScreenWidth - (12*2)
 let MalaLayout_GradeSelectionWidth: CGFloat = (MalaLayout_CardCellWidth - 12)/2
@@ -131,5 +115,5 @@ let MalaScreenScale = UIScreen.main.scale
 // MARK: - Array
 var MalaOtherService = [
     OtherServiceModel(title: "奖学金", type: .coupon, price: 0, priceHandleType: .none, viewController: CouponViewController.self),
-    OtherServiceModel(title: MalaCommonString_EvaluationFiling, type: .evaluationFiling, price: 500, priceHandleType: .reduce, viewController: EvaluationFilingServiceController.self)
+    OtherServiceModel(title: L10n.Teacher.evaluation, type: .evaluationFiling, price: 500, priceHandleType: .reduce, viewController: EvaluationFilingServiceController.self)
 ]

@@ -121,7 +121,7 @@ class FilterSectionHeaderView: UICollectionReusableView {
     
     // MARK: - Property
     /// Section标题
-    var sectionTitleText: String = "标题" {
+    var sectionTitleText: String = L10n.title {
         didSet {
             titleLabel.text = sectionTitleText
             switch sectionTitleText {

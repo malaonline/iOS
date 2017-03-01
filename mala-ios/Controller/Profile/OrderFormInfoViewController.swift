@@ -211,7 +211,7 @@ class OrderFormInfoViewController: BaseViewController, OrderFormOperatingViewDel
                 println("OrderFormInfoViewController - CreateOrder Error \(errorMessage)")
             }
             DispatchQueue.main.async {
-                self.ShowToast("网络不稳定, 请重试")
+                self.ShowToast(L10n.Toast.Error.notReachable)
             }
         }, completion: { [weak self] (order) -> Void in
             ThemeHUD.hideActivityIndicator()
@@ -222,16 +222,16 @@ class OrderFormInfoViewController: BaseViewController, OrderFormOperatingViewDel
                 if let errorCode = OrderErrorCode(rawValue: code) {
                     switch errorCode {
                     case .timeslotConflict:
-                        message = "该老师部分时段已被占用，请重新选择上课时间"
+                        message = L10n.Order.Error.timeslot
                     case .couponConflict:
-                        message = "奖学金使用信息有误，请重新选择"
+                        message = L10n.Order.Error.coupon
                     case .liveClassFull:
-                        message = "所选课程名额已满，请选择其他课程"
+                        message = L10n.Order.Error.full
                     case .alreadyJoin:
-                        message = "您已报名参加该课程，请勿重复购买"
+                        message = L10n.Order.Error.bought
                     }
                 }else {
-                    message = "网络环境较差，请稍后重试"
+                    message = L10n.Toast.Error.notReachable
                 }
                 DispatchQueue.main.async{
                     self?.ShowToast(message)
