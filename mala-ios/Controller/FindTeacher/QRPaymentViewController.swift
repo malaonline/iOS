@@ -96,7 +96,7 @@ class QRPaymentViewController: BaseViewController {
         let button = UIButton()
         button.setBackgroundImage(UIImage.withColor(UIColor(named: .ThemeBlue)), for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 15)
-        button.setTitle(L10n.paymentSuccess, for: .normal)
+        button.setTitle(L10n.paymentCompleted, for: .normal)
         button.setTitleColor(UIColor.white, for: .normal)
         button.layer.cornerRadius = 4
         button.layer.masksToBounds = true

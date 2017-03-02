@@ -1,5 +1,6 @@
 PODS:
   - Alamofire (4.0.1)
+  - AnimatedGIFImageSerialization (0.2.0)
   - Charts (3.0.1):
     - Charts/Core (= 3.0.1)
   - Charts/Core (3.0.1)
@@ -89,6 +90,7 @@ PODS:
   - Pingpp/Core (2.2.10)
   - Pingpp/Wx (2.2.10):
     - Pingpp/Core
+  - QRCode (2.0)
   - ShareSDK3 (3.6.1):
     - MOBFoundation
     - ShareSDK3/ShareSDK (= 3.6.1)
@@ -104,6 +106,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (~> 4.0.1)
+  - AnimatedGIFImageSerialization (~> 0.2.0)
   - Charts (~> 3.0.1)
   - DateToolsSwift
   - Google/Analytics
@@ -113,6 +116,7 @@ DEPENDENCIES:
   - MOBFoundation
   - Pingpp/Alipay (~> 2.2.10)
   - Pingpp/Wx (~> 2.2.10)
+  - QRCode (~> 2.0)
   - ShareSDK3
   - ShareSDK3/ShareSDKExtension
   - ShareSDK3/ShareSDKPlatforms/WeChat
@@ -121,6 +125,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
+  AnimatedGIFImageSerialization: b0f0cfe71eac1ee45a3d57ae533c23b8e6f29501
   Charts: 0e84f4418e87dad6a9edde221fba37ebb51d3ba7
   DateToolsSwift: 27336736d877c8734159da1f37afbda2aa704649
   FirebaseAnalytics: 0d1b7d81d5021155be37702a94ba1ec16d45365d
@@ -134,9 +139,10 @@ SPEC CHECKSUMS:
   KSCrash: 4c3a83f133b60f4bd57e05235ebf8d46e36d378d
   MOBFoundation: 4975874f74c991f562151f6a4549e9a6ad743fd8
   Pingpp: a267566fbab76c4c3b65adb0655635b1d5ba7fdc
+  QRCode: f98a1886c8f37523704a7512a4c0cd45b34c18a4
   ShareSDK3: dea6a14cc4385fa6493e10895ba11d07ef34d149
   SnapKit: 2e456761aa92d4d4067a7a5594c18769d451a8ad
 
-PODFILE CHECKSUM: 7cd58e71aa1cb55842aa2b6d5af5b89c11f92318
+PODFILE CHECKSUM: dff04bf04965cb0cc2c1a07af279cd58f54139de
 
 COCOAPODS: 1.2.0.beta.1
