@@ -22,7 +22,7 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
     /// [个人中心]头部视图
     private lazy var profileHeaderView: ProfileViewHeaderView = {
         let view = ProfileViewHeaderView(frame: CGRect(x: 0, y: 0, width: MalaScreenWidth, height: MalaLayout_ProfileHeaderViewHeight))
-        view.name = MalaUserDefaults.studentName.value ?? "学生姓名"
+        view.name = MalaUserDefaults.studentName.value ?? L10n.studentName
         view.delegate = self
         return view
     }()
@@ -278,7 +278,7 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
         // 设置Action - 选择照片
-        let choosePhotoAction: UIAlertAction = UIAlertAction(title: "选择照片", style: .default) { (action) -> Void in
+        let choosePhotoAction: UIAlertAction = UIAlertAction(title: L10n.pickPhoto, style: .default) { (action) -> Void in
         
             let openCameraRoll: ProposerAction = { [weak self] in
                 
@@ -301,7 +301,7 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
         alertController.addAction(choosePhotoAction)
         
         // 设置Action - 拍照
-        let takePhotoAction: UIAlertAction = UIAlertAction(title: "拍照", style: .default) { (action) -> Void in
+        let takePhotoAction: UIAlertAction = UIAlertAction(title: L10n.takePicture, style: .default) { (action) -> Void in
             
             let openCamera: ProposerAction = { [weak self] in
                 
@@ -375,8 +375,8 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
     @objc private func logoutButtonDidTap() {
         MalaAlert.confirmOrCancel(
             title: L10n.mala,
-            message: "确认退出当前账号吗？",
-            confirmTitle: "退出登录",
+            message: L10n.doYouWantToLogout,
+            confirmTitle: L10n.logout,
             cancelTitle: L10n.cancel,
             inViewController: self,
             withConfirmAction: { () -> Void in

@@ -134,8 +134,8 @@ class MainViewController: UITabBarController, UITabBarControllerDelegate {
     /// 弹出未支付订单提示
     private func popAlert(_ viewController: UIViewController) {
         let alert = JSSAlertView().show(viewController,
-                                        title: "您有订单尚未支付",
-                                        buttonText: "查看订单",
+                                        title: L10n.youHaveSomeUnpaidOrder,
+                                        buttonText: L10n.viewOrder,
                                         iconImage: UIImage(asset: .alertPaymentSuccess)
         )
         alert.addAction(switchToProfile)

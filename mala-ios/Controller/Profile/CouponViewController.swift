@@ -39,7 +39,7 @@ class CouponViewController: BaseTableViewController {
     /// 保存按钮
     private lazy var rulesButton: UIButton = {
         let button = UIButton(
-            title: "使用规则",
+            title: L10n.rule,
             titleColor: UIColor(named: .ThemeBlue),
             target: self,
             action: #selector(CouponViewController.showCouponRules)
@@ -64,13 +64,13 @@ class CouponViewController: BaseTableViewController {
     
     // MARK: - Private Method
     private func configure() {
-        title = "奖学金"
+        title = L10n.coupon
         tableView.backgroundColor = UIColor(named: .RegularBackground)
         tableView.separatorStyle = .none
         refreshControl = refresher
         tableView.register(CouponViewCell.self, forCellReuseIdentifier: CouponViewCellReuseId)
         defaultView.imageName = "no_coupons"
-        defaultView.text = "您当前没有奖学金哦！"
+        defaultView.text = L10n.noCoupon
         
         // rightBarButtonItem
         let spacerRight = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
@@ -131,7 +131,7 @@ class CouponViewController: BaseTableViewController {
             // 取消选中项
             cell?.showSelectedIndicator = false
             currentSelectedIndexPath = IndexPath(item: 0, section: 1)
-            MalaCurrentCourse.coupon = CouponModel(id: 0, name: "不使用奖学金", amount: 0, expired_at: 0, used: false)
+            MalaCurrentCourse.coupon = CouponModel(id: 0, name: L10n.donTUseCoupon, amount: 0, expired_at: 0, used: false)
         }else {
             (tableView.cellForRow(at: currentSelectedIndexPath) as? CouponViewCell)?.showSelectedIndicator = false
             cell?.showSelectedIndicator = true
@@ -162,6 +162,6 @@ class CouponViewController: BaseTableViewController {
     
     // MARK: - Events Response
     @objc private func showCouponRules() {
-        CouponRulesPopupWindow(title: "奖学金使用规则", desc: MalaConfig.couponRulesDescriptionString()).show()
+        CouponRulesPopupWindow(title: L10n.couponRule, desc: MalaConfig.couponRulesDescriptionString()).show()
     }
 }

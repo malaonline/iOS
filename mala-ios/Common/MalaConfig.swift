@@ -64,7 +64,7 @@ open class MalaConfig {
     }
     ///  版权信息
     class func aboutCopyRightString() -> String {
-        return "COPYRIGHT © 2014 - 2016\n北京麻辣在线网络科技有限公司版权所有"
+        return "COPYRIGHT © 2014 - \(Date().year)\n北京麻辣在线网络科技有限公司版权所有"
     }
     ///  关于我们描述HTMLString
     class func aboutDescriptionHTMLString() -> String {
@@ -198,9 +198,9 @@ open class MalaConfig {
     /// 支付渠道对象列表
     class func malaPaymentChannels() -> [PaymentChannel] {
         return [
-            PaymentChannel(imageName: "alipay_icon", title: "支付宝", subTitle: "支付宝安全支付", channel: .Alipay),
-            PaymentChannel(imageName: "wechat_icon", title: L10n.Pay.Channel.wechat, subTitle: "微信快捷支付", channel: .Wechat),
-            PaymentChannel(imageName: "qcpay_icon", title: "家长代付", subTitle: "扫二维码支付", channel: .QRPay)
+            PaymentChannel(imageName: "alipay_icon", title: L10n.alipay, subTitle: L10n.alipaySecurityPayment, channel: .Alipay),
+            PaymentChannel(imageName: "wechat_icon", title: L10n.weChatPayment, subTitle: L10n.weChatShortcutPayment, channel: .Wechat),
+            PaymentChannel(imageName: "qcpay_icon", title: L10n.payByParents, subTitle: L10n.payByQRCode, channel: .QRPay)
         ]
     }
     
@@ -213,17 +213,17 @@ open class MalaConfig {
                 ProfileElementModel(
                     id: 0,
                     controller: FavoriteViewController.self,
-                    controllerTitle: "我的收藏",
+                    controllerTitle: L10n.myCollect,
                     type: nil,
                     iconName: "profile_collect",
                     newMessageIconName: "",
                     disabled: true,
-                    disabledMessage: "敬请期待"
+                    disabledMessage: L10n.comingSoon
                 ),
                 ProfileElementModel(
                     id: 1,
                     controller: OrderFormViewController.self,
-                    controllerTitle: "我的订单",
+                    controllerTitle: L10n.myOrder,
                     type: nil,
                     iconName: "profile_order",
                     newMessageIconName: "profile_unpaid"
@@ -231,7 +231,7 @@ open class MalaConfig {
                 ProfileElementModel(
                     id: 2,
                     controller: CommentViewController.self,
-                    controllerTitle: "我的评价",
+                    controllerTitle: L10n.myComment,
                     type: nil,
                     iconName: "profile_comment",
                     newMessageIconName: "profile_uncomment"
@@ -240,20 +240,20 @@ open class MalaConfig {
             [
                 ProfileElementModel(
                     id: 3,
-                    title: "我的奖学金",
+                    title: L10n.myCoupon,
                     detail: "",
                     controller: CouponViewController.self,
-                    controllerTitle: "我的奖学金",
+                    controllerTitle: L10n.myCoupon,
                     type: nil
                 )
             ],
             [
                 ProfileElementModel(
                     id: 4,
-                    title: "关于麻辣老师",
+                    title: L10n.aboutMala,
                     detail: "",
                     controller: AboutViewController.self,
-                    controllerTitle: "关于麻辣老师",
+                    controllerTitle: L10n.aboutMala,
                     type: nil
                 )
             ]
@@ -264,42 +264,42 @@ open class MalaConfig {
     class func memberServiceData() -> [IntroductionModel] {
         return [
             IntroductionModel(
-                title: "自习陪读",
+                title: L10n.tutor,
                 image: .selfStudy,
-                subTitle: "享受专业老师免费陪读服务，随时解决学习问题"
+                subTitle: L10n.tutorDesc
             ),
             IntroductionModel(
-                title: "学习报告",
+                title: L10n.report,
                 image: .learningReport,
-                subTitle: "全面记录学生学习数据，方便家长、随时查看，充分了解学员知识点掌握情况"
+                subTitle: L10n.reportDesc
             ),
             IntroductionModel(
-                title: "心理辅导",
+                title: L10n.counseling,
                 image: .counseling,
-                subTitle: "免费获得专业心理咨询师一对一心理辅导，促进学员身心健康成长"
+                subTitle: L10n.counselingDesc
             ),
             IntroductionModel(
-                title: "特色讲座",
+                title: L10n.lectures,
                 image: .featuredLectures,
-                subTitle: "特邀各领域专家进行多种特色讲座，营养健康、家庭教育、高效学习应有尽有"
+                subTitle: L10n.lecturesDesc
             ),
             IntroductionModel(
-                title: "考前串讲",
+                title: L10n.examOutline,
                 image: .examOutlineLecture,
-                subTitle: "专业解读考试趋势，剖析考试难点分享高分经验。还有命题专家进行中高考押题"
+                subTitle: L10n.examOutlineDesc
             ),
             IntroductionModel(
-                title: "错题本",
+                title: L10n.correctedRecord,
                 image: .correctedNotebook,
-                subTitle: "针对每个学员记录并生成错题本，方便查找知识漏洞，并生成针对性练习"
+                subTitle: L10n.correctedRecordDesc
             ),
             IntroductionModel(
-                title: "SPPS测评",
+                title: L10n.sppsTest,
                 image: .sppsTest,
-                subTitle: "定期进行SPPS测评，充分了解学员学习情况"
+                subTitle: L10n.sppsTestDesc
             ),
             IntroductionModel(
-                title: "敬请期待",
+                title: L10n.comingSoon,
                 image: .stayTuned,
                 subTitle: ""
             )

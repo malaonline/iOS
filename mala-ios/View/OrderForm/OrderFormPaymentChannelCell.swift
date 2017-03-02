@@ -16,7 +16,7 @@ class OrderFormPaymentChannelCell: UITableViewCell {
         didSet {
             switch channel {
             case .Alipay:
-                payChannelLabel.text = "支付宝"
+                payChannelLabel.text = L10n.alipay
                 iconView.image = UIImage(asset: .alipayIcon)
                 break
             case .Wechat:
@@ -32,7 +32,7 @@ class OrderFormPaymentChannelCell: UITableViewCell {
                 iconView.image = UIImage(asset: .qcpayIcon)
                 break
             case .QRPay:
-                payChannelLabel.text = "家长代付"
+                payChannelLabel.text = L10n.payByParents
                 iconView.image = UIImage(asset: .qcpayIcon)
                 break
             case .Other:

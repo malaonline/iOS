@@ -57,7 +57,7 @@ class LiveCourseDetailViewController: BaseViewController, LiveCourseConfirmViewD
     // MARK: - Private method
     private func setupUserInterface() {
         // Style
-        title = "课程页"
+        title = L10n.liveCourse
         
         // SubViews
         view.addSubview(tableView)
@@ -138,7 +138,7 @@ class LiveCourseDetailViewController: BaseViewController, LiveCourseConfirmViewD
                 println("LiveCourseDetailViewController - CreateOrder Error \(errorMessage)")
             }
             DispatchQueue.main.async {
-                self.ShowToast(L10n.Toast.Error.notReachable)
+                self.ShowToast(L10n.networkNotReachable)
             }
         }, completion: { [weak self] (order) -> Void in
             ThemeHUD.hideActivityIndicator()
@@ -149,16 +149,16 @@ class LiveCourseDetailViewController: BaseViewController, LiveCourseConfirmViewD
                 if let errorCode = OrderErrorCode(rawValue: code) {
                     switch errorCode {
                     case .timeslotConflict:
-                            message = L10n.Order.Error.timeslot
+                            message = L10n.pleaseCheckTimeslots
                     case .couponConflict:
-                            message = L10n.Order.Error.coupon
+                            message = L10n.couponInfoError
                     case .liveClassFull:
-                            message = L10n.Order.Error.full
+                            message = L10n.courseQuotaSoldOut
                     case .alreadyJoin:
-                            message = L10n.Order.Error.bought
+                            message = L10n.youHaveBoughtThisCourse
                     }
                 }else {
-                    message = L10n.Toast.Error.notReachable
+                    message = L10n.networkNotReachable
                 }
                 DispatchQueue.main.async{
                     self?.ShowToast(message)

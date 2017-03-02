@@ -106,7 +106,7 @@ class CourseChoosingServiceTableViewCell: UITableViewCell {
             case .none:
                 
                 self.priceHandleLabel.text = ""
-                self.priceLabel.text = "不使用奖学金"
+                self.priceLabel.text = L10n.donTUseCoupon
                 break
             }
         }
@@ -213,21 +213,21 @@ class CourseChoosingServiceTableViewCell: UITableViewCell {
     private func updateUserInterface() {
         
         // 选择优惠券时更新UI
-        if let title = MalaCurrentCourse.coupon?.name, title == "不使用奖学金" {
+        if let title = MalaCurrentCourse.coupon?.name, title == L10n.donTUseCoupon {
             self.priceHandleLabel.text = ""
-            self.priceLabel.text = "不使用奖学金"
+            self.priceLabel.text = L10n.donTUseCoupon
         }else if let amount = MalaCurrentCourse.coupon?.amount, amount != 0 {
             self.priceHandleLabel.text = "-"
             self.priceLabel.text = MalaCurrentCourse.coupon?.amount.priceCNY
         }else {
             self.priceHandleLabel.text = ""
-            self.priceLabel.text = "不使用奖学金"
+            self.priceLabel.text = L10n.donTUseCoupon
         }
         
         if let title = MalaCurrentCourse.coupon?.name, title != "" {
             self.titleLabel.text = title
         }else {
-            self.titleLabel.text = "奖学金"
+            self.titleLabel.text = L10n.coupon
         }
     }
     

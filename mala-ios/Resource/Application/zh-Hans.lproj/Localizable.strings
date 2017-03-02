@@ -1,67 +1,174 @@
 // Common
-"mala" = "麻辣老师";
-"title" = "标题";
-"cancel" = "取消";
-"other" = "其它";
+"Mala" = "麻辣老师";
+"Title" = "标题";
+"Cancel" = "取消";
+"Other" = "其它";
+"Rule" = "使用规则";
+"Coupon" = "奖学金";
+"Tuition" = "一对一";
+"Live" = "双师直播";
+"Today" = "今天";
+"Refresh" = "刷新";
+"ComingSoon" = "敬请期待";
+"Check" = "去查看";
+"Later" = "知道了";
+"Goto" = "去更改";
 
-// teacher
-"teacher" = "找老师";
-"teacher.filterResult" = "筛选结果";
-"teacher.choosing" = "课程购买";
-"teacher.evaluation" = "测评建档服务";
+// Teacher
+"Teacher" = "找老师";
+"No teacher" = "当前城市没有老师！";
+"Teacher albums" = "老师相册";
+"Course choosing" = "课程购买";
+"Evaluation" = "测评建档服务";
+"Filter result" = "筛选结果";
+"Reset condition" = "请重新设定筛选条件！";
+"ReChoosing" = "重新选课";
+"Please check grade" = "请选择授课年级";
+"Please check school" = "请选择上课地点";
+"Please check period" = "课时数不得少于已选上课时间";
+"Please check timeslots" = "请选择上课时间";
+"Period error" = "课时信息有误";
+"Timeslots error" = "上课时间信息有误";
+"Timeslots get error" = "上课时间获取有误，请重试";
+"Live course" = "课程页";
+"No live course" = "当前城市暂无直播课程！";
 
-// schedule
+// Order
+"My order" = "我的订单";
+"No order" = "没有订单";
+"View order" = "查看订单";
+"Confirm order" = "确认订单";
+"Cancel order" = "取消订单";
+"Order detail" = "订单详情";
+"Do you want to cancel this order" = "确认取消订单吗？";
+"Order canceled success" = "订单取消成功";
+"Order canceled failure" = "订单取消失败";
+"Not now" = "暂不取消";
+"Order info error" = "订单信息有误，请刷新后重试";
+"Some timeslots has been allocated" = "该老师部分时段已被占用，请重新选择上课时间";
+"Coupon info error" = "奖学金使用信息有误，请重新选择";
+"Course quota sold out" = "所选课程名额已满，请选择其他课程";
+"You have bought this course" = "您已报名参加该课程，请勿重复购买";
+"You have some unpaid order" = "您有订单尚未支付";
+
+// Pay
+"Sweep payment" = "扫码支付";
+"Alipay" = "支付宝";
+"Alipay payment" = "支付宝支付";
+"Alipay security payment" = "支付宝安全支付";
+"WeChat payment" = "微信支付";
+"WeChat shortcut payment" = "微信快捷支付";
+"Pay by Parents" = "家长代付";
+"Pay by QRCode" = "扫二维码支付";
+"Payment completed" = "支付完成";
+"Order expired" = "订单已失效，请重新下单";
+"Order status error" = "订单状态错误，请重试";
+"Please complete the payment before check it" = "家长完成支付后 点击支付完成按钮";
+"QRCode payment info get error" = "支付信息获取错误";
+"QRCode credential get error" = "支付凭证获取错误";
+"WeChat QRCode info get error" = "微信支付二维码获取错误";
+"Alipay QRCode info get error" = "支付宝二维码获取错误";
+"QRCode get error" = "二维码获取错误";
+"Please complete the payment" = "请完成付款后，点击支付完成";
+
+// Schedule
 "schedule" = "课表";
+"No course" = "暂时还没有课程哦";
+"Pick course" = "去报名";
 
-// member
-"member" = "会员专享";
+// Member
+"Member" = "会员专享";
+"Member server error" = "当前无法访问题目数据，请稍后再试";
+"Report" = "学习报告";
+"Report sample" = "学习报告样本";
+"Tutor" = "自习陪读";
+"Tutor desc" = "享受专业老师免费陪读服务，随时解决学习问题";
+"Report desc" = "全面记录学生学习数据，方便家长、随时查看，充分了解学员知识点掌握情况";
+"Counseling" = "心理辅导";
+"Counseling desc" = "免费获得专业心理咨询师一对一心理辅导，促进学员身心健康成长";
+"Lectures" = "特色讲座";
+"lectures desc" = "特邀各领域专家进行多种特色讲座，营养健康、家庭教育、高效学习应有尽有";
+"Exam outline" = "考前串讲";
+"Exam outline desc" = "专业解读考试趋势，剖析考试难点分享高分经验。还有命题专家进行中高考押题";
+"corrected record" = "错题本";
+"corrected record desc" = "针对每个学员记录并生成错题本，方便查找知识漏洞，并生成针对性练习";
+"SPPS test " = "SPPS测评";
+"SPPS test desc" = "定期进行SPPS测评，充分了解学员学习情况";
 
-// profile
-"profile" = "我的";
-"profile.like" = "我的收藏";
-"profile.like.default.text" = "您收藏的老师会出现在这里哦";
-"profile.like.default.sub" = "快去老师详情页收藏吧";
+// Profile
+"Profile" = "我的";
+"Student name" = "学生姓名";
+"Pick photo" = "选择照片";
+"Take picture" = "拍照";
+"My comment" = "我的评价";
+"My coupon" = "我的奖学金";
+"About mala" = "关于麻辣老师";
+"My collect" = "我的收藏";
+"No collect" = "您收藏的老师会出现在这里哦";
+"take some collect" = "快去老师详情页收藏吧";
+"No comment" = "当前暂无评价";
+"Comment later" = "上完课后再来这里吧";
+"Input comment" = "请写下对老师的感受吧，对他人的帮助很大哦~最多可输入200字";
+"No coupon" = "您当前没有奖学金哦！";
+"Don't use coupon" = "不使用奖学金";
+"Coupon rule" = "奖学金使用规则";
+"Phone number" = "手机号";
+"Input your number" = "请输入手机号";
+"Invalid number" = "手机号错误";
+"Verification code" = "验证码";
+"Input verification code" = "请输入验证码";
+"Get verification code" = " 获取验证码 ";
+"Verification code sent success" = "验证码发送成功";
+"Verification code sent failure" = "验证码发送失败";
+"Verification code not match" = "验证码错误";
+"Verification code countdown" = " %02ds后获取 ";
+"Verify" = "验证";
+"Mala user protocol" = "麻辣老师用户协议";
+"Protocol desc" = "轻触上面验证按钮即表示你同意";
+"Logout text" = "退  出";
+"Do you want to logout" = "确认退出当前账号吗？";
+"Logout" = "退出登录";
+"You need to login" = "您还没有登录";
+"Go to login" = "去登录";
+"User authentication error" = "用户验证错误，请重新登录！";
+"Relogin" = "重新登录";
 
-// login
-"login.phone" = "手机号";
-"login.code" = "验证码";
+// Toast
+"Network notReachable" = "网络环境较差，请稍后重试";
 
-// comment
-"comment.placeholder" = "请写下对老师的感受吧，对他人的帮助很大哦~最多可输入200字";
+// Notification
+"Notify message" = "通知消息";
+"You have a new message" = "你有一条新消息";
+"Course changed" = "课程变动";
+"Refund success" = "退费成功";
+"Able to comment" = "完课评价";
+"Course remind" = "课前通知";
+"Coupon will expire" = "奖学金即将到期";
+"Live activities" = "双师课程活动";
 
-// chart
-"chart.realNumber" = "实数";
-"chart.func" = "函数初步";
-"chart.polygon" = "多边形";
-"chart.circle" = "圆";
-"chart.congruent" = "全等";
-"chart.similar" = "相似";
-"chart.geo.transfor" = "几何变换";
-"chart.geo.operation" = "几何操作";
+// Alert
+"Course soldout" = "您想要购买的课程已被他人抢买，支付金额将原路退回";
+"Teacher off shelves" = "购课失败！该老师已下架，支付金额将原路退回";
+"Payment has been canceled" = "支付已取消";
+"Payment success" = "恭喜您已支付成功！您的课表已经安排好，快去查看吧！";
+"Payment failure" = "支付失败，请重试！";
+"Payment info fetching" = "支付信息获取中，订单信息将会稍后更新";
 
-// alert
-
-
-// toast
-"toast.error.notReachable" = "网络环境较差，请稍后重试";
-
-// order
-"order.error.timeslot" = "该老师部分时段已被占用，请重新选择上课时间";
-"order.error.coupon" = "奖学金使用信息有误，请重新选择";
-"order.error.full" = "所选课程名额已满，请选择其他课程";
-"order.error.bought" = "您已报名参加该课程，请勿重复购买";
-
-// pay
-"pay.channel.alipay" = "支付宝支付";
-"pay.channel.wechat" = "微信支付";
-"pay.result.success" = "支付完成";
-"pay.Normal.error.expire" = "订单已失效，请重新下单";
-"pay.Normal.error.unknown" = "订单状态错误，请重试";
-"pay.QRCode.info" = "家长完成支付后 点击支付完成按钮";
-"pay.QRCode.error.info" = "支付信息获取错误";
-"pay.QRCode.error.credential" = "支付凭证获取错误";
-"pay.QRCode.error.wechat" = "微信支付二维码获取错误";
-"pay.QRCode.error.alipay" = "支付宝二维码获取错误";
-"pay.QRCode.error.get" = "二维码获取错误";
-"pay.QRCode.alert.unpaid" = "请完成付款后，点击支付完成";
-
+// Access
+"access.photo" = "照片访问失败";
+"access.photo.desc" = "请在设置-隐私-照片里打开权限";
+"access.camera" = "拍照失败";
+"access.camera.desc" = "请在设置-隐私-相机里打开权限";
+"access.mic" = "麦克风访问失败";
+"access.mic.desc" = "请在设置-隐私-麦克风里打开权限";
+"access.location" = "地理位置获取失败";
+"access.location.desc" = "请在设置-隐私-定位服务里打开权限";
+// Chart
+"Chart.realNumber" = "实数";
+"Chart.function" = "函数初步";
+"Chart.polygon" = "多边形";
+"Chart.circle" = "圆";
+"Chart.congruent" = "全等";
+"Chart.similar" = "相似";
+"Chart.geo.transfor" = "几何变换";
+"Chart.geo.operation" = "几何操作";

@@ -17,7 +17,6 @@
 		3037B5A51C3BAB52005672D9 /* TeacherDetailsCertificateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3037B5A31C3BAB52005672D9 /* TeacherDetailsCertificateCell.swift */; };
 		303BCFEC1C43885700B37DD9 /* TeacherDetailsHighScoreTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303BCFEA1C43885700B37DD9 /* TeacherDetailsHighScoreTableView.swift */; };
 		303BCFF21C44A86200B37DD9 /* SchoolModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303BCFF01C44A86200B37DD9 /* SchoolModel.swift */; };
-		303BCFF51C44ABC900B37DD9 /* TestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303BCFF31C44ABC900B37DD9 /* TestFactory.swift */; };
 		304135A51C23AE6400830C43 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304135821C23AE6400830C43 /* AppDelegate.swift */; };
 		304135A71C23AE6400830C43 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 304135881C23AE6400830C43 /* Assets.xcassets */; };
 		30445B171C4A3959002CD290 /* FilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30445B151C4A3959002CD290 /* FilterView.swift */; };
@@ -135,7 +134,6 @@
 		35FDCEC91CAD0A2300A25FE8 /* SchoolModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303BCFF01C44A86200B37DD9 /* SchoolModel.swift */; };
 		35FDCECA1CAD0A2300A25FE8 /* CourseChoosingTimeScheduleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45871F81C51E0270048D93F /* CourseChoosingTimeScheduleCell.swift */; };
 		35FDCECB1CAD0A2300A25FE8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304135821C23AE6400830C43 /* AppDelegate.swift */; };
-		35FDCECC1CAD0A2300A25FE8 /* TestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303BCFF31C44ABC900B37DD9 /* TestFactory.swift */; };
 		35FDCECD1CAD0A2300A25FE8 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F460651E1C97B168004056B1 /* ProfileViewController.swift */; };
 		35FDCED31CAD0A2300A25FE8 /* ClassScheduleDayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4402D841C5729A200E7D3DB /* ClassScheduleDayModel.swift */; };
 		35FDCED51CAD0A2300A25FE8 /* MemberServiceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B5980D1C451A8900169390 /* MemberServiceModel.swift */; };
@@ -309,7 +307,6 @@
 		35FF7AD41CF8325A000A70EE /* CourseChoosingTimeScheduleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45871F81C51E0270048D93F /* CourseChoosingTimeScheduleCell.swift */; };
 		35FF7AD51CF8325A000A70EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304135821C23AE6400830C43 /* AppDelegate.swift */; };
 		35FF7AD61CF8325A000A70EE /* MalaBaseReportCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F474E89E1CF2DCEE0025A865 /* MalaBaseReportCardCell.swift */; };
-		35FF7AD71CF8325A000A70EE /* TestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303BCFF31C44ABC900B37DD9 /* TestFactory.swift */; };
 		35FF7AD81CF8325A000A70EE /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F460651E1C97B168004056B1 /* ProfileViewController.swift */; };
 		35FF7ADB1CF8325A000A70EE /* LearningReportTitlePageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F427FFA41CEDA1E900EAB748 /* LearningReportTitlePageCell.swift */; };
 		35FF7ADC1CF8325A000A70EE /* LearningReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F427FFA11CED9A4300EAB748 /* LearningReportViewController.swift */; };
@@ -476,7 +473,6 @@
 		35FF7BB71CF83264000A70EE /* CourseChoosingTimeScheduleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45871F81C51E0270048D93F /* CourseChoosingTimeScheduleCell.swift */; };
 		35FF7BB81CF83264000A70EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304135821C23AE6400830C43 /* AppDelegate.swift */; };
 		35FF7BB91CF83264000A70EE /* MalaBaseReportCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F474E89E1CF2DCEE0025A865 /* MalaBaseReportCardCell.swift */; };
-		35FF7BBA1CF83264000A70EE /* TestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303BCFF31C44ABC900B37DD9 /* TestFactory.swift */; };
 		35FF7BBB1CF83264000A70EE /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F460651E1C97B168004056B1 /* ProfileViewController.swift */; };
 		35FF7BBE1CF83264000A70EE /* LearningReportTitlePageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F427FFA41CEDA1E900EAB748 /* LearningReportTitlePageCell.swift */; };
 		35FF7BBF1CF83264000A70EE /* LearningReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F427FFA11CED9A4300EAB748 /* LearningReportViewController.swift */; };
@@ -1017,7 +1013,6 @@
 		3037B5A31C3BAB52005672D9 /* TeacherDetailsCertificateCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeacherDetailsCertificateCell.swift; sourceTree = "<group>"; };
 		303BCFEA1C43885700B37DD9 /* TeacherDetailsHighScoreTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeacherDetailsHighScoreTableView.swift; sourceTree = "<group>"; };
 		303BCFF01C44A86200B37DD9 /* SchoolModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchoolModel.swift; sourceTree = "<group>"; };
-		303BCFF31C44ABC900B37DD9 /* TestFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestFactory.swift; sourceTree = "<group>"; };
 		304135821C23AE6400830C43 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		304135881C23AE6400830C43 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		30445B151C4A3959002CD290 /* FilterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterView.swift; sourceTree = "<group>"; };
@@ -1620,7 +1615,6 @@
 				F48C59FC1C8701FA0024EE17 /* JSSAlertView.swift */,
 				30EB98B61C3CEBD6003977FF /* MATabListView.swift */,
 				307788571C2A58B1007AF6B0 /* OperatorOverload.swift */,
-				303BCFF31C44ABC900B37DD9 /* TestFactory.swift */,
 				F47C2ABC1C85785A0051A880 /* MalaAlert.swift */,
 				F4D0D17D1CA148DF00B25704 /* FloatRatingView.swift */,
 				F49BD5A91CA413C000EB3CCF /* MalaPhotoBrowser.swift */,
@@ -2871,7 +2865,6 @@
 				F45871FA1C51E0270048D93F /* CourseChoosingTimeScheduleCell.swift in Sources */,
 				304135A51C23AE6400830C43 /* AppDelegate.swift in Sources */,
 				F474E89F1CF2DCEE0025A865 /* MalaBaseReportCardCell.swift in Sources */,
-				303BCFF51C44ABC900B37DD9 /* TestFactory.swift in Sources */,
 				F48F13061DAB9211006A2F5C /* PullToRefreshView.swift in Sources */,
 				F460652B1C97B168004056B1 /* ProfileViewController.swift in Sources */,
 				F427FFA51CEDA1E900EAB748 /* LearningReportTitlePageCell.swift in Sources */,
@@ -3128,7 +3121,6 @@
 				35FF7AD41CF8325A000A70EE /* CourseChoosingTimeScheduleCell.swift in Sources */,
 				35FF7AD51CF8325A000A70EE /* AppDelegate.swift in Sources */,
 				35FF7AD61CF8325A000A70EE /* MalaBaseReportCardCell.swift in Sources */,
-				35FF7AD71CF8325A000A70EE /* TestFactory.swift in Sources */,
 				F48F13071DAB9211006A2F5C /* PullToRefreshView.swift in Sources */,
 				35FF7AD81CF8325A000A70EE /* ProfileViewController.swift in Sources */,
 				35FF7ADB1CF8325A000A70EE /* LearningReportTitlePageCell.swift in Sources */,
@@ -3385,7 +3377,6 @@
 				35FF7BB71CF83264000A70EE /* CourseChoosingTimeScheduleCell.swift in Sources */,
 				35FF7BB81CF83264000A70EE /* AppDelegate.swift in Sources */,
 				35FF7BB91CF83264000A70EE /* MalaBaseReportCardCell.swift in Sources */,
-				35FF7BBA1CF83264000A70EE /* TestFactory.swift in Sources */,
 				F48F13081DAB9211006A2F5C /* PullToRefreshView.swift in Sources */,
 				35FF7BBB1CF83264000A70EE /* ProfileViewController.swift in Sources */,
 				35FF7BBE1CF83264000A70EE /* LearningReportTitlePageCell.swift in Sources */,
@@ -3555,7 +3546,6 @@
 				35FDCEC91CAD0A2300A25FE8 /* SchoolModel.swift in Sources */,
 				35FDCECA1CAD0A2300A25FE8 /* CourseChoosingTimeScheduleCell.swift in Sources */,
 				35FDCECB1CAD0A2300A25FE8 /* AppDelegate.swift in Sources */,
-				35FDCECC1CAD0A2300A25FE8 /* TestFactory.swift in Sources */,
 				35FDCECD1CAD0A2300A25FE8 /* ProfileViewController.swift in Sources */,
 				35FDCED31CAD0A2300A25FE8 /* ClassScheduleDayModel.swift in Sources */,
 				35FDCED51CAD0A2300A25FE8 /* MemberServiceModel.swift in Sources */,

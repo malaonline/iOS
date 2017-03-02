@@ -60,7 +60,7 @@ class FindTeacherViewController: BaseViewController {
     private func setupUserInterface() {
         // Style
         defaultView.imageName = "filter_no_result"
-        defaultView.text = "当前城市没有老师！"
+        defaultView.text = L10n.noTeacher
         
         // 下拉刷新
         tableView.addPullRefresh{ [weak self] in

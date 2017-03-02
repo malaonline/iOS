@@ -18,7 +18,7 @@ class ProfileViewCell: UITableViewCell {
             infoLabel.text = model.detail
             
             // 新消息样式
-            if model.title == "我的订单" {
+            if model.title == L10n.myOrder {
                 
                 infoLabel.isHidden = !(MalaUnpaidOrderCount > 0)
                 

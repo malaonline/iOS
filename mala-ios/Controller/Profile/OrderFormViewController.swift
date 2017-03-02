@@ -74,9 +74,9 @@ class OrderFormViewController: BaseTableViewController {
     
     // MARK: - Private Method
     private func configure() {
-        title = "我的订单"
+        title = L10n.myOrder
         defaultView.imageName = "no_order"
-        defaultView.text = "没有订单"
+        defaultView.text = L10n.noOrder
         
         tableView.backgroundColor = UIColor(named: .RegularBackground)
         tableView.separatorStyle = .none
@@ -162,7 +162,7 @@ class OrderFormViewController: BaseTableViewController {
                 viewController.hidesBottomBarWhenPushed = true
                 self?.navigationController?.pushViewController(viewController, animated: true)
             }else {
-                self?.ShowToast("订单信息有误，请刷新后重试")
+                self?.ShowToast(L10n.orderInfoError)
             }
         }
         
@@ -175,10 +175,10 @@ class OrderFormViewController: BaseTableViewController {
             if let id = notification.object as? Int {
                 
                 MalaAlert.confirmOrCancel(
-                    title: "取消订单",
-                    message: "确认取消订单吗？",
-                    confirmTitle: "取消订单",
-                    cancelTitle: "暂不取消",
+                    title: L10n.cancelOrder,
+                    message: L10n.doYouWantToCancelThisOrder,
+                    confirmTitle: L10n.cancelOrder,
+                    cancelTitle: L10n.notNow,
                     inViewController: self,
                     withConfirmAction: { [weak self] () -> Void in
                         self?.cancelOrder(id)
@@ -186,14 +186,12 @@ class OrderFormViewController: BaseTableViewController {
                 })
                 
             }else {
-                self?.ShowToast("订单信息有误，请刷新后重试")
+                self?.ShowToast(L10n.orderInfoError)
             }
         }
     }
     
     private func cancelOrder(_ orderId: Int) {
-        
-        println("取消订单")
         ThemeHUD.showActivityIndicator()
         
         cancelOrderWithId(orderId, failureHandler: { (reason, errorMessage) in
@@ -208,7 +206,7 @@ class OrderFormViewController: BaseTableViewController {
             ThemeHUD.hideActivityIndicator()
             
             DispatchQueue.main.async {
-                self.ShowToast(result == true ? "订单取消成功" : "订单取消失败")
+                self.ShowToast(result == true ? L10n.orderCanceledSuccess : L10n.orderCanceledFailure)
                 _ = self.navigationController?.popViewController(animated: true)
             }
         })

@@ -220,7 +220,7 @@ class OrderFormViewCell: UITableViewCell {
         button.layer.masksToBounds = true
         
         button.titleLabel?.font = UIFont.systemFont(ofSize: 12)
-        button.setTitle("取消订单", for: .normal)
+        button.setTitle(L10n.cancelOrder, for: .normal)
         button.setTitleColor(UIColor(named: .HeaderTitle), for: .normal)
         button.addTarget(self, action: #selector(OrderFormViewCell.cancelOrderForm), for: .touchUpInside)
         return button

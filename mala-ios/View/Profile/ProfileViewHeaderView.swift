@@ -17,7 +17,7 @@ class ProfileViewHeaderView: UIView {
 
     // MARK: - Property
     /// 学生姓名
-    var name: String = "学生姓名" {
+    var name: String = L10n.studentName {
         didSet {
             nameLabel.text = name
         }

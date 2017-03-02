@@ -203,7 +203,7 @@ class OrderFormOperatingView: UIView {
     /// 待支付样式
     private func setOrderPending() {
         cancelButton.isHidden = false
-        cancelButton.setTitle("取消订单", for: .normal)
+        cancelButton.setTitle(L10n.cancelOrder, for: .normal)
         cancelButton.setTitleColor(UIColor.white, for: .normal)
         cancelButton.setBackgroundImage(UIImage.withColor(UIColor(named: .ThemeBlue)), for: .normal)
         cancelButton.addTarget(self, action: #selector(OrderFormOperatingView.cancelOrderForm), for: .touchUpInside)

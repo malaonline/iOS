@@ -53,7 +53,7 @@ class LiveCourseViewController: BaseViewController {
         // Style
         view.backgroundColor = UIColor(named: .RegularBackground)
         defaultView.imageName = "filter_no_result"
-        defaultView.text = "当前城市暂无直播课程！"
+        defaultView.text = L10n.noLiveCourse
         
         // 下拉刷新
         tableView.addPullRefresh{ [weak self] in

@@ -114,6 +114,6 @@ let MalaScreenScale = UIScreen.main.scale
 
 // MARK: - Array
 var MalaOtherService = [
-    OtherServiceModel(title: "奖学金", type: .coupon, price: 0, priceHandleType: .none, viewController: CouponViewController.self),
-    OtherServiceModel(title: L10n.Teacher.evaluation, type: .evaluationFiling, price: 500, priceHandleType: .reduce, viewController: EvaluationFilingServiceController.self)
+    OtherServiceModel(title: L10n.coupon, type: .coupon, price: 0, priceHandleType: .none, viewController: CouponViewController.self),
+    OtherServiceModel(title: L10n.evaluation, type: .evaluationFiling, price: 500, priceHandleType: .reduce, viewController: EvaluationFilingServiceController.self)
 ]

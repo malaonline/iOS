@@ -66,7 +66,7 @@ class EvaluationFilingServiceController: BaseTableViewController {
     // MARK: - Private Method
     private func configure() {
         // Style 
-        title = L10n.Teacher.evaluation
+        title = L10n.evaluation
         tableView.backgroundColor = UIColor.white
         tableView.estimatedRowHeight = 300
         tableView.separatorStyle = .none
