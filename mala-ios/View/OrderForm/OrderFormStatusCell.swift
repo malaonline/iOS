@@ -375,7 +375,7 @@ class OrderFormStatusCell: UITableViewCell {
                 break
                 
             case .confirm:
-                statusLabel.text = "确认订单"
+                statusLabel.text = L10n.confirmOrder
                 statusLabel.textColor = UIColor(named: .OrderStatusRed)
                 break
                 

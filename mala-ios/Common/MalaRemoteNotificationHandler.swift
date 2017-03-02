@@ -65,9 +65,9 @@ open class MalaRemoteNotificationHandler: NSObject {
         }
         
         // 消息内容
-        var title: String? = "通知消息"
+        var title: String? = L10n.notifyMessage
         // var subTitle: String? = ""
-        var body: String? = "你有一条新消息"
+        var body: String? = L10n.youHaveANewMessage
         
         // 获取通知消息 [标题]、[副标题]、[消息内容]
         if let alert = apsInfo["alert"] as? String {
@@ -82,10 +82,10 @@ open class MalaRemoteNotificationHandler: NSObject {
         switch type {
             
         case .changed:
-            setIfNeed(&title, bak: "课程变动")
+            setIfNeed(&title, bak: L10n.courseChanged)
             
         case .refunds:
-            setIfNeed(&title, bak: "退费成功")
+            setIfNeed(&title, bak: L10n.refundSuccess)
             action = {
                 // 订单详情页
                 guard let viewController = getActivityViewController() else { return }
@@ -96,7 +96,7 @@ open class MalaRemoteNotificationHandler: NSObject {
             }
             
         case .finished:
-            setIfNeed(&title, bak: "完课评价")
+            setIfNeed(&title, bak: L10n.ableToComment)
             action = {
                 // 我的评价
                 guard let viewController = getActivityViewController() else { return }
@@ -106,10 +106,10 @@ open class MalaRemoteNotificationHandler: NSObject {
             }
             
         case .starting:
-            setIfNeed(&title, bak: "课前通知")
+            setIfNeed(&title, bak: L10n.courseRemind)
             
         case .maturity:
-            setIfNeed(&title, bak: "奖学金即将到期")
+            setIfNeed(&title, bak: L10n.couponWillExpire)
             action = {
                 // 我的奖学金
                 guard let viewController = getActivityViewController() else { return }
@@ -119,7 +119,7 @@ open class MalaRemoteNotificationHandler: NSObject {
             }
             
         case .livecourse:
-            setIfNeed(&title, bak: "双师课程活动")
+            setIfNeed(&title, bak: L10n.liveActivities)
             action = {
                 // 课表页
                 appDelegate.switchTabBarControllerWithIndex(0)
@@ -137,8 +137,8 @@ open class MalaRemoteNotificationHandler: NSObject {
                 MalaAlert.confirmOrCancel(
                     title: title!,
                     message: body!,
-                    confirmTitle: "去查看",
-                    cancelTitle: "知道了",
+                    confirmTitle: L10n.check,
+                    cancelTitle: L10n.later,
                     inViewController: viewController,
                     withConfirmAction: action, cancelAction: {})
             }

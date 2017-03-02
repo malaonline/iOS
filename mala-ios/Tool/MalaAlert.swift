@@ -114,7 +114,7 @@ extension UIViewController {
     func alertCanNotAccessCameraRoll() {
 
         DispatchQueue.main.async {
-            MalaAlert.confirmOrCancel(title: "照片访问失败", message: "请在设置-隐私-照片里打开权限", confirmTitle: "去更改", cancelTitle: "取消", inViewController: self, withConfirmAction: {
+            MalaAlert.confirmOrCancel(title: L10n.Access.photo, message: L10n.Access.Photo.desc, confirmTitle: L10n.goto, cancelTitle: L10n.cancel, inViewController: self, withConfirmAction: {
 
                 UIApplication.shared.openURL(URL(string: UIApplicationOpenSettingsURLString)!)
 
@@ -126,7 +126,7 @@ extension UIViewController {
     func alertCanNotOpenCamera() {
 
         DispatchQueue.main.async {
-            MalaAlert.confirmOrCancel(title: "拍照失败", message: "请在设置-隐私-相机里打开权限", confirmTitle: "去更改", cancelTitle: "取消", inViewController: self, withConfirmAction: {
+            MalaAlert.confirmOrCancel(title: L10n.Access.camera, message: L10n.Access.Camera.desc, confirmTitle: L10n.goto, cancelTitle: L10n.cancel, inViewController: self, withConfirmAction: {
 
                 UIApplication.shared.openURL(URL(string: UIApplicationOpenSettingsURLString)!)
 
@@ -138,7 +138,7 @@ extension UIViewController {
     func alertCanNotAccessMicrophone() {
 
         DispatchQueue.main.async {
-            MalaAlert.confirmOrCancel(title: "麦克风访问失败", message: "请在设置-隐私-麦克风里打开权限", confirmTitle: "去更改", cancelTitle: "取消", inViewController: self, withConfirmAction: {
+            MalaAlert.confirmOrCancel(title: L10n.Access.mic, message: L10n.Access.Mic.desc, confirmTitle: L10n.goto, cancelTitle: L10n.cancel, inViewController: self, withConfirmAction: {
 
                 UIApplication.shared.openURL(URL(string: UIApplicationOpenSettingsURLString)!)
 
@@ -147,22 +147,10 @@ extension UIViewController {
         }
     }
 
-    func alertCanNotAccessContacts() {
-
-        DispatchQueue.main.async {
-            MalaAlert.confirmOrCancel(title: NSLocalizedString("Sorry", comment: ""), message: NSLocalizedString("Yep can not read your Contacts!\nBut you can change it in iOS Settings.", comment: ""), confirmTitle: NSLocalizedString("Change it now", comment: ""), cancelTitle: NSLocalizedString("Dismiss", comment: ""), inViewController: self, withConfirmAction: {
-
-            UIApplication.shared.openURL(URL(string: UIApplicationOpenSettingsURLString)!)
-
-            }, cancelAction: {
-            })
-        }
-    }
-
     func alertCanNotAccessLocation() {
 
         DispatchQueue.main.async {
-            MalaAlert.confirmOrCancel(title: "地理位置获取失败", message: "请在设置-隐私-定位服务里打开权限", confirmTitle: "去更改", cancelTitle: "取消", inViewController: self, withConfirmAction: {
+            MalaAlert.confirmOrCancel(title: L10n.Access.location, message: L10n.Access.Location.desc, confirmTitle: L10n.goto, cancelTitle: L10n.cancel, inViewController: self, withConfirmAction: {
 
                 UIApplication.shared.openURL(URL(string: UIApplicationOpenSettingsURLString)!)
 
@@ -170,25 +158,4 @@ extension UIViewController {
             })
         }
     }
-
-
-//    func showProposeMessageIfNeedForContactsAndTryPropose(propose: Propose) {
-//
-//        if PrivateResource.Contacts.isNotDeterminedAuthorization {
-//
-//            dispatch_async(dispatch_get_main_queue()) {
-//
-//                YepAlert.confirmOrCancel(title: NSLocalizedString("Notice", comment: ""), message: NSLocalizedString("Yep need to read your Contacts to continue this operation.\nIs that OK?", comment: ""), confirmTitle: NSLocalizedString("OK", comment: ""), cancelTitle: NSLocalizedString("Not now", comment: ""), inViewController: self, withConfirmAction: {
-//
-//                    propose()
-//
-//                }, cancelAction: {
-//                })
-//            }
-//
-//        } else {
-//            propose()
-//        }
-//    }
 }
-

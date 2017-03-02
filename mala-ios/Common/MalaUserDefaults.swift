@@ -262,7 +262,7 @@ class MalaUserDefaults {
             
             if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
                 if let rootViewController = appDelegate.window?.rootViewController {
-                    MalaAlert.alert(title: "麻辣老师", message: "用户验证错误，请重新登录！", dismissTitle: "重新登录", inViewController: rootViewController, withDismissAction: {
+                    MalaAlert.alert(title: L10n.mala, message: L10n.userAuthenticationError, dismissTitle: L10n.relogin, inViewController: rootViewController, withDismissAction: {
                         appDelegate.showLoginView()
                     })
                 }

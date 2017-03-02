@@ -49,7 +49,7 @@ open class MalaPhotoBrowser: BaseViewController, UICollectionViewDataSource, UIC
     
     // MARK: - Private Method
     private func configure() {
-        title = "老师相册"
+        title = L10n.teacherAlbums
         collectionView.dataSource = self
         collectionView.delegate = self
         

@@ -61,7 +61,7 @@ class LearningReportViewController: BaseViewController, UICollectionViewDelegate
     
     // MARK: - Private method
     private func configure() {
-        title = sample ? "学习报告样本" : "学习报告"
+        title = sample ? L10n.reportSample : L10n.report
         collectionView.isPagingEnabled = true
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.showsVerticalScrollIndicator = false

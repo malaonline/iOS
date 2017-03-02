@@ -116,8 +116,8 @@ class HandlePingppBehaviour: NSObject {
         guard let viewController = currentViewController else { return }
         
         let alert = JSSAlertView().show(viewController,
-                                        title: "您想要购买的课程已被他人抢买，支付金额将原路退回",
-                                        buttonText: "我知道了",
+                                        title: L10n.courseSoldout,
+                                        buttonText: L10n.later,
                                         iconImage: UIImage(asset: .alertCourseBeenSeized)
         )
         alert.addAction(popToCourseChoosingViewController)
@@ -129,8 +129,8 @@ class HandlePingppBehaviour: NSObject {
         guard let viewController = currentViewController else { return }
         
         let alert = JSSAlertView().show(viewController,
-                                        title: "购课失败！该老师已下架，支付金额将原路退回",
-                                        buttonText: "我知道了",
+                                        title: L10n.teacherOffShelves,
+                                        buttonText: L10n.later,
                                         iconImage: UIImage(asset: .alertCourseBeenSeized)
         )
         alert.addAction(popToRootViewController)
@@ -142,8 +142,8 @@ class HandlePingppBehaviour: NSObject {
         guard let viewController = currentViewController else { return }
         
         let _ = JSSAlertView().show(viewController,
-                                    title: "支付已取消",
-                                    buttonText: "我知道了",
+                                    title: L10n.paymentHasBeenCanceled,
+                                    buttonText: L10n.later,
                                     iconImage: UIImage(asset: .alertPaymentFail)
         )
     }
@@ -154,8 +154,8 @@ class HandlePingppBehaviour: NSObject {
         guard let viewController = currentViewController else { return }
         
         let alert = JSSAlertView().show(viewController,
-                                        title: "恭喜您已支付成功！您的课表已经安排好，快去查看吧！",
-                                        buttonText: "知道了",
+                                        title: L10n.paymentSuccess,
+                                        buttonText: L10n.later,
                                         iconImage: UIImage(asset: .alertPaymentSuccess)
         )
         alert.addAction(switchToClassSchedule)
@@ -166,11 +166,11 @@ class HandlePingppBehaviour: NSObject {
         ThemeHUD.hideActivityIndicator()
         guard let viewController = currentViewController else { return }
         
-        var actionSet = ("支付失败，请重试！", "刷新", validateOrderStatus)
+        var actionSet = (L10n.paymentFailure, L10n.refresh, validateOrderStatus)
         
         // 若已达到最大手动重连限制次数，则返回首页。否则用户可以手动刷新。
         if self.currentRetry == self.maxRetry {
-            actionSet = ("支付失败，订单信息将会稍后更新", "知道了", popToRootViewController)
+            actionSet = (L10n.paymentInfoFetching, L10n.later, popToRootViewController)
         }else {
             currentRetry += 1
         }

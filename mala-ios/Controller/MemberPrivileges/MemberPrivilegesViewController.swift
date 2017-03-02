@@ -101,7 +101,7 @@ class MemberPrivilegesViewController: UITableViewController {
                 let viewController = ThemeIntroductionView()
                 viewController.hidesBottomBarWhenPushed = true
                 viewController.index = index
-                viewController.title = "会员专享"
+                viewController.title = L10n.member
                 self?.navigationController?.pushViewController(viewController, animated: true)
             }
         }
@@ -169,7 +169,7 @@ class MemberPrivilegesViewController: UITableViewController {
             
             DispatchQueue.main.async {
                 self.reportStatus = .Error
-                self.ShowToast("当前无法访问题目数据，请稍后再试")
+                self.ShowToast(L10n.memberServerError)
             }
             
         }, completion: { [weak self] (results) in
@@ -217,7 +217,7 @@ class MemberPrivilegesViewController: UITableViewController {
             
             DispatchQueue.main.async {
                 self.reportStatus = .Error
-                self.ShowToast("当前无法访问题目数据，请稍后再试")
+                self.ShowToast(L10n.memberServerError)
             }
         }, completion: { (report) in
             println("学科学习报告：\(report)")

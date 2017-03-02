@@ -90,7 +90,6 @@ class PaymentViewController: BaseViewController {
     }
     
     private func cancelOrder() {
-        println("取消订单")
         ThemeHUD.showActivityIndicator()
         
         cancelOrderWithId(ServiceResponseOrder.id, failureHandler: { (reason, errorMessage) in
@@ -104,7 +103,7 @@ class PaymentViewController: BaseViewController {
         }, completion:{ (result) in
             ThemeHUD.hideActivityIndicator()
             DispatchQueue.main.async {
-                self.ShowToast(result == true ? "订单取消成功" : "订单取消失败")
+                self.ShowToast(result == true ? L10n.orderCanceledSuccess : L10n.orderCanceledFailure)
                 _ = self.navigationController?.popViewController(animated: true)
             }
         })
@@ -114,9 +113,9 @@ class PaymentViewController: BaseViewController {
     // MARK: - Override
     override func popSelf() {
         MalaAlert.confirmOrCancel(
-            title: "取消订单",
-            message: "确认取消订单吗？",
-            confirmTitle: "取消订单",
+            title: L10n.cancelOrder,
+            message: L10n.doYouWantToCancelThisOrder,
+            confirmTitle: L10n.cancelOrder,
             cancelTitle: "继续支付",
             inViewController: self,
             withConfirmAction: { [weak self] () -> Void in
@@ -174,7 +173,7 @@ class PaymentViewController: BaseViewController {
                         /// 失败弹出提示
                         let alert = JSSAlertView().show(self,
                                                         title: "部分课程时间已被占用，请重新选择上课时间",
-                                                        buttonText: "重新选课",
+                                                        buttonText: L10n.reChoosing,
                                                         iconImage: UIImage(asset: .alertPaymentFail)
                         )
                         alert.addAction(self.forcePop)

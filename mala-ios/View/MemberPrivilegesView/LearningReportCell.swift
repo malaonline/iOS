@@ -71,7 +71,7 @@ class LearningReportCell: UITableViewCell {
     /// 标题标签
     private lazy var titleLabel: UILabel = {
         let label = UILabel(
-            text: "学习报告",
+            text: L10n.report,
             fontSize: 15,
             textColor: UIColor(named: .ArticleTitle)
         )

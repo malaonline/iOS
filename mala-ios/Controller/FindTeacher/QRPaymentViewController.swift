@@ -44,7 +44,7 @@ private struct PagingMenuOptions: PagingMenuControllerCustomizable {
     fileprivate struct MenuItem1: MenuItemViewCustomizable {
         var displayMode: MenuItemDisplayMode {
             return .text(title: MenuItemText(
-                text: "微信支付",
+                text: L10n.weChatPayment,
                 color: UIColor(named: .OptionTitle),
                 selectedColor: UIColor(named: .OptionSelectColor)
             ))
@@ -53,7 +53,7 @@ private struct PagingMenuOptions: PagingMenuControllerCustomizable {
     fileprivate struct MenuItem2: MenuItemViewCustomizable {
         var displayMode: MenuItemDisplayMode {
             return .text(title: MenuItemText(
-                text: "支付宝支付",
+                text: L10n.alipayPayment,
                 color: UIColor(named: .OptionTitle),
                 selectedColor: UIColor(named: .OptionSelectColor)
             ))
@@ -75,10 +75,8 @@ class QRPaymentViewController: BaseViewController {
         let label = UILabel(
             font: UIFont(name: "PingFang-SC-Regular", size: 12),
             textColor: UIColor(named: .ArticleText)
-        )
-        
-        let string = "家长完成支付后 点击支付完成按钮"
-        let attrString = NSMutableAttributedString(string: string)
+        )        
+        let attrString = NSMutableAttributedString(string: L10n.pleaseCompleteThePaymentBeforeCheckIt)
         attrString.addAttribute(
             NSForegroundColorAttributeName,
             value: UIColor(named: .ThemeBlue),
@@ -98,7 +96,7 @@ class QRPaymentViewController: BaseViewController {
         let button = UIButton()
         button.setBackgroundImage(UIImage.withColor(UIColor(named: .ThemeBlue)), for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 15)
-        button.setTitle("支付完成", for: .normal)
+        button.setTitle(L10n.paymentSuccess, for: .normal)
         button.setTitleColor(UIColor.white, for: .normal)
         button.layer.cornerRadius = 4
         button.layer.masksToBounds = true
@@ -126,7 +124,7 @@ class QRPaymentViewController: BaseViewController {
     // MARK: - Private Method
     private func setupUserInterface() {
         // Style
-        title = "扫码支付"
+        title = L10n.sweepPayment
         view.backgroundColor = UIColor(named: .CardBackground)
         
         // SubViews
@@ -190,7 +188,7 @@ class QRPaymentViewController: BaseViewController {
                 
                 /// 验证返回值是否有效
                 guard let charge = charges else {
-                    self?.ShowToast("支付信息获取错误")
+                    self?.ShowToast(L10n.qrCodeGetError)
                     return
                 }
                 
@@ -200,7 +198,7 @@ class QRPaymentViewController: BaseViewController {
                     if let strongSelf = self {
                         let alert = JSSAlertView().show(strongSelf,
                                                         title: "部分课程时间已被占用，请重新选择上课时间",
-                                                        buttonText: "重新选课",
+                                                        buttonText: L10n.reChoosing,
                                                         iconImage: UIImage(asset: .alertPaymentFail)
                         )
                         alert.addAction(strongSelf.forcePop)
@@ -211,7 +209,7 @@ class QRPaymentViewController: BaseViewController {
                     
                     /// 验证数据正确性
                     guard let credential = charge["credential"] as? JSONDictionary else {
-                        self?.ShowToast("支付凭证获取错误")
+                        self?.ShowToast(L10n.qrCodeCredentialGetError)
                         return
                     }
                     
@@ -219,7 +217,7 @@ class QRPaymentViewController: BaseViewController {
                     switch channel {
                     case .WxQR:
                         guard let qrPaymentURL = credential["wx_pub_qr"] as? String else {
-                            self?.ShowToast("微信支付二维码获取错误")
+                            self?.ShowToast(L10n.weChatQRCodeInfoGetError)
                             return
                         }
                         self?.qrView.url = qrPaymentURL
@@ -228,7 +226,7 @@ class QRPaymentViewController: BaseViewController {
                         
                     case .AliQR:
                         guard let qrPaymentURL = credential["alipay_qr"] as? String else {
-                            self?.ShowToast("支付宝二维码获取错误")
+                            self?.ShowToast(L10n.alipayQRCodeInfoGetError)
                             return
                         }
                         self?.qrView.url = qrPaymentURL
@@ -236,7 +234,7 @@ class QRPaymentViewController: BaseViewController {
                         break
                         
                     default:
-                        self?.ShowToast("二维码获取错误")
+                        self?.ShowToast(L10n.qrCodeGetError)
                         break
                     }
                 }
@@ -245,7 +243,6 @@ class QRPaymentViewController: BaseViewController {
     }
     
     private func cancelOrder() {
-        println("取消订单")
         ThemeHUD.showActivityIndicator()
         
         cancelOrderWithId(ServiceResponseOrder.id, failureHandler: { (reason, errorMessage) in
@@ -259,7 +256,7 @@ class QRPaymentViewController: BaseViewController {
         }, completion: { (result) in
             ThemeHUD.hideActivityIndicator()
             DispatchQueue.main.async {
-                self.ShowToast(result == true ? "订单取消成功" : "订单取消失败")
+                self.ShowToast(result == true ? L10n.orderCanceledSuccess : L10n.orderCanceledFailure)
                 _ = self.navigationController?.popViewController(animated: true)
             }
         })
@@ -291,12 +288,12 @@ class QRPaymentViewController: BaseViewController {
                 // 判断订单状态
                 // 尚未支付
                 if order.status == MalaOrderStatus.penging.rawValue {
-                    self?.ShowToast("请完成付款后，点击支付完成")
+                    self?.ShowToast(L10n.pleaseCompleteThePayment)
                     return
                 }
                 // 订单已失效
                 if order.status == MalaOrderStatus.canceled.rawValue {
-                    self?.ShowToast("订单已失效，请重新下单")
+                    self?.ShowToast(L10n.orderExpired)
                     _ = self?.navigationController?.popToViewController(LiveCourseViewController(), animated: true)
                     return
                 }
@@ -314,7 +311,7 @@ class QRPaymentViewController: BaseViewController {
                         handler.showSuccessAlert()
                     }
                 }else {
-                    self?.ShowToast("订单状态错误，请重试")
+                    self?.ShowToast(L10n.orderStatusError)
                     return
                 }
             }
@@ -345,11 +342,11 @@ extension QRPaymentViewController: PagingMenuControllerDelegate {
         }
         
         switch title {
-        case "微信支付":
+        case L10n.weChatPayment:
             getChargeToken(channel: .WxQR)
             break
             
-        case "支付宝支付":
+        case L10n.alipayPayment:
             getChargeToken(channel: .AliQR)
             break
             

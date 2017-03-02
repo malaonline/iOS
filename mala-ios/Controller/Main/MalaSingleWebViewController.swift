@@ -91,7 +91,7 @@ class MalaSingleWebViewController: BaseViewController, WKNavigationDelegate, WKU
                 if let htmlString = string {
                     self.HTMLString = htmlString
                 }else {
-                    self.ShowToast("网络不稳定，请重试")
+                    self.ShowToast(L10n.networkNotReachable)
                 }
             }
         })

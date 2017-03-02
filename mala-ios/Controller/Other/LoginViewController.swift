@@ -36,7 +36,6 @@ class LoginViewController: UIViewController {
     /// 关闭闭包
     var closeAction: (()->())?
     
-    
     // MARK: - Components
     /// 主要布局容器
     private lazy var contentView: UIView = {
@@ -70,7 +69,7 @@ class LoginViewController: UIViewController {
         codeGetButton.layer.borderWidth = 1.0
         codeGetButton.layer.cornerRadius = 3.0
         codeGetButton.layer.masksToBounds = true
-        codeGetButton.setTitle(" 获取验证码 ", for: UIControlState())
+        codeGetButton.setTitle(L10n.getVerificationCode, for: UIControlState())
         codeGetButton.setTitleColor(UIColor.white, for: UIControlState())
         codeGetButton.setTitleColor(UIColor(named: .LoginBlue), for: .disabled)
         codeGetButton.setBackgroundImage(UIImage.withColor(UIColor(named: .LoginBlue)), for: UIControlState())
@@ -85,7 +84,7 @@ class LoginViewController: UIViewController {
         phoneError.setImage(UIImage(asset: .error), for: UIControlState())
         phoneError.setTitleColor(UIColor(named: .OrderStatusRed), for: UIControlState())
         phoneError.titleLabel?.font = UIFont.systemFont(ofSize: 11)
-        phoneError.setTitle("手机号错误", for: UIControlState())
+        phoneError.setTitle(L10n.invalidNumber, for: UIControlState())
         phoneError.imageEdgeInsets = UIEdgeInsets(top: 0, left: -2, bottom: 0, right: 2)
         phoneError.isHidden = true
         return phoneError
@@ -94,7 +93,7 @@ class LoginViewController: UIViewController {
     private lazy var phoneTextField: UITextField = {
         let phoneTextField = UITextField()
         phoneTextField.keyboardType = .numberPad
-        phoneTextField.placeholder = "请输入手机号"
+        phoneTextField.placeholder = L10n.inputYourNumber
         phoneTextField.font = UIFont.systemFont(ofSize: 14)
         phoneTextField.textColor = UIColor(named: .ArticleSubTitle)
         phoneTextField.addTarget(self, action: #selector(UITextInputDelegate.textDidChange(_:)), for: .editingChanged)
@@ -112,7 +111,7 @@ class LoginViewController: UIViewController {
         codeError.setImage(UIImage(asset: .error), for: UIControlState())
         codeError.setTitleColor(UIColor(named: .OrderStatusRed), for: UIControlState())
         codeError.titleLabel?.font = UIFont.systemFont(ofSize: 11)
-        codeError.setTitle("验证码错误", for: UIControlState())
+        codeError.setTitle(L10n.verificationCodeNotMatch, for: UIControlState())
         codeError.imageEdgeInsets = UIEdgeInsets(top: 0, left: -2, bottom: 0, right: 2)
         codeError.isHidden = true
         return codeError
@@ -121,7 +120,7 @@ class LoginViewController: UIViewController {
     private lazy var codeTextField: UITextField = {
         let codeTextField = UITextField()
         codeTextField.keyboardType = .numberPad
-        codeTextField.placeholder = "请输入验证码"
+        codeTextField.placeholder = L10n.inputVerificationCode
         codeTextField.textColor = UIColor(named: .ArticleSubTitle)
         codeTextField.font = UIFont.systemFont(ofSize: 14)
         codeTextField.addTarget(self, action: #selector(UITextInputDelegate.textDidChange(_:)), for: .editingChanged)
@@ -132,7 +131,7 @@ class LoginViewController: UIViewController {
         let verifyButton = UIButton()
         verifyButton.layer.cornerRadius = 5
         verifyButton.layer.masksToBounds = true
-        verifyButton.setTitle("验证", for: UIControlState())
+        verifyButton.setTitle(L10n.verify, for: UIControlState())
         verifyButton.setTitleColor(UIColor.white, for: UIControlState())
         verifyButton.setBackgroundImage(UIImage.withColor(UIColor(named: .LoginBlue)), for: .disabled)
         verifyButton.setBackgroundImage(UIImage.withColor(UIColor(named: .ThemeBlueTranslucent95)), for: UIControlState())
@@ -144,7 +143,7 @@ class LoginViewController: UIViewController {
         let protocolLabel = UILabel()
         protocolLabel.font = UIFont.systemFont(ofSize: 12)
         protocolLabel.textColor = UIColor(named: .HeaderTitle)
-        protocolLabel.text = "轻触上面验证按钮即表示你同意"
+        protocolLabel.text = L10n.protocolDesc
         return protocolLabel
     }()
     // 协议文字label
@@ -152,7 +151,7 @@ class LoginViewController: UIViewController {
         let protocolString = UILabel()
         protocolString.font = UIFont.systemFont(ofSize: 12)
         protocolString.textColor = UIColor(named: .ThemeBlueTranslucent95)
-        protocolString.text = "麻辣老师用户协议"
+        protocolString.text = L10n.malaUserProtocol
         protocolString.isUserInteractionEnabled = true
         protocolString.addTapEvent(target: self, action: #selector(LoginViewController.protocolDidTap))
         return protocolString
@@ -175,7 +174,7 @@ class LoginViewController: UIViewController {
     // MARK: - Private Method
     private func setupUserInterface() {
         // Style
-        self.title = "验证"
+        self.title = L10n.verify
         self.view.backgroundColor = UIColor(named: .RegularBackground)
         let leftBarButtonItem = UIBarButtonItem(customView:UIButton(imageName: "close", target: self, action: #selector(LoginViewController.closeButtonDidClick)))
         navigationItem.leftBarButtonItem = leftBarButtonItem
@@ -304,7 +303,7 @@ class LoginViewController: UIViewController {
             if self?.callMeInSeconds <= 0 { // 倒计时完成
                 timer.cancel()
                 DispatchQueue.main.async(execute: { () -> Void in
-                    self?.codeGetButton.setTitle(" 获取验证码 ", for: UIControlState())
+                    self?.codeGetButton.setTitle(L10n.getVerificationCode, for: UIControlState())
                     self?.codeGetButton.isEnabled = true
                 })
             }else { // 继续倒计时
@@ -322,8 +321,6 @@ class LoginViewController: UIViewController {
     // MARK: - Event Response
     ///  用户协议点击事件
     @objc private func protocolDidTap() {
-        println("用户协议点击事件")
-        
         let webViewController = MalaSingleWebViewController()
         webViewController.url = ""
         self.navigationController?.pushViewController(webViewController, animated: true)
@@ -364,7 +361,7 @@ class LoginViewController: UIViewController {
             ThemeHUD.hideActivityIndicator()
             
             DispatchQueue.main.async {
-                self.ShowToast(bool ? "验证码发送成功" : "验证码发送失败")
+                self.ShowToast(bool ? L10n.verificationCodeSentSuccess : L10n.verificationCodeSentFailure)
                 self.codeTextField.becomeFirstResponder()
             }
         })

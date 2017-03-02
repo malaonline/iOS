@@ -25,13 +25,9 @@ extension Color {
     }
 }
 
-// swiftlint:disable file_length
-// swiftlint:disable line_length
 
-// swiftlint:disable type_body_length
 enum ColorName: UInt32 {
     
-    // Common
     case ArticleTitle = 0x333333FF
     case ArticleSubTitle = 0x6C6C6CFF
     case ArticleText = 0x636363FF
@@ -108,7 +104,7 @@ enum ColorName: UInt32 {
         return Color(named: self)
     }
 }
-// swiftlint:enable type_body_length
+
 
 extension Color {
     convenience init(named name: ColorName) {

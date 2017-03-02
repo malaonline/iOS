@@ -16,7 +16,7 @@ class MainViewController: UITabBarController, UITabBarControllerDelegate {
     private lazy var findTeacherViewController: MainNavigationController = {
         let naviVC = self.getNaviController(
             RootViewController(),
-            title: MalaCommonString_FindTeacher,
+            title: L10n.teacher,
             imageName: "search_normal"
         )
         return naviVC
@@ -25,7 +25,7 @@ class MainViewController: UITabBarController, UITabBarControllerDelegate {
     private lazy var classScheduleViewController: MainNavigationController = {
         let naviVC = self.getNaviController(
             CourseTableViewController(),
-            title: MalaCommonString_ClassSchedule,
+            title: L10n.schedule,
             imageName: "schedule_normal"
         )
         return naviVC
@@ -34,7 +34,7 @@ class MainViewController: UITabBarController, UITabBarControllerDelegate {
     private lazy var memberPrivilegesViewController: MainNavigationController = {
         let naviVC  = self.getNaviController(
             MemberPrivilegesViewController(),
-            title: MalaCommonString_MemberPrivileges,
+            title: L10n.member,
             imageName: "serivce_normal"
         )
         return naviVC
@@ -43,7 +43,7 @@ class MainViewController: UITabBarController, UITabBarControllerDelegate {
     private lazy var profileViewController: MainNavigationController = {
         let naviVC  = self.getNaviController(
             ProfileViewController(style: .grouped),
-            title: MalaCommonString_Profile,
+            title: L10n.profile,
             imageName: "profile_normal"
         )
         return naviVC
@@ -62,13 +62,13 @@ class MainViewController: UITabBarController, UITabBarControllerDelegate {
             
             switch self {
             case .teacher:
-                return MalaCommonString_FindTeacher
+                return L10n.teacher
             case .schedule:
-                return MalaCommonString_ClassSchedule
+                return L10n.schedule
             case .profile:
-                return MalaCommonString_Profile
+                return L10n.profile
             case .memberPrivileges:
-                return MalaCommonString_MemberPrivileges
+                return L10n.member
             }
         }
     }
@@ -134,8 +134,8 @@ class MainViewController: UITabBarController, UITabBarControllerDelegate {
     /// 弹出未支付订单提示
     private func popAlert(_ viewController: UIViewController) {
         let alert = JSSAlertView().show(viewController,
-                                        title: "您有订单尚未支付",
-                                        buttonText: "查看订单",
+                                        title: L10n.youHaveSomeUnpaidOrder,
+                                        buttonText: L10n.viewOrder,
                                         iconImage: UIImage(asset: .alertPaymentSuccess)
         )
         alert.addAction(switchToProfile)

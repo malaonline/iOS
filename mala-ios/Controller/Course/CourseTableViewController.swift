@@ -61,8 +61,8 @@ open class CourseTableViewController: UIViewController, UITableViewDataSource, U
     private lazy var defaultView: UIView = {
         let view = MalaDefaultPanel()
         view.imageName = "course_noData"
-        view.text = "暂时还没有课程哦"
-        view.buttonTitle = "去报名"
+        view.text = L10n.noCourse
+        view.buttonTitle = L10n.pickCourse
         view.addTarget(self, action: #selector(CourseTableViewController.switchToFindTeacher))
         view.isHidden = true
         return view
@@ -71,8 +71,8 @@ open class CourseTableViewController: UIViewController, UITableViewDataSource, U
     private lazy var unLoginDefaultView: UIView = {
         let view = MalaDefaultPanel()
         view.imageName = "course_noData"
-        view.text = "您还没有登录"
-        view.buttonTitle = "去登录"
+        view.text = L10n.youNeedToLogin
+        view.buttonTitle = L10n.goToLogin
         view.addTarget(self, action: #selector(CourseTableViewController.switchToLoginView))
         view.isHidden = true
         return view
@@ -80,7 +80,7 @@ open class CourseTableViewController: UIViewController, UITableViewDataSource, U
     /// 保存按钮
     private lazy var saveButton: UIButton = {
         let saveButton = UIButton(
-            title: "今天",
+            title: L10n.today,
             titleColor: UIColor(named: .ThemeBlue),
             target: self,
             action: #selector(CourseTableViewController.scrollToToday)
@@ -91,7 +91,7 @@ open class CourseTableViewController: UIViewController, UITableViewDataSource, U
     /// 导航栏TitleView
     private lazy var titleLabel: UILabel = {
         let label = UILabel(
-            text: "课表",
+            text: L10n.schedule,
             fontSize: 16,
             textColor: UIColor.black
         )

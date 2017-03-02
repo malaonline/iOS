@@ -443,7 +443,7 @@ func adjustHomeworkData(_ data: [SingleHomeworkData]) -> [SingleHomeworkData] {
         }
     }
 
-    sortData.append(SingleHomeworkData(id: 999, name: "其它", rate: NSNumber(value: allRate)))
+    sortData.append(SingleHomeworkData(id: 999, name: L10n.other, rate: NSNumber(value: allRate)))
     return sortData
 }
 
@@ -463,7 +463,7 @@ func adjustTopicData(_ data: [SingleTopicData]) -> [SingleTopicData] {
             sortData.removeLast()
         }
     }
-    sortData.append(SingleTopicData(id: "9999", name: "其它", totalItem: totalItem, rightItem: rightItem))
+    sortData.append(SingleTopicData(id: "9999", name: L10n.other, totalItem: totalItem, rightItem: rightItem))
     return sortData
 }
 func adjustTopicScoreData(_ data: [SingleTopicScoreData]) -> [SingleTopicScoreData] {
@@ -483,7 +483,7 @@ func adjustTopicScoreData(_ data: [SingleTopicScoreData]) -> [SingleTopicScoreDa
         }
     }
     
-    sortData.append(SingleTopicScoreData(id: "9999", name: "其它", score: NSNumber(value: myScore), aveScore: NSNumber(value: aveScore)))
+    sortData.append(SingleTopicScoreData(id: "9999", name: L10n.other, score: NSNumber(value: myScore), aveScore: NSNumber(value: aveScore)))
     return sortData
 }
 

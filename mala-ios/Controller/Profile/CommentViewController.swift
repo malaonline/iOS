@@ -64,8 +64,8 @@ class CommentViewController: BaseTableViewController {
     private func setupUserInterface() {
         // Style
         defaultView.imageName = "comment_noData"
-        defaultView.text = "当前暂无评价"
-        defaultView.descText = "上完课后再来这里吧"
+        defaultView.text = L10n.noComment
+        defaultView.descText = L10n.commentLater
     }
     
     ///  获取学生课程信息

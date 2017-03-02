@@ -18,9 +18,9 @@ class ProfileItemCollectionViewCell: UICollectionViewCell {
             titleLabel.text = model?.controllerTitle
             
             if let title = model?.controllerTitle {
-                if title == "我的订单" {
+                if title == L10n.myOrder {
                     newMessageView.isHidden = !(MalaUnpaidOrderCount > 0)
-                }else if title == "我的评价" {
+                }else if title == L10n.myComment {
                     newMessageView.isHidden = !(MalaToCommentCount > 0)
                 }
             }

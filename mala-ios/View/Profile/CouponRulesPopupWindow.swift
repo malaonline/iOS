@@ -52,7 +52,7 @@ open class CouponRulesPopupWindow: UIViewController, UITextViewDelegate {
     /// 提交按钮
     private lazy var confirmButton: UIButton = {
         let button = UIButton()
-        button.setTitle("知道了", for: UIControlState())
+        button.setTitle(L10n.later, for: UIControlState())
         button.setTitleColor(UIColor(named: .ThemeBlue), for: UIControlState())
         button.setTitleColor(UIColor(named: .DescGray), for: .disabled)
         button.setBackgroundImage(UIImage.withColor(UIColor(named: .WhiteTranslucent9)), for: UIControlState())

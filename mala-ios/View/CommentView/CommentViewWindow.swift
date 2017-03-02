@@ -146,7 +146,7 @@ open class CommentViewWindow: UIViewController, UITextViewDelegate {
         textView.textContainerInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         textView.font = UIFont.systemFont(ofSize: 13)
         textView.textColor = UIColor(named: .InfoText)
-        textView.text = "请写下对老师的感受吧，对他人的帮助很大哦~最多可输入200字"
+        textView.text = L10n.inputComment
         return textView
     }()
     /// 提交按钮装饰线
@@ -424,7 +424,7 @@ open class CommentViewWindow: UIViewController, UITextViewDelegate {
             // 提交按钮
             commitButton.removeTarget(self, action: #selector(CommentViewWindow.commitButtonDidTap(_:)), for: .touchUpInside)
             commitButton.addTarget(self, action: #selector(CommentViewWindow.closeButtonDidTap), for: .touchUpInside)
-            commitButton.setTitle("知道了", for: UIControlState())
+            commitButton.setTitle(L10n.later, for: UIControlState())
             
             // 评价文本框
             textView.isUserInteractionEnabled = false
@@ -466,10 +466,10 @@ open class CommentViewWindow: UIViewController, UITextViewDelegate {
     private func adjustTextViewPlaceholder(isShow: Bool) {
         if isShow {
             textView.textColor = UIColor(named: .InfoText)
-            textView.text = MalaCommonString_CommentPlaceholder
+            textView.text = L10n.inputComment
         }else {
             textView.textColor = UIColor(named: .HeaderTitle)
-            if textView.text == MalaCommonString_CommentPlaceholder {
+            if textView.text == L10n.inputComment {
                 textView.text = ""
             }
         }
@@ -487,7 +487,7 @@ open class CommentViewWindow: UIViewController, UITextViewDelegate {
             commitButton.isEnabled = true
             return
         }
-        guard textView.text != MalaCommonString_CommentPlaceholder else {
+        guard textView.text != L10n.inputComment else {
             ShowToast("请给课程写几句评价吧")
             commitButton.isEnabled = true
             return
@@ -503,7 +503,7 @@ open class CommentViewWindow: UIViewController, UITextViewDelegate {
                 println("CommentViewWindow - saveComment Error \(errorMessage)")
             }
             
-            self.ShowToast("网络不稳定，请重试")
+            self.ShowToast(L10n.networkNotReachable)
             self.commitButton.isEnabled = true
         }, completion: { (bool) -> Void in
                 

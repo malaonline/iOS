@@ -78,7 +78,7 @@ class OrderFormInfoViewController: BaseViewController, OrderFormOperatingViewDel
     // MARK: - Private method
     private func setupUserInterface() {
         // Style
-        title = isForConfirm ? "确认订单" : "订单详情"
+        title = isForConfirm ? L10n.confirmOrder : L10n.orderDetail
         
         // SubViews
         view.addSubview(confirmView)
@@ -127,14 +127,14 @@ class OrderFormInfoViewController: BaseViewController, OrderFormOperatingViewDel
     private func loadOrderOverView() {
         //  课时
         guard MalaCurrentCourse.classPeriod != 0 else {
-            ShowToast("课时信息有误")
+            ShowToast(L10n.periodError)
             return
         }
         
         // 上课时间
         let timeslots = MalaCurrentCourse.selectedTime.map{$0.id}
         guard timeslots.count != 0 else {
-            ShowToast("上课时间信息有误")
+            ShowToast(L10n.timeslotsError)
             return
         }
         
@@ -157,7 +157,7 @@ class OrderFormInfoViewController: BaseViewController, OrderFormOperatingViewDel
             ThemeHUD.hideActivityIndicator()
             
             guard let timesSchedule = timeSlots else {
-                self.ShowToast("上课时间获取有误，请重试")
+                self.ShowToast(L10n.timeslotsGetError)
                 return
             }
             
@@ -175,8 +175,6 @@ class OrderFormInfoViewController: BaseViewController, OrderFormOperatingViewDel
     
     ///  取消订单
     private func cancelOrder() {
-        
-        println("取消订单")
         ThemeHUD.showActivityIndicator()
         
         cancelOrderWithId(id, failureHandler: { (reason, errorMessage) in
@@ -191,7 +189,7 @@ class OrderFormInfoViewController: BaseViewController, OrderFormOperatingViewDel
             ThemeHUD.hideActivityIndicator()
             
             DispatchQueue.main.async {
-                self.ShowToast(result == true ? "订单取消成功" : "订单取消失败")
+                self.ShowToast(result == true ? L10n.orderCanceledSuccess : L10n.orderCanceledFailure)
                 _ = self.navigationController?.popViewController(animated: true)
             }
         })
@@ -211,7 +209,7 @@ class OrderFormInfoViewController: BaseViewController, OrderFormOperatingViewDel
                 println("OrderFormInfoViewController - CreateOrder Error \(errorMessage)")
             }
             DispatchQueue.main.async {
-                self.ShowToast("网络不稳定, 请重试")
+                self.ShowToast(L10n.networkNotReachable)
             }
         }, completion: { [weak self] (order) -> Void in
             ThemeHUD.hideActivityIndicator()
@@ -222,16 +220,16 @@ class OrderFormInfoViewController: BaseViewController, OrderFormOperatingViewDel
                 if let errorCode = OrderErrorCode(rawValue: code) {
                     switch errorCode {
                     case .timeslotConflict:
-                        message = "该老师部分时段已被占用，请重新选择上课时间"
+                        message = L10n.pleaseCheckTimeslots
                     case .couponConflict:
-                        message = "奖学金使用信息有误，请重新选择"
+                        message = L10n.couponInfoError
                     case .liveClassFull:
-                        message = "所选课程名额已满，请选择其他课程"
+                        message = L10n.courseQuotaSoldOut
                     case .alreadyJoin:
-                        message = "您已报名参加该课程，请勿重复购买"
+                        message = L10n.youHaveBoughtThisCourse
                     }
                 }else {
-                    message = "网络环境较差，请稍后重试"
+                    message = L10n.networkNotReachable
                 }
                 DispatchQueue.main.async{
                     self?.ShowToast(message)
@@ -286,7 +284,7 @@ class OrderFormInfoViewController: BaseViewController, OrderFormOperatingViewDel
             viewController.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(viewController, animated: true)
         }else {
-            self.ShowToast("订单信息有误，请刷新后重试")
+            self.ShowToast(L10n.orderInfoError)
         }
     }
     
@@ -294,10 +292,10 @@ class OrderFormInfoViewController: BaseViewController, OrderFormOperatingViewDel
     func orderFormCancel() {
         
         MalaAlert.confirmOrCancel(
-            title: "取消订单",
-            message: "确认取消订单吗？",
-            confirmTitle: "取消订单",
-            cancelTitle: "暂不取消",
+            title: L10n.cancelOrder,
+            message: L10n.doYouWantToCancelThisOrder,
+            confirmTitle: L10n.cancelOrder,
+            cancelTitle: L10n.notNow,
             inViewController: self,
             withConfirmAction: { [weak self] () -> Void in
                 self?.cancelOrder()

@@ -44,12 +44,12 @@ private struct PagingMenuOptions: PagingMenuControllerCustomizable {
     
     fileprivate struct MenuItem1: MenuItemViewCustomizable {
         var displayMode: MenuItemDisplayMode {
-            return .text(title: MenuItemText(text: "一对一", color: UIColor(named: .OptionTitle), selectedColor: UIColor(named: .OptionSelectColor)))
+            return .text(title: MenuItemText(text: L10n.tuition, color: UIColor(named: .OptionTitle), selectedColor: UIColor(named: .OptionSelectColor)))
         }
     }
     fileprivate struct MenuItem2: MenuItemViewCustomizable {
         var displayMode: MenuItemDisplayMode {
-            return .text(title: MenuItemText(text: "双师直播", color: UIColor(named: .OptionTitle), selectedColor: UIColor(named: .OptionSelectColor)))
+            return .text(title: MenuItemText(text: L10n.live, color: UIColor(named: .OptionTitle), selectedColor: UIColor(named: .OptionSelectColor)))
         }
     }
 }

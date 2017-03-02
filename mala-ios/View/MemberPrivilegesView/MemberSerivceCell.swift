@@ -19,7 +19,7 @@ class MemberSerivceCell: UITableViewCell {
     /// 标题标签
     private lazy var titleLabel: UILabel = {
         let label = UILabel(
-            text: "会员专享",
+            text: L10n.member,
             fontSize: 15,
             textColor: UIColor(named: .ArticleTitle)
         )
