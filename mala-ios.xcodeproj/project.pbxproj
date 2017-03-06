@@ -520,19 +520,7 @@
 		F40D896A1C7DB50700BD6871 /* MalaUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40D89691C7DB50700BD6871 /* MalaUserDefaults.swift */; };
 		F40D896C1C7DB6E300BD6871 /* MalaConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40D896B1C7DB6E300BD6871 /* MalaConfig.swift */; };
 		F40D896E1C7EAFB100BD6871 /* MalaLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40D896D1C7EAFB100BD6871 /* MalaLog.swift */; };
-		F418F6F01CFC48C000CD3B80 /* UIBarButtonItem+WZLBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = F452CD6E1CE0313E001A30E8 /* UIBarButtonItem+WZLBadge.m */; };
-		F418F6F21CFC48C000CD3B80 /* UITabBarItem+WZLBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = F452CD701CE0313E001A30E8 /* UITabBarItem+WZLBadge.m */; };
-		F418F6F41CFC499200CD3B80 /* CAAnimation+WAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = F452CD731CE0313E001A30E8 /* CAAnimation+WAnimation.m */; };
-		F418F6F71CFC499200CD3B80 /* UIView+WZLBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = F452CD781CE0313E001A30E8 /* UIView+WZLBadge.m */; };
-		F418F6FE1CFD2E1800CD3B80 /* UIBarButtonItem+WZLBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = F452CD6E1CE0313E001A30E8 /* UIBarButtonItem+WZLBadge.m */; };
-		F418F7001CFD2E1800CD3B80 /* UITabBarItem+WZLBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = F452CD701CE0313E001A30E8 /* UITabBarItem+WZLBadge.m */; };
-		F418F7021CFD2E1800CD3B80 /* CAAnimation+WAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = F452CD731CE0313E001A30E8 /* CAAnimation+WAnimation.m */; };
-		F418F7051CFD2E1800CD3B80 /* UIView+WZLBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = F452CD781CE0313E001A30E8 /* UIView+WZLBadge.m */; };
 		F418F7071CFD2E1800CD3B80 /* TimeScheduleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4312B731CF82AC100E0EAF1 /* TimeScheduleModel.swift */; };
-		F418F70E1CFD2E4500CD3B80 /* UIBarButtonItem+WZLBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = F452CD6E1CE0313E001A30E8 /* UIBarButtonItem+WZLBadge.m */; };
-		F418F7101CFD2E4500CD3B80 /* UITabBarItem+WZLBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = F452CD701CE0313E001A30E8 /* UITabBarItem+WZLBadge.m */; };
-		F418F7121CFD2E4500CD3B80 /* CAAnimation+WAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = F452CD731CE0313E001A30E8 /* CAAnimation+WAnimation.m */; };
-		F418F7151CFD2E4500CD3B80 /* UIView+WZLBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = F452CD781CE0313E001A30E8 /* UIView+WZLBadge.m */; };
 		F418F71A1CFD2E4500CD3B80 /* TimeScheduleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4312B731CF82AC100E0EAF1 /* TimeScheduleModel.swift */; };
 		F4193B6C1E6D046C004730EF /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4193B6B1E6D046C004730EF /* Fonts.swift */; };
 		F4193B6D1E6D046C004730EF /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4193B6B1E6D046C004730EF /* Fonts.swift */; };
@@ -1048,16 +1036,6 @@
 		F44DC7C11D59C6D400E5979B /* DOFavoriteButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DOFavoriteButton.swift; sourceTree = "<group>"; };
 		F452CD521CDC4CD2001A30E8 /* OrderFormViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderFormViewController.swift; sourceTree = "<group>"; };
 		F452CD561CDC5839001A30E8 /* OrderFormViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OrderFormViewCell.swift; path = ../OrderForm/OrderFormViewCell.swift; sourceTree = "<group>"; };
-		F452CD6D1CE0313E001A30E8 /* UIBarButtonItem+WZLBadge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+WZLBadge.h"; sourceTree = "<group>"; };
-		F452CD6E1CE0313E001A30E8 /* UIBarButtonItem+WZLBadge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+WZLBadge.m"; sourceTree = "<group>"; };
-		F452CD6F1CE0313E001A30E8 /* UITabBarItem+WZLBadge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITabBarItem+WZLBadge.h"; sourceTree = "<group>"; };
-		F452CD701CE0313E001A30E8 /* UITabBarItem+WZLBadge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITabBarItem+WZLBadge.m"; sourceTree = "<group>"; };
-		F452CD721CE0313E001A30E8 /* CAAnimation+WAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CAAnimation+WAnimation.h"; sourceTree = "<group>"; };
-		F452CD731CE0313E001A30E8 /* CAAnimation+WAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CAAnimation+WAnimation.m"; sourceTree = "<group>"; };
-		F452CD751CE0313E001A30E8 /* WZLBadgeProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WZLBadgeProtocol.h; sourceTree = "<group>"; };
-		F452CD771CE0313E001A30E8 /* UIView+WZLBadge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+WZLBadge.h"; sourceTree = "<group>"; };
-		F452CD781CE0313E001A30E8 /* UIView+WZLBadge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+WZLBadge.m"; sourceTree = "<group>"; };
-		F452CD791CE0313E001A30E8 /* WZLBadgeImport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WZLBadgeImport.h; sourceTree = "<group>"; };
 		F455EB2C1C91899A00BAEC78 /* ProfileViewHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewHeaderView.swift; sourceTree = "<group>"; };
 		F455EB2F1C91981B00BAEC78 /* ProfileViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewCell.swift; sourceTree = "<group>"; };
 		F45871E91C51D7910048D93F /* CourseChoosingTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseChoosingTableView.swift; sourceTree = "<group>"; };
@@ -1463,7 +1441,6 @@
 				F44C868F1E685742006E5557 /* Toast */,
 				F44C86521E68453A006E5557 /* PagingMenuController */,
 				F44C85FE1E683CAB006E5557 /* YLProgressBar */,
-				F452CD6B1CE0313E001A30E8 /* WZLBadge */,
 				F491A8BF1C7364C500B5D520 /* Refresher */,
 				F45E69D71C8D278A00BD0859 /* ThemeTool */,
 				F4402DAD1C58A64200E7D3DB /* KWStepper.swift */,
@@ -1700,55 +1677,6 @@
 				F48BBADF1CE5829200774297 /* OrderFormOperatingView.swift */,
 			);
 			path = OrderForm;
-			sourceTree = "<group>";
-		};
-		F452CD6B1CE0313E001A30E8 /* WZLBadge */ = {
-			isa = PBXGroup;
-			children = (
-				F452CD6C1CE0313E001A30E8 /* BarItem */,
-				F452CD711CE0313E001A30E8 /* CategorySupport */,
-				F452CD741CE0313E001A30E8 /* Protocol */,
-				F452CD761CE0313E001A30E8 /* View */,
-				F452CD791CE0313E001A30E8 /* WZLBadgeImport.h */,
-			);
-			path = WZLBadge;
-			sourceTree = "<group>";
-		};
-		F452CD6C1CE0313E001A30E8 /* BarItem */ = {
-			isa = PBXGroup;
-			children = (
-				F452CD6D1CE0313E001A30E8 /* UIBarButtonItem+WZLBadge.h */,
-				F452CD6E1CE0313E001A30E8 /* UIBarButtonItem+WZLBadge.m */,
-				F452CD6F1CE0313E001A30E8 /* UITabBarItem+WZLBadge.h */,
-				F452CD701CE0313E001A30E8 /* UITabBarItem+WZLBadge.m */,
-			);
-			path = BarItem;
-			sourceTree = "<group>";
-		};
-		F452CD711CE0313E001A30E8 /* CategorySupport */ = {
-			isa = PBXGroup;
-			children = (
-				F452CD721CE0313E001A30E8 /* CAAnimation+WAnimation.h */,
-				F452CD731CE0313E001A30E8 /* CAAnimation+WAnimation.m */,
-			);
-			path = CategorySupport;
-			sourceTree = "<group>";
-		};
-		F452CD741CE0313E001A30E8 /* Protocol */ = {
-			isa = PBXGroup;
-			children = (
-				F452CD751CE0313E001A30E8 /* WZLBadgeProtocol.h */,
-			);
-			path = Protocol;
-			sourceTree = "<group>";
-		};
-		F452CD761CE0313E001A30E8 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				F452CD771CE0313E001A30E8 /* UIView+WZLBadge.h */,
-				F452CD781CE0313E001A30E8 /* UIView+WZLBadge.m */,
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		F45871E81C51D5CE0048D93F /* CourseChoosingView */ = {
@@ -2468,12 +2396,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F418F6F41CFC499200CD3B80 /* CAAnimation+WAnimation.m in Sources */,
 				F44C86911E685742006E5557 /* Toast.swift in Sources */,
-				F418F6F71CFC499200CD3B80 /* UIView+WZLBadge.m in Sources */,
-				F418F6F01CFC48C000CD3B80 /* UIBarButtonItem+WZLBadge.m in Sources */,
 				F41CE6471D8680A400B57F69 /* RegionUnitCell.swift in Sources */,
-				F418F6F21CFC48C000CD3B80 /* UITabBarItem+WZLBadge.m in Sources */,
 				F46065271C97B168004056B1 /* EvaluationFilingServiceController.swift in Sources */,
 				F45E69E11C8D278A00BD0859 /* ThemeTags.swift in Sources */,
 				F4C5C2391C759F0500FB833B /* OtherServiceModel.swift in Sources */,
@@ -2694,12 +2618,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F418F6FE1CFD2E1800CD3B80 /* UIBarButtonItem+WZLBadge.m in Sources */,
 				F44C86921E685742006E5557 /* Toast.swift in Sources */,
-				F418F7001CFD2E1800CD3B80 /* UITabBarItem+WZLBadge.m in Sources */,
-				F418F7021CFD2E1800CD3B80 /* CAAnimation+WAnimation.m in Sources */,
 				F41CE6481D8680A400B57F69 /* RegionUnitCell.swift in Sources */,
-				F418F7051CFD2E1800CD3B80 /* UIView+WZLBadge.m in Sources */,
 				F418F7071CFD2E1800CD3B80 /* TimeScheduleModel.swift in Sources */,
 				35FF7A601CF8325A000A70EE /* EvaluationFilingServiceController.swift in Sources */,
 				35FF7A611CF8325A000A70EE /* ThemeTags.swift in Sources */,
@@ -2920,11 +2840,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F418F70E1CFD2E4500CD3B80 /* UIBarButtonItem+WZLBadge.m in Sources */,
 				F44C86931E685742006E5557 /* Toast.swift in Sources */,
-				F418F7101CFD2E4500CD3B80 /* UITabBarItem+WZLBadge.m in Sources */,
-				F418F7121CFD2E4500CD3B80 /* CAAnimation+WAnimation.m in Sources */,
-				F418F7151CFD2E4500CD3B80 /* UIView+WZLBadge.m in Sources */,
 				F41CE6491D8680A400B57F69 /* RegionUnitCell.swift in Sources */,
 				F418F71A1CFD2E4500CD3B80 /* TimeScheduleModel.swift in Sources */,
 				35FF7B431CF83264000A70EE /* EvaluationFilingServiceController.swift in Sources */,

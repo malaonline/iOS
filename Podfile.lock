@@ -105,6 +105,7 @@ PODS:
     - MOBFoundation
   - SKPhotoBrowser (3.1.4)
   - SnapKit (3.0.2)
+  - WZLBadge (1.2.5)
 
 DEPENDENCIES:
   - Alamofire (~> 4.0.1)
@@ -126,6 +127,7 @@ DEPENDENCIES:
   - ShareSDK3/ShareSDKUI
   - SKPhotoBrowser (from `https://github.com/suzuki-0000/SKPhotoBrowser.git`, branch `swift3`)
   - SnapKit (~> 3.0.2)
+  - WZLBadge (~> 1.2.5)
 
 EXTERNAL SOURCES:
   SKPhotoBrowser:
@@ -158,7 +160,8 @@ SPEC CHECKSUMS:
   ShareSDK3: dea6a14cc4385fa6493e10895ba11d07ef34d149
   SKPhotoBrowser: 14b08bef65c1720f6edc728ab7f2b1f8ca76f453
   SnapKit: 2e456761aa92d4d4067a7a5594c18769d451a8ad
+  WZLBadge: 16c08aa0a645e2591690f21cbcb410a3d878c7ac
 
-PODFILE CHECKSUM: 6a86bdf8f88c55c36897f4b15583ecc8155e94bf
+PODFILE CHECKSUM: c0dca314729bc16a51b2c88c48a07bbc534b06f6
 
 COCOAPODS: 1.2.0.beta.1

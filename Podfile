@@ -5,8 +5,9 @@ use_frameworks!
 inhibit_all_warnings!
 
 def pods
-  pod 'SnapKit', '~> 3.0.2'
   pod 'DateToolsSwift'
+  pod 'SnapKit', '~> 3.0.2'
+  pod 'WZLBadge', '~> 1.2.5'
   pod 'Alamofire', '~> 4.0.1'
   pod 'Kingfisher', '~> 3.1.0'
   pod 'IQKeyboardManagerSwift', '~> 4.0.8'
