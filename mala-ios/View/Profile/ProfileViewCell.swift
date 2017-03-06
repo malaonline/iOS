@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import WZLBadge
 
 class ProfileViewCell: UITableViewCell {
 

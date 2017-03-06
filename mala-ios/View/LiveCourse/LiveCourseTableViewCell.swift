@@ -87,7 +87,7 @@ class LiveCourseTableViewCell: UITableViewCell {
     private lazy var lecturerNameLabel: UILabel = {
         let label = UILabel(
             text: "主讲老师",
-            font: UIFont(name: "PingFang-SC-Regular", size: 17),
+            font: FontFamily.PingFangSC.Regular.font(17),
             textColor: UIColor.white
         )
         return label
@@ -96,7 +96,7 @@ class LiveCourseTableViewCell: UITableViewCell {
     private lazy var lecturerTitleLabel: UILabel = {
         let label = UILabel(
             text: "主讲老师主要成就",
-            font: UIFont(name: "PingFang-SC-Light", size: 14),
+            font: FontFamily.PingFangSC.Light.font(14),
             textColor: UIColor.white,
             opacity: 0.56
         )
@@ -106,7 +106,7 @@ class LiveCourseTableViewCell: UITableViewCell {
     private lazy var assistantNameLabel: UILabel = {
         let label = UILabel(
             text: "助教",
-            font: UIFont(name: "PingFang-SC-Light", size: 14),
+            font: FontFamily.PingFangSC.Light.font(14),
             textColor: UIColor.white
         )
         return label
@@ -123,7 +123,7 @@ class LiveCourseTableViewCell: UITableViewCell {
     private lazy var classLevelLabel: UILabel = {
         let label = UILabel(
             text: "班级规模",
-            font: UIFont(name: "PingFang-SC-Light", size: 10),
+            font: FontFamily.PingFangSC.Light.font(10),
             textColor: UIColor.white,
             textAlignment: .center,
             backgroundColor: UIColor(named: .LiveClassCapacity)
@@ -135,7 +135,7 @@ class LiveCourseTableViewCell: UITableViewCell {
     private lazy var courseName: UILabel = {
         let label = UILabel(
             text: "课程名称",
-            font: UIFont(name: "PingFang-SC-Light", size: 17),
+            font: FontFamily.PingFangSC.Light.font(17),
             textColor: UIColor(named: .ArticleText)
         )
         return label
@@ -149,7 +149,7 @@ class LiveCourseTableViewCell: UITableViewCell {
     private lazy var courseDateLabel: UILabel = {
         let label = UILabel(
             text: "课程日期",
-            font: UIFont(name: "PingFang-SC-Light", size: 12),
+            font: FontFamily.PingFangSC.Light.font(12),
             textColor: UIColor(named: .ArticleSubTitle)
         )
         return label
@@ -158,7 +158,7 @@ class LiveCourseTableViewCell: UITableViewCell {
     private lazy var gradeLabel: UILabel = {
         let label = UILabel(
             text: "课程年级区间",
-            font: UIFont(name: "PingFang-SC-Light", size: 12),
+            font: FontFamily.PingFangSC.Light.font(12),
             textColor: UIColor(named: .OptionSelectColor),
             textAlignment: .center,
             borderColor: UIColor(named: .OptionSelectColor),
@@ -171,7 +171,7 @@ class LiveCourseTableViewCell: UITableViewCell {
     private lazy var priceLabel: UILabel = {
         let label = UILabel(
             text: "价格/",
-            font: UIFont(name: "PingFang-SC-Light", size: 20),
+            font: FontFamily.PingFangSC.Light.font(20),
             textColor: UIColor(named: .ThemeRed),
             textAlignment: .right
         )
@@ -181,7 +181,7 @@ class LiveCourseTableViewCell: UITableViewCell {
     private lazy var lessionsLabel: UILabel = {
         let label = UILabel(
             text: "次数",
-            font: UIFont(name: "PingFang-SC-Light", size: 14),
+            font: FontFamily.PingFangSC.Light.font(14),
             textColor: UIColor(named: .ThemeRed),
             textAlignment: .right
         )

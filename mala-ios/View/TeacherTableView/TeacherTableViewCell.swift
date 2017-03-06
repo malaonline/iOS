@@ -69,14 +69,14 @@ class TeacherTableViewCell: UITableViewCell {
     /// 老师姓名label
     private lazy var nameLabel: UILabel = {
         let nameLabel = UILabel()
-        nameLabel.font = UIFont(name: "HelveticaNeue-Thin", size: 17)
+        nameLabel.font = FontFamily.HelveticaNeue.Thin.font(17)
         nameLabel.textColor = UIColor(named: .ArticleTitle)
         return nameLabel
     }()
     /// 老师级别label
     private lazy var levelLabel: UILabel = {
         let levelLabel = UILabel()
-        levelLabel.font = UIFont(name: "HelveticaNeue-Thin", size: 13)
+        levelLabel.font = FontFamily.HelveticaNeue.Thin.font(13)
         levelLabel.backgroundColor = UIColor.white
         levelLabel.textColor = UIColor(named: .ThemeRed)
         return levelLabel
@@ -106,7 +106,7 @@ class TeacherTableViewCell: UITableViewCell {
     /// 风格标签label
     private lazy var tagsLabel: UILabel = {
         let tagsLabel = UILabel()
-        tagsLabel.font = UIFont(name: "HelveticaNeue-Thin", size: 11)
+        tagsLabel.font = FontFamily.HelveticaNeue.Thin.font(11)
         tagsLabel.textColor = UIColor(named: .CardTag)
         return tagsLabel
     }()

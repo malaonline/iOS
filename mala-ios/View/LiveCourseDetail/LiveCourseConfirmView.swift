@@ -40,7 +40,7 @@ class LiveCourseConfirmView: UIView {
     private lazy var priceLabel: UILabel = {
         let label = UILabel(
             text: "价格/",
-            font: UIFont(name: "PingFang-SC-Light", size: 18),
+            font: FontFamily.PingFangSC.Light.font(18),
             textColor: UIColor(named: .ThemeRed),
             textAlignment: .right
         )
@@ -50,7 +50,7 @@ class LiveCourseConfirmView: UIView {
     private lazy var lessionsLabel: UILabel = {
         let label = UILabel(
             text: "次数",
-            font: UIFont(name: "PingFang-SC-Light", size: 10),
+            font: FontFamily.PingFangSC.Light.font(10),
             textColor: UIColor(named: .ThemeRed),
             textAlignment: .right
         )
