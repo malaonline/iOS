@@ -9,6 +9,7 @@
 import UIKit
 import SnapKit
 import Kingfisher
+import KYCircularProgress
 
 class TeacherDetailsHeaderView: UIView {
 
@@ -114,11 +115,11 @@ class TeacherDetailsHeaderView: UIView {
     }()
     /// 教龄进度条
     private lazy var teachingAgeProgressBar: KYCircularProgress = {
-        let progress = KYCircularProgress(frame: CGRect(x: 0, y: 0, width: 50, height: 50), showProgressGuide: true)
+        let progress = KYCircularProgress(frame: CGRect(x: 0, y: 0, width: 50, height: 50), showGuide: true)
         progress.lineWidth = 2.5
         progress.guideLineWidth = 2.5
         progress.colors = [UIColor(named: .TeachingAgeRed)]
-        progress.progressGuideColor = UIColor(named: .ProgressGray)
+        progress.guideColor = UIColor(named: .ProgressGray)
         progress.startAngle = -M_PI_2
         progress.endAngle = -M_PI_2
         progress.progress = 0.35
@@ -149,11 +150,11 @@ class TeacherDetailsHeaderView: UIView {
     }()
     /// 级别进度条
     private lazy var levelProgressBar: KYCircularProgress = {
-        let progress = KYCircularProgress(frame: CGRect(x: 0, y: 0, width: 50, height: 50), showProgressGuide: true)
+        let progress = KYCircularProgress(frame: CGRect(x: 0, y: 0, width: 50, height: 50), showGuide: true)
         progress.lineWidth = 2.5
         progress.guideLineWidth = 2.5
         progress.colors = [UIColor(named: .LevelYellow)]
-        progress.progressGuideColor = UIColor(named: .ProgressGray)
+        progress.guideColor = UIColor(named: .ProgressGray)
         progress.startAngle = -M_PI_2
         progress.endAngle = -M_PI_2
         progress.progress = 0.35

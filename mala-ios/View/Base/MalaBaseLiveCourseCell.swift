@@ -30,7 +30,7 @@ class MalaBaseLiveCourseCell: UITableViewCell {
     lazy var titleLabel: UILabel = {
         let label = UILabel(
             text: "title",
-            font: UIFont(name: "PingFang-SC-Light", size: 15),
+            font: FontFamily.PingFangSC.Light.font(15),
             textColor: UIColor(named: .LiveDetailCardTitle)
         )
         return label

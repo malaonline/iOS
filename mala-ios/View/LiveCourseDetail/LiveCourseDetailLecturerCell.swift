@@ -27,7 +27,7 @@ class LiveCourseDetailLecturerCell: MalaBaseLiveCourseCell {
     private lazy var lecturerNameLabel: UILabel = {
         let label = UILabel(
             text: "老师姓名",
-            font: UIFont(name: "PingFang-SC-Light", size: 15),
+            font: FontFamily.PingFangSC.Light.font(15),
             textColor: UIColor(named: .ArticleTitle)
         )
         return label
@@ -36,7 +36,7 @@ class LiveCourseDetailLecturerCell: MalaBaseLiveCourseCell {
     private lazy var lecturerBioView: UILabel = {
         let label = UILabel(
             text: "",
-            font: UIFont(name: "STHeitiSC-Light", size: 14),
+            font: FontFamily.HeitiSC.Light.font(14),
             textColor: UIColor(named: .ArticleText)
         )
         label.numberOfLines = 0

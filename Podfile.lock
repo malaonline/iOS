@@ -23,6 +23,7 @@ PODS:
     - GoogleToolboxForMac/Defines (= 2.1.1)
   - IQKeyboardManagerSwift (4.0.8)
   - Kingfisher (3.1.4)
+  - KMNavigationBarTransition (1.0.0)
   - KSCrash (1.8.13):
     - KSCrash/Installations (= 1.8.13)
   - KSCrash/Installations (1.8.13):
@@ -84,6 +85,7 @@ PODS:
     - KSCrash/Reporting/Tools
   - KSCrash/Reporting/Tools (1.8.13):
     - KSCrash/Recording
+  - KYCircularProgress (1.0.0)
   - MOBFoundation (2.2.15)
   - Pingpp/Alipay (2.2.10):
     - Pingpp/Core
@@ -102,7 +104,9 @@ PODS:
     - MOBFoundation
   - ShareSDK3/ShareSDKUI (3.6.1):
     - MOBFoundation
+  - SKPhotoBrowser (3.1.4)
   - SnapKit (3.0.2)
+  - WZLBadge (1.2.5)
 
 DEPENDENCIES:
   - Alamofire (~> 4.0.1)
@@ -112,7 +116,9 @@ DEPENDENCIES:
   - Google/Analytics
   - IQKeyboardManagerSwift (~> 4.0.8)
   - Kingfisher (~> 3.1.0)
+  - KMNavigationBarTransition (~> 1.0.0)
   - KSCrash (~> 1.8.13)
+  - KYCircularProgress (~> 1.0.0)
   - MOBFoundation
   - Pingpp/Alipay (~> 2.2.10)
   - Pingpp/Wx (~> 2.2.10)
@@ -121,7 +127,19 @@ DEPENDENCIES:
   - ShareSDK3/ShareSDKExtension
   - ShareSDK3/ShareSDKPlatforms/WeChat
   - ShareSDK3/ShareSDKUI
+  - SKPhotoBrowser (from `https://github.com/suzuki-0000/SKPhotoBrowser.git`, branch `swift3`)
   - SnapKit (~> 3.0.2)
+  - WZLBadge (~> 1.2.5)
+
+EXTERNAL SOURCES:
+  SKPhotoBrowser:
+    :branch: swift3
+    :git: https://github.com/suzuki-0000/SKPhotoBrowser.git
+
+CHECKOUT OPTIONS:
+  SKPhotoBrowser:
+    :commit: c575b55599976b86646a08c7e9aa8569e66ff72c
+    :git: https://github.com/suzuki-0000/SKPhotoBrowser.git
 
 SPEC CHECKSUMS:
   Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
@@ -136,13 +154,17 @@ SPEC CHECKSUMS:
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
   IQKeyboardManagerSwift: c04bc9f68473823f825eb44d958fce98d921bead
   Kingfisher: 6c67e3e57f2d81a9cfdfa25052cd86f33ceac9bb
+  KMNavigationBarTransition: b3fb8337f7a1e4542add07fd6c45fb9980794d59
   KSCrash: 4c3a83f133b60f4bd57e05235ebf8d46e36d378d
+  KYCircularProgress: e83d5346247c917182b451c6357fd96b3c3d71b6
   MOBFoundation: 4975874f74c991f562151f6a4549e9a6ad743fd8
   Pingpp: a267566fbab76c4c3b65adb0655635b1d5ba7fdc
   QRCode: f98a1886c8f37523704a7512a4c0cd45b34c18a4
   ShareSDK3: dea6a14cc4385fa6493e10895ba11d07ef34d149
+  SKPhotoBrowser: 14b08bef65c1720f6edc728ab7f2b1f8ca76f453
   SnapKit: 2e456761aa92d4d4067a7a5594c18769d451a8ad
+  WZLBadge: 16c08aa0a645e2591690f21cbcb410a3d878c7ac
 
-PODFILE CHECKSUM: dff04bf04965cb0cc2c1a07af279cd58f54139de
+PODFILE CHECKSUM: 260eae4f6495116ae47e79bd6146920b5734a0db
 
 COCOAPODS: 1.2.0.beta.1
