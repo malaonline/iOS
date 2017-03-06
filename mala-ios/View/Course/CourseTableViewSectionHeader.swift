@@ -140,20 +140,17 @@ class CourseTableViewSectionHeader: UITableViewHeaderFooterView {
     
     ///  更新图片视差偏移量
     private func updateParallaxOffset() {
-
-        let contentOffset = defaultOffset + (parentTableView?.contentOffset.y ?? 0) - offset
-        let cellOffset = contentView.frame.origin.y - (contentOffset)
+        let contentOffset: CGFloat = defaultOffset + (parentTableView?.contentOffset.y ?? 0) - offset
+        let cellOffset: CGFloat = contentView.frame.origin.y - contentOffset
         let contentViewHeight: CGFloat = 140
-
-        let percent = (cellOffset + contentViewHeight)/((parentTableView?.frame.size.height ?? (MalaScreenHeight-64)) + contentViewHeight)
-        let extraHeight = contentViewHeight*(parallaxRatio-1)
+        let tableViewHeight: CGFloat = (parentTableView?.frame.size.height ?? (MalaScreenHeight-MalaScreenNaviHeight))
+        let percent: CGFloat = (cellOffset + contentViewHeight) / (tableViewHeight + contentViewHeight)
+        let extraHeight: CGFloat = contentViewHeight * (parallaxRatio - 1)
         
         var rect = contentView.frame
         rect.size.width = MalaScreenWidth
         rect.size.height = 420
-        // println("0000 - \(-extraHeight*percent-210)")
         rect.origin.y = -extraHeight*percent-210
-        // println("Frame - \(rect) - \(extraHeight) - \(percent) - \(parentTableView?.contentOffset.y)")
         parallaxImage.frame = rect
     }
 
