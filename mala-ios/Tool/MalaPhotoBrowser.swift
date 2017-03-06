@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SKPhotoBrowser
 
 private let MalaPhotoBrowserCellReuseID = "MalaPhotoBrowserCellReuseID"
 
