@@ -31,7 +31,7 @@ class QRCodeView: UIView {
     private lazy var totalString: UILabel = {
         let label = UILabel(
             text: "共计",
-            font: UIFont(name: "PingFang-SC-Regular", size: 13),
+            font: FontFamily.PingFangSC.Regular.font(13),
             textColor: UIColor(named: .ArticleTitle),
             textAlignment: .right
         )
@@ -41,7 +41,7 @@ class QRCodeView: UIView {
     private lazy var priceLabel: UILabel = {
         let label = UILabel(
             text: "¥ 480.00",
-            font: UIFont(name: "PingFang-SC-Regular", size: 18),
+            font: FontFamily.PingFangSC.Regular.font(18),
             textColor: UIColor(named: .ThemeRed),
             textAlignment: .left
         )
@@ -56,7 +56,7 @@ class QRCodeView: UIView {
     private lazy var tipPayString: UILabel = {
         let label = UILabel(
             text: "请扫下方二维码进行支付",
-            font: UIFont(name: "PingFang-SC-Regular", size: 12),
+            font: FontFamily.PingFangSC.Regular.font(12),
             textColor: UIColor(named: .ArticleText)
         )
         return label

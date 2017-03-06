@@ -5,7 +5,7 @@
 //  Created by 王新宇 on 2017/2/28.
 //  Copyright © 2017年 Mala Online. All rights reserved.
 //
-// Generated using SwiftGen, by O.Halligon — https://github.com/AliSoftware/SwiftGen
+//  Generated using SwiftGen, by O.Halligon — https://github.com/AliSoftware/SwiftGen
 
 import Foundation
 

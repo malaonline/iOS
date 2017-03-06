@@ -54,7 +54,7 @@ class OrderFormOtherInfoCell: UITableViewCell {
     private lazy var orderCodeLabel: UILabel = {
         let label = UILabel(
             text: "订单编号：",
-            font: UIFont(name: "PingFang-SC-Regular", size: 13),
+            font: FontFamily.PingFangSC.Regular.font(13),
             textColor: UIColor(named: .HeaderTitle),
             opacity: 0.8
         )
@@ -64,7 +64,7 @@ class OrderFormOtherInfoCell: UITableViewCell {
     private lazy var createAtLabel: UILabel = {
         let label = UILabel(
             text: "创建时间：",
-            font: UIFont(name: "PingFang-SC-Regular", size: 13),
+            font: FontFamily.PingFangSC.Regular.font(13),
             textColor: UIColor(named: .HeaderTitle),
             opacity: 0.8
         )
@@ -74,7 +74,7 @@ class OrderFormOtherInfoCell: UITableViewCell {
     private lazy var paymentAtLabel: UILabel = {
         let label = UILabel(
             text: "支付时间：",
-            font: UIFont(name: "PingFang-SC-Regular", size: 13),
+            font: FontFamily.PingFangSC.Regular.font(13),
             textColor: UIColor(named: .HeaderTitle),
             opacity: 0.8
         )

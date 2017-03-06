@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SKPhotoBrowser
 
 class TeacherDetailsCertificateCell: MalaBaseCell {
 

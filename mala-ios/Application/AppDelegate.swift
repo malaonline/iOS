@@ -7,9 +7,10 @@
 //
 
 import UIKit
-import IQKeyboardManagerSwift
-import Google
 import UserNotifications
+import IQKeyboardManagerSwift
+import SKPhotoBrowser
+import Google
 import KSCrash
 
 
@@ -111,6 +112,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         IQKeyboardManager.sharedManager().enable = true
         ToastManager.shared.duration = 1.0
+        setupSKPhotoBrowser()
         
         // 社会化组件
         ShareSDK.registerApp(MalaShareSDKAppId,
@@ -169,14 +171,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - Appearance
     /// 设置公共外观样式
     private func customAppearance() {
-        
         // NavigationBar
         UINavigationBar.appearance().tintColor = UIColor(named: .ArticleSubTitle)
         UINavigationBar.appearance().setBackgroundImage(UIImage.withColor(UIColor.white), for: .default)
-        
         // TabBar
         UITabBar.appearance().tintColor = UIColor(named: .ThemeBlue)
     }  
+}
+
+extension AppDelegate {
+    
+    fileprivate func setupSKPhotoBrowser() {
+        SKPhotoBrowserOptions.displayAction = false
+        SKPhotoBrowserOptions.displayBackAndForwardButton = false
+        SKPhotoBrowserOptions.displayCloseButton = false
+        SKPhotoBrowserOptions.displayHorizontalScrollIndicator = false
+        SKPhotoBrowserOptions.displayVerticalScrollIndicator = false
+        SKPhotoBrowserOptions.enableSingleTapDismiss = true
+    }
 }
 
 
