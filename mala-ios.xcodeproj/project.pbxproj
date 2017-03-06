@@ -555,6 +555,9 @@
 		F418F7121CFD2E4500CD3B80 /* CAAnimation+WAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = F452CD731CE0313E001A30E8 /* CAAnimation+WAnimation.m */; };
 		F418F7151CFD2E4500CD3B80 /* UIView+WZLBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = F452CD781CE0313E001A30E8 /* UIView+WZLBadge.m */; };
 		F418F71A1CFD2E4500CD3B80 /* TimeScheduleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4312B731CF82AC100E0EAF1 /* TimeScheduleModel.swift */; };
+		F4193B6C1E6D046C004730EF /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4193B6B1E6D046C004730EF /* Fonts.swift */; };
+		F4193B6D1E6D046C004730EF /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4193B6B1E6D046C004730EF /* Fonts.swift */; };
+		F4193B6E1E6D046C004730EF /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4193B6B1E6D046C004730EF /* Fonts.swift */; };
 		F41A01A81D20E15F0069CF29 /* KYCircularProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41A01A71D20E15F0069CF29 /* KYCircularProgress.swift */; };
 		F41A01A91D20E15F0069CF29 /* KYCircularProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41A01A71D20E15F0069CF29 /* KYCircularProgress.swift */; };
 		F41A01AA1D20E15F0069CF29 /* KYCircularProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41A01A71D20E15F0069CF29 /* KYCircularProgress.swift */; };
@@ -1069,6 +1072,7 @@
 		F40D89691C7DB50700BD6871 /* MalaUserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MalaUserDefaults.swift; sourceTree = "<group>"; };
 		F40D896B1C7DB6E300BD6871 /* MalaConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MalaConfig.swift; sourceTree = "<group>"; };
 		F40D896D1C7EAFB100BD6871 /* MalaLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MalaLog.swift; sourceTree = "<group>"; };
+		F4193B6B1E6D046C004730EF /* Fonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		F41A01A71D20E15F0069CF29 /* KYCircularProgress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCircularProgress.swift; sourceTree = "<group>"; };
 		F41A01AB1D212B1F0069CF29 /* MalaBaseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MalaBaseCell.swift; sourceTree = "<group>"; };
 		F41CE6311D86457300B57F69 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -1753,6 +1757,7 @@
 				F4303A571E6565C50037D64D /* Images.swift */,
 				F4303A5E1E6565DC0037D64D /* Strings.swift */,
 				F470A7731E669CAA00CFA4FF /* Localizable.strings */,
+				F4193B6B1E6D046C004730EF /* Fonts.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -2699,6 +2704,7 @@
 				F48F12CF1DAB7A9C006A2F5C /* SKCacheable.swift in Sources */,
 				F45E69E01C8D278A00BD0859 /* ThemeHUD.swift in Sources */,
 				F465F14D1DB4ABEC0025D867 /* LiveCourseTableViewCell.swift in Sources */,
+				F4193B6C1E6D046C004730EF /* Fonts.swift in Sources */,
 				F4331AC41DD19B78003F062D /* BannerView.swift in Sources */,
 				F40B53D21C841AD600C20037 /* PaymentAmountCell.swift in Sources */,
 				F4767A471D34930C00FD47F1 /* ThemeTagListView.swift in Sources */,
@@ -2950,6 +2956,7 @@
 				F48F12D01DAB7A9C006A2F5C /* SKCacheable.swift in Sources */,
 				35FF7A7E1CF8325A000A70EE /* ThemeHUD.swift in Sources */,
 				F465F14E1DB4ABEC0025D867 /* LiveCourseTableViewCell.swift in Sources */,
+				F4193B6D1E6D046C004730EF /* Fonts.swift in Sources */,
 				F4331AC51DD19B78003F062D /* BannerView.swift in Sources */,
 				35FF7A7F1CF8325A000A70EE /* PaymentAmountCell.swift in Sources */,
 				F4767A481D34930C00FD47F1 /* ThemeTagListView.swift in Sources */,
@@ -3201,6 +3208,7 @@
 				F48F12D11DAB7A9C006A2F5C /* SKCacheable.swift in Sources */,
 				35FF7B611CF83264000A70EE /* ThemeHUD.swift in Sources */,
 				F465F14F1DB4ABEC0025D867 /* LiveCourseTableViewCell.swift in Sources */,
+				F4193B6E1E6D046C004730EF /* Fonts.swift in Sources */,
 				F4331AC61DD19B78003F062D /* BannerView.swift in Sources */,
 				35FF7B621CF83264000A70EE /* PaymentAmountCell.swift in Sources */,
 				F4767A491D34930C00FD47F1 /* ThemeTagListView.swift in Sources */,
