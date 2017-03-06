@@ -26,6 +26,7 @@ def pods
   pod 'Charts', '~> 3.0.1'
   pod 'QRCode', '~> 2.0'
   pod 'AnimatedGIFImageSerialization', '~> 0.2.0'
+  pod 'SKPhotoBrowser', :git => 'https://github.com/suzuki-0000/SKPhotoBrowser.git', :branch => 'swift3'
   # pod 'Toast-Swift', '~> 1.4.0'
   # pod 'YLProgressBar', '~> 3.10.1'
   # pod 'PagingMenuController', '~> 2.0.0'

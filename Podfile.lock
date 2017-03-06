@@ -102,6 +102,7 @@ PODS:
     - MOBFoundation
   - ShareSDK3/ShareSDKUI (3.6.1):
     - MOBFoundation
+  - SKPhotoBrowser (3.1.4)
   - SnapKit (3.0.2)
 
 DEPENDENCIES:
@@ -121,7 +122,18 @@ DEPENDENCIES:
   - ShareSDK3/ShareSDKExtension
   - ShareSDK3/ShareSDKPlatforms/WeChat
   - ShareSDK3/ShareSDKUI
+  - SKPhotoBrowser (from `https://github.com/suzuki-0000/SKPhotoBrowser.git`, branch `swift3`)
   - SnapKit (~> 3.0.2)
+
+EXTERNAL SOURCES:
+  SKPhotoBrowser:
+    :branch: swift3
+    :git: https://github.com/suzuki-0000/SKPhotoBrowser.git
+
+CHECKOUT OPTIONS:
+  SKPhotoBrowser:
+    :commit: c575b55599976b86646a08c7e9aa8569e66ff72c
+    :git: https://github.com/suzuki-0000/SKPhotoBrowser.git
 
 SPEC CHECKSUMS:
   Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
@@ -141,8 +153,9 @@ SPEC CHECKSUMS:
   Pingpp: a267566fbab76c4c3b65adb0655635b1d5ba7fdc
   QRCode: f98a1886c8f37523704a7512a4c0cd45b34c18a4
   ShareSDK3: dea6a14cc4385fa6493e10895ba11d07ef34d149
+  SKPhotoBrowser: 14b08bef65c1720f6edc728ab7f2b1f8ca76f453
   SnapKit: 2e456761aa92d4d4067a7a5594c18769d451a8ad
 
-PODFILE CHECKSUM: dff04bf04965cb0cc2c1a07af279cd58f54139de
+PODFILE CHECKSUM: ee11f633333931b6d6bc035b2eb6022f94f01a46
 
 COCOAPODS: 1.2.0.beta.1
