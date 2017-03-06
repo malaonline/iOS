@@ -109,7 +109,6 @@
 		35FDCEAD1CAD0A2300A25FE8 /* StudentCourseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D0D1481C9A4F3E00B25704 /* StudentCourseModel.swift */; };
 		35FDCEAE1CAD0A2300A25FE8 /* Extension+UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304D6D361C3E92D500282925 /* Extension+UIImageView.swift */; };
 		35FDCEB11CAD0A2300A25FE8 /* ResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E336731C27F61900DCF1C5 /* ResultModel.swift */; };
-		35FDCEB21CAD0A2300A25FE8 /* UINavigationController+KMNavigationBarTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = F4402DA41C5768F600E7D3DB /* UINavigationController+KMNavigationBarTransition.m */; };
 		35FDCEB31CAD0A2300A25FE8 /* Extension+UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3077884E1C297C34007AF6B0 /* Extension+UIImage.swift */; };
 		35FDCEB41CAD0A2300A25FE8 /* CourseChoosingObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40D89671C7D9E4100BD6871 /* CourseChoosingObject.swift */; };
 		35FDCEB61CAD0A2300A25FE8 /* TeacherDetailsSignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3027F6511C3F680400296ED3 /* TeacherDetailsSignupView.swift */; };
@@ -122,10 +121,8 @@
 		35FDCEBE1CAD0A2300A25FE8 /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46065161C97B168004056B1 /* MainNavigationController.swift */; };
 		35FDCEBF1CAD0A2300A25FE8 /* FilterResultController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46065111C97B168004056B1 /* FilterResultController.swift */; };
 		35FDCEC01CAD0A2300A25FE8 /* TeacherDetailsHighScoreTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303BCFEA1C43885700B37DD9 /* TeacherDetailsHighScoreTableView.swift */; };
-		35FDCEC21CAD0A2300A25FE8 /* UIViewController+KMNavigationBarTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = F4402DA61C5768F600E7D3DB /* UIViewController+KMNavigationBarTransition.m */; };
 		35FDCEC41CAD0A2300A25FE8 /* ProfileViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F455EB2F1C91981B00BAEC78 /* ProfileViewCell.swift */; };
 		35FDCEC51CAD0A2300A25FE8 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F460652C1C97B1C8004056B1 /* AboutViewController.swift */; };
-		35FDCEC61CAD0A2300A25FE8 /* KMSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = F4402DA21C5768F600E7D3DB /* KMSwizzle.m */; };
 		35FDCEC71CAD0A2300A25FE8 /* TeacherDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 307AB89C1C33CDD200D8397F /* TeacherDetailModel.swift */; };
 		35FDCEC91CAD0A2300A25FE8 /* SchoolModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303BCFF01C44A86200B37DD9 /* SchoolModel.swift */; };
 		35FDCECA1CAD0A2300A25FE8 /* CourseChoosingTimeScheduleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45871F81C51E0270048D93F /* CourseChoosingTimeScheduleCell.swift */; };
@@ -200,9 +197,6 @@
 		35FF7A541CF8325A000A70EE /* PushConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = F4D0D1A21CA2C02400B25704 /* PushConfig.plist */; };
 		35FF7A561CF8325A000A70EE /* FilterCondition.plist in Resources */ = {isa = PBXBuildFile; fileRef = 307788511C2A3D7A007AF6B0 /* FilterCondition.plist */; };
 		35FF7A571CF8325A000A70EE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 304135881C23AE6400830C43 /* Assets.xcassets */; };
-		35FF7A5A1CF8325A000A70EE /* KMSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = F4402DA21C5768F600E7D3DB /* KMSwizzle.m */; };
-		35FF7A5C1CF8325A000A70EE /* UINavigationController+KMNavigationBarTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = F4402DA41C5768F600E7D3DB /* UINavigationController+KMNavigationBarTransition.m */; };
-		35FF7A5E1CF8325A000A70EE /* UIViewController+KMNavigationBarTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = F4402DA61C5768F600E7D3DB /* UIViewController+KMNavigationBarTransition.m */; };
 		35FF7A601CF8325A000A70EE /* EvaluationFilingServiceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46065191C97B168004056B1 /* EvaluationFilingServiceController.swift */; };
 		35FF7A611CF8325A000A70EE /* ThemeTags.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45E69DC1C8D278A00BD0859 /* ThemeTags.swift */; };
 		35FF7A621CF8325A000A70EE /* OtherServiceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C5C2381C759F0500FB833B /* OtherServiceModel.swift */; };
@@ -360,9 +354,6 @@
 		35FF7B371CF83264000A70EE /* PushConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = F4D0D1A21CA2C02400B25704 /* PushConfig.plist */; };
 		35FF7B391CF83264000A70EE /* FilterCondition.plist in Resources */ = {isa = PBXBuildFile; fileRef = 307788511C2A3D7A007AF6B0 /* FilterCondition.plist */; };
 		35FF7B3A1CF83264000A70EE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 304135881C23AE6400830C43 /* Assets.xcassets */; };
-		35FF7B3D1CF83264000A70EE /* KMSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = F4402DA21C5768F600E7D3DB /* KMSwizzle.m */; };
-		35FF7B3F1CF83264000A70EE /* UINavigationController+KMNavigationBarTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = F4402DA41C5768F600E7D3DB /* UINavigationController+KMNavigationBarTransition.m */; };
-		35FF7B411CF83264000A70EE /* UIViewController+KMNavigationBarTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = F4402DA61C5768F600E7D3DB /* UIViewController+KMNavigationBarTransition.m */; };
 		35FF7B431CF83264000A70EE /* EvaluationFilingServiceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46065191C97B168004056B1 /* EvaluationFilingServiceController.swift */; };
 		35FF7B441CF83264000A70EE /* ThemeTags.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45E69DC1C8D278A00BD0859 /* ThemeTags.swift */; };
 		35FF7B451CF83264000A70EE /* OtherServiceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C5C2381C759F0500FB833B /* OtherServiceModel.swift */; };
@@ -863,9 +854,6 @@
 		F4E1061C1CBBA35B001AD4AF /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E1061B1CBBA35B001AD4AF /* BaseViewController.swift */; };
 		F4E106201CBBA497001AD4AF /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E1061F1CBBA497001AD4AF /* BaseTableViewController.swift */; };
 		F4E106261CC0D390001AD4AF /* Extension+UIDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E106251CC0D390001AD4AF /* Extension+UIDevice.swift */; };
-		F4F1EBD81CF5AA7B00EBDBF6 /* KMSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = F4402DA21C5768F600E7D3DB /* KMSwizzle.m */; };
-		F4F1EBDA1CF5AA7B00EBDBF6 /* UINavigationController+KMNavigationBarTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = F4402DA41C5768F600E7D3DB /* UINavigationController+KMNavigationBarTransition.m */; };
-		F4F1EBDC1CF5AA7B00EBDBF6 /* UIViewController+KMNavigationBarTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = F4402DA61C5768F600E7D3DB /* UIViewController+KMNavigationBarTransition.m */; };
 		F4F29AFC1D0FEC83000D1904 /* CourseTableViewSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F29AFB1D0FEC83000D1904 /* CourseTableViewSectionHeader.swift */; };
 		F4F29AFD1D0FEC83000D1904 /* CourseTableViewSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F29AFB1D0FEC83000D1904 /* CourseTableViewSectionHeader.swift */; };
 		F4F29AFE1D0FEC83000D1904 /* CourseTableViewSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F29AFB1D0FEC83000D1904 /* CourseTableViewSectionHeader.swift */; };
@@ -1031,12 +1019,6 @@
 		F43F44C41D06B66800B7A358 /* CommentViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentViewCell.swift; sourceTree = "<group>"; };
 		F43F44C81D0CFD2800B7A358 /* CommentViewWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentViewWindow.swift; sourceTree = "<group>"; };
 		F4402D841C5729A200E7D3DB /* ClassScheduleDayModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassScheduleDayModel.swift; sourceTree = "<group>"; };
-		F4402DA11C5768F600E7D3DB /* KMSwizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMSwizzle.h; sourceTree = "<group>"; };
-		F4402DA21C5768F600E7D3DB /* KMSwizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMSwizzle.m; sourceTree = "<group>"; };
-		F4402DA31C5768F600E7D3DB /* UINavigationController+KMNavigationBarTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+KMNavigationBarTransition.h"; sourceTree = "<group>"; };
-		F4402DA41C5768F600E7D3DB /* UINavigationController+KMNavigationBarTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+KMNavigationBarTransition.m"; sourceTree = "<group>"; };
-		F4402DA51C5768F600E7D3DB /* UIViewController+KMNavigationBarTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+KMNavigationBarTransition.h"; sourceTree = "<group>"; };
-		F4402DA61C5768F600E7D3DB /* UIViewController+KMNavigationBarTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+KMNavigationBarTransition.m"; sourceTree = "<group>"; };
 		F4402DAD1C58A64200E7D3DB /* KWStepper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KWStepper.swift; sourceTree = "<group>"; };
 		F4402DFD1C5A0DE200E7D3DB /* Extension+String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension+String.swift"; sourceTree = "<group>"; };
 		F4402E141C5A16A700E7D3DB /* parentTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = parentTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1483,7 +1465,6 @@
 				F44C85FE1E683CAB006E5557 /* YLProgressBar */,
 				F452CD6B1CE0313E001A30E8 /* WZLBadge */,
 				F491A8BF1C7364C500B5D520 /* Refresher */,
-				F4402D8A1C575E6B00E7D3DB /* KMNavigationBarTransition */,
 				F45E69D71C8D278A00BD0859 /* ThemeTool */,
 				F4402DAD1C58A64200E7D3DB /* KWStepper.swift */,
 				F41A01A71D20E15F0069CF29 /* KYCircularProgress.swift */,
@@ -1657,19 +1638,6 @@
 				F4193B6B1E6D046C004730EF /* Fonts.swift */,
 			);
 			path = Application;
-			sourceTree = "<group>";
-		};
-		F4402D8A1C575E6B00E7D3DB /* KMNavigationBarTransition */ = {
-			isa = PBXGroup;
-			children = (
-				F4402DA11C5768F600E7D3DB /* KMSwizzle.h */,
-				F4402DA21C5768F600E7D3DB /* KMSwizzle.m */,
-				F4402DA31C5768F600E7D3DB /* UINavigationController+KMNavigationBarTransition.h */,
-				F4402DA41C5768F600E7D3DB /* UINavigationController+KMNavigationBarTransition.m */,
-				F4402DA51C5768F600E7D3DB /* UIViewController+KMNavigationBarTransition.h */,
-				F4402DA61C5768F600E7D3DB /* UIViewController+KMNavigationBarTransition.m */,
-			);
-			path = KMNavigationBarTransition;
 			sourceTree = "<group>";
 		};
 		F4402E151C5A16A700E7D3DB /* parentTests */ = {
@@ -2506,9 +2474,6 @@
 				F418F6F01CFC48C000CD3B80 /* UIBarButtonItem+WZLBadge.m in Sources */,
 				F41CE6471D8680A400B57F69 /* RegionUnitCell.swift in Sources */,
 				F418F6F21CFC48C000CD3B80 /* UITabBarItem+WZLBadge.m in Sources */,
-				F4F1EBD81CF5AA7B00EBDBF6 /* KMSwizzle.m in Sources */,
-				F4F1EBDA1CF5AA7B00EBDBF6 /* UINavigationController+KMNavigationBarTransition.m in Sources */,
-				F4F1EBDC1CF5AA7B00EBDBF6 /* UIViewController+KMNavigationBarTransition.m in Sources */,
 				F46065271C97B168004056B1 /* EvaluationFilingServiceController.swift in Sources */,
 				F45E69E11C8D278A00BD0859 /* ThemeTags.swift in Sources */,
 				F4C5C2391C759F0500FB833B /* OtherServiceModel.swift in Sources */,
@@ -2736,9 +2701,6 @@
 				F41CE6481D8680A400B57F69 /* RegionUnitCell.swift in Sources */,
 				F418F7051CFD2E1800CD3B80 /* UIView+WZLBadge.m in Sources */,
 				F418F7071CFD2E1800CD3B80 /* TimeScheduleModel.swift in Sources */,
-				35FF7A5A1CF8325A000A70EE /* KMSwizzle.m in Sources */,
-				35FF7A5C1CF8325A000A70EE /* UINavigationController+KMNavigationBarTransition.m in Sources */,
-				35FF7A5E1CF8325A000A70EE /* UIViewController+KMNavigationBarTransition.m in Sources */,
 				35FF7A601CF8325A000A70EE /* EvaluationFilingServiceController.swift in Sources */,
 				35FF7A611CF8325A000A70EE /* ThemeTags.swift in Sources */,
 				35FF7A621CF8325A000A70EE /* OtherServiceModel.swift in Sources */,
@@ -2965,9 +2927,6 @@
 				F418F7151CFD2E4500CD3B80 /* UIView+WZLBadge.m in Sources */,
 				F41CE6491D8680A400B57F69 /* RegionUnitCell.swift in Sources */,
 				F418F71A1CFD2E4500CD3B80 /* TimeScheduleModel.swift in Sources */,
-				35FF7B3D1CF83264000A70EE /* KMSwizzle.m in Sources */,
-				35FF7B3F1CF83264000A70EE /* UINavigationController+KMNavigationBarTransition.m in Sources */,
-				35FF7B411CF83264000A70EE /* UIViewController+KMNavigationBarTransition.m in Sources */,
 				35FF7B431CF83264000A70EE /* EvaluationFilingServiceController.swift in Sources */,
 				35FF7B441CF83264000A70EE /* ThemeTags.swift in Sources */,
 				35FF7B451CF83264000A70EE /* OtherServiceModel.swift in Sources */,
@@ -3247,7 +3206,6 @@
 				35FDCEAD1CAD0A2300A25FE8 /* StudentCourseModel.swift in Sources */,
 				35FDCEAE1CAD0A2300A25FE8 /* Extension+UIImageView.swift in Sources */,
 				35FDCEB11CAD0A2300A25FE8 /* ResultModel.swift in Sources */,
-				35FDCEB21CAD0A2300A25FE8 /* UINavigationController+KMNavigationBarTransition.m in Sources */,
 				35FDCEB31CAD0A2300A25FE8 /* Extension+UIImage.swift in Sources */,
 				35FDCEB41CAD0A2300A25FE8 /* CourseChoosingObject.swift in Sources */,
 				35FDCEB61CAD0A2300A25FE8 /* TeacherDetailsSignupView.swift in Sources */,
@@ -3260,10 +3218,8 @@
 				35FDCEBE1CAD0A2300A25FE8 /* MainNavigationController.swift in Sources */,
 				35FDCEBF1CAD0A2300A25FE8 /* FilterResultController.swift in Sources */,
 				35FDCEC01CAD0A2300A25FE8 /* TeacherDetailsHighScoreTableView.swift in Sources */,
-				35FDCEC21CAD0A2300A25FE8 /* UIViewController+KMNavigationBarTransition.m in Sources */,
 				35FDCEC41CAD0A2300A25FE8 /* ProfileViewCell.swift in Sources */,
 				35FDCEC51CAD0A2300A25FE8 /* AboutViewController.swift in Sources */,
-				35FDCEC61CAD0A2300A25FE8 /* KMSwizzle.m in Sources */,
 				35FDCEC71CAD0A2300A25FE8 /* TeacherDetailModel.swift in Sources */,
 				35FDCEC91CAD0A2300A25FE8 /* SchoolModel.swift in Sources */,
 				35FDCECA1CAD0A2300A25FE8 /* CourseChoosingTimeScheduleCell.swift in Sources */,

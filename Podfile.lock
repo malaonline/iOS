@@ -23,6 +23,7 @@ PODS:
     - GoogleToolboxForMac/Defines (= 2.1.1)
   - IQKeyboardManagerSwift (4.0.8)
   - Kingfisher (3.1.4)
+  - KMNavigationBarTransition (1.0.0)
   - KSCrash (1.8.13):
     - KSCrash/Installations (= 1.8.13)
   - KSCrash/Installations (1.8.13):
@@ -113,6 +114,7 @@ DEPENDENCIES:
   - Google/Analytics
   - IQKeyboardManagerSwift (~> 4.0.8)
   - Kingfisher (~> 3.1.0)
+  - KMNavigationBarTransition (~> 1.0.0)
   - KSCrash (~> 1.8.13)
   - MOBFoundation
   - Pingpp/Alipay (~> 2.2.10)
@@ -148,6 +150,7 @@ SPEC CHECKSUMS:
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
   IQKeyboardManagerSwift: c04bc9f68473823f825eb44d958fce98d921bead
   Kingfisher: 6c67e3e57f2d81a9cfdfa25052cd86f33ceac9bb
+  KMNavigationBarTransition: b3fb8337f7a1e4542add07fd6c45fb9980794d59
   KSCrash: 4c3a83f133b60f4bd57e05235ebf8d46e36d378d
   MOBFoundation: 4975874f74c991f562151f6a4549e9a6ad743fd8
   Pingpp: a267566fbab76c4c3b65adb0655635b1d5ba7fdc
@@ -156,6 +159,6 @@ SPEC CHECKSUMS:
   SKPhotoBrowser: 14b08bef65c1720f6edc728ab7f2b1f8ca76f453
   SnapKit: 2e456761aa92d4d4067a7a5594c18769d451a8ad
 
-PODFILE CHECKSUM: ee11f633333931b6d6bc035b2eb6022f94f01a46
+PODFILE CHECKSUM: 6a86bdf8f88c55c36897f4b15583ecc8155e94bf
 
 COCOAPODS: 1.2.0.beta.1
