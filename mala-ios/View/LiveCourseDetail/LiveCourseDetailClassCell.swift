@@ -21,7 +21,7 @@ class LiveCourseDetailClassCell: MalaBaseLiveCourseCell {
             courseGradeLabel.text = (model.courseGrade ?? "")+"  "
             dateLabel.text = String(format: "%@-%@", getDateString(model.courseStart), getDateString(model.courseEnd))
             scheduleLabel.text = model.coursePeriod?.trim().replacingOccurrences(of: ";", with: "\n")
-            checkinLabel.text = String(format: "%d人", model.studentsCount ?? 0)
+            checkinLabel.text = String(format: "%d人", model.remaining)
             schoolLabel.attributedText = model.attrAddressString
         }
     }
@@ -85,7 +85,7 @@ class LiveCourseDetailClassCell: MalaBaseLiveCourseCell {
     /// 报课人数标签
     private lazy var checkinStringLabel: UILabel = {
         let label = UILabel(
-            text: "已报: ",
+            text: "剩余名额: ",
             font: UIFont(name: "PingFang-SC-Light", size: 15),
             textColor: UIColor(named: .ArticleText)
         )

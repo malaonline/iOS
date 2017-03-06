@@ -35,6 +35,11 @@ class LiveClassModel: BaseObjectModel {
     
     var isPaid: Bool = true
     
+    var remaining: Int {
+        get {
+            return (roomCapacity ?? 0) - (studentsCount ?? 0)
+        }
+    }
     var attrAddressString: NSMutableAttributedString {
         get {
             return makeAddressAttrString(schoolName, schoolAddress)
