@@ -70,7 +70,7 @@ class OrderFormOperatingView: UIView {
     private lazy var stringLabel: UILabel = {
         let label = UILabel(
             text: "合计:",
-            font: UIFont(name: "PingFang-SC-Light", size: 13),
+            font: FontFamily.PingFangSC.Light.font(13),
             textColor: UIColor(named: .ArticleTitle)
         )
         return label
@@ -79,7 +79,7 @@ class OrderFormOperatingView: UIView {
     private lazy var priceLabel: UILabel = {
         let label = UILabel(
             text: "￥0.00",
-            font: UIFont(name: "PingFang-SC-Light", size: 18),
+            font: FontFamily.PingFangSC.Light.font(18),
             textColor: UIColor(named: .ThemeRed)
         )
         return label

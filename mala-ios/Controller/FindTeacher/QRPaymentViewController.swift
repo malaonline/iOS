@@ -73,7 +73,7 @@ class QRPaymentViewController: BaseViewController {
     /// 完成提示文字
     private lazy var tipFinishString: UILabel = {
         let label = UILabel(
-            font: UIFont(name: "PingFang-SC-Regular", size: 12),
+            font: FontFamily.PingFangSC.Regular.font(12),
             textColor: UIColor(named: .ArticleText)
         )        
         let attrString = NSMutableAttributedString(string: L10n.pleaseCompleteThePaymentBeforeCheckIt)
@@ -84,7 +84,7 @@ class QRPaymentViewController: BaseViewController {
         )
         attrString.addAttribute(
             NSFontAttributeName,
-            value: UIFont(name: "PingFang-SC-Regular", size: 12)!,
+            value: FontFamily.PingFangSC.Regular.font(12),
             range: NSMakeRange(10, 4)
         )
         

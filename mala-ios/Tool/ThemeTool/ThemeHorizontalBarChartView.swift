@@ -107,7 +107,7 @@ open class ThemeHorizontalBar: UIView {
         bar.trackTintColor = UIColor(named: .SeparatorLine)
         bar.stripesColor = UIColor(named: .SeparatorLine)
         bar.progressTintColors = [UIColor(named: .ChartLegendGreen)]
-        bar.indicatorTextLabel.font = UIFont(name: "HelveticaNeue-Light", size: 9)
+        bar.indicatorTextLabel.font = FontFamily.HelveticaNeue.Light.font(9)
         bar.hideGloss = true
         return bar
     }()

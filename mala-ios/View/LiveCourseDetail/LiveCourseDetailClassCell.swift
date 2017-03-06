@@ -32,7 +32,7 @@ class LiveCourseDetailClassCell: MalaBaseLiveCourseCell {
     private lazy var roomCapacityLabel: UILabel = {
         let label = UILabel(
             text: "班级规模",
-            font: UIFont(name: "PingFang-SC-Light", size: 14),
+            font: FontFamily.PingFangSC.Light.font(14),
             textColor: UIColor.white,
             textAlignment: .center,
             backgroundColor: UIColor(named: .ThemeBlue),
@@ -44,7 +44,7 @@ class LiveCourseDetailClassCell: MalaBaseLiveCourseCell {
     private lazy var courseGradeLabel: UILabel = {
         let label = UILabel(
             text: "课程年级",
-            font: UIFont(name: "PingFang-SC-Light", size: 14),
+            font: FontFamily.PingFangSC.Light.font(14),
             textColor: UIColor.white,
             textAlignment: .center,
             backgroundColor: UIColor(named: .ThemeBlue),
@@ -61,7 +61,7 @@ class LiveCourseDetailClassCell: MalaBaseLiveCourseCell {
     private lazy var dateLabel: UILabel = {
         let label = UILabel(
             text: "课程日期",
-            font: UIFont(name: "PingFang-SC-Light", size: 15),
+            font: FontFamily.PingFangSC.Light.font(15),
             textColor: UIColor(named: .ArticleText)
         )
         return label
@@ -70,7 +70,7 @@ class LiveCourseDetailClassCell: MalaBaseLiveCourseCell {
     private lazy var scheduleLabel: UILabel = {
         let label = UILabel(
             text: "上课时间",
-            font: UIFont(name: "PingFang-SC-Light", size: 15),
+            font: FontFamily.PingFangSC.Light.font(15),
             textColor: UIColor(named: .HeaderTitle),
             opacity: 0.8
         )
@@ -86,7 +86,7 @@ class LiveCourseDetailClassCell: MalaBaseLiveCourseCell {
     private lazy var checkinStringLabel: UILabel = {
         let label = UILabel(
             text: "已报: ",
-            font: UIFont(name: "PingFang-SC-Light", size: 15),
+            font: FontFamily.PingFangSC.Light.font(15),
             textColor: UIColor(named: .ArticleText)
         )
         return label
@@ -95,7 +95,7 @@ class LiveCourseDetailClassCell: MalaBaseLiveCourseCell {
     private lazy var checkinLabel: UILabel = {
         let label = UILabel(
             text: "人数",
-            font: UIFont(name: "PingFang-SC-Light", size: 15),
+            font: FontFamily.PingFangSC.Light.font(15),
             textColor: UIColor(named: .ThemeRed)
         )
         return label
@@ -109,7 +109,7 @@ class LiveCourseDetailClassCell: MalaBaseLiveCourseCell {
     private lazy var schoolLabel: UILabel = {
         let label = UILabel(
             text: "上课地点",
-            font: UIFont(name: "PingFang-SC-Light", size: 14),
+            font: FontFamily.PingFangSC.Light.font(14),
             textColor: UIColor(named: .ArticleText)
         )
         label.numberOfLines = 0

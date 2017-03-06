@@ -25,7 +25,7 @@ class LiveCourseDetailDescCell: MalaBaseLiveCourseCell {
     private lazy var courseDescView: UILabel = {
         let label = UILabel(
             text: "",
-            font: UIFont(name: "STHeitiSC-Light", size: 14),
+            font: FontFamily.HeitiSC.Light.font(14),
             textColor: UIColor(named: .ArticleText)
         )
         label.numberOfLines = 0
