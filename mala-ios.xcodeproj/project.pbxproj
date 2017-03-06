@@ -525,9 +525,6 @@
 		F4193B6C1E6D046C004730EF /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4193B6B1E6D046C004730EF /* Fonts.swift */; };
 		F4193B6D1E6D046C004730EF /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4193B6B1E6D046C004730EF /* Fonts.swift */; };
 		F4193B6E1E6D046C004730EF /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4193B6B1E6D046C004730EF /* Fonts.swift */; };
-		F41A01A81D20E15F0069CF29 /* KYCircularProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41A01A71D20E15F0069CF29 /* KYCircularProgress.swift */; };
-		F41A01A91D20E15F0069CF29 /* KYCircularProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41A01A71D20E15F0069CF29 /* KYCircularProgress.swift */; };
-		F41A01AA1D20E15F0069CF29 /* KYCircularProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41A01A71D20E15F0069CF29 /* KYCircularProgress.swift */; };
 		F41A01AC1D212B1F0069CF29 /* MalaBaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41A01AB1D212B1F0069CF29 /* MalaBaseCell.swift */; };
 		F41A01AD1D212B1F0069CF29 /* MalaBaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41A01AB1D212B1F0069CF29 /* MalaBaseCell.swift */; };
 		F41A01AE1D212B1F0069CF29 /* MalaBaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41A01AB1D212B1F0069CF29 /* MalaBaseCell.swift */; };
@@ -973,7 +970,6 @@
 		F40D896B1C7DB6E300BD6871 /* MalaConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MalaConfig.swift; sourceTree = "<group>"; };
 		F40D896D1C7EAFB100BD6871 /* MalaLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MalaLog.swift; sourceTree = "<group>"; };
 		F4193B6B1E6D046C004730EF /* Fonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
-		F41A01A71D20E15F0069CF29 /* KYCircularProgress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCircularProgress.swift; sourceTree = "<group>"; };
 		F41A01AB1D212B1F0069CF29 /* MalaBaseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MalaBaseCell.swift; sourceTree = "<group>"; };
 		F41CE6311D86457300B57F69 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F41CE6361D86487500B57F69 /* RegionPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegionPicker.swift; sourceTree = "<group>"; };
@@ -1444,7 +1440,6 @@
 				F491A8BF1C7364C500B5D520 /* Refresher */,
 				F45E69D71C8D278A00BD0859 /* ThemeTool */,
 				F4402DAD1C58A64200E7D3DB /* KWStepper.swift */,
-				F41A01A71D20E15F0069CF29 /* KYCircularProgress.swift */,
 				F46064F91C96C8EF004056B1 /* Proposer.swift */,
 				F48C59FC1C8701FA0024EE17 /* JSSAlertView.swift */,
 				30EB98B61C3CEBD6003977FF /* MATabListView.swift */,
@@ -2495,7 +2490,6 @@
 				F4B3C67F1CFD439B00C1B423 /* SingleTopicData.swift in Sources */,
 				3037B5991C3BAA81005672D9 /* TeacherDetailsSubjectCell.swift in Sources */,
 				F4303A5B1E6565C50037D64D /* Images.swift in Sources */,
-				F41A01A81D20E15F0069CF29 /* KYCircularProgress.swift in Sources */,
 				F4FF66F31DB87EB80036E299 /* LiveCourseDetailClassCell.swift in Sources */,
 				F48C5A061C87F7EF0024EE17 /* CouponViewCell.swift in Sources */,
 				F40D896A1C7DB50700BD6871 /* MalaUserDefaults.swift in Sources */,
@@ -2717,7 +2711,6 @@
 				F4B3C6801CFD439B00C1B423 /* SingleTopicData.swift in Sources */,
 				35FF7AA91CF8325A000A70EE /* TeacherDetailsSubjectCell.swift in Sources */,
 				F4303A5C1E6565C50037D64D /* Images.swift in Sources */,
-				F41A01A91D20E15F0069CF29 /* KYCircularProgress.swift in Sources */,
 				F4FF66F41DB87EB80036E299 /* LiveCourseDetailClassCell.swift in Sources */,
 				35FF7AAA1CF8325A000A70EE /* CouponViewCell.swift in Sources */,
 				35FF7AAC1CF8325A000A70EE /* MalaUserDefaults.swift in Sources */,
@@ -2939,7 +2932,6 @@
 				F4B3C6811CFD439B00C1B423 /* SingleTopicData.swift in Sources */,
 				35FF7B8C1CF83264000A70EE /* TeacherDetailsSubjectCell.swift in Sources */,
 				F4303A5D1E6565C50037D64D /* Images.swift in Sources */,
-				F41A01AA1D20E15F0069CF29 /* KYCircularProgress.swift in Sources */,
 				F4FF66F51DB87EB80036E299 /* LiveCourseDetailClassCell.swift in Sources */,
 				35FF7B8D1CF83264000A70EE /* CouponViewCell.swift in Sources */,
 				35FF7B8F1CF83264000A70EE /* MalaUserDefaults.swift in Sources */,

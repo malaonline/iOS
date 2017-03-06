@@ -6,14 +6,11 @@ inhibit_all_warnings!
 
 def pods
   pod 'DateToolsSwift'
+  pod 'Charts', '~> 3.0.1'
   pod 'SnapKit', '~> 3.0.2'
-  pod 'WZLBadge', '~> 1.2.5'
   pod 'Alamofire', '~> 4.0.1'
   pod 'Kingfisher', '~> 3.1.0'
-  pod 'IQKeyboardManagerSwift', '~> 4.0.8'
-  pod 'KMNavigationBarTransition', '~> 1.0.0'
-  pod 'AnimatedGIFImageSerialization', '~> 0.2.0'
-    
+  
   pod 'Pingpp/Alipay', '~> 2.2.10'
   pod 'Pingpp/Wx', '~> 2.2.10'
   
@@ -26,8 +23,12 @@ def pods
   pod 'Google/Analytics'
   pod 'KSCrash', '~> 1.8.13'
   
-  pod 'Charts', '~> 3.0.1'
   pod 'QRCode', '~> 2.0'
+  pod 'WZLBadge', '~> 1.2.5'
+  pod 'KYCircularProgress', '~> 1.0.0'
+  pod 'IQKeyboardManagerSwift', '~> 4.0.8'
+  pod 'KMNavigationBarTransition', '~> 1.0.0'
+  pod 'AnimatedGIFImageSerialization', '~> 0.2.0'
   pod 'SKPhotoBrowser', :git => 'https://github.com/suzuki-0000/SKPhotoBrowser.git', :branch => 'swift3'
   # pod 'Toast-Swift', '~> 1.4.0'
   # pod 'YLProgressBar', '~> 3.10.1'

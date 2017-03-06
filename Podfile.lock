@@ -85,6 +85,7 @@ PODS:
     - KSCrash/Reporting/Tools
   - KSCrash/Reporting/Tools (1.8.13):
     - KSCrash/Recording
+  - KYCircularProgress (1.0.0)
   - MOBFoundation (2.2.15)
   - Pingpp/Alipay (2.2.10):
     - Pingpp/Core
@@ -117,6 +118,7 @@ DEPENDENCIES:
   - Kingfisher (~> 3.1.0)
   - KMNavigationBarTransition (~> 1.0.0)
   - KSCrash (~> 1.8.13)
+  - KYCircularProgress (~> 1.0.0)
   - MOBFoundation
   - Pingpp/Alipay (~> 2.2.10)
   - Pingpp/Wx (~> 2.2.10)
@@ -154,6 +156,7 @@ SPEC CHECKSUMS:
   Kingfisher: 6c67e3e57f2d81a9cfdfa25052cd86f33ceac9bb
   KMNavigationBarTransition: b3fb8337f7a1e4542add07fd6c45fb9980794d59
   KSCrash: 4c3a83f133b60f4bd57e05235ebf8d46e36d378d
+  KYCircularProgress: e83d5346247c917182b451c6357fd96b3c3d71b6
   MOBFoundation: 4975874f74c991f562151f6a4549e9a6ad743fd8
   Pingpp: a267566fbab76c4c3b65adb0655635b1d5ba7fdc
   QRCode: f98a1886c8f37523704a7512a4c0cd45b34c18a4
@@ -162,6 +165,6 @@ SPEC CHECKSUMS:
   SnapKit: 2e456761aa92d4d4067a7a5594c18769d451a8ad
   WZLBadge: 16c08aa0a645e2591690f21cbcb410a3d878c7ac
 
-PODFILE CHECKSUM: c0dca314729bc16a51b2c88c48a07bbc534b06f6
+PODFILE CHECKSUM: 260eae4f6495116ae47e79bd6146920b5734a0db
 
 COCOAPODS: 1.2.0.beta.1
