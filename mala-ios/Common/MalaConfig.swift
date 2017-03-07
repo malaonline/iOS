@@ -79,28 +79,6 @@ open class MalaConfig {
         return "您在该时间段有课程未上完，直到您在该时间段课程全部结束后的12小时，我们都为您保留老师时间，方便您继续购买。"
     }
     
-    // MARK: - Default Data
-    ///  老师详情缺省模型
-    class func defaultTeacherDetail() -> TeacherDetailModel {
-        return TeacherDetailModel(
-            id: 0,
-            name: "老师姓名",
-            avatar: "",
-            gender: "m",
-            teaching_age: 0,
-            level: 1,
-            subject: "学科",
-            grades: [],
-            tags: [],
-            photo_set: [],
-            achievement_set: [],
-            highscore_set: [],
-            prices: [],
-            minPrice: 0,
-            maxPrice: 0
-        )
-    }
-    
     
     // MARK: - Static Data
     /// [学科id: 学科名称]
