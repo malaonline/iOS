@@ -18,11 +18,12 @@ class CommonFlowLayout: UICollectionViewFlowLayout {
         case gradeSelection
         case profileItem
         case detailPhotoView
+        case `default`
     }
     
     
     // MARK: - Constructed
-    init(type layoutType: FlowLayoutType) {
+    init(type layoutType: FlowLayoutType, frame: CGRect? = nil) {
         super.init()
         
         // 根据Type来应用对应的布局样式
@@ -38,7 +39,9 @@ class CommonFlowLayout: UICollectionViewFlowLayout {
         case .profileItem:
             profileItemFlowLayout()
         case .detailPhotoView:
-            DetailPhotoViewFlowLayout()
+            detailPhotoViewFlowLayout()
+        case .default:
+            defaultLayout(frame: frame)
         }
     }
 
@@ -97,7 +100,7 @@ class CommonFlowLayout: UICollectionViewFlowLayout {
     
     private func profileItemFlowLayout() {
         scrollDirection = .horizontal
-        let itemWidth = MalaScreenWidth/3
+        let itemWidth = MalaScreenWidth / 3
         let itemHeight: CGFloat = 114
         itemSize = CGSize(width: itemWidth, height: itemHeight)
         sectionInset = UIEdgeInsetsMake(0, 0, 0, 0)
@@ -105,7 +108,7 @@ class CommonFlowLayout: UICollectionViewFlowLayout {
         minimumLineSpacing = 0
     }
     
-    private func DetailPhotoViewFlowLayout() {
+    private func detailPhotoViewFlowLayout() {
         scrollDirection = .horizontal
         let itemWidth: CGFloat = MalaLayout_DetailPhotoWidth
         let itemHeight: CGFloat = MalaLayout_DetailPhotoWidth
@@ -113,5 +116,12 @@ class CommonFlowLayout: UICollectionViewFlowLayout {
         sectionInset = UIEdgeInsetsMake(0, 0, 0, 0)
         minimumInteritemSpacing = 0
         minimumLineSpacing = 2
+    }
+    
+    private func defaultLayout(frame: CGRect?) {
+        scrollDirection = .horizontal
+        if let frame = frame { itemSize = frame.size }
+        minimumInteritemSpacing = 0
+        minimumLineSpacing = 0
     }
 }
