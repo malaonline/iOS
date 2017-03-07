@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Proposer
 import PagingMenuController
 
 private struct PagingMenuOptions: PagingMenuControllerCustomizable {

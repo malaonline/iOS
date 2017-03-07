@@ -7,7 +7,7 @@
 //
 
 import UIKit
-//import Proposer
+import Proposer
 
 class MalaAlert {
 
