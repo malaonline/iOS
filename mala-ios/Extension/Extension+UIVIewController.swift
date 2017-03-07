@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Toast_Swift
 
 
 extension UIViewController {
@@ -46,7 +47,7 @@ extension UIViewController {
 extension UIViewController {
     
     public func ShowToast(_ message: String) {
-        currentView?.makeToast(message)
+        currentView?.showToastAtBottom(message)
     }
     
     public func showActivity() {

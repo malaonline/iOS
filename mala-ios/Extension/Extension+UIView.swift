@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Toast_Swift
 
 extension UIView {
 
@@ -31,5 +32,15 @@ extension UIView {
     
     func addTapEvent(target: Any?, action: Selector?) {
         self.addGestureRecognizer(UITapGestureRecognizer(target: target, action: action))
+    }
+}
+
+// MARK: - Toast
+extension UIView {
+    func showToastAtBottom(_ message: String, completion: ((Bool) -> Void)? = nil) {
+        let toast: UIView = try! self.toastViewForMessage(message, title: nil, image: nil, style: ToastManager.shared.style)
+        let padding: CGFloat = ToastManager.shared.style.verticalPadding
+        let point: CGPoint = CGPoint(x: self.bounds.size.width / 2.0, y: (self.bounds.size.height - (toast.frame.size.height / 2.0)) - padding - 44 - 10)
+        self.showToast(toast, duration: ToastManager.shared.duration, position: point, completion: completion)
     }
 }

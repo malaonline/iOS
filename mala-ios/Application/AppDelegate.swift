@@ -8,10 +8,11 @@
 
 import UIKit
 import UserNotifications
-import IQKeyboardManagerSwift
-import SKPhotoBrowser
 import Google
 import KSCrash
+import Toast_Swift
+import IQKeyboardManagerSwift
+import SKPhotoBrowser
 
 
 @UIApplicationMain
@@ -111,7 +112,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         #endif
         
         IQKeyboardManager.sharedManager().enable = true
-        ToastManager.shared.duration = 1.0
+        setupToast()
         setupSKPhotoBrowser()
         
         // 社会化组件
@@ -179,6 +180,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }  
 }
 
+
+// MARK: - Dependencies setup
 extension AppDelegate {
     
     fileprivate func setupSKPhotoBrowser() {
@@ -188,6 +191,12 @@ extension AppDelegate {
         SKPhotoBrowserOptions.displayHorizontalScrollIndicator = false
         SKPhotoBrowserOptions.displayVerticalScrollIndicator = false
         SKPhotoBrowserOptions.enableSingleTapDismiss = true
+    }
+    
+    fileprivate func setupToast() {
+        ToastManager.shared.duration = 1.0
+        ToastManager.shared.style.titleFont = FontFamily.PingFangSC.Regular.font(15)
+        ToastManager.shared.style.messageFont = FontFamily.PingFangSC.Regular.font(14)
     }
 }
 

@@ -30,9 +30,9 @@ def pods
   pod 'KMNavigationBarTransition', '~> 1.0.0'
   pod 'AnimatedGIFImageSerialization', '~> 0.2.0'
   pod 'SKPhotoBrowser', :git => 'https://github.com/suzuki-0000/SKPhotoBrowser.git', :branch => 'swift3'
-  # pod 'Toast-Swift', '~> 1.4.0'
+  pod 'Toast-Swift', '~> 2.0.0'
+  pod 'PagingMenuController', :git => 'https://github.com/kitasuke/PagingMenuController.git', :commit => '3d4e5cc2096bc7ebbf9ff9e3b31c8d5e168062d5'
   # pod 'YLProgressBar', '~> 3.10.1'
-  # pod 'PagingMenuController', '~> 2.0.0'
 end
 
 target 'parent-dev' do

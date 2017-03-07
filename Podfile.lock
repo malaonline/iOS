@@ -87,6 +87,7 @@ PODS:
     - KSCrash/Recording
   - KYCircularProgress (1.0.0)
   - MOBFoundation (2.2.15)
+  - PagingMenuController (2.0.0)
   - Pingpp/Alipay (2.2.10):
     - Pingpp/Core
   - Pingpp/Core (2.2.10)
@@ -106,6 +107,7 @@ PODS:
     - MOBFoundation
   - SKPhotoBrowser (3.1.4)
   - SnapKit (3.0.2)
+  - Toast-Swift (2.0.0)
   - WZLBadge (1.2.5)
 
 DEPENDENCIES:
@@ -120,6 +122,7 @@ DEPENDENCIES:
   - KSCrash (~> 1.8.13)
   - KYCircularProgress (~> 1.0.0)
   - MOBFoundation
+  - PagingMenuController (from `https://github.com/kitasuke/PagingMenuController.git`, commit `3d4e5cc2096bc7ebbf9ff9e3b31c8d5e168062d5`)
   - Pingpp/Alipay (~> 2.2.10)
   - Pingpp/Wx (~> 2.2.10)
   - QRCode (~> 2.0)
@@ -129,14 +132,21 @@ DEPENDENCIES:
   - ShareSDK3/ShareSDKUI
   - SKPhotoBrowser (from `https://github.com/suzuki-0000/SKPhotoBrowser.git`, branch `swift3`)
   - SnapKit (~> 3.0.2)
+  - Toast-Swift (~> 2.0.0)
   - WZLBadge (~> 1.2.5)
 
 EXTERNAL SOURCES:
+  PagingMenuController:
+    :commit: 3d4e5cc2096bc7ebbf9ff9e3b31c8d5e168062d5
+    :git: https://github.com/kitasuke/PagingMenuController.git
   SKPhotoBrowser:
     :branch: swift3
     :git: https://github.com/suzuki-0000/SKPhotoBrowser.git
 
 CHECKOUT OPTIONS:
+  PagingMenuController:
+    :commit: 3d4e5cc2096bc7ebbf9ff9e3b31c8d5e168062d5
+    :git: https://github.com/kitasuke/PagingMenuController.git
   SKPhotoBrowser:
     :commit: c575b55599976b86646a08c7e9aa8569e66ff72c
     :git: https://github.com/suzuki-0000/SKPhotoBrowser.git
@@ -158,13 +168,15 @@ SPEC CHECKSUMS:
   KSCrash: 4c3a83f133b60f4bd57e05235ebf8d46e36d378d
   KYCircularProgress: e83d5346247c917182b451c6357fd96b3c3d71b6
   MOBFoundation: 4975874f74c991f562151f6a4549e9a6ad743fd8
+  PagingMenuController: 60602bfb5421d6536c1e3097baeed601dec1d85b
   Pingpp: a267566fbab76c4c3b65adb0655635b1d5ba7fdc
   QRCode: f98a1886c8f37523704a7512a4c0cd45b34c18a4
   ShareSDK3: dea6a14cc4385fa6493e10895ba11d07ef34d149
   SKPhotoBrowser: 14b08bef65c1720f6edc728ab7f2b1f8ca76f453
   SnapKit: 2e456761aa92d4d4067a7a5594c18769d451a8ad
+  Toast-Swift: 5b2f8f720f7e78e48511f693df1f9c9a6e38a25a
   WZLBadge: 16c08aa0a645e2591690f21cbcb410a3d878c7ac
 
-PODFILE CHECKSUM: 260eae4f6495116ae47e79bd6146920b5734a0db
+PODFILE CHECKSUM: be79cf0cb8df81f4f577eb173a90e844af0cb122
 
 COCOAPODS: 1.2.0.beta.1
