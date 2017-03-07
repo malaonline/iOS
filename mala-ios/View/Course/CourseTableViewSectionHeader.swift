@@ -157,11 +157,12 @@ class CourseTableViewSectionHeader: UITableViewHeaderFooterView {
     override func prepareForReuse() {
         super.prepareForReuse()
         offset = parentTableView?.contentOffset.y ?? 0
+        let frame: CGRect = contentView.frame
         
-        let contentOffset = defaultOffset + (parentTableView?.contentOffset.y ?? 0) - offset
-        let cellOffset = contentView.frame.origin.y - (contentOffset)
-        let percent = (cellOffset + contentView.frame.size.height)/((parentTableView?.frame.size.height ?? 1) + contentView.frame.size.height)
-        let extraHeight = contentView.frame.size.height*(parallaxRatio-1)
+        let contentOffset: CGFloat = defaultOffset + (parentTableView?.contentOffset.y ?? 0) - offset
+        let cellOffset: CGFloat = frame.origin.y - contentOffset
+        let percent: CGFloat = (cellOffset + frame.size.height) / ((parentTableView?.frame.size.height ?? 1) + frame.size.height)
+        let extraHeight: CGFloat = frame.size.height * (parallaxRatio - 1)
         parallaxImage.frame.origin.y = -extraHeight*percent-210
     }
     
