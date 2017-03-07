@@ -657,9 +657,6 @@
 		F44C868C1E68453A006E5557 /* ViewCleanable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44C86611E68453A006E5557 /* ViewCleanable.swift */; };
 		F44C868D1E68453A006E5557 /* ViewCleanable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44C86611E68453A006E5557 /* ViewCleanable.swift */; };
 		F44C868E1E68453A006E5557 /* ViewCleanable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44C86611E68453A006E5557 /* ViewCleanable.swift */; };
-		F44C86911E685742006E5557 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44C86901E685742006E5557 /* Toast.swift */; };
-		F44C86921E685742006E5557 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44C86901E685742006E5557 /* Toast.swift */; };
-		F44C86931E685742006E5557 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44C86901E685742006E5557 /* Toast.swift */; };
 		F44D9FAF1E5EBE14006A7E23 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F464BD6E1DA8CDD500032C88 /* QuartzCore.framework */; };
 		F44D9FB01E5EBE4A006A7E23 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F464BD741DA8CE6B00032C88 /* CoreMotion.framework */; };
 		F44D9FB11E5EBE75006A7E23 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F464BD721DA8CE5600032C88 /* libsqlite3.0.tbd */; };
@@ -1028,7 +1025,6 @@
 		F44C865F1E68453A006E5557 /* PagingValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagingValidator.swift; sourceTree = "<group>"; };
 		F44C86601E68453A006E5557 /* PagingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagingViewController.swift; sourceTree = "<group>"; };
 		F44C86611E68453A006E5557 /* ViewCleanable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewCleanable.swift; sourceTree = "<group>"; };
-		F44C86901E685742006E5557 /* Toast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
 		F44DC7C11D59C6D400E5979B /* DOFavoriteButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DOFavoriteButton.swift; sourceTree = "<group>"; };
 		F452CD521CDC4CD2001A30E8 /* OrderFormViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderFormViewController.swift; sourceTree = "<group>"; };
 		F452CD561CDC5839001A30E8 /* OrderFormViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OrderFormViewCell.swift; path = ../OrderForm/OrderFormViewCell.swift; sourceTree = "<group>"; };
@@ -1434,7 +1430,6 @@
 		30E3366C1C27C41800DCF1C5 /* Tool */ = {
 			isa = PBXGroup;
 			children = (
-				F44C868F1E685742006E5557 /* Toast */,
 				F44C86521E68453A006E5557 /* PagingMenuController */,
 				F44C85FE1E683CAB006E5557 /* YLProgressBar */,
 				F491A8BF1C7364C500B5D520 /* Refresher */,
@@ -1651,14 +1646,6 @@
 				F44C86611E68453A006E5557 /* ViewCleanable.swift */,
 			);
 			path = PagingMenuController;
-			sourceTree = "<group>";
-		};
-		F44C868F1E685742006E5557 /* Toast */ = {
-			isa = PBXGroup;
-			children = (
-				F44C86901E685742006E5557 /* Toast.swift */,
-			);
-			path = Toast;
 			sourceTree = "<group>";
 		};
 		F452CD551CDC5823001A30E8 /* OrderForm */ = {
@@ -2391,7 +2378,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F44C86911E685742006E5557 /* Toast.swift in Sources */,
 				F41CE6471D8680A400B57F69 /* RegionUnitCell.swift in Sources */,
 				F46065271C97B168004056B1 /* EvaluationFilingServiceController.swift in Sources */,
 				F45E69E11C8D278A00BD0859 /* ThemeTags.swift in Sources */,
@@ -2612,7 +2598,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F44C86921E685742006E5557 /* Toast.swift in Sources */,
 				F41CE6481D8680A400B57F69 /* RegionUnitCell.swift in Sources */,
 				F418F7071CFD2E1800CD3B80 /* TimeScheduleModel.swift in Sources */,
 				35FF7A601CF8325A000A70EE /* EvaluationFilingServiceController.swift in Sources */,
@@ -2833,7 +2818,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F44C86931E685742006E5557 /* Toast.swift in Sources */,
 				F41CE6491D8680A400B57F69 /* RegionUnitCell.swift in Sources */,
 				F418F71A1CFD2E4500CD3B80 /* TimeScheduleModel.swift in Sources */,
 				35FF7B431CF83264000A70EE /* EvaluationFilingServiceController.swift in Sources */,
