@@ -612,51 +612,6 @@
 		F44C86011E683CAB006E5557 /* YLProgressBar.m in Sources */ = {isa = PBXBuildFile; fileRef = F44C86001E683CAB006E5557 /* YLProgressBar.m */; };
 		F44C86021E683CAB006E5557 /* YLProgressBar.m in Sources */ = {isa = PBXBuildFile; fileRef = F44C86001E683CAB006E5557 /* YLProgressBar.m */; };
 		F44C86031E683CAB006E5557 /* YLProgressBar.m in Sources */ = {isa = PBXBuildFile; fileRef = F44C86001E683CAB006E5557 /* YLProgressBar.m */; };
-		F44C86621E68453A006E5557 /* GestureHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44C86531E68453A006E5557 /* GestureHandler.swift */; };
-		F44C86631E68453A006E5557 /* GestureHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44C86531E68453A006E5557 /* GestureHandler.swift */; };
-		F44C86641E68453A006E5557 /* GestureHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44C86531E68453A006E5557 /* GestureHandler.swift */; };
-		F44C86651E68453A006E5557 /* LabelSizeCalculatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44C86541E68453A006E5557 /* LabelSizeCalculatable.swift */; };
-		F44C86661E68453A006E5557 /* LabelSizeCalculatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44C86541E68453A006E5557 /* LabelSizeCalculatable.swift */; };
-		F44C86671E68453A006E5557 /* LabelSizeCalculatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44C86541E68453A006E5557 /* LabelSizeCalculatable.swift */; };
-		F44C86681E68453A006E5557 /* MenuItemMultipliable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44C86551E68453A006E5557 /* MenuItemMultipliable.swift */; };
-		F44C86691E68453A006E5557 /* MenuItemMultipliable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44C86551E68453A006E5557 /* MenuItemMultipliable.swift */; };
-		F44C866A1E68453A006E5557 /* MenuItemMultipliable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44C86551E68453A006E5557 /* MenuItemMultipliable.swift */; };
-		F44C866B1E68453A006E5557 /* MenuItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44C86561E68453A006E5557 /* MenuItemView.swift */; };
-		F44C866C1E68453A006E5557 /* MenuItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44C86561E68453A006E5557 /* MenuItemView.swift */; };
-		F44C866D1E68453A006E5557 /* MenuItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44C86561E68453A006E5557 /* MenuItemView.swift */; };
-		F44C866E1E68453A006E5557 /* MenuItemViewCustomizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44C86571E68453A006E5557 /* MenuItemViewCustomizable.swift */; };
-		F44C866F1E68453A006E5557 /* MenuItemViewCustomizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44C86571E68453A006E5557 /* MenuItemViewCustomizable.swift */; };
-		F44C86701E68453A006E5557 /* MenuItemViewCustomizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44C86571E68453A006E5557 /* MenuItemViewCustomizable.swift */; };
-		F44C86711E68453A006E5557 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44C86581E68453A006E5557 /* MenuView.swift */; };
-		F44C86721E68453A006E5557 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44C86581E68453A006E5557 /* MenuView.swift */; };
-		F44C86731E68453A006E5557 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44C86581E68453A006E5557 /* MenuView.swift */; };
-		F44C86741E68453A006E5557 /* MenuViewCustomizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44C86591E68453A006E5557 /* MenuViewCustomizable.swift */; };
-		F44C86751E68453A006E5557 /* MenuViewCustomizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44C86591E68453A006E5557 /* MenuViewCustomizable.swift */; };
-		F44C86761E68453A006E5557 /* MenuViewCustomizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44C86591E68453A006E5557 /* MenuViewCustomizable.swift */; };
-		F44C86771E68453A006E5557 /* Pagable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44C865A1E68453A006E5557 /* Pagable.swift */; };
-		F44C86781E68453A006E5557 /* Pagable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44C865A1E68453A006E5557 /* Pagable.swift */; };
-		F44C86791E68453A006E5557 /* Pagable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44C865A1E68453A006E5557 /* Pagable.swift */; };
-		F44C867A1E68453A006E5557 /* PageDetectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44C865B1E68453A006E5557 /* PageDetectable.swift */; };
-		F44C867B1E68453A006E5557 /* PageDetectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44C865B1E68453A006E5557 /* PageDetectable.swift */; };
-		F44C867C1E68453A006E5557 /* PageDetectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44C865B1E68453A006E5557 /* PageDetectable.swift */; };
-		F44C867D1E68453A006E5557 /* PageLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44C865C1E68453A006E5557 /* PageLoadable.swift */; };
-		F44C867E1E68453A006E5557 /* PageLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44C865C1E68453A006E5557 /* PageLoadable.swift */; };
-		F44C867F1E68453A006E5557 /* PageLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44C865C1E68453A006E5557 /* PageLoadable.swift */; };
-		F44C86801E68453A006E5557 /* PagingMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44C865D1E68453A006E5557 /* PagingMenuController.swift */; };
-		F44C86811E68453A006E5557 /* PagingMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44C865D1E68453A006E5557 /* PagingMenuController.swift */; };
-		F44C86821E68453A006E5557 /* PagingMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44C865D1E68453A006E5557 /* PagingMenuController.swift */; };
-		F44C86831E68453A006E5557 /* PagingMenuControllerCustomizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44C865E1E68453A006E5557 /* PagingMenuControllerCustomizable.swift */; };
-		F44C86841E68453A006E5557 /* PagingMenuControllerCustomizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44C865E1E68453A006E5557 /* PagingMenuControllerCustomizable.swift */; };
-		F44C86851E68453A006E5557 /* PagingMenuControllerCustomizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44C865E1E68453A006E5557 /* PagingMenuControllerCustomizable.swift */; };
-		F44C86861E68453A006E5557 /* PagingValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44C865F1E68453A006E5557 /* PagingValidator.swift */; };
-		F44C86871E68453A006E5557 /* PagingValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44C865F1E68453A006E5557 /* PagingValidator.swift */; };
-		F44C86881E68453A006E5557 /* PagingValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44C865F1E68453A006E5557 /* PagingValidator.swift */; };
-		F44C86891E68453A006E5557 /* PagingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44C86601E68453A006E5557 /* PagingViewController.swift */; };
-		F44C868A1E68453A006E5557 /* PagingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44C86601E68453A006E5557 /* PagingViewController.swift */; };
-		F44C868B1E68453A006E5557 /* PagingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44C86601E68453A006E5557 /* PagingViewController.swift */; };
-		F44C868C1E68453A006E5557 /* ViewCleanable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44C86611E68453A006E5557 /* ViewCleanable.swift */; };
-		F44C868D1E68453A006E5557 /* ViewCleanable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44C86611E68453A006E5557 /* ViewCleanable.swift */; };
-		F44C868E1E68453A006E5557 /* ViewCleanable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44C86611E68453A006E5557 /* ViewCleanable.swift */; };
 		F44D9FAF1E5EBE14006A7E23 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F464BD6E1DA8CDD500032C88 /* QuartzCore.framework */; };
 		F44D9FB01E5EBE4A006A7E23 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F464BD741DA8CE6B00032C88 /* CoreMotion.framework */; };
 		F44D9FB11E5EBE75006A7E23 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F464BD721DA8CE5600032C88 /* libsqlite3.0.tbd */; };
@@ -1010,21 +965,6 @@
 		F4428C981DDD500D000FEFA4 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		F44C85FF1E683CAB006E5557 /* YLProgressBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLProgressBar.h; sourceTree = "<group>"; };
 		F44C86001E683CAB006E5557 /* YLProgressBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLProgressBar.m; sourceTree = "<group>"; };
-		F44C86531E68453A006E5557 /* GestureHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GestureHandler.swift; sourceTree = "<group>"; };
-		F44C86541E68453A006E5557 /* LabelSizeCalculatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelSizeCalculatable.swift; sourceTree = "<group>"; };
-		F44C86551E68453A006E5557 /* MenuItemMultipliable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuItemMultipliable.swift; sourceTree = "<group>"; };
-		F44C86561E68453A006E5557 /* MenuItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuItemView.swift; sourceTree = "<group>"; };
-		F44C86571E68453A006E5557 /* MenuItemViewCustomizable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuItemViewCustomizable.swift; sourceTree = "<group>"; };
-		F44C86581E68453A006E5557 /* MenuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
-		F44C86591E68453A006E5557 /* MenuViewCustomizable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewCustomizable.swift; sourceTree = "<group>"; };
-		F44C865A1E68453A006E5557 /* Pagable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pagable.swift; sourceTree = "<group>"; };
-		F44C865B1E68453A006E5557 /* PageDetectable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageDetectable.swift; sourceTree = "<group>"; };
-		F44C865C1E68453A006E5557 /* PageLoadable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageLoadable.swift; sourceTree = "<group>"; };
-		F44C865D1E68453A006E5557 /* PagingMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagingMenuController.swift; sourceTree = "<group>"; };
-		F44C865E1E68453A006E5557 /* PagingMenuControllerCustomizable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagingMenuControllerCustomizable.swift; sourceTree = "<group>"; };
-		F44C865F1E68453A006E5557 /* PagingValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagingValidator.swift; sourceTree = "<group>"; };
-		F44C86601E68453A006E5557 /* PagingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagingViewController.swift; sourceTree = "<group>"; };
-		F44C86611E68453A006E5557 /* ViewCleanable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewCleanable.swift; sourceTree = "<group>"; };
 		F44DC7C11D59C6D400E5979B /* DOFavoriteButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DOFavoriteButton.swift; sourceTree = "<group>"; };
 		F452CD521CDC4CD2001A30E8 /* OrderFormViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderFormViewController.swift; sourceTree = "<group>"; };
 		F452CD561CDC5839001A30E8 /* OrderFormViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OrderFormViewCell.swift; path = ../OrderForm/OrderFormViewCell.swift; sourceTree = "<group>"; };
@@ -1430,7 +1370,6 @@
 		30E3366C1C27C41800DCF1C5 /* Tool */ = {
 			isa = PBXGroup;
 			children = (
-				F44C86521E68453A006E5557 /* PagingMenuController */,
 				F44C85FE1E683CAB006E5557 /* YLProgressBar */,
 				F491A8BF1C7364C500B5D520 /* Refresher */,
 				F45E69D71C8D278A00BD0859 /* ThemeTool */,
@@ -1624,28 +1563,6 @@
 				F44C86001E683CAB006E5557 /* YLProgressBar.m */,
 			);
 			path = YLProgressBar;
-			sourceTree = "<group>";
-		};
-		F44C86521E68453A006E5557 /* PagingMenuController */ = {
-			isa = PBXGroup;
-			children = (
-				F44C86531E68453A006E5557 /* GestureHandler.swift */,
-				F44C86541E68453A006E5557 /* LabelSizeCalculatable.swift */,
-				F44C86551E68453A006E5557 /* MenuItemMultipliable.swift */,
-				F44C86561E68453A006E5557 /* MenuItemView.swift */,
-				F44C86571E68453A006E5557 /* MenuItemViewCustomizable.swift */,
-				F44C86581E68453A006E5557 /* MenuView.swift */,
-				F44C86591E68453A006E5557 /* MenuViewCustomizable.swift */,
-				F44C865A1E68453A006E5557 /* Pagable.swift */,
-				F44C865B1E68453A006E5557 /* PageDetectable.swift */,
-				F44C865C1E68453A006E5557 /* PageLoadable.swift */,
-				F44C865D1E68453A006E5557 /* PagingMenuController.swift */,
-				F44C865E1E68453A006E5557 /* PagingMenuControllerCustomizable.swift */,
-				F44C865F1E68453A006E5557 /* PagingValidator.swift */,
-				F44C86601E68453A006E5557 /* PagingViewController.swift */,
-				F44C86611E68453A006E5557 /* ViewCleanable.swift */,
-			);
-			path = PagingMenuController;
 			sourceTree = "<group>";
 		};
 		F452CD551CDC5823001A30E8 /* OrderForm */ = {
@@ -2385,7 +2302,6 @@
 				F427FFAB1CEDA35400EAB748 /* LearningReportKnowledgeCell.swift in Sources */,
 				F48BBAD21CE4309B00774297 /* CouponRulesPopupWindow.swift in Sources */,
 				F4D0D14F1C9FACFC00B25704 /* TeacherFilterPopupWindow.swift in Sources */,
-				F44C86861E68453A006E5557 /* PagingValidator.swift in Sources */,
 				F40B53CE1C84140C00C20037 /* MalaInstance.swift in Sources */,
 				308063951C3A1C9800729832 /* Extension+UILabel.swift in Sources */,
 				F45E69D21C892F0500BD0859 /* HandlePingppBehaviour.swift in Sources */,
@@ -2432,11 +2348,9 @@
 				F49432D81D237B34001C4D22 /* FilterBar.swift in Sources */,
 				30D4AA051C23E07600C5A336 /* Common.swift in Sources */,
 				F45871EB1C51D7910048D93F /* CourseChoosingTableView.swift in Sources */,
-				F44C866E1E68453A006E5557 /* MenuItemViewCustomizable.swift in Sources */,
 				F48C59FD1C8701FA0024EE17 /* JSSAlertView.swift in Sources */,
 				30E336621C27A8AA00DCF1C5 /* BaseObjectModel.swift in Sources */,
 				F427FFA71CEDA33700EAB748 /* LearningReportHomeworkDataCell.swift in Sources */,
-				F44C86891E68453A006E5557 /* PagingViewController.swift in Sources */,
 				F4D0D17E1CA148DF00B25704 /* FloatRatingView.swift in Sources */,
 				F402C9961C4F69C100E229FA /* TeacherTableView.swift in Sources */,
 				F407DA081DDEA12B00C4ABB5 /* ProfileItemCollectionViewCell.swift in Sources */,
@@ -2445,7 +2359,6 @@
 				F46065291C97B168004056B1 /* CouponViewController.swift in Sources */,
 				F4D6785B1CEACD0E009EC956 /* MemberSerivceCell.swift in Sources */,
 				30D4AA141C2417A700C5A336 /* Extension+UIButton.swift in Sources */,
-				F44C86831E68453A006E5557 /* PagingMenuControllerCustomizable.swift in Sources */,
 				F49432DC1D237BBE001C4D22 /* ConditionObject.swift in Sources */,
 				F452CD531CDC4CD2001A30E8 /* OrderFormViewController.swift in Sources */,
 				3037B5A21C3BAB15005672D9 /* TeacherDetailsPhotosCell.swift in Sources */,
@@ -2456,23 +2369,18 @@
 				307DA2051C4A59CD00891F22 /* BaseFilterView.swift in Sources */,
 				30E3365F1C27A82C00DCF1C5 /* Extension+UIColor.swift in Sources */,
 				F45F27EC1CA53A2900F0012C /* MalaLocationService.swift in Sources */,
-				F44C868C1E68453A006E5557 /* ViewCleanable.swift in Sources */,
 				F48C59FF1C8703EA0024EE17 /* MalaEnum.swift in Sources */,
-				F44C86801E68453A006E5557 /* PagingMenuController.swift in Sources */,
 				F46065221C97B168004056B1 /* FindTeacherViewController.swift in Sources */,
 				3037B59F1C3BAACB005672D9 /* TeacherDetailsHighScoreCell.swift in Sources */,
 				F4C5C2371C757EF600FB833B /* CourseChoosingServiceTableView.swift in Sources */,
 				F45F0DDD1CF6E142004DC1A6 /* ThemeHorizontalBarChartView.swift in Sources */,
 				F40B53B21C7EF00E00C20037 /* MalaSupport.swift in Sources */,
 				F40B53C81C83F98F00C20037 /* PaymentTableView.swift in Sources */,
-				F44C86681E68453A006E5557 /* MenuItemMultipliable.swift in Sources */,
-				F44C86741E68453A006E5557 /* MenuViewCustomizable.swift in Sources */,
 				F4331B9A1DD322A1003F062D /* Extension+Date.swift in Sources */,
 				F40D896C1C7DB6E300BD6871 /* MalaConfig.swift in Sources */,
 				F4428C911DDC8E54000FEFA4 /* BaseWindow.swift in Sources */,
 				F41A01AC1D212B1F0069CF29 /* MalaBaseCell.swift in Sources */,
 				F452CD571CDC5839001A30E8 /* OrderFormViewCell.swift in Sources */,
-				F44C866B1E68453A006E5557 /* MenuItemView.swift in Sources */,
 				F4B3C67F1CFD439B00C1B423 /* SingleTopicData.swift in Sources */,
 				3037B5991C3BAA81005672D9 /* TeacherDetailsSubjectCell.swift in Sources */,
 				F4303A5B1E6565C50037D64D /* Images.swift in Sources */,
@@ -2481,7 +2389,6 @@
 				F40D896A1C7DB50700BD6871 /* MalaUserDefaults.swift in Sources */,
 				F4215D6B1D50521A0014B653 /* FavoriteViewController.swift in Sources */,
 				F43F44C51D06B66800B7A358 /* CommentViewCell.swift in Sources */,
-				F44C86711E68453A006E5557 /* MenuView.swift in Sources */,
 				F427FFAD1CEDA36500EAB748 /* LearningReportAbilityStructureCell.swift in Sources */,
 				F45871EE1C51DFB60048D93F /* CourseChoosingGradeCell.swift in Sources */,
 				F4E1061C1CBBA35B001AD4AF /* BaseViewController.swift in Sources */,
@@ -2489,10 +2396,8 @@
 				F40B53D01C841A9800C20037 /* PaymentChannelCell.swift in Sources */,
 				F4303A581E6565C50037D64D /* Colors.swift in Sources */,
 				F4D0D1491C9A4F3E00B25704 /* StudentCourseModel.swift in Sources */,
-				F44C867A1E68453A006E5557 /* PageDetectable.swift in Sources */,
 				F4FF66FB1DB88EAC0036E299 /* LiveCourseDetailLecturerCell.swift in Sources */,
 				304D6D381C3E92D500282925 /* Extension+UIImageView.swift in Sources */,
-				F44C86651E68453A006E5557 /* LabelSizeCalculatable.swift in Sources */,
 				F48BBADA1CE57F9100774297 /* OrderFormPaymentChannelCell.swift in Sources */,
 				30E336751C27F61900DCF1C5 /* ResultModel.swift in Sources */,
 				307788501C297C34007AF6B0 /* Extension+UIImage.swift in Sources */,
@@ -2517,7 +2422,6 @@
 				F460652D1C97B1C8004056B1 /* AboutViewController.swift in Sources */,
 				307AB8A21C33CDD200D8397F /* TeacherDetailModel.swift in Sources */,
 				F4ADCFE41D0FC3CD004D517A /* CourseTableViewController.swift in Sources */,
-				F44C86621E68453A006E5557 /* GestureHandler.swift in Sources */,
 				F41CE64F1D86826C00B57F69 /* SchoolTableViewController.swift in Sources */,
 				F4F29B061D10FF92000D1904 /* SingleCourseView.swift in Sources */,
 				303BCFF21C44A86200B37DD9 /* SchoolModel.swift in Sources */,
@@ -2532,7 +2436,6 @@
 				F4D678591CEACCF2009EC956 /* LearningReportCell.swift in Sources */,
 				F48BBADE1CE5816800774297 /* OrderFormInfoViewController.swift in Sources */,
 				F4402D851C5729A200E7D3DB /* ClassScheduleDayModel.swift in Sources */,
-				F44C86771E68453A006E5557 /* Pagable.swift in Sources */,
 				F474E89D1CF2A9ED0025A865 /* SimpleReportResultModel.swift in Sources */,
 				30B5980F1C451A8900169390 /* MemberServiceModel.swift in Sources */,
 				F40B53AE1C7EDA7500C20037 /* MalaNetworking.swift in Sources */,
@@ -2589,7 +2492,6 @@
 				F4B3C6771CFD3EBB00C1B423 /* SingleHomeworkData.swift in Sources */,
 				F4C5C2401C75CFCC00FB833B /* IntroductionModel.swift in Sources */,
 				308063981C3A271C00729832 /* Extension+UIView.swift in Sources */,
-				F44C867D1E68453A006E5557 /* PageLoadable.swift in Sources */,
 				F46065201C97B168004056B1 /* CourseChoosingViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2605,7 +2507,6 @@
 				35FF7A621CF8325A000A70EE /* OtherServiceModel.swift in Sources */,
 				35FF7A631CF8325A000A70EE /* LearningReportKnowledgeCell.swift in Sources */,
 				35FF7A651CF8325A000A70EE /* CouponRulesPopupWindow.swift in Sources */,
-				F44C86871E68453A006E5557 /* PagingValidator.swift in Sources */,
 				35FF7A671CF8325A000A70EE /* TeacherFilterPopupWindow.swift in Sources */,
 				35FF7A681CF8325A000A70EE /* MalaInstance.swift in Sources */,
 				35FF7A691CF8325A000A70EE /* Extension+UILabel.swift in Sources */,
@@ -2652,11 +2553,9 @@
 				F49432D91D237B34001C4D22 /* FilterBar.swift in Sources */,
 				35FF7A8A1CF8325A000A70EE /* CourseChoosingTableView.swift in Sources */,
 				35FF7A8B1CF8325A000A70EE /* JSSAlertView.swift in Sources */,
-				F44C866F1E68453A006E5557 /* MenuItemViewCustomizable.swift in Sources */,
 				35FF7A8C1CF8325A000A70EE /* BaseObjectModel.swift in Sources */,
 				35FF7A8D1CF8325A000A70EE /* LearningReportHomeworkDataCell.swift in Sources */,
 				35FF7A8E1CF8325A000A70EE /* FloatRatingView.swift in Sources */,
-				F44C868A1E68453A006E5557 /* PagingViewController.swift in Sources */,
 				35FF7A8F1CF8325A000A70EE /* TeacherTableView.swift in Sources */,
 				35FF7A901CF8325A000A70EE /* PaymentChannel.swift in Sources */,
 				F407DA091DDEA12B00C4ABB5 /* ProfileItemCollectionViewCell.swift in Sources */,
@@ -2665,7 +2564,6 @@
 				35FF7A921CF8325A000A70EE /* MemberSerivceCell.swift in Sources */,
 				F4B3C6741CFD3CF000C1B423 /* SubjectReport.swift in Sources */,
 				35FF7A931CF8325A000A70EE /* Extension+UIButton.swift in Sources */,
-				F44C86841E68453A006E5557 /* PagingMenuControllerCustomizable.swift in Sources */,
 				F49432DD1D237BBE001C4D22 /* ConditionObject.swift in Sources */,
 				35FF7A941CF8325A000A70EE /* OrderFormViewController.swift in Sources */,
 				35FF7A961CF8325A000A70EE /* TeacherDetailsPhotosCell.swift in Sources */,
@@ -2676,23 +2574,18 @@
 				35FF7A9A1CF8325A000A70EE /* BaseFilterView.swift in Sources */,
 				35FF7A9C1CF8325A000A70EE /* Extension+UIColor.swift in Sources */,
 				35FF7A9E1CF8325A000A70EE /* MalaLocationService.swift in Sources */,
-				F44C868D1E68453A006E5557 /* ViewCleanable.swift in Sources */,
 				35FF7AA01CF8325A000A70EE /* MalaEnum.swift in Sources */,
-				F44C86811E68453A006E5557 /* PagingMenuController.swift in Sources */,
 				35FF7AA11CF8325A000A70EE /* FindTeacherViewController.swift in Sources */,
 				35FF7AA21CF8325A000A70EE /* TeacherDetailsHighScoreCell.swift in Sources */,
 				35FF7AA31CF8325A000A70EE /* CourseChoosingServiceTableView.swift in Sources */,
 				35FF7AA41CF8325A000A70EE /* ThemeHorizontalBarChartView.swift in Sources */,
 				35FF7AA51CF8325A000A70EE /* MalaSupport.swift in Sources */,
 				35FF7AA61CF8325A000A70EE /* PaymentTableView.swift in Sources */,
-				F44C86691E68453A006E5557 /* MenuItemMultipliable.swift in Sources */,
-				F44C86751E68453A006E5557 /* MenuViewCustomizable.swift in Sources */,
 				F4331B9B1DD322A1003F062D /* Extension+Date.swift in Sources */,
 				35FF7AA71CF8325A000A70EE /* MalaConfig.swift in Sources */,
 				F4428C921DDC8E54000FEFA4 /* BaseWindow.swift in Sources */,
 				F41A01AD1D212B1F0069CF29 /* MalaBaseCell.swift in Sources */,
 				35FF7AA81CF8325A000A70EE /* OrderFormViewCell.swift in Sources */,
-				F44C866C1E68453A006E5557 /* MenuItemView.swift in Sources */,
 				F4B3C6801CFD439B00C1B423 /* SingleTopicData.swift in Sources */,
 				35FF7AA91CF8325A000A70EE /* TeacherDetailsSubjectCell.swift in Sources */,
 				F4303A5C1E6565C50037D64D /* Images.swift in Sources */,
@@ -2701,7 +2594,6 @@
 				35FF7AAC1CF8325A000A70EE /* MalaUserDefaults.swift in Sources */,
 				F4215D6C1D50521A0014B653 /* FavoriteViewController.swift in Sources */,
 				F43F44C61D06B66800B7A358 /* CommentViewCell.swift in Sources */,
-				F44C86721E68453A006E5557 /* MenuView.swift in Sources */,
 				35FF7AAD1CF8325A000A70EE /* LearningReportAbilityStructureCell.swift in Sources */,
 				35FF7AAF1CF8325A000A70EE /* CourseChoosingGradeCell.swift in Sources */,
 				35FF7AB01CF8325A000A70EE /* BaseViewController.swift in Sources */,
@@ -2709,10 +2601,8 @@
 				35FF7AB21CF8325A000A70EE /* PaymentChannelCell.swift in Sources */,
 				F4303A591E6565C50037D64D /* Colors.swift in Sources */,
 				35FF7AB31CF8325A000A70EE /* StudentCourseModel.swift in Sources */,
-				F44C867B1E68453A006E5557 /* PageDetectable.swift in Sources */,
 				F4FF66FC1DB88EAC0036E299 /* LiveCourseDetailLecturerCell.swift in Sources */,
 				35FF7AB41CF8325A000A70EE /* Extension+UIImageView.swift in Sources */,
-				F44C86661E68453A006E5557 /* LabelSizeCalculatable.swift in Sources */,
 				35FF7AB71CF8325A000A70EE /* OrderFormPaymentChannelCell.swift in Sources */,
 				35FF7AB81CF8325A000A70EE /* ResultModel.swift in Sources */,
 				35FF7ABA1CF8325A000A70EE /* Extension+UIImage.swift in Sources */,
@@ -2737,7 +2627,6 @@
 				35FF7AD01CF8325A000A70EE /* AboutViewController.swift in Sources */,
 				35FF7AD11CF8325A000A70EE /* TeacherDetailModel.swift in Sources */,
 				F4ADCFE51D0FC3CD004D517A /* CourseTableViewController.swift in Sources */,
-				F44C86631E68453A006E5557 /* GestureHandler.swift in Sources */,
 				F41CE6501D86826C00B57F69 /* SchoolTableViewController.swift in Sources */,
 				F4F29B071D10FF92000D1904 /* SingleCourseView.swift in Sources */,
 				35FF7AD31CF8325A000A70EE /* SchoolModel.swift in Sources */,
@@ -2752,7 +2641,6 @@
 				35FF7ADD1CF8325A000A70EE /* LearningReportCell.swift in Sources */,
 				35FF7ADF1CF8325A000A70EE /* OrderFormInfoViewController.swift in Sources */,
 				35FF7AE21CF8325A000A70EE /* ClassScheduleDayModel.swift in Sources */,
-				F44C86781E68453A006E5557 /* Pagable.swift in Sources */,
 				35FF7AE41CF8325A000A70EE /* SimpleReportResultModel.swift in Sources */,
 				35FF7AE51CF8325A000A70EE /* MemberServiceModel.swift in Sources */,
 				35FF7AE61CF8325A000A70EE /* MalaNetworking.swift in Sources */,
@@ -2809,7 +2697,6 @@
 				F4B3C6781CFD3EBB00C1B423 /* SingleHomeworkData.swift in Sources */,
 				35FF7B121CF8325A000A70EE /* IntroductionModel.swift in Sources */,
 				35FF7B131CF8325A000A70EE /* Extension+UIView.swift in Sources */,
-				F44C867E1E68453A006E5557 /* PageLoadable.swift in Sources */,
 				35FF7B161CF8325A000A70EE /* CourseChoosingViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2825,7 +2712,6 @@
 				35FF7B451CF83264000A70EE /* OtherServiceModel.swift in Sources */,
 				35FF7B461CF83264000A70EE /* LearningReportKnowledgeCell.swift in Sources */,
 				35FF7B481CF83264000A70EE /* CouponRulesPopupWindow.swift in Sources */,
-				F44C86881E68453A006E5557 /* PagingValidator.swift in Sources */,
 				35FF7B4A1CF83264000A70EE /* TeacherFilterPopupWindow.swift in Sources */,
 				35FF7B4B1CF83264000A70EE /* MalaInstance.swift in Sources */,
 				35FF7B4C1CF83264000A70EE /* Extension+UILabel.swift in Sources */,
@@ -2872,11 +2758,9 @@
 				F49432DA1D237B34001C4D22 /* FilterBar.swift in Sources */,
 				35FF7B6D1CF83264000A70EE /* CourseChoosingTableView.swift in Sources */,
 				35FF7B6E1CF83264000A70EE /* JSSAlertView.swift in Sources */,
-				F44C86701E68453A006E5557 /* MenuItemViewCustomizable.swift in Sources */,
 				35FF7B6F1CF83264000A70EE /* BaseObjectModel.swift in Sources */,
 				35FF7B701CF83264000A70EE /* LearningReportHomeworkDataCell.swift in Sources */,
 				35FF7B711CF83264000A70EE /* FloatRatingView.swift in Sources */,
-				F44C868B1E68453A006E5557 /* PagingViewController.swift in Sources */,
 				35FF7B721CF83264000A70EE /* TeacherTableView.swift in Sources */,
 				35FF7B731CF83264000A70EE /* PaymentChannel.swift in Sources */,
 				F407DA0A1DDEA12B00C4ABB5 /* ProfileItemCollectionViewCell.swift in Sources */,
@@ -2885,7 +2769,6 @@
 				35FF7B751CF83264000A70EE /* MemberSerivceCell.swift in Sources */,
 				F4B3C6751CFD3CF000C1B423 /* SubjectReport.swift in Sources */,
 				35FF7B761CF83264000A70EE /* Extension+UIButton.swift in Sources */,
-				F44C86851E68453A006E5557 /* PagingMenuControllerCustomizable.swift in Sources */,
 				F49432DE1D237BBE001C4D22 /* ConditionObject.swift in Sources */,
 				35FF7B771CF83264000A70EE /* OrderFormViewController.swift in Sources */,
 				35FF7B791CF83264000A70EE /* TeacherDetailsPhotosCell.swift in Sources */,
@@ -2896,23 +2779,18 @@
 				35FF7B7D1CF83264000A70EE /* BaseFilterView.swift in Sources */,
 				35FF7B7F1CF83264000A70EE /* Extension+UIColor.swift in Sources */,
 				35FF7B811CF83264000A70EE /* MalaLocationService.swift in Sources */,
-				F44C868E1E68453A006E5557 /* ViewCleanable.swift in Sources */,
 				35FF7B831CF83264000A70EE /* MalaEnum.swift in Sources */,
-				F44C86821E68453A006E5557 /* PagingMenuController.swift in Sources */,
 				35FF7B841CF83264000A70EE /* FindTeacherViewController.swift in Sources */,
 				35FF7B851CF83264000A70EE /* TeacherDetailsHighScoreCell.swift in Sources */,
 				35FF7B861CF83264000A70EE /* CourseChoosingServiceTableView.swift in Sources */,
 				35FF7B871CF83264000A70EE /* ThemeHorizontalBarChartView.swift in Sources */,
 				35FF7B881CF83264000A70EE /* MalaSupport.swift in Sources */,
 				35FF7B891CF83264000A70EE /* PaymentTableView.swift in Sources */,
-				F44C866A1E68453A006E5557 /* MenuItemMultipliable.swift in Sources */,
-				F44C86761E68453A006E5557 /* MenuViewCustomizable.swift in Sources */,
 				F4331B9C1DD322A1003F062D /* Extension+Date.swift in Sources */,
 				35FF7B8A1CF83264000A70EE /* MalaConfig.swift in Sources */,
 				F4428C931DDC8E54000FEFA4 /* BaseWindow.swift in Sources */,
 				F41A01AE1D212B1F0069CF29 /* MalaBaseCell.swift in Sources */,
 				35FF7B8B1CF83264000A70EE /* OrderFormViewCell.swift in Sources */,
-				F44C866D1E68453A006E5557 /* MenuItemView.swift in Sources */,
 				F4B3C6811CFD439B00C1B423 /* SingleTopicData.swift in Sources */,
 				35FF7B8C1CF83264000A70EE /* TeacherDetailsSubjectCell.swift in Sources */,
 				F4303A5D1E6565C50037D64D /* Images.swift in Sources */,
@@ -2921,7 +2799,6 @@
 				35FF7B8F1CF83264000A70EE /* MalaUserDefaults.swift in Sources */,
 				F4215D6D1D50521A0014B653 /* FavoriteViewController.swift in Sources */,
 				F43F44C71D06B66800B7A358 /* CommentViewCell.swift in Sources */,
-				F44C86731E68453A006E5557 /* MenuView.swift in Sources */,
 				35FF7B901CF83264000A70EE /* LearningReportAbilityStructureCell.swift in Sources */,
 				35FF7B921CF83264000A70EE /* CourseChoosingGradeCell.swift in Sources */,
 				35FF7B931CF83264000A70EE /* BaseViewController.swift in Sources */,
@@ -2929,10 +2806,8 @@
 				35FF7B951CF83264000A70EE /* PaymentChannelCell.swift in Sources */,
 				F4303A5A1E6565C50037D64D /* Colors.swift in Sources */,
 				35FF7B961CF83264000A70EE /* StudentCourseModel.swift in Sources */,
-				F44C867C1E68453A006E5557 /* PageDetectable.swift in Sources */,
 				F4FF66FD1DB88EAC0036E299 /* LiveCourseDetailLecturerCell.swift in Sources */,
 				35FF7B971CF83264000A70EE /* Extension+UIImageView.swift in Sources */,
-				F44C86671E68453A006E5557 /* LabelSizeCalculatable.swift in Sources */,
 				35FF7B9A1CF83264000A70EE /* OrderFormPaymentChannelCell.swift in Sources */,
 				35FF7B9B1CF83264000A70EE /* ResultModel.swift in Sources */,
 				35FF7B9D1CF83264000A70EE /* Extension+UIImage.swift in Sources */,
@@ -2957,7 +2832,6 @@
 				35FF7BB31CF83264000A70EE /* AboutViewController.swift in Sources */,
 				35FF7BB41CF83264000A70EE /* TeacherDetailModel.swift in Sources */,
 				F4ADCFE61D0FC3CD004D517A /* CourseTableViewController.swift in Sources */,
-				F44C86641E68453A006E5557 /* GestureHandler.swift in Sources */,
 				F41CE6511D86826C00B57F69 /* SchoolTableViewController.swift in Sources */,
 				F4F29B081D10FF92000D1904 /* SingleCourseView.swift in Sources */,
 				35FF7BB61CF83264000A70EE /* SchoolModel.swift in Sources */,
@@ -2972,7 +2846,6 @@
 				35FF7BC01CF83264000A70EE /* LearningReportCell.swift in Sources */,
 				35FF7BC21CF83264000A70EE /* OrderFormInfoViewController.swift in Sources */,
 				35FF7BC51CF83264000A70EE /* ClassScheduleDayModel.swift in Sources */,
-				F44C86791E68453A006E5557 /* Pagable.swift in Sources */,
 				35FF7BC71CF83264000A70EE /* SimpleReportResultModel.swift in Sources */,
 				35FF7BC81CF83264000A70EE /* MemberServiceModel.swift in Sources */,
 				35FF7BC91CF83264000A70EE /* MalaNetworking.swift in Sources */,
@@ -3029,7 +2902,6 @@
 				F4B3C6791CFD3EBB00C1B423 /* SingleHomeworkData.swift in Sources */,
 				35FF7BF51CF83264000A70EE /* IntroductionModel.swift in Sources */,
 				35FF7BF61CF83264000A70EE /* Extension+UIView.swift in Sources */,
-				F44C867F1E68453A006E5557 /* PageLoadable.swift in Sources */,
 				35FF7BF91CF83264000A70EE /* CourseChoosingViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
