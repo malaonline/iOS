@@ -14,6 +14,13 @@ open class BaseObjectModel: NSObject, NSCoding {
     var id: Int = 0
     var name: String?
     
+    var firstLetter: String {
+        get {
+            return name?.applyingTransform(StringTransform.mandarinToLatin, reverse: false)?
+                .applyingTransform(StringTransform.stripCombiningMarks, reverse: false)?.subStringToIndex(1) ?? "#"
+        }
+    }
+    
 
     // MARK: - Constructed
     override init() {
