@@ -66,17 +66,19 @@ func getURLScheme(_ channel: MalaPaymentChannel) -> String {
 ///
 /// - Parameter models: regions
 /// - Returns: regions data grouped by first letter in mandarin latin
-func handleRegion(_ models: [BaseObjectModel]) -> [String: [BaseObjectModel]] {
+func handleRegion(_ models: [BaseObjectModel]) -> (models: [[BaseObjectModel]], titles: [String]) {
     var dict: [String: [BaseObjectModel]] = [:]
-
+    
     for model in models {
         let letter: String = model.firstLetter
-        
-        if var array = dict[letter] {
-            array.append(model)
+        if let _ = dict[letter] {
+            dict[letter]?.append(model)
         }else {
             dict[letter] = [model]
         }
     }
-    return dict
+    
+    let array: [[BaseObjectModel]] = dict.values.enumerated().map{ $0.element }.sorted{ $0.0.first?.firstLetter < $0.1.first?.firstLetter }
+    let strings: [String] = array.map{ $0.first?.firstLetter ?? "#" }.sorted{ $0.0 < $0.1 }.map{ $0.uppercased() }
+    return (array, strings)
 }
