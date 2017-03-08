@@ -44,7 +44,6 @@ func couponIsExpired(_ timeStamp: TimeInterval) -> Bool {
     }
 }
 
-
 ///  根据支付方式获取AppURLScheme
 ///
 ///  - parameter channel: 支付手段
@@ -61,4 +60,23 @@ func getURLScheme(_ channel: MalaPaymentChannel) -> String {
     default:
         return ""
     }
+}
+
+/// Generate a dictionary and insert the data by first letter in mandarin latin
+///
+/// - Parameter models: regions
+/// - Returns: regions data grouped by first letter in mandarin latin
+func handleRegion(_ models: [BaseObjectModel]) -> [String: [BaseObjectModel]] {
+    var dict: [String: [BaseObjectModel]] = [:]
+
+    for model in models {
+        let letter: String = model.firstLetter
+        
+        if var array = dict[letter] {
+            array.append(model)
+        }else {
+            dict[letter] = [model]
+        }
+    }
+    return dict
 }
