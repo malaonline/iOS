@@ -7,26 +7,6 @@
 //
 
 import UIKit
-private func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
-  switch (lhs, rhs) {
-  case let (l?, r?):
-    return l < r
-  case (nil, _?):
-    return true
-  default:
-    return false
-  }
-}
-
-private func <= <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
-  switch (lhs, rhs) {
-  case let (l?, r?):
-    return l <= r
-  default:
-    return !(rhs < lhs)
-  }
-}
-
 
 class LoginViewController: UIViewController {
     
@@ -300,18 +280,21 @@ class LoginViewController: UIViewController {
         
         timer.scheduleRepeating(deadline: .now(), interval: 1)
         timer.setEventHandler { [weak self] in
-            if self?.callMeInSeconds <= 0 { // 倒计时完成
+            
+            guard let strongSelf = self else { return }
+            
+            if strongSelf.callMeInSeconds <= 0 { // 倒计时完成
                 timer.cancel()
-                DispatchQueue.main.async(execute: { () -> Void in
-                    self?.codeGetButton.setTitle(L10n.getVerificationCode, for: UIControlState())
-                    self?.codeGetButton.isEnabled = true
-                })
+                DispatchQueue.main.async{ () -> Void in
+                    strongSelf.codeGetButton.setTitle(L10n.getVerificationCode, for: UIControlState())
+                    strongSelf.codeGetButton.isEnabled = true
+                }
             }else { // 继续倒计时
-                DispatchQueue.main.async(execute: { () -> Void in
-                    self?.codeGetButton.setTitle(String(format: " %02ds后获取 ", Int((self?.callMeInSeconds)!)), for: .normal)
-                    self?.codeGetButton.isEnabled = false
-                })
-                self?.callMeInSeconds -= 1
+                DispatchQueue.main.async{ () -> Void in
+                    strongSelf.codeGetButton.setTitle(String(format: " %02ds后获取 ", Int(strongSelf.callMeInSeconds)), for: .normal)
+                    strongSelf.codeGetButton.isEnabled = false
+                }
+                strongSelf.callMeInSeconds -= 1
             }
         }
         timer.resume()

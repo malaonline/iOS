@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Proposer
 
 private let ProfileViewTableViewCellReuseID = "ProfileViewTableViewCellReuseID"
 private let ProfileViewTableViewItemCellReuseID = "ProfileViewTableViewItemCellReuseID"

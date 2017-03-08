@@ -114,7 +114,6 @@
 		35FDCEB61CAD0A2300A25FE8 /* TeacherDetailsSignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3027F6511C3F680400296ED3 /* TeacherDetailsSignupView.swift */; };
 		35FDCEB71CAD0A2300A25FE8 /* ThemeReloadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46064F51C93C375004056B1 /* ThemeReloadView.swift */; };
 		35FDCEB81CAD0A2300A25FE8 /* CommentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D0D14C1C9FA6B700B25704 /* CommentModel.swift */; };
-		35FDCEBA1CAD0A2300A25FE8 /* Proposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46064F91C96C8EF004056B1 /* Proposer.swift */; };
 		35FDCEBB1CAD0A2300A25FE8 /* MalaSingleWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45F27F91CAA600D00F0012C /* MalaSingleWebViewController.swift */; };
 		35FDCEBC1CAD0A2300A25FE8 /* CouponModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C5C2561C76B87800FB833B /* CouponModel.swift */; };
 		35FDCEBD1CAD0A2300A25FE8 /* KWStepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4402DAD1C58A64200E7D3DB /* KWStepper.swift */; };
@@ -275,7 +274,6 @@
 		35FF7AC01CF8325A000A70EE /* ThemeIntroductionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F427FF9D1CEC1DFA00EAB748 /* ThemeIntroductionView.swift */; };
 		35FF7AC11CF8325A000A70EE /* CommentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D0D14C1C9FA6B700B25704 /* CommentModel.swift */; };
 		35FF7AC21CF8325A000A70EE /* MalaBaseCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F427FFB01CEDA47700EAB748 /* MalaBaseCardCell.swift */; };
-		35FF7AC41CF8325A000A70EE /* Proposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46064F91C96C8EF004056B1 /* Proposer.swift */; };
 		35FF7AC51CF8325A000A70EE /* MalaSingleWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45F27F91CAA600D00F0012C /* MalaSingleWebViewController.swift */; };
 		35FF7AC61CF8325A000A70EE /* OrderFormOtherInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48BBADB1CE57F9E00774297 /* OrderFormOtherInfoCell.swift */; };
 		35FF7AC71CF8325A000A70EE /* CouponModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C5C2561C76B87800FB833B /* CouponModel.swift */; };
@@ -432,7 +430,6 @@
 		35FF7BA31CF83264000A70EE /* ThemeIntroductionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F427FF9D1CEC1DFA00EAB748 /* ThemeIntroductionView.swift */; };
 		35FF7BA41CF83264000A70EE /* CommentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D0D14C1C9FA6B700B25704 /* CommentModel.swift */; };
 		35FF7BA51CF83264000A70EE /* MalaBaseCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F427FFB01CEDA47700EAB748 /* MalaBaseCardCell.swift */; };
-		35FF7BA71CF83264000A70EE /* Proposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46064F91C96C8EF004056B1 /* Proposer.swift */; };
 		35FF7BA81CF83264000A70EE /* MalaSingleWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45F27F91CAA600D00F0012C /* MalaSingleWebViewController.swift */; };
 		35FF7BA91CF83264000A70EE /* OrderFormOtherInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48BBADB1CE57F9E00774297 /* OrderFormOtherInfoCell.swift */; };
 		35FF7BAA1CF83264000A70EE /* CouponModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C5C2561C76B87800FB833B /* CouponModel.swift */; };
@@ -646,7 +643,6 @@
 		F46064F21C926E16004056B1 /* ProfileElementModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46064F11C926E16004056B1 /* ProfileElementModel.swift */; };
 		F46064F61C93C375004056B1 /* ThemeReloadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46064F51C93C375004056B1 /* ThemeReloadView.swift */; };
 		F46064F81C941829004056B1 /* SaveNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46064F71C941829004056B1 /* SaveNameView.swift */; };
-		F46064FA1C96C8EF004056B1 /* Proposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46064F91C96C8EF004056B1 /* Proposer.swift */; };
 		F46065201C97B168004056B1 /* CourseChoosingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46065101C97B168004056B1 /* CourseChoosingViewController.swift */; };
 		F46065211C97B168004056B1 /* FilterResultController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46065111C97B168004056B1 /* FilterResultController.swift */; };
 		F46065221C97B168004056B1 /* FindTeacherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46065121C97B168004056B1 /* FindTeacherViewController.swift */; };
@@ -992,7 +988,6 @@
 		F46064F11C926E16004056B1 /* ProfileElementModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileElementModel.swift; sourceTree = "<group>"; };
 		F46064F51C93C375004056B1 /* ThemeReloadView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeReloadView.swift; sourceTree = "<group>"; };
 		F46064F71C941829004056B1 /* SaveNameView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveNameView.swift; sourceTree = "<group>"; };
-		F46064F91C96C8EF004056B1 /* Proposer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Proposer.swift; sourceTree = "<group>"; };
 		F46065101C97B168004056B1 /* CourseChoosingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseChoosingViewController.swift; sourceTree = "<group>"; };
 		F46065111C97B168004056B1 /* FilterResultController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterResultController.swift; sourceTree = "<group>"; };
 		F46065121C97B168004056B1 /* FindTeacherViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindTeacherViewController.swift; sourceTree = "<group>"; };
@@ -1374,7 +1369,6 @@
 				F491A8BF1C7364C500B5D520 /* Refresher */,
 				F45E69D71C8D278A00BD0859 /* ThemeTool */,
 				F4402DAD1C58A64200E7D3DB /* KWStepper.swift */,
-				F46064F91C96C8EF004056B1 /* Proposer.swift */,
 				F48C59FC1C8701FA0024EE17 /* JSSAlertView.swift */,
 				30EB98B61C3CEBD6003977FF /* MATabListView.swift */,
 				307788571C2A58B1007AF6B0 /* OperatorOverload.swift */,
@@ -2408,7 +2402,6 @@
 				F427FF9E1CEC1DFA00EAB748 /* ThemeIntroductionView.swift in Sources */,
 				F4D0D14D1C9FA6B700B25704 /* CommentModel.swift in Sources */,
 				F427FFB11CEDA47700EAB748 /* MalaBaseCardCell.swift in Sources */,
-				F46064FA1C96C8EF004056B1 /* Proposer.swift in Sources */,
 				F45F27FA1CAA600D00F0012C /* MalaSingleWebViewController.swift in Sources */,
 				F44C86011E683CAB006E5557 /* YLProgressBar.m in Sources */,
 				F48BBADC1CE57F9E00774297 /* OrderFormOtherInfoCell.swift in Sources */,
@@ -2613,7 +2606,6 @@
 				35FF7AC01CF8325A000A70EE /* ThemeIntroductionView.swift in Sources */,
 				35FF7AC11CF8325A000A70EE /* CommentModel.swift in Sources */,
 				35FF7AC21CF8325A000A70EE /* MalaBaseCardCell.swift in Sources */,
-				35FF7AC41CF8325A000A70EE /* Proposer.swift in Sources */,
 				35FF7AC51CF8325A000A70EE /* MalaSingleWebViewController.swift in Sources */,
 				F44C86021E683CAB006E5557 /* YLProgressBar.m in Sources */,
 				35FF7AC61CF8325A000A70EE /* OrderFormOtherInfoCell.swift in Sources */,
@@ -2818,7 +2810,6 @@
 				35FF7BA31CF83264000A70EE /* ThemeIntroductionView.swift in Sources */,
 				35FF7BA41CF83264000A70EE /* CommentModel.swift in Sources */,
 				35FF7BA51CF83264000A70EE /* MalaBaseCardCell.swift in Sources */,
-				35FF7BA71CF83264000A70EE /* Proposer.swift in Sources */,
 				35FF7BA81CF83264000A70EE /* MalaSingleWebViewController.swift in Sources */,
 				F44C86031E683CAB006E5557 /* YLProgressBar.m in Sources */,
 				35FF7BA91CF83264000A70EE /* OrderFormOtherInfoCell.swift in Sources */,
@@ -2975,7 +2966,6 @@
 				35FDCEB61CAD0A2300A25FE8 /* TeacherDetailsSignupView.swift in Sources */,
 				35FDCEB71CAD0A2300A25FE8 /* ThemeReloadView.swift in Sources */,
 				35FDCEB81CAD0A2300A25FE8 /* CommentModel.swift in Sources */,
-				35FDCEBA1CAD0A2300A25FE8 /* Proposer.swift in Sources */,
 				35FDCEBB1CAD0A2300A25FE8 /* MalaSingleWebViewController.swift in Sources */,
 				35FDCEBC1CAD0A2300A25FE8 /* CouponModel.swift in Sources */,
 				35FDCEBD1CAD0A2300A25FE8 /* KWStepper.swift in Sources */,

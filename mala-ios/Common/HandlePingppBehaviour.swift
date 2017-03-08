@@ -84,7 +84,7 @@ class HandlePingppBehaviour: NSObject {
                 // 判断订单状态
                 if order.status == MalaOrderStatus.paid.rawValue {
                     
-                    if order.isTeacherPublished == false {
+                    if order.isTeacherPublished == false && order.isLiveCourse == false {
                         // 老师已下架
                         self.showTeacherDisabledAlert()
                     }else if order.isTimeslotAllocated == false {

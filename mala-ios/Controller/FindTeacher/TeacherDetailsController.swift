@@ -29,7 +29,7 @@ class TeacherDetailsController: BaseViewController, UIGestureRecognizerDelegate,
 
     // MARK: - Property
     var teacherID: Int = 0
-    var model: TeacherDetailModel = MalaConfig.defaultTeacherDetail() {
+    var model: TeacherDetailModel = TeacherDetailModel() {
         didSet {
             DispatchQueue.main.async {
                 MalaOrderOverView.avatarURL = self.model.avatar

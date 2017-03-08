@@ -24,13 +24,14 @@ def pods
   pod 'KSCrash', '~> 1.8.13'
   
   pod 'QRCode', '~> 2.0'
+  pod 'Proposer', '~> 1.1.0'
   pod 'WZLBadge', '~> 1.2.5'
+  pod 'Toast-Swift', '~> 2.0.0'
   pod 'KYCircularProgress', '~> 1.0.0'
   pod 'IQKeyboardManagerSwift', '~> 4.0.8'
   pod 'KMNavigationBarTransition', '~> 1.0.0'
   pod 'AnimatedGIFImageSerialization', '~> 0.2.0'
   pod 'SKPhotoBrowser', :git => 'https://github.com/suzuki-0000/SKPhotoBrowser.git', :branch => 'swift3'
-  pod 'Toast-Swift', '~> 2.0.0'
   pod 'PagingMenuController', :git => 'https://github.com/kitasuke/PagingMenuController.git', :commit => '3d4e5cc2096bc7ebbf9ff9e3b31c8d5e168062d5'
   # pod 'YLProgressBar', '~> 3.10.1'
 end

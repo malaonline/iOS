@@ -32,7 +32,7 @@ class ThemeIntroductionView: BaseViewController, UICollectionViewDelegate, UICol
     /// 轮播视图
     private lazy var collectionView: UICollectionView = {
         let frame = CGRect(x: 0, y: 0, width: MalaScreenWidth, height: MalaScreenHeight-MalaScreenNaviHeight)
-        let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: ThemeIntroductionFlowLayout(frame: frame))
+        let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: CommonFlowLayout(type: .default, frame: frame))
         return collectionView
     }()
     
@@ -212,31 +212,5 @@ class ThemeIntroductionViewCell: UICollectionViewCell {
             maker.centerX.equalTo(imageView)
             maker.width.equalTo(200)
         }
-    }
-}
-
-class ThemeIntroductionFlowLayout: UICollectionViewFlowLayout {
-    
-    private var frame = CGRect.zero
-    
-    
-    // MARK: - Instance Method
-    init(frame: CGRect) {
-        super.init()
-        self.frame = frame
-        configure()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    
-    // MARK: - Private Method
-    private func configure() {
-        scrollDirection = .horizontal
-        itemSize = frame.size
-        minimumInteritemSpacing = 0
-        minimumLineSpacing = 0
     }
 }
