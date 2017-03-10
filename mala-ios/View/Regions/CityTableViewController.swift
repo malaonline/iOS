@@ -35,6 +35,7 @@ class CityTableViewController: UIViewController, UITableViewDelegate, UITableVie
     // MARK: - Private variables
     private var _groupedModels: [[BaseObjectModel]] = []
     private var _indexTitles: [String] = []
+    private var _allLetter: [String] = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
     
     // MARK: - Components
     // 城市列表
@@ -85,8 +86,10 @@ class CityTableViewController: UIViewController, UITableViewDelegate, UITableVie
         tableView.delegate = self
         tableView.dataSource = self
         tableView.separatorStyle = .singleLine
+        tableView.separatorColor = UIColor(named: .SeparatorLine)
         tableView.backgroundColor = UIColor(named: .BaseBoard)
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: CityTableViewCellReuseId)
+        tableView.tableFooterView = UIView()
+        tableView.register(RegionUnitCell.self, forCellReuseIdentifier: CityTableViewCellReuseId)
         
         // SubViews
         view.addSubview(tableView)
@@ -116,9 +119,10 @@ class CityTableViewController: UIViewController, UITableViewDelegate, UITableVie
         }
     }
     
+    
     // MARK: - Index
     func sectionIndexTitles(for tableView: UITableView) -> [String]? {
-        return _indexTitles
+        return _allLetter
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -126,7 +130,13 @@ class CityTableViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(_ tableView: UITableView, sectionForSectionIndexTitle title: String, at index: Int) -> Int {
-        return index
+        return _indexTitles.index(of: title) ?? index
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view = tableView.headerView(forSection: section)
+        view?.textLabel?.font = FontFamily.PingFangSC.Regular.font(14)
+        return view
     }
     
     
@@ -138,10 +148,11 @@ class CityTableViewController: UIViewController, UITableViewDelegate, UITableVie
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return _groupedModels[section].count
     }
-    
+ 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: CityTableViewCellReuseId, for: indexPath)
-        cell.textLabel?.text = _groupedModels[indexPath.section][indexPath.row].name
+        let cell = tableView.dequeueReusableCell(withIdentifier: CityTableViewCellReuseId, for: indexPath) as! RegionUnitCell
+        cell.city = _groupedModels[indexPath.section][indexPath.row]
+        cell.hideSeparator()
         return cell
     }
     

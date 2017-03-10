@@ -20,6 +20,7 @@ class RegionUnitCell: UITableViewCell {
     // 校区数据模型
     var school: SchoolModel = SchoolModel() {
         didSet {
+            setupSchool()
             titleLabel.text = school.name
             addressLabel.text = school.address
         }
@@ -69,11 +70,28 @@ class RegionUnitCell: UITableViewCell {
         
         // SubViews
         contentView.addSubview(titleLabel)
-        contentView.addSubview(addressLabel)
         contentView.addSubview(separatorLine)
         
         // Autolayout
         titleLabel.snp.makeConstraints { (maker) in
+            maker.top.equalTo(contentView).offset(13)
+            maker.left.equalTo(contentView).offset(12)
+            maker.height.equalTo(14)
+            maker.bottom.equalTo(separatorLine.snp.top).offset(-13)
+        }
+        separatorLine.snp.makeConstraints { (maker) in
+            maker.top.equalTo(titleLabel.snp.bottom).offset(13)
+            maker.left.equalTo(contentView).offset(12)
+            maker.right.equalTo(contentView).offset(12)
+            maker.height.equalTo(MalaScreenOnePixel)
+            maker.bottom.equalTo(contentView)
+        }
+    }
+    
+    private func setupSchool() {
+        contentView.addSubview(addressLabel)
+        
+        titleLabel.snp.remakeConstraints { (maker) in
             maker.top.equalTo(contentView).offset(13)
             maker.left.equalTo(contentView).offset(12)
             maker.height.equalTo(14)
@@ -85,7 +103,7 @@ class RegionUnitCell: UITableViewCell {
             maker.height.equalTo(12)
             maker.bottom.equalTo(separatorLine.snp.top).offset(-13)
         }
-        separatorLine.snp.makeConstraints { (maker) in
+        separatorLine.snp.remakeConstraints { (maker) in
             maker.top.equalTo(addressLabel.snp.bottom).offset(13)
             maker.left.equalTo(contentView).offset(12)
             maker.right.equalTo(contentView).offset(12)
@@ -93,6 +111,7 @@ class RegionUnitCell: UITableViewCell {
             maker.bottom.equalTo(contentView)
         }
     }
+
     
     func hideSeparator() {
         separatorLine.isHidden = true
