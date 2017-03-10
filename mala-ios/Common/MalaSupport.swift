@@ -87,7 +87,6 @@ public func makeStatusBarWhite() {
 
 public func MalaRandomColor() -> UIColor {
     return MalaConfig.malaTagColors()[randomInRange(Range(uncheckedBounds: (lower: 0, upper: MalaConfig.malaTagColors().count-1)))]
-//    return MalaConfig.malaTagColors()[randomInRange(0...MalaConfig.malaTagColors().count-1)]
 }
 
 ///  根据Date获取星期数

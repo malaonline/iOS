@@ -14,6 +14,14 @@ open class BaseObjectModel: NSObject, NSCoding {
     var id: Int = 0
     var name: String?
     
+    /// first letter that object name transform in mandarin latin, default is "#".
+    var firstLetter: String {
+        get {
+            return name?.applyingTransform(StringTransform.mandarinToLatin, reverse: false)?
+                .applyingTransform(StringTransform.stripCombiningMarks, reverse: false)?.subStringToIndex(1) ?? "#"
+        }
+    }
+    
 
     // MARK: - Constructed
     override init() {
