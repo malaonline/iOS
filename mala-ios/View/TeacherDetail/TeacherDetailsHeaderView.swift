@@ -61,9 +61,7 @@ class TeacherDetailsHeaderView: UIView {
         imageView.layer.cornerRadius = (MalaLayout_AvatarSize-5)*0.5
         imageView.layer.masksToBounds = true
         imageView.contentMode = .scaleAspectFill
-        imageView.tag = 999
-        imageView.isUserInteractionEnabled = true
-        imageView.addTapEvent(target: self, action: #selector(TeacherDetailsHeaderView.avatarDidTap))
+        imageView.enableOneTapToLaunchPhotoBrowser()
         return imageView
     }()
     /// 头像背景
@@ -321,10 +319,6 @@ class TeacherDetailsHeaderView: UIView {
             maker.left.equalTo(levelProgressBar.snp.right).offset(12)
             maker.top.equalTo(levelProgressBar.snp.centerY).offset(5)
         }
-    }
-    
-    @objc private func avatarDidTap() {
-        NotificationCenter.default.post(name: MalaNotification_PushPhotoBrowser, object: avatarView)
     }
     
     deinit {

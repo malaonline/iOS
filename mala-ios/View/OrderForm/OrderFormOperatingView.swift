@@ -166,37 +166,14 @@ class OrderFormOperatingView: UIView {
         }
         
         switch orderStatus {
-        case .penging:
-            setOrderPending()
-            break
-            
-        case .paid:
-            setOrderPaid()
-            break
-            
-        case .paidRefundable:
-            setOrderPaidRefundable()
-            break
-            
-        case .finished:
-            setOrderFinished()
-            break
-            
-        case .refunding:
-            setOrderRefunding()
-            break
-            
-        case .refund:
-            setOrderRefund()
-            break
-            
-        case .canceled:
-            setOrderCanceled()
-            break
-            
-        case .confirm:
-            setOrderConfirm()
-            break
+        case .penging: setOrderPending()
+        case .paid: setOrderPaid()
+        case .paidRefundable: setOrderPaidRefundable()
+        case .finished: setOrderFinished()
+        case .refunding: setOrderRefunding()
+        case .refund: setOrderRefund()
+        case .canceled: setOrderCanceled()
+        case .confirm: setOrderConfirm()
         }
     }
     
@@ -242,16 +219,16 @@ class OrderFormOperatingView: UIView {
         var color = UIColor(named: .Disabled)
         var action: Selector?
         var enable = true
+        var string = "重新购买"
         
-        if let isLiveCourse = model?.isLiveCourse {
-            if !isLiveCourse {
-                color = UIColor(named: .ThemeRed)
-                action = #selector(OrderFormOperatingView.buyAgain)
-            }else {
-                enable = false
-            }
+        if let isLive = model?.isLiveCourse, isLive == true {
+            string = "订单已关闭"
+            enable = false
+        }else {
+            color = UIColor(named: .ThemeRed)
+            action = #selector(OrderFormOperatingView.buyAgain)
         }
-        setButton("重新购买", color, enabled: enable, action: action)
+        setButton(string, color, enabled: enable, action: action)
     }
     
     /// 订单预览样式
