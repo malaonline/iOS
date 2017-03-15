@@ -8,13 +8,15 @@
 
 import UIKit
 
+// MARK: - Class Method
 extension UIImage {
     
-    ///  Create a UIImage From UIColor
+    /// Create a UIImage whit color
     ///
-    ///  - parameter color: UIImage's Color
-    ///
-    ///  - returns: UIImage
+    /// - Parameters:
+    ///   - color:  Color.
+    ///   - bounds: Size of image, default to (1, 1).
+    /// - Returns: UIImage.
     class func withColor(_ color: UIColor = UIColor.white, bounds: CGRect = CGRect(x: 0, y: 0, width: 1, height: 1)) -> UIImage {
         
         let rect = bounds
@@ -27,6 +29,10 @@ extension UIImage {
         UIGraphicsEndImageContext()
         return image
     }
+}
+
+// MARK: - Instance Method
+extension UIImage {
     
     func largestCenteredSquareImage() -> UIImage {
         let scale = self.scale
@@ -53,6 +59,10 @@ extension UIImage {
         }
     }
     
+    /// Resize a image to target size.
+    ///
+    /// - Parameter targetSize: Target size.
+    /// - Returns: UIImage
     func resizeToTargetSize(_ targetSize: CGSize) -> UIImage {
         let size = self.size
         

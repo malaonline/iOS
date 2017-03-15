@@ -9,6 +9,7 @@
 import UIKit
 import Kingfisher
 
+// MARK: - Class Method
 extension UIImageView {
     
     ///  Convenience to Create a UIImageView that prepare to display image
@@ -20,46 +21,71 @@ extension UIImageView {
         placeHolder.clipsToBounds = true
         return placeHolder
     }
+}
+
+// MARK: - Convenience
+extension UIImageView {
     
+    /// Convenience to Create a UIImageView whit a image name
+    ///
+    /// - Parameter name: String of image resource name
     convenience init(imageName name: String) {
         self.init()
         self.image = UIImage(named: name)
     }
     
+    /// Convenience to Create a UIImageView that
+    ///
+    /// - Parameters:
+    ///   - frame:          The size of UIImageView.
+    ///   - cornerRadius:   The cornerRadius of UIImageView.
+    ///   - image:          The target image name.
+    ///   - contentMode:    The ContentMode of UIImageView.
     convenience init(frame: CGRect? = nil, cornerRadius: CGFloat? = nil, image: String? = nil, contentMode: UIViewContentMode = .scaleAspectFill) {
         self.init()
         
         if let frame = frame {
             self.frame = frame
         }
-        
         if let cornerRadius = cornerRadius {
             self.layer.cornerRadius = cornerRadius
             self.layer.masksToBounds = true
         }
-        
         if let imageName = image {
             self.image = UIImage(named: imageName)
         }
-        
         self.contentMode = contentMode
     }
+}
+
+// MARK: - Instance Method
+extension UIImageView {
     
+    /// Set an image with resource name.
+    ///
+    /// - Parameter name: The target image name.
     func setImage(withImageName name: String?) {
         image = UIImage(named: name ?? "")
     }
-    
-    func setImage(withURL url: String? = nil, placeholderImage: String? = "avatar_placeholder", progressBlock: DownloadProgressBlock? = nil, completionHandler: CompletionHandler? = nil) {
+
+    /// Set an image with url, a placeholder image, progress handler and completion handler.
+    ///
+    /// - Parameters:
+    ///   - url:                The target image URL.
+    ///   - placeholderImage:   A placeholder image when retrieving the image at URL.
+    ///   - progressBlock:      Called when the image downloading progress gets updated.
+    ///   - completionHandler:  Called when the image retrieved and set.
+    func setImage(withURL url: String? = nil,
+                  placeholderImage: String? = "avatar_placeholder",
+                  progressBlock: DownloadProgressBlock? = nil,
+                  completionHandler: CompletionHandler? = nil) {
         
-        // 使用图片绝对路径作为缓存键值
-        guard let url = url, let URL = URL(string: url) else {
-            println(#function)
-            return
-        }
+        // use absoluteURL(without sign) as a key to cache the image resource
+        guard let url = url, let URL = URL(string: url) else { println(#function); return }
         let splitArray = URL.absoluteString.components(separatedBy: "?")
         guard let pureURL = splitArray.first, !pureURL.isEmpty else { return }
         
-        // 加载图片资源
+        // setup the resource
         let resource = ImageResource(downloadURL: URL, cacheKey: pureURL)
         
         if let placeholderImage = placeholderImage, let placeholder = Image(named: placeholderImage) {
