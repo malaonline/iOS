@@ -49,6 +49,7 @@ class LiveCourseDetailLecturerCell: MalaBaseLiveCourseCell {
             cornerRadius: 28,
             image: "avatar_placeholder"
         )
+        imageView.enableOneTapToLaunchPhotoBrowser()
         return imageView
     }()
     
