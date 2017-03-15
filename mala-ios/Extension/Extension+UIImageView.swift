@@ -8,6 +8,7 @@
 
 import UIKit
 import Kingfisher
+import SKPhotoBrowser
 
 // MARK: - Class Method
 extension UIImageView {
@@ -66,6 +67,22 @@ extension UIImageView {
     /// - Parameter name: The target image name.
     func setImage(withImageName name: String?) {
         image = UIImage(named: name ?? "")
+    }
+    
+    /// Activate one tap to launch photo browser
+    func enableOneTapToLaunchPhotoBrowser() {
+        self.addTapEvent(target: self, action: #selector(UIImageView.launchPhotoBrowser))
+    }
+    
+    /// Launch photo browser when UIImage has image
+    func launchPhotoBrowser() {
+        guard let originImage = self.image else { return }
+        let image = SKPhoto.photoWithImage(originImage)
+        image.shouldCachePhotoURLImage = true
+        let images: [SKPhoto] = [image]
+        let browser = SKPhotoBrowser(originImage: originImage, photos: images, animatedFromView: self)
+        browser.navigationController?.isNavigationBarHidden = true
+        self.viewController()?.navigationController?.present(browser, animated: true, completion: nil)
     }
 
     /// Set an image with url, a placeholder image, progress handler and completion handler.
