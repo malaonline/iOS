@@ -559,6 +559,12 @@
 		F4428C991DDD500D000FEFA4 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4428C981DDD500D000FEFA4 /* UserNotifications.framework */; };
 		F4428C9A1DDD501C000FEFA4 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4428C981DDD500D000FEFA4 /* UserNotifications.framework */; };
 		F4428C9B1DDD5023000FEFA4 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4428C981DDD500D000FEFA4 /* UserNotifications.framework */; };
+		F4493C561E7919DF00D34918 /* MANetworkPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4493C551E7919DF00D34918 /* MANetworkPlugin.swift */; };
+		F4493C571E7919DF00D34918 /* MANetworkPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4493C551E7919DF00D34918 /* MANetworkPlugin.swift */; };
+		F4493C581E7919DF00D34918 /* MANetworkPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4493C551E7919DF00D34918 /* MANetworkPlugin.swift */; };
+		F4493C5A1E792C8000D34918 /* MAAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4493C591E792C8000D34918 /* MAAPI.swift */; };
+		F4493C5B1E792C8000D34918 /* MAAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4493C591E792C8000D34918 /* MAAPI.swift */; };
+		F4493C5C1E792C8000D34918 /* MAAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4493C591E792C8000D34918 /* MAAPI.swift */; };
 		F44C86011E683CAB006E5557 /* YLProgressBar.m in Sources */ = {isa = PBXBuildFile; fileRef = F44C86001E683CAB006E5557 /* YLProgressBar.m */; };
 		F44C86021E683CAB006E5557 /* YLProgressBar.m in Sources */ = {isa = PBXBuildFile; fileRef = F44C86001E683CAB006E5557 /* YLProgressBar.m */; };
 		F44C86031E683CAB006E5557 /* YLProgressBar.m in Sources */ = {isa = PBXBuildFile; fileRef = F44C86001E683CAB006E5557 /* YLProgressBar.m */; };
@@ -723,6 +729,15 @@
 		F4AE080E1E7673CE006FA466 /* MalaSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AE07FE1E7673CE006FA466 /* MalaSupport.swift */; };
 		F4AE080F1E7673CE006FA466 /* MalaSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AE07FE1E7673CE006FA466 /* MalaSupport.swift */; };
 		F4AE08101E7673CE006FA466 /* MalaSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AE07FE1E7673CE006FA466 /* MalaSupport.swift */; };
+		F4AE08121E7676D3006FA466 /* MAService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AE08111E7676D3006FA466 /* MAService.swift */; };
+		F4AE08131E7676D3006FA466 /* MAService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AE08111E7676D3006FA466 /* MAService.swift */; };
+		F4AE08141E7676D3006FA466 /* MAService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AE08111E7676D3006FA466 /* MAService.swift */; };
+		F4AE08181E7681D0006FA466 /* MANetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AE08171E7681D0006FA466 /* MANetworking.swift */; };
+		F4AE08191E7681D0006FA466 /* MANetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AE08171E7681D0006FA466 /* MANetworking.swift */; };
+		F4AE081A1E7681D0006FA466 /* MANetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AE08171E7681D0006FA466 /* MANetworking.swift */; };
+		F4AE081C1E768CD3006FA466 /* MADefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AE081B1E768CD3006FA466 /* MADefault.swift */; };
+		F4AE081D1E768CD3006FA466 /* MADefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AE081B1E768CD3006FA466 /* MADefault.swift */; };
+		F4AE081E1E768CD3006FA466 /* MADefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AE081B1E768CD3006FA466 /* MADefault.swift */; };
 		F4B3C6731CFD3CF000C1B423 /* SubjectReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B3C6721CFD3CF000C1B423 /* SubjectReport.swift */; };
 		F4B3C6741CFD3CF000C1B423 /* SubjectReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B3C6721CFD3CF000C1B423 /* SubjectReport.swift */; };
 		F4B3C6751CFD3CF000C1B423 /* SubjectReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B3C6721CFD3CF000C1B423 /* SubjectReport.swift */; };
@@ -938,6 +953,8 @@
 		F4402E1E1C5A178900E7D3DB /* ThemeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeTests.swift; sourceTree = "<group>"; };
 		F4428C901DDC8E54000FEFA4 /* BaseWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseWindow.swift; sourceTree = "<group>"; };
 		F4428C981DDD500D000FEFA4 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
+		F4493C551E7919DF00D34918 /* MANetworkPlugin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MANetworkPlugin.swift; sourceTree = "<group>"; };
+		F4493C591E792C8000D34918 /* MAAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MAAPI.swift; sourceTree = "<group>"; };
 		F44C85FF1E683CAB006E5557 /* YLProgressBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLProgressBar.h; sourceTree = "<group>"; };
 		F44C86001E683CAB006E5557 /* YLProgressBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLProgressBar.m; sourceTree = "<group>"; };
 		F44DC7C11D59C6D400E5979B /* DOFavoriteButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DOFavoriteButton.swift; sourceTree = "<group>"; };
@@ -1032,6 +1049,9 @@
 		F4AE07FC1E7673CE006FA466 /* MalaInstance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MalaInstance.swift; sourceTree = "<group>"; };
 		F4AE07FD1E7673CE006FA466 /* MalaLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MalaLog.swift; sourceTree = "<group>"; };
 		F4AE07FE1E7673CE006FA466 /* MalaSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MalaSupport.swift; sourceTree = "<group>"; };
+		F4AE08111E7676D3006FA466 /* MAService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MAService.swift; sourceTree = "<group>"; };
+		F4AE08171E7681D0006FA466 /* MANetworking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MANetworking.swift; sourceTree = "<group>"; };
+		F4AE081B1E768CD3006FA466 /* MADefault.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MADefault.swift; sourceTree = "<group>"; };
 		F4B3C6721CFD3CF000C1B423 /* SubjectReport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubjectReport.swift; sourceTree = "<group>"; };
 		F4B3C6761CFD3EBB00C1B423 /* SingleHomeworkData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleHomeworkData.swift; sourceTree = "<group>"; };
 		F4B3C67A1CFD416F00C1B423 /* SingleTimeIntervalData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleTimeIntervalData.swift; sourceTree = "<group>"; };
@@ -1691,6 +1711,11 @@
 			children = (
 				F4AE07DB1E767358006FA466 /* MalaNetworking.swift */,
 				F4AE07DC1E767358006FA466 /* MalaService.swift */,
+				F4493C591E792C8000D34918 /* MAAPI.swift */,
+				F4AE08171E7681D0006FA466 /* MANetworking.swift */,
+				F4AE08111E7676D3006FA466 /* MAService.swift */,
+				F4AE081B1E768CD3006FA466 /* MADefault.swift */,
+				F4493C551E7919DF00D34918 /* MANetworkPlugin.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -2329,6 +2354,7 @@
 				F4AE07EF1E7673AC006FA466 /* MalaLocationService.swift in Sources */,
 				F4AE08051E7673CE006FA466 /* MalaEnum.swift in Sources */,
 				30E336761C28061700DCF1C5 /* GradeModel.swift in Sources */,
+				F4AE08121E7676D3006FA466 /* MAService.swift in Sources */,
 				F465F13F1DB4A5F20025D867 /* LiveClassModel.swift in Sources */,
 				F48BBAD41CE57D1500774297 /* OrderFormTableView.swift in Sources */,
 				307AB8A01C33CDD200D8397F /* HighScoreModel.swift in Sources */,
@@ -2352,6 +2378,7 @@
 				30D4AA051C23E07600C5A336 /* Common.swift in Sources */,
 				F45871EB1C51D7910048D93F /* CourseChoosingTableView.swift in Sources */,
 				F48C59FD1C8701FA0024EE17 /* JSSAlertView.swift in Sources */,
+				F4AE081C1E768CD3006FA466 /* MADefault.swift in Sources */,
 				30E336621C27A8AA00DCF1C5 /* BaseObjectModel.swift in Sources */,
 				F427FFA71CEDA33700EAB748 /* LearningReportHomeworkDataCell.swift in Sources */,
 				F4D0D17E1CA148DF00B25704 /* FloatRatingView.swift in Sources */,
@@ -2363,6 +2390,7 @@
 				F46065291C97B168004056B1 /* CouponViewController.swift in Sources */,
 				F4D6785B1CEACD0E009EC956 /* MemberSerivceCell.swift in Sources */,
 				30D4AA141C2417A700C5A336 /* Extension+UIButton.swift in Sources */,
+				F4AE08181E7681D0006FA466 /* MANetworking.swift in Sources */,
 				F49432DC1D237BBE001C4D22 /* ConditionObject.swift in Sources */,
 				F4AE08081E7673CE006FA466 /* MalaInstance.swift in Sources */,
 				F4AE080B1E7673CE006FA466 /* MalaLog.swift in Sources */,
@@ -2435,6 +2463,7 @@
 				F460652B1C97B168004056B1 /* ProfileViewController.swift in Sources */,
 				F427FFA51CEDA1E900EAB748 /* LearningReportTitlePageCell.swift in Sources */,
 				F427FFA21CED9A4300EAB748 /* LearningReportViewController.swift in Sources */,
+				F4493C561E7919DF00D34918 /* MANetworkPlugin.swift in Sources */,
 				F4767A3F1D2CDCD000FD47F1 /* ThemePhotoCollectionView.swift in Sources */,
 				F4D678591CEACCF2009EC956 /* LearningReportCell.swift in Sources */,
 				F48BBADE1CE5816800774297 /* OrderFormInfoViewController.swift in Sources */,
@@ -2492,6 +2521,7 @@
 				F45871F41C51DFE70048D93F /* CourseChoosingClassScheduleCell.swift in Sources */,
 				F45F27F81CA9135A00F0012C /* MalaDefaultPanel.swift in Sources */,
 				3037B5841C3A84C2005672D9 /* SMSResultModel.swift in Sources */,
+				F4493C5A1E792C8000D34918 /* MAAPI.swift in Sources */,
 				F41CE6431D8661E400B57F69 /* RegionViewController.swift in Sources */,
 				F4B3C6771CFD3EBB00C1B423 /* SingleHomeworkData.swift in Sources */,
 				F4C5C2401C75CFCC00FB833B /* IntroductionModel.swift in Sources */,
@@ -2533,6 +2563,7 @@
 				F4AE07F01E7673AC006FA466 /* MalaLocationService.swift in Sources */,
 				F4AE08061E7673CE006FA466 /* MalaEnum.swift in Sources */,
 				35FF7A781CF8325A000A70EE /* GradeModel.swift in Sources */,
+				F4AE08131E7676D3006FA466 /* MAService.swift in Sources */,
 				F465F1401DB4A5F20025D867 /* LiveClassModel.swift in Sources */,
 				35FF7A791CF8325A000A70EE /* OrderFormTableView.swift in Sources */,
 				35FF7A7B1CF8325A000A70EE /* HighScoreModel.swift in Sources */,
@@ -2556,6 +2587,7 @@
 				35FF7A8A1CF8325A000A70EE /* CourseChoosingTableView.swift in Sources */,
 				35FF7A8B1CF8325A000A70EE /* JSSAlertView.swift in Sources */,
 				35FF7A8C1CF8325A000A70EE /* BaseObjectModel.swift in Sources */,
+				F4AE081D1E768CD3006FA466 /* MADefault.swift in Sources */,
 				35FF7A8D1CF8325A000A70EE /* LearningReportHomeworkDataCell.swift in Sources */,
 				35FF7A8E1CF8325A000A70EE /* FloatRatingView.swift in Sources */,
 				35FF7A8F1CF8325A000A70EE /* TeacherTableView.swift in Sources */,
@@ -2567,6 +2599,7 @@
 				35FF7A921CF8325A000A70EE /* MemberSerivceCell.swift in Sources */,
 				F4B3C6741CFD3CF000C1B423 /* SubjectReport.swift in Sources */,
 				35FF7A931CF8325A000A70EE /* Extension+UIButton.swift in Sources */,
+				F4AE08191E7681D0006FA466 /* MANetworking.swift in Sources */,
 				F49432DD1D237BBE001C4D22 /* ConditionObject.swift in Sources */,
 				F4AE08091E7673CE006FA466 /* MalaInstance.swift in Sources */,
 				F4AE080C1E7673CE006FA466 /* MalaLog.swift in Sources */,
@@ -2639,6 +2672,7 @@
 				35FF7AD81CF8325A000A70EE /* ProfileViewController.swift in Sources */,
 				35FF7ADB1CF8325A000A70EE /* LearningReportTitlePageCell.swift in Sources */,
 				35FF7ADC1CF8325A000A70EE /* LearningReportViewController.swift in Sources */,
+				F4493C571E7919DF00D34918 /* MANetworkPlugin.swift in Sources */,
 				F4767A401D2CDCD000FD47F1 /* ThemePhotoCollectionView.swift in Sources */,
 				35FF7ADD1CF8325A000A70EE /* LearningReportCell.swift in Sources */,
 				35FF7ADF1CF8325A000A70EE /* OrderFormInfoViewController.swift in Sources */,
@@ -2696,6 +2730,7 @@
 				35FF7B0D1CF8325A000A70EE /* CourseChoosingClassScheduleCell.swift in Sources */,
 				35FF7B0F1CF8325A000A70EE /* MalaDefaultPanel.swift in Sources */,
 				35FF7B101CF8325A000A70EE /* SMSResultModel.swift in Sources */,
+				F4493C5B1E792C8000D34918 /* MAAPI.swift in Sources */,
 				F41CE6441D8661E400B57F69 /* RegionViewController.swift in Sources */,
 				F4B3C6781CFD3EBB00C1B423 /* SingleHomeworkData.swift in Sources */,
 				35FF7B121CF8325A000A70EE /* IntroductionModel.swift in Sources */,
@@ -2737,6 +2772,7 @@
 				F4AE07F11E7673AD006FA466 /* MalaLocationService.swift in Sources */,
 				F4AE08071E7673CE006FA466 /* MalaEnum.swift in Sources */,
 				35FF7B5B1CF83264000A70EE /* GradeModel.swift in Sources */,
+				F4AE08141E7676D3006FA466 /* MAService.swift in Sources */,
 				F465F1411DB4A5F20025D867 /* LiveClassModel.swift in Sources */,
 				35FF7B5C1CF83264000A70EE /* OrderFormTableView.swift in Sources */,
 				35FF7B5E1CF83264000A70EE /* HighScoreModel.swift in Sources */,
@@ -2760,6 +2796,7 @@
 				35FF7B6D1CF83264000A70EE /* CourseChoosingTableView.swift in Sources */,
 				35FF7B6E1CF83264000A70EE /* JSSAlertView.swift in Sources */,
 				35FF7B6F1CF83264000A70EE /* BaseObjectModel.swift in Sources */,
+				F4AE081E1E768CD3006FA466 /* MADefault.swift in Sources */,
 				35FF7B701CF83264000A70EE /* LearningReportHomeworkDataCell.swift in Sources */,
 				35FF7B711CF83264000A70EE /* FloatRatingView.swift in Sources */,
 				35FF7B721CF83264000A70EE /* TeacherTableView.swift in Sources */,
@@ -2771,6 +2808,7 @@
 				35FF7B751CF83264000A70EE /* MemberSerivceCell.swift in Sources */,
 				F4B3C6751CFD3CF000C1B423 /* SubjectReport.swift in Sources */,
 				35FF7B761CF83264000A70EE /* Extension+UIButton.swift in Sources */,
+				F4AE081A1E7681D0006FA466 /* MANetworking.swift in Sources */,
 				F49432DE1D237BBE001C4D22 /* ConditionObject.swift in Sources */,
 				F4AE080A1E7673CE006FA466 /* MalaInstance.swift in Sources */,
 				F4AE080D1E7673CE006FA466 /* MalaLog.swift in Sources */,
@@ -2843,6 +2881,7 @@
 				35FF7BBB1CF83264000A70EE /* ProfileViewController.swift in Sources */,
 				35FF7BBE1CF83264000A70EE /* LearningReportTitlePageCell.swift in Sources */,
 				35FF7BBF1CF83264000A70EE /* LearningReportViewController.swift in Sources */,
+				F4493C581E7919DF00D34918 /* MANetworkPlugin.swift in Sources */,
 				F4767A411D2CDCD000FD47F1 /* ThemePhotoCollectionView.swift in Sources */,
 				35FF7BC01CF83264000A70EE /* LearningReportCell.swift in Sources */,
 				35FF7BC21CF83264000A70EE /* OrderFormInfoViewController.swift in Sources */,
@@ -2900,6 +2939,7 @@
 				35FF7BF01CF83264000A70EE /* CourseChoosingClassScheduleCell.swift in Sources */,
 				35FF7BF21CF83264000A70EE /* MalaDefaultPanel.swift in Sources */,
 				35FF7BF31CF83264000A70EE /* SMSResultModel.swift in Sources */,
+				F4493C5C1E792C8000D34918 /* MAAPI.swift in Sources */,
 				F41CE6451D8661E400B57F69 /* RegionViewController.swift in Sources */,
 				F4B3C6791CFD3EBB00C1B423 /* SingleHomeworkData.swift in Sources */,
 				35FF7BF51CF83264000A70EE /* IntroductionModel.swift in Sources */,
