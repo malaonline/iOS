@@ -88,24 +88,18 @@ class CouponViewController: BaseTableViewController {
         isFetching = true
 
         refreshControl?.beginRefreshing()
-
-        ///  获取优惠券信息
-        getCouponList(onlyValid, failureHandler: { (reason, errorMessage) -> Void in
-            defaultFailureHandler(reason, errorMessage: errorMessage)
-            // 错误处理
-            if let errorMessage = errorMessage {
-                println("CouponViewController - loadCoupons Error \(errorMessage)")
-            }
+        
+        MAProvider.userCoupons(onlyValid: onlyValid, failureHandler: { error in
             // 显示缺省值
             self.models = MalaUserCoupons
             self.refreshControl?.endRefreshing()
             self.isFetching = false
-        }, completion: { (coupons) -> Void in
+        }) { coupons in
             MalaUserCoupons = self.justShow ? coupons : parseCouponlist(coupons)
             self.models = MalaUserCoupons
             self.refreshControl?.endRefreshing()
             self.isFetching = false
-        })
+        }
     }
     
     

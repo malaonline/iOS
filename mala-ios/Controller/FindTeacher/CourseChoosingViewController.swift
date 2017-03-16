@@ -228,18 +228,10 @@ class CourseChoosingViewController: BaseViewController, CourseChoosingConfirmVie
     
     private func loadCoupons() {
         ///  获取优惠券信息
-        getCouponList(true, failureHandler: { (reason, errorMessage) -> Void in
-            ThemeHUD.hideActivityIndicator()
-            defaultFailureHandler(reason, errorMessage: errorMessage)
-            
-            // 错误处理
-            if let errorMessage = errorMessage {
-                println("CourseChoosingViewController - loadCoupons Error \(errorMessage)")
-            }
-        }, completion: { [weak self] (coupons) -> Void in
+        MAProvider.userCoupons(onlyValid: true) { [weak self] coupons in
             MalaUserCoupons = coupons
             self?.requiredCount += 1
-        })
+        }
     }
     
     private func loadUserEvaluatedStatus() {

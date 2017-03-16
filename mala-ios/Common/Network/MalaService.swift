@@ -33,50 +33,6 @@ typealias nullDictionary = [String: AnyObject]
 
 
 // MARK: - User
-///  优惠券列表解析函数
-///
-///  - parameter onlyValid:      是否只返回可用奖学金
-///  - parameter failureHandler: 失败处理闭包
-///  - parameter completion:     成功处理闭包
-func getCouponList(_ onlyValid: Bool = false, failureHandler: ((Reason, String?) -> Void)?, completion: @escaping ([CouponModel]) -> Void) {
-
-    let parse: ([JSONDictionary]) -> [CouponModel] = { couponData in
-        /// 解析优惠券JSON数组
-        var coupons = [CouponModel]()
-        for couponInfo in couponData {
-            if let coupon = parseCoupon(couponInfo) {
-                coupon.setupStatus()
-                coupons.append(coupon)
-            }
-        }
-        return coupons
-    }
-    
-    ///  获取优惠券列表JSON对象
-    headBlockedCoupons(onlyValid, failureHandler: failureHandler) { (jsonData) -> Void in
-        if let coupons = jsonData["results"] as? [JSONDictionary], coupons.count != 0 {
-            completion(parse(coupons))
-        }else {
-            completion([])
-        }
-    }
-}
-
-///  获取优惠券列表
-///
-///  - parameter onlyValid:      是否只返回可用奖学金
-///  - parameter failureHandler: 失败处理闭包
-///  - parameter completion:     成功处理闭包
-func headBlockedCoupons(_ onlyValid: Bool = false, failureHandler: ((Reason, String?) -> Void)?, completion: @escaping (JSONDictionary) -> Void) {
-    
-    let parse: (JSONDictionary) -> JSONDictionary? = { data in
-        return data
-    }
-    let requestParameters = ["only_valid": String(onlyValid)]
-    let resource = authJsonResource(path: "/coupons", method: .GET, requestParameters: requestParameters as JSONDictionary, parse: parse)
-    apiRequest({_ in}, baseURL: MalaBaseURL, resource: resource, failure: defaultFailureHandler, completion: completion)
-}
-
 ///  判断用户是否第一次购买此学科的课程
 ///
 ///  - parameter subjectID:      学科id

@@ -157,4 +157,37 @@ extension MoyaProvider {
             completion(result)
         })
     }
+    
+    /// Get user coupons
+    ///
+    /// - Parameters:
+    ///   - onlyValid:      Only return validate coupon
+    ///   - failureHandler: FailureHandler
+    ///   - completion:     Completion
+    /// - Returns:          Cancellable
+    @discardableResult
+    func userCoupons(onlyValid: Bool = false, failureHandler: failureHandler? = nil, completion: @escaping ([CouponModel]) -> Void) -> Cancellable {
+        return self.sendRequest(.userCoupons(onlyValid: onlyValid), failureHandler: failureHandler, completion: { json in
+            guard let couponsData = json["results"] as? [JSON], couponsData.count != 0 else {
+                completion([])
+                return
+            }
+            var coupons = [CouponModel]()
+            for couponJSON in couponsData {
+                guard let _ = couponJSON["id"] else { break }
+                
+                if let id = couponJSON["id"] as? Int,
+                   let name = couponJSON["name"] as? String,
+                   let amount = couponJSON["amount"] as? Int,
+                   let expired_at = couponJSON["expired_at"] as? TimeInterval,
+                   let minPrice = couponJSON["mini_total_price"] as? Int,
+                   let used = couponJSON["used"] as? Bool {
+                    let coupon = CouponModel(id: id, name: name, amount: amount, expired_at: expired_at, minPrice: minPrice, used: used)
+                    coupon.setupStatus()
+                    coupons.append(coupon)
+                }
+            }
+            completion(coupons)
+        })
+    }
 }
