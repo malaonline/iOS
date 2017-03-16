@@ -190,4 +190,15 @@ extension MoyaProvider {
             completion(coupons)
         })
     }
+    
+    @discardableResult
+    func subjectEvaluationStatus(subjectId: Int, failureHandler: failureHandler? = nil, completion: @escaping (Bool) -> Void) -> Cancellable {
+        return self.sendRequest(.evaluationStatus(subjectId: subjectId), failureHandler: failureHandler, completion: { json in
+            if let result = json["evaluated"] as? Bool {
+                // 服务器返回结果为：用户是否已经做过此学科的建档测评，是则代表非首次购买。故取反处理。
+                completion(!result)
+            }
+            completion(true)
+        })
+    }
 }

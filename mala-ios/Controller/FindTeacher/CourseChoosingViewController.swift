@@ -240,18 +240,10 @@ class CourseChoosingViewController: BaseViewController, CourseChoosingConfirmVie
         guard let subjectId = MalaConfig.malaSubjectName()[(teacherModel?.subject) ?? ""] else { return }
         
         ///  判断用户是否首次购买此学科课程
-        isHasBeenEvaluatedWithSubject(subjectId, failureHandler: { (reason, errorMessage) -> Void in
-            ThemeHUD.hideActivityIndicator()
-            defaultFailureHandler(reason, errorMessage: errorMessage)
-            
-            // 错误处理
-            if let errorMessage = errorMessage {
-                println("CourseChoosingViewController - loadUserEvaluatedStatus Error \(errorMessage)")
-            }
-        }, completion: { [weak self] (bool) -> Void in
-            MalaIsHasBeenEvaluatedThisSubject = bool
-            self?.requiredCount += 1
-        })
+        MAProvider.subjectEvaluationStatus(subjectId: subjectId) { result in
+            MalaIsHasBeenEvaluatedThisSubject = result
+            self.requiredCount += 1
+        }
     }
     
     private func setupNotification() {

@@ -33,30 +33,6 @@ typealias nullDictionary = [String: AnyObject]
 
 
 // MARK: - User
-///  判断用户是否第一次购买此学科的课程
-///
-///  - parameter subjectID:      学科id
-///  - parameter failureHandler: 失败处理闭包
-///  - parameter completion:     成功处理闭包
-func isHasBeenEvaluatedWithSubject(_ subjectID: Int, failureHandler: ((Reason, String?) -> Void)?, completion: @escaping (Bool) -> Void) {
-
-    let parse: (JSONDictionary) -> Bool = { data in
-        if let result = data["evaluated"] as? Bool {
-            // 服务器返回结果为：用户是否已经做过此学科的建档测评，是则代表非首次购买。故取反处理。
-            return !result
-        }
-        return true
-    }
-    
-    let resource = authJsonResource(path: "/subject/\(subjectID)/record", method: .GET, requestParameters: nullDictionary(), parse: parse)
-    
-    if let failureHandler = failureHandler {
-        apiRequest({_ in}, baseURL: MalaBaseURL, resource: resource, failure: failureHandler, completion: completion)
-    } else {
-        apiRequest({_ in}, baseURL: MalaBaseURL, resource: resource, failure: defaultFailureHandler, completion: completion)
-    }
-}
-
 ///  获取学生上课时间表
 ///
 ///  - parameter onlyPassed:     是否只获取已结束的课程
@@ -666,25 +642,6 @@ let parseOrderCreateResult: (JSONDictionary) -> OrderForm? = { orderInfo in
         order.id = id
         order.amount = amount
         return order
-    }
-    return nil
-}
-/// 优惠券JSON解析器
-let parseCoupon: (JSONDictionary) -> CouponModel? = { couponInfo in
-
-    /// 检测返回值有效性
-    guard let id = couponInfo["id"] else {
-        return nil
-    }
-    
-    if
-        let id = couponInfo["id"] as? Int,
-        let name = couponInfo["name"] as? String,
-        let amount = couponInfo["amount"] as? Int,
-        let expired_at = couponInfo["expired_at"] as? TimeInterval,
-        let minPrice = couponInfo["mini_total_price"] as? Int,
-        let used = couponInfo["used"] as? Bool {
-        return CouponModel(id: id, name: name, amount: amount, expired_at: expired_at, minPrice: minPrice, used: used)
     }
     return nil
 }
