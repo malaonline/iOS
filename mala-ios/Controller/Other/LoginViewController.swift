@@ -328,26 +328,17 @@ class LoginViewController: UIViewController {
         }
                 
         countDown()
-        ThemeHUD.showActivityIndicator()
+        guard let phone = self.phoneTextField.text else { return }
         
         // 发送SMS
-        sendVerifyCodeOfMobile(self.phoneTextField.text!, failureHandler: { reason, errorMessage in
-            
-            ThemeHUD.hideActivityIndicator()
-            defaultFailureHandler(reason, errorMessage: errorMessage)
-            
-            // 错误处理
-            if let errorMessage = errorMessage {
-                println("LoginViewController - SendCode Error \(errorMessage)")
-            }
-        }, completion: { bool in
-            ThemeHUD.hideActivityIndicator()
-            
+        MAProvider.sendSMS(phone: phone, failureHandler: { [weak self] error in
+            self?.ShowToast(L10n.networkNotReachable)
+        }) { [weak self] sent in
             DispatchQueue.main.async {
-                self.ShowToast(bool ? L10n.verificationCodeSentSuccess : L10n.verificationCodeSentFailure)
-                self.codeTextField.becomeFirstResponder()
+                self?.ShowToast(sent ? L10n.verificationCodeSentSuccess : L10n.verificationCodeSentFailure)
+                self?.codeTextField.becomeFirstResponder()
             }
-        })
+        }
     }
 
     @objc private func verifyButtonDidTap() {
@@ -365,41 +356,44 @@ class LoginViewController: UIViewController {
             return
         }
         
-        ThemeHUD.showActivityIndicator()
-        
+        guard let phone = self.phoneTextField.text else { return }
+        guard let code = self.codeTextField.text else { return }
         // 验证SMS
-        verifyMobile(self.phoneTextField.text!, verifyCode: self.codeTextField.text!, failureHandler: { (reason, errorMessage) -> Void in
-            ThemeHUD.hideActivityIndicator()
-            defaultFailureHandler(reason, errorMessage: errorMessage)
-            // 错误处理
-            if let errorMessage = errorMessage {
-                println("LoginViewController - VerifyCode Error \(errorMessage)")
-            }
-            // 状态恢复
-            DispatchQueue.main.async {
-                self.codeError.isHidden = false
-                self.codeTextField.text = ""
-            }
-        }, completion: { (loginUser) -> Void in
-            ThemeHUD.hideActivityIndicator()
+        MAProvider.verifySMS(phone: phone, code: code, failureHandler: { (error) in
+            self.resetStatus()
+        }) { (loginUser) in
             
-            println("SMS验证成功，用户Token：\(loginUser)")
+            println("信息获取成功：\(loginUser)")
             
-            saveTokenAndUserInfo(loginUser) 
+            guard let loginUser = loginUser else {
+                self.resetStatus()
+                self.ShowToast(L10n.verificationCodeNotMatch)
+                return
+            }
+            
+            saveTokenAndUserInfo(loginUser)
             MalaUserDefaults.isLogouted = false
-            
+             
             if loginUser.firstLogin == true {
                 self.switchViewToSaveName()
             }else {
                 self.close(animated: true)
             }
             MalaCurrentInitAction?()
-        })
+        }
     }
     
     @objc private func closeButtonDidClick() {
         closeAction?()
         dismiss(animated: true, completion: nil)
+    }
+    
+    // 状态恢复
+    func resetStatus() {
+        DispatchQueue.main.async {
+            self.codeError.isHidden = false
+            self.codeTextField.text = ""
+        }
     }
     
     func switchViewToSaveName() {
