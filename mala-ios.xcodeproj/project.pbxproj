@@ -565,6 +565,18 @@
 		F4493C5A1E792C8000D34918 /* MAAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4493C591E792C8000D34918 /* MAAPI.swift */; };
 		F4493C5B1E792C8000D34918 /* MAAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4493C591E792C8000D34918 /* MAAPI.swift */; };
 		F4493C5C1E792C8000D34918 /* MAAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4493C591E792C8000D34918 /* MAAPI.swift */; };
+		F4493C5F1E7A2A7900D34918 /* ProfileInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4493C5E1E7A2A7900D34918 /* ProfileInfo.swift */; };
+		F4493C601E7A2A7900D34918 /* ProfileInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4493C5E1E7A2A7900D34918 /* ProfileInfo.swift */; };
+		F4493C611E7A2A7900D34918 /* ProfileInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4493C5E1E7A2A7900D34918 /* ProfileInfo.swift */; };
+		F4493C631E7A2B4000D34918 /* LoginUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4493C621E7A2B4000D34918 /* LoginUser.swift */; };
+		F4493C641E7A2B4000D34918 /* LoginUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4493C621E7A2B4000D34918 /* LoginUser.swift */; };
+		F4493C651E7A2B4000D34918 /* LoginUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4493C621E7A2B4000D34918 /* LoginUser.swift */; };
+		F4493C671E7A2B6300D34918 /* VerifyingSMS.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4493C661E7A2B6300D34918 /* VerifyingSMS.swift */; };
+		F4493C681E7A2B6300D34918 /* VerifyingSMS.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4493C661E7A2B6300D34918 /* VerifyingSMS.swift */; };
+		F4493C691E7A2B6300D34918 /* VerifyingSMS.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4493C661E7A2B6300D34918 /* VerifyingSMS.swift */; };
+		F4493C6B1E7A2BA200D34918 /* ParentInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4493C6A1E7A2BA200D34918 /* ParentInfo.swift */; };
+		F4493C6C1E7A2BA200D34918 /* ParentInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4493C6A1E7A2BA200D34918 /* ParentInfo.swift */; };
+		F4493C6D1E7A2BA200D34918 /* ParentInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4493C6A1E7A2BA200D34918 /* ParentInfo.swift */; };
 		F44C86011E683CAB006E5557 /* YLProgressBar.m in Sources */ = {isa = PBXBuildFile; fileRef = F44C86001E683CAB006E5557 /* YLProgressBar.m */; };
 		F44C86021E683CAB006E5557 /* YLProgressBar.m in Sources */ = {isa = PBXBuildFile; fileRef = F44C86001E683CAB006E5557 /* YLProgressBar.m */; };
 		F44C86031E683CAB006E5557 /* YLProgressBar.m in Sources */ = {isa = PBXBuildFile; fileRef = F44C86001E683CAB006E5557 /* YLProgressBar.m */; };
@@ -955,6 +967,10 @@
 		F4428C981DDD500D000FEFA4 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		F4493C551E7919DF00D34918 /* MANetworkPlugin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MANetworkPlugin.swift; sourceTree = "<group>"; };
 		F4493C591E792C8000D34918 /* MAAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MAAPI.swift; sourceTree = "<group>"; };
+		F4493C5E1E7A2A7900D34918 /* ProfileInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileInfo.swift; sourceTree = "<group>"; };
+		F4493C621E7A2B4000D34918 /* LoginUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginUser.swift; sourceTree = "<group>"; };
+		F4493C661E7A2B6300D34918 /* VerifyingSMS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerifyingSMS.swift; sourceTree = "<group>"; };
+		F4493C6A1E7A2BA200D34918 /* ParentInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParentInfo.swift; sourceTree = "<group>"; };
 		F44C85FF1E683CAB006E5557 /* YLProgressBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLProgressBar.h; sourceTree = "<group>"; };
 		F44C86001E683CAB006E5557 /* YLProgressBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLProgressBar.m; sourceTree = "<group>"; };
 		F44DC7C11D59C6D400E5979B /* DOFavoriteButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DOFavoriteButton.swift; sourceTree = "<group>"; };
@@ -1267,6 +1283,7 @@
 		304135861C23AE6400830C43 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				F4493C5D1E7A2A2900D34918 /* User */,
 				30E336711C27F41900DCF1C5 /* GradeModel.swift */,
 				30E336601C27A8AA00DCF1C5 /* BaseObjectModel.swift */,
 				30E336731C27F61900DCF1C5 /* ResultModel.swift */,
@@ -1545,6 +1562,17 @@
 				F4402E181C5A16A700E7D3DB /* Info.plist */,
 			);
 			path = parentTests;
+			sourceTree = "<group>";
+		};
+		F4493C5D1E7A2A2900D34918 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				F4493C5E1E7A2A7900D34918 /* ProfileInfo.swift */,
+				F4493C621E7A2B4000D34918 /* LoginUser.swift */,
+				F4493C661E7A2B6300D34918 /* VerifyingSMS.swift */,
+				F4493C6A1E7A2BA200D34918 /* ParentInfo.swift */,
+			);
+			path = User;
 			sourceTree = "<group>";
 		};
 		F44C85FE1E683CAB006E5557 /* YLProgressBar */ = {
@@ -2332,6 +2360,7 @@
 				F427FFAB1CEDA35400EAB748 /* LearningReportKnowledgeCell.swift in Sources */,
 				F48BBAD21CE4309B00774297 /* CouponRulesPopupWindow.swift in Sources */,
 				F4D0D14F1C9FACFC00B25704 /* TeacherFilterPopupWindow.swift in Sources */,
+				F4493C671E7A2B6300D34918 /* VerifyingSMS.swift in Sources */,
 				308063951C3A1C9800729832 /* Extension+UILabel.swift in Sources */,
 				F4B3C6731CFD3CF000C1B423 /* SubjectReport.swift in Sources */,
 				F4ADCFDE1D0E6E7C004D517A /* ProfileItemCollectionView.swift in Sources */,
@@ -2487,6 +2516,7 @@
 				F407DA041DDE9FDB00C4ABB5 /* ProfileItemViewCell.swift in Sources */,
 				30445B1A1C4A3AC8002CD290 /* GradeFilterView.swift in Sources */,
 				F4B3C67B1CFD416F00C1B423 /* SingleTimeIntervalData.swift in Sources */,
+				F4493C631E7A2B4000D34918 /* LoginUser.swift in Sources */,
 				F4D0D14B1C9FA60A00B25704 /* CourseModel.swift in Sources */,
 				3037B5A51C3BAB52005672D9 /* TeacherDetailsCertificateCell.swift in Sources */,
 				F46065281C97B168004056B1 /* LoginViewController.swift in Sources */,
@@ -2521,12 +2551,14 @@
 				F45871F41C51DFE70048D93F /* CourseChoosingClassScheduleCell.swift in Sources */,
 				F45F27F81CA9135A00F0012C /* MalaDefaultPanel.swift in Sources */,
 				3037B5841C3A84C2005672D9 /* SMSResultModel.swift in Sources */,
+				F4493C5F1E7A2A7900D34918 /* ProfileInfo.swift in Sources */,
 				F4493C5A1E792C8000D34918 /* MAAPI.swift in Sources */,
 				F41CE6431D8661E400B57F69 /* RegionViewController.swift in Sources */,
 				F4B3C6771CFD3EBB00C1B423 /* SingleHomeworkData.swift in Sources */,
 				F4C5C2401C75CFCC00FB833B /* IntroductionModel.swift in Sources */,
 				308063981C3A271C00729832 /* Extension+UIView.swift in Sources */,
 				F46065201C97B168004056B1 /* CourseChoosingViewController.swift in Sources */,
+				F4493C6B1E7A2BA200D34918 /* ParentInfo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2541,6 +2573,7 @@
 				35FF7A621CF8325A000A70EE /* OtherServiceModel.swift in Sources */,
 				35FF7A631CF8325A000A70EE /* LearningReportKnowledgeCell.swift in Sources */,
 				35FF7A651CF8325A000A70EE /* CouponRulesPopupWindow.swift in Sources */,
+				F4493C681E7A2B6300D34918 /* VerifyingSMS.swift in Sources */,
 				35FF7A671CF8325A000A70EE /* TeacherFilterPopupWindow.swift in Sources */,
 				35FF7A691CF8325A000A70EE /* Extension+UILabel.swift in Sources */,
 				F4ADCFDF1D0E6E7C004D517A /* ProfileItemCollectionView.swift in Sources */,
@@ -2696,6 +2729,7 @@
 				F407DA051DDE9FDB00C4ABB5 /* ProfileItemViewCell.swift in Sources */,
 				35FF7AF31CF8325A000A70EE /* GradeFilterView.swift in Sources */,
 				F4B3C67C1CFD416F00C1B423 /* SingleTimeIntervalData.swift in Sources */,
+				F4493C641E7A2B4000D34918 /* LoginUser.swift in Sources */,
 				35FF7AF81CF8325A000A70EE /* CourseModel.swift in Sources */,
 				35FF7AF91CF8325A000A70EE /* TeacherDetailsCertificateCell.swift in Sources */,
 				35FF7AFA1CF8325A000A70EE /* LoginViewController.swift in Sources */,
@@ -2730,12 +2764,14 @@
 				35FF7B0D1CF8325A000A70EE /* CourseChoosingClassScheduleCell.swift in Sources */,
 				35FF7B0F1CF8325A000A70EE /* MalaDefaultPanel.swift in Sources */,
 				35FF7B101CF8325A000A70EE /* SMSResultModel.swift in Sources */,
+				F4493C601E7A2A7900D34918 /* ProfileInfo.swift in Sources */,
 				F4493C5B1E792C8000D34918 /* MAAPI.swift in Sources */,
 				F41CE6441D8661E400B57F69 /* RegionViewController.swift in Sources */,
 				F4B3C6781CFD3EBB00C1B423 /* SingleHomeworkData.swift in Sources */,
 				35FF7B121CF8325A000A70EE /* IntroductionModel.swift in Sources */,
 				35FF7B131CF8325A000A70EE /* Extension+UIView.swift in Sources */,
 				35FF7B161CF8325A000A70EE /* CourseChoosingViewController.swift in Sources */,
+				F4493C6C1E7A2BA200D34918 /* ParentInfo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2750,6 +2786,7 @@
 				35FF7B451CF83264000A70EE /* OtherServiceModel.swift in Sources */,
 				35FF7B461CF83264000A70EE /* LearningReportKnowledgeCell.swift in Sources */,
 				35FF7B481CF83264000A70EE /* CouponRulesPopupWindow.swift in Sources */,
+				F4493C691E7A2B6300D34918 /* VerifyingSMS.swift in Sources */,
 				35FF7B4A1CF83264000A70EE /* TeacherFilterPopupWindow.swift in Sources */,
 				35FF7B4C1CF83264000A70EE /* Extension+UILabel.swift in Sources */,
 				F4ADCFE01D0E6E7C004D517A /* ProfileItemCollectionView.swift in Sources */,
@@ -2905,6 +2942,7 @@
 				F407DA061DDE9FDB00C4ABB5 /* ProfileItemViewCell.swift in Sources */,
 				35FF7BD61CF83264000A70EE /* GradeFilterView.swift in Sources */,
 				F4B3C67D1CFD416F00C1B423 /* SingleTimeIntervalData.swift in Sources */,
+				F4493C651E7A2B4000D34918 /* LoginUser.swift in Sources */,
 				35FF7BDB1CF83264000A70EE /* CourseModel.swift in Sources */,
 				35FF7BDC1CF83264000A70EE /* TeacherDetailsCertificateCell.swift in Sources */,
 				35FF7BDD1CF83264000A70EE /* LoginViewController.swift in Sources */,
@@ -2939,12 +2977,14 @@
 				35FF7BF01CF83264000A70EE /* CourseChoosingClassScheduleCell.swift in Sources */,
 				35FF7BF21CF83264000A70EE /* MalaDefaultPanel.swift in Sources */,
 				35FF7BF31CF83264000A70EE /* SMSResultModel.swift in Sources */,
+				F4493C611E7A2A7900D34918 /* ProfileInfo.swift in Sources */,
 				F4493C5C1E792C8000D34918 /* MAAPI.swift in Sources */,
 				F41CE6451D8661E400B57F69 /* RegionViewController.swift in Sources */,
 				F4B3C6791CFD3EBB00C1B423 /* SingleHomeworkData.swift in Sources */,
 				35FF7BF51CF83264000A70EE /* IntroductionModel.swift in Sources */,
 				35FF7BF61CF83264000A70EE /* Extension+UIView.swift in Sources */,
 				35FF7BF91CF83264000A70EE /* CourseChoosingViewController.swift in Sources */,
+				F4493C6D1E7A2BA200D34918 /* ParentInfo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
