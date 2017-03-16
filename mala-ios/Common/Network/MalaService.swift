@@ -29,80 +29,10 @@ public let schools = "/schools"
 public let weeklytimeslots = "/weeklytimeslots"
 public let coupons = "/coupons"
 
-// MARK: - typealias
 typealias nullDictionary = [String: AnyObject]
 
 
-
-
-
 // MARK: - User
-
-///  保存学生姓名
-///
-///  - parameter name:           姓名
-///  - parameter failureHandler: 失败处理闭包
-///  - parameter completion:     成功处理闭包
-func saveStudentName(_ name: String, failureHandler: ((Reason, String?) -> Void)?, completion: @escaping (Bool) -> Void) {
-    
-    guard let parentID = MalaUserDefaults.parentID.value else {
-        println("saveStudentSchoolName error - no profileID")
-        return
-    }
-    
-    let requestParameters = [
-        "student_name": name,
-    ]
-    
-    let parse: (JSONDictionary) -> Bool? = { data in
-        if let result = data["done"] as? String, result == "true" {
-            return true
-        }else {
-            return false
-        }
-    }
-    
-    let resource = authJsonResource(path: "/parents/\(parentID)", method: .PATCH, requestParameters: requestParameters as JSONDictionary, parse: parse)
-    
-    if let failureHandler = failureHandler {
-        apiRequest({_ in}, baseURL: MalaBaseURL, resource: resource, failure: failureHandler, completion: completion)
-    } else {
-        apiRequest({_ in}, baseURL: MalaBaseURL, resource: resource, failure: defaultFailureHandler, completion: completion)
-    }
-}
-
-///  保存学生学校名称
-///
-///  - parameter name:           学校名称
-///  - parameter failureHandler: 失败处理闭包
-///  - parameter completion:     成功处理闭包
-func saveStudentSchoolName(_ name: String, failureHandler: ((Reason, String?) -> Void)?, completion: @escaping (Bool) -> Void) {
-    
-    guard let parentID = MalaUserDefaults.parentID.value else {
-        println("saveStudentSchoolName error - no profileID")
-        return
-    }
-    
-    let requestParameters = [
-        "student_school_name": name,
-    ]
-    
-    let parse: (JSONDictionary) -> Bool? = { data in
-        if let result = data["done"] as? Bool {
-            return result
-        }
-        return false
-    }
-    
-    let resource = authJsonResource(path: "/parents/\(parentID)", method: .PATCH, requestParameters: requestParameters as JSONDictionary, parse: parse)
-    
-    if let failureHandler = failureHandler {
-        apiRequest({_ in}, baseURL: MalaBaseURL, resource: resource, failure: failureHandler, completion: completion)
-    } else {
-        apiRequest({_ in}, baseURL: MalaBaseURL, resource: resource, failure: defaultFailureHandler, completion: completion)
-    }
-}
-
 ///  优惠券列表解析函数
 ///
 ///  - parameter onlyValid:      是否只返回可用奖学金
