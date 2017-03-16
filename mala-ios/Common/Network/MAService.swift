@@ -27,14 +27,28 @@ extension MoyaProvider {
                 return
             }
             
-            if
-                let firstLogin = json["first_login"] as? Bool,
-                let accessToken = json["token"] as? String,
-                let parentID = json["parent_id"] as? Int,
-                let userID = json["user_id"] as? Int,
-                let profileID = json["profile_id"] as? Int {
-                let user = LoginUser(accessToken: accessToken, userID: userID, parentID: parentID, profileID: profileID, firstLogin: firstLogin, avatarURLString: "")
-                completion(user)
+            if let firstLogin = json["first_login"] as? Bool,
+               let accessToken = json["token"] as? String,
+               let parentID = json["parent_id"] as? Int,
+               let userID = json["user_id"] as? Int,
+               let profileID = json["profile_id"] as? Int {
+                completion(LoginUser(accessToken: accessToken, userID: userID, parentID: parentID, profileID: profileID, firstLogin: firstLogin, avatarURLString: ""))
+            }
+            completion(nil)
+        }
+    }
+    
+    @discardableResult
+    func userProfile(id: Int, failureHandler: failureHandler? = nil, completion: @escaping (ProfileInfo?) -> Void) -> Cancellable {
+        return self.sendRequest(.profileInfo(id: id), failureHandler: failureHandler) { json in
+            guard let _ = json["id"] else {
+                completion(nil)
+                return
+            }
+            if let id = json["id"] as? Int,
+               let gender = json["gender"] as? String? {
+                completion(ProfileInfo(id: id, gender: gender, avatar: (json["avatar"] as? String) ?? ""))
+                return
             }
             completion(nil)
         }

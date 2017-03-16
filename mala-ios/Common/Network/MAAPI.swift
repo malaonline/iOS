@@ -13,6 +13,7 @@ import Result
 public enum MAAPI {
     case sendSMS(phone: String)
     case verifySMS(phone: String, code: String)
+    case profileInfo(id: Int)
 }
 
 extension MAAPI: TargetType {
@@ -29,10 +30,14 @@ extension MAAPI: TargetType {
         switch self {
         case .sendSMS(_), .verifySMS(_, _):
             return "/sms"
+        case .profileInfo(let id):
+            return "/profiles/\(id)"
         }
     }
     public var method: Moya.Method {
         switch self {
+        case .profileInfo(_):
+            return .get
         case .sendSMS(_), .verifySMS(_, _):
             return .post
         }
@@ -43,10 +48,14 @@ extension MAAPI: TargetType {
             return ["action": "send", "phone": phone]
         case .verifySMS(let phone, let code):
             return ["action": "verify", "phone": phone, "code": code]
+        default:
+            return nil
         }
     }
     public var parameterEncoding: ParameterEncoding {
         switch self {
+        case .profileInfo:
+            return URLEncoding.default
         case .sendSMS, .verifySMS:
             return JSONEncoding.default
         }
@@ -55,10 +64,7 @@ extension MAAPI: TargetType {
         return "".data(using: String.Encoding.utf8)!
     }
     public var task: Task {
-        switch self {
-        case .sendSMS, .verifySMS:
-            return .request
-        }
+        return .request
     }
 }
 
@@ -67,6 +73,8 @@ extension MAAPI: AccessTokenAuthorizable {
         switch self {
         case .sendSMS, .verifySMS:
             return false
+        default:
+            return true
         }
     }
 }

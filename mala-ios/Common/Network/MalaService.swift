@@ -43,17 +43,13 @@ func getInfoWhenLoginSuccess() {
 }
 
 func getAndSaveProfileInfo() {
-    let profileID = MalaUserDefaults.profileID.value ?? 0
-    getProfileInfo(profileID, failureHandler: { (reason, errorMessage) -> Void in
-        defaultFailureHandler(reason, errorMessage: errorMessage)
-        // 错误处理
-        if let errorMessage = errorMessage {
-            println("MalaService - getProfileInfo Error \(errorMessage)")
-        }
-        },completion: { (profile) -> Void in
-            println("保存Profile信息: \(profile)")
+    let id = MalaUserDefaults.profileID.value ?? 0
+    MAProvider.userProfile(id: id) { profile in
+        println("save userProfile: \(profile)")
+        if let profile = profile {
             saveProfileInfoToUserDefaults(profile)
-    })
+        }
+    }
 }
 
 func getAndSaveParentInfo() {
@@ -95,27 +91,6 @@ func saveProfileInfoToUserDefaults(_ profile: ProfileInfo) {
 func saveParentInfoToUserDefaults(_ parent: ParentInfo) {
     MalaUserDefaults.studentName.value = parent.studentName
     MalaUserDefaults.schoolName.value = parent.schoolName
-}
-
-
-
-///  根据个人id获取个人信息
-///
-///  - parameter parentID:       个人
-///  - parameter failureHandler: 失败处理闭包
-///  - parameter completion:     成功处理闭包
-func getProfileInfo(_ profileID: Int, failureHandler: ((Reason, String?) -> Void)?, completion: @escaping (ProfileInfo) -> Void) {
-    let parse: (JSONDictionary) -> ProfileInfo? = { data in
-        return parseProfile(data)
-    }
-    
-    let resource = authJsonResource(path: "/profiles/\(profileID)", method: .GET, requestParameters: nullDictionary(), parse: parse)
-    
-    if let failureHandler = failureHandler {
-        apiRequest({_ in}, baseURL: MalaBaseURL, resource: resource, failure: failureHandler, completion: completion)
-    } else {
-        apiRequest({_ in}, baseURL: MalaBaseURL, resource: resource, failure: defaultFailureHandler, completion: completion)
-    }
 }
 
 ///  根据家长id获取家长信息
@@ -932,21 +907,7 @@ let parseOrderCreateResult: (JSONDictionary) -> OrderForm? = { orderInfo in
     }
     return nil
 }
-/// 个人信息JSON解析器
-let parseProfile: (JSONDictionary) -> ProfileInfo? = { profileData in
-    /// 判断验证结果是否正确
-    guard let profileID = profileData["id"] else {
-        return nil
-    }
-    
-    if
-        let id = profileData["id"] as? Int,
-        let gender = profileData["gender"] as? String? {
-            let avatar = (profileData["avatar"] as? String) ?? ""
-            return ProfileInfo(id: id, gender: gender, avatar: avatar)
-    }
-    return nil
-}
+
 /// 家长信息JSON解析器
 let parseParent: (JSONDictionary) -> ParentInfo? = { parentData in
     /// 判断验证结果是否正确
