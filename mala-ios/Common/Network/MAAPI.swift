@@ -16,6 +16,8 @@ public enum MAAPI {
     case profileInfo(id: Int)
     case parentInfo(id: Int)
     case uploadAvatar(data: Data, profileId: Int)
+    case saveStudentName(name: String, parentId: Int)
+    case saveSchoolName(name: String, parentId: Int)
 }
 
 extension MAAPI: TargetType {
@@ -34,7 +36,7 @@ extension MAAPI: TargetType {
             return "/sms"
         case .profileInfo(let id), .uploadAvatar(_, let id):
             return "/profiles/\(id)"
-        case .parentInfo(let id):
+        case .parentInfo(let id), .saveStudentName(_, let id), .saveSchoolName(_, let id):
             return "/parents/\(id)"
         }
     }
@@ -44,7 +46,7 @@ extension MAAPI: TargetType {
             return .get
         case .sendSMS, .verifySMS:
             return .post
-        case .uploadAvatar:
+        case .uploadAvatar, .saveStudentName, .saveSchoolName:
             return .patch
         }
     }
@@ -54,13 +56,17 @@ extension MAAPI: TargetType {
             return ["action": "send", "phone": phone]
         case .verifySMS(let phone, let code):
             return ["action": "verify", "phone": phone, "code": code]
+        case .saveStudentName(let name, _):
+            return ["student_name": name]
+        case .saveSchoolName(let name, _):
+            return ["student_school_name": name]
         default:
             return nil
         }
     }
     public var parameterEncoding: ParameterEncoding {
         switch self {
-        case .sendSMS, .verifySMS:
+        case .sendSMS, .verifySMS, .saveStudentName, .saveSchoolName:
             return JSONEncoding.default
         case .profileInfo, .parentInfo, .uploadAvatar:
             return URLEncoding.default

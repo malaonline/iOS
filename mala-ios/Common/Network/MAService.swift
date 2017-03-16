@@ -119,4 +119,42 @@ extension MoyaProvider {
             completion(result)
         })
     }
+    
+    /// Save student name
+    ///
+    /// - Parameters:
+    ///   - name:           Student's name
+    ///   - failureHandler: FailureHandler
+    ///   - completion:     Completion
+    /// - Returns:          Cancellable
+    @discardableResult
+    func saveStudentName(name: String, failureHandler: failureHandler? = nil, completion: @escaping (Bool?) -> Void) -> Cancellable {
+        let id = MalaUserDefaults.parentID.value ?? -1
+        return self.sendRequest(.saveStudentName(name: name, parentId: id), failureHandler: failureHandler, completion: { json in
+            guard let result = json["done"] as? Bool else {
+                completion(nil)
+                return
+            }
+            completion(result)
+        })
+    }
+    
+    /// Save student name
+    ///
+    /// - Parameters:
+    ///   - name:           Student's name
+    ///   - failureHandler: FailureHandler
+    ///   - completion:     Completion
+    /// - Returns:          Cancellable
+    @discardableResult
+    func saveSchoolName(name: String, failureHandler: failureHandler? = nil, completion: @escaping (Bool?) -> Void) -> Cancellable {
+        let id = MalaUserDefaults.parentID.value ?? -1
+        return self.sendRequest(.saveSchoolName(name: name, parentId: id), failureHandler: failureHandler, completion: { json in
+            guard let result = json["done"] as? Bool else {
+                completion(nil)
+                return
+            }
+            completion(result)
+        })
+    }
 }
