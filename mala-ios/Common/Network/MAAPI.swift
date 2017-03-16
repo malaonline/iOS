@@ -14,6 +14,7 @@ public enum MAAPI {
     case sendSMS(phone: String)
     case verifySMS(phone: String, code: String)
     case profileInfo(id: Int)
+    case parentInfo(id: Int)
 }
 
 extension MAAPI: TargetType {
@@ -32,11 +33,13 @@ extension MAAPI: TargetType {
             return "/sms"
         case .profileInfo(let id):
             return "/profiles/\(id)"
+        case .parentInfo(let id):
+            return "/parents/\(id)"
         }
     }
     public var method: Moya.Method {
         switch self {
-        case .profileInfo(_):
+        case .profileInfo(_), .parentInfo(_):
             return .get
         case .sendSMS(_), .verifySMS(_, _):
             return .post
@@ -54,7 +57,7 @@ extension MAAPI: TargetType {
     }
     public var parameterEncoding: ParameterEncoding {
         switch self {
-        case .profileInfo:
+        case .profileInfo, .parentInfo:
             return URLEncoding.default
         case .sendSMS, .verifySMS:
             return JSONEncoding.default

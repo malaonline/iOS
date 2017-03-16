@@ -76,6 +76,30 @@ extension MoyaProvider {
             completion(nil)
         })
     }
+    
+    /// 获取账号家长信息
+    ///
+    /// - Parameters:
+    ///   - id:             账号家长id
+    ///   - failureHandler: 失败处理闭包
+    ///   - completion:     成功处理闭包
+    /// - Returns:          Cancellable
+    @discardableResult
+    func userParents(id: Int, failureHandler: failureHandler? = nil, completion: @escaping (ParentInfo?) -> Void) -> Cancellable {
+        return self.sendRequest(.parentInfo(id: id), failureHandler: failureHandler, completion: { json in
+            guard let _ = json["id"] else {
+                completion(nil)
+                return
+            }
+            
+            if let id = json["id"] as? Int,
+               let studentName = json["student_name"] as? String?,
+               let schoolName = json["student_school_name"] as? String? {
+                completion(ParentInfo(id: id, studentName: studentName, schoolName: schoolName))
+                return
+            }
+            completion(nil)
+        })
     }
 }
 

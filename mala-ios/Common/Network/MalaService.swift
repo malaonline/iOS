@@ -53,17 +53,13 @@ func getAndSaveProfileInfo() {
 }
 
 func getAndSaveParentInfo() {
-    let parentID = MalaUserDefaults.parentID.value ?? 0
-    getParentInfo(parentID, failureHandler: { (reason, errorMessage) -> Void in
-        defaultFailureHandler(reason, errorMessage: errorMessage)
-        // 错误处理
-        if let errorMessage = errorMessage {
-            println("MalaService - getParentInfo Error \(errorMessage)")
-        }
-        },completion: { (parent) -> Void in
-            println("保存Parent信息: \(parent)")
+    let id = MalaUserDefaults.parentID.value ?? 0
+    MAProvider.userParents(id: id) { parent in
+        println("save userParents: \(parent)")
+        if let parent = parent {
             saveParentInfoToUserDefaults(parent)
-    })
+        }
+    }
 }
 
 
@@ -91,25 +87,6 @@ func saveProfileInfoToUserDefaults(_ profile: ProfileInfo) {
 func saveParentInfoToUserDefaults(_ parent: ParentInfo) {
     MalaUserDefaults.studentName.value = parent.studentName
     MalaUserDefaults.schoolName.value = parent.schoolName
-}
-
-///  根据家长id获取家长信息
-///
-///  - parameter parentID:       家长id
-///  - parameter failureHandler: 失败处理闭包
-///  - parameter completion:     成功处理闭包
-func getParentInfo(_ parentID: Int, failureHandler: ((Reason, String?) -> Void)?, completion: @escaping (ParentInfo) -> Void) {
-    let parse: (JSONDictionary) -> ParentInfo? = { data in
-        return parseParent(data)
-    }
-    
-    let resource = authJsonResource(path: "/parents/\(parentID)", method: .GET, requestParameters: nullDictionary(), parse: parse)
-    
-    if let failureHandler = failureHandler {
-        apiRequest({_ in}, baseURL: MalaBaseURL, resource: resource, failure: failureHandler, completion: completion)
-    } else {
-        apiRequest({_ in}, baseURL: MalaBaseURL, resource: resource, failure: defaultFailureHandler, completion: completion)
-    }
 }
 
 ///  上传用户头像
@@ -904,22 +881,6 @@ let parseOrderCreateResult: (JSONDictionary) -> OrderForm? = { orderInfo in
         order.id = id
         order.amount = amount
         return order
-    }
-    return nil
-}
-
-/// 家长信息JSON解析器
-let parseParent: (JSONDictionary) -> ParentInfo? = { parentData in
-    /// 判断验证结果是否正确
-    guard let parentID = parentData["id"] else {
-        return nil
-    }
-    
-    if
-        let id = parentData["id"] as? Int,
-        let studentName = parentData["student_name"] as? String?,
-        let schoolName = parentData["student_school_name"] as? String? {
-            return ParentInfo(id: id, studentName: studentName, schoolName: schoolName)
     }
     return nil
 }
