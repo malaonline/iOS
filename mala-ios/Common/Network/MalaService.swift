@@ -29,100 +29,37 @@ public let schools = "/schools"
 public let weeklytimeslots = "/weeklytimeslots"
 public let coupons = "/coupons"
 
-
 // MARK: - typealias
 typealias nullDictionary = [String: AnyObject]
-
-
-// MARK: - Model
-///  登陆用户信息结构体
-struct LoginUser: CustomStringConvertible {
-    let accessToken: String
-    let userID: Int
-    let parentID: Int?
-    let profileID: Int
-    let firstLogin: Bool?
-    let avatarURLString: String?
-    
-    var description: String {
-        return "LoginUser(accessToken: \(accessToken), userID: \(userID), parentID: \(parentID), profileID: \(profileID))" +
-        ", firstLogin: \(firstLogin)), avatarURLString: \(avatarURLString))"
-    }
-}
-
-///  SMS验证结果结构体
-struct VerifyingSMS: CustomStringConvertible {
-    let verified: String
-    let first_login: String
-    let token: String?
-    let parent_id: String
-    let reason: String?
-    
-    var description: String {
-        return "VerifyingSMS(verified: \(verified), first_login: \(first_login), token: \(token), parent_id: \(parent_id), reason: \(reason))"
-    }
-}
-
-///  个人账号信息结构体
-struct profileInfo: CustomStringConvertible {
-    let id: Int
-    let gender: String?
-    let avatar: String?
-    
-    var description: String {
-        return "parentInfo(id: \(id), gender: \(gender), avatar: \(avatar)"
-    }
-}
-
-///  家长账号信息结构体
-struct parentInfo: CustomStringConvertible {
-    let id: Int
-    let studentName: String?
-    let schoolName: String?
-    
-    var description: String {
-        return "parentInfo(id: \(id), studentName: \(studentName), schoolName: \(schoolName)"
-    }
-}
 
 
 // MARK: - Support Method
 ///  登陆成功后，获取个人信息和家长信息并保存到UserDefaults
 func getInfoWhenLoginSuccess() {
-    
     // 个人信息
     getAndSaveProfileInfo()
-    
     // 家长信息
     getAndSaveParentInfo()
 }
 
 func getAndSaveProfileInfo() {
-    let profileID = MalaUserDefaults.profileID.value ?? 0
-    getProfileInfo(profileID, failureHandler: { (reason, errorMessage) -> Void in
-        defaultFailureHandler(reason, errorMessage: errorMessage)
-        // 错误处理
-        if let errorMessage = errorMessage {
-            println("MalaService - getProfileInfo Error \(errorMessage)")
-        }
-        },completion: { (profile) -> Void in
-            println("保存Profile信息: \(profile)")
+    let id = MalaUserDefaults.profileID.value ?? 0
+    MAProvider.userProfile(id: id) { profile in
+        println("save userProfile: \(profile)")
+        if let profile = profile {
             saveProfileInfoToUserDefaults(profile)
-    })
+        }
+    }
 }
 
 func getAndSaveParentInfo() {
-    let parentID = MalaUserDefaults.parentID.value ?? 0
-    getParentInfo(parentID, failureHandler: { (reason, errorMessage) -> Void in
-        defaultFailureHandler(reason, errorMessage: errorMessage)
-        // 错误处理
-        if let errorMessage = errorMessage {
-            println("MalaService - getParentInfo Error \(errorMessage)")
-        }
-        },completion: { (parent) -> Void in
-            println("保存Parent信息: \(parent)")
+    let id = MalaUserDefaults.parentID.value ?? 0
+    MAProvider.userParents(id: id) { parent in
+        println("save userParents: \(parent)")
+        if let parent = parent {
             saveParentInfoToUserDefaults(parent)
-    })
+        }
+    }
 }
 
 
@@ -140,163 +77,17 @@ func saveTokenAndUserInfo(_ loginUser: LoginUser) {
 ////  保存个人信息到UserDefaults
 ///
 ///  - parameter profile: 个人信息模型
-func saveProfileInfoToUserDefaults(_ profile: profileInfo) {
+func saveProfileInfoToUserDefaults(_ profile: ProfileInfo) {
     MalaUserDefaults.gender.value = profile.gender
     MalaUserDefaults.avatar.value = profile.avatar
 }
 ///  保存家长信息到UserDefaults
 ///
 ///  - parameter parent: 家长信息模型
-func saveParentInfoToUserDefaults(_ parent: parentInfo) {
+func saveParentInfoToUserDefaults(_ parent: ParentInfo) {
     MalaUserDefaults.studentName.value = parent.studentName
     MalaUserDefaults.schoolName.value = parent.schoolName
 }
-
-///  获取验证码
-///
-///  - parameter mobile:         手机号码
-///  - parameter failureHandler: 失败处理闭包
-///  - parameter completion:     成功处理闭包
-func sendVerifyCodeOfMobile(_ mobile: String, failureHandler: ((Reason, String?) -> Void)?, completion: @escaping (Bool) -> Void) {
-    /// 参数字典
-    let requestParameters = [
-        "action": VerifyCodeMethod.Send.rawValue,
-        "phone": mobile
-    ]
-    /// 返回值解析器
-    let parse: (JSONDictionary) -> Bool? = { data in
-        
-        if let result = data["sent"] as? Bool {
-            return result
-        }
-        return false
-    }
-    
-    /// 请求资源对象
-    let resource = jsonResource(path: "/sms", method: .POST, requestParameters: requestParameters as JSONDictionary, parse: parse)
-    
-    /// 若未实现请求错误处理，进行默认的错误处理
-    if let failureHandler = failureHandler {
-        apiRequest({_ in}, baseURL: MalaBaseURL, resource: resource, failure: failureHandler, completion: completion)
-    } else {
-        apiRequest({_ in}, baseURL: MalaBaseURL, resource: resource, failure: defaultFailureHandler, completion: completion)
-    }
-}
-
-///  验证手机号
-///
-///  - parameter mobile:         手机号码
-///  - parameter verifyCode:     验证码
-///  - parameter failureHandler: 失败处理闭包
-///  - parameter completion:     成功处理闭包
-func verifyMobile(_ mobile: String, verifyCode: String, failureHandler: ((Reason, String?) -> Void)?, completion: @escaping (LoginUser) -> Void) {
-    let requestParameters = [
-        "action": VerifyCodeMethod.Verify.rawValue,
-        "phone": mobile,
-        "code": verifyCode
-    ]
-    
-    let parse: (JSONDictionary) -> LoginUser? = { data in
-        return parseLoginUser(data)
-    }
-    
-    let resource = jsonResource(path: "/sms", method: .POST, requestParameters: requestParameters as JSONDictionary, parse: parse)
-    
-    if let failureHandler = failureHandler {
-        apiRequest({_ in}, baseURL: MalaBaseURL, resource: resource, failure: failureHandler, completion: completion)
-    } else {
-        apiRequest({_ in}, baseURL: MalaBaseURL, resource: resource, failure: defaultFailureHandler, completion: completion)
-    }
-}
-
-///  根据个人id获取个人信息
-///
-///  - parameter parentID:       个人
-///  - parameter failureHandler: 失败处理闭包
-///  - parameter completion:     成功处理闭包
-func getProfileInfo(_ profileID: Int, failureHandler: ((Reason, String?) -> Void)?, completion: @escaping (profileInfo) -> Void) {
-    let parse: (JSONDictionary) -> profileInfo? = { data in
-        return parseProfile(data)
-    }
-    
-    let resource = authJsonResource(path: "/profiles/\(profileID)", method: .GET, requestParameters: nullDictionary(), parse: parse)
-    
-    if let failureHandler = failureHandler {
-        apiRequest({_ in}, baseURL: MalaBaseURL, resource: resource, failure: failureHandler, completion: completion)
-    } else {
-        apiRequest({_ in}, baseURL: MalaBaseURL, resource: resource, failure: defaultFailureHandler, completion: completion)
-    }
-}
-
-///  根据家长id获取家长信息
-///
-///  - parameter parentID:       家长id
-///  - parameter failureHandler: 失败处理闭包
-///  - parameter completion:     成功处理闭包
-func getParentInfo(_ parentID: Int, failureHandler: ((Reason, String?) -> Void)?, completion: @escaping (parentInfo) -> Void) {
-    let parse: (JSONDictionary) -> parentInfo? = { data in
-        return parseParent(data)
-    }
-    
-    let resource = authJsonResource(path: "/parents/\(parentID)", method: .GET, requestParameters: nullDictionary(), parse: parse)
-    
-    if let failureHandler = failureHandler {
-        apiRequest({_ in}, baseURL: MalaBaseURL, resource: resource, failure: failureHandler, completion: completion)
-    } else {
-        apiRequest({_ in}, baseURL: MalaBaseURL, resource: resource, failure: defaultFailureHandler, completion: completion)
-    }
-}
-
-///  上传用户头像
-///
-///  - parameter imageData:      头像
-///  - parameter failureHandler: 失败处理闭包
-///  - parameter completion:     成功处理闭包
-func updateAvatarWithImageData(_ imageData: Data, failureHandler: ((Reason, String?) -> Void)?, completion: @escaping (Bool) -> Void) {
-    
-    guard let token = MalaUserDefaults.userAccessToken.value else {
-        println("updateAvatar error - no token")
-        return
-    }
-    
-    guard let profileID = MalaUserDefaults.profileID.value else {
-        println("updateAvatar error - no profileID")
-        return
-    }
-    
-    let fileName = "avatar.jpg"
-    let headers: HTTPHeaders = ["Authorization": "Token \(token)"]
-    let uploadURL: URLConvertible = MalaBaseUrl + "/profiles/\(profileID)"
-
-    Alamofire.upload(multipartFormData: { (multipartFormData) in
-        
-        multipartFormData.append(imageData, withName: "avatar", fileName: fileName, mimeType: "image/jpeg")
-        
-    }, to: uploadURL, method: .patch, headers: headers, encodingCompletion: { (encodingResult) in
-        
-        println("encodingResult: \(encodingResult)")
-
-        switch encodingResult {
-        case .success(request: let upload, streamingFromDisk: _, streamFileURL: _):
-            
-            upload.responseJSON(completionHandler: { (response) in
-                
-                guard let data = response.data,
-                    let json = decodeJSON(data),
-                    let uploadResult = json["done"] as? String else {
-                        failureHandler?(.couldNotParseJSON, nil)
-                        return
-                }
-                let result = (uploadResult == "true" ? true : false)
-                completion(result)
-            })
-            
-        case .failure(let encodingError):
-            failureHandler?(.other(nil), "\(encodingError)")
-        }
-    })
-}
-
 ///  保存学生姓名
 ///
 ///  - parameter name:           姓名
@@ -1039,53 +830,6 @@ let parseOrderCreateResult: (JSONDictionary) -> OrderForm? = { orderInfo in
         order.id = id
         order.amount = amount
         return order
-    }
-    return nil
-}
-/// SMS验证结果JSON解析器
-let parseLoginUser: (JSONDictionary) -> LoginUser? = { userInfo in
-    /// 判断验证结果是否正确
-    guard let verified = userInfo["verified"], (verified as? Bool) == true else {
-        return nil
-    }
-    
-    if
-        let firstLogin = userInfo["first_login"] as? Bool,
-        let accessToken = userInfo["token"] as? String,
-        let parentID = userInfo["parent_id"] as? Int,
-        let userID = userInfo["user_id"] as? Int,
-        let profileID = userInfo["profile_id"] as? Int {
-            return LoginUser(accessToken: accessToken, userID: userID, parentID: parentID, profileID: profileID, firstLogin: firstLogin, avatarURLString: "")
-    }
-    return nil
-}
-/// 个人信息JSON解析器
-let parseProfile: (JSONDictionary) -> profileInfo? = { profileData in
-    /// 判断验证结果是否正确
-    guard let profileID = profileData["id"] else {
-        return nil
-    }
-    
-    if
-        let id = profileData["id"] as? Int,
-        let gender = profileData["gender"] as? String? {
-            let avatar = (profileData["avatar"] as? String) ?? ""
-            return profileInfo(id: id, gender: gender, avatar: avatar)
-    }
-    return nil
-}
-/// 家长信息JSON解析器
-let parseParent: (JSONDictionary) -> parentInfo? = { parentData in
-    /// 判断验证结果是否正确
-    guard let parentID = parentData["id"] else {
-        return nil
-    }
-    
-    if
-        let id = parentData["id"] as? Int,
-        let studentName = parentData["student_name"] as? String?,
-        let schoolName = parentData["student_school_name"] as? String? {
-            return parentInfo(id: id, studentName: studentName, schoolName: schoolName)
     }
     return nil
 }

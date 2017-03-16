@@ -335,41 +335,32 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
-        
         defer {
             dismiss(animated: true, completion: nil)
         }
         
+        // 处理图片尺寸和质量
+        let image = image.largestCenteredSquareImage().resizeToTargetSize(MalaConfig.avatarMaxSize())
+        guard let imageData = UIImageJPEGRepresentation(image, MalaConfig.avatarCompressionQuality()) else { return }
+        
         // 开启头像刷新指示器
         profileHeaderView.refreshAvatar = true
         
-        // 处理图片尺寸和质量
-        let image = image.largestCenteredSquareImage().resizeToTargetSize(MalaConfig.avatarMaxSize())
-        let imageData = UIImageJPEGRepresentation(image, MalaConfig.avatarCompressionQuality())
-        
-        if let imageData = imageData {
-            
-            updateAvatarWithImageData(imageData, failureHandler: { (reason, errorMessage) in
-                
-                defaultFailureHandler(reason, errorMessage: errorMessage)
-                
+        MAProvider.uploadAvatar(imageData: imageData, failureHandler: { [weak self] error in
+            DispatchQueue.main.async {
+                self?.profileHeaderView.refreshAvatar = false
+            }
+        }) { [weak self] result in
+            println("Upload New Avatar: \(result)")
+            DispatchQueue.main.async {
+                getAndSaveProfileInfo()
                 DispatchQueue.main.async {
-                    self.profileHeaderView.refreshAvatar = false
+                    self?.profileHeaderView.avatar = UIImage(data: imageData) ?? UIImage()
+                    self?.profileHeaderView.refreshAvatar = false
                 }
-                
-                }, completion: { newAvatarURLString in
-                    DispatchQueue.main.async {
-                        getAndSaveProfileInfo()
-                        DispatchQueue.main.async {
-                            self.profileHeaderView.avatar = UIImage(data: imageData) ?? UIImage()
-                            self.profileHeaderView.refreshAvatar = false
-                        }
-                        println("newAvatarURLString: \(newAvatarURLString)")
-                    }
-            })
+            }
         }
     }
-    
     
     
     // MARK: - Event Response
