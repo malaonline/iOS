@@ -9,10 +9,9 @@
 import Foundation
 import Moya
 
-let MAProvider = MoyaProvider<MAAPI>(plugins: [MANetworkPlugin()])
+let MAProvider = MoyaProvider<MAAPI>(endpointClosure: endpointClosure, plugins: [MANetworkPlugin()])
 
 extension MoyaProvider {
-    
     public typealias JSON = [AnyHashable: Any]
     public typealias failureHandler = ((MoyaError) -> Void)
 }
