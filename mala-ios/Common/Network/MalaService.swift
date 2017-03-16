@@ -33,34 +33,7 @@ public let coupons = "/coupons"
 typealias nullDictionary = [String: AnyObject]
 
 
-// MARK: - Support Method
-///  登陆成功后，获取个人信息和家长信息并保存到UserDefaults
-func getInfoWhenLoginSuccess() {
-    // 个人信息
-    getAndSaveProfileInfo()
-    // 家长信息
-    getAndSaveParentInfo()
-}
 
-func getAndSaveProfileInfo() {
-    let id = MalaUserDefaults.profileID.value ?? 0
-    MAProvider.userProfile(id: id) { profile in
-        println("save userProfile: \(profile)")
-        if let profile = profile {
-            saveProfileInfoToUserDefaults(profile)
-        }
-    }
-}
-
-func getAndSaveParentInfo() {
-    let id = MalaUserDefaults.parentID.value ?? 0
-    MAProvider.userParents(id: id) { parent in
-        println("save userParents: \(parent)")
-        if let parent = parent {
-            saveParentInfoToUserDefaults(parent)
-        }
-    }
-}
 
 
 // MARK: - User

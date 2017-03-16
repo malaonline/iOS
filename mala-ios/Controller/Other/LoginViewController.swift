@@ -406,7 +406,7 @@ class LoginViewController: UIViewController {
     
     func close(animated flag: Bool, completion: (() -> Void)? = nil) {
         DispatchQueue.main.async {
-            getInfoWhenLoginSuccess()
+            MalaUserDefaults.fetchUserInfo()
             super.dismiss(animated: flag, completion: completion)
         }
     }

@@ -129,7 +129,7 @@ class SaveNameView: UIView, UITextFieldDelegate {
         }, completion: { (bool) -> Void in
             println("学生姓名保存 - \(bool)")
             MalaUserDefaults.studentName.value = name
-            getInfoWhenLoginSuccess()
+            MalaUserDefaults.fetchUserInfo()
             self.closeButtonDidClick()
             ThemeHUD.hideActivityIndicator()
         })

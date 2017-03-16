@@ -353,7 +353,7 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
         }) { [weak self] result in
             println("Upload New Avatar: \(result)")
             DispatchQueue.main.async {
-                getAndSaveProfileInfo()
+                MalaUserDefaults.fetchProfileInfo()
                 DispatchQueue.main.async {
                     self?.profileHeaderView.avatar = UIImage(data: imageData) ?? UIImage()
                     self?.profileHeaderView.refreshAvatar = false

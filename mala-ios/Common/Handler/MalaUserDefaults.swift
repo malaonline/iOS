@@ -220,9 +220,12 @@ class MalaUserDefaults {
             }
         }
     }()
+}
+
+
+// MARK: - User authentication
+extension MalaUserDefaults {
     
-    
-    // MARK: - Class Method
     /// 清空UserDefaults
     class func cleanAllUserDefaults() {
         
@@ -255,17 +258,45 @@ class MalaUserDefaults {
     }
     
     class func userNeedRelogin() {
-        
         if let _ = userAccessToken.value {
-            
             cleanAllUserDefaults()
-            
             if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
                 if let rootViewController = appDelegate.window?.rootViewController {
                     MalaAlert.alert(title: L10n.mala, message: L10n.userAuthenticationError, dismissTitle: L10n.relogin, inViewController: rootViewController, withDismissAction: {
                         appDelegate.showLoginView()
                     })
                 }
+            }
+        }
+    }
+}
+
+
+// MARK: - Fetch account infomation
+extension MalaUserDefaults {
+    
+    /// Fetch userProfile, userParents when login was success
+    class func fetchUserInfo() {
+        fetchProfileInfo()
+        fetchParentInfo()
+    }
+    
+    class func fetchProfileInfo() {
+        let id = MalaUserDefaults.profileID.value ?? 0
+        MAProvider.userProfile(id: id) { profile in
+            println("save userProfile: \(profile)")
+            if let profile = profile {
+                saveProfileInfoToUserDefaults(profile)
+            }
+        }
+    }
+    
+    class func fetchParentInfo() {
+        let id = MalaUserDefaults.parentID.value ?? 0
+        MAProvider.userParents(id: id) { parent in
+            println("save userParents: \(parent)")
+            if let parent = parent {
+                saveParentInfoToUserDefaults(parent)
             }
         }
     }
