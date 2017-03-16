@@ -371,7 +371,7 @@ class LoginViewController: UIViewController {
                 return
             }
             
-            saveTokenAndUserInfo(loginUser)
+            MalaUserDefaults.storeAccountInfo(loginUser)
             MalaUserDefaults.isLogouted = false
              
             if loginUser.firstLogin == true {

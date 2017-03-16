@@ -286,7 +286,7 @@ extension MalaUserDefaults {
         MAProvider.userProfile(id: id) { profile in
             println("save userProfile: \(profile)")
             if let profile = profile {
-                saveProfileInfoToUserDefaults(profile)
+                storeUserProfile(profile)
             }
         }
     }
@@ -296,8 +296,40 @@ extension MalaUserDefaults {
         MAProvider.userParents(id: id) { parent in
             println("save userParents: \(parent)")
             if let parent = parent {
-                saveParentInfoToUserDefaults(parent)
+                storeUserParent(parent)
             }
         }
+    }
+}
+
+
+// MARK: - UserInfo store
+extension MalaUserDefaults {
+    
+    /// Store account info
+    ///
+    /// - Parameter loginUser: loginUser
+    class func storeAccountInfo(_ loginUser: LoginUser) {
+        MalaUserDefaults.userID.value = loginUser.userID
+        MalaUserDefaults.parentID.value = loginUser.parentID
+        MalaUserDefaults.profileID.value = loginUser.profileID
+        MalaUserDefaults.firstLogin.value = loginUser.firstLogin
+        MalaUserDefaults.userAccessToken.value = loginUser.accessToken
+    }
+
+    /// Store user profile info
+    ///
+    /// - Parameter profile: profile
+    class func storeUserProfile(_ profile: ProfileInfo) {
+        MalaUserDefaults.gender.value = profile.gender
+        MalaUserDefaults.avatar.value = profile.avatar
+    }
+
+    /// Store user parents info
+    ///
+    /// - Parameter parent: parent
+    class func storeUserParent(_ parent: ParentInfo) {
+        MalaUserDefaults.studentName.value = parent.studentName
+        MalaUserDefaults.schoolName.value = parent.schoolName
     }
 }

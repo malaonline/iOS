@@ -38,29 +38,6 @@ typealias nullDictionary = [String: AnyObject]
 
 // MARK: - User
 
-///  保存用户信息到UserDefaults
-///  - parameter loginUser: 登陆用户模型
-func saveTokenAndUserInfo(_ loginUser: LoginUser) {
-    MalaUserDefaults.userID.value = loginUser.userID
-    MalaUserDefaults.parentID.value = loginUser.parentID
-    MalaUserDefaults.profileID.value = loginUser.profileID
-    MalaUserDefaults.firstLogin.value = loginUser.firstLogin
-    MalaUserDefaults.userAccessToken.value = loginUser.accessToken
-}
-////  保存个人信息到UserDefaults
-///
-///  - parameter profile: 个人信息模型
-func saveProfileInfoToUserDefaults(_ profile: ProfileInfo) {
-    MalaUserDefaults.gender.value = profile.gender
-    MalaUserDefaults.avatar.value = profile.avatar
-}
-///  保存家长信息到UserDefaults
-///
-///  - parameter parent: 家长信息模型
-func saveParentInfoToUserDefaults(_ parent: ParentInfo) {
-    MalaUserDefaults.studentName.value = parent.studentName
-    MalaUserDefaults.schoolName.value = parent.schoolName
-}
 ///  保存学生姓名
 ///
 ///  - parameter name:           姓名
