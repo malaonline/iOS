@@ -15,6 +15,7 @@ public enum MAAPI {
     case verifySMS(phone: String, code: String)
     case profileInfo(id: Int)
     case parentInfo(id: Int)
+    case uploadAvatar(data: Data, profileId: Int)
 }
 
 extension MAAPI: TargetType {
@@ -29,9 +30,9 @@ extension MAAPI: TargetType {
 #endif
     public var path: String {
         switch self {
-        case .sendSMS(_), .verifySMS(_, _):
+        case .sendSMS, .verifySMS:
             return "/sms"
-        case .profileInfo(let id):
+        case .profileInfo(let id), .uploadAvatar(_, let id):
             return "/profiles/\(id)"
         case .parentInfo(let id):
             return "/parents/\(id)"
@@ -39,10 +40,12 @@ extension MAAPI: TargetType {
     }
     public var method: Moya.Method {
         switch self {
-        case .profileInfo(_), .parentInfo(_):
+        case .profileInfo, .parentInfo:
             return .get
-        case .sendSMS(_), .verifySMS(_, _):
+        case .sendSMS, .verifySMS:
             return .post
+        case .uploadAvatar:
+            return .patch
         }
     }
     public var parameters: [String : Any]? {
@@ -57,17 +60,23 @@ extension MAAPI: TargetType {
     }
     public var parameterEncoding: ParameterEncoding {
         switch self {
-        case .profileInfo, .parentInfo:
-            return URLEncoding.default
         case .sendSMS, .verifySMS:
             return JSONEncoding.default
+        case .profileInfo, .parentInfo, .uploadAvatar:
+            return URLEncoding.default
         }
     }
     public var sampleData: Data {
         return "".data(using: String.Encoding.utf8)!
     }
     public var task: Task {
-        return .request
+        switch self {
+        case .uploadAvatar(let imageData, _):
+            return .upload(UploadType.multipart([MultipartFormData(provider: .data(imageData), name: "avatar", fileName: "avatar.jpg", mimeType: "image/jpeg")]))
+        default:
+            return .request
+        }
+        
     }
 }
 
