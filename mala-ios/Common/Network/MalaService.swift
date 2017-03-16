@@ -152,63 +152,6 @@ func saveParentInfoToUserDefaults(_ parent: parentInfo) {
     MalaUserDefaults.schoolName.value = parent.schoolName
 }
 
-///  获取验证码
-///
-///  - parameter mobile:         手机号码
-///  - parameter failureHandler: 失败处理闭包
-///  - parameter completion:     成功处理闭包
-func sendVerifyCodeOfMobile(_ mobile: String, failureHandler: ((Reason, String?) -> Void)?, completion: @escaping (Bool) -> Void) {
-    /// 参数字典
-    let requestParameters = [
-        "action": VerifyCodeMethod.Send.rawValue,
-        "phone": mobile
-    ]
-    /// 返回值解析器
-    let parse: (JSONDictionary) -> Bool? = { data in
-        
-        if let result = data["sent"] as? Bool {
-            return result
-        }
-        return false
-    }
-    
-    /// 请求资源对象
-    let resource = jsonResource(path: "/sms", method: .POST, requestParameters: requestParameters as JSONDictionary, parse: parse)
-    
-    /// 若未实现请求错误处理，进行默认的错误处理
-    if let failureHandler = failureHandler {
-        apiRequest({_ in}, baseURL: MalaBaseURL, resource: resource, failure: failureHandler, completion: completion)
-    } else {
-        apiRequest({_ in}, baseURL: MalaBaseURL, resource: resource, failure: defaultFailureHandler, completion: completion)
-    }
-}
-
-///  验证手机号
-///
-///  - parameter mobile:         手机号码
-///  - parameter verifyCode:     验证码
-///  - parameter failureHandler: 失败处理闭包
-///  - parameter completion:     成功处理闭包
-func verifyMobile(_ mobile: String, verifyCode: String, failureHandler: ((Reason, String?) -> Void)?, completion: @escaping (LoginUser) -> Void) {
-    let requestParameters = [
-        "action": VerifyCodeMethod.Verify.rawValue,
-        "phone": mobile,
-        "code": verifyCode
-    ]
-    
-    let parse: (JSONDictionary) -> LoginUser? = { data in
-        return parseLoginUser(data)
-    }
-    
-    let resource = jsonResource(path: "/sms", method: .POST, requestParameters: requestParameters as JSONDictionary, parse: parse)
-    
-    if let failureHandler = failureHandler {
-        apiRequest({_ in}, baseURL: MalaBaseURL, resource: resource, failure: failureHandler, completion: completion)
-    } else {
-        apiRequest({_ in}, baseURL: MalaBaseURL, resource: resource, failure: defaultFailureHandler, completion: completion)
-    }
-}
-
 ///  根据个人id获取个人信息
 ///
 ///  - parameter parentID:       个人
@@ -1039,23 +982,6 @@ let parseOrderCreateResult: (JSONDictionary) -> OrderForm? = { orderInfo in
         order.id = id
         order.amount = amount
         return order
-    }
-    return nil
-}
-/// SMS验证结果JSON解析器
-let parseLoginUser: (JSONDictionary) -> LoginUser? = { userInfo in
-    /// 判断验证结果是否正确
-    guard let verified = userInfo["verified"], (verified as? Bool) == true else {
-        return nil
-    }
-    
-    if
-        let firstLogin = userInfo["first_login"] as? Bool,
-        let accessToken = userInfo["token"] as? String,
-        let parentID = userInfo["parent_id"] as? Int,
-        let userID = userInfo["user_id"] as? Int,
-        let profileID = userInfo["profile_id"] as? Int {
-            return LoginUser(accessToken: accessToken, userID: userID, parentID: parentID, profileID: profileID, firstLogin: firstLogin, avatarURLString: "")
     }
     return nil
 }
