@@ -88,57 +88,6 @@ func saveParentInfoToUserDefaults(_ parent: ParentInfo) {
     MalaUserDefaults.studentName.value = parent.studentName
     MalaUserDefaults.schoolName.value = parent.schoolName
 }
-
-///  上传用户头像
-///
-///  - parameter imageData:      头像
-///  - parameter failureHandler: 失败处理闭包
-///  - parameter completion:     成功处理闭包
-func updateAvatarWithImageData(_ imageData: Data, failureHandler: ((Reason, String?) -> Void)?, completion: @escaping (Bool) -> Void) {
-    
-    guard let token = MalaUserDefaults.userAccessToken.value else {
-        println("updateAvatar error - no token")
-        return
-    }
-    
-    guard let profileID = MalaUserDefaults.profileID.value else {
-        println("updateAvatar error - no profileID")
-        return
-    }
-    
-    let fileName = "avatar.jpg"
-    let headers: HTTPHeaders = ["Authorization": "Token \(token)"]
-    let uploadURL: URLConvertible = MalaBaseUrl + "/profiles/\(profileID)"
-
-    Alamofire.upload(multipartFormData: { (multipartFormData) in
-        
-        multipartFormData.append(imageData, withName: "avatar", fileName: fileName, mimeType: "image/jpeg")
-        
-    }, to: uploadURL, method: .patch, headers: headers, encodingCompletion: { (encodingResult) in
-        
-        println("encodingResult: \(encodingResult)")
-
-        switch encodingResult {
-        case .success(request: let upload, streamingFromDisk: _, streamFileURL: _):
-            
-            upload.responseJSON(completionHandler: { (response) in
-                
-                guard let data = response.data,
-                    let json = decodeJSON(data),
-                    let uploadResult = json["done"] as? String else {
-                        failureHandler?(.couldNotParseJSON, nil)
-                        return
-                }
-                let result = (uploadResult == "true" ? true : false)
-                completion(result)
-            })
-            
-        case .failure(let encodingError):
-            failureHandler?(.other(nil), "\(encodingError)")
-        }
-    })
-}
-
 ///  保存学生姓名
 ///
 ///  - parameter name:           姓名

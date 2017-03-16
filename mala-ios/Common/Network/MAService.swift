@@ -10,14 +10,13 @@ import Foundation
 import Moya
 
 extension MoyaProvider {
-
     
-    /// 获取验证码
+    /// Get Verification code
     ///
     /// - Parameters:
-    ///   - phone:          手机号码
-    ///   - failureHandler: 失败处理闭包
-    ///   - completion:     成功处理闭包
+    ///   - phone:          Phone number
+    ///   - failureHandler: FailureHandler
+    ///   - completion:     Completion
     /// - Returns:          Cancellable
     @discardableResult
     func sendSMS(phone: String, failureHandler: failureHandler? = nil, completion: @escaping (Bool) -> Void) -> Cancellable {
@@ -27,13 +26,13 @@ extension MoyaProvider {
         })
     }
     
-    /// 验证短信验证码
+    /// Verification the SMS code
     ///
     /// - Parameters:
-    ///   - phone:          手机号码
-    ///   - code:           验证码
-    ///   - failureHandler: 失败处理闭包
-    ///   - completion:     成功处理闭包
+    ///   - phone:          Phone number
+    ///   - code:           Verification code
+    ///   - failureHandler: FailureHandler
+    ///   - completion:     Completion
     /// - Returns:          Cancellable
     @discardableResult
     func verifySMS(phone: String, code: String, failureHandler: failureHandler? = nil, completion: @escaping (LoginUser?) -> Void) -> Cancellable {
@@ -54,12 +53,12 @@ extension MoyaProvider {
         })
     }
     
-    /// 获取个人账号信息
+    /// Get user profile info
     ///
     /// - Parameters:
-    ///   - id:             个人信息id
-    ///   - failureHandler: 失败处理闭包
-    ///   - completion:     成功处理闭包
+    ///   - id:             Profile id of account
+    ///   - failureHandler: FailureHandler
+    ///   - completion:     Completion
     /// - Returns:          Cancellable
     @discardableResult
     func userProfile(id: Int, failureHandler: failureHandler? = nil, completion: @escaping (ProfileInfo?) -> Void) -> Cancellable {
@@ -77,12 +76,12 @@ extension MoyaProvider {
         })
     }
     
-    /// 获取账号家长信息
+    /// Get user parent info
     ///
     /// - Parameters:
-    ///   - id:             账号家长id
-    ///   - failureHandler: 失败处理闭包
-    ///   - completion:     成功处理闭包
+    ///   - id:             Parent id of account
+    ///   - failureHandler: FailureHandler
+    ///   - completion:     Completion
     /// - Returns:          Cancellable
     @discardableResult
     func userParents(id: Int, failureHandler: failureHandler? = nil, completion: @escaping (ParentInfo?) -> Void) -> Cancellable {
@@ -101,6 +100,23 @@ extension MoyaProvider {
             completion(nil)
         })
     }
+    
+    /// Upload user avatar
+    ///
+    /// - Parameters:
+    ///   - imageData:      Data of image
+    ///   - failureHandler: FailureHandler
+    ///   - completion:     Completion
+    /// - Returns:          Cancellable
+    @discardableResult
+    func uploadAvatar(imageData: Data, failureHandler: failureHandler? = nil, completion: @escaping (Bool?) -> Void) -> Cancellable {
+        let id = MalaUserDefaults.profileID.value ?? -1
+        return self.sendRequest(.uploadAvatar(data: imageData, profileId: id), failureHandler: failureHandler, completion: { json in
+            guard let result = json["done"] as? Bool else {
+                completion(nil)
+                return
+            }
+            completion(result)
+        })
+    }
 }
-
-
