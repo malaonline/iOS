@@ -25,6 +25,7 @@ public enum MAAPI {
     case userNewMessageCount()
     case userCollection(page: Int)
     case addCollection(id: Int)
+    case removeCollection(id: Int)
 }
 
 extension MAAPI: TargetType {
@@ -57,6 +58,8 @@ extension MAAPI: TargetType {
             return "/my_center"
         case .userCollection, .addCollection:
             return "/favorites"
+        case .removeCollection(let id):
+            return "/favorites/\(id)"
         }
     }
     public var method: Moya.Method {
@@ -67,6 +70,8 @@ extension MAAPI: TargetType {
             return .post
         case .uploadAvatar, .saveStudentName, .saveSchoolName:
             return .patch
+        case .removeCollection:
+            return .delete
         }
     }
     public var parameters: [String : Any]? {
@@ -95,7 +100,7 @@ extension MAAPI: TargetType {
         switch self {
         case .sendSMS, .verifySMS, .saveStudentName, .saveSchoolName, .addCollection:
             return JSONEncoding.default
-        case .profileInfo, .parentInfo, .uploadAvatar, .userCoupons, .evaluationStatus, .getStudentSchedule, .getOrderList, .userNewMessageCount, .userCollection:
+        case .profileInfo, .parentInfo, .uploadAvatar, .userCoupons, .evaluationStatus, .getStudentSchedule, .getOrderList, .userNewMessageCount, .userCollection, .removeCollection:
             return URLEncoding.default
         }
     }

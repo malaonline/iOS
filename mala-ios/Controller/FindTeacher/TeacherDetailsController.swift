@@ -280,14 +280,9 @@ class TeacherDetailsController: BaseViewController, UIGestureRecognizerDelegate,
     }
     
     private func dislikeTeacher() {
-        removeFavoriteTeacher(teacherID, failureHandler: { (reason, errorMessage) in
-            // 错误处理
-            if let errorMessage = errorMessage {
-                println("TeacherDetailsController - dislikeTeacher Error \(errorMessage)")
-            }
-        }, completion: { (bool) in
-            println("取消收藏老师 - \(bool)")
-        })
+        MAProvider.removeCollection(id: teacherID) { result in
+            println("取消收藏老师 - \(result)")
+        }
     }
     
     private func showBackground() {

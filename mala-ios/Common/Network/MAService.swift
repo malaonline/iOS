@@ -317,4 +317,18 @@ extension MoyaProvider {
             completion(true)
         })
     }
+    
+    /// remove an element from user collection
+    ///
+    /// - Parameters:
+    ///   - id:             Teacher id
+    ///   - failureHandler: FailureHandler
+    ///   - completion:     Completion
+    /// - Returns:          Cancellable
+    @discardableResult
+    func removeCollection(id: Int, failureHandler: failureHandler? = nil, completion: @escaping (Bool) -> Void) -> Cancellable {
+        return self.sendRequest(.removeCollection(id: id), failureHandler: failureHandler, completion: { json in
+            completion(true)
+        })
+    }
 }

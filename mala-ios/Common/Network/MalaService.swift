@@ -32,27 +32,6 @@ public let coupons = "/coupons"
 typealias nullDictionary = [String: AnyObject]
 
 
-// MARK: - User
-///  取消收藏老师
-///
-///  - parameter id:             老师id
-///  - parameter failureHandler: 失败处理闭包
-///  - parameter completion:     成功处理闭包
-func removeFavoriteTeacher(_ id: Int, failureHandler: ((Reason, String?) -> Void)?, completion: @escaping (Bool) -> Void) {
-    let parse: (JSONDictionary) -> Bool = { data in
-        return true
-    }
-    
-    let resource = authJsonResource(path: "/favorites/\(id)", method: .DELETE, requestParameters: nullDictionary(), parse: parse)
-    
-    if let failureHandler = failureHandler {
-        apiRequest({_ in}, baseURL: MalaBaseURL, resource: resource, failure: failureHandler, completion: completion)
-    } else {
-        apiRequest({_ in}, baseURL: MalaBaseURL, resource: resource, failure: defaultFailureHandler, completion: completion)
-    }
-}
-
-
 // MARK: - Teacher
 ///  获取老师详情数据
 ///
