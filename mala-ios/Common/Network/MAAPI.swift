@@ -13,15 +13,14 @@ import Result
 public enum MAAPI {
     case sendSMS(phone: String)
     case verifySMS(phone: String, code: String)
-    
     case profileInfo(id: Int)
     case parentInfo(id: Int)
     case uploadAvatar(data: Data, profileId: Int)
     case saveStudentName(name: String, parentId: Int)
     case saveSchoolName(name: String, parentId: Int)
-    
     case userCoupons(onlyValid: Bool)
     case evaluationStatus(subjectId: Int)
+    case getStudentSchedule(onlyPassed: Bool)
 }
 
 extension MAAPI: TargetType {
@@ -46,11 +45,13 @@ extension MAAPI: TargetType {
             return "/coupons"
         case .evaluationStatus(let id):
             return "/subject/\(id)/record"
+        case .getStudentSchedule:
+            return "/timeslots"
         }
     }
     public var method: Moya.Method {
         switch self {
-        case .profileInfo, .parentInfo, .userCoupons, .evaluationStatus:
+        case .profileInfo, .parentInfo, .userCoupons, .evaluationStatus, .getStudentSchedule:
             return .get
         case .sendSMS, .verifySMS:
             return .post
@@ -70,6 +71,9 @@ extension MAAPI: TargetType {
             return ["student_school_name": name]
         case .userCoupons(let onlyValid):
             return ["only_valid": String(onlyValid)]
+        case .getStudentSchedule(let onlyPassed):
+            return ["for_review": String(onlyPassed)]
+            
         default:
             return nil
         }
@@ -78,7 +82,7 @@ extension MAAPI: TargetType {
         switch self {
         case .sendSMS, .verifySMS, .saveStudentName, .saveSchoolName:
             return JSONEncoding.default
-        case .profileInfo, .parentInfo, .uploadAvatar, .userCoupons, .evaluationStatus:
+        case .profileInfo, .parentInfo, .uploadAvatar, .userCoupons, .evaluationStatus, .getStudentSchedule:
             return URLEncoding.default
         }
     }

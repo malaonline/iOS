@@ -77,23 +77,16 @@ class CommentViewController: BaseTableViewController {
         
         refreshControl?.beginRefreshing()
         
-        
         ///  获取学生课程信息
-        getStudentCourseTable(true, failureHandler: { (reason, errorMessage) -> Void in
-            defaultFailureHandler(reason, errorMessage: errorMessage)
-            // 错误处理
-            if let errorMessage = errorMessage {
-                println("CommentViewController - loadCourse Error \(errorMessage)")
-            }
-            // 显示缺省值
+        MAProvider.getStudentSchedule(onlyPassed: true, failureHandler: { error in
             self.models = []
             self.refreshControl?.endRefreshing()
             self.isFetching = false
-        }, completion: { (courseList) -> Void in
+        }) { schedule in
             self.refreshControl?.endRefreshing()
             self.isFetching = false
-            self.models = courseList
-        })
+            self.models = schedule
+        }
     }
 
     

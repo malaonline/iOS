@@ -191,14 +191,43 @@ extension MoyaProvider {
         })
     }
     
+    /// Get the evaluation state
+    ///
+    /// - Parameters:
+    ///   - subjectId:      Id of the subject
+    ///   - failureHandler: FailureHandler
+    ///   - completion:     Completion
+    /// - Returns:          Cancellable
     @discardableResult
     func subjectEvaluationStatus(subjectId: Int, failureHandler: failureHandler? = nil, completion: @escaping (Bool) -> Void) -> Cancellable {
         return self.sendRequest(.evaluationStatus(subjectId: subjectId), failureHandler: failureHandler, completion: { json in
             if let result = json["evaluated"] as? Bool {
-                // 服务器返回结果为：用户是否已经做过此学科的建档测评，是则代表非首次购买。故取反处理。
                 completion(!result)
             }
             completion(true)
+        })
+    }
+    
+    /// Get the student's schedule of the course
+    ///
+    /// - Parameters:
+    ///   - onlyPassed:     
+    ///   - failureHandler: FailureHandler
+    ///   - completion:     Completion
+    /// - Returns:          Cancellable
+    @discardableResult
+    func getStudentSchedule(onlyPassed: Bool = false, failureHandler: failureHandler? = nil, completion: @escaping ([StudentCourseModel]) -> Void) -> Cancellable {
+        return self.sendRequest(.getStudentSchedule(onlyPassed: onlyPassed), failureHandler: failureHandler, completion: { json in
+
+            var schedule: [StudentCourseModel] = []
+            guard let courses = json["results"] as? [JSON], courses.count != 0 else {
+                completion(schedule)
+                return
+            }
+            for course in courses {
+                schedule.append(StudentCourseModel(dict: course))
+            }
+            completion(schedule)
         })
     }
 }

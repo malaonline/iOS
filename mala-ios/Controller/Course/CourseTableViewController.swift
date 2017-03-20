@@ -188,22 +188,15 @@ open class CourseTableViewController: UIViewController, UITableViewDataSource, U
         }else {
             unLoginDefaultView.isHidden = true
         }
-        ThemeHUD.showActivityIndicator()
         
-        // 发送网络请求
-        getStudentCourseTable(failureHandler: { (reason, errorMessage) -> Void in
-            defaultFailureHandler(reason, errorMessage: errorMessage)
-            // 错误处理
-            if let errorMessage = errorMessage {
-                println("CourseTableViewController - loadStudentCourseTable Error \(errorMessage)")
-            }
-            ThemeHUD.hideActivityIndicator()
-        }, completion: { (courseList) -> Void in
+        
+        ///  获取学生课程信息
+        MAProvider.getStudentSchedule { schedule in
             // 解析学生上课时间表
-            let result = parseStudentCourseTable(courseList)
+            let result = parseStudentCourseTable(schedule)
             self.recentlyCourseIndexPath = result.recently
             self.model = result.model
-        })
+        }
     }
     
     

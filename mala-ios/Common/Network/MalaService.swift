@@ -33,27 +33,6 @@ typealias nullDictionary = [String: AnyObject]
 
 
 // MARK: - User
-///  获取学生上课时间表
-///
-///  - parameter onlyPassed:     是否只获取已结束的课程
-///  - parameter page:           页数
-///  - parameter failureHandler: 失败处理闭包
-///  - parameter completion:     成功处理闭包
-func getStudentCourseTable(_ onlyPassed: Bool = false, page: Int = 1, failureHandler: ((Reason, String?) -> Void)?, completion: @escaping ([StudentCourseModel]) -> Void) {
-    
-    let parse: (JSONDictionary) -> [StudentCourseModel] = { data in
-        return parseStudentCourse(data)
-    }
-    let requestParameters = ["for_review": String(onlyPassed)]    
-    let resource = authJsonResource(path: "/timeslots", method: .GET, requestParameters: requestParameters as JSONDictionary, parse: parse)
-    
-    if let failureHandler = failureHandler {
-        apiRequest({_ in}, baseURL: MalaBaseURL, resource: resource, failure: failureHandler, completion: completion)
-    } else {
-        apiRequest({_ in}, baseURL: MalaBaseURL, resource: resource, failure: defaultFailureHandler, completion: completion)
-    }
-}
-
 ///  获取用户订单列表
 ///
 ///  - parameter failureHandler: 失败处理闭包
@@ -662,23 +641,6 @@ let parseClassSchedule: (JSONDictionary) -> [[ClassScheduleDayModel]] = { schedu
         }
     }
     return weekSchedule
-}
-/// 学生上课时间表JSON解析器
-let parseStudentCourse: (JSONDictionary) -> [StudentCourseModel] = { courseInfos in
-    
-    /// 学生上课时间数组
-    var courseList: [StudentCourseModel] = []
-    
-    /// 确保相应格式正确，且存在数据
-    guard let courses = courseInfos["results"] as? [JSONDictionary], courses.count != 0 else {
-        return courseList
-    }
-    
-    ///  遍历字典数组，转换为模型
-    for course in courses {
-        courseList.append(StudentCourseModel(dict: course))
-    }
-    return courseList
 }
 /// 课程信息JSON解析器
 let parseCourseInfo: (JSONDictionary) -> CourseModel? = { courseInfo in
