@@ -22,6 +22,7 @@ public enum MAAPI {
     case evaluationStatus(subjectId: Int)
     case getStudentSchedule(onlyPassed: Bool)
     case getOrderList(page: Int)
+    case userNewMessageCount()
 }
 
 extension MAAPI: TargetType {
@@ -50,11 +51,13 @@ extension MAAPI: TargetType {
             return "/timeslots"
         case .getOrderList:
             return "/orders"
+        case .userNewMessageCount:
+            return "/my_center"
         }
     }
     public var method: Moya.Method {
         switch self {
-        case .profileInfo, .parentInfo, .userCoupons, .evaluationStatus, .getStudentSchedule, .getOrderList:
+        case .profileInfo, .parentInfo, .userCoupons, .evaluationStatus, .getStudentSchedule, .getOrderList, .userNewMessageCount:
             return .get
         case .sendSMS, .verifySMS:
             return .post
@@ -86,7 +89,7 @@ extension MAAPI: TargetType {
         switch self {
         case .sendSMS, .verifySMS, .saveStudentName, .saveSchoolName:
             return JSONEncoding.default
-        case .profileInfo, .parentInfo, .uploadAvatar, .userCoupons, .evaluationStatus, .getStudentSchedule, .getOrderList:
+        case .profileInfo, .parentInfo, .uploadAvatar, .userCoupons, .evaluationStatus, .getStudentSchedule, .getOrderList, .userNewMessageCount:
             return URLEncoding.default
         }
     }

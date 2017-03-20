@@ -33,30 +33,6 @@ typealias nullDictionary = [String: AnyObject]
 
 
 // MARK: - User
-///  获取用户新消息数量
-///
-///  - parameter failureHandler: 失败处理闭包
-///  - parameter completion:     成功处理闭包
-func getUserNewMessageCount(_ failureHandler: ((Reason, String?) -> Void)?, completion: @escaping (_ order: Int, _ comment: Int) -> Void) {
-    
-    let parse: (JSONDictionary) -> (order: Int, comment: Int) = { data in
-        if
-            let order = data["unpaid_num"] as? Int,
-            let comment = data["tocomment_num"] as? Int {
-            return (order, comment)
-        }else {
-            return (0, 0)
-        }
-    }
-    
-    let resource = authJsonResource(path: "/my_center", method: .GET, requestParameters: nullDictionary(), parse: parse)
-    
-    if let failureHandler = failureHandler {
-        apiRequest({_ in}, baseURL: MalaBaseURL, resource: resource, failure: failureHandler, completion: completion)
-    } else {
-        apiRequest({_ in}, baseURL: MalaBaseURL, resource: resource, failure: defaultFailureHandler, completion: completion)
-    }
-}
 
 ///  获取用户收藏老师列表
 ///

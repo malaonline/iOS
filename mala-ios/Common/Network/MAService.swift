@@ -231,6 +231,13 @@ extension MoyaProvider {
         })
     }
     
+    /// Get user order list
+    ///
+    /// - Parameters:
+    ///   - page:           Page number
+    ///   - failureHandler: FailureHandler
+    ///   - completion:     Completion
+    /// - Returns:          Cancellable
     @discardableResult
     func getOrderList(page: Int = 1, failureHandler: failureHandler? = nil, completion: @escaping ([OrderForm], Int) -> Void) -> Cancellable {
         return self.sendRequest(.getOrderList(page: page), failureHandler: failureHandler, completion: { json in
@@ -249,6 +256,26 @@ extension MoyaProvider {
                 }
             }
             completion(list, count)
+        })
+    }
+    
+    /// Get user new messages count
+    ///
+    /// - Parameters:
+    ///   - failureHandler: FailureHandler
+    ///   - completion:     Completion
+    /// - Returns:          Cancellable
+    @discardableResult
+    func userNewMessageCount(failureHandler: failureHandler? = nil, completion: @escaping (_ order: Int, _ comment: Int) -> Void) -> Cancellable {
+        return self.sendRequest(.userNewMessageCount(), failureHandler: failureHandler, completion: { json in
+            if let order = json["unpaid_num"] as? Int,
+               let comment = json["tocomment_num"] as? Int {
+                completion(order, comment)
+                return
+            }else {
+                completion(0, 0)
+                return
+            }
         })
     }
 }
