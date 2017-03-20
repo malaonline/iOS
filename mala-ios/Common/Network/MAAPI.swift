@@ -27,6 +27,7 @@ public enum MAAPI {
     case addCollection(id: Int)
     case removeCollection(id: Int)
     case loadTeacherDetail(id: Int)
+    case getTeacherAvailableTime(teacherId: Int, schoolId: Int)
 }
 
 extension MAAPI: TargetType {
@@ -63,11 +64,13 @@ extension MAAPI: TargetType {
             return "/favorites/\(id)"
         case .loadTeacherDetail(let id):
             return "/teachers/\(id)"
+        case .getTeacherAvailableTime(let teacherId, _):
+            return "teachers/\(teacherId)/weeklytimeslots"
         }
     }
     public var method: Moya.Method {
         switch self {
-        case .profileInfo, .parentInfo, .userCoupons, .evaluationStatus, .getStudentSchedule, .getOrderList, .userNewMessageCount, .userCollection, .loadTeacherDetail:
+        case .profileInfo, .parentInfo, .userCoupons, .evaluationStatus, .getStudentSchedule, .getOrderList, .userNewMessageCount, .userCollection, .loadTeacherDetail, .getTeacherAvailableTime:
             return .get
         case .sendSMS, .verifySMS, .addCollection:
             return .post
@@ -95,6 +98,8 @@ extension MAAPI: TargetType {
             return ["page": page]
         case .addCollection(let id):
             return ["teacher": id]
+        case .getTeacherAvailableTime(_, let schoolId):
+            return ["school_id": schoolId]
         default:
             return nil
         }
@@ -103,7 +108,7 @@ extension MAAPI: TargetType {
         switch self {
         case .sendSMS, .verifySMS, .saveStudentName, .saveSchoolName, .addCollection:
             return JSONEncoding.default
-        case .profileInfo, .parentInfo, .uploadAvatar, .userCoupons, .evaluationStatus, .getStudentSchedule, .getOrderList, .userNewMessageCount, .userCollection, .removeCollection, .loadTeacherDetail:
+        case .profileInfo, .parentInfo, .uploadAvatar, .userCoupons, .evaluationStatus, .getStudentSchedule, .getOrderList, .userNewMessageCount, .userCollection, .removeCollection, .loadTeacherDetail, .getTeacherAvailableTime:
             return URLEncoding.default
         }
     }

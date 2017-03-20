@@ -33,30 +33,6 @@ typealias nullDictionary = [String: AnyObject]
 
 
 // MARK: - Teacher
-///  获取[指定老师]在[指定上课地点]的可用时间表
-///
-///  - parameter teacherId:      老师id
-///  - parameter schoolId:       上课地点id
-///  - parameter failureHandler: 失败处理闭包
-///  - parameter completion:     成功处理闭包
-func getTeacherAvailableTimeInSchool(_ teacherId: Int, schoolId: Int, failureHandler: ((Reason, String?) -> Void)?, completion: @escaping ([[ClassScheduleDayModel]]) -> Void) {
-    
-    let requestParameters = [
-        "school_id": schoolId,
-    ]
-    
-    let parse: (JSONDictionary) -> [[ClassScheduleDayModel]] = { data in
-        return parseClassSchedule(data)
-    }
-    
-    let resource = authJsonResource(path: "teachers/\(teacherId)/weeklytimeslots", method: .GET, requestParameters: requestParameters as JSONDictionary, parse: parse)
-    
-    if let failureHandler = failureHandler {
-        apiRequest({_ in}, baseURL: MalaBaseURL, resource: resource, failure: failureHandler, completion: completion)
-    } else {
-        apiRequest({_ in}, baseURL: MalaBaseURL, resource: resource, failure: defaultFailureHandler, completion: completion)
-    }
-}
 ///  获取[指定老师]在[指定上课地点]的价格阶梯
 ///
 ///  - parameter teacherID:      老师id
@@ -480,24 +456,6 @@ let parseOrderCreateResult: (JSONDictionary) -> OrderForm? = { orderInfo in
         return order
     }
     return nil
-}
-/// 可用上课时间表JSON解析器
-let parseClassSchedule: (JSONDictionary) -> [[ClassScheduleDayModel]] = { scheduleInfo in
-    
-    // 本周时间表
-    var weekSchedule: [[ClassScheduleDayModel]] = []
-    
-    // 循环一周七天的可用时间表
-    for index in 1...7 {
-        if let day = scheduleInfo[String(index)] as? [[String: AnyObject]] {
-            var daySchedule: [ClassScheduleDayModel] = []
-            for dict in day {
-                daySchedule.append(ClassScheduleDayModel(dict: dict))
-            }
-            weekSchedule.append(daySchedule)
-        }
-    }
-    return weekSchedule
 }
 /// 课程信息JSON解析器
 let parseCourseInfo: (JSONDictionary) -> CourseModel? = { courseInfo in

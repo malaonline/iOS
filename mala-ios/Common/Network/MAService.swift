@@ -345,4 +345,32 @@ extension MoyaProvider {
             completion(TeacherDetailModel(dict: json))
         })
     }
+    
+    /// Get teacher available time at given school
+    ///
+    /// - Parameters:
+    ///   - teacherId:      Teacher id
+    ///   - schoolId:       School id
+    ///   - failureHandler: FailureHandler
+    ///   - completion:     Completion
+    /// - Returns:          Cancellable
+    @discardableResult
+    func getTeacherAvailableTime(teacherId: Int, atSchool schoolId: Int, failureHandler: failureHandler? = nil, completion: @escaping ([[ClassScheduleDayModel]]) -> Void) -> Cancellable {
+        return self.sendRequest(.getTeacherAvailableTime(teacherId: teacherId, schoolId: schoolId), failureHandler: failureHandler, completion: { json in
+            
+            var weekSchedule: [[ClassScheduleDayModel]] = []
+            
+            // loop week
+            for index in 1...7 {
+                if let day = json[String(index)] as? [[String: AnyObject]] {
+                    var daySchedule: [ClassScheduleDayModel] = []
+                    for dict in day {
+                        daySchedule.append(ClassScheduleDayModel(dict: dict))
+                    }
+                    weekSchedule.append(daySchedule)
+                }
+            }
+            completion(weekSchedule) 
+        })
+    }
 }

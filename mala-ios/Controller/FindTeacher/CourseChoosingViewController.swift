@@ -204,18 +204,10 @@ class CourseChoosingViewController: BaseViewController, CourseChoosingConfirmVie
             return
         }
         
-        getTeacherAvailableTimeInSchool(teacherID, schoolId: schoolId, failureHandler: { (reason, errorMessage) -> Void in
-            ThemeHUD.hideActivityIndicator()
-            defaultFailureHandler(reason, errorMessage: errorMessage)
-            
-            // 错误处理
-            if let errorMessage = errorMessage {
-                println("CourseChoosingViewController - getTeacherAvailableTimeInSchool Error \(errorMessage)")
-            }
-        },completion: { [weak self] (timeSchedule) -> Void in
-            self?.classScheduleModel = timeSchedule
-            self?.requiredCount += 1
-        })
+        MAProvider.getTeacherAvailableTime(teacherId: teacherID, atSchool: schoolId) { timeSchedule in
+            self.classScheduleModel = timeSchedule
+            self.requiredCount += 1
+        }
     }
     
     private func loadCoupons() {
