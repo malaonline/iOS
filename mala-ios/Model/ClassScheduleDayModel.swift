@@ -36,7 +36,7 @@ class ClassScheduleDayModel: BaseObjectModel {
         self.weekID = weekID
     }
     
-    override init(dict: [String: AnyObject]) {
+    override init(dict: [String: Any]) {
         super.init(dict: dict)
         setValuesForKeys(dict)
     }

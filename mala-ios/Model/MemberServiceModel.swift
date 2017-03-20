@@ -20,7 +20,7 @@ class MemberServiceModel: BaseObjectModel {
         super.init()
     }
     
-    override init(dict: [String: AnyObject]) {
+    override init(dict: [String: Any]) {
         super.init(dict: dict)
         setValuesForKeys(dict)
     }
