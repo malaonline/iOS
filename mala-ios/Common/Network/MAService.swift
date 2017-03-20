@@ -331,4 +331,18 @@ extension MoyaProvider {
             completion(true)
         })
     }
+    
+    /// Load detail data of the teacher
+    ///
+    /// - Parameters:
+    ///   - id:             Teacher id
+    ///   - failureHandler: FailureHandler
+    ///   - completion:     Completion
+    /// - Returns:          Cancellable
+    @discardableResult
+    func loadTeacherDetail(id: Int, failureHandler: failureHandler? = nil, completion: @escaping (TeacherDetailModel?) -> Void) -> Cancellable {
+        return self.sendRequest(.loadTeacherDetail(id: id), failureHandler: failureHandler, completion: { json in
+            completion(TeacherDetailModel(dict: json))
+        })
+    }
 }

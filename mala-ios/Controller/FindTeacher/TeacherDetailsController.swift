@@ -256,21 +256,12 @@ class TeacherDetailsController: BaseViewController, UIGestureRecognizerDelegate,
     }
     
     private func loadTeacherDetail() {
-        
-        loadTeacherDetailData(teacherID, failureHandler: { (reason, errorMessage) in
-            ThemeHUD.hideActivityIndicator()
-            defaultFailureHandler(reason, errorMessage: errorMessage)
-            // 错误处理
-            if let errorMessage = errorMessage {
-                println("TeacherDetailsController - loadTeacherDetail Error \(errorMessage)")
-            }
-        }, completion: { (model) in
-            ThemeHUD.hideActivityIndicator()
+        MAProvider.loadTeacherDetail(id: teacherID) { model in
             if let model = model {
                 self.model = model
             }
             self.requiredCount += 1
-        })
+        }
     }
     
     private func likeTeacher() {

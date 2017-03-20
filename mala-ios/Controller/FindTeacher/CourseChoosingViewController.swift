@@ -158,18 +158,10 @@ class CourseChoosingViewController: BaseViewController, CourseChoosingConfirmVie
         
         guard let id = self.teacherId else { return }
         
-        loadTeacherDetailData(id, failureHandler: { (reason, errorMessage) in
-            ThemeHUD.hideActivityIndicator()
-            defaultFailureHandler(reason, errorMessage: errorMessage)
-            
-            // 错误处理
-            if let errorMessage = errorMessage {
-                println("CourseChoosingViewController - loadTeacherDetail Error \(errorMessage)")
-            }
-        }, completion: { [weak self] (model) in
-            self?.teacherModel = model
-            self?.requiredCount += 1
-        })
+        MAProvider.loadTeacherDetail(id: id) { model in
+            self.teacherModel = model
+            self.requiredCount += 1
+        }
     }
     
     private func loadGradePrices() {

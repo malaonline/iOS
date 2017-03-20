@@ -26,6 +26,7 @@ public enum MAAPI {
     case userCollection(page: Int)
     case addCollection(id: Int)
     case removeCollection(id: Int)
+    case loadTeacherDetail(id: Int)
 }
 
 extension MAAPI: TargetType {
@@ -60,11 +61,13 @@ extension MAAPI: TargetType {
             return "/favorites"
         case .removeCollection(let id):
             return "/favorites/\(id)"
+        case .loadTeacherDetail(let id):
+            return "/teachers/\(id)"
         }
     }
     public var method: Moya.Method {
         switch self {
-        case .profileInfo, .parentInfo, .userCoupons, .evaluationStatus, .getStudentSchedule, .getOrderList, .userNewMessageCount, .userCollection:
+        case .profileInfo, .parentInfo, .userCoupons, .evaluationStatus, .getStudentSchedule, .getOrderList, .userNewMessageCount, .userCollection, .loadTeacherDetail:
             return .get
         case .sendSMS, .verifySMS, .addCollection:
             return .post
@@ -100,7 +103,7 @@ extension MAAPI: TargetType {
         switch self {
         case .sendSMS, .verifySMS, .saveStudentName, .saveSchoolName, .addCollection:
             return JSONEncoding.default
-        case .profileInfo, .parentInfo, .uploadAvatar, .userCoupons, .evaluationStatus, .getStudentSchedule, .getOrderList, .userNewMessageCount, .userCollection, .removeCollection:
+        case .profileInfo, .parentInfo, .uploadAvatar, .userCoupons, .evaluationStatus, .getStudentSchedule, .getOrderList, .userNewMessageCount, .userCollection, .removeCollection, .loadTeacherDetail:
             return URLEncoding.default
         }
     }
@@ -123,6 +126,8 @@ extension MAAPI: AccessTokenAuthorizable {
         switch self {
         case .sendSMS, .verifySMS:
             return false
+        case .loadTeacherDetail:
+            return MalaUserDefaults.isLogined ? true : false
         default:
             return true
         }
