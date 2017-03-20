@@ -33,29 +33,6 @@ typealias nullDictionary = [String: AnyObject]
 
 
 // MARK: - User
-///  获取用户订单列表
-///
-///  - parameter failureHandler: 失败处理闭包
-///  - parameter completion:     成功处理闭包
-func getOrderList(_ page: Int = 1, failureHandler: ((Reason, String?) -> Void)?, completion: @escaping ([OrderForm], Int) -> Void) {
-    
-    let requestParameters: JSONDictionary = [
-        "page": page as AnyObject,
-        ]
-    
-    let parse: (JSONDictionary) -> ([OrderForm], Int) = { data in
-        return parseOrderList(data)
-    }
-    
-    let resource = authJsonResource(path: "/orders", method: .GET, requestParameters: requestParameters, parse: parse)
-    
-    if let failureHandler = failureHandler {
-        apiRequest({_ in}, baseURL: MalaBaseURL, resource: resource, failure: failureHandler, completion: completion)
-    } else {
-        apiRequest({_ in}, baseURL: MalaBaseURL, resource: resource, failure: defaultFailureHandler, completion: completion)
-    }
-}
-
 ///  获取用户新消息数量
 ///
 ///  - parameter failureHandler: 失败处理闭包
@@ -696,26 +673,6 @@ let parseConcreteTimeslot: (JSONDictionary) -> [[TimeInterval]]? = { timeSlotsIn
     }
     
     return data
-}
-/// 订单列表JSON解析器
-let parseOrderList: (JSONDictionary) -> ([OrderForm], Int) = { ordersInfo in
-    
-    var orderList: [OrderForm] = []
-    
-    guard
-        let orders = ordersInfo["results"] as? [JSONDictionary],
-        let count = ordersInfo["count"] as? Int, count != 0 else {
-        return (orderList, 0)
-    }
-    
-    for order in orders {
-        // 订单创建成功
-        if let _ = order["id"] as? Int {
-            orderList.append(OrderForm(dict: order))
-        }
-    }
-    
-    return (orderList, count)
 }
 /// 支付信息JSON解析器
 let parseChargeToken: (JSONDictionary) -> JSONDictionary? = { chargeInfo in

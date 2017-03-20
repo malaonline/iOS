@@ -101,29 +101,23 @@ class OrderFormViewController: BaseTableViewController {
         }
         
         ///  获取用户订单列表
-        getOrderList(currentPageIndex, failureHandler: { (reason, errorMessage) in
-            defaultFailureHandler(reason, errorMessage: errorMessage)
-            
-            // 错误处理
-            if let errorMessage = errorMessage {
-                println("OrderFormViewController - loadOrderForm Error \(errorMessage)")
-            }
+        MAProvider.getOrderList(page: currentPageIndex, failureHandler: { error in
             DispatchQueue.main.async {
                 self.refreshControl?.endRefreshing()
                 self.isFetching = false
             }
-        }, completion: { (orderList, count) in
+        }) { (list, count) in
             /// 记录数据量
             self.allCount = max(self.allCount, count)
             
             ///  加载更多
             if isLoadMore {
-                for order in orderList {
+                for order in list {
                     self.models.append(order)
                 }
-            ///  如果不是加载更多，则刷新数据
+                ///  如果不是加载更多，则刷新数据
             }else {
-                self.models = orderList
+                self.models = list
             }
             
             DispatchQueue.main.async {
@@ -131,7 +125,7 @@ class OrderFormViewController: BaseTableViewController {
                 self.refreshControl?.endRefreshing()
                 self.isFetching = false
             }
-        })
+        }
     }
     
     private func setupNotification() {

@@ -230,4 +230,25 @@ extension MoyaProvider {
             completion(schedule)
         })
     }
+    
+    @discardableResult
+    func getOrderList(page: Int = 1, failureHandler: failureHandler? = nil, completion: @escaping ([OrderForm], Int) -> Void) -> Cancellable {
+        return self.sendRequest(.getOrderList(page: page), failureHandler: failureHandler, completion: { json in
+            
+            var list: [OrderForm] = []
+            
+            guard let orders = json["results"] as? [JSON],
+                  let count = json["count"] as? Int, count != 0 else {
+                    completion(list, 0)
+                    return
+            }
+            
+            for order in orders {
+                if let _ = order["id"] as? Int {
+                    list.append(OrderForm(dict: order))
+                }
+            }
+            completion(list, count)
+        })
+    }
 }
