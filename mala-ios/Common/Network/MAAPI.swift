@@ -23,6 +23,7 @@ public enum MAAPI {
     case getStudentSchedule(onlyPassed: Bool)
     case getOrderList(page: Int)
     case userNewMessageCount()
+    case userCollection(page: Int)
 }
 
 extension MAAPI: TargetType {
@@ -53,11 +54,13 @@ extension MAAPI: TargetType {
             return "/orders"
         case .userNewMessageCount:
             return "/my_center"
+        case .userCollection:
+            return "/favorites"
         }
     }
     public var method: Moya.Method {
         switch self {
-        case .profileInfo, .parentInfo, .userCoupons, .evaluationStatus, .getStudentSchedule, .getOrderList, .userNewMessageCount:
+        case .profileInfo, .parentInfo, .userCoupons, .evaluationStatus, .getStudentSchedule, .getOrderList, .userNewMessageCount, .userCollection:
             return .get
         case .sendSMS, .verifySMS:
             return .post
@@ -79,7 +82,7 @@ extension MAAPI: TargetType {
             return ["only_valid": String(onlyValid)]
         case .getStudentSchedule(let onlyPassed):
             return ["for_review": String(onlyPassed)]
-        case .getOrderList(let page):
+        case .getOrderList(let page), .userCollection(let page):
             return ["page": page]
         default:
             return nil
@@ -89,7 +92,7 @@ extension MAAPI: TargetType {
         switch self {
         case .sendSMS, .verifySMS, .saveStudentName, .saveSchoolName:
             return JSONEncoding.default
-        case .profileInfo, .parentInfo, .uploadAvatar, .userCoupons, .evaluationStatus, .getStudentSchedule, .getOrderList, .userNewMessageCount:
+        case .profileInfo, .parentInfo, .uploadAvatar, .userCoupons, .evaluationStatus, .getStudentSchedule, .getOrderList, .userNewMessageCount, .userCollection:
             return URLEncoding.default
         }
     }

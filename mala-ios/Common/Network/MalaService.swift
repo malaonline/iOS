@@ -34,29 +34,6 @@ typealias nullDictionary = [String: AnyObject]
 
 // MARK: - User
 
-///  获取用户收藏老师列表
-///
-///  - parameter failureHandler: 失败处理闭包
-///  - parameter completion:     成功处理闭包
-func getFavoriteTeachers(_ page: Int = 1, failureHandler: ((Reason, String?) -> Void)?, completion: @escaping ([TeacherModel], Int) -> Void) {
-    
-    let requestParameters = [
-        "page": page,
-        ]
-    
-    let parse: (JSONDictionary) -> ([TeacherModel], Int) = { data in
-        return parseFavoriteTeacherResult(data)
-    }
-    
-    let resource = authJsonResource(path: "/favorites", method: .GET, requestParameters: requestParameters as JSONDictionary, parse: parse)
-    
-    if let failureHandler = failureHandler {
-        apiRequest({_ in}, baseURL: MalaBaseURL, resource: resource, failure: failureHandler, completion: completion)
-    } else {
-        apiRequest({_ in}, baseURL: MalaBaseURL, resource: resource, failure: defaultFailureHandler, completion: completion)
-    }
-}
-
 ///  收藏老师
 ///
 ///  - parameter id:             老师id
@@ -692,22 +669,7 @@ let parseSchoolsResult: (JSONDictionary) -> [SchoolModel] = { resultInfo in
     }
     return schools
 }
-/// 老师收藏列表JSON解析器
-let parseFavoriteTeacherResult: (JSONDictionary) -> ([TeacherModel], Int) = { resultInfo in
-    
-    var teachers: [TeacherModel] = []
-    var count = 0
-    
-    if
-        let allCount = resultInfo["count"] as? Int,
-        let results = resultInfo["results"] as? [JSONDictionary], results.count > 0 {
-        count = allCount
-        for teacher in results {
-            teachers.append(TeacherModel(dict: teacher))
-        }
-    }
-    return (teachers, count)
-}
+
 /// 城市数据列表JSON解析器
 let parseCitiesResult: (JSONDictionary) -> [BaseObjectModel] = { resultInfo in
     

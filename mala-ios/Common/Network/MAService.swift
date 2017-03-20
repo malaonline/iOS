@@ -266,7 +266,7 @@ extension MoyaProvider {
     ///   - completion:     Completion
     /// - Returns:          Cancellable
     @discardableResult
-    func userNewMessageCount(failureHandler: failureHandler? = nil, completion: @escaping (_ order: Int, _ comment: Int) -> Void) -> Cancellable {
+    func userNewMessageCount(failureHandler: failureHandler? = nil, completion: @escaping (Int, Int) -> Void) -> Cancellable {
         return self.sendRequest(.userNewMessageCount(), failureHandler: failureHandler, completion: { json in
             if let order = json["unpaid_num"] as? Int,
                let comment = json["tocomment_num"] as? Int {
@@ -276,6 +276,31 @@ extension MoyaProvider {
                 completion(0, 0)
                 return
             }
+        })
+    }
+    
+    /// Get list of teacher that user collected
+    ///
+    /// - Parameters:
+    ///   - page:           Page number
+    ///   - failureHandler: FailureHandler
+    ///   - completion:     Completion
+    /// - Returns:          Cancellable
+    @discardableResult
+    func userCollection(page: Int = 1, failureHandler: failureHandler? = nil, completion: @escaping ([TeacherModel], Int) -> Void) -> Cancellable {
+        return self.sendRequest(.userCollection(page: page), failureHandler: failureHandler, completion: { json in
+            
+            var teachers: [TeacherModel] = []
+            var count = 0
+            
+            if let all = json["count"] as? Int,
+               let results = json["results"] as? [JSON], results.count > 0 {
+                count = all
+                for teacher in results {
+                    teachers.append(TeacherModel(dict: teacher))
+                }
+            }
+            completion(teachers, count)
         })
     }
 }

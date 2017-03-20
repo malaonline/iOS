@@ -90,21 +90,15 @@ class FavoriteViewController: BaseTableViewController {
             currentPageIndex = 1
         }
         
-        getFavoriteTeachers(currentPageIndex, failureHandler: { (reason, errorMessage) in
-            defaultFailureHandler(reason, errorMessage: errorMessage)
-            // 错误处理
-            if let errorMessage = errorMessage {
-                println("FavoriteViewController - loadFavoriteTeachers Error \(errorMessage)")
-            }
-            // 显示缺省值
+        MAProvider.userCollection(page: currentPageIndex, failureHandler: { error in
             DispatchQueue.main.async {
                 self.refreshControl?.endRefreshing()
                 self.isFetching = false
             }
-        }, completion: { (teachers, count) in
+        }) { (teachers, count) in
             /// 记录数据量
             self.allCount = max(count, self.allCount)
-
+            
             ///  加载更多
             if isLoadMore {
                 for teacher in teachers {
@@ -120,7 +114,7 @@ class FavoriteViewController: BaseTableViewController {
                 self.refreshControl?.endRefreshing()
                 self.isFetching = false
             }
-        })
+        }
     }
     
     
