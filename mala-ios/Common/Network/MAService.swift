@@ -303,4 +303,18 @@ extension MoyaProvider {
             completion(teachers, count)
         })
     }
+    
+    /// Add a new element to user collection
+    ///
+    /// - Parameters:
+    ///   - id:             Teacher id
+    ///   - failureHandler: FailureHandler
+    ///   - completion:     Completion
+    /// - Returns:          Cancellable
+    @discardableResult
+    func addCollection(id: Int, failureHandler: failureHandler? = nil, completion: @escaping (Bool) -> Void) -> Cancellable {
+        return self.sendRequest(.addCollection(id: id), failureHandler: failureHandler, completion: { json in
+            completion(true)
+        })
+    }
 }

@@ -274,14 +274,9 @@ class TeacherDetailsController: BaseViewController, UIGestureRecognizerDelegate,
     }
     
     private func likeTeacher() {
-        addFavoriteTeacher(teacherID, failureHandler: { (reason, errorMessage) in
-            // 错误处理
-            if let errorMessage = errorMessage {
-                println("TeacherDetailsController - likeTeacher Error \(errorMessage)")
-            }
-        }, completion: { (bool) in
-            println("收藏老师 - \(bool)")
-        })
+        MAProvider.addCollection(id: teacherID) { result in
+            println("收藏老师 - \(result)")
+        }
     }
     
     private func dislikeTeacher() {

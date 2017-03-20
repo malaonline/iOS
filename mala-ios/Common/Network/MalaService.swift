@@ -33,31 +33,6 @@ typealias nullDictionary = [String: AnyObject]
 
 
 // MARK: - User
-
-///  收藏老师
-///
-///  - parameter id:             老师id
-///  - parameter failureHandler: 失败处理闭包
-///  - parameter completion:     成功处理闭包
-func addFavoriteTeacher(_ id: Int, failureHandler: ((Reason, String?) -> Void)?, completion: @escaping (Bool) -> Void) {
-    
-    let requestParameters = [
-        "teacher": id,
-        ]
-    
-    let parse: (JSONDictionary) -> Bool = { data in
-        return true
-    }
-    
-    let resource = authJsonResource(path: "/favorites", method: .POST, requestParameters: requestParameters as JSONDictionary, parse: parse)
-    
-    if let failureHandler = failureHandler {
-        apiRequest({_ in}, baseURL: MalaBaseURL, resource: resource, failure: failureHandler, completion: completion)
-    } else {
-        apiRequest({_ in}, baseURL: MalaBaseURL, resource: resource, failure: defaultFailureHandler, completion: completion)
-    }
-}
-
 ///  取消收藏老师
 ///
 ///  - parameter id:             老师id

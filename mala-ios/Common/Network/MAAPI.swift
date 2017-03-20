@@ -24,6 +24,7 @@ public enum MAAPI {
     case getOrderList(page: Int)
     case userNewMessageCount()
     case userCollection(page: Int)
+    case addCollection(id: Int)
 }
 
 extension MAAPI: TargetType {
@@ -54,7 +55,7 @@ extension MAAPI: TargetType {
             return "/orders"
         case .userNewMessageCount:
             return "/my_center"
-        case .userCollection:
+        case .userCollection, .addCollection:
             return "/favorites"
         }
     }
@@ -62,7 +63,7 @@ extension MAAPI: TargetType {
         switch self {
         case .profileInfo, .parentInfo, .userCoupons, .evaluationStatus, .getStudentSchedule, .getOrderList, .userNewMessageCount, .userCollection:
             return .get
-        case .sendSMS, .verifySMS:
+        case .sendSMS, .verifySMS, .addCollection:
             return .post
         case .uploadAvatar, .saveStudentName, .saveSchoolName:
             return .patch
@@ -84,13 +85,15 @@ extension MAAPI: TargetType {
             return ["for_review": String(onlyPassed)]
         case .getOrderList(let page), .userCollection(let page):
             return ["page": page]
+        case .addCollection(let id):
+            return ["teacher": id]
         default:
             return nil
         }
     }
     public var parameterEncoding: ParameterEncoding {
         switch self {
-        case .sendSMS, .verifySMS, .saveStudentName, .saveSchoolName:
+        case .sendSMS, .verifySMS, .saveStudentName, .saveSchoolName, .addCollection:
             return JSONEncoding.default
         case .profileInfo, .parentInfo, .uploadAvatar, .userCoupons, .evaluationStatus, .getStudentSchedule, .getOrderList, .userNewMessageCount, .userCollection:
             return URLEncoding.default
