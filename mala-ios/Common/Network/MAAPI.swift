@@ -33,6 +33,8 @@ public enum MAAPI {
     
     case getLiveClasses(schoolId: Int?, page: Int)
     case getLiveClassDetail(id: Int)
+    
+    case getCourseInfo(id: Int)
 }
 
 extension MAAPI: TargetType {
@@ -77,6 +79,8 @@ extension MAAPI: TargetType {
             return "/liveclasses"
         case .getLiveClassDetail(let id):
             return "/liveclasses/\(id)"
+        case .getCourseInfo(let id):
+            return "timeslots/\(id)"
         }
     }
     public var method: Moya.Method {

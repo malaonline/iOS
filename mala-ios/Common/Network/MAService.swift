@@ -443,4 +443,35 @@ extension MoyaProvider {
             completion(LiveClassModel(dict: json))
         })
     }
+    
+    /// Get detail data of course
+    ///
+    /// - Parameters:
+    ///   - id:             Course id
+    ///   - failureHandler: FailureHandler
+    ///   - completion:     Completion
+    /// - Returns:          Cancellable
+    @discardableResult
+    func getCourseInfo(id: Int = 0, failureHandler: failureHandler? = nil, completion: @escaping (CourseModel?) -> Void) -> Cancellable {
+        return self.sendRequest(.getCourseInfo(id: id), failureHandler: failureHandler, completion: { json in
+            
+            guard let _ = json["id"] as? Int else {
+                completion(nil)
+                return
+            }
+            
+            if let _ = json["id"] as? Int,
+               let _ = json["start"] as? TimeInterval,
+               let _ = json["end"] as? TimeInterval,
+               let _ = json["subject"] as? String,
+               let _ = json["school"] as? String,
+               let _ = json["is_passed"] as? Bool,
+               let _ = json["teacher"] as? JSON {
+                completion(CourseModel(dict: json))
+                return
+            }
+            completion(nil)
+            return
+        })
+    }
 }

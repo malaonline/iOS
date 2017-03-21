@@ -32,26 +32,6 @@ public let coupons = "/coupons"
 typealias nullDictionary = [String: AnyObject]
 
 // MARK: - Course
-///  获取课程信息
-///
-///  - parameter id:             课程id
-///  - parameter failureHandler: 失败处理闭包
-///  - parameter completion:     成功处理闭包
-func getCourseInfo(_ id: Int, failureHandler: ((Reason, String?) -> Void)?, completion: @escaping (CourseModel) -> Void) {
-    
-    let parse: (JSONDictionary) -> CourseModel? = { data in
-        return parseCourseInfo(data)
-    }
-    
-    let resource = authJsonResource(path: "timeslots/\(id)", method: .GET, requestParameters: nullDictionary(), parse: parse)
-    
-    if let failureHandler = failureHandler {
-        apiRequest({_ in}, baseURL: MalaBaseURL, resource: resource, failure: failureHandler, completion: completion)
-    } else {
-        apiRequest({_ in}, baseURL: MalaBaseURL, resource: resource, failure: defaultFailureHandler, completion: completion)
-    }
-}
-
 ///  获取上课时间表
 ///
 ///  - parameter teacherID:      老师id
@@ -380,25 +360,7 @@ let parseOrderCreateResult: (JSONDictionary) -> OrderForm? = { orderInfo in
     }
     return nil
 }
-/// 课程信息JSON解析器
-let parseCourseInfo: (JSONDictionary) -> CourseModel? = { courseInfo in
-    
-    guard let id = courseInfo["id"] as? Int else {
-        return nil
-    }
-    
-    if
-        let id = courseInfo["id"] as? Int,
-        let start = courseInfo["start"] as? TimeInterval,
-        let end = courseInfo["end"] as? TimeInterval,
-        let subject = courseInfo["subject"] as? String,
-        let school = courseInfo["school"] as? String,
-        let is_passed = courseInfo["is_passed"] as? Bool,
-        let teacher = courseInfo["teacher"] as? JSONDictionary {
-            return CourseModel(dict: courseInfo)
-    }
-    return nil
-}
+
 /// 评论信息JSON解析器
 let parseCommentInfo: (JSONDictionary) -> CommentModel? = { commentInfo in
     
