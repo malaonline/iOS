@@ -28,7 +28,7 @@ open class BaseObjectModel: NSObject, NSCoding {
         super.init()
     }
     
-    init(dict: [String: AnyObject]) {
+    init(dict: [String: Any]) {
         super.init()
         setValuesForKeys(dict)
     }

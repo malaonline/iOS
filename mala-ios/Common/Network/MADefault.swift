@@ -9,6 +9,16 @@
 import Foundation
 import Moya
 
+public typealias JSON = [String: Any]
+
+#if USE_PRD_SERVER
+    public var MABaseURL: URL { return URL(string: "https://www.malalaoshi.com/api/v1")! }
+#elseif USE_STAGE_SERVER
+    public var MABaseURL: URL { return URL(string: "https://stage.malalaoshi.com/api/v1")! }
+#else
+    public var MABaseURL: URL { return URL(string: "http://dev.malalaoshi.com/api/v1")! }
+#endif
+
 let endpointClosure = { (target: MAAPI) -> Endpoint<MAAPI> in
     let defaultEndpoint = MoyaProvider.defaultEndpointMapping(for: target)
     

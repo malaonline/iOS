@@ -110,13 +110,7 @@ class MainViewController: UITabBarController, UITabBarControllerDelegate {
                 
         if !MalaUserDefaults.isLogined { return }
         
-        getUserNewMessageCount({ (reason, errorMessage) in
-            defaultFailureHandler(reason, errorMessage: errorMessage)
-            // 错误处理
-            if let errorMessage = errorMessage {
-                println("MainViewController - loadUnpaindOrder Error \(errorMessage)")
-            }
-        }, completion: { (order, comment) in
+        MAProvider.userNewMessageCount { (order, comment) in
             println("未支付订单数量：\(order), 待评价数量：\(comment)")
             
             MalaUnpaidOrderCount = order
@@ -128,7 +122,7 @@ class MainViewController: UITabBarController, UITabBarControllerDelegate {
                 }
             }
             self.profileViewController.showTabBadgePoint = (MalaUnpaidOrderCount > 0 || MalaToCommentCount > 0)
-        })
+        }
     }
     
     /// 弹出未支付订单提示

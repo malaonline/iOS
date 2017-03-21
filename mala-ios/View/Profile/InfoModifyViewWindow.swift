@@ -240,28 +240,17 @@ open class InfoModifyViewWindow: UIViewController, UITextViewDelegate {
     
     ///  保存学生姓名
     private func saveStudentsName() {
-        let name = nameLabel.text ?? ""
+        guard let name = nameLabel.text else { return }
         
-        ThemeHUD.showActivityIndicator()
-        
-        saveStudentName(name, failureHandler: { (reason, errorMessage) -> Void in
-            ThemeHUD.hideActivityIndicator()
-            
-            // 错误处理
-            if let errorMessage = errorMessage {
-                println("InfoModifyViewWindow - saveStudentName Error \(errorMessage)")
-            }
-        }, completion: { (bool) -> Void in
-            println("学生姓名保存 - \(bool)")
+        MAProvider.saveStudentName(name: name) { result in
+            println("Save Student Name - \(result)")
             
             MalaUserDefaults.studentName.value = name
             NotificationCenter.default.post(name: MalaNotification_RefreshStudentName, object: nil)
-            
-            ThemeHUD.hideActivityIndicator()
             DispatchQueue.main.async {
                 self.animateDismiss()
             }
-        })
+        }
     }
     
     

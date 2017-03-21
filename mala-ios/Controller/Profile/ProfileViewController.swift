@@ -157,20 +157,15 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
         if isFetching { return }
         isFetching = true
         
-        getUserNewMessageCount({ (reason, errorMessage) in
-            defaultFailureHandler(reason, errorMessage: errorMessage)
-            // 错误处理
-            if let errorMessage = errorMessage {
-                println("ProfileViewController - loadUnpaindOrder Error \(errorMessage)")
-            }
+        MAProvider.userNewMessageCount(failureHandler: { error in
             self.isFetching = false
-        }, completion: { (order, comment) in
+        }) { (order, comment) in
             println("未支付订单数量：\(order) - 待评价数量：\(comment)")
             self.isFetching = false
             MalaUnpaidOrderCount = order
             MalaToCommentCount = comment
             self.navigationController?.showTabBadgePoint = (MalaUnpaidOrderCount > 0 || MalaToCommentCount > 0)
-        })
+        }
     }
     
     ///  更新本地AvatarView的图片
@@ -353,7 +348,7 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
         }) { [weak self] result in
             println("Upload New Avatar: \(result)")
             DispatchQueue.main.async {
-                getAndSaveProfileInfo()
+                MalaUserDefaults.fetchProfileInfo()
                 DispatchQueue.main.async {
                     self?.profileHeaderView.avatar = UIImage(data: imageData) ?? UIImage()
                     self?.profileHeaderView.refreshAvatar = false

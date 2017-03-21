@@ -14,7 +14,7 @@ class ResultModel: NSObject {
     var count: NSNumber?
     var previous: NSNumber?
     var next: NSNumber?
-    var results: [AnyObject]? {
+    var results: [Any]? {
         didSet {
             // make sure results can't be Empty Array
             if results != nil && results?.count == 0 {
@@ -38,7 +38,7 @@ class ResultModel: NSObject {
     }
     
     
-    init(dict: [String: AnyObject]) {
+    init(dict: [String: Any]) {
         super.init()
         setValuesForKeys(dict)
     }

@@ -81,20 +81,9 @@ class LiveCourseDetailViewController: BaseViewController, LiveCourseConfirmViewD
     }
     
     private func loadClassDetail() {
-        
-        ThemeHUD.showActivityIndicator()
-        
-        getLiveClassDetail(classId, failureHandler: { (reason, errorMessage) in
-            ThemeHUD.hideActivityIndicator()
-            defaultFailureHandler(reason, errorMessage: errorMessage)
-            // 错误处理
-            if let errorMessage = errorMessage {
-                println("LiveCourseDetailViewController - loadClassDetail Error \(errorMessage)")
-            }
-        }, completion: { [weak self] (model) in
-            ThemeHUD.hideActivityIndicator()
-            self?.model = model
-        })
+        MAProvider.getLiveClassDetail(id: classId) { model in
+            self.model = model
+        }
     }
     
     private func setupNotification() {
@@ -126,36 +115,25 @@ class LiveCourseDetailViewController: BaseViewController, LiveCourseConfirmViewD
     
     ///  创建订单
     private func createOrder() {
-        
-        ThemeHUD.showActivityIndicator()
-        let order = OrderForm(classId: model.id)
-        
-        createOrderWithForm(order.jsonForLiveCourse(), failureHandler: { (reason, errorMessage) -> Void in
-            ThemeHUD.hideActivityIndicator()
-            defaultFailureHandler(reason, errorMessage: errorMessage)
-            // 错误处理
-            if let errorMessage = errorMessage {
-                println("LiveCourseDetailViewController - CreateOrder Error \(errorMessage)")
-            }
+
+        MAProvider.createOrder(order: OrderForm(classId: model.id).jsonForLiveCourse(), failureHandler: { error in
             DispatchQueue.main.async {
                 self.ShowToast(L10n.networkNotReachable)
             }
-        }, completion: { [weak self] (order) -> Void in
-            ThemeHUD.hideActivityIndicator()
-            
+        }) { [weak self] order in
             // 订单创建错误
             if let code = order.code {
                 var message = ""
                 if let errorCode = OrderErrorCode(rawValue: code) {
                     switch errorCode {
                     case .timeslotConflict:
-                            message = L10n.pleaseCheckTimeslots
+                        message = L10n.pleaseCheckTimeslots
                     case .couponConflict:
-                            message = L10n.couponInfoError
+                        message = L10n.couponInfoError
                     case .liveClassFull:
-                            message = L10n.courseQuotaSoldOut
+                        message = L10n.courseQuotaSoldOut
                     case .alreadyJoin:
-                            message = L10n.youHaveBoughtThisCourse
+                        message = L10n.youHaveBoughtThisCourse
                     }
                 }else {
                     message = L10n.networkNotReachable
@@ -170,7 +148,7 @@ class LiveCourseDetailViewController: BaseViewController, LiveCourseConfirmViewD
                     self?.launchPaymentController()
                 })
             }
-        })
+        }
     }
     
     // 跳转到支付页面
@@ -179,7 +157,6 @@ class LiveCourseDetailViewController: BaseViewController, LiveCourseConfirmViewD
         viewController.popAction = {  MalaIsPaymentIn = false }
         self.navigationController?.pushViewController(viewController, animated: true)
     }
-    
     
     
     @objc internal func OrderDidConfirm() {

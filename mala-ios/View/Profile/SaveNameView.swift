@@ -117,22 +117,20 @@ class SaveNameView: UIView, UITextFieldDelegate {
     }
     
     @objc private func finishButtonDidTap() {
-        let name = (inputField.text ?? "")
-        ThemeHUD.showActivityIndicator()
+        guard let name = inputField.text else { return }
         
-        saveStudentName(name, failureHandler: { (reason, errorMessage) -> Void in
-            ThemeHUD.hideActivityIndicator()
-            // 错误处理
-            if let errorMessage = errorMessage {
-                println("SaveNameView - saveStudentName Error \(errorMessage)")
+        MAProvider.saveStudentName(name: name) { result in
+            println("Save Student Name - \(result)")
+            
+            guard let result = result, result == true else {
+                self.showToastAtBottom(L10n.networkNotReachable)
+                return
             }
-        }, completion: { (bool) -> Void in
-            println("学生姓名保存 - \(bool)")
+            
             MalaUserDefaults.studentName.value = name
-            getInfoWhenLoginSuccess()
+            MalaUserDefaults.fetchUserInfo()
             self.closeButtonDidClick()
-            ThemeHUD.hideActivityIndicator()
-        })
+        }
     }
     
     @objc private func closeButtonDidClick() {

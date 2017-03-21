@@ -103,28 +103,19 @@ class OrderFormInfoViewController: BaseViewController, OrderFormOperatingViewDel
     
     /// 获取订单详情信息
     private func loadOrderFormInfo() {
-        
-        ThemeHUD.showActivityIndicator()
-        
+
         // 获取订单信息
-        getOrderInfo(id, failureHandler: { (reason, errorMessage) -> Void in
-            ThemeHUD.hideActivityIndicator()
-            
-            defaultFailureHandler(reason, errorMessage: errorMessage)
-            // 错误处理
-            if let errorMessage = errorMessage {
-                println("HandlePingppBehaviour - validateOrderStatus Error \(errorMessage)")
-            }
-        }, completion: { order -> Void in
+        MAProvider.getOrderInfo(id: id) { order in
             println("订单获取成功 \(order)")
             DispatchQueue.main.async {
                 self.model = order
             }
-        })
+        }
     }
     
     ///  作为订单预览展示时，加载伪数据
     private func loadOrderOverView() {
+        
         //  课时
         guard MalaCurrentCourse.classPeriod != 0 else {
             ShowToast(L10n.periodError)
@@ -138,24 +129,11 @@ class OrderFormInfoViewController: BaseViewController, OrderFormOperatingViewDel
             return
         }
         
-        // 课时
+        let id = MalaOrderOverView.teacher
         let hours = MalaCurrentCourse.classPeriod
         
-        ThemeHUD.showActivityIndicator()
-        
         // 请求上课时间表
-        getConcreteTimeslots(MalaOrderOverView.teacher, hours: hours, timeSlots: timeslots, failureHandler: { (reason, errorMessage) in
-            ThemeHUD.hideActivityIndicator()
-            
-            defaultFailureHandler(reason, errorMessage: errorMessage)
-            // 错误处理
-            if let errorMessage = errorMessage {
-                println("OrderFormInfoViewController - loadOrderOverView Error \(errorMessage)")
-            }
-            
-        }, completion: { (timeSlots) in
-            ThemeHUD.hideActivityIndicator()
-            
+        MAProvider.getConcreteTimeslots(id: id, hours: hours, timeSlots: timeslots) { timeSlots in
             guard let timesSchedule = timeSlots else {
                 self.ShowToast(L10n.timeslotsGetError)
                 return
@@ -170,50 +148,26 @@ class OrderFormInfoViewController: BaseViewController, OrderFormOperatingViewDel
             DispatchQueue.main.async {
                 self.model = MalaOrderOverView
             }
-        })
+        }
     }
     
     ///  取消订单
     private func cancelOrder() {
-        ThemeHUD.showActivityIndicator()
-        
-        cancelOrderWithId(id, failureHandler: { (reason, errorMessage) in
-            ThemeHUD.hideActivityIndicator()
-            
-            defaultFailureHandler(reason, errorMessage: errorMessage)
-            // 错误处理
-            if let errorMessage = errorMessage {
-                println("OrderFormInfoViewController - cancelOrder Error \(errorMessage)")
-            }
-        }, completion:{ (result) in
-            ThemeHUD.hideActivityIndicator()
-            
+        MAProvider.cancelOrder(id: id) { result in
             DispatchQueue.main.async {
                 self.ShowToast(result == true ? L10n.orderCanceledSuccess : L10n.orderCanceledFailure)
                 _ = self.navigationController?.popViewController(animated: true)
             }
-        })
+        }
     }
     
     private func createOrder() {
         
-        ThemeHUD.showActivityIndicator()
-        
-        ///  创建订单
-        createOrderWithForm(MalaOrderObject.jsonDictionary(), failureHandler: { (reason, errorMessage) -> Void in
-            ThemeHUD.hideActivityIndicator()
-            defaultFailureHandler(reason, errorMessage: errorMessage)
-            
-            // 错误处理
-            if let errorMessage = errorMessage {
-                println("OrderFormInfoViewController - CreateOrder Error \(errorMessage)")
-            }
+        MAProvider.createOrder(order: MalaOrderObject.jsonDictionary(), failureHandler: { error in
             DispatchQueue.main.async {
                 self.ShowToast(L10n.networkNotReachable)
             }
-        }, completion: { [weak self] (order) -> Void in
-            ThemeHUD.hideActivityIndicator()
-            
+        }) { [weak self] order in
             // 订单创建错误
             if let code = order.code {
                 var message = ""
@@ -241,7 +195,7 @@ class OrderFormInfoViewController: BaseViewController, OrderFormOperatingViewDel
                     self?.launchPaymentController()
                 })
             }
-        })
+        }
     }
     
     private func launchPaymentController() {

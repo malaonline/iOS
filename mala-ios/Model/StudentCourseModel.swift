@@ -89,7 +89,7 @@ open class StudentCourseModel: BaseObjectModel {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override init(dict: [String: AnyObject]) {
+    override init(dict: [String: Any]) {
         super.init(dict: dict)
         setValuesForKeys(dict)
     }

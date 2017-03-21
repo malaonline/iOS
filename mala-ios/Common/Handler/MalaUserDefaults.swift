@@ -220,9 +220,12 @@ class MalaUserDefaults {
             }
         }
     }()
+}
+
+
+// MARK: - User authentication
+extension MalaUserDefaults {
     
-    
-    // MARK: - Class Method
     /// 清空UserDefaults
     class func cleanAllUserDefaults() {
         
@@ -255,11 +258,8 @@ class MalaUserDefaults {
     }
     
     class func userNeedRelogin() {
-        
         if let _ = userAccessToken.value {
-            
             cleanAllUserDefaults()
-            
             if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
                 if let rootViewController = appDelegate.window?.rootViewController {
                     MalaAlert.alert(title: L10n.mala, message: L10n.userAuthenticationError, dismissTitle: L10n.relogin, inViewController: rootViewController, withDismissAction: {
@@ -268,5 +268,68 @@ class MalaUserDefaults {
                 }
             }
         }
+    }
+}
+
+
+// MARK: - Fetch account infomation
+extension MalaUserDefaults {
+    
+    /// Fetch userProfile, userParents when login was success
+    class func fetchUserInfo() {
+        fetchProfileInfo()
+        fetchParentInfo()
+    }
+    
+    class func fetchProfileInfo() {
+        let id = MalaUserDefaults.profileID.value ?? 0
+        MAProvider.userProfile(id: id) { profile in
+            println("save userProfile: \(profile)")
+            if let profile = profile {
+                storeUserProfile(profile)
+            }
+        }
+    }
+    
+    class func fetchParentInfo() {
+        let id = MalaUserDefaults.parentID.value ?? 0
+        MAProvider.userParents(id: id) { parent in
+            println("save userParents: \(parent)")
+            if let parent = parent {
+                storeUserParent(parent)
+            }
+        }
+    }
+}
+
+
+// MARK: - UserInfo store
+extension MalaUserDefaults {
+    
+    /// Store account info
+    ///
+    /// - Parameter loginUser: loginUser
+    class func storeAccountInfo(_ loginUser: LoginUser) {
+        MalaUserDefaults.userID.value = loginUser.userID
+        MalaUserDefaults.parentID.value = loginUser.parentID
+        MalaUserDefaults.profileID.value = loginUser.profileID
+        MalaUserDefaults.firstLogin.value = loginUser.firstLogin
+        MalaUserDefaults.userAccessToken.value = loginUser.accessToken
+    }
+
+    /// Store user profile info
+    ///
+    /// - Parameter profile: profile
+    class func storeUserProfile(_ profile: ProfileInfo) {
+        MalaUserDefaults.gender.value = profile.gender
+        MalaUserDefaults.avatar.value = profile.avatar
+    }
+
+    /// Store user parents info
+    ///
+    /// - Parameter parent: parent
+    class func storeUserParent(_ parent: ParentInfo) {
+        MalaUserDefaults.studentName.value = parent.studentName
+        MalaUserDefaults.schoolName.value = parent.schoolName
     }
 }

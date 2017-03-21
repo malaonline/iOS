@@ -167,20 +167,9 @@ class QRPaymentViewController: BaseViewController {
     func getChargeToken(channel: MalaPaymentChannel = .WxQR) {
         
         MalaIsPaymentIn = true
-        ThemeHUD.showActivityIndicator()
         
         ///  获取支付信息
-        getChargeTokenWithChannel(channel, orderID: ServiceResponseOrder.id, failureHandler: { (reason, errorMessage) -> Void in
-            
-            ThemeHUD.hideActivityIndicator()
-            defaultFailureHandler(reason, errorMessage: errorMessage)
-            
-            // 错误处理
-            if let errorMessage = errorMessage {
-                println("PaymentViewController - getGharge Error \(errorMessage)")
-            }
-            
-        }, completion: { [weak self] (charges) -> Void in
+        MAProvider.getChargeToken(channel: channel, id: ServiceResponseOrder.id) { [weak self] charges in
             println("获取支付信息:\(charges)")
             
             DispatchQueue.main.async(execute: { () -> Void in
@@ -209,7 +198,7 @@ class QRPaymentViewController: BaseViewController {
                     MalaPaymentCharge = charge
                     
                     /// 验证数据正确性
-                    guard let credential = charge["credential"] as? JSONDictionary else {
+                    guard let credential = charge["credential"] as? JSON else {
                         self?.ShowToast(L10n.qrCodeCredentialGetError)
                         return
                     }
@@ -240,48 +229,31 @@ class QRPaymentViewController: BaseViewController {
                     }
                 }
             })
-        })
+        }
     }
     
     private func cancelOrder() {
-        ThemeHUD.showActivityIndicator()
-        
-        cancelOrderWithId(ServiceResponseOrder.id, failureHandler: { (reason, errorMessage) in
-            ThemeHUD.hideActivityIndicator()
-            
-            defaultFailureHandler(reason, errorMessage: errorMessage)
-            // 错误处理
-            if let errorMessage = errorMessage {
-                println("PaymentViewController - cancelOrder Error \(errorMessage)")
-            }
-        }, completion: { (result) in
-            ThemeHUD.hideActivityIndicator()
+        MAProvider.cancelOrder(id: ServiceResponseOrder.id) { result in
             DispatchQueue.main.async {
                 self.ShowToast(result == true ? L10n.orderCanceledSuccess : L10n.orderCanceledFailure)
                 _ = self.navigationController?.popViewController(animated: true)
             }
-        })
+        }
     }
     
     private func validateOrderStatus() {
         
-        ThemeHUD.showActivityIndicator()
-        
         // 获取订单信息
-        getOrderInfo(ServiceResponseOrder.id, failureHandler: { (reason, errorMessage) -> Void in
-            ThemeHUD.hideActivityIndicator()
+        MAProvider.getOrderInfo(id: ServiceResponseOrder.id) { [weak self] order in
+            println("订单状态获取成功 \(order?.status)")
             
-            defaultFailureHandler(reason, errorMessage: errorMessage)
-            // 错误处理
-            if let errorMessage = errorMessage {
-                println("QRPaymentViewController - validateOrderStatus Error \(errorMessage)")
+            guard let order = order else {
+                self?.ShowToast(L10n.orderStatusError)
+                return
             }
-        }, completion: { [weak self] order -> Void in
-            println("订单状态获取成功 \(order.status)")
             
             // 根据[订单状态]和[课程是否被抢占标记]来判断支付结果
             DispatchQueue.main.async { () -> Void in
-                ThemeHUD.hideActivityIndicator()
                 
                 let handler = HandlePingppBehaviour()
                 handler.currentViewController = self
@@ -316,7 +288,7 @@ class QRPaymentViewController: BaseViewController {
                     return
                 }
             }
-        })
+        }
     }
     
     

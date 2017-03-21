@@ -193,7 +193,7 @@ class OrderForm: BaseObjectModel {
         super.init()
     }
     
-    override init(dict: [String: AnyObject]) {
+    override init(dict: [String: Any]) {
         super.init(dict: dict)
         setValuesForKeys(dict)
     }
@@ -317,23 +317,23 @@ class OrderForm: BaseObjectModel {
     
     // MARK: - Dictionary Method
     /// 快速转出[一对一]订单参数字典
-    func jsonDictionary() -> JSONDictionary {
+    func jsonDictionary() -> JSON {
         
-        let teacher = self.teacher as AnyObject?
-        let school = self.school as AnyObject
-        let grade = self.grade as AnyObject
-        let subject = self.subject as AnyObject
-        let hours = self.hours as AnyObject
+        let teacher = self.teacher
+        let school = self.school
+        let grade = self.grade
+        let subject = self.subject
+        let hours = self.hours
         let coupon = self.coupon
-        let timeslots = (self.weeklyTimeSlots ?? []) as AnyObject
+        let timeslots = (self.weeklyTimeSlots ?? [])
         
-        var json: JSONDictionary = [
-            "teacher": teacher ?? 0 as AnyObject,
+        var json: JSON = [
+            "teacher": teacher ?? 0,
             "school": school,
             "grade": grade,
             "subject": subject,
             "hours": hours,
-            "coupon": coupon as AnyObject,
+            "coupon": coupon,
             "weekly_time_slots": timeslots,
         ]
         if coupon == 0 {
@@ -343,9 +343,9 @@ class OrderForm: BaseObjectModel {
     }
     
     /// 快速转出[双师直播]订单参数字典
-    func jsonForLiveCourse() -> JSONDictionary {
+    func jsonForLiveCourse() -> JSON {
         return [
-            "live_class": (liveClassId ?? 0) as AnyObject
+            "live_class": liveClassId ?? 0
         ]
     }
 }

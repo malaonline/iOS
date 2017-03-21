@@ -158,18 +158,10 @@ class CourseChoosingViewController: BaseViewController, CourseChoosingConfirmVie
         
         guard let id = self.teacherId else { return }
         
-        loadTeacherDetailData(id, failureHandler: { (reason, errorMessage) in
-            ThemeHUD.hideActivityIndicator()
-            defaultFailureHandler(reason, errorMessage: errorMessage)
-            
-            // 错误处理
-            if let errorMessage = errorMessage {
-                println("CourseChoosingViewController - loadTeacherDetail Error \(errorMessage)")
-            }
-        }, completion: { [weak self] (model) in
-            self?.teacherModel = model
-            self?.requiredCount += 1
-        })
+        MAProvider.loadTeacherDetail(id: id) { model in
+            self.teacherModel = model
+            self.requiredCount += 1
+        }
     }
     
     private func loadGradePrices() {
@@ -183,21 +175,13 @@ class CourseChoosingViewController: BaseViewController, CourseChoosingConfirmVie
             return
         }
         
-        getTeacherGradePrice(teacherID, schoolId: schoolId, failureHandler: { (reason, errorMessage) -> Void in
-            ThemeHUD.hideActivityIndicator()
-            defaultFailureHandler(reason, errorMessage: errorMessage)
-            
-            // 错误处理
-            if let errorMessage = errorMessage {
-                println("CourseChoosingViewController - getTeacherGradePrice Error \(errorMessage)")
-            }
-        },completion: { [weak self] (grades) -> Void in
+        MAProvider.getTeacherGradePrice(teacherId: teacherID, atSchool: schoolId) { [weak self] grades in
             MalaCurrentCourse.grades = grades
             // 获取到价格阶梯数据后，自动切换到指定年级
             MalaCurrentCourse.switchGradePrices()
             self?.refreshTableView()
             self?.requiredCount += 1
-        })
+        }
     }
     
     private func loadClassSchedule() {
@@ -212,34 +196,18 @@ class CourseChoosingViewController: BaseViewController, CourseChoosingConfirmVie
             return
         }
         
-        getTeacherAvailableTimeInSchool(teacherID, schoolId: schoolId, failureHandler: { (reason, errorMessage) -> Void in
-            ThemeHUD.hideActivityIndicator()
-            defaultFailureHandler(reason, errorMessage: errorMessage)
-            
-            // 错误处理
-            if let errorMessage = errorMessage {
-                println("CourseChoosingViewController - getTeacherAvailableTimeInSchool Error \(errorMessage)")
-            }
-        },completion: { [weak self] (timeSchedule) -> Void in
-            self?.classScheduleModel = timeSchedule
-            self?.requiredCount += 1
-        })
+        MAProvider.getTeacherAvailableTime(teacherId: teacherID, atSchool: schoolId) { timeSchedule in
+            self.classScheduleModel = timeSchedule
+            self.requiredCount += 1
+        }
     }
     
     private func loadCoupons() {
         ///  获取优惠券信息
-        getCouponList(true, failureHandler: { (reason, errorMessage) -> Void in
-            ThemeHUD.hideActivityIndicator()
-            defaultFailureHandler(reason, errorMessage: errorMessage)
-            
-            // 错误处理
-            if let errorMessage = errorMessage {
-                println("CourseChoosingViewController - loadCoupons Error \(errorMessage)")
-            }
-        }, completion: { [weak self] (coupons) -> Void in
+        MAProvider.userCoupons(onlyValid: true) { [weak self] coupons in
             MalaUserCoupons = coupons
             self?.requiredCount += 1
-        })
+        }
     }
     
     private func loadUserEvaluatedStatus() {
@@ -248,18 +216,10 @@ class CourseChoosingViewController: BaseViewController, CourseChoosingConfirmVie
         guard let subjectId = MalaConfig.malaSubjectName()[(teacherModel?.subject) ?? ""] else { return }
         
         ///  判断用户是否首次购买此学科课程
-        isHasBeenEvaluatedWithSubject(subjectId, failureHandler: { (reason, errorMessage) -> Void in
-            ThemeHUD.hideActivityIndicator()
-            defaultFailureHandler(reason, errorMessage: errorMessage)
-            
-            // 错误处理
-            if let errorMessage = errorMessage {
-                println("CourseChoosingViewController - loadUserEvaluatedStatus Error \(errorMessage)")
-            }
-        }, completion: { [weak self] (bool) -> Void in
-            MalaIsHasBeenEvaluatedThisSubject = bool
-            self?.requiredCount += 1
-        })
+        MAProvider.subjectEvaluationStatus(subjectId: subjectId) { result in
+            MalaIsHasBeenEvaluatedThisSubject = result
+            self.requiredCount += 1
+        }
     }
     
     private func setupNotification() {

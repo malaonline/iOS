@@ -256,43 +256,24 @@ class TeacherDetailsController: BaseViewController, UIGestureRecognizerDelegate,
     }
     
     private func loadTeacherDetail() {
-        
-        loadTeacherDetailData(teacherID, failureHandler: { (reason, errorMessage) in
-            ThemeHUD.hideActivityIndicator()
-            defaultFailureHandler(reason, errorMessage: errorMessage)
-            // 错误处理
-            if let errorMessage = errorMessage {
-                println("TeacherDetailsController - loadTeacherDetail Error \(errorMessage)")
-            }
-        }, completion: { (model) in
-            ThemeHUD.hideActivityIndicator()
+        MAProvider.loadTeacherDetail(id: teacherID) { model in
             if let model = model {
                 self.model = model
             }
             self.requiredCount += 1
-        })
+        }
     }
     
     private func likeTeacher() {
-        addFavoriteTeacher(teacherID, failureHandler: { (reason, errorMessage) in
-            // 错误处理
-            if let errorMessage = errorMessage {
-                println("TeacherDetailsController - likeTeacher Error \(errorMessage)")
-            }
-        }, completion: { (bool) in
-            println("收藏老师 - \(bool)")
-        })
+        MAProvider.addCollection(id: teacherID) { result in
+            println("收藏老师 - \(result)")
+        }
     }
     
     private func dislikeTeacher() {
-        removeFavoriteTeacher(teacherID, failureHandler: { (reason, errorMessage) in
-            // 错误处理
-            if let errorMessage = errorMessage {
-                println("TeacherDetailsController - dislikeTeacher Error \(errorMessage)")
-            }
-        }, completion: { (bool) in
-            println("取消收藏老师 - \(bool)")
-        })
+        MAProvider.removeCollection(id: teacherID) { result in
+            println("取消收藏老师 - \(result)")
+        }
     }
     
     private func showBackground() {

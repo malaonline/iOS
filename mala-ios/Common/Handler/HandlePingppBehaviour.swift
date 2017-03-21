@@ -62,21 +62,14 @@ class HandlePingppBehaviour: NSObject {
     func validateOrderStatus() {
 
         currentRetry += 1
-        DispatchQueue.main.async(execute: { () -> Void in
-            ThemeHUD.showActivityIndicator()
-        })
-        
-        // 获取订单信息
-        getOrderInfo(ServiceResponseOrder.id, failureHandler: { (reason, errorMessage) -> Void in
-            ThemeHUD.hideActivityIndicator()
+
+        MAProvider.getOrderInfo(id: ServiceResponseOrder.id) { order in
+            println("订单状态获取成功 \(order?.status)")
             
-            defaultFailureHandler(reason, errorMessage: errorMessage)
-            // 错误处理
-            if let errorMessage = errorMessage {
-                println("HandlePingppBehaviour - validateOrderStatus Error \(errorMessage)")
+            guard let order = order else {
+                self.showFailAlert()
+                return
             }
-        }, completion: { order -> Void in
-            println("订单状态获取成功 \(order.status)")
             
             // 根据[订单状态]和[课程是否被抢占标记]来判断支付结果
             DispatchQueue.main.async { () -> Void in
@@ -107,7 +100,7 @@ class HandlePingppBehaviour: NSObject {
                     }
                 }
             }
-        })
+        }
     }
     
     ///  课程被抢买弹窗
