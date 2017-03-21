@@ -474,4 +474,27 @@ extension MoyaProvider {
             return
         })
     }
+    
+    /// Get the time-slots using given
+    ///
+    /// - Parameters:
+    ///   - id:             Teacher id
+    ///   - hours:          Course-hourse that user selected
+    ///   - timeSlots:      Teacher time-slot that user selected
+    ///   - failureHandler: FailureHandler
+    ///   - completion:     Completion
+    /// - Returns:          Cancellable
+    @discardableResult
+    func getConcreteTimeslots(id: Int, hours: Int, timeSlots: [Int], failureHandler: failureHandler? = nil, completion: @escaping ([[TimeInterval]]?) -> Void) -> Cancellable {
+        return self.sendRequest(.getConcreteTimeslots(id: id, hours: hours, timeSlots: timeSlots), failureHandler: failureHandler, completion: { json in
+            
+            guard let data = json["data"] as? [[TimeInterval]], data.count != 0 else {
+                completion(nil)
+                return
+            }
+            
+            completion(data)
+            return
+        })
+    }
 }

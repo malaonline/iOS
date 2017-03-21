@@ -125,6 +125,7 @@ class OrderFormInfoViewController: BaseViewController, OrderFormOperatingViewDel
     
     ///  作为订单预览展示时，加载伪数据
     private func loadOrderOverView() {
+        
         //  课时
         guard MalaCurrentCourse.classPeriod != 0 else {
             ShowToast(L10n.periodError)
@@ -138,24 +139,11 @@ class OrderFormInfoViewController: BaseViewController, OrderFormOperatingViewDel
             return
         }
         
-        // 课时
+        let id = MalaOrderOverView.teacher
         let hours = MalaCurrentCourse.classPeriod
         
-        ThemeHUD.showActivityIndicator()
-        
         // 请求上课时间表
-        getConcreteTimeslots(MalaOrderOverView.teacher, hours: hours, timeSlots: timeslots, failureHandler: { (reason, errorMessage) in
-            ThemeHUD.hideActivityIndicator()
-            
-            defaultFailureHandler(reason, errorMessage: errorMessage)
-            // 错误处理
-            if let errorMessage = errorMessage {
-                println("OrderFormInfoViewController - loadOrderOverView Error \(errorMessage)")
-            }
-            
-        }, completion: { (timeSlots) in
-            ThemeHUD.hideActivityIndicator()
-            
+        MAProvider.getConcreteTimeslots(id: id, hours: hours, timeSlots: timeslots) { timeSlots in
             guard let timesSchedule = timeSlots else {
                 self.ShowToast(L10n.timeslotsGetError)
                 return
@@ -170,7 +158,7 @@ class OrderFormInfoViewController: BaseViewController, OrderFormOperatingViewDel
             DispatchQueue.main.async {
                 self.model = MalaOrderOverView
             }
-        })
+        }
     }
     
     ///  取消订单

@@ -31,45 +31,6 @@ public let coupons = "/coupons"
 
 typealias nullDictionary = [String: AnyObject]
 
-// MARK: - Course
-///  获取上课时间表
-///
-///  - parameter teacherID:      老师id
-///  - parameter hours:          课时
-///  - parameter timeSlots:      所选上课时间
-///  - parameter failureHandler: 失败处理闭包
-///  - parameter completion:     成功处理闭包
-func getConcreteTimeslots(_ teacherID: Int, hours: Int, timeSlots: [Int], failureHandler: ((Reason, String?) -> Void)?, completion: @escaping ([[TimeInterval]]?) -> Void) {
-    
-    guard timeSlots.count != 0 else {
-        ThemeHUD.hideActivityIndicator()
-        return
-    }
-    
-    let timeSlotStrings = timeSlots.map { (id) -> String in
-        return String(id)
-    }
-    
-    let requestParameters = [
-        "teacher": teacherID,
-        "hours": hours,
-        "weekly_time_slots": timeSlotStrings.joined(separator: " ")
-        ] as [String : Any]
-    
-    let parse: (JSONDictionary) -> [[TimeInterval]]? = { data in
-        return parseConcreteTimeslot(data)
-    }
-    
-    let resource = authJsonResource(path: "concrete/timeslots", method: .GET, requestParameters: (requestParameters as JSONDictionary), parse: parse)
-    
-    if let failureHandler = failureHandler {
-        apiRequest({_ in}, baseURL: MalaBaseURL, resource: resource, failure: failureHandler, completion: completion)
-    } else {
-        apiRequest({_ in}, baseURL: MalaBaseURL, resource: resource, failure: defaultFailureHandler, completion: completion)
-    }
-}
-
-
 // MARK: - Comment
 ///  创建评价
 ///
@@ -387,15 +348,6 @@ let parseUserProtocolHTML: (JSONDictionary) -> String? = { htmlInfo in
     }
 
     return htmlString
-}
-/// 上课时间表JSON解析器
-let parseConcreteTimeslot: (JSONDictionary) -> [[TimeInterval]]? = { timeSlotsInfo in
-    
-    guard let data = timeSlotsInfo["data"] as? [[TimeInterval]], data.count != 0 else {
-        return nil
-    }
-    
-    return data
 }
 /// 支付信息JSON解析器
 let parseChargeToken: (JSONDictionary) -> JSONDictionary? = { chargeInfo in

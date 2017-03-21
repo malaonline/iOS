@@ -30,6 +30,7 @@ public enum MAAPI {
     case loadTeacherDetail(id: Int)
     case getTeacherAvailableTime(teacherId: Int, schoolId: Int)
     case getTeacherGradePrice(teacherId: Int, schoolId: Int)
+    case getConcreteTimeslots(id: Int, hours: Int, timeSlots: [Int])
     
     case getLiveClasses(schoolId: Int?, page: Int)
     case getLiveClassDetail(id: Int)
@@ -81,6 +82,8 @@ extension MAAPI: TargetType {
             return "/liveclasses/\(id)"
         case .getCourseInfo(let id):
             return "timeslots/\(id)"
+        case .getConcreteTimeslots:
+            return "concrete/timeslots"
         }
     }
     public var method: Moya.Method {
@@ -121,6 +124,12 @@ extension MAAPI: TargetType {
             }else {
                 return ["page": page]
             }
+        case .getConcreteTimeslots(let id, let hours, let timeSlots):
+            return [
+                "teacher": id,
+                "hours": hours,
+                "weekly_time_slots": timeSlots.map { String($0) }.joined(separator: " ")
+            ]
         default:
             return nil
         }
