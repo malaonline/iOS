@@ -762,4 +762,26 @@ extension MoyaProvider {
             return
         })
     }
+    
+    /// Load list of all tags
+    ///
+    /// - Parameters:
+    ///   - failureHandler: FailureHandler
+    ///   - completion:     Completion
+    /// - Returns:          Cancellable
+    @discardableResult
+    func loadTags(failureHandler: failureHandler? = nil, completion: @escaping ([BaseObjectModel]) -> Void) -> Cancellable {
+        return self.sendRequest(.loadTags(), failureHandler: failureHandler, completion: { json in
+            
+            var tags: [BaseObjectModel] = []
+            let results = ResultModel(dict: json).results
+            for object in results! {
+                if let dict = object as? JSON {
+                   let set = BaseObjectModel(dict: dict)
+                    tags.append(set)
+                }
+            }
+            completion(tags)
+        })
+    }
 }

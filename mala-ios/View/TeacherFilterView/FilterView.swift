@@ -215,7 +215,7 @@ class FilterView: UIScrollView, UIScrollViewDelegate {
     
     private func loadFilterCondition() {
         // 读取年级和科目数据
-        var dataArray = NSArray(contentsOfFile: Bundle.main.path(forResource: "FilterCondition.plist", ofType: nil)!) as? [AnyObject]
+        let dataArray = NSArray(contentsOfFile: Bundle.main.path(forResource: "FilterCondition.plist", ofType: nil)!) as? [AnyObject]
         var gradeDict: [GradeModel]? = []
         for object in dataArray! {
             if let dict = object as? [String: AnyObject] {
@@ -235,27 +235,9 @@ class FilterView: UIScrollView, UIScrollViewDelegate {
         self.subjectView.subjects = subjects
         
         // 获取风格标签
-        MalaNetworking.sharedTools.loadTags{ [weak self] (result, error) -> () in
-            if error != nil {
-                println("TeacherFilterView - loadTags Request Error")
-                return
-            }
-            guard let dict = result as? [String: AnyObject] else {
-                println("TeacherFilterView - loadTags Format Error")
-                return
-            }
-            
-            var tagsDict: [BaseObjectModel]? = []
-            dataArray = ResultModel(dict: dict).results
-            for object in dataArray! {
-                if let dict = object as? [String: AnyObject] {
-                    let set = BaseObjectModel(dict: dict)
-                    tagsDict?.append(set)
-                }
-            }
-            self?.tags = tagsDict
+        MAProvider.loadTags { tags in
+            self.tags = tags
         }
-        dataArray = nil
     }
     
     deinit {

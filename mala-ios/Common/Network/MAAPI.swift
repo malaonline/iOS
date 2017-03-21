@@ -52,6 +52,8 @@ internal enum MAAPI {
     
     case loadRegions()
     case getSchools(regionId: Int?, teacherId: Int?)
+    
+    case loadTags()
 }
 
 extension MAAPI: TargetType {
@@ -120,6 +122,8 @@ extension MAAPI: TargetType {
             return "/regions"
         case .getSchools:
             return "/schools"
+        case .loadTags:
+            return "/tags"
         }
     }
     public var method: Moya.Method {
