@@ -677,4 +677,42 @@ extension MoyaProvider {
             return
         })
     }
+    
+    /// Get user study-report overview
+    ///
+    /// - Parameters:
+    ///   - failureHandler: FailureHandler
+    ///   - completion:     Completion
+    /// - Returns:          Cancellable
+    @discardableResult
+    func userStudyReport(failureHandler: failureHandler? = nil, completion: @escaping ([SimpleReportResultModel]) -> Void) -> Cancellable {
+        return self.sendRequest(.userStudyReportOverview(), failureHandler: failureHandler, completion: { json in
+            
+            var reports = [SimpleReportResultModel]()
+            
+            if let results = json["results"] as? [JSON] {
+                for report in results {
+                    reports.append(SimpleReportResultModel(dict: report))
+                }
+            }
+            
+            completion(reports)
+            return
+        })
+    }
+    
+    /// Get user subject-report
+    ///
+    /// - Parameters:
+    ///   - id:             Subject id
+    ///   - failureHandler: FailureHandler
+    ///   - completion:     Completion
+    /// - Returns:          Cancellable
+    @discardableResult
+    func userSubjectReport(id: Int, failureHandler: failureHandler? = nil, completion: @escaping (SubjectReport) -> Void) -> Cancellable {
+        return self.sendRequest(.userSubjectReport(id: id), failureHandler: failureHandler, completion: { json in
+            completion(SubjectReport(dict: json))
+        })
+    }
+    
 }

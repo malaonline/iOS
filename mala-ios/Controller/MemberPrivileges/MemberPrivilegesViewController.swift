@@ -159,21 +159,12 @@ class MemberPrivilegesViewController: UITableViewController {
             return
         }
         
-        getStudyReportOverview({ (reason, errorMessage) in
-            
-            defaultFailureHandler(reason, errorMessage: errorMessage)
-            // 错误处理
-            if let errorMessage = errorMessage {
-                println("MemberPrivilegesViewController - loadStudyReportOverview Error \(errorMessage)")
-            }
-            
+        MAProvider.userStudyReport(failureHandler: { error in
             DispatchQueue.main.async {
                 self.reportStatus = .Error
                 self.ShowToast(L10n.memberServerError)
             }
-            
-        }, completion: { [weak self] (results) in
-            
+        }) { [weak self] results in
             println("学习报告：\(results)")
             
             // 默认登录未报名状态
@@ -202,28 +193,21 @@ class MemberPrivilegesViewController: UITableViewController {
             }else {
                 self?.reportStatus = status
             }
-        })
+        }
     }
     
     // 获取学科学习报告
     private func loadSubjectReport() {
-        
-        getSubjectReport(1, failureHandler: { (reason, errorMessage) in
-            defaultFailureHandler(reason, errorMessage: errorMessage)
-            // 错误处理
-            if let errorMessage = errorMessage {
-                println("MemberPrivilegesViewController - loadSubjectReport Error \(errorMessage)")
-            }
-            
+        MAProvider.userSubjectReport(id: 1, failureHandler: { error in
             DispatchQueue.main.async {
                 self.reportStatus = .Error
                 self.ShowToast(L10n.memberServerError)
             }
-        }, completion: { (report) in
+        }) { report in
             println("学科学习报告：\(report)")
             self.report = report
             self.reportStatus = .MathSigned
-        })
+        }
     }
     
     

@@ -46,6 +46,9 @@ internal enum MAAPI {
     case cancelOrder(id: Int)
     
     case userProtocolHTML()
+    
+    case userStudyReportOverview()
+    case userSubjectReport(id: Int)
 }
 
 extension MAAPI: TargetType {
@@ -106,6 +109,10 @@ extension MAAPI: TargetType {
             return "/orders/\(id)"
         case .userProtocolHTML:
             return "/policy"
+        case .userStudyReportOverview:
+            return "/study_report"
+        case .userSubjectReport(let id):
+            return "/study_report/\(id)"
         }
     }
     public var method: Moya.Method {
