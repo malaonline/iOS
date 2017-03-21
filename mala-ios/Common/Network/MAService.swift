@@ -521,4 +521,66 @@ extension MoyaProvider {
     }
     
     
+    /// Get detail data of given comment
+    ///
+    /// - Parameters:
+    ///   - id:             Comment id
+    ///   - failureHandler: FailureHandler
+    ///   - completion:     Completion
+    /// - Returns:          Cancellable
+    @discardableResult
+    func getCommentInfo(id: Int, failureHandler: failureHandler? = nil, completion: @escaping (CommentModel?) -> Void) -> Cancellable {
+        return self.sendRequest(.getCommentInfo(id: id), failureHandler: failureHandler, completion: { json in
+            
+            guard let _ = json["id"] as? Int else {
+                completion(nil)
+                return
+            }
+            
+            if let _ = json["id"] as? Int,
+               let _ = json["timeslot"] as? Int,
+               let _ = json["score"] as? Int,
+               let _ = json["content"] as? String {
+                completion(CommentModel(dict: json))
+                return
+            }
+            
+            completion(nil)
+            return
+        })
+    }
+    
+    /// Create order using given params
+    ///
+    /// - Parameters:
+    ///   - order:          Params of order
+    ///   - failureHandler: FailureHandler
+    ///   - completion:     Completion
+    /// - Returns:          Cancellable
+    @discardableResult
+    func createOrder(order: [String: Any], failureHandler: failureHandler? = nil, completion: @escaping (OrderForm) -> Void) -> Cancellable {
+        return self.sendRequest(.createOrder(order: order), failureHandler: failureHandler, completion: { json in
+            
+            // failure
+            if let result = json["ok"] as? Bool,
+               let errorCode = json["code"] as? Int {
+                completion(OrderForm(result: result, code: errorCode))
+                return
+            }
+            
+            // success
+            if let id = json["id"] as? Int,
+               let amount = json["to_pay"] as? Int {
+                let order = OrderForm()
+                order.id = id
+                order.amount = amount
+                
+                completion(order)
+                return
+            }
+            
+            completion(OrderForm(result: false, code: -9))
+            return
+        })
+    }
 }

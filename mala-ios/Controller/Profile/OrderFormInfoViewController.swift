@@ -185,23 +185,11 @@ class OrderFormInfoViewController: BaseViewController, OrderFormOperatingViewDel
     
     private func createOrder() {
         
-        ThemeHUD.showActivityIndicator()
-        
-        ///  创建订单
-        createOrderWithForm(MalaOrderObject.jsonDictionary(), failureHandler: { (reason, errorMessage) -> Void in
-            ThemeHUD.hideActivityIndicator()
-            defaultFailureHandler(reason, errorMessage: errorMessage)
-            
-            // 错误处理
-            if let errorMessage = errorMessage {
-                println("OrderFormInfoViewController - CreateOrder Error \(errorMessage)")
-            }
+        MAProvider.createOrder(order: MalaOrderObject.jsonDictionary(), failureHandler: { error in
             DispatchQueue.main.async {
                 self.ShowToast(L10n.networkNotReachable)
             }
-        }, completion: { [weak self] (order) -> Void in
-            ThemeHUD.hideActivityIndicator()
-            
+        }) { [weak self] order in
             // 订单创建错误
             if let code = order.code {
                 var message = ""
@@ -229,7 +217,7 @@ class OrderFormInfoViewController: BaseViewController, OrderFormOperatingViewDel
                     self?.launchPaymentController()
                 })
             }
-        })
+        }
     }
     
     private func launchPaymentController() {

@@ -38,6 +38,9 @@ public enum MAAPI {
     case getCourseInfo(id: Int)
     
     case createComment(comment: CommentModel)
+    case getCommentInfo(id: Int)
+    
+    case createOrder(order: [String: Any])
 }
 
 extension MAAPI: TargetType {
@@ -88,11 +91,15 @@ extension MAAPI: TargetType {
             return "concrete/timeslots"
         case .createComment:
             return "comments"
+        case .getCommentInfo(let id):
+            return "comments/\(id)"
+        case .createOrder:
+            return "/orders"
         }
     }
     public var method: Moya.Method {
         switch self {
-        case .sendSMS, .verifySMS, .addCollection, .createComment:
+        case .sendSMS, .verifySMS, .addCollection, .createComment, .createOrder:
             return .post
         case .uploadAvatar, .saveStudentName, .saveSchoolName:
             return .patch
@@ -140,13 +147,15 @@ extension MAAPI: TargetType {
                 "score": comment.score,
                 "content": comment.content
             ]
+        case .createOrder(let order):
+            return order
         default:
             return nil
         }
     }
     public var parameterEncoding: ParameterEncoding {
         switch self {
-        case .sendSMS, .verifySMS, .saveStudentName, .saveSchoolName, .addCollection:
+        case .sendSMS, .verifySMS, .saveStudentName, .saveSchoolName, .addCollection, .createOrder:
             return JSONEncoding.default
         default:
             return URLEncoding.default

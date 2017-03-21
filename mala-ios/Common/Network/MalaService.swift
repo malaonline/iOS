@@ -31,50 +31,7 @@ public let coupons = "/coupons"
 
 typealias nullDictionary = [String: AnyObject]
 
-// MARK: - Comment
-///  获取评价信息
-///
-///  - parameter id:             评价id
-///  - parameter failureHandler: 失败处理闭包
-///  - parameter completion:     成功处理闭包
-func getCommentInfo(_ id: Int, failureHandler: ((Reason, String?) -> Void)?, completion: @escaping (CommentModel) -> Void) {
-    
-    let parse: (JSONDictionary) -> CommentModel? = { data in
-        return parseCommentInfo(data)
-    }
-    
-    let resource = authJsonResource(path: "comments/\(id)", method: .GET, requestParameters: nullDictionary(), parse: parse)
-    
-    if let failureHandler = failureHandler {
-        apiRequest({_ in}, baseURL: MalaBaseURL, resource: resource, failure: failureHandler, completion: completion)
-    } else {
-        apiRequest({_ in}, baseURL: MalaBaseURL, resource: resource, failure: defaultFailureHandler, completion: completion)
-    }
-}
-
-
 // MARK: - Payment
-///  创建订单
-///
-///  - parameter orderForm:      订单对象字典
-///  - parameter failureHandler: 失败处理闭包
-///  - parameter completion:     成功处理闭包
-func createOrderWithForm(_ orderForm: JSONDictionary, failureHandler: ((Reason, String?) -> Void)?, completion: @escaping (OrderForm) -> Void) {
-    
-    /// 订单创建结果解析器
-    let parse: (JSONDictionary) -> OrderForm? = { data in
-        return parseOrderCreateResult(data)
-    }
-    
-    let resource = authJsonResource(path: "/orders", method: .POST, requestParameters: orderForm, parse: parse)
-    
-    if let failureHandler = failureHandler {
-        apiRequest({_ in}, baseURL: MalaBaseURL, resource: resource, failure: failureHandler, completion: completion)
-    } else {
-        apiRequest({_ in}, baseURL: MalaBaseURL, resource: resource, failure: defaultFailureHandler, completion: completion)
-    }
-}
-
 ///  获取支付信息
 ///
 ///  - parameter channel:        支付方式
@@ -270,40 +227,6 @@ let parseOrderFormInfo: (JSONDictionary) -> OrderForm? = { orderInfo in
     // 订单创建成功
     if let _ = orderInfo["id"] as? Int {
         return OrderForm(dict: orderInfo)
-    }
-    return nil
-}
-/// 订单创建返回结果JSON解析器
-let parseOrderCreateResult: (JSONDictionary) -> OrderForm? = { orderInfo in
-    
-    // 订单创建失败
-    if let result = orderInfo["ok"] as? Bool, let errorCode = orderInfo["code"] as? Int {
-        return OrderForm(result: result, code: errorCode)
-    }
-    
-    // 订单创建成功
-    if let id = orderInfo["id"] as? Int, let amount = orderInfo["to_pay"] as? Int {
-        let order = OrderForm()
-        order.id = id
-        order.amount = amount
-        return order
-    }
-    return nil
-}
-
-/// 评论信息JSON解析器
-let parseCommentInfo: (JSONDictionary) -> CommentModel? = { commentInfo in
-    
-    guard let id = commentInfo["id"] as? Int else {
-        return nil
-    }
-    
-    if
-        let id = commentInfo["id"] as? Int,
-        let timeslot = commentInfo["timeslot"] as? Int,
-        let score = commentInfo["score"] as? Int,
-        let content = commentInfo["content"] as? String {
-            return CommentModel(dict: commentInfo)
     }
     return nil
 }
