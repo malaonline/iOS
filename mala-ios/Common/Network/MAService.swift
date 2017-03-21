@@ -333,6 +333,35 @@ extension MoyaProvider {
         })
     }
     
+    /// Get list of all teacher
+    ///
+    /// - Parameters:
+    ///   - condition:      Filter condition
+    ///   - page:           Page number
+    ///   - failureHandler: FailureHandler
+    ///   - completion:     Completion
+    /// - Returns:          Cancellable
+    @discardableResult
+    func loadTeachers(condition: JSON?, page: Int = 1, failureHandler: failureHandler? = nil, completion: @escaping ([TeacherModel], Int) -> Void) -> Cancellable {
+        return self.sendRequest(.loadTeachers(condition: condition, page: page), failureHandler: failureHandler, completion: { json in
+            
+            var list: [TeacherModel] = []
+            
+            guard let teachers = json["results"] as? [JSON],
+                  let count = json["count"] as? Int, count != 0 else {
+                    completion(list, 0)
+                    return
+            }
+            
+            for teacher in teachers {
+                if let _ = teacher["id"] as? Int {
+                    list.append(TeacherModel(dict: teacher))
+                }
+            }
+            completion(list, count)
+        })
+    }
+    
     /// Load detail data of the teacher
     ///
     /// - Parameters:
@@ -415,7 +444,7 @@ extension MoyaProvider {
             
             var list: [LiveClassModel] = []
             
-            guard let classes = json["results"] as? [JSONDictionary],
+            guard let classes = json["results"] as? [JSON],
                   let count = json["count"] as? Int, count != 0 else {
                     completion(list, 0)
                     return

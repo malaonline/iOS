@@ -27,6 +27,7 @@ internal enum MAAPI {
     case addCollection(id: Int)
     case removeCollection(id: Int)
     
+    case loadTeachers(condition: JSON?, page: Int)
     case loadTeacherDetail(id: Int)
     case getTeacherAvailableTime(teacherId: Int, schoolId: Int)
     case getTeacherGradePrice(teacherId: Int, schoolId: Int)
@@ -58,14 +59,8 @@ internal enum MAAPI {
 
 extension MAAPI: TargetType {
     
-    // MARK: - TargetType protocol
-#if USE_PRD_SERVER
-    public var baseURL: URL { return URL(string: "https://www.malalaoshi.com/api/v1")! }
-#elseif USE_STAGE_SERVER
-    public var baseURL: URL { return URL(string: "https://stage.malalaoshi.com/api/v1")! }
-#else
-    public var baseURL: URL { return URL(string: "http://dev.malalaoshi.com/api/v1")! }
-#endif
+    public var baseURL: URL { return MABaseURL }
+
     public var path: String {
         switch self {
         case .sendSMS, .verifySMS:
@@ -88,6 +83,8 @@ extension MAAPI: TargetType {
             return "/favorites"
         case .removeCollection(let id):
             return "/favorites/\(id)"
+        case .loadTeachers:
+            return "/teachers"
         case .loadTeacherDetail(let id):
             return "/teachers/\(id)"
         case .getTeacherAvailableTime(let teacherId, _):
@@ -156,6 +153,16 @@ extension MAAPI: TargetType {
             return ["page": page]
         case .addCollection(let id):
             return ["teacher": id]
+        case .loadTeachers(let condition, let page):
+            var params = condition ?? JSON()
+            params["page"] = page
+            if let city = MalaCurrentCity {
+                params["region"] = city.id
+            }
+            if let school = MalaCurrentSchool {
+                params["school"] = school.id
+            }
+            return params
         case .getTeacherAvailableTime(_, let schoolId):
             return ["school_id": schoolId]
         case .getLiveClasses(let id, let page):

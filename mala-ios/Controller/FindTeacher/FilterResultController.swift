@@ -98,66 +98,35 @@ class FilterResultController: BaseViewController {
     ///  根据筛选条件字典，请求老师列表
     ///
     ///  - parameter filters: 筛选条件字典
-    func loadTeachers(_ filters: [String: AnyObject]? = nil, isLoadMore: Bool = false, finish: (()->())? = nil) {
+    func loadTeachers(_ filters: [String: Any]? = nil, isLoadMore: Bool = false, finish: (()->())? = nil) {
         
         if isLoadMore {
             currentPageIndex += 1
         }else {
             currentPageIndex = 1
         }
-        
-        MalaNetworking.sharedTools.loadTeachers(filters, page: currentPageIndex) { [weak self] result, error in
-            if error != nil {
-                println("FindTeacherViewController - loadTeachers Request Error")
-                return
+
+        MAProvider.loadTeachers(condition: filters, page: currentPageIndex, failureHandler: { error in
+            DispatchQueue.main.async {
+                finish?()
             }
-            guard let dict = result as? [String: AnyObject] else {
-                println("FindTeacherViewController - loadTeachers Format Error")
-                return
-            }
-            
-            let resultModel = ResultModel(dict: dict)
-            
+        }) { (teachers, count) in
             /// 记录数据量
-            if let count = resultModel.count, count != 0 {
-                self?.allTeacherCount = count.intValue
-            }
-            
-            /// 若请求数达到最大, 执行return
-            if let detail = resultModel.detail, (detail as NSString).contains(MalaErrorDetail_InvalidPage) {
-                DispatchQueue.main.async(execute: { () -> Void in
-                    finish?()
-                })
-                return
-            }
+            self.allTeacherCount = max(count, self.allTeacherCount)
             
             if isLoadMore {
-                
                 ///  加载更多
-                if resultModel.results != nil {
-                    for object in ResultModel(dict: dict).results! {
-                        if let dict = object as? [String: AnyObject] {
-                            self?.tableView.teachers.append(TeacherModel(dict: dict))
-                        }
-                    }
+                for teacher in teachers {
+                    self.tableView.teachers.append(teacher)
                 }
             }else {
-                
                 ///  如果不是加载更多，则刷新数据
-                self?.tableView.teachers = []
-                /// 解析数据
-                if resultModel.results != nil {
-                    for object in ResultModel(dict: dict).results! {
-                        if let dict = object as? [String: AnyObject] {
-                            self?.tableView.teachers.append(TeacherModel(dict: dict))
-                        }
-                    }
-                }
-                self?.tableView.reloadData()
+                self.tableView.teachers = teachers
             }
             
+            self.tableView.reloadData()
             DispatchQueue.main.async { () -> Void in
-                self?.showDefatultViewWhenModelIsEmpty()
+                self.showDefatultViewWhenModelIsEmpty()
                 finish?()
             }
         }
