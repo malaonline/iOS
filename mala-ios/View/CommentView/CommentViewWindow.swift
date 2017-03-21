@@ -495,20 +495,12 @@ open class CommentViewWindow: UIViewController, UITextViewDelegate {
         let comment = CommentModel(id: 0, timeslot: model.id, score: Int(floatRating.rating), content: textView.text)
         
         /// 创建评论
-        createComment(comment, failureHandler: { (reason, errorMessage) -> Void in
-            defaultFailureHandler(reason, errorMessage: errorMessage)
-            
-            // 错误处理
-            if let errorMessage = errorMessage {
-                println("CommentViewWindow - saveComment Error \(errorMessage)")
-            }
-            
+        MAProvider.createComment(comment: comment, failureHandler: { error in
             self.ShowToast(L10n.networkNotReachable)
             self.commitButton.isEnabled = true
-        }, completion: { (bool) -> Void in
-                
+        }) { result in
             DispatchQueue.main.async {
-                if bool {
+                if result {
                     // 设置评价数据，用于Cell状态更新后显示评论
                     self.model.comment = comment
                     
@@ -522,7 +514,7 @@ open class CommentViewWindow: UIViewController, UITextViewDelegate {
                     self.commitButton.isEnabled = true
                 }
             }
-        })
+        }
     }
     
     

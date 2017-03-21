@@ -36,6 +36,8 @@ public enum MAAPI {
     case getLiveClassDetail(id: Int)
     
     case getCourseInfo(id: Int)
+    
+    case createComment(comment: CommentModel)
 }
 
 extension MAAPI: TargetType {
@@ -84,11 +86,13 @@ extension MAAPI: TargetType {
             return "timeslots/\(id)"
         case .getConcreteTimeslots:
             return "concrete/timeslots"
+        case .createComment:
+            return "comments"
         }
     }
     public var method: Moya.Method {
         switch self {
-        case .sendSMS, .verifySMS, .addCollection:
+        case .sendSMS, .verifySMS, .addCollection, .createComment:
             return .post
         case .uploadAvatar, .saveStudentName, .saveSchoolName:
             return .patch
@@ -129,6 +133,12 @@ extension MAAPI: TargetType {
                 "teacher": id,
                 "hours": hours,
                 "weekly_time_slots": timeSlots.map { String($0) }.joined(separator: " ")
+            ]
+        case .createComment(let comment):
+            return [
+                "timeslot": comment.timeslot,
+                "score": comment.score,
+                "content": comment.content
             ]
         default:
             return nil

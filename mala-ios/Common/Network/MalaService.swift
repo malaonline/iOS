@@ -32,37 +32,6 @@ public let coupons = "/coupons"
 typealias nullDictionary = [String: AnyObject]
 
 // MARK: - Comment
-///  创建评价
-///
-///  - parameter comment:        评价对象
-///  - parameter failureHandler: 失败处理闭包
-///  - parameter completion:     成功处理闭包
-func createComment(_ comment: CommentModel, failureHandler: ((Reason, String?) -> Void)?, completion: @escaping (Bool) -> Void) {
-    
-    let requestParameters = [
-        "timeslot": comment.timeslot,
-        "score": comment.score,
-        "content": comment.content
-    ] as [String : Any]
-    
-    let parse: (JSONDictionary) -> Bool = { data in
-        if let _ = data["id"] as? Int {
-            MalaToCommentCount -= 1
-            return true
-        }else {
-            return false
-        }
-    }
-    
-    let resource = authJsonResource(path: "comments", method: .POST, requestParameters: (requestParameters as JSONDictionary), parse: parse)
-    
-    if let failureHandler = failureHandler {
-        apiRequest({_ in}, baseURL: MalaBaseURL, resource: resource, failure: failureHandler, completion: completion)
-    } else {
-        apiRequest({_ in}, baseURL: MalaBaseURL, resource: resource, failure: defaultFailureHandler, completion: completion)
-    }
-}
-
 ///  获取评价信息
 ///
 ///  - parameter id:             评价id

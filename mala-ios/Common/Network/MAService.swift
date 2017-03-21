@@ -497,4 +497,28 @@ extension MoyaProvider {
             return
         })
     }
+    
+    /// Create comment
+    ///
+    /// - Parameters:
+    ///   - comment:        Comment model
+    ///   - failureHandler: FailureHandler
+    ///   - completion:     Completion
+    /// - Returns:          Cancellable
+    @discardableResult
+    func createComment(comment: CommentModel, failureHandler: failureHandler? = nil, completion: @escaping (Bool) -> Void) -> Cancellable {
+        return self.sendRequest(.createComment(comment: comment), failureHandler: failureHandler, completion: { json in
+            
+            guard let _ = json["id"] as? Int else {
+                completion(false)
+                return
+            }
+            
+            MalaToCommentCount -= 1
+            completion(true)
+            return
+        })
+    }
+    
+    
 }
