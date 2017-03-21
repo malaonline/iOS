@@ -31,29 +31,6 @@ public let coupons = "/coupons"
 
 typealias nullDictionary = [String: AnyObject]
 
-// MARK: - LiveCourse
-/// 获取指定直播课程详细信息
-///
-/// - Parameters:
-///   - id:             班级详情
-///   - failureHandler: 失败处理闭包
-///   - completion:     成功处理闭包
-func getLiveClassDetail(_ id: Int = 0, failureHandler: ((Reason, String?) -> Void)?, completion: @escaping (LiveClassModel) -> Void) {
-    
-    let parse: (JSONDictionary) -> (LiveClassModel) = { data in
-        return LiveClassModel(dict: data)
-    }
-    
-    let resource = authJsonResource(path: "/liveclasses/\(id)", method: .GET, requestParameters: nullDictionary(), parse: parse)
-    
-    if let failureHandler = failureHandler {
-        apiRequest({_ in}, baseURL: MalaBaseURL, resource: resource, failure: failureHandler, completion: completion)
-    } else {
-        apiRequest({_ in}, baseURL: MalaBaseURL, resource: resource, failure: defaultFailureHandler, completion: completion)
-    }
-}
-
-
 // MARK: - Course
 ///  获取课程信息
 ///

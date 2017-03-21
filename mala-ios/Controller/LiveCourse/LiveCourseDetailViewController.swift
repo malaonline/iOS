@@ -81,20 +81,9 @@ class LiveCourseDetailViewController: BaseViewController, LiveCourseConfirmViewD
     }
     
     private func loadClassDetail() {
-        
-        ThemeHUD.showActivityIndicator()
-        
-        getLiveClassDetail(classId, failureHandler: { (reason, errorMessage) in
-            ThemeHUD.hideActivityIndicator()
-            defaultFailureHandler(reason, errorMessage: errorMessage)
-            // 错误处理
-            if let errorMessage = errorMessage {
-                println("LiveCourseDetailViewController - loadClassDetail Error \(errorMessage)")
-            }
-        }, completion: { [weak self] (model) in
-            ThemeHUD.hideActivityIndicator()
-            self?.model = model
-        })
+        MAProvider.getLiveClassDetail(id: classId) { model in
+            self.model = model
+        }
     }
     
     private func setupNotification() {

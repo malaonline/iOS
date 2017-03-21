@@ -26,10 +26,13 @@ public enum MAAPI {
     case userCollection(page: Int)
     case addCollection(id: Int)
     case removeCollection(id: Int)
+    
     case loadTeacherDetail(id: Int)
     case getTeacherAvailableTime(teacherId: Int, schoolId: Int)
     case getTeacherGradePrice(teacherId: Int, schoolId: Int)
+    
     case getLiveClasses(schoolId: Int?, page: Int)
+    case getLiveClassDetail(id: Int)
 }
 
 extension MAAPI: TargetType {
@@ -72,6 +75,8 @@ extension MAAPI: TargetType {
             return "teacher/\(teacherId)/school/\(schoolId)/prices"
         case .getLiveClasses:
             return "/liveclasses"
+        case .getLiveClassDetail(let id):
+            return "/liveclasses/\(id)"
         }
     }
     public var method: Moya.Method {

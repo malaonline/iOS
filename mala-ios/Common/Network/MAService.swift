@@ -429,4 +429,18 @@ extension MoyaProvider {
             completion(list, count)
         })
     }
+    
+    /// Get detail data of live-class
+    ///
+    /// - Parameters:
+    ///   - id:             Live-class id
+    ///   - failureHandler: FailureHandler
+    ///   - completion:     Completion
+    /// - Returns:          Cancellable
+    @discardableResult
+    func getLiveClassDetail(id: Int = 0, failureHandler: failureHandler? = nil, completion: @escaping (LiveClassModel) -> Void) -> Cancellable {
+        return self.sendRequest(.getLiveClassDetail(id: id), failureHandler: failureHandler, completion: { json in
+            completion(LiveClassModel(dict: json))
+        })
+    }
 }
