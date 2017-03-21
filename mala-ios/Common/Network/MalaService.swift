@@ -31,52 +31,6 @@ public let coupons = "/coupons"
 
 typealias nullDictionary = [String: AnyObject]
 
-// MARK: - Payment
-///  获取订单信息
-///
-///  - parameter orderID:        订单id
-///  - parameter failureHandler: 失败处理闭包
-///  - parameter completion:     成功处理闭包
-func getOrderInfo(_ orderID: Int, failureHandler: ((Reason, String?) -> Void)?, completion: @escaping (OrderForm) -> Void) {
-    /// 返回值解析器
-    let parse: (JSONDictionary) -> OrderForm? = { data in
-        return parseOrderFormInfo(data)
-    }
-    
-    let resource = authJsonResource(path: "/orders/\(orderID)", method: .GET, requestParameters: nullDictionary(), parse: parse)
-    
-    if let failureHandler = failureHandler {
-        apiRequest({_ in}, baseURL: MalaBaseURL, resource: resource, failure: failureHandler, completion: completion)
-    } else {
-        apiRequest({_ in}, baseURL: MalaBaseURL, resource: resource, failure: defaultFailureHandler, completion: completion)
-    }
-}
-
-///  取消订单
-///
-///  - parameter orderID:        订单id
-///  - parameter failureHandler: 失败处理闭包
-///  - parameter completion:     成功处理闭包
-func cancelOrderWithId(_ orderID: Int, failureHandler: ((Reason, String?) -> Void)?, completion: @escaping (Bool) -> Void) {
-    /// 返回值解析器
-    let parse: (JSONDictionary) -> Bool = { data in
-        if let result = data["ok"] as? Bool {
-            if result { MalaUnpaidOrderCount -= 1 }
-            return result
-        }
-        return false
-    }
-    
-    let resource = authJsonResource(path: "/orders/\(orderID)", method: .DELETE, requestParameters: nullDictionary(), parse: parse)
-    
-    if let failureHandler = failureHandler {
-        apiRequest({_ in}, baseURL: MalaBaseURL, resource: resource, failure: failureHandler, completion: completion)
-    } else {
-        apiRequest({_ in}, baseURL: MalaBaseURL, resource: resource, failure: defaultFailureHandler, completion: completion)
-    }
-}
-
-
 // MARK: - Study Report
 ///  获取学习报告总览
 ///  包括每个已报名学科，及其支持情况、答题数、正确数
@@ -194,19 +148,7 @@ func getUserProtocolHTML(_ failureHandler: ((Reason, String?) -> Void)?, complet
 
 
 // MARK: - Parse
-/// 订单JSON解析器
-let parseOrderFormInfo: (JSONDictionary) -> OrderForm? = { orderInfo in
-    
-    // 订单创建失败
-    if let result = orderInfo["ok"] as? Bool, let errorCode = orderInfo["code"] as? Int {
-        return OrderForm(result: result, code: errorCode)
-    }
-    // 订单创建成功
-    if let _ = orderInfo["id"] as? Int {
-        return OrderForm(dict: orderInfo)
-    }
-    return nil
-}
+
 /// 用户协议JSON解析器
 let parseUserProtocolHTML: (JSONDictionary) -> String? = { htmlInfo in
     

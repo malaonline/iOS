@@ -607,4 +607,53 @@ extension MoyaProvider {
             return
         })
     }
+    
+    /// Get detail data of order
+    ///
+    /// - Parameters:
+    ///   - id:             Order id
+    ///   - failureHandler: FailureHandler
+    ///   - completion:     Completion
+    /// - Returns:          Cancellable
+    @discardableResult
+    func getOrderInfo(id: Int, failureHandler: failureHandler? = nil, completion: @escaping (OrderForm?) -> Void) -> Cancellable {
+        return self.sendRequest(.getOrderInfo(id: id), failureHandler: failureHandler, completion: { json in
+            // failure
+            if let result = json["ok"] as? Bool,
+               let errorCode = json["code"] as? Int {
+                completion(OrderForm(result: result, code: errorCode))
+                return
+            }
+            // success
+            if let _ = json["id"] as? Int {
+                completion(OrderForm(dict: json))
+                return
+            }
+            
+            completion(nil)
+            return
+        })
+    }
+    
+    /// Cancel order
+    ///
+    /// - Parameters:
+    ///   - id:             Order id
+    ///   - failureHandler: FailureHandler
+    ///   - completion:     Completion
+    /// - Returns:          Cancellable
+    @discardableResult
+    func cancelOrder(id: Int, failureHandler: failureHandler? = nil, completion: @escaping (Bool) -> Void) -> Cancellable {
+        return self.sendRequest(.cancelOrder(id: id), failureHandler: failureHandler, completion: { json in
+            
+            if let result = json["ok"] as? Bool {
+                if result { MalaUnpaidOrderCount -= 1 }
+                completion(result)
+                return
+            }
+            
+            completion(false)
+            return
+        })
+    }
 }

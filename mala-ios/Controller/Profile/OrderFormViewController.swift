@@ -186,24 +186,12 @@ class OrderFormViewController: BaseTableViewController {
     }
     
     private func cancelOrder(_ orderId: Int) {
-        ThemeHUD.showActivityIndicator()
-        
-        cancelOrderWithId(orderId, failureHandler: { (reason, errorMessage) in
-            ThemeHUD.hideActivityIndicator()
-            
-            defaultFailureHandler(reason, errorMessage: errorMessage)
-            // 错误处理
-            if let errorMessage = errorMessage {
-                println("OrderFormViewController - cancelOrder Error \(errorMessage)")
-            }
-        }, completion: { (result) in
-            ThemeHUD.hideActivityIndicator()
-            
+        MAProvider.cancelOrder(id: orderId) { result in
             DispatchQueue.main.async {
                 self.ShowToast(result == true ? L10n.orderCanceledSuccess : L10n.orderCanceledFailure)
                 _ = self.navigationController?.popViewController(animated: true)
             }
-        })
+        }
     }
     
     private func launchPaymentController() {

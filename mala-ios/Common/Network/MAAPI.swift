@@ -42,6 +42,8 @@ internal enum MAAPI {
     
     case createOrder(order: JSON)
     case getChargeToken(channel: MalaPaymentChannel, id: Int)
+    case getOrderInfo(id: Int)
+    case cancelOrder(id: Int)
 }
 
 extension MAAPI: TargetType {
@@ -98,6 +100,8 @@ extension MAAPI: TargetType {
             return "/orders"
         case .getChargeToken(_, let id):
             return "/orders/\(id)"
+        case .getOrderInfo(let id), .cancelOrder(let id):
+            return "/orders/\(id)"
         }
     }
     public var method: Moya.Method {
@@ -106,7 +110,7 @@ extension MAAPI: TargetType {
             return .post
         case .uploadAvatar, .saveStudentName, .saveSchoolName, .getChargeToken:
             return .patch
-        case .removeCollection:
+        case .removeCollection, .cancelOrder:
             return .delete
         default:
             return .get

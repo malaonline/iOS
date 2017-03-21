@@ -90,23 +90,12 @@ class PaymentViewController: BaseViewController {
     }
     
     private func cancelOrder() {
-        ThemeHUD.showActivityIndicator()
-        
-        cancelOrderWithId(ServiceResponseOrder.id, failureHandler: { (reason, errorMessage) in
-            ThemeHUD.hideActivityIndicator()
-
-            defaultFailureHandler(reason, errorMessage: errorMessage)
-            // 错误处理
-            if let errorMessage = errorMessage {
-                println("PaymentViewController - cancelOrder Error \(errorMessage)")
-            }
-        }, completion:{ (result) in
-            ThemeHUD.hideActivityIndicator()
+        MAProvider.cancelOrder(id: ServiceResponseOrder.id) { result in
             DispatchQueue.main.async {
                 self.ShowToast(result == true ? L10n.orderCanceledSuccess : L10n.orderCanceledFailure)
                 _ = self.navigationController?.popViewController(animated: true)
             }
-        })
+        }
     }
 
     

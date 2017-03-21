@@ -103,24 +103,14 @@ class OrderFormInfoViewController: BaseViewController, OrderFormOperatingViewDel
     
     /// 获取订单详情信息
     private func loadOrderFormInfo() {
-        
-        ThemeHUD.showActivityIndicator()
-        
+
         // 获取订单信息
-        getOrderInfo(id, failureHandler: { (reason, errorMessage) -> Void in
-            ThemeHUD.hideActivityIndicator()
-            
-            defaultFailureHandler(reason, errorMessage: errorMessage)
-            // 错误处理
-            if let errorMessage = errorMessage {
-                println("HandlePingppBehaviour - validateOrderStatus Error \(errorMessage)")
-            }
-        }, completion: { order -> Void in
+        MAProvider.getOrderInfo(id: id) { order in
             println("订单获取成功 \(order)")
             DispatchQueue.main.async {
                 self.model = order
             }
-        })
+        }
     }
     
     ///  作为订单预览展示时，加载伪数据
@@ -163,24 +153,12 @@ class OrderFormInfoViewController: BaseViewController, OrderFormOperatingViewDel
     
     ///  取消订单
     private func cancelOrder() {
-        ThemeHUD.showActivityIndicator()
-        
-        cancelOrderWithId(id, failureHandler: { (reason, errorMessage) in
-            ThemeHUD.hideActivityIndicator()
-            
-            defaultFailureHandler(reason, errorMessage: errorMessage)
-            // 错误处理
-            if let errorMessage = errorMessage {
-                println("OrderFormInfoViewController - cancelOrder Error \(errorMessage)")
-            }
-        }, completion:{ (result) in
-            ThemeHUD.hideActivityIndicator()
-            
+        MAProvider.cancelOrder(id: id) { result in
             DispatchQueue.main.async {
                 self.ShowToast(result == true ? L10n.orderCanceledSuccess : L10n.orderCanceledFailure)
                 _ = self.navigationController?.popViewController(animated: true)
             }
-        })
+        }
     }
     
     private func createOrder() {
