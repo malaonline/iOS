@@ -175,21 +175,13 @@ class CourseChoosingViewController: BaseViewController, CourseChoosingConfirmVie
             return
         }
         
-        getTeacherGradePrice(teacherID, schoolId: schoolId, failureHandler: { (reason, errorMessage) -> Void in
-            ThemeHUD.hideActivityIndicator()
-            defaultFailureHandler(reason, errorMessage: errorMessage)
-            
-            // 错误处理
-            if let errorMessage = errorMessage {
-                println("CourseChoosingViewController - getTeacherGradePrice Error \(errorMessage)")
-            }
-        },completion: { [weak self] (grades) -> Void in
+        MAProvider.getTeacherGradePrice(teacherId: teacherID, atSchool: schoolId) { [weak self] grades in
             MalaCurrentCourse.grades = grades
             // 获取到价格阶梯数据后，自动切换到指定年级
             MalaCurrentCourse.switchGradePrices()
             self?.refreshTableView()
             self?.requiredCount += 1
-        })
+        }
     }
     
     private func loadClassSchedule() {

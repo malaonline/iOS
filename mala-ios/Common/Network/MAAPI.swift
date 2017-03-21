@@ -28,6 +28,7 @@ public enum MAAPI {
     case removeCollection(id: Int)
     case loadTeacherDetail(id: Int)
     case getTeacherAvailableTime(teacherId: Int, schoolId: Int)
+    case getTeacherGradePrice(teacherId: Int, schoolId: Int)
 }
 
 extension MAAPI: TargetType {
@@ -66,18 +67,20 @@ extension MAAPI: TargetType {
             return "/teachers/\(id)"
         case .getTeacherAvailableTime(let teacherId, _):
             return "teachers/\(teacherId)/weeklytimeslots"
+        case .getTeacherGradePrice(let teacherId, let schoolId):
+            return "teacher/\(teacherId)/school/\(schoolId)/prices"
         }
     }
     public var method: Moya.Method {
         switch self {
-        case .profileInfo, .parentInfo, .userCoupons, .evaluationStatus, .getStudentSchedule, .getOrderList, .userNewMessageCount, .userCollection, .loadTeacherDetail, .getTeacherAvailableTime:
-            return .get
         case .sendSMS, .verifySMS, .addCollection:
             return .post
         case .uploadAvatar, .saveStudentName, .saveSchoolName:
             return .patch
         case .removeCollection:
             return .delete
+        default:
+            return .get
         }
     }
     public var parameters: [String : Any]? {
@@ -106,9 +109,9 @@ extension MAAPI: TargetType {
     }
     public var parameterEncoding: ParameterEncoding {
         switch self {
-        case .sendSMS, .verifySMS, .saveStudentName, .saveSchoolName, .addCollection:
+        case .sendSMS, .verifySMS, .saveStudentName, .saveSchoolName, .addCollection, .getTeacherGradePrice:
             return JSONEncoding.default
-        case .profileInfo, .parentInfo, .uploadAvatar, .userCoupons, .evaluationStatus, .getStudentSchedule, .getOrderList, .userNewMessageCount, .userCollection, .removeCollection, .loadTeacherDetail, .getTeacherAvailableTime:
+        default:
             return URLEncoding.default
         }
     }
@@ -122,7 +125,6 @@ extension MAAPI: TargetType {
         default:
             return .request
         }
-        
     }
 }
 

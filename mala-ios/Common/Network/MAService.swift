@@ -48,6 +48,7 @@ extension MoyaProvider {
                let userID = json["user_id"] as? Int,
                let profileID = json["profile_id"] as? Int {
                 completion(LoginUser(accessToken: accessToken, userID: userID, parentID: parentID, profileID: profileID, firstLogin: firstLogin, avatarURLString: ""))
+                return
             }
             completion(nil)
         })
@@ -371,6 +372,33 @@ extension MoyaProvider {
                 }
             }
             completion(weekSchedule) 
+        })
+    }
+    
+    /// Get teacher price of grade at given school
+    ///
+    /// - Parameters:
+    ///   - teacherId:      Teacher id
+    ///   - schoolId:       School id
+    ///   - failureHandler: FailureHandler
+    ///   - completion:     Completion
+    /// - Returns:          Cancellable
+    @discardableResult
+    func getTeacherGradePrice(teacherId: Int, atSchool schoolId: Int, failureHandler: failureHandler? = nil, completion: @escaping ([GradeModel]) -> Void) -> Cancellable {
+        return self.sendRequest(.getTeacherGradePrice(teacherId: teacherId, schoolId: schoolId), failureHandler: failureHandler, completion: { json in
+            
+            var prices: [GradeModel] = []
+            
+            if let results = json["results"] as? [JSON], results.count > 0 {
+                for grade in results {
+                    if let id      = grade["grade"] as? Int,
+                       let name    = grade["grade_name"] as? String,
+                       let price   = grade["prices"] as? [[String: AnyObject]] {
+                        prices.append(GradeModel(id: id, name: name, prices: price))
+                    }
+                }
+            }
+            completion(prices)
         })
     }
 }
