@@ -95,17 +95,10 @@ class SchoolTableViewController: UIViewController, UITableViewDelegate, UITableV
             return
         }
         
-        getSchools(region.id, failureHandler: { (reason, errorMessage) in
-            ThemeHUD.hideActivityIndicator()
-            defaultFailureHandler(reason, errorMessage: errorMessage)
-            // 错误处理
-            if let errorMessage = errorMessage {
-                println("CityTableViewController - getSchools Error \(errorMessage)")
-            }
-        }, completion: { (schools) in
+        MAProvider.getSchools(regionId: region.id) { schools in
             self.models = schools.reversed()
             println("校区列表 - \(schools)")
-        })
+        }
     }
     
     

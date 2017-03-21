@@ -160,18 +160,9 @@ class CityTableViewController: UIViewController, UITableViewDelegate, UITableVie
     // MARK: - Private Method
     // 获取城市列表
     private func loadCitylist() {
-        
-        loadRegions({ (reason, errorMessage) in
-            ThemeHUD.hideActivityIndicator()
-            defaultFailureHandler(reason, errorMessage: errorMessage)
-            
-            // 错误处理
-            if let errorMessage = errorMessage {
-                println("CityTableViewController - loadCitylist Error \(errorMessage)")
-            }
-        }, completion: { (cities) in
+        MAProvider.loadRegions { cities in
             self.models = cities
-        })
+        }
     }
     
     private func pushToSchoolList() {

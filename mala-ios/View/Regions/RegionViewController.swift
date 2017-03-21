@@ -191,17 +191,10 @@ class RegionViewController: UIViewController, UITableViewDelegate, UITableViewDa
             return
         }
         
-        getSchools(city.id, failureHandler: { (reason, errorMessage) in
-            ThemeHUD.hideActivityIndicator()
-            defaultFailureHandler(reason, errorMessage: errorMessage)
-            // 错误处理
-            if let errorMessage = errorMessage {
-                println("CityTableViewController - getSchools Error \(errorMessage)")
-            }
-        }, completion: { (schools) in
+        MAProvider.getSchools(regionId: city.id) { schools in
             self.models = schools.reversed()
             println("校区列表 - \(schools)")
-        })
+        }
     }
     
     

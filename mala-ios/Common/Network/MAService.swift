@@ -715,4 +715,51 @@ extension MoyaProvider {
         })
     }
     
+    /// Load regions
+    ///
+    /// - Parameters:
+    ///   - failureHandler: FailureHandler
+    ///   - completion:     Completion
+    /// - Returns:          Cancellable
+    @discardableResult
+    func loadRegions(failureHandler: failureHandler? = nil, completion: @escaping ([BaseObjectModel]) -> Void) -> Cancellable {
+        return self.sendRequest(.loadRegions(), failureHandler: failureHandler, completion: { json in
+            
+            var cities: [BaseObjectModel] = []
+            
+            if let results = json["results"] as? [JSON], results.count > 0 {
+                for school in results {
+                    cities.append(BaseObjectModel(dict: school))
+                }
+            }
+            
+            completion(cities)
+            return
+        })
+    }
+    
+    /// Get list of school using given id
+    ///
+    /// - Parameters:
+    ///   - regionId:       Region id
+    ///   - teacherId:      Teacher id
+    ///   - failureHandler: FailureHandler
+    ///   - completion:     Completion
+    /// - Returns:          Cancellable
+    @discardableResult
+    func getSchools(regionId: Int? = nil, teacherId: Int? = nil, failureHandler: failureHandler? = nil, completion: @escaping ([SchoolModel]) -> Void) -> Cancellable {
+        return self.sendRequest(.getSchools(regionId: regionId, teacherId: teacherId), failureHandler: failureHandler, completion: { json in
+            
+            var schools: [SchoolModel] = []
+            
+            if let results = json["results"] as? [JSON], results.count > 0 {
+                for school in results {
+                    schools.append(SchoolModel(dict: school))
+                }
+            }
+            
+            completion(sortSchoolsByDistance(schools))
+            return
+        })
+    }
 }

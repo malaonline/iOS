@@ -49,6 +49,9 @@ internal enum MAAPI {
     
     case userStudyReportOverview()
     case userSubjectReport(id: Int)
+    
+    case loadRegions()
+    case getSchools(regionId: Int?, teacherId: Int?)
 }
 
 extension MAAPI: TargetType {
@@ -113,6 +116,10 @@ extension MAAPI: TargetType {
             return "/study_report"
         case .userSubjectReport(let id):
             return "/study_report/\(id)"
+        case .loadRegions:
+            return "/regions"
+        case .getSchools:
+            return "/schools"
         }
     }
     public var method: Moya.Method {
@@ -172,6 +179,19 @@ extension MAAPI: TargetType {
                 "action": PaymentMethod.Pay.rawValue,
                 "channel": channel.rawValue
             ]
+        case .getSchools(let regionId, let teacherId):
+            
+            var params = JSON()
+            
+            if let id = regionId {
+                params["region"] = id
+            } else if let region = MalaCurrentCity {
+                params["region"] = region.id
+            }
+            if let teacherId = teacherId {
+                params["teacher"] = teacherId
+            }
+            return params
         default:
             return nil
         }
