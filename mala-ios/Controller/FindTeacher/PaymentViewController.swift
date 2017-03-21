@@ -146,25 +146,12 @@ class PaymentViewController: BaseViewController {
     func getChargeToken() {
         println("获取支付信息")
         MalaIsPaymentIn = true
-        ThemeHUD.showActivityIndicator()
         
         ///  获取支付信息
-        getChargeTokenWithChannel(MalaOrderObject.channel, orderID: ServiceResponseOrder.id, failureHandler: { (reason, errorMessage) -> Void in
-            
-            ThemeHUD.hideActivityIndicator()
-            defaultFailureHandler(reason, errorMessage: errorMessage)
-            
-            // 错误处理
-            if let errorMessage = errorMessage {
-                println("PaymentViewController - getGharge Error \(errorMessage)")
-            }
-            
-        }, completion: { (charges) -> Void in
-                println("获取支付信息:\(charges)")
+        MAProvider.getChargeToken(channel: MalaOrderObject.channel, id: ServiceResponseOrder.id) { charges in
+            println("获取支付信息:\(charges)")
             
             DispatchQueue.main.async {
-                
-                ThemeHUD.hideActivityIndicator()
                 
                 /// 验证返回值是否有效
                 if let charge = charges {
@@ -185,10 +172,10 @@ class PaymentViewController: BaseViewController {
                     }
                 }
             }
-        })
+        }
     }
     
-    func createPayment(_ charge: JSONDictionary) {
+    func createPayment(_ charge: JSON) {
         MalaPaymentController = self
         
         ///  调用Ping++开始支付

@@ -9,6 +9,8 @@
 import Foundation
 import Moya
 
+public typealias JSON = [String: Any]
+
 let endpointClosure = { (target: MAAPI) -> Endpoint<MAAPI> in
     let defaultEndpoint = MoyaProvider.defaultEndpointMapping(for: target)
     

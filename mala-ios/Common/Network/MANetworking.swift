@@ -12,15 +12,14 @@ import Moya
 let MAProvider = MoyaProvider<MAAPI>(endpointClosure: endpointClosure, plugins: [MANetworkPlugin()])
 
 extension MoyaProvider {
-    public typealias JSON = [String: Any]
     public typealias failureHandler = ((MoyaError) -> Void)
 }
 
 extension Moya.Response {
     
-    fileprivate func JSON() -> [String: Any]? {
+    fileprivate func JSON() -> JSON? {
         do {
-            if let json = try self.mapJSON() as? [String: Any] {
+            if let json = try self.mapJSON() as? JSON {
                 return json
             }else {
                 return nil

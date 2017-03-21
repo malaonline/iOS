@@ -558,7 +558,7 @@ extension MoyaProvider {
     ///   - completion:     Completion
     /// - Returns:          Cancellable
     @discardableResult
-    func createOrder(order: [String: Any], failureHandler: failureHandler? = nil, completion: @escaping (OrderForm) -> Void) -> Cancellable {
+    func createOrder(order: JSON, failureHandler: failureHandler? = nil, completion: @escaping (OrderForm) -> Void) -> Cancellable {
         return self.sendRequest(.createOrder(order: order), failureHandler: failureHandler, completion: { json in
             
             // failure
@@ -580,6 +580,30 @@ extension MoyaProvider {
             }
             
             completion(OrderForm(result: false, code: -9))
+            return
+        })
+    }
+    
+    /// Get chargeToken using payment-channel and order id
+    ///
+    /// - Parameters:
+    ///   - channel:        Payment channel
+    ///   - id:             Order id
+    ///   - failureHandler: FailureHandler
+    ///   - completion:     Completion
+    /// - Returns:          Cancellable
+    @discardableResult
+    func getChargeToken(channel: MalaPaymentChannel, id: Int, failureHandler: failureHandler? = nil, completion: @escaping (JSON?) -> Void) -> Cancellable {
+        return self.sendRequest(.getChargeToken(channel: channel, id: id), failureHandler: failureHandler, completion: { json in
+            // failure, usually means that time-slot has been allocated to someone else
+            if let result = json["ok"] as? Bool,
+               let _ = json["code"] as? Int {
+                completion(["result": result])
+                return
+            }
+            
+            // success
+            completion(json)
             return
         })
     }

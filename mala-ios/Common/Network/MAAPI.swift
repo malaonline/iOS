@@ -10,7 +10,7 @@ import Foundation
 import Moya
 import Result
 
-public enum MAAPI {
+internal enum MAAPI {
     case sendSMS(phone: String)
     case verifySMS(phone: String, code: String)
     case profileInfo(id: Int)
@@ -40,7 +40,8 @@ public enum MAAPI {
     case createComment(comment: CommentModel)
     case getCommentInfo(id: Int)
     
-    case createOrder(order: [String: Any])
+    case createOrder(order: JSON)
+    case getChargeToken(channel: MalaPaymentChannel, id: Int)
 }
 
 extension MAAPI: TargetType {
@@ -95,13 +96,15 @@ extension MAAPI: TargetType {
             return "comments/\(id)"
         case .createOrder:
             return "/orders"
+        case .getChargeToken(_, let id):
+            return "/orders/\(id)"
         }
     }
     public var method: Moya.Method {
         switch self {
         case .sendSMS, .verifySMS, .addCollection, .createComment, .createOrder:
             return .post
-        case .uploadAvatar, .saveStudentName, .saveSchoolName:
+        case .uploadAvatar, .saveStudentName, .saveSchoolName, .getChargeToken:
             return .patch
         case .removeCollection:
             return .delete
@@ -149,13 +152,18 @@ extension MAAPI: TargetType {
             ]
         case .createOrder(let order):
             return order
+        case .getChargeToken(let channel, _):
+            return [
+                "action": PaymentMethod.Pay.rawValue,
+                "channel": channel.rawValue
+            ]
         default:
             return nil
         }
     }
     public var parameterEncoding: ParameterEncoding {
         switch self {
-        case .sendSMS, .verifySMS, .saveStudentName, .saveSchoolName, .addCollection, .createOrder:
+        case .sendSMS, .verifySMS, .saveStudentName, .saveSchoolName, .addCollection, .createOrder, .getChargeToken:
             return JSONEncoding.default
         default:
             return URLEncoding.default

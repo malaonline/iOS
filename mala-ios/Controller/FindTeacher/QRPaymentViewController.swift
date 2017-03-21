@@ -167,20 +167,9 @@ class QRPaymentViewController: BaseViewController {
     func getChargeToken(channel: MalaPaymentChannel = .WxQR) {
         
         MalaIsPaymentIn = true
-        ThemeHUD.showActivityIndicator()
         
         ///  获取支付信息
-        getChargeTokenWithChannel(channel, orderID: ServiceResponseOrder.id, failureHandler: { (reason, errorMessage) -> Void in
-            
-            ThemeHUD.hideActivityIndicator()
-            defaultFailureHandler(reason, errorMessage: errorMessage)
-            
-            // 错误处理
-            if let errorMessage = errorMessage {
-                println("PaymentViewController - getGharge Error \(errorMessage)")
-            }
-            
-        }, completion: { [weak self] (charges) -> Void in
+        MAProvider.getChargeToken(channel: channel, id: ServiceResponseOrder.id) { [weak self] charges in
             println("获取支付信息:\(charges)")
             
             DispatchQueue.main.async(execute: { () -> Void in
@@ -240,7 +229,7 @@ class QRPaymentViewController: BaseViewController {
                     }
                 }
             })
-        })
+        }
     }
     
     private func cancelOrder() {

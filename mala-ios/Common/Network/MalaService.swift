@@ -32,31 +32,6 @@ public let coupons = "/coupons"
 typealias nullDictionary = [String: AnyObject]
 
 // MARK: - Payment
-///  获取支付信息
-///
-///  - parameter channel:        支付方式
-///  - parameter orderID:        订单id
-///  - parameter failureHandler: 失败处理闭包
-///  - parameter completion:     成功处理闭包
-func getChargeTokenWithChannel(_ channel: MalaPaymentChannel, orderID: Int, failureHandler: ((Reason, String?) -> Void)?, completion: @escaping (JSONDictionary?) -> Void) {
-    let requestParameters = [
-        "action": PaymentMethod.Pay.rawValue,
-        "channel": channel.rawValue
-    ]
-    
-    let parse: (JSONDictionary) -> JSONDictionary? = { data in
-        return parseChargeToken(data)
-    }
-    
-    let resource = authJsonResource(path: "/orders/\(orderID)", method: .PATCH, requestParameters: requestParameters as JSONDictionary, parse: parse)
-    
-    if let failureHandler = failureHandler {
-        apiRequest({_ in}, baseURL: MalaBaseURL, resource: resource, failure: failureHandler, completion: completion)
-    } else {
-        apiRequest({_ in}, baseURL: MalaBaseURL, resource: resource, failure: defaultFailureHandler, completion: completion)
-    }
-}
-
 ///  获取订单信息
 ///
 ///  - parameter orderID:        订单id
@@ -216,6 +191,8 @@ func getUserProtocolHTML(_ failureHandler: ((Reason, String?) -> Void)?, complet
 
 
 
+
+
 // MARK: - Parse
 /// 订单JSON解析器
 let parseOrderFormInfo: (JSONDictionary) -> OrderForm? = { orderInfo in
@@ -240,19 +217,6 @@ let parseUserProtocolHTML: (JSONDictionary) -> String? = { htmlInfo in
     }
 
     return htmlString
-}
-/// 支付信息JSON解析器
-let parseChargeToken: (JSONDictionary) -> JSONDictionary? = { chargeInfo in
-    
-    // 支付信息获取失败（课程被占用）
-    if
-        let result = chargeInfo["ok"] as? Bool,
-        let errorCode = chargeInfo["code"] as? Int {
-        return ["result": result as AnyObject]
-    }
-    
-    // 支付信息获取成功
-    return chargeInfo
 }
 /// 学习报告总览JSON解析器
 let parseStudyReportResult: (JSONDictionary) -> [SimpleReportResultModel] = { resultInfo in
