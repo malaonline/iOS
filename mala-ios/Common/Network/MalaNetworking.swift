@@ -9,6 +9,27 @@
 import UIKit
 import Alamofire
 
+
+// MARK: Api
+#if USE_PRD_SERVER
+    public let MalaBaseUrl = "https://www.malalaoshi.com/api/v1"
+#elseif USE_STAGE_SERVER
+    public let MalaBaseUrl = "https://stage.malalaoshi.com/api/v1"
+#else
+    public let MalaBaseUrl = "http://dev.malalaoshi.com/api/v1"
+#endif
+
+public let MalaBaseURL = URL(string: MalaBaseUrl)!
+public let gradeList = "/grades"
+public let subjectList = "/subjects"
+public let tagList = "/tags"
+public let memberServiceList = "/memberservices"
+public let teacherList = "/teachers"
+public let sms = "/sms"
+public let schools = "/schools"
+public let weeklytimeslots = "/weeklytimeslots"
+public let coupons = "/coupons"
+
 // MARK: - Enum
 /// 请求方法类型
 public enum Method: String, CustomStringConvertible {
