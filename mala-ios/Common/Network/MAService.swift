@@ -401,4 +401,32 @@ extension MoyaProvider {
             completion(prices)
         })
     }
+    
+    /// Get a list of live-class at given school
+    ///
+    /// - Parameters:
+    ///   - page:           Page number
+    ///   - failureHandler: FailureHandler
+    ///   - completion:     Completion
+    /// - Returns:          Cancellable
+    @discardableResult
+    func getLiveClasses(page: Int = 1, failureHandler: failureHandler? = nil, completion: @escaping ([LiveClassModel], Int) -> Void) -> Cancellable {
+        return self.sendRequest(.getLiveClasses(schoolId: MalaCurrentSchool?.id, page: page), failureHandler: failureHandler, completion: { json in
+            
+            var list: [LiveClassModel] = []
+            
+            guard let classes = json["results"] as? [JSONDictionary],
+                  let count = json["count"] as? Int, count != 0 else {
+                    completion(list, 0)
+                    return
+            }
+            
+            for course in classes {
+                if let _ = course["id"] as? Int {
+                    list.append(LiveClassModel(dict: course))
+                }
+            }
+            completion(list, count)
+        })
+    }
 }

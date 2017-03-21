@@ -31,35 +31,7 @@ public let coupons = "/coupons"
 
 typealias nullDictionary = [String: AnyObject]
 
-
 // MARK: - LiveCourse
-/// 获取双师直播班级列表
-///
-/// - parameter page:           页数
-/// - parameter failureHandler: 失败处理闭包
-/// - parameter completion:     成功处理闭包
-func getLiveClasses(_ page: Int = 1, failureHandler: ((Reason, String?) -> Void)?, completion: @escaping ([LiveClassModel], Int) -> Void) {
-    
-    var requestParameters: JSONDictionary = [
-        "page": page as AnyObject
-    ]
-    
-    if let school = MalaCurrentSchool {
-        requestParameters["school"] = school.id as AnyObject?
-    }
-    
-    let parse: (JSONDictionary) -> ([LiveClassModel], Int) = { data in
-        return parseLiveClassList(data)
-    }
-    
-    let resource = jsonResource(path: "/liveclasses", method: .GET, requestParameters: requestParameters, parse: parse)
-    
-    if let failureHandler = failureHandler {
-        apiRequest({_ in}, baseURL: MalaBaseURL, resource: resource, failure: failureHandler, completion: completion)
-    } else {
-        apiRequest({_ in}, baseURL: MalaBaseURL, resource: resource, failure: defaultFailureHandler, completion: completion)
-    }
-}
 /// 获取指定直播课程详细信息
 ///
 /// - Parameters:
@@ -540,24 +512,4 @@ let parseCitiesResult: (JSONDictionary) -> [BaseObjectModel] = { resultInfo in
         }
     }
     return cities
-}
-
-/// 双师直播班级列表JSON解析器
-let parseLiveClassList: (JSONDictionary) -> ([LiveClassModel], Int) = { resultInfo in
-
-    var classList: [LiveClassModel] = []
-    
-    guard
-        let classes = resultInfo["results"] as? [JSONDictionary],
-        let count = resultInfo["count"] as? Int, count != 0 else {
-        return (classList, 0)
-    }
-    
-    for course in classes {
-        if let _ = course["id"] as? Int {
-            classList.append(LiveClassModel(dict: course))
-        }
-    }
-
-    return (classList, count)
 }

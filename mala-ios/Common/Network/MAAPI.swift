@@ -29,6 +29,7 @@ public enum MAAPI {
     case loadTeacherDetail(id: Int)
     case getTeacherAvailableTime(teacherId: Int, schoolId: Int)
     case getTeacherGradePrice(teacherId: Int, schoolId: Int)
+    case getLiveClasses(schoolId: Int?, page: Int)
 }
 
 extension MAAPI: TargetType {
@@ -69,6 +70,8 @@ extension MAAPI: TargetType {
             return "teachers/\(teacherId)/weeklytimeslots"
         case .getTeacherGradePrice(let teacherId, let schoolId):
             return "teacher/\(teacherId)/school/\(schoolId)/prices"
+        case .getLiveClasses:
+            return "/liveclasses"
         }
     }
     public var method: Moya.Method {
@@ -103,13 +106,19 @@ extension MAAPI: TargetType {
             return ["teacher": id]
         case .getTeacherAvailableTime(_, let schoolId):
             return ["school_id": schoolId]
+        case .getLiveClasses(let id, let page):
+            if let id = id {
+                return ["school": id, "page": page]
+            }else {
+                return ["page": page]
+            }
         default:
             return nil
         }
     }
     public var parameterEncoding: ParameterEncoding {
         switch self {
-        case .sendSMS, .verifySMS, .saveStudentName, .saveSchoolName, .addCollection, .getTeacherGradePrice:
+        case .sendSMS, .verifySMS, .saveStudentName, .saveSchoolName, .addCollection:
             return JSONEncoding.default
         default:
             return URLEncoding.default
@@ -131,7 +140,7 @@ extension MAAPI: TargetType {
 extension MAAPI: AccessTokenAuthorizable {
     public var shouldAuthorize: Bool {
         switch self {
-        case .sendSMS, .verifySMS:
+        case .sendSMS, .verifySMS, .getLiveClasses:
             return false
         case .loadTeacherDetail:
             return MalaUserDefaults.isLogined ? true : false

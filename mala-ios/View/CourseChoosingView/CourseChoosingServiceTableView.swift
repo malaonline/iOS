@@ -80,7 +80,7 @@ class CourseChoosingServiceTableViewCell: UITableViewCell {
                 configure()
             }
             
-            self.titleLabel.text = service?.title
+            self.titleLabel.text = model.title
 
             if let amount = MalaCurrentCourse.coupon?.amount, amount != 0 {
                 updateUserInterface()

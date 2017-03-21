@@ -95,18 +95,12 @@ class LiveCourseViewController: BaseViewController {
             currentPageIndex = 1
         }
 
-        ///  获取用户订单列表
-        getLiveClasses(currentPageIndex, failureHandler: { (reason, errorMessage) in
-            defaultFailureHandler(reason, errorMessage: errorMessage)
-            // 错误处理
-            if let errorMessage = errorMessage {
-                println("LiveCourseViewController - loadLiveClasses Error \(errorMessage)")
-            }
+        MAProvider.getLiveClasses(page: currentPageIndex, failureHandler: { error in
             DispatchQueue.main.async {
                 finish?()
                 self.isFetching = false
             }
-        }, completion: { (classList, count) in            
+        }) { (classList, count) in
             /// 记录数据量
             self.allCount = max(count, self.allCount)
             
@@ -124,7 +118,7 @@ class LiveCourseViewController: BaseViewController {
                 finish?()
                 self.isFetching = false
             }
-        })
+        }
     }
     
     
