@@ -48,14 +48,28 @@ extension MoyaProvider {
         return MAProvider.request(target) { result in
             switch result {
             case let .success(response):
-                do {
-                    guard let json = try response.mapJSON() as? JSON else {
+                
+                switch response.statusCode {
+                case 200, 201:
+                    do {
+                        guard let json = try response.mapJSON() as? JSON else {
+                            _failureHandler(MoyaError.jsonMapping(response))
+                            return
+                        }
+                        completion(json)
+                    }catch {
                         _failureHandler(MoyaError.jsonMapping(response))
-                        return
                     }
-                    completion(json)
-                }catch {
-                    _failureHandler(MoyaError.jsonMapping(response))
+                default:
+                    _failureHandler(.statusCode(response))
+                    if response.statusCode == 401 || response.statusCode == 403 {
+                        // make sure it's our own service
+                        if let requestHost = response.request?.url?.host, requestHost == MABaseURL.host {
+                            DispatchQueue.main.async {
+                                MalaUserDefaults.userNeedRelogin()
+                            }
+                        }
+                    }
                 }
             case let .failure(error):
                 _failureHandler(error)

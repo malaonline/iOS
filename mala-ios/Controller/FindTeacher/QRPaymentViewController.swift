@@ -198,7 +198,7 @@ class QRPaymentViewController: BaseViewController {
                     MalaPaymentCharge = charge
                     
                     /// 验证数据正确性
-                    guard let credential = charge["credential"] as? JSONDictionary else {
+                    guard let credential = charge["credential"] as? JSON else {
                         self?.ShowToast(L10n.qrCodeCredentialGetError)
                         return
                     }

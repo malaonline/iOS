@@ -702,9 +702,6 @@
 		F4ADCFE41D0FC3CD004D517A /* CourseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4ADCFE21D0FC3CD004D517A /* CourseTableViewController.swift */; };
 		F4ADCFE51D0FC3CD004D517A /* CourseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4ADCFE21D0FC3CD004D517A /* CourseTableViewController.swift */; };
 		F4ADCFE61D0FC3CD004D517A /* CourseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4ADCFE21D0FC3CD004D517A /* CourseTableViewController.swift */; };
-		F4AE07DD1E767358006FA466 /* MalaNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AE07DB1E767358006FA466 /* MalaNetworking.swift */; };
-		F4AE07DE1E767358006FA466 /* MalaNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AE07DB1E767358006FA466 /* MalaNetworking.swift */; };
-		F4AE07DF1E767358006FA466 /* MalaNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AE07DB1E767358006FA466 /* MalaNetworking.swift */; };
 		F4AE07E91E7673AC006FA466 /* CommonFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AE07E41E7673AC006FA466 /* CommonFlowLayout.swift */; };
 		F4AE07EA1E7673AC006FA466 /* CommonFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AE07E41E7673AC006FA466 /* CommonFlowLayout.swift */; };
 		F4AE07EB1E7673AC006FA466 /* CommonFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AE07E41E7673AC006FA466 /* CommonFlowLayout.swift */; };
@@ -1049,7 +1046,6 @@
 		F4ADCFD51D0D6E6E004D517A /* InfoModifyViewWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoModifyViewWindow.swift; sourceTree = "<group>"; };
 		F4ADCFDD1D0E6E7C004D517A /* ProfileItemCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileItemCollectionView.swift; sourceTree = "<group>"; };
 		F4ADCFE21D0FC3CD004D517A /* CourseTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseTableViewController.swift; sourceTree = "<group>"; };
-		F4AE07DB1E767358006FA466 /* MalaNetworking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MalaNetworking.swift; sourceTree = "<group>"; };
 		F4AE07E41E7673AC006FA466 /* CommonFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonFlowLayout.swift; sourceTree = "<group>"; };
 		F4AE07E51E7673AC006FA466 /* HandlePingppBehaviour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HandlePingppBehaviour.swift; sourceTree = "<group>"; };
 		F4AE07E61E7673AC006FA466 /* MalaLocationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MalaLocationService.swift; sourceTree = "<group>"; };
@@ -1733,7 +1729,6 @@
 		F4AE07DA1E767358006FA466 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				F4AE07DB1E767358006FA466 /* MalaNetworking.swift */,
 				F4493C591E792C8000D34918 /* MAAPI.swift */,
 				F4AE08171E7681D0006FA466 /* MANetworking.swift */,
 				F4AE08111E7676D3006FA466 /* MAService.swift */,
@@ -2518,7 +2513,6 @@
 				F45871F71C51DFFF0048D93F /* CourseChoosingClassPeriodCell.swift in Sources */,
 				F4FF66DA1DB875FD0036E299 /* LiveCourseDetailViewController.swift in Sources */,
 				F4BD4FD01C745C0A00488613 /* ThemeRefreshView.swift in Sources */,
-				F4AE07DD1E767358006FA466 /* MalaNetworking.swift in Sources */,
 				F4F29B001D0FF001000D1904 /* CourseTableViewCell.swift in Sources */,
 				F4AE080E1E7673CE006FA466 /* MalaSupport.swift in Sources */,
 				F43F44C91D0CFD2800B7A358 /* CommentViewWindow.swift in Sources */,
@@ -2730,7 +2724,6 @@
 				35FF7AFB1CF8325A000A70EE /* CourseChoosingClassPeriodCell.swift in Sources */,
 				F4FF66DB1DB875FD0036E299 /* LiveCourseDetailViewController.swift in Sources */,
 				35FF7AFC1CF8325A000A70EE /* ThemeRefreshView.swift in Sources */,
-				F4AE07DE1E767358006FA466 /* MalaNetworking.swift in Sources */,
 				F4F29B011D0FF001000D1904 /* CourseTableViewCell.swift in Sources */,
 				F4AE080F1E7673CE006FA466 /* MalaSupport.swift in Sources */,
 				F43F44CA1D0CFD2800B7A358 /* CommentViewWindow.swift in Sources */,
@@ -2942,7 +2935,6 @@
 				35FF7BDE1CF83264000A70EE /* CourseChoosingClassPeriodCell.swift in Sources */,
 				F4FF66DC1DB875FD0036E299 /* LiveCourseDetailViewController.swift in Sources */,
 				35FF7BDF1CF83264000A70EE /* ThemeRefreshView.swift in Sources */,
-				F4AE07DF1E767358006FA466 /* MalaNetworking.swift in Sources */,
 				F4F29B021D0FF001000D1904 /* CourseTableViewCell.swift in Sources */,
 				F4AE08101E7673CE006FA466 /* MalaSupport.swift in Sources */,
 				F43F44CB1D0CFD2800B7A358 /* CommentViewWindow.swift in Sources */,

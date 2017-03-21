@@ -90,7 +90,7 @@ class MalaSingleWebViewController: BaseViewController, WKNavigationDelegate, WKU
     }
     
     private func showHTML() {
-        webView.loadHTMLString(HTMLString, baseURL: MalaBaseURL as URL)
+        webView.loadHTMLString(HTMLString, baseURL: MABaseURL)
     }
     
     
