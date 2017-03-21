@@ -77,16 +77,8 @@ class MalaSingleWebViewController: BaseViewController, WKNavigationDelegate, WKU
     }
     
     private func loadHTML() {
-        
         ///  获取用户协议HTML
-        getUserProtocolHTML({ (reason, errorMessage) -> Void in
-            defaultFailureHandler(reason, errorMessage: errorMessage)
-            
-            // 错误处理
-            if let errorMessage = errorMessage {
-                println("MalaSingleWebViewController - loadHTML Error \(errorMessage)")
-            }
-        }, completion: { (string) -> Void in
+        MAProvider.userProtocolHTML { string in
             DispatchQueue.main.async {
                 if let htmlString = string {
                     self.HTMLString = htmlString
@@ -94,7 +86,7 @@ class MalaSingleWebViewController: BaseViewController, WKNavigationDelegate, WKU
                     self.ShowToast(L10n.networkNotReachable)
                 }
             }
-        })
+        }
     }
     
     private func showHTML() {

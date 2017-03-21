@@ -656,4 +656,25 @@ extension MoyaProvider {
             return
         })
     }
+    
+    /// Get policy HTML
+    ///
+    /// - Parameters:
+    ///   - failureHandler: FailureHandler
+    ///   - completion:     Completion
+    /// - Returns:          Cancellable
+    @discardableResult
+    func userProtocolHTML(failureHandler: failureHandler? = nil, completion: @escaping (String?) -> Void) -> Cancellable {
+        return self.sendRequest(.userProtocolHTML(), failureHandler: failureHandler, completion: { json in
+            
+            guard let _ = json["updated_at"] as? Int,
+                  let htmlString = json["content"] as? String else {
+                    completion(nil)
+                    return
+            }
+            
+            completion(htmlString)
+            return
+        })
+    }
 }

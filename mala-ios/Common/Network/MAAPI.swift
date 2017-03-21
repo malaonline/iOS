@@ -44,6 +44,8 @@ internal enum MAAPI {
     case getChargeToken(channel: MalaPaymentChannel, id: Int)
     case getOrderInfo(id: Int)
     case cancelOrder(id: Int)
+    
+    case userProtocolHTML()
 }
 
 extension MAAPI: TargetType {
@@ -102,6 +104,8 @@ extension MAAPI: TargetType {
             return "/orders/\(id)"
         case .getOrderInfo(let id), .cancelOrder(let id):
             return "/orders/\(id)"
+        case .userProtocolHTML:
+            return "/policy"
         }
     }
     public var method: Moya.Method {

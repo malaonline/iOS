@@ -124,42 +124,10 @@ func getSchools(_ cityId: Int? = nil, teacher: Int? = nil, failureHandler: ((Rea
     }
 }
 
-///  获取用户协议HTML
-///
-///  - parameter failureHandler: 失败处理闭包
-///  - parameter completion:     成功处理闭包
-func getUserProtocolHTML(_ failureHandler: ((Reason, String?) -> Void)?, completion: @escaping (String?) -> Void) {
-    
-    let parse: (JSONDictionary) -> String? = { data in
-        return parseUserProtocolHTML(data)
-    }
-    
-    let resource = authJsonResource(path: "/policy", method: .GET, requestParameters: nullDictionary(), parse: parse)
-    
-    if let failureHandler = failureHandler {
-        apiRequest({_ in}, baseURL: MalaBaseURL, resource: resource, failure: failureHandler, completion: completion)
-    } else {
-        apiRequest({_ in}, baseURL: MalaBaseURL, resource: resource, failure: defaultFailureHandler, completion: completion)
-    }
-}
 
 
 
 
-
-// MARK: - Parse
-
-/// 用户协议JSON解析器
-let parseUserProtocolHTML: (JSONDictionary) -> String? = { htmlInfo in
-    
-    guard
-        let updatedAt = htmlInfo["updated_at"] as? Int,
-        let htmlString = htmlInfo["content"] as? String else {
-        return nil
-    }
-
-    return htmlString
-}
 /// 学习报告总览JSON解析器
 let parseStudyReportResult: (JSONDictionary) -> [SimpleReportResultModel] = { resultInfo in
     
