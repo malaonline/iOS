@@ -11,50 +11,56 @@ import Moya
 import Result
 
 internal enum MAAPI {
+    // account
     case sendSMS(phone: String)
     case verifySMS(phone: String, code: String)
+    case userProtocolHTML()
+    
+    // profile
     case profileInfo(id: Int)
     case parentInfo(id: Int)
     case uploadAvatar(data: Data, profileId: Int)
     case saveStudentName(name: String, parentId: Int)
     case saveSchoolName(name: String, parentId: Int)
     case userCoupons(onlyValid: Bool)
-    case evaluationStatus(subjectId: Int)
-    case getStudentSchedule(onlyPassed: Bool)
     case getOrderList(page: Int)
     case userNewMessageCount()
     case userCollection(page: Int)
     case addCollection(id: Int)
     case removeCollection(id: Int)
     
+    // teacher
     case loadTeachers(condition: JSON?, page: Int)
+    case loadTags()
     case loadTeacherDetail(id: Int)
+    case evaluationStatus(subjectId: Int)
     case getTeacherAvailableTime(teacherId: Int, schoolId: Int)
     case getTeacherGradePrice(teacherId: Int, schoolId: Int)
     case getConcreteTimeslots(id: Int, hours: Int, timeSlots: [Int])
     
+    // live-course
     case getLiveClasses(schoolId: Int?, page: Int)
     case getLiveClassDetail(id: Int)
     
+    // schedule&comment
+    case getStudentSchedule(onlyPassed: Bool)
     case getCourseInfo(id: Int)
-    
     case createComment(comment: CommentModel)
     case getCommentInfo(id: Int)
     
+    // payment&order
     case createOrder(order: JSON)
     case getChargeToken(channel: MalaPaymentChannel, id: Int)
     case getOrderInfo(id: Int)
     case cancelOrder(id: Int)
     
-    case userProtocolHTML()
-    
+    // study report
     case userStudyReportOverview()
     case userSubjectReport(id: Int)
     
+    // region
     case loadRegions()
     case getSchools(regionId: Int?, teacherId: Int?)
-    
-    case loadTags()
 }
 
 extension MAAPI: TargetType {
@@ -237,6 +243,19 @@ extension MAAPI: AccessTokenAuthorizable {
             return MalaUserDefaults.isLogined ? true : false
         default:
             return true
+        }
+    }
+}
+
+extension MAAPI: HUDController {
+    public var shouldShowHUD: Bool {
+        switch self {
+        case .sendSMS, .verifySMS, .loadTeacherDetail, .evaluationStatus, .getTeacherAvailableTime, .getTeacherGradePrice, .getConcreteTimeslots,
+             .getLiveClassDetail, .getStudentSchedule, .getCourseInfo, .createComment, .getCommentInfo, .createOrder, .getChargeToken, .getOrderInfo,
+             .cancelOrder:
+            return true
+        default:
+            return false
         }
     }
 }
