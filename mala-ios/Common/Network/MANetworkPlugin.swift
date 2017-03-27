@@ -10,6 +10,13 @@ import Foundation
 import Moya
 import Result
 
+/// A protocol for controlling the behavior of `MANetworkPlugin`.
+public protocol HUDController {
+    
+    /// Declares whether or not `MANetworkPlugin` should show HUD when request.
+    var shouldShowHUD: Bool { get }
+}
+
 public final class MANetworkPlugin: PluginType {
     
     public func prepare(_ request: URLRequest, target: TargetType) -> URLRequest {
@@ -17,6 +24,9 @@ public final class MANetworkPlugin: PluginType {
     }
     
     public func willSend(_ request: RequestType, target: TargetType) {
+        guard let controller = target as? HUDController, controller.shouldShowHUD == true else {
+            return
+        }
         ThemeHUD.showActivityIndicator()
     }
     

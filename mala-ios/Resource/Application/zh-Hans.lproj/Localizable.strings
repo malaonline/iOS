@@ -16,7 +16,7 @@
 
 // Teacher
 "Teacher" = "找老师";
-"No teacher" = "当前城市没有老师！";
+"No teacher" = "当前老师正在上架中，敬请期待";
 "Teacher albums" = "老师相册";
 "Course choosing" = "课程购买";
 "Evaluation" = "测评建档服务";
@@ -31,7 +31,7 @@
 "Timeslots error" = "上课时间信息有误";
 "Timeslots get error" = "上课时间获取有误，请重试";
 "Live course" = "课程页";
-"No live course" = "当前城市暂无直播课程！";
+"No live course" = "当前课程正在开通中，敬请期待";
 
 // Order
 "My order" = "我的订单";

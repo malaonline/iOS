@@ -328,7 +328,7 @@ class OrderForm: BaseObjectModel {
         let timeslots = (self.weeklyTimeSlots ?? [])
         
         var json: JSON = [
-            "teacher": teacher ?? 0,
+            "teacher": teacher,
             "school": school,
             "grade": grade,
             "subject": subject,

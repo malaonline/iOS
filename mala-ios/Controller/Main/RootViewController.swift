@@ -23,7 +23,7 @@ private struct PagingMenuOptions: PagingMenuControllerCustomizable {
     fileprivate var pagingControllers: [UIViewController] {
         let viewController1 = FindTeacherViewController()
         let viewController2 = LiveCourseViewController()
-        return [viewController1, viewController2]
+        return [viewController2, viewController1]
     }
     
     fileprivate struct MenuOptions: MenuViewCustomizable {
@@ -37,7 +37,7 @@ private struct PagingMenuOptions: PagingMenuControllerCustomizable {
             return .segmentedControl
         }
         var itemsOptions: [MenuItemViewCustomizable] {
-            return [MenuItem1(), MenuItem2()]
+            return [MenuItem2(), MenuItem1()]
         }
         var focusMode: MenuFocusMode {
             return .underline(height: 2, color: UIColor(named: .OptionSelectColor), horizontalPadding: 30, verticalPadding: 0)
