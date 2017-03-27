@@ -166,14 +166,14 @@ class OrderFormOperatingView: UIView {
         }
         
         switch orderStatus {
-        case .penging: setOrderPending()
-        case .paid: setOrderPaid()
-        case .paidRefundable: setOrderPaidRefundable()
-        case .finished: setOrderFinished()
-        case .refunding: setOrderRefunding()
-        case .refund: setOrderRefund()
-        case .canceled: setOrderCanceled()
-        case .confirm: setOrderConfirm()
+        case .penging:          setOrderPending()
+        case .paid:             setOrderPaid()
+        case .paidRefundable:   setOrderPaidRefundable()
+        case .finished:         setOrderFinished()
+        case .refunding:        setOrderRefunding()
+        case .refund:           setOrderRefund()
+        case .canceled:         setOrderCanceled()
+        case .confirm:          setOrderConfirm()
         }
     }
     
@@ -244,9 +244,8 @@ class OrderFormOperatingView: UIView {
     private func setButton( _ title: String, _ bgColor: UIColor, _ titleColor: UIColor = UIColor.white, enabled: Bool? = nil, hidden: Bool = false,
                             action: Selector? = nil, relayout: Bool = true) {
         cancelButton.isHidden = true
-        confirmButton.isHidden = false
-        
         confirmButton.isHidden = hidden
+        
         if let enabled = enabled {
             confirmButton.isEnabled = enabled
         }
