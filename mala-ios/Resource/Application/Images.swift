@@ -126,6 +126,7 @@ enum ImageAsset: String {
     case locationNormal = "location_normal"
     case locationPress = "location_press"
     case minus = "minus"
+    case networkError = "network_error"
     case noReport = "noReport"
     case noCoupons = "no_coupons"
     case noOrder = "no_order"
