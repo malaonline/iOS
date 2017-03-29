@@ -27,7 +27,7 @@ class LiveCourseConfirmView: UIView {
             
             if model.isPaid {
                 setBought()
-            }else if let endDate = model.courseEnd, Date().timeIntervalSinceNow > endDate {
+            }else if let endDate = model.courseEnd, Date().timeIntervalSince1970 > endDate {
                 setExpired()
             }else if let student = model.studentsCount, let capacity = model.roomCapacity, student >= capacity {
                 setSoldout()
