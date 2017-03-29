@@ -363,7 +363,7 @@ class LoginViewController: UIViewController {
             self.resetStatus()
         }) { (loginUser) in
             
-            println("信息获取成功：\(loginUser)")
+            println("信息获取成功：\(loginUser as Optional)")
             
             guard let loginUser = loginUser else {
                 self.resetStatus()

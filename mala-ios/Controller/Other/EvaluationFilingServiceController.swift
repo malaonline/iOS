@@ -77,7 +77,7 @@ class EvaluationFilingServiceController: BaseTableViewController {
     // 读取 [测评建档]服务 简介
     private func loadIntroductions() {
         // 网络请求
-        let dataArray = NSArray(contentsOfFile: Bundle.main.path(forResource: "EvaluationFiling.plist", ofType: nil)!) as? [AnyObject]
+        let dataArray = NSArray(contentsOfFile: Bundle.main.path(forResource: "EvaluationFiling.plist", ofType: nil)!) as [AnyObject]?
         var modelDicts: [IntroductionModel]? = []
         for object in dataArray! {
             if let dict = object as? [String: AnyObject] {

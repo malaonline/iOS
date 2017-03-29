@@ -170,7 +170,7 @@ class QRPaymentViewController: BaseViewController {
         
         ///  获取支付信息
         MAProvider.getChargeToken(channel: channel, id: ServiceResponseOrder.id) { [weak self] charges in
-            println("获取支付信息:\(charges)")
+            println("获取支付信息:\(charges as Optional)")
             
             DispatchQueue.main.async(execute: { () -> Void in
                 
@@ -245,7 +245,7 @@ class QRPaymentViewController: BaseViewController {
         
         // 获取订单信息
         MAProvider.getOrderInfo(id: ServiceResponseOrder.id) { [weak self] order in
-            println("订单状态获取成功 \(order?.status)")
+            println("订单状态获取成功 \(order?.status as Optional)")
             
             guard let order = order else {
                 self?.ShowToast(L10n.orderStatusError)

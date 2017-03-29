@@ -15,6 +15,6 @@ struct ParentInfo: CustomStringConvertible {
     let schoolName: String?
     
     var description: String {
-        return "parentInfo(id: \(id), studentName: \(studentName), schoolName: \(schoolName)"
+        return "parentInfo(id: \(id), studentName: \(studentName as Optional), schoolName: \(schoolName as Optional)"
     }
 }

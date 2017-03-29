@@ -67,7 +67,7 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        println("token is \(MalaUserDefaults.userAccessToken.value)")
+        println("token is \(MalaUserDefaults.userAccessToken.value as Optional)")
         configure()
         setupUserInterface()
         setupNotification()
@@ -346,7 +346,7 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
                 self?.profileHeaderView.refreshAvatar = false
             }
         }) { [weak self] result in
-            println("Upload New Avatar: \(result)")
+            println("Upload New Avatar: \(result as Optional)")
             DispatchQueue.main.async {
                 MalaUserDefaults.fetchProfileInfo()
                 DispatchQueue.main.async {

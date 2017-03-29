@@ -215,7 +215,7 @@ class FilterView: UIScrollView, UIScrollViewDelegate {
     
     private func loadFilterCondition() {
         // 读取年级和科目数据
-        let dataArray = NSArray(contentsOfFile: Bundle.main.path(forResource: "FilterCondition.plist", ofType: nil)!) as? [AnyObject]
+        let dataArray = NSArray(contentsOfFile: Bundle.main.path(forResource: "FilterCondition.plist", ofType: nil)!) as [AnyObject]?
         var gradeDict: [GradeModel]? = []
         for object in dataArray! {
             if let dict = object as? [String: AnyObject] {

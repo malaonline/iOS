@@ -15,6 +15,6 @@ struct ProfileInfo: CustomStringConvertible {
     let avatar: String?
     
     var description: String {
-        return "parentInfo(id: \(id), gender: \(gender), avatar: \(avatar)"
+        return "parentInfo(id: \(id), gender: \(gender as Optional), avatar: \(avatar as Optional)"
     }
 }

@@ -18,7 +18,7 @@ struct LoginUser: CustomStringConvertible {
     let avatarURLString: String?
     
     var description: String {
-        return "LoginUser(accessToken: \(accessToken), userID: \(userID), parentID: \(parentID), profileID: \(profileID))" +
-        ", firstLogin: \(firstLogin)), avatarURLString: \(avatarURLString))"
+        return "LoginUser(accessToken: \(accessToken), userID: \(userID), parentID: \(parentID as Optional), profileID: \(profileID as Optional))" +
+        ", firstLogin: \(firstLogin as Optional)), avatarURLString: \(avatarURLString as Optional))"
     }
 }
