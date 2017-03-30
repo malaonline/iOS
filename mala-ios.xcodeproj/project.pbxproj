@@ -843,7 +843,6 @@
 		2ECF91491C2ACE7000904C3A /* TeacherModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeacherModel.swift; sourceTree = "<group>"; };
 		3027F6511C3F680400296ED3 /* TeacherDetailsSignupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeacherDetailsSignupView.swift; sourceTree = "<group>"; };
 		3037B5821C3A84C2005672D9 /* SMSResultModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMSResultModel.swift; sourceTree = "<group>"; };
-		3037B5871C3B7341005672D9 /* teacher-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "teacher-Bridging-Header.h"; sourceTree = "<group>"; };
 		3037B5881C3B7341005672D9 /* parent-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "parent-Bridging-Header.h"; sourceTree = "<group>"; };
 		3037B5971C3BAA81005672D9 /* TeacherDetailsSubjectCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeacherDetailsSubjectCell.swift; sourceTree = "<group>"; };
 		3037B59A1C3BAAB3005672D9 /* TeacherDetailsTagsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeacherDetailsTagsCell.swift; sourceTree = "<group>"; };
@@ -1217,7 +1216,6 @@
 			children = (
 				F4934DE31DEBC5740011C409 /* parent.entitlements */,
 				304135821C23AE6400830C43 /* AppDelegate.swift */,
-				3037B5871C3B7341005672D9 /* teacher-Bridging-Header.h */,
 				3037B5881C3B7341005672D9 /* parent-Bridging-Header.h */,
 				35FF7C021CF83568000A70EE /* parent-stage-Info.plist */,
 				35FF7C031CF83568000A70EE /* parent-prd-Info.plist */,
