@@ -478,6 +478,10 @@
 		F41A01AC1D212B1F0069CF29 /* MalaBaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41A01AB1D212B1F0069CF29 /* MalaBaseCell.swift */; };
 		F41A01AD1D212B1F0069CF29 /* MalaBaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41A01AB1D212B1F0069CF29 /* MalaBaseCell.swift */; };
 		F41A01AE1D212B1F0069CF29 /* MalaBaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41A01AB1D212B1F0069CF29 /* MalaBaseCell.swift */; };
+		F41B99F71E8CF3DA008ACCB8 /* StatefulViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41B99F61E8CF3DA008ACCB8 /* StatefulViewController.swift */; };
+		F41B99F81E8CF3DA008ACCB8 /* StatefulViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41B99F61E8CF3DA008ACCB8 /* StatefulViewController.swift */; };
+		F41B99F91E8CF3DA008ACCB8 /* StatefulViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41B99F61E8CF3DA008ACCB8 /* StatefulViewController.swift */; };
+		F41B99FA1E8CF3DA008ACCB8 /* StatefulViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41B99F61E8CF3DA008ACCB8 /* StatefulViewController.swift */; };
 		F41CE6321D86457300B57F69 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F41CE6311D86457300B57F69 /* GoogleService-Info.plist */; };
 		F41CE6331D86457300B57F69 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F41CE6311D86457300B57F69 /* GoogleService-Info.plist */; };
 		F41CE6341D86457300B57F69 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F41CE6311D86457300B57F69 /* GoogleService-Info.plist */; };
@@ -918,6 +922,7 @@
 		F40D89671C7D9E4100BD6871 /* CourseChoosingObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseChoosingObject.swift; sourceTree = "<group>"; };
 		F4193B6B1E6D046C004730EF /* Fonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		F41A01AB1D212B1F0069CF29 /* MalaBaseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MalaBaseCell.swift; sourceTree = "<group>"; };
+		F41B99F61E8CF3DA008ACCB8 /* StatefulViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatefulViewController.swift; sourceTree = "<group>"; };
 		F41CE6311D86457300B57F69 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F41CE6361D86487500B57F69 /* RegionPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegionPicker.swift; sourceTree = "<group>"; };
 		F41CE6421D8661E400B57F69 /* RegionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegionViewController.swift; sourceTree = "<group>"; };
@@ -1845,6 +1850,7 @@
 				F4E1061B1CBBA35B001AD4AF /* BaseViewController.swift */,
 				F4E1061F1CBBA497001AD4AF /* BaseTableViewController.swift */,
 				F4428C901DDC8E54000FEFA4 /* BaseWindow.swift */,
+				F41B99F61E8CF3DA008ACCB8 /* StatefulViewController.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -2368,6 +2374,7 @@
 				30445B201C4A3B96002CD290 /* StyleFilterView.swift in Sources */,
 				F465F1441DB4ABB00025D867 /* LiveCourseViewController.swift in Sources */,
 				F48F13091DAB9211006A2F5C /* UIScrollViewExtension.swift in Sources */,
+				F41B99F71E8CF3DA008ACCB8 /* StatefulViewController.swift in Sources */,
 				F4AE07EF1E7673AC006FA466 /* MalaLocationService.swift in Sources */,
 				F4AE08051E7673CE006FA466 /* MalaEnum.swift in Sources */,
 				30E336761C28061700DCF1C5 /* GradeModel.swift in Sources */,
@@ -2579,6 +2586,7 @@
 				35FF7A771CF8325A000A70EE /* StyleFilterView.swift in Sources */,
 				F465F1451DB4ABB00025D867 /* LiveCourseViewController.swift in Sources */,
 				F48F130A1DAB9211006A2F5C /* UIScrollViewExtension.swift in Sources */,
+				F41B99F81E8CF3DA008ACCB8 /* StatefulViewController.swift in Sources */,
 				F4AE07F01E7673AC006FA466 /* MalaLocationService.swift in Sources */,
 				F4AE08061E7673CE006FA466 /* MalaEnum.swift in Sources */,
 				35FF7A781CF8325A000A70EE /* GradeModel.swift in Sources */,
@@ -2790,6 +2798,7 @@
 				35FF7B5A1CF83264000A70EE /* StyleFilterView.swift in Sources */,
 				F465F1461DB4ABB00025D867 /* LiveCourseViewController.swift in Sources */,
 				F48F130B1DAB9211006A2F5C /* UIScrollViewExtension.swift in Sources */,
+				F41B99F91E8CF3DA008ACCB8 /* StatefulViewController.swift in Sources */,
 				F4AE07F11E7673AD006FA466 /* MalaLocationService.swift in Sources */,
 				F4AE08071E7673CE006FA466 /* MalaEnum.swift in Sources */,
 				35FF7B5B1CF83264000A70EE /* GradeModel.swift in Sources */,
@@ -2976,6 +2985,7 @@
 			files = (
 				F452CD7F1CE07BB2001A30E8 /* OrderFormViewCell.swift in Sources */,
 				F452CD7E1CE07B9F001A30E8 /* OrderFormViewController.swift in Sources */,
+				F41B99FA1E8CF3DA008ACCB8 /* StatefulViewController.swift in Sources */,
 				F46CA2451CC8841C00457EA6 /* BaseViewController.swift in Sources */,
 				F46CA2461CC8841C00457EA6 /* BaseTableViewController.swift in Sources */,
 				F46CA2471CC8841C00457EA6 /* Extension+UIDevice.swift in Sources */,

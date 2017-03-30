@@ -123,6 +123,7 @@ enum ImageAsset: String {
     case liveTeacher = "live_teacher"
     case liveTime = "live_time"
     case liveTimes = "live_times"
+    case loading_imgBlue = "loading_imgBlue_78x78"
     case locationNormal = "location_normal"
     case locationPress = "location_press"
     case minus = "minus"
