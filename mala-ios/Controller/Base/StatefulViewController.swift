@@ -12,7 +12,7 @@ import Kingfisher
 
 public class StatefulViewController: UIViewController {
     
-    var isLoading: Bool = true
+    var isLoading: Bool = false
 
     override public func viewDidLoad() {
         super.viewDidLoad()
@@ -30,11 +30,14 @@ extension StatefulViewController: DZNEmptyDataSetSource {
     // Title
     public func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
         
-        var plug = (title: "", font: FontFamily.PingFangSC.Regular.font(17), color: UIColor(named: .HeaderTitle))
+        var plug = (title: "", font: FontFamily.PingFangSC.Regular.font(17), color: UIColor(named: .ArticleTitle))
         
         switch self {
         case is CourseTableViewController:
-            plug.title = "您暂时还未报名课程哦"
+            plug.title = L10n.noCourse
+        case is LiveCourseViewController:
+            plug.title = L10n.noLiveCourse
+            plug.font = FontFamily.PingFangSC.Regular.font(15)
         default:
             break
         }
@@ -56,6 +59,8 @@ extension StatefulViewController: DZNEmptyDataSetSource {
         switch self {
         case is CourseTableViewController:
             plug.title = "您报名的课程安排将会显示在这里"
+        case is LiveCourseViewController:
+            break
         default:
             break
         }
@@ -77,6 +82,8 @@ extension StatefulViewController: DZNEmptyDataSetSource {
         switch self {
         case is CourseTableViewController:
             plug.title = "去报名"
+        case is LiveCourseViewController:
+            break
         default:
             break
         }
@@ -91,10 +98,18 @@ extension StatefulViewController: DZNEmptyDataSetSource {
     }
     
     public func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
+        
         if isLoading {
             return UIImage(asset: .loading_imgBlue)
-        }else {
-            return UIImage(asset: .networkError)
+        }
+        
+        switch self {
+        case is CourseTableViewController:
+            return UIImage(asset: .courseNoData)
+        case is LiveCourseViewController:
+            return UIImage(asset: .filterNoResult)
+        default:
+            return UIImage()
         }
     }
     
@@ -110,6 +125,17 @@ extension StatefulViewController: DZNEmptyDataSetSource {
     
     public func spaceHeight(forEmptyDataSet scrollView: UIScrollView!) -> CGFloat {
         return 20
+    }
+    
+    public func verticalOffset(forEmptyDataSet scrollView: UIScrollView!) -> CGFloat {
+        switch self {
+        case is CourseTableViewController:
+            return -30
+        case is LiveCourseViewController:
+            return MalaScreenWidth/3 - 64
+        default:
+            return 0.0
+        }
     }
 }
 

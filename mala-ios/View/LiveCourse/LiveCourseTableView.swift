@@ -20,11 +20,7 @@ class LiveCourseTableView: UITableView, UITableViewDelegate, UITableViewDataSour
     
     // MARK: - Property
     /// 数据模型数组
-    var models: [LiveClassModel] = [] {
-        didSet {
-            controller?.handleModels(models, tableView: self)
-        }
-    }
+    var models: [LiveClassModel] = []
     weak var controller: LiveCourseViewController?
     
     

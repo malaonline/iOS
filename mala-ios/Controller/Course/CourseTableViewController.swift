@@ -21,10 +21,8 @@ public class CourseTableViewController: StatefulViewController, UITableViewDataS
             DispatchQueue.main.async {
                 ThemeHUD.hideActivityIndicator()
                 if self.model?.count == 0 {
-                    self.defaultView.isHidden = false
                     self.goTopButton.isHidden = true
                 }else {
-                    self.defaultView.isHidden = true
                     self.goTopButton.isHidden = false
                     self.tableView.reloadData()
                     self.scrollToToday()
@@ -65,16 +63,6 @@ public class CourseTableViewController: StatefulViewController, UITableViewDataS
     lazy var tableView: UITableView = {
         let tableView = UITableView(frame: CGRect.zero, style: .grouped)
         return tableView
-    }()
-    /// 我的课表缺省面板
-    private lazy var defaultView: UIView = {
-        let view = MalaDefaultPanel()
-        view.imageName = "course_noData"
-        view.text = L10n.noCourse
-        view.buttonTitle = L10n.pickCourse
-        view.addTarget(self, action: #selector(CourseTableViewController.switchToFindTeacher))
-        view.isHidden = true
-        return view
     }()
     /// 我的课表未登录面板
     private lazy var unLoginDefaultView: UIView = {
@@ -155,7 +143,6 @@ public class CourseTableViewController: StatefulViewController, UITableViewDataS
         // SubViews
         view.addSubview(tableView)
         view.addSubview(goTopButton)
-        tableView.addSubview(defaultView)
         tableView.addSubview(unLoginDefaultView)
         
         // AutoLayout
@@ -168,10 +155,6 @@ public class CourseTableViewController: StatefulViewController, UITableViewDataS
             maker.bottom.equalTo(view).offset(-64)
             maker.width.equalTo(58)
             maker.height.equalTo(58)
-        }
-        defaultView.snp.makeConstraints { (maker) -> Void in
-            maker.size.equalTo(tableView)
-            maker.center.equalTo(tableView)
         }
         unLoginDefaultView.snp.makeConstraints { (maker) -> Void in
             maker.size.equalTo(tableView)

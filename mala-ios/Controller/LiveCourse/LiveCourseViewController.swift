@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LiveCourseViewController: BaseViewController {
+class LiveCourseViewController: StatefulViewController {
     
     // MARK: - Property
     var models: [LiveClassModel] = [] {
@@ -20,7 +20,13 @@ class LiveCourseViewController: BaseViewController {
     var currentPageIndex = 1
     /// 数据总量
     var allCount = 0
-    var isFetching = false
+    override var isLoading: Bool {
+        didSet {
+            if isLoading != oldValue {
+                self.tableView.reloadEmptyDataSet()
+            }
+        }
+    }
     
     
     // MARK: - Components
@@ -51,9 +57,9 @@ class LiveCourseViewController: BaseViewController {
     // MARK: - Private Method
     private func setupUserInterface() {
         // Style
-        view.backgroundColor = UIColor(named: .RegularBackground)
-        defaultView.imageName = "filter_no_result"
-        defaultView.text = L10n.noLiveCourse
+        tableView.emptyDataSetSource = self
+        tableView.emptyDataSetDelegate = self
+        
         
         // 下拉刷新
         tableView.addPullRefresh{ [weak self] in
@@ -86,8 +92,8 @@ class LiveCourseViewController: BaseViewController {
     func loadLiveClasses(_ page: Int = 1, isLoadMore: Bool = false, finish: (()->())? = nil) {
         
         // 屏蔽[正在刷新]时的操作
-        guard isFetching == false else { return }
-        isFetching = true
+        guard isLoading == false else { return }
+        isLoading = true
         
         if isLoadMore {
             currentPageIndex += 1
@@ -98,7 +104,7 @@ class LiveCourseViewController: BaseViewController {
         MAProvider.getLiveClasses(page: currentPageIndex, failureHandler: { error in
             DispatchQueue.main.async {
                 finish?()
-                self.isFetching = false
+                self.isLoading = false
             }
         }) { (classList, count) in
             /// 记录数据量
@@ -116,7 +122,7 @@ class LiveCourseViewController: BaseViewController {
             
             DispatchQueue.main.async {
                 finish?()
-                self.isFetching = false
+                self.isLoading = false
             }
         }
     }
@@ -129,5 +135,16 @@ class LiveCourseViewController: BaseViewController {
         webViewController.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(webViewController, animated: true)
         webViewController.loadURL(url: MalaConfig.adURL())
+    }
+}
+
+extension LiveCourseViewController {
+    
+    public func emptyDataSet(_ scrollView: UIScrollView!, didTap button: UIButton!) {
+        
+    }
+    
+    public func emptyDataSet(_ scrollView: UIScrollView!, didTap view: UIView!) {
+        
     }
 }

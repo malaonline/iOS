@@ -251,7 +251,7 @@ extension MAAPI: HUDController {
     public var shouldShowHUD: Bool {
         switch self {
         case .sendSMS, .verifySMS, .loadTeacherDetail, .evaluationStatus, .getTeacherAvailableTime, .getTeacherGradePrice, .getConcreteTimeslots,
-             .getLiveClassDetail, .getStudentSchedule, .getCourseInfo, .createComment, .getCommentInfo, .createOrder, .getChargeToken, .getOrderInfo,
+             .getLiveClassDetail, .getCourseInfo, .createComment, .getCommentInfo, .createOrder, .getChargeToken, .getOrderInfo,
              .cancelOrder:
             return true
         default:

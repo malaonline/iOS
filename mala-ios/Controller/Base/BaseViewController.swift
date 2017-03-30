@@ -54,12 +54,6 @@ open class BaseViewController: UIViewController {
         
         // AutoLayout
         switch self {
-        case is LiveCourseViewController:
-            defaultView.snp.makeConstraints { (maker) -> Void in
-                maker.centerX.equalTo(view)
-                maker.centerY.equalTo(view).offset(64)
-                maker.size.equalTo(view)
-            }
         case is FilterResultController:
             defaultView.snp.makeConstraints { (maker) -> Void in
                 maker.centerX.equalTo(view)
