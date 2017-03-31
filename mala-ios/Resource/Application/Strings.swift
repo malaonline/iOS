@@ -100,6 +100,8 @@ enum L10n {
     static let liveActivities = L10n.tr("Live activities")
     /// 课程页
     static let liveCourse = L10n.tr("Live course")
+    /// 正在加载
+    static let loading = L10n.tr("Loading")
     /// 退出登录
     static let logout = L10n.tr("Logout")
     /// 退  出
@@ -120,6 +122,8 @@ enum L10n {
     static let myCoupon = L10n.tr("My coupon")
     /// 我的订单
     static let myOrder = L10n.tr("My order")
+    /// 网络出错啦～
+    static let networkError = L10n.tr("Network error")
     /// 网络环境较差，请稍后重试
     static let networkNotReachable = L10n.tr("Network notReachable")
     /// 您收藏的老师会出现在这里哦
@@ -232,6 +236,8 @@ enum L10n {
     static let takePicture = L10n.tr("Take picture")
     /// 快去老师详情页收藏吧
     static let takeSomeCollect = L10n.tr("take some collect")
+    /// 点击重试
+    static let tapToRetry = L10n.tr("Tap to retry")
     /// 找老师
     static let teacher = L10n.tr("Teacher")
     /// 老师相册

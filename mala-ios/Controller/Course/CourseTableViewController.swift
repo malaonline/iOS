@@ -41,14 +41,14 @@ public class CourseTableViewController: StatefulViewController, UITableViewDataS
             }
         }
     }
-    
-    override var isLoading: Bool {
+    override var currentState: StatefulViewState {
         didSet {
-            if isLoading != oldValue {
+            if currentState != oldValue {
                 self.tableView.reloadEmptyDataSet()
             }
         }
     }
+    var co: Int = 0
     
     
     // MARK: - Components
@@ -63,16 +63,6 @@ public class CourseTableViewController: StatefulViewController, UITableViewDataS
     lazy var tableView: UITableView = {
         let tableView = UITableView(frame: CGRect.zero, style: .grouped)
         return tableView
-    }()
-    /// 我的课表未登录面板
-    private lazy var unLoginDefaultView: UIView = {
-        let view = MalaDefaultPanel()
-        view.imageName = "course_noData"
-        view.text = L10n.youNeedToLogin
-        view.buttonTitle = L10n.goToLogin
-        view.addTarget(self, action: #selector(CourseTableViewController.switchToLoginView))
-        view.isHidden = true
-        return view
     }()
     /// 保存按钮
     private lazy var saveButton: UIButton = {
@@ -143,7 +133,6 @@ public class CourseTableViewController: StatefulViewController, UITableViewDataS
         // SubViews
         view.addSubview(tableView)
         view.addSubview(goTopButton)
-        tableView.addSubview(unLoginDefaultView)
         
         // AutoLayout
         tableView.snp.makeConstraints { (maker) -> Void in
@@ -155,10 +144,6 @@ public class CourseTableViewController: StatefulViewController, UITableViewDataS
             maker.bottom.equalTo(view).offset(-64)
             maker.width.equalTo(58)
             maker.height.equalTo(58)
-        }
-        unLoginDefaultView.snp.makeConstraints { (maker) -> Void in
-            maker.size.equalTo(tableView)
-            maker.center.equalTo(tableView)
         }
         if let titleView = navigationItem.titleView {
             titleLabel.snp.makeConstraints { (maker) -> Void in
@@ -173,7 +158,7 @@ public class CourseTableViewController: StatefulViewController, UITableViewDataS
         // 用户登录后请求数据，否则显示默认页面
         if !MalaUserDefaults.isLogined {
             
-            unLoginDefaultView.isHidden = false
+            currentState = .notLoggedIn
             
             // 若在注销后存在课程数据残留，清除数据并刷新日历
             if model != nil {
@@ -182,17 +167,24 @@ public class CourseTableViewController: StatefulViewController, UITableViewDataS
             }
             return
         }else {
-            unLoginDefaultView.isHidden = true
+            currentState = .content
         }
         
-        self.isLoading = true
+        currentState = .loading
         
         ///  获取学生课程信息
-        MAProvider.getStudentSchedule { schedule in
+        MAProvider.getStudentSchedule(failureHandler: { error in
+            println(error)
+            self.currentState = .error
+        }) { schedule in
             
-            self.isLoading = false
+            guard !schedule.isEmpty else {
+                self.currentState = .empty
+                return
+            }
             
             // 解析学生上课时间表
+            self.currentState = .content
             let result = parseStudentCourseTable(schedule)
             self.recentlyCourseIndexPath = result.recently
             self.model = result.model
@@ -261,14 +253,14 @@ public class CourseTableViewController: StatefulViewController, UITableViewDataS
         }
     }
     ///  跳转到挑选老师页面
-    @objc private func switchToFindTeacher() {
+    @objc fileprivate func switchToFindTeacher() {
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
             appDelegate.window?.rootViewController = MainViewController()
             appDelegate.switchTabBarControllerWithIndex(0)
         }
     }
     ///  跳转到登陆页面
-    @objc private func switchToLoginView() {
+    @objc fileprivate func switchToLoginView() {
         
         let loginView = LoginViewController()
         loginView.popAction = loadStudentCourseTable
@@ -285,10 +277,20 @@ public class CourseTableViewController: StatefulViewController, UITableViewDataS
 extension CourseTableViewController {
     
     public func emptyDataSet(_ scrollView: UIScrollView!, didTap button: UIButton!) {
-        loadStudentCourseTable()
+        switch currentState {
+        case .notLoggedIn:  switchToLoginView()
+        case .empty:        switchToFindTeacher()
+        case .error:        loadStudentCourseTable()
+        default: break
+        }
     }
     
     public func emptyDataSet(_ scrollView: UIScrollView!, didTap view: UIView!) {
-        loadStudentCourseTable()
+        switch currentState {
+        case .notLoggedIn:  switchToLoginView()
+        case .empty:        switchToFindTeacher()
+        case .error:        loadStudentCourseTable()
+        default: break
+        }
     }
 }

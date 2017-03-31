@@ -13,6 +13,9 @@
 "Check" = "去查看";
 "Later" = "知道了";
 "Goto" = "去更改";
+"Loading" = "正在加载";
+"Network error" = "网络出错啦～";
+"Tap to retry" = "点击重试";
 
 // Teacher
 "Teacher" = "找老师";
