@@ -8,33 +8,44 @@
 
 import UIKit
 
-class LiveCourseViewController: StatefulViewController {
+private let LiveCourseTableViewCellReusedId = "LiveCourseTableViewCellReusedId"
+private let LiveCourseTableViewLoadmoreCellReusedId = "LiveCourseTableViewLoadmoreCellReusedId"
+
+class LiveCourseViewController: StatefulViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    private enum Section: Int {
+        case liveCourse
+        case loadMore
+    }
     
     // MARK: - Property
     var models: [LiveClassModel] = [] {
         didSet {
-            tableView.models = models
+            self.tableView.reloadData()
         }
     }
     /// 当前显示页数
     var currentPageIndex = 1
     /// 数据总量
     var allCount = 0
-    override var isLoading: Bool {
+    override var currentState: StatefulViewState {
         didSet {
-            if isLoading != oldValue {
+            if currentState != oldValue {
                 self.tableView.reloadEmptyDataSet()
             }
         }
     }
-    
+
     
     // MARK: - Components
     /// 老师信息tableView
-    private lazy var tableView: LiveCourseTableView = {
-        let tableView = LiveCourseTableView(frame: self.view.frame, style: .plain)
-        tableView.controller = self        
+    private lazy var tableView: UITableView = {
+        let tableView = UITableView(frame: self.view.frame, style: .plain)
         return tableView
+    }()
+    private lazy var banner: BannerView = {
+        let view = BannerView(frame: CGRect(x: 0, y: 0, width: MalaScreenWidth, height: MalaScreenWidth/3))
+        return view
     }()
     
     
@@ -44,6 +55,7 @@ class LiveCourseViewController: StatefulViewController {
         
         setupUserInterface()
         setupNotification()
+        configration()
         
         // 开启下拉刷新
         tableView.startPullRefresh()
@@ -56,10 +68,9 @@ class LiveCourseViewController: StatefulViewController {
     
     // MARK: - Private Method
     private func setupUserInterface() {
-        // Style
+        // stateful
         tableView.emptyDataSetSource = self
         tableView.emptyDataSetDelegate = self
-        
         
         // 下拉刷新
         tableView.addPullRefresh{ [weak self] in
@@ -79,6 +90,18 @@ class LiveCourseViewController: StatefulViewController {
         }
     }
     
+    private func configration() {
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.backgroundColor = UIColor(named: .RegularBackground)
+        tableView.estimatedRowHeight = 200
+        tableView.separatorStyle = .none
+        tableView.tableHeaderView = banner
+        tableView.contentInset = UIEdgeInsets(top: 6, left: 0, bottom: 48 + 6, right: 0)
+        tableView.register(LiveCourseTableViewCell.self, forCellReuseIdentifier: LiveCourseTableViewCellReusedId)
+        tableView.register(ThemeReloadView.self, forCellReuseIdentifier: LiveCourseTableViewLoadmoreCellReusedId)
+    }
+    
     private func setupNotification() {
         NotificationCenter.default.addObserver(
             forName: MalaNotification_LoadTeachers,
@@ -92,8 +115,9 @@ class LiveCourseViewController: StatefulViewController {
     func loadLiveClasses(_ page: Int = 1, isLoadMore: Bool = false, finish: (()->())? = nil) {
         
         // 屏蔽[正在刷新]时的操作
-        guard isLoading == false else { return }
-        isLoading = true
+        guard currentState != .loading else { return }
+        models = []
+        currentState = .loading
         
         if isLoadMore {
             currentPageIndex += 1
@@ -102,11 +126,17 @@ class LiveCourseViewController: StatefulViewController {
         }
 
         MAProvider.getLiveClasses(page: currentPageIndex, failureHandler: { error in
+            self.currentState = .error
             DispatchQueue.main.async {
                 finish?()
-                self.isLoading = false
             }
         }) { (classList, count) in
+            print("Live Course 数量", count)
+            guard !classList.isEmpty && count != 0 else {
+                self.currentState = .empty
+                return
+            }
+            
             /// 记录数据量
             self.allCount = max(count, self.allCount)
             
@@ -120,13 +150,87 @@ class LiveCourseViewController: StatefulViewController {
                 self.models = classList
             }
             
+            self.currentState = .content
             DispatchQueue.main.async {
                 finish?()
-                self.isLoading = false
             }
         }
     }
     
+    // MARK: - Delegate
+    func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        
+        switch indexPath.section {
+        case Section.liveCourse.rawValue:
+            break
+            
+        case Section.loadMore.rawValue:
+            guard let cell = cell as? ThemeReloadView else { return }
+            
+            if !cell.activityIndicator.isAnimating {
+                cell.activityIndicator.startAnimating()
+            }
+            
+            self.loadLiveClasses(isLoadMore: true, finish: {
+                cell.activityIndicator.stopAnimating()
+            })
+        default:
+            break
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let classId = (tableView.cellForRow(at: indexPath) as? LiveCourseTableViewCell)?.model?.id else { return }
+        let viewController = LiveCourseDetailViewController()
+        viewController.classId = classId
+        viewController.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+    
+    // MARK: - DataSource
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        switch section {
+            
+        case Section.liveCourse.rawValue:
+            return models.count
+            
+        case Section.loadMore.rawValue:
+            return self.allCount == models.count ? 0 : (models.isEmpty ? 0 : 1)
+            
+        default:
+            return 0
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        switch indexPath.section {
+            
+        case Section.liveCourse.rawValue:
+            let cell = tableView.dequeueReusableCell(withIdentifier: LiveCourseTableViewCellReusedId, for: indexPath) as! LiveCourseTableViewCell
+            if indexPath.row < models.count {
+                cell.model = models[indexPath.row]
+            }
+            return cell
+            
+        case Section.loadMore.rawValue:
+            let cell = tableView.dequeueReusableCell(withIdentifier: LiveCourseTableViewLoadmoreCellReusedId, for: indexPath) as! ThemeReloadView
+            return cell
+            
+        default:
+            return UITableViewCell()
+        }
+    }
+
     
     // MARK: - API
     /// Banner点击事件

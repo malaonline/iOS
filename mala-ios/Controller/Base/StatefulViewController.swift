@@ -37,6 +37,11 @@ public class StatefulViewController: UIViewController {
         KingfisherManager.shared.cache.clearMemoryCache()
     }
     
+    
+    // MARK: - Event Response
+    @objc func popSelf() {
+        _ = self.navigationController?.popViewController(animated: true)
+    }
 }
 
 extension StatefulViewController: DZNEmptyDataSetSource {
@@ -47,23 +52,15 @@ extension StatefulViewController: DZNEmptyDataSetSource {
         var plug = (title: "", fontSize: CGFloat(15.5), textColor: UIColor(named: .ArticleSubTitle))
         
         switch (self, currentState) {
-        // course schedule
-        case (is CourseTableViewController, .empty):
-            plug.title = L10n.noCourse
-        case (is CourseTableViewController, .notLoggedIn):
-            plug.title = L10n.youNeedToLogin
-            
-        // live course
-        case (is LiveCourseViewController, .empty):
-            plug.title = L10n.noLiveCourse
-
-        // commen status
-        case (_, .loading):
-            plug.title = L10n.loading
-        case (_, .error):
-            plug.title = L10n.networkError
-        default:
-            break
+        case (is CourseTableViewController, .empty):        plug.title = L10n.noCourse
+        case (is CourseTableViewController, .notLoggedIn):  plug.title = L10n.youNeedToLogin
+        case (is LiveCourseViewController, .empty):         plug.title = L10n.noLiveCourse
+        case (is FindTeacherViewController, .empty):        plug.title = L10n.noLiveCourse
+        case (is CouponViewController, .empty):             plug.title = L10n.noTeacher
+        // commen
+        case (_, .loading):     plug.title = L10n.loading
+        case (_, .error):       plug.title = L10n.networkError
+        default: break
         }
         
         return NSAttributedString(
@@ -81,12 +78,8 @@ extension StatefulViewController: DZNEmptyDataSetSource {
         var plug = (title: "", fontSize: CGFloat(14.5), textColor: UIColor(named: .HeaderTitle))
         
         switch (self, currentState) {
-        // course schedule
-        case (is CourseTableViewController, .empty):
-            plug.title = "您报名的课程安排将会显示在这里"
-            
-        default:
-            break
+        case (is CourseTableViewController, .empty):    plug.title = "您报名的课程安排将会显示在这里"
+        default: break
         }
         
         return NSAttributedString(
@@ -104,17 +97,11 @@ extension StatefulViewController: DZNEmptyDataSetSource {
         var plug = (title: "", fontSize: CGFloat(15.0), textColor: state == .normal ? UIColorFromHex(0x007ee5) : UIColorFromHex(0x48a1ea))
         
         switch (self, currentState) {
-        // course schedule
-        case (is CourseTableViewController, .empty):
-            plug.title = L10n.pickCourse
-        case (is CourseTableViewController, .notLoggedIn):
-            plug.title = L10n.goToLogin
-            
-        // commen status
-        case (_, .error):
-            plug.title = L10n.tapToRetry
-        default:
-            break
+        case (is CourseTableViewController, .empty):        plug.title = L10n.pickCourse
+        case (is CourseTableViewController, .notLoggedIn):  plug.title = L10n.goToLogin
+        // commen
+        case (_, .error):   plug.title = L10n.tapToRetry
+        default: break
         }
         
         return NSAttributedString(
@@ -130,23 +117,17 @@ extension StatefulViewController: DZNEmptyDataSetSource {
     public func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
         
         switch (self, currentState) {
-        // course schedule
-        case (is CourseTableViewController, .empty):
-            return UIImage(asset: .courseNoData)
-        case (is CourseTableViewController, .notLoggedIn):
-            return UIImage(asset: .courseNoData)
-            
-        // live course
-        case (is LiveCourseViewController, .empty):
-            return UIImage(asset: .filterNoResult)
-            
-        // commen status
-        case (_, .loading):
-            return UIImage(asset: .loading_imgBlue)
-        case (_, .error):
-            return UIImage(asset: .networkError)
-        default:
-            return UIImage.withColor(UIColor.white)
+        case (is CourseTableViewController, .empty):        return UIImage(asset: .courseNoData)
+        case (is CourseTableViewController, .notLoggedIn):  return UIImage(asset: .courseNoData)
+        case (is LiveCourseViewController, .empty):         return UIImage(asset: .filterNoResult)
+        case (is FindTeacherViewController, .empty):        return UIImage(asset: .filterNoResult)
+        case (is CouponViewController, .empty):             return UIImage(asset: .noCoupons)
+        // commen
+        case (is CourseTableViewController, .loading):     return UIImage(asset: .loading_imgBlue)
+        case (is CityTableViewController, .loading):       return UIImage(asset: .loading_imgBlue)
+        case (is RegionViewController, .loading):          return UIImage(asset: .loading_imgBlue)
+        case (_, .error):   return UIImage(asset: .networkError)
+        default:            return UIImage.withColor(UIColor.white)
         }
     }
     
@@ -167,12 +148,9 @@ extension StatefulViewController: DZNEmptyDataSetSource {
     
     public func verticalOffset(forEmptyDataSet scrollView: UIScrollView!) -> CGFloat {
         switch self {
-        case is CourseTableViewController:
-            return -30
-        case is LiveCourseViewController:
-            return MalaScreenWidth/3 - 64
-        default:
-            return 0.0
+        case is CourseTableViewController:  return -30
+        case is LiveCourseViewController:   return MalaScreenWidth/3 - 64
+        default: return 0.0
         }
     }
 }
@@ -182,16 +160,24 @@ extension StatefulViewController: DZNEmptyDataSetDelegate {
     public func emptyDataSetShouldDisplay(_ scrollView: UIScrollView!) -> Bool {
 
         switch (self, currentState) {
+        case (is CourseTableViewController, _):         return true
+            
         case (is LiveCourseViewController, .empty):     return true
         case (is LiveCourseViewController, .error):     return true
-        case (is CourseTableViewController, _):         return true
+        case (is FindTeacherViewController, .empty):    return true
+        case (is FindTeacherViewController, .error):    return true
+        case (is FilterResultController, .empty):       return true
+        case (is FilterResultController, .error):       return true
+            
         case (is CityTableViewController, .loading):    return true
         case (is CityTableViewController, .error):      return true
         case (is RegionViewController, .loading):       return true
         case (is RegionViewController, .error):         return true
-//        case (is FindTeacherViewController, .empty):    return true
-//        case (is OrderFormViewController, .empty):      return true
-//        case (is CouponViewController, .empty):         return true
+            
+        case (is OrderFormViewController, .empty):      return true
+        case (is OrderFormViewController, .error):      return true
+        case (is CouponViewController, .empty):         return true
+        case (is CouponViewController, .error):         return true
         default: return false
         }
     }

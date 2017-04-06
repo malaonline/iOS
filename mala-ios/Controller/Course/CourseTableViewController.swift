@@ -170,7 +170,6 @@ public class CourseTableViewController: StatefulViewController, UITableViewDataS
         model = nil
         recentlyCourseIndexPath = nil
         currentState = .loading
-
         
         ///  获取学生课程信息
         MAProvider.getStudentSchedule(failureHandler: { error in
