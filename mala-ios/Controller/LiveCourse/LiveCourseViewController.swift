@@ -113,10 +113,9 @@ class LiveCourseViewController: StatefulViewController, UITableViewDelegate, UIT
     
     ///  获取双师直播班级列表
     func loadLiveClasses(_ page: Int = 1, isLoadMore: Bool = false, finish: (()->())? = nil) {
-        
         // 屏蔽[正在刷新]时的操作
         guard currentState != .loading else { return }
-        models = []
+        if !isLoadMore { models = [] }
         currentState = .loading
         
         if isLoadMore {

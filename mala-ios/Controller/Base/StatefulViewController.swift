@@ -58,8 +58,10 @@ extension StatefulViewController: DZNEmptyDataSetSource {
         case (is FindTeacherViewController, .empty):        plug.title = L10n.noLiveCourse
         case (is CouponViewController, .empty):             plug.title = L10n.noTeacher
         // commen
-        case (_, .loading):     plug.title = L10n.loading
-        case (_, .error):       plug.title = L10n.networkError
+        case (is CourseTableViewController, .loading):      plug.title = L10n.loading
+        case (is CityTableViewController, .loading):        plug.title = L10n.loading
+        case (is RegionViewController, .loading):           plug.title = L10n.loading
+        case (_, .error):                                   plug.title = L10n.networkError
         default: break
         }
         

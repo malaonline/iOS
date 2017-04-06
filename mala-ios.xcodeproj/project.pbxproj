@@ -78,7 +78,6 @@
 		35FDCE8D1CAD0A2300A25FE8 /* JSSAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48C59FC1C8701FA0024EE17 /* JSSAlertView.swift */; };
 		35FDCE8E1CAD0A2300A25FE8 /* BaseObjectModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E336601C27A8AA00DCF1C5 /* BaseObjectModel.swift */; };
 		35FDCE8F1CAD0A2300A25FE8 /* FloatRatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D0D17D1CA148DF00B25704 /* FloatRatingView.swift */; };
-		35FDCE901CAD0A2300A25FE8 /* TeacherTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F402C9941C4F69C100E229FA /* TeacherTableView.swift */; };
 		35FDCE911CAD0A2300A25FE8 /* PaymentChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D0E43B1C8426E0002CD297 /* PaymentChannel.swift */; };
 		35FDCE921CAD0A2300A25FE8 /* CouponViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F460651C1C97B168004056B1 /* CouponViewController.swift */; };
 		35FDCE931CAD0A2300A25FE8 /* Extension+UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D4AA121C2417A700C5A336 /* Extension+UIButton.swift */; };
@@ -214,7 +213,6 @@
 		35FF7A8C1CF8325A000A70EE /* BaseObjectModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E336601C27A8AA00DCF1C5 /* BaseObjectModel.swift */; };
 		35FF7A8D1CF8325A000A70EE /* LearningReportHomeworkDataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F427FFA61CEDA33700EAB748 /* LearningReportHomeworkDataCell.swift */; };
 		35FF7A8E1CF8325A000A70EE /* FloatRatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D0D17D1CA148DF00B25704 /* FloatRatingView.swift */; };
-		35FF7A8F1CF8325A000A70EE /* TeacherTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F402C9941C4F69C100E229FA /* TeacherTableView.swift */; };
 		35FF7A901CF8325A000A70EE /* PaymentChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D0E43B1C8426E0002CD297 /* PaymentChannel.swift */; };
 		35FF7A911CF8325A000A70EE /* CouponViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F460651C1C97B168004056B1 /* CouponViewController.swift */; };
 		35FF7A921CF8325A000A70EE /* MemberSerivceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D6785A1CEACD0E009EC956 /* MemberSerivceCell.swift */; };
@@ -357,7 +355,6 @@
 		35FF7B6F1CF83264000A70EE /* BaseObjectModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E336601C27A8AA00DCF1C5 /* BaseObjectModel.swift */; };
 		35FF7B701CF83264000A70EE /* LearningReportHomeworkDataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F427FFA61CEDA33700EAB748 /* LearningReportHomeworkDataCell.swift */; };
 		35FF7B711CF83264000A70EE /* FloatRatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D0D17D1CA148DF00B25704 /* FloatRatingView.swift */; };
-		35FF7B721CF83264000A70EE /* TeacherTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F402C9941C4F69C100E229FA /* TeacherTableView.swift */; };
 		35FF7B731CF83264000A70EE /* PaymentChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D0E43B1C8426E0002CD297 /* PaymentChannel.swift */; };
 		35FF7B741CF83264000A70EE /* CouponViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F460651C1C97B168004056B1 /* CouponViewController.swift */; };
 		35FF7B751CF83264000A70EE /* MemberSerivceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D6785A1CEACD0E009EC956 /* MemberSerivceCell.swift */; };
@@ -454,7 +451,6 @@
 		4D9B08D764A72A4D36B254FE /* Pods_parent_prd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55F742AA8DF8AB88279B2732 /* Pods_parent_prd.framework */; };
 		A2A4F7446A4B188ACFB1088E /* Pods_parentTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E70F673BEA60E7C90A5D42A1 /* Pods_parentTests.framework */; };
 		BE0345859A399C0553F20A0B /* Pods_parent_stage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61B118D1E2CC01D0D747BD92 /* Pods_parent_stage.framework */; };
-		F402C9961C4F69C100E229FA /* TeacherTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F402C9941C4F69C100E229FA /* TeacherTableView.swift */; };
 		F407DA041DDE9FDB00C4ABB5 /* ProfileItemViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F407DA031DDE9FDB00C4ABB5 /* ProfileItemViewCell.swift */; };
 		F407DA051DDE9FDB00C4ABB5 /* ProfileItemViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F407DA031DDE9FDB00C4ABB5 /* ProfileItemViewCell.swift */; };
 		F407DA061DDE9FDB00C4ABB5 /* ProfileItemViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F407DA031DDE9FDB00C4ABB5 /* ProfileItemViewCell.swift */; };
@@ -902,7 +898,6 @@
 		D1294FA97F450E4DACDABEB5 /* Pods-parentTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-parentTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-parentTests/Pods-parentTests.debug.xcconfig"; sourceTree = "<group>"; };
 		E70F673BEA60E7C90A5D42A1 /* Pods_parentTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_parentTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F12B72CA706C78F519A08F8A /* Pods-parent-prd.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-parent-prd.debug.xcconfig"; path = "Pods/Target Support Files/Pods-parent-prd/Pods-parent-prd.debug.xcconfig"; sourceTree = "<group>"; };
-		F402C9941C4F69C100E229FA /* TeacherTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeacherTableView.swift; sourceTree = "<group>"; };
 		F407DA031DDE9FDB00C4ABB5 /* ProfileItemViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileItemViewCell.swift; sourceTree = "<group>"; };
 		F407DA071DDEA12B00C4ABB5 /* ProfileItemCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		F40B53AF1C7EEA2800C20037 /* Extension+NSURLRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension+NSURLRequest.swift"; sourceTree = "<group>"; };
@@ -1361,7 +1356,6 @@
 		30B598131C47AC0500169390 /* TeacherTableView */ = {
 			isa = PBXGroup;
 			children = (
-				F402C9941C4F69C100E229FA /* TeacherTableView.swift */,
 				30B598171C47ACCD00169390 /* TeacherTableViewCell.swift */,
 			);
 			path = TeacherTableView;
@@ -2401,7 +2395,6 @@
 				30E336621C27A8AA00DCF1C5 /* BaseObjectModel.swift in Sources */,
 				F427FFA71CEDA33700EAB748 /* LearningReportHomeworkDataCell.swift in Sources */,
 				F4D0D17E1CA148DF00B25704 /* FloatRatingView.swift in Sources */,
-				F402C9961C4F69C100E229FA /* TeacherTableView.swift in Sources */,
 				F407DA081DDEA12B00C4ABB5 /* ProfileItemCollectionViewCell.swift in Sources */,
 				F4D0E43C1C8426E0002CD297 /* PaymentChannel.swift in Sources */,
 				F4AE07EC1E7673AC006FA466 /* HandlePingppBehaviour.swift in Sources */,
@@ -2611,7 +2604,6 @@
 				F4AE081D1E768CD3006FA466 /* MADefault.swift in Sources */,
 				35FF7A8D1CF8325A000A70EE /* LearningReportHomeworkDataCell.swift in Sources */,
 				35FF7A8E1CF8325A000A70EE /* FloatRatingView.swift in Sources */,
-				35FF7A8F1CF8325A000A70EE /* TeacherTableView.swift in Sources */,
 				35FF7A901CF8325A000A70EE /* PaymentChannel.swift in Sources */,
 				F407DA091DDEA12B00C4ABB5 /* ProfileItemCollectionViewCell.swift in Sources */,
 				35FF7A911CF8325A000A70EE /* CouponViewController.swift in Sources */,
@@ -2822,7 +2814,6 @@
 				F4AE081E1E768CD3006FA466 /* MADefault.swift in Sources */,
 				35FF7B701CF83264000A70EE /* LearningReportHomeworkDataCell.swift in Sources */,
 				35FF7B711CF83264000A70EE /* FloatRatingView.swift in Sources */,
-				35FF7B721CF83264000A70EE /* TeacherTableView.swift in Sources */,
 				35FF7B731CF83264000A70EE /* PaymentChannel.swift in Sources */,
 				F407DA0A1DDEA12B00C4ABB5 /* ProfileItemCollectionViewCell.swift in Sources */,
 				35FF7B741CF83264000A70EE /* CouponViewController.swift in Sources */,
@@ -3006,7 +2997,6 @@
 				35FDCE8D1CAD0A2300A25FE8 /* JSSAlertView.swift in Sources */,
 				35FDCE8E1CAD0A2300A25FE8 /* BaseObjectModel.swift in Sources */,
 				35FDCE8F1CAD0A2300A25FE8 /* FloatRatingView.swift in Sources */,
-				35FDCE901CAD0A2300A25FE8 /* TeacherTableView.swift in Sources */,
 				35FDCE911CAD0A2300A25FE8 /* PaymentChannel.swift in Sources */,
 				35FDCE921CAD0A2300A25FE8 /* CouponViewController.swift in Sources */,
 				35FDCE931CAD0A2300A25FE8 /* Extension+UIButton.swift in Sources */,
