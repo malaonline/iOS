@@ -130,7 +130,7 @@ class LiveCourseViewController: StatefulViewController, UITableViewDelegate, UIT
                 finish?()
             }
         }) { (classList, count) in
-            print("Live Course 数量", count)
+            
             guard !classList.isEmpty && count != 0 else {
                 self.currentState = .empty
                 return

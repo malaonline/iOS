@@ -37,14 +37,12 @@ class CouponViewController: StatefulViewController, UITableViewDelegate, UITable
     // MARK: - Components
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: self.view.frame, style: .plain)
-        tableView.backgroundColor = UIColor(named: .RegularBackground)
+        tableView.delegate = self
+        tableView.dataSource = self
         tableView.separatorStyle = .none
+        tableView.backgroundColor = UIColor(named: .RegularBackground)
+        tableView.register(CouponViewCell.self, forCellReuseIdentifier: CouponViewCellReuseId)
         return tableView
-    }()
-    private lazy var refresher: UIRefreshControl = {
-        let refresher = UIRefreshControl()
-        refresher.addTarget(self, action: #selector(CouponViewController.loadCoupons), for: .valueChanged)
-        return refresher
     }()
     private lazy var rulesButton: UIButton = {
         let button = UIButton(
@@ -64,6 +62,9 @@ class CouponViewController: StatefulViewController, UITableViewDelegate, UITable
 
         configure()
         loadCoupons()
+        
+        // 开启下拉刷新
+        tableView.startPullRefresh()
     }
 
     override func didReceiveMemoryWarning() {
@@ -76,12 +77,15 @@ class CouponViewController: StatefulViewController, UITableViewDelegate, UITable
         // style
         title = L10n.coupon
         view.addSubview(tableView)
-        if #available(iOS 10.0, *) {
-            tableView.refreshControl = refresher
-        } else {
-            // Fallback on earlier versions
+        
+        tableView.emptyDataSetSource = self
+        tableView.emptyDataSetDelegate = self
+        
+        // 下拉刷新
+        tableView.addPullRefresh{ [weak self] in
+            self?.loadCoupons()
+            self?.tableView.stopPullRefreshEver()
         }
-        tableView.register(CouponViewCell.self, forCellReuseIdentifier: CouponViewCellReuseId)
         
         // rightBarButtonItem
         let spacerRight = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
@@ -105,30 +109,17 @@ class CouponViewController: StatefulViewController, UITableViewDelegate, UITable
         // 屏蔽[正在刷新]时的操作
         guard currentState != .loading else { return }
         models = []
-        if #available(iOS 10.0, *) {
-            tableView.refreshControl?.beginRefreshing()
-        } else {
-            // Fallback on earlier versions
-        }
-        
+        currentState = .loading
+
         MAProvider.userCoupons(onlyValid: onlyValid, failureHandler: { error in
             // 显示缺省值
-            self.models = MalaUserCoupons
-            if #available(iOS 10.0, *) {
-                self.tableView.refreshControl?.endRefreshing()
-            } else {
-                // Fallback on earlier versions
-            }
             self.currentState = .error
-        }) { coupons in
-            MalaUserCoupons = self.justShow ? coupons : parseCouponlist(coupons)
             self.models = MalaUserCoupons
-            if #available(iOS 10.0, *) {
-                self.tableView.refreshControl?.endRefreshing()
-            } else {
-                // Fallback on earlier versions
-            }
+        }) { coupons in
+            print(coupons.count)
+            MalaUserCoupons = self.justShow ? coupons : parseCouponlist(coupons)
             self.currentState = .content
+            self.models = MalaUserCoupons
         }
     }
     
