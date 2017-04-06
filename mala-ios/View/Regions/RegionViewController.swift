@@ -10,21 +10,13 @@ import UIKit
 
 private let SchoolTableViewCellReuseId = "SchoolTableViewCellReuseId"
 
-class RegionViewController: UIViewController, UITableViewDelegate, UITableViewDataSource  {
+class RegionViewController: StatefulViewController, UITableViewDelegate, UITableViewDataSource  {
 
     // MARK: - Property
     // 城市数据模型
-    var city: BaseObjectModel = BaseObjectModel() {
-        didSet {
-            
-        }
-    }
+    var city: BaseObjectModel = BaseObjectModel()
     // 校区数据模型
-    var school: SchoolModel = SchoolModel() {
-        didSet {
-            
-        }
-    }
+    var school: SchoolModel = SchoolModel()
     // 学校数据模型
     var models: [SchoolModel] = [] {
         didSet {
@@ -35,6 +27,13 @@ class RegionViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     // 选择闭包
     var didSelectAction: (()->())?
+    override var currentState: StatefulViewState {
+        didSet {
+            if currentState != oldValue {
+                self.tableView.reloadEmptyDataSet()
+            }
+        }
+    }
     
     
     // MARK: - Components
@@ -114,6 +113,7 @@ class RegionViewController: UIViewController, UITableViewDelegate, UITableViewDa
         title = "选择校区"
         view.backgroundColor = UIColor(named: .BaseBoard)
         cityView.backgroundColor = UIColor.white
+        
         let leftBarButtonItem = UIBarButtonItem(customView: popButton)
         navigationItem.leftBarButtonItem = leftBarButtonItem
         UIApplication.shared.statusBarStyle = UIStatusBarStyle.default
@@ -129,6 +129,9 @@ class RegionViewController: UIViewController, UITableViewDelegate, UITableViewDa
         tableView.estimatedRowHeight = 60
         tableView.register(RegionUnitCell.self, forCellReuseIdentifier: SchoolTableViewCellReuseId)
         
+        // stateful
+        tableView.emptyDataSetSource = self
+        tableView.emptyDataSetDelegate = self
         
         // SubViews
         view.addSubview(cityView)
@@ -183,7 +186,7 @@ class RegionViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     // 获取学校列表
-    private func loadSchoolList() {
+    fileprivate func loadSchoolList() {
         currentCityLabel.text = MalaCurrentCity?.name ?? "未选择"
         
         guard let city = MalaCurrentCity else {
@@ -191,9 +194,19 @@ class RegionViewController: UIViewController, UITableViewDelegate, UITableViewDa
             return
         }
         
-        MAProvider.getSchools(regionId: city.id) { schools in
-            self.models = schools.reversed()
-            println("校区列表 - \(schools)")
+        guard currentState != .loading else { return }
+        models = []
+        currentState = .loading
+        
+        MAProvider.getSchools(regionId: city.id, failureHandler: { error in
+            println(error)
+            self.currentState = .error
+        }) { schools in
+            delay(0.65, work: {
+                self.currentState = .content
+                self.models = schools.reversed()
+                println("校区列表 - \(schools)")
+            })
         }
     }
     
@@ -239,5 +252,16 @@ class RegionViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     @objc private func closeButtonDidTap() {
         dismiss(animated: true, completion: nil)
+    }
+}
+
+
+extension RegionViewController {
+    public func emptyDataSet(_ scrollView: UIScrollView!, didTap button: UIButton!) {
+        loadSchoolList()
+    }
+    
+    public func emptyDataSet(_ scrollView: UIScrollView!, didTap view: UIView!) {
+        loadSchoolList()
     }
 }

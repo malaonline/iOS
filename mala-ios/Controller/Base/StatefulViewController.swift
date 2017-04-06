@@ -21,7 +21,11 @@ public enum StatefulViewState: String {
 
 public class StatefulViewController: UIViewController {
     
-    var currentState: StatefulViewState = .loading
+    var currentState: StatefulViewState = .content {
+        didSet {
+            print(oldValue, "->", currentState)
+        }
+    }
     
 
     override public func viewDidLoad() {
@@ -52,8 +56,7 @@ extension StatefulViewController: DZNEmptyDataSetSource {
         // live course
         case (is LiveCourseViewController, .empty):
             plug.title = L10n.noLiveCourse
-            plug.fontSize = 15
-            
+
         // commen status
         case (_, .loading):
             plug.title = L10n.loading
@@ -81,13 +84,6 @@ extension StatefulViewController: DZNEmptyDataSetSource {
         // course schedule
         case (is CourseTableViewController, .empty):
             plug.title = "您报名的课程安排将会显示在这里"
-//        case (is CourseTableViewController, .notLoggedIn):
-//            plug.title = L10n.youNeedToLogin
-            
-        // live course
-        case (is LiveCourseViewController, .empty):
-            plug.title = L10n.noLiveCourse
-            plug.fontSize = 15
             
         default:
             break
@@ -113,11 +109,6 @@ extension StatefulViewController: DZNEmptyDataSetSource {
             plug.title = L10n.pickCourse
         case (is CourseTableViewController, .notLoggedIn):
             plug.title = L10n.goToLogin
-            
-        // live course
-        case (is LiveCourseViewController, .empty):
-            plug.title = L10n.noLiveCourse
-            plug.fontSize = 15
             
         // commen status
         case (_, .error):
@@ -191,18 +182,22 @@ extension StatefulViewController: DZNEmptyDataSetDelegate {
     public func emptyDataSetShouldDisplay(_ scrollView: UIScrollView!) -> Bool {
 
         switch (self, currentState) {
-//        case (is FindTeacherViewController, .empty):    return true
         case (is LiveCourseViewController, .empty):     return true
+        case (is LiveCourseViewController, .error):     return true
         case (is CourseTableViewController, _):         return true
+        case (is CityTableViewController, .loading):    return true
+        case (is CityTableViewController, .error):      return true
+        case (is RegionViewController, .loading):       return true
+        case (is RegionViewController, .error):         return true
+//        case (is FindTeacherViewController, .empty):    return true
 //        case (is OrderFormViewController, .empty):      return true
 //        case (is CouponViewController, .empty):         return true
-//        case (is RegionViewController, .loading):      return true
-//        case (is RegionViewController, .error):        return true
-//        case (is CityTableViewController, .loading):      return true
-//        case (is CityTableViewController, .error):        return true
-        default:
-            return false
+        default: return false
         }
+    }
+    
+    public func emptyDataSetShouldBeForced(toDisplay scrollView: UIScrollView!) -> Bool {
+        return true
     }
     
     public func emptyDataSetShouldAllowTouch(_ scrollView: UIScrollView!) -> Bool {
@@ -214,6 +209,11 @@ extension StatefulViewController: DZNEmptyDataSetDelegate {
     }
     
     public func emptyDataSetShouldAnimateImageView(_ scrollView: UIScrollView!) -> Bool {
-        return currentState == .loading
+        switch (self, currentState) {
+        case (is CourseTableViewController, .loading):  return true
+        case (is CityTableViewController, .loading):    return true
+        case (is RegionViewController, .loading):       return true
+        default: return false
+        }
     }
 }

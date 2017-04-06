@@ -19,10 +19,9 @@ public class CourseTableViewController: StatefulViewController, UITableViewDataS
     var model: [[[StudentCourseModel]]]? {
         didSet {
             DispatchQueue.main.async {
-                ThemeHUD.hideActivityIndicator()
                 if self.model?.count == 0 {
                     self.goTopButton.isHidden = true
-                }else {
+                }else if self.model?.count != oldValue?.count {
                     self.goTopButton.isHidden = false
                     self.tableView.reloadData()
                     self.scrollToToday()
@@ -48,7 +47,6 @@ public class CourseTableViewController: StatefulViewController, UITableViewDataS
             }
         }
     }
-    var co: Int = 0
     
     
     // MARK: - Components
@@ -166,11 +164,13 @@ public class CourseTableViewController: StatefulViewController, UITableViewDataS
                 tableView.reloadData()
             }
             return
-        }else {
-            currentState = .content
         }
         
+        guard currentState != .loading else { return }
+        model = nil
+        recentlyCourseIndexPath = nil
         currentState = .loading
+
         
         ///  获取学生课程信息
         MAProvider.getStudentSchedule(failureHandler: { error in
@@ -182,7 +182,7 @@ public class CourseTableViewController: StatefulViewController, UITableViewDataS
                 self.currentState = .empty
                 return
             }
-            
+        
             // 解析学生上课时间表
             self.currentState = .content
             let result = parseStudentCourseTable(schedule)
@@ -248,8 +248,11 @@ public class CourseTableViewController: StatefulViewController, UITableViewDataS
     // MARK: - Event Response
     ///  滚动到近日首个未上课程
     @objc private func scrollToToday() {
+        
+        guard let recent = self.recentlyCourseIndexPath else { return }
+        
         DispatchQueue.main.async {
-            self.tableView.scrollToRow(at: self.recentlyCourseIndexPath ?? IndexPath(row: 0, section: 0), at: .top, animated: true)
+            self.tableView.scrollToRow(at: recent, at: .top, animated: true)
         }
     }
     ///  跳转到挑选老师页面

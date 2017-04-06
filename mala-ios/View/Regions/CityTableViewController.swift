@@ -11,7 +11,7 @@ import UIKit
 private let CityTableViewCellReuseId = "CityTableViewCellReuseId"
 private let CityTableViewHeaderViewReuseId = "CityTableViewHeaderViewReuseId"
 
-class CityTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class CityTableViewController: StatefulViewController, UITableViewDelegate, UITableViewDataSource {
 
     // MARK: - Property
     // 城市数据模型
@@ -31,6 +31,13 @@ class CityTableViewController: UIViewController, UITableViewDelegate, UITableVie
     var didSelectAction: (()->())?
     // 是否未选择地点－标记
     var unSelectRegion: Bool = (MalaUserDefaults.currentSchool.value == nil)
+    override var currentState: StatefulViewState {
+        didSet {
+            if currentState != oldValue {
+                self.tableView.reloadEmptyDataSet()
+            }
+        }
+    }
     
     // MARK: - Private variables
     private var _groupedModels: [[BaseObjectModel]] = []
@@ -72,7 +79,7 @@ class CityTableViewController: UIViewController, UITableViewDelegate, UITableVie
     
     // MARK: - Private
     private func setupUserInterface() {
-        // Style
+        // style
         title = "选择城市"
         view.backgroundColor = UIColor.white
         UIApplication.shared.statusBarStyle = UIStatusBarStyle.default
@@ -91,10 +98,14 @@ class CityTableViewController: UIViewController, UITableViewDelegate, UITableVie
         tableView.tableFooterView = UIView()
         tableView.register(RegionUnitCell.self, forCellReuseIdentifier: CityTableViewCellReuseId)
         
-        // SubViews
+        // stateful
+        tableView.emptyDataSetSource = self
+        tableView.emptyDataSetDelegate = self
+        
+        // subViews
         view.addSubview(tableView)
         
-        // AutoLayout
+        // autoLayout
         tableView.snp.makeConstraints { (maker) in
             maker.center.equalTo(view)
             maker.size.equalTo(view)
@@ -159,9 +170,20 @@ class CityTableViewController: UIViewController, UITableViewDelegate, UITableVie
     
     // MARK: - Private Method
     // 获取城市列表
-    private func loadCitylist() {
-        MAProvider.loadRegions { cities in
-            self.models = cities
+    fileprivate func loadCitylist() {
+        
+        guard currentState != .loading else { return }
+        models = []
+        currentState = .loading
+        
+        MAProvider.loadRegions(failureHandler: { error in
+            println(error)
+            self.currentState = .error
+        }) { cities in
+            delay(0.65, work: {
+                self.currentState = .content
+                self.models = cities
+            })
         }
     }
     
@@ -181,5 +203,16 @@ class CityTableViewController: UIViewController, UITableViewDelegate, UITableVie
     // MARK: - Public Method
     func hideCloseButton(_ hidden: Bool = true) {
         closeButton.isHidden = hidden
+    }
+}
+
+
+extension CityTableViewController {
+    public func emptyDataSet(_ scrollView: UIScrollView!, didTap button: UIButton!) {
+        loadCitylist()
+    }
+    
+    public func emptyDataSet(_ scrollView: UIScrollView!, didTap view: UIView!) {
+        loadCitylist()
     }
 }
