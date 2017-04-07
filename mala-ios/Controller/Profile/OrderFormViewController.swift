@@ -86,6 +86,9 @@ class OrderFormViewController: StatefulViewController, UITableViewDelegate, UITa
         title = L10n.myOrder
         view.addSubview(tableView)
         
+        tableView.emptyDataSetDelegate = self
+        tableView.emptyDataSetSource = self
+        
         // 开启下拉刷新
         tableView.startPullRefresh()
         
