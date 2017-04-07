@@ -17,6 +17,6 @@ struct VerifyingSMS: CustomStringConvertible {
     let reason: String?
     
     var description: String {
-        return "VerifyingSMS(verified: \(verified), first_login: \(first_login), token: \(token), parent_id: \(parent_id), reason: \(reason))"
+        return "VerifyingSMS(verified: \(verified), first_login: \(first_login), token: \(token as Optional), parent_id: \(parent_id), reason: \(reason as Optional))"
     }
 }

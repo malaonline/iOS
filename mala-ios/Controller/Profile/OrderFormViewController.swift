@@ -11,7 +11,7 @@ import UIKit
 private let OrderFormViewCellReuseId = "OrderFormViewCellReuseId"
 private let OrderFormViewLoadmoreCellReusedId = "OrderFormViewLoadmoreCellReusedId"
 
-class OrderFormViewController: BaseTableViewController {
+class OrderFormViewController: StatefulViewController, UITableViewDelegate, UITableViewDataSource {
     
     private enum Section: Int {
         case teacher
@@ -22,7 +22,7 @@ class OrderFormViewController: BaseTableViewController {
     /// 优惠券模型数组
     var models: [OrderForm] = [] {
         didSet {
-            handleModels(models, tableView: tableView)
+            tableView.reloadData()
         }
     }
     /// 当前选择项IndexPath标记
@@ -30,24 +30,33 @@ class OrderFormViewController: BaseTableViewController {
     private var currentSelectedIndexPath: IndexPath = IndexPath(item: 0, section: 1)
     /// 是否仅用于展示（例如[个人中心]）
     var justShow: Bool = true
-    /// 是否正在拉取数据
-    var isFetching: Bool = false
     /// 当前显示页数
     var currentPageIndex = 1
     /// 数据总量
     var allCount = 0
     /// 当前选择订单的上课地点信息
     var school: SchoolModel?
+    override var currentState: StatefulViewState {
+        didSet {
+            if currentState != oldValue {
+                self.tableView.reloadEmptyDataSet()
+            }
+        }
+    }
     
     
     // MARK: - Components
-    /// 下拉刷新视图
-    private lazy var refresher: UIRefreshControl = {
-        let refresher = UIRefreshControl()
-        refresher.addTarget(self, action: #selector(OrderFormViewController.loadOrderForm), for: .valueChanged)
-        return refresher
+    private lazy var tableView: UITableView = {
+        let tableView = UITableView(frame: self.view.frame, style: .plain)
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.separatorStyle = .none
+        tableView.backgroundColor = UIColor(named: .RegularBackground)
+        tableView.register(OrderFormViewCell.self, forCellReuseIdentifier: OrderFormViewCellReuseId)
+        tableView.register(ThemeReloadView.self, forCellReuseIdentifier: OrderFormViewLoadmoreCellReusedId)
+        return tableView
     }()
-    
+
     
     // MARK: - Life Cycle
     override func viewDidLoad() {
@@ -75,24 +84,36 @@ class OrderFormViewController: BaseTableViewController {
     // MARK: - Private Method
     private func configure() {
         title = L10n.myOrder
-        defaultView.imageName = "no_order"
-        defaultView.text = L10n.noOrder
+        view.addSubview(tableView)
         
-        tableView.backgroundColor = UIColor(named: .RegularBackground)
-        tableView.separatorStyle = .none
-        refreshControl = refresher
+        tableView.emptyDataSetDelegate = self
+        tableView.emptyDataSetSource = self
         
-        tableView.register(OrderFormViewCell.self, forCellReuseIdentifier: OrderFormViewCellReuseId)
-        tableView.register(ThemeReloadView.self, forCellReuseIdentifier: OrderFormViewLoadmoreCellReusedId)
+        // 开启下拉刷新
+        tableView.startPullRefresh()
+        
+        // 下拉刷新
+        tableView.addPullRefresh{ [weak self] in
+            self?.loadOrderForm()
+            self?.tableView.stopPullRefreshEver()
+        }
+        
+        // autoLayout
+        tableView.snp.makeConstraints { (maker) -> Void in
+            maker.top.equalTo(view)
+            maker.left.equalTo(view)
+            maker.bottom.equalTo(view)
+            maker.right.equalTo(view)
+        }
     }
     
     ///  获取用户订单列表
-    @objc private func loadOrderForm(_ page: Int = 1, isLoadMore: Bool = false, finish: (()->())? = nil) {
+    @objc fileprivate func loadOrderForm(_ page: Int = 1, isLoadMore: Bool = false, finish: (()->())? = nil) {
         
         // 屏蔽[正在刷新]时的操作
-        guard isFetching == false else { return }
-        isFetching = true
-        refreshControl?.beginRefreshing()
+        guard currentState != .loading else { return }
+        if !isLoadMore { models = [] }
+        currentState = .loading
         
         if isLoadMore {
             currentPageIndex += 1
@@ -102,13 +123,16 @@ class OrderFormViewController: BaseTableViewController {
         
         ///  获取用户订单列表
         MAProvider.getOrderList(page: currentPageIndex, failureHandler: { error in
-            DispatchQueue.main.async {
-                self.refreshControl?.endRefreshing()
-                self.isFetching = false
-            }
+            self.currentState = .error
         }) { (list, count) in
+            
+            guard !list.isEmpty && count != 0 else {
+                self.currentState = .empty
+                return
+            }
+            
             /// 记录数据量
-            self.allCount = max(self.allCount, count)
+            self.allCount = count
             
             ///  加载更多
             if isLoadMore {
@@ -120,10 +144,9 @@ class OrderFormViewController: BaseTableViewController {
                 self.models = list
             }
             
+            self.currentState = .content
             DispatchQueue.main.async {
                 finish?()
-                self.refreshControl?.endRefreshing()
-                self.isFetching = false
             }
         }
     }
@@ -207,11 +230,11 @@ class OrderFormViewController: BaseTableViewController {
     
     
     // MARK: - Delegate
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return MalaLayout_CardCellWidth*0.6
     }
     
-    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         
         switch indexPath.section {
             
@@ -236,7 +259,7 @@ class OrderFormViewController: BaseTableViewController {
         }
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let viewController = OrderFormInfoViewController()
         let model = models[indexPath.row]
         viewController.id = model.id
@@ -245,11 +268,11 @@ class OrderFormViewController: BaseTableViewController {
     
     
     // MARK: - DataSource
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
             
         case Section.teacher.rawValue:
@@ -263,7 +286,7 @@ class OrderFormViewController: BaseTableViewController {
         }
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         switch indexPath.section {
             
@@ -287,5 +310,17 @@ class OrderFormViewController: BaseTableViewController {
         NotificationCenter.default.removeObserver(self, name: MalaNotification_PushToPayment, object: nil)
         NotificationCenter.default.removeObserver(self, name: MalaNotification_PushTeacherDetailView, object: nil)
         NotificationCenter.default.removeObserver(self, name: MalaNotification_CancelOrderForm, object: nil)
+    }
+}
+
+
+extension OrderFormViewController {
+    
+    public func emptyDataSet(_ scrollView: UIScrollView!, didTap button: UIButton!) {
+        self.loadOrderForm()
+    }
+    
+    public func emptyDataSet(_ scrollView: UIScrollView!, didTap view: UIView!) {
+        self.loadOrderForm()
     }
 }

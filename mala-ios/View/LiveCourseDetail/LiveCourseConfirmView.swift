@@ -24,7 +24,16 @@ class LiveCourseConfirmView: UIView {
                         
             priceLabel.text = String(format: "%@/", model.courseFee?.priceCNY ?? "")
             lessionsLabel.text = String(format: "%d次", model.courseLessons ?? 0)
-            confirmButton.isEnabled = !model.isPaid
+            
+            if model.isPaid {
+                setBought()
+            }else if let endDate = model.courseEnd, Date().timeIntervalSince1970 > endDate {
+                setExpired()
+            }else if let student = model.studentsCount, let capacity = model.roomCapacity, student >= capacity {
+                setSoldout()
+            }else {
+                confirmButton.isEnabled = true
+            }
         }
     }
     weak var delegate: LiveCourseConfirmViewDelegate?
@@ -65,8 +74,6 @@ class LiveCourseConfirmView: UIView {
             bgColor: UIColor(named: .ThemeBlue),
             selectedBgColor: UIColor(named: .ThemeBlue)
         )
-        button.setTitle("已购买", for: .disabled)
-        button.setBackgroundImage(UIImage.withColor(UIColor(named: .Disabled)), for: .disabled)
         button.titleLabel?.font = UIFont(name: "FZLTXHK", size: 15)
         button.addTarget(self, action: #selector(LiveCourseConfirmView.buttonDidTap), for: .touchUpInside)
         button.isEnabled = false
@@ -122,6 +129,24 @@ class LiveCourseConfirmView: UIView {
             maker.bottom.equalTo(priceLabel)
             maker.height.equalTo(10)
         }
+    }
+    
+    private func setBought() {
+        confirmButton.setTitle("已购买", for: .normal)
+        confirmButton.setBackgroundImage(UIImage.withColor(UIColor(named: .Disabled)), for: .normal)
+        confirmButton.isEnabled = false
+    }
+    
+    private func setSoldout() {
+        confirmButton.setTitle("已满", for: .normal)
+        confirmButton.setBackgroundImage(UIImage.withColor(UIColor(named: .ThemeRed)), for: .normal)
+        confirmButton.isEnabled = false
+    }
+    
+    private func setExpired() {
+        confirmButton.setTitle("已结束", for: .normal)
+        confirmButton.setBackgroundImage(UIImage.withColor(UIColor(named: .Disabled)), for: .normal)
+        confirmButton.isEnabled = false
     }
     
     

@@ -45,33 +45,15 @@ open class BaseViewController: UIViewController {
     // MARK: - Private
     private func setupDefaultViewIfNeed() {
         
-        guard defaultView.superview == nil else {
-            return
-        }
+        guard defaultView.superview == nil else { return }
         
         // SubViews
         view.addSubview(defaultView)
         
         // AutoLayout
-        switch self {
-        case is LiveCourseViewController:
-            defaultView.snp.makeConstraints { (maker) -> Void in
-                maker.centerX.equalTo(view)
-                maker.centerY.equalTo(view).offset(64)
-                maker.size.equalTo(view)
-            }
-        case is FilterResultController:
-            defaultView.snp.makeConstraints { (maker) -> Void in
-                maker.centerX.equalTo(view)
-                maker.centerY.equalTo(view).offset(MalaLayout_FilterBarHeight)
-                maker.width.equalTo(view)
-                maker.height.equalTo(view).offset(MalaLayout_FilterBarHeight)
-            }
-        default:
-            defaultView.snp.makeConstraints { (maker) -> Void in
-                maker.center.equalTo(view)
-                maker.size.equalTo(view)
-            }
+        defaultView.snp.makeConstraints { (maker) -> Void in
+            maker.center.equalTo(view)
+            maker.size.equalTo(view)
         }
     }
     

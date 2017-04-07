@@ -106,7 +106,7 @@ class OrderFormInfoViewController: BaseViewController, OrderFormOperatingViewDel
 
         // 获取订单信息
         MAProvider.getOrderInfo(id: id) { order in
-            println("订单获取成功 \(order)")
+            println("订单获取成功 \(order as Optional)")
             DispatchQueue.main.async {
                 self.model = order
             }

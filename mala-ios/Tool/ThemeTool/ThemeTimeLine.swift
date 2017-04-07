@@ -189,13 +189,13 @@ class ThemeTimeLine: UIView, CAAnimationDelegate {
     private func configureBezierCircle(_ circle: UIBezierPath, centerY: CGFloat) {
         circle.addArc(withCenter: CGPoint(x: self.progressViewContainer.center.x + CircleRadius + InitProgressContainerWidth/2, y: centerY),
                                 radius: CircleRadius,
-                                startAngle: CGFloat(M_PI_2),
-                                endAngle: CGFloat(-M_PI_2),
+                                startAngle: CGFloat(Double.pi / 2),
+                                endAngle: CGFloat(-Double.pi / 2),
                                 clockwise: true)
         circle.addArc(withCenter: CGPoint(x: self.progressViewContainer.center.x + CircleRadius + InitProgressContainerWidth/2, y: centerY),
                                 radius: CircleRadius,
-                                startAngle: CGFloat(-M_PI_2),
-                                endAngle: CGFloat(M_PI_2),
+                                startAngle: CGFloat(-Double.pi / 2),
+                                endAngle: CGFloat(Double.pi / 2),
                                 clockwise: true)
     }
     

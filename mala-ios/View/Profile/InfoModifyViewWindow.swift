@@ -243,7 +243,7 @@ open class InfoModifyViewWindow: UIViewController, UITextViewDelegate {
         guard let name = nameLabel.text else { return }
         
         MAProvider.saveStudentName(name: name) { result in
-            println("Save Student Name - \(result)")
+            println("Save Student Name - \(result as Optional)")
             
             MalaUserDefaults.studentName.value = name
             NotificationCenter.default.post(name: MalaNotification_RefreshStudentName, object: nil)

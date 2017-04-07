@@ -138,7 +138,7 @@ class PaymentViewController: BaseViewController {
         
         ///  获取支付信息
         MAProvider.getChargeToken(channel: MalaOrderObject.channel, id: ServiceResponseOrder.id) { charges in
-            println("获取支付信息:\(charges)")
+            println("获取支付信息:\(charges as Optional)")
             
             DispatchQueue.main.async {
                 

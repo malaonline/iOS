@@ -284,7 +284,7 @@ extension MalaUserDefaults {
     class func fetchProfileInfo() {
         let id = MalaUserDefaults.profileID.value ?? 0
         MAProvider.userProfile(id: id) { profile in
-            println("save userProfile: \(profile)")
+            println("save userProfile: \(profile as Optional)")
             if let profile = profile {
                 storeUserProfile(profile)
             }
@@ -294,7 +294,7 @@ extension MalaUserDefaults {
     class func fetchParentInfo() {
         let id = MalaUserDefaults.parentID.value ?? 0
         MAProvider.userParents(id: id) { parent in
-            println("save userParents: \(parent)")
+            println("save userParents: \(parent as Optional)")
             if let parent = parent {
                 storeUserParent(parent)
             }

@@ -181,7 +181,7 @@ class JSSAlertView: UIViewController {
         
         // position the title
         let titleString = titleLabel.text! as NSString
-        let titleAttr = [NSFontAttributeName: titleLabel.font]
+        let titleAttr: [String: Any]? = [NSFontAttributeName: titleLabel.font]
         let titleSize = CGSize(width: contentWidth, height: 90)
         let titleRect = titleString.boundingRect(with: titleSize, options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: titleAttr, context: nil)
         yPos += padding

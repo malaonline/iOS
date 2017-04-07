@@ -310,7 +310,7 @@ class LiveCourseTableViewCell: UITableViewCell {
             maker.height.equalTo(15)
             maker.width.equalTo(70)
         }
-        classLevelLabel.transform = CGAffineTransform(rotationAngle: CGFloat(M_PI_4))
+        classLevelLabel.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi / 4))
         courseName.snp.makeConstraints { (maker) in
             maker.top.equalTo(courseContent).offset(17)
             maker.left.equalTo(courseContent).offset(12)

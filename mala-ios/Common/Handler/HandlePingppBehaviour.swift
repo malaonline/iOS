@@ -64,7 +64,7 @@ class HandlePingppBehaviour: NSObject {
         currentRetry += 1
 
         MAProvider.getOrderInfo(id: ServiceResponseOrder.id) { order in
-            println("订单状态获取成功 \(order?.status)")
+            println("订单状态获取成功 \(order?.status as Optional)")
             
             guard let order = order else {
                 self.showFailAlert()

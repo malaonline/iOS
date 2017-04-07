@@ -7,23 +7,21 @@
 //
 
 import UIKit
+import DZNEmptyDataSet
 
 private let CourseTableViewSectionHeaderViewReuseId = "CourseTableViewSectionHeaderViewReuseId"
 private let CourseTableViewCellReuseId = "CourseTableViewCellReuseId"
 
-open class CourseTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+public class CourseTableViewController: StatefulViewController, UITableViewDataSource, UITableViewDelegate {
 
     // MARK: - Property
     /// 上课时间表数据模型
     var model: [[[StudentCourseModel]]]? {
         didSet {
             DispatchQueue.main.async {
-                ThemeHUD.hideActivityIndicator()
                 if self.model?.count == 0 {
-                    self.defaultView.isHidden = false
                     self.goTopButton.isHidden = true
-                }else {
-                    self.defaultView.isHidden = true
+                }else if self.model?.count != oldValue?.count {
                     self.goTopButton.isHidden = false
                     self.tableView.reloadData()
                     self.scrollToToday()
@@ -42,6 +40,13 @@ open class CourseTableViewController: UIViewController, UITableViewDataSource, U
             }
         }
     }
+    override var currentState: StatefulViewState {
+        didSet {
+            if currentState != oldValue {
+                self.tableView.reloadEmptyDataSet()
+            }
+        }
+    }
     
     
     // MARK: - Components
@@ -56,26 +61,6 @@ open class CourseTableViewController: UIViewController, UITableViewDataSource, U
     lazy var tableView: UITableView = {
         let tableView = UITableView(frame: CGRect.zero, style: .grouped)
         return tableView
-    }()
-    /// 我的课表缺省面板
-    private lazy var defaultView: UIView = {
-        let view = MalaDefaultPanel()
-        view.imageName = "course_noData"
-        view.text = L10n.noCourse
-        view.buttonTitle = L10n.pickCourse
-        view.addTarget(self, action: #selector(CourseTableViewController.switchToFindTeacher))
-        view.isHidden = true
-        return view
-    }()
-    /// 我的课表未登录面板
-    private lazy var unLoginDefaultView: UIView = {
-        let view = MalaDefaultPanel()
-        view.imageName = "course_noData"
-        view.text = L10n.youNeedToLogin
-        view.buttonTitle = L10n.goToLogin
-        view.addTarget(self, action: #selector(CourseTableViewController.switchToLoginView))
-        view.isHidden = true
-        return view
     }()
     /// 保存按钮
     private lazy var saveButton: UIButton = {
@@ -129,6 +114,10 @@ open class CourseTableViewController: UIViewController, UITableViewDataSource, U
         tableView.separatorStyle = .none
         tableView.backgroundColor = UIColor.white
         
+        // dataSet
+        tableView.emptyDataSetSource = self
+        tableView.emptyDataSetDelegate = self
+        
         // register
         tableView.register(CourseTableViewCell.self, forCellReuseIdentifier: CourseTableViewCellReuseId)
         tableView.register(CourseTableViewSectionHeader.self, forHeaderFooterViewReuseIdentifier: CourseTableViewSectionHeaderViewReuseId)
@@ -142,8 +131,6 @@ open class CourseTableViewController: UIViewController, UITableViewDataSource, U
         // SubViews
         view.addSubview(tableView)
         view.addSubview(goTopButton)
-        tableView.addSubview(defaultView)
-        tableView.addSubview(unLoginDefaultView)
         
         // AutoLayout
         tableView.snp.makeConstraints { (maker) -> Void in
@@ -156,14 +143,6 @@ open class CourseTableViewController: UIViewController, UITableViewDataSource, U
             maker.width.equalTo(58)
             maker.height.equalTo(58)
         }
-        defaultView.snp.makeConstraints { (maker) -> Void in
-            maker.size.equalTo(tableView)
-            maker.center.equalTo(tableView)
-        }
-        unLoginDefaultView.snp.makeConstraints { (maker) -> Void in
-            maker.size.equalTo(tableView)
-            maker.center.equalTo(tableView)
-        }
         if let titleView = navigationItem.titleView {
             titleLabel.snp.makeConstraints { (maker) -> Void in
                 maker.center.equalTo(titleView)
@@ -172,12 +151,12 @@ open class CourseTableViewController: UIViewController, UITableViewDataSource, U
     }
     
     ///  获取学生可用时间表
-    private func loadStudentCourseTable() {
+    fileprivate func loadStudentCourseTable() {
         
         // 用户登录后请求数据，否则显示默认页面
         if !MalaUserDefaults.isLogined {
             
-            unLoginDefaultView.isHidden = false
+            currentState = .notLoggedIn
             
             // 若在注销后存在课程数据残留，清除数据并刷新日历
             if model != nil {
@@ -185,14 +164,26 @@ open class CourseTableViewController: UIViewController, UITableViewDataSource, U
                 tableView.reloadData()
             }
             return
-        }else {
-            unLoginDefaultView.isHidden = true
         }
         
+        guard currentState != .loading else { return }
+        model = nil
+        recentlyCourseIndexPath = nil
+        currentState = .loading
         
         ///  获取学生课程信息
-        MAProvider.getStudentSchedule { schedule in
+        MAProvider.getStudentSchedule(failureHandler: { error in
+            println(error)
+            self.currentState = .error
+        }) { schedule in
+            
+            guard !schedule.isEmpty else {
+                self.currentState = .empty
+                return
+            }
+        
             // 解析学生上课时间表
+            self.currentState = .content
             let result = parseStudentCourseTable(schedule)
             self.recentlyCourseIndexPath = result.recently
             self.model = result.model
@@ -201,13 +192,13 @@ open class CourseTableViewController: UIViewController, UITableViewDataSource, U
     
     
     // MARK: - DataSource
-    open func numberOfSections(in tableView: UITableView) -> Int {
+    public func numberOfSections(in tableView: UITableView) -> Int {
         return model?.count ?? 0
     }
-    open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return model?[section].count ?? 0
     }
-    open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CourseTableViewCellReuseId, for: indexPath) as! CourseTableViewCell
         cell.model = model?[indexPath.section][indexPath.row]
         return cell
@@ -215,12 +206,12 @@ open class CourseTableViewController: UIViewController, UITableViewDataSource, U
     
     
     // MARK: - Delegate
-    open func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: CourseTableViewSectionHeaderViewReuseId) as! CourseTableViewSectionHeader
         headerView.timeInterval = model?[section][0][0].end
         return headerView
     }
-    open func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+    public func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         // 实时调整当前第一个显示的Cell日期为导航栏标题日期
         if let date = (tableView.visibleCells.first as? CourseTableViewCell)?.model?[0].end {
             currentDate = date
@@ -232,23 +223,23 @@ open class CourseTableViewController: UIViewController, UITableViewDataSource, U
             goTopButton.isHidden = true
         }
     }
-    open func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+    public func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         // 当最近一节课程划出屏幕时，显示“回到最近课程”按钮
         if indexPath == recentlyCourseIndexPath {
             goTopButton.isHidden = false
         }
     }
-    open func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    public func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 140
     }
-    open func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+    public func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 20
     }
-    open func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let height = Int(MalaConfig.singleCourseCellHeight()+1)
         return CGFloat((model?[indexPath.section][indexPath.row].count ?? 0) * height)
     }
-    open func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+    public func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
         return false
     }
     
@@ -256,19 +247,22 @@ open class CourseTableViewController: UIViewController, UITableViewDataSource, U
     // MARK: - Event Response
     ///  滚动到近日首个未上课程
     @objc private func scrollToToday() {
+        
+        guard let recent = self.recentlyCourseIndexPath else { return }
+        
         DispatchQueue.main.async {
-            self.tableView.scrollToRow(at: self.recentlyCourseIndexPath ?? IndexPath(row: 0, section: 0), at: .top, animated: true)
+            self.tableView.scrollToRow(at: recent, at: .top, animated: true)
         }
     }
     ///  跳转到挑选老师页面
-    @objc private func switchToFindTeacher() {
+    @objc fileprivate func switchToFindTeacher() {
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
             appDelegate.window?.rootViewController = MainViewController()
             appDelegate.switchTabBarControllerWithIndex(0)
         }
     }
     ///  跳转到登陆页面
-    @objc private func switchToLoginView() {
+    @objc fileprivate func switchToLoginView() {
         
         let loginView = LoginViewController()
         loginView.popAction = loadStudentCourseTable
@@ -279,5 +273,26 @@ open class CourseTableViewController: UIViewController, UITableViewDataSource, U
             completion: { () -> Void in
                 
         })
+    }
+}
+
+extension CourseTableViewController {
+    
+    public func emptyDataSet(_ scrollView: UIScrollView!, didTap button: UIButton!) {
+        switch currentState {
+        case .notLoggedIn:  switchToLoginView()
+        case .empty:        switchToFindTeacher()
+        case .error:        loadStudentCourseTable()
+        default: break
+        }
+    }
+    
+    public func emptyDataSet(_ scrollView: UIScrollView!, didTap view: UIView!) {
+        switch currentState {
+        case .notLoggedIn:  switchToLoginView()
+        case .empty:        switchToFindTeacher()
+        case .error:        loadStudentCourseTable()
+        default: break
+        }
     }
 }

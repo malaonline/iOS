@@ -118,8 +118,8 @@ class TeacherDetailsHeaderView: UIView {
         progress.guideLineWidth = 2.5
         progress.colors = [UIColor(named: .TeachingAgeRed)]
         progress.guideColor = UIColor(named: .ProgressGray)
-        progress.startAngle = -M_PI_2
-        progress.endAngle = -M_PI_2
+        progress.startAngle = -Double.pi / 2
+        progress.endAngle = -Double.pi / 2
         progress.progress = 0.35
         return progress
     }()
@@ -153,8 +153,8 @@ class TeacherDetailsHeaderView: UIView {
         progress.guideLineWidth = 2.5
         progress.colors = [UIColor(named: .LevelYellow)]
         progress.guideColor = UIColor(named: .ProgressGray)
-        progress.startAngle = -M_PI_2
-        progress.endAngle = -M_PI_2
+        progress.startAngle = -Double.pi / 2
+        progress.endAngle = -Double.pi / 2
         progress.progress = 0.35
         return progress
     }()

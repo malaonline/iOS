@@ -163,7 +163,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Crash Report
         let installation = KSCrashInstallationStandard.sharedInstance()
-        installation?.url = NSURL(string: "https://collector.bughd.com/kscrash?key=58aca1df617af73f8cdf7c54a1f54560") as? URL
+        installation?.url = NSURL(string: "https://collector.bughd.com/kscrash?key=58aca1df617af73f8cdf7c54a1f54560") as URL?
         installation?.install()
         installation?.sendAllReports(completion: nil)
     }
@@ -267,7 +267,7 @@ extension AppDelegate {
     func registerJPush(withDeciveToken deviceToken: Data, id: String) {
         JPUSHService.registerDeviceToken(deviceToken)
         JPUSHService.setTags(Set(["iOS"]), alias: id, fetchCompletionHandle: { (resCode, tags, alias) -> Void in
-            println("JPUSH setTags CallBack: \nrescode: \(resCode), \ntags: \(tags), \nalias: \(alias)\n")
+            println("JPUSH setTags CallBack: \nrescode: \(resCode), \ntags: \(tags as Optional), \nalias: \(alias as Optional)\n")
         })
     }
     

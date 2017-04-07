@@ -120,7 +120,7 @@ class SaveNameView: UIView, UITextFieldDelegate {
         guard let name = inputField.text else { return }
         
         MAProvider.saveStudentName(name: name) { result in
-            println("Save Student Name - \(result)")
+            println("Save Student Name - \(result as Optional)")
             
             guard let result = result, result == true else {
                 self.showToastAtBottom(L10n.networkNotReachable)
