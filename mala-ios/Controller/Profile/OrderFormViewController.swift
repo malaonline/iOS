@@ -129,7 +129,7 @@ class OrderFormViewController: StatefulViewController, UITableViewDelegate, UITa
             }
             
             /// 记录数据量
-            self.allCount = max(self.allCount, count)
+            self.allCount = count
             
             ///  加载更多
             if isLoadMore {

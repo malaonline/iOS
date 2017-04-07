@@ -137,7 +137,7 @@ class LiveCourseViewController: StatefulViewController, UITableViewDelegate, UIT
             }
             
             /// 记录数据量
-            self.allCount = max(count, self.allCount)
+            self.allCount = count
             
             if isLoadMore {
                 ///  加载更多
@@ -203,7 +203,7 @@ class LiveCourseViewController: StatefulViewController, UITableViewDelegate, UIT
             return models.count
             
         case Section.loadMore.rawValue:
-            return self.allCount == models.count ? 0 : (models.isEmpty ? 0 : 1)
+            return allCount == models.count ? 0 : (models.isEmpty ? 0 : 1)
             
         default:
             return 0

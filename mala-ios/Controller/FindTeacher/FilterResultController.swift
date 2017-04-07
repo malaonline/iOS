@@ -151,7 +151,7 @@ class FilterResultController: StatefulViewController, UITableViewDataSource, UIT
             }
             
             /// 记录数据量
-            self.allTeacherCount = max(count, self.allTeacherCount)
+            self.allTeacherCount = count
             
             if isLoadMore {
                 ///  加载更多

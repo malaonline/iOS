@@ -49,6 +49,8 @@ extension MoyaProvider {
             switch result {
             case let .success(response):
                 
+                println(response.request?.cURLString ?? "cURLString")
+                
                 switch response.statusCode {
                 case 200, 201:
                     do {
@@ -72,6 +74,9 @@ extension MoyaProvider {
                     }
                 }
             case let .failure(error):
+                
+                println(error.response?.request?.cURLString ?? "cURLString")
+                
                 _failureHandler(error)
             }
         }

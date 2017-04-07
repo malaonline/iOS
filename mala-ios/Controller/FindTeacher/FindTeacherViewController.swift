@@ -140,6 +140,8 @@ class FindTeacherViewController: StatefulViewController, UITableViewDelegate, UI
             currentPageIndex = 1
         }
         
+        print(filters ?? [], currentPageIndex)
+        
         MAProvider.loadTeachers(condition: filters, page: currentPageIndex, failureHandler: { error in
             self.currentState = .error
             DispatchQueue.main.async {
@@ -152,8 +154,7 @@ class FindTeacherViewController: StatefulViewController, UITableViewDelegate, UI
                 return
             }
             
-            /// 记录数据量
-            self.allTeacherCount = max(count, self.allTeacherCount)
+            self.allTeacherCount = count
             
             if isLoadMore {
                 ///  加载更多
@@ -205,6 +206,7 @@ class FindTeacherViewController: StatefulViewController, UITableViewDelegate, UI
             return models.count
             
         case Section.loadMore.rawValue:
+            print(allTeacherCount, models.count)
             return allTeacherCount == models.count ? 0 : (models.isEmpty ? 0 : 1)
 
         default:
