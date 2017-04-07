@@ -108,7 +108,7 @@ class OrderFormViewController: StatefulViewController, UITableViewDelegate, UITa
     }
     
     ///  获取用户订单列表
-    @objc private func loadOrderForm(_ page: Int = 1, isLoadMore: Bool = false, finish: (()->())? = nil) {
+    @objc fileprivate func loadOrderForm(_ page: Int = 1, isLoadMore: Bool = false, finish: (()->())? = nil) {
         
         // 屏蔽[正在刷新]时的操作
         guard currentState != .loading else { return }
@@ -310,5 +310,17 @@ class OrderFormViewController: StatefulViewController, UITableViewDelegate, UITa
         NotificationCenter.default.removeObserver(self, name: MalaNotification_PushToPayment, object: nil)
         NotificationCenter.default.removeObserver(self, name: MalaNotification_PushTeacherDetailView, object: nil)
         NotificationCenter.default.removeObserver(self, name: MalaNotification_CancelOrderForm, object: nil)
+    }
+}
+
+
+extension OrderFormViewController {
+    
+    public func emptyDataSet(_ scrollView: UIScrollView!, didTap button: UIButton!) {
+        self.loadOrderForm()
+    }
+    
+    public func emptyDataSet(_ scrollView: UIScrollView!, didTap view: UIView!) {
+        self.loadOrderForm()
     }
 }

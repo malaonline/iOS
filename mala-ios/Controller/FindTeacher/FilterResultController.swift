@@ -261,3 +261,15 @@ class FilterResultController: StatefulViewController, UITableViewDataSource, UIT
         MalaFilterIndexObject.reset()
     }
 }
+
+
+extension FilterResultController {
+    
+    public func emptyDataSet(_ scrollView: UIScrollView!, didTap button: UIButton!) {
+        self.loadTeachersWithCommonCondition()
+    }
+    
+    public func emptyDataSet(_ scrollView: UIScrollView!, didTap view: UIView!) {
+        self.loadTeachersWithCommonCondition()
+    }
+}

@@ -258,10 +258,10 @@ class RegionViewController: StatefulViewController, UITableViewDelegate, UITable
 
 extension RegionViewController {
     public func emptyDataSet(_ scrollView: UIScrollView!, didTap button: UIButton!) {
-        loadSchoolList()
+        self.loadSchoolList()
     }
     
     public func emptyDataSet(_ scrollView: UIScrollView!, didTap view: UIView!) {
-        loadSchoolList()
+        self.loadSchoolList()
     }
 }

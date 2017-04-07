@@ -269,3 +269,14 @@ class FindTeacherViewController: StatefulViewController, UITableViewDelegate, UI
         NotificationCenter.default.removeObserver(self, name: MalaNotification_LoadTeachers, object: nil)
     }
 }
+
+
+extension FindTeacherViewController {
+    public func emptyDataSet(_ scrollView: UIScrollView!, didTap button: UIButton!) {
+        self.loadTeachers()
+    }
+    
+    public func emptyDataSet(_ scrollView: UIScrollView!, didTap view: UIView!) {
+        self.loadTeachers()
+    }
+}

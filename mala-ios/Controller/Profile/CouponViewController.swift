@@ -104,7 +104,7 @@ class CouponViewController: StatefulViewController, UITableViewDelegate, UITable
     
     
     ///  获取优惠券信息
-    @objc private func loadCoupons() {
+    @objc fileprivate func loadCoupons() {
         
         // 屏蔽[正在刷新]时的操作
         guard currentState != .loading else { return }
@@ -178,5 +178,17 @@ class CouponViewController: StatefulViewController, UITableViewDelegate, UITable
     // MARK: - Events Response
     @objc private func showCouponRules() {
         CouponRulesPopupWindow(title: L10n.couponRule, desc: MalaConfig.couponRulesDescriptionString()).show()
+    }
+}
+
+
+extension CouponViewController {
+    
+    public func emptyDataSet(_ scrollView: UIScrollView!, didTap button: UIButton!) {
+        self.loadCoupons()
+    }
+    
+    public func emptyDataSet(_ scrollView: UIScrollView!, didTap view: UIView!) {
+        self.loadCoupons()
     }
 }

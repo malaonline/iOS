@@ -244,10 +244,10 @@ class LiveCourseViewController: StatefulViewController, UITableViewDelegate, UIT
 extension LiveCourseViewController {
     
     public func emptyDataSet(_ scrollView: UIScrollView!, didTap button: UIButton!) {
-        
+        self.loadLiveClasses()
     }
     
     public func emptyDataSet(_ scrollView: UIScrollView!, didTap view: UIView!) {
-        
+        self.loadLiveClasses()
     }
 }
