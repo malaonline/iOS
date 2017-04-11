@@ -56,7 +56,7 @@ extension StatefulViewController: DZNEmptyDataSetSource {
         case (is CourseTableViewController, .notLoggedIn):  plug.title = L10n.youNeedToLogin
         case (is LiveCourseViewController, .empty):         plug.title = L10n.noLiveCourse
         case (is FindTeacherViewController, .empty):        plug.title = L10n.noLiveCourse
-        case (is CouponViewController, .empty):             plug.title = L10n.noTeacher
+        case (is CouponViewController, .empty):             plug.title = L10n.noCoupon
         case (is OrderFormViewController, .empty):          plug.title = L10n.noOrder
         // commen
         case (is CourseTableViewController, .loading):      plug.title = L10n.loading

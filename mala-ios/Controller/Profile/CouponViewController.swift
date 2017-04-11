@@ -117,6 +117,12 @@ class CouponViewController: StatefulViewController, UITableViewDelegate, UITable
             self.models = MalaUserCoupons
         }) { coupons in
             print(coupons.count)
+            
+            guard !coupons.isEmpty else {
+                self.currentState = .empty
+                return
+            }
+            
             MalaUserCoupons = self.justShow ? coupons : parseCouponlist(coupons)
             self.currentState = .content
             self.models = MalaUserCoupons
