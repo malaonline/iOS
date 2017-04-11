@@ -55,7 +55,8 @@ extension StatefulViewController: DZNEmptyDataSetSource {
         case (is CourseTableViewController, .empty):        plug.title = L10n.noCourse
         case (is CourseTableViewController, .notLoggedIn):  plug.title = L10n.youNeedToLogin
         case (is LiveCourseViewController, .empty):         plug.title = L10n.noLiveCourse
-        case (is FindTeacherViewController, .empty):        plug.title = L10n.noLiveCourse
+        case (is FindTeacherViewController, .empty):        plug.title = L10n.noTeacher
+        case (is FilterResultController, .empty):           plug.title = L10n.noMatchTeacher
         case (is CouponViewController, .empty):             plug.title = L10n.noCoupon
         case (is OrderFormViewController, .empty):          plug.title = L10n.noOrder
         // commen
@@ -124,6 +125,7 @@ extension StatefulViewController: DZNEmptyDataSetSource {
         case (is CourseTableViewController, .notLoggedIn):  return UIImage(asset: .courseNoData)
         case (is LiveCourseViewController, .empty):         return UIImage(asset: .filterNoResult)
         case (is FindTeacherViewController, .empty):        return UIImage(asset: .filterNoResult)
+        case (is FilterResultController, .empty):           return UIImage(asset: .filterNoResult)
         case (is CouponViewController, .empty):             return UIImage(asset: .noCoupons)
         case (is OrderFormViewController, .empty):          return UIImage(asset: .noOrder)
         // commen
