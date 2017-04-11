@@ -63,6 +63,17 @@ class FilterResultController: StatefulViewController, UITableViewDataSource, UIT
         let reloadView = ThemeReloadView(frame: CGRect(x: 0, y: 0, width: 0, height: 30))
         return reloadView
     }()
+    // MARK: - Components
+    /// 导航栏返回按钮
+    lazy var backBarButton: UIButton = {
+        let backBarButton = UIButton(
+            imageName: "leftArrow_black",
+            highlightImageName: "leftArrow_black",
+            target: self,
+            action: #selector(FilterResultController.popSelf)
+        )
+        return backBarButton
+    }()
     
     
     // MARK: - Life Cycle
@@ -70,6 +81,7 @@ class FilterResultController: StatefulViewController, UITableViewDataSource, UIT
         super.viewDidLoad()
         
         setupUserInterface()
+        configure()
         loadTeachersWithCommonCondition()
     }
 
@@ -117,6 +129,17 @@ class FilterResultController: StatefulViewController, UITableViewDataSource, UIT
             maker.right.equalTo(view)
             maker.bottom.equalTo(view)
         }
+    }
+    
+    private func configure() {
+        
+        // 设置BarButtomItem间隔
+        let spacer = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
+        spacer.width = -2
+        
+        // leftBarButtonItem
+        let leftBarButtonItem = UIBarButtonItem(customView: backBarButton)
+        navigationItem.leftBarButtonItems = [spacer, leftBarButtonItem]
     }
     
     func loadTeachersWithCommonCondition() {
@@ -254,7 +277,7 @@ class FilterResultController: StatefulViewController, UITableViewDataSource, UIT
         }
     }
     
-    
+
     deinit {
         println("FilterResultController - Deinit")
         // 重置选择条件模型
