@@ -156,8 +156,8 @@ extension StatefulViewController: DZNEmptyDataSetSource {
         switch self {
         case is CourseTableViewController:  return -30
         case is LiveCourseViewController:   return MalaScreenWidth/3
-        case is FindTeacherViewController:  return MalaScreenWidth/3 - 44
-        case is FilterResultController:     return MalaScreenWidth/3 - 44
+        case is FindTeacherViewController:  return 44
+        case is FilterResultController:     return -44
         default: return 0.0
         }
     }
