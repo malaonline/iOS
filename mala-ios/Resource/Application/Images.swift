@@ -88,6 +88,8 @@ enum ImageAsset: String {
     case genderFemale = "gender_female"
     case genderMale = "gender_male"
     case goTop = "goTop"
+    case goTop_normal = "gotop_normal"
+    case goTop_press = "gotop_press"
     case grade = "grade"
     case grayBackground = "grayBackground"
     case heart = "heart"

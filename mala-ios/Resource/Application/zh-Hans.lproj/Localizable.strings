@@ -20,6 +20,7 @@
 // Teacher
 "Teacher" = "找老师";
 "No teacher" = "当前老师正在上架中，敬请期待";
+"No match teacher" = "当前未有匹配老师";
 "Teacher albums" = "老师相册";
 "Course choosing" = "课程购买";
 "Evaluation" = "测评建档服务";

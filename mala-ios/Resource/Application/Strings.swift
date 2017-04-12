@@ -140,6 +140,8 @@ enum L10n {
     static let noOrder = L10n.tr("No order")
     /// 当前城市没有老师！
     static let noTeacher = L10n.tr("No teacher")
+    /// 当前暂无匹配老师
+    static let noMatchTeacher = L10n.tr("No match teacher")
     /// 暂不取消
     static let notNow = L10n.tr("Not now")
     /// 通知消息

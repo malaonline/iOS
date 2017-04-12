@@ -47,6 +47,14 @@ class LiveCourseViewController: StatefulViewController, UITableViewDelegate, UIT
         let view = BannerView(frame: CGRect(x: 0, y: 0, width: MalaScreenWidth, height: MalaScreenWidth/3))
         return view
     }()
+    private lazy var goTopButton: UIButton = {
+        let button = UIButton()
+        button.setBackgroundImage(UIImage(asset: .goTop_normal), for: .normal)
+        button.setBackgroundImage(UIImage(asset: .goTop_press), for: .highlighted)
+        button.addTarget(self, action: #selector(LiveCourseViewController.scrollToTop), for: .touchUpInside)
+        button.isHidden = true
+        return button
+    }()
     
     
     // MARK: - Life Cycle
@@ -80,13 +88,18 @@ class LiveCourseViewController: StatefulViewController, UITableViewDelegate, UIT
         
         // SubViews
         view.addSubview(tableView)
+        view.addSubview(goTopButton)
         
         // AutoLayout
         tableView.snp.makeConstraints { (maker) -> Void in
-            maker.top.equalTo(view)
-            maker.left.equalTo(view)
-            maker.bottom.equalTo(view)
-            maker.right.equalTo(view)
+            maker.center.equalTo(view)
+            maker.size.equalTo(view)
+        }
+        goTopButton.snp.makeConstraints { (maker) -> Void in
+            maker.right.equalTo(view).offset(-20)
+            maker.bottom.equalTo(view).offset(-64)
+            maker.width.equalTo(56)
+            maker.height.equalTo(56)
         }
     }
     
@@ -163,6 +176,10 @@ class LiveCourseViewController: StatefulViewController, UITableViewDelegate, UIT
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         
+        if indexPath.section == 0 && indexPath.row <= 5 {
+            goTopButton.isHidden = true
+        }
+        
         switch indexPath.section {
         case Section.liveCourse.rawValue:
             break
@@ -179,6 +196,12 @@ class LiveCourseViewController: StatefulViewController, UITableViewDelegate, UIT
             })
         default:
             break
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath.section == 0 && indexPath.row >= 5 {
+            goTopButton.isHidden = false
         }
     }
     
@@ -238,6 +261,10 @@ class LiveCourseViewController: StatefulViewController, UITableViewDelegate, UIT
         webViewController.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(webViewController, animated: true)
         webViewController.loadURL(url: MalaConfig.adURL())
+    }
+    
+    func scrollToTop() {
+        tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
     }
 }
 
