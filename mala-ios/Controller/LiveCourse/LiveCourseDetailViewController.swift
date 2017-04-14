@@ -109,6 +109,21 @@ class LiveCourseDetailViewController: BaseViewController, LiveCourseConfirmViewD
                 self?.dismiss(animated: true, completion: nil)
             }
             alertController.addAction(cancelAction)
+            
+            let button = UIButton()
+            button.setBackgroundImage(UIImage(asset: .callBg), for: .normal)
+            button.setTitle(String(format: "助教：%@", self?.model.assistantName ?? ""), for: .normal)
+            button.titleEdgeInsets = UIEdgeInsetsMake(16.5, 0, -16.5, 0)
+            button.isUserInteractionEnabled = false
+            
+            alertController.view.addSubview(button)
+            button.snp.makeConstraints({ maker in
+                maker.centerX.equalTo(alertController.view)
+                maker.bottom.equalTo(alertController.view.snp.top).offset(-44)
+                maker.width.equalTo(175)
+                maker.height.equalTo(75)
+            })
+            
             self?.present(alertController, animated: true, completion: nil)
         }
     }

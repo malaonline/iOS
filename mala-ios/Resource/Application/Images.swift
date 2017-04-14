@@ -37,6 +37,7 @@ enum ImageAsset: String {
     case answerNumber = "answerNumber"
     case avatarLayer = "avatarLayer"
     case avatarPlaceholder = "avatar_placeholder"
+    case callBg = "call_bg"
     case close = "close"
     case closeNormal = "close_normal"
     case closePress = "close_press"
