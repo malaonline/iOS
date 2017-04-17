@@ -129,6 +129,7 @@ enum ImageAsset: String {
     case loading_imgBlue = "loading_imgBlue_78x78"
     case locationNormal = "location_normal"
     case locationPress = "location_press"
+    case loginLogo = "login_logo"
     case minus = "minus"
     case networkError = "network_error"
     case noReport = "noReport"
