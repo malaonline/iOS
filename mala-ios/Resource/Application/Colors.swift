@@ -101,6 +101,13 @@ enum ColorName: UInt32 {
     case ThemeLikeColor = 0xF76E6DFF
     case CertificateBack = 0xFCDFB7FF
     
+    // New
+    case loginLightBlue = 0xE7F1FFFF
+    case loginBlue = 0x78A8FEFF
+    case loginDisableBlue = 0x78A8FE7F
+    case protocolGary = 0xA0A3ABFF
+    case loginShadow = 0xCDE4FFFF
+    
     var color: Color {
         return Color(named: self)
     }

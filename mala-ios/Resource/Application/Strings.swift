@@ -74,7 +74,7 @@ enum L10n {
     static let examOutlineDesc = L10n.tr("Exam outline desc")
     /// 筛选结果
     static let filterResult = L10n.tr("Filter result")
-    ///  获取验证码
+    /// 获取验证码
     static let getVerificationCode = L10n.tr("Get verification code")
     /// 去登录
     static let goToLogin = L10n.tr("Go to login")
@@ -108,7 +108,7 @@ enum L10n {
     static let logoutText = L10n.tr("Logout text")
     /// 麻辣老师
     static let mala = L10n.tr("Mala")
-    /// 麻辣老师用户协议
+    /// 《麻辣老师用户服务协议》
     static let malaUserProtocol = L10n.tr("Mala user protocol")
     /// 会员专享
     static let member = L10n.tr("Member")
@@ -196,7 +196,7 @@ enum L10n {
     static let pleaseCompleteThePaymentBeforeCheckIt = L10n.tr("Please complete the payment before check it")
     /// 我的
     static let profile = L10n.tr("Profile")
-    /// 轻触上面验证按钮即表示你同意
+    /// 轻触上面“登录”按钮，即表示你已同意
     static let protocolDesc = L10n.tr("Protocol desc")
     /// 支付凭证获取错误
     static let qrCodeCredentialGetError = L10n.tr("QRCode credential get error")

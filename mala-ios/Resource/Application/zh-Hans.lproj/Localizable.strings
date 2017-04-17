@@ -117,7 +117,7 @@
 "Don't use coupon" = "不使用奖学金";
 "Coupon rule" = "奖学金使用规则";
 "Phone number" = "手机号";
-"Input your number" = "请输入手机号";
+"Input your number" = "请输入您的手机号";
 "Invalid number" = "手机号错误";
 "Verification code" = "验证码";
 "Input verification code" = "请输入验证码";
@@ -127,8 +127,8 @@
 "Verification code not match" = "验证码错误";
 "Verification code countdown" = " %02ds后获取 ";
 "Verify" = "验证";
-"Mala user protocol" = "麻辣老师用户协议";
-"Protocol desc" = "轻触上面验证按钮即表示你同意";
+"Mala user protocol" = "《麻辣老师用户服务协议》";
+"Protocol desc" = "轻触上面“登录”按钮，即表示你已同意";
 "Logout text" = "退  出";
 "Do you want to logout" = "确认退出当前账号吗？";
 "Logout" = "退出登录";
