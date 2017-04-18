@@ -65,15 +65,14 @@ class RootViewController: UIViewController {
         picker.addTapEvent(target: self, action: #selector(RootViewController.regionsPickButtonDidTap))
         return picker
     }()
-    fileprivate lazy var rightBarButtonItem: UIBarButtonItem = {
-        let button = UIBarButtonItem(customView:
-            UIButton(
-                imageName: "filter_normal",
-                highlightImageName: "filter_press",
-                target: self,
-                action: #selector(RootViewController.filterButtonDidTap)
-            )
+    fileprivate lazy var rightBarButton: UIButton = {
+        let button = UIButton(
+            imageName: "filter_normal",
+            highlightImageName: "filter_press",
+            target: self,
+            action: #selector(RootViewController.filterButtonDidTap)
         )
+        button.isHidden = true
         return button
     }()
     fileprivate lazy var menu: PagingMenuController = {
@@ -111,7 +110,7 @@ class RootViewController: UIViewController {
         let spacer = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
         spacer.width = -12
         navigationItem.leftBarButtonItems = []
-        navigationItem.rightBarButtonItems = [spacer, rightBarButtonItem]
+        navigationItem.rightBarButtonItems = [spacer, UIBarButtonItem(customView: rightBarButton)]
     }
     
     private func setupPageController() {
@@ -203,9 +202,9 @@ class RootViewController: UIViewController {
 extension RootViewController: PagingMenuControllerDelegate {
     func willMove(toMenu menuController: UIViewController, fromMenu previousMenuController: UIViewController) {
         if menuController is FindTeacherViewController {
-            rightBarButtonItem.customView?.alpha = 1
+            rightBarButton.isHidden = false
         }else if menuController is LiveCourseViewController {
-            rightBarButtonItem.customView?.alpha = 0
+            rightBarButton.isHidden = true
         }
     }
     
