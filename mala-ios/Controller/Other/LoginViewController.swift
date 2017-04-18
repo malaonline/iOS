@@ -26,17 +26,19 @@ class LoginViewController: UIViewController {
         return view
     }()
     private lazy var phoneView: UIView = {
-        let view = UIView(UIColor.white)
-        view.layer.cornerRadius = 4
-        view.layer.masksToBounds = true
-        view.addShadow(offset: 4, color: UIColor(named: .loginShadow), opacity: 1)
+        let view = UIView.loginInputView()
         return view
     }()
     private lazy var codeView: UIView = {
-        let view = UIView(UIColor.white)
-        view.layer.cornerRadius = 4
-        view.layer.masksToBounds = true
-        view.addShadow(offset: 4, color: UIColor(named: .loginShadow), opacity: 1)
+        let view = UIView.loginInputView()
+        return view
+    }()
+    private lazy var phoneViewShadow: UIView = {
+        let view = UIView.loginInputShadow()
+        return view
+    }()
+    private lazy var codeViewShadow: UIView = {
+        let view = UIView.loginInputShadow()
         return view
     }()
     /// 手机图标
@@ -146,10 +148,12 @@ class LoginViewController: UIViewController {
         header.addSubview(headerLogo)
         
         view.addSubview(phoneView)
+        view.insertSubview(phoneViewShadow, belowSubview: phoneView)
         phoneView.addSubview(phoneIcon)
         phoneView.addSubview(phoneTextField)
         
         view.addSubview(codeView)
+        view.insertSubview(codeViewShadow, belowSubview: codeView)
         codeView.addSubview(codeIcon)
         codeView.addSubview(codeTextField)
         codeView.addSubview(codeGetButton)
@@ -176,6 +180,10 @@ class LoginViewController: UIViewController {
             maker.width.equalTo(320)
             maker.height.equalTo(52)
         }
+        phoneViewShadow.snp.makeConstraints { (maker) in
+            maker.center.equalTo(phoneView)
+            maker.size.equalTo(phoneView)
+        }
         phoneIcon.snp.makeConstraints { (maker) in
             maker.width.equalTo(16)
             maker.height.equalTo(22)
@@ -194,6 +202,10 @@ class LoginViewController: UIViewController {
             maker.top.equalTo(phoneView.snp.bottom).offset(16)
             maker.width.equalTo(320)
             maker.height.equalTo(52)
+        }
+        codeViewShadow.snp.makeConstraints { (maker) in
+            maker.center.equalTo(codeView)
+            maker.size.equalTo(codeView)
         }
         codeIcon.snp.makeConstraints { (maker) in
             maker.width.equalTo(24.3)

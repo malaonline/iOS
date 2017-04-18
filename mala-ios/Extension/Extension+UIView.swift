@@ -9,6 +9,33 @@
 import UIKit
 import Toast_Swift
 
+// MARK: - Class Method
+extension UIView {
+    
+    /// Convenience to create a UIView
+    ///
+    /// - Returns: UIView
+    class func loginInputView() -> UIView {
+        let view = UIView(UIColor.white)
+        view.layer.cornerRadius = 4
+        view.layer.masksToBounds = true
+        return view
+    }
+    
+    /// Convenience to create shadow of input view
+    ///
+    /// - Returns: UIView
+    class func loginInputShadow() -> UIView {
+        let view = UIView(UIColor(named: .loginLightBlue))
+        view.layer.cornerRadius = 4
+        view.layer.shadowColor = UIColor(named: .loginShadow).cgColor
+        view.layer.shadowRadius = 4
+        view.layer.shadowOffset = CGSize(width: 0, height: 2)
+        view.layer.shadowOpacity = 1
+        return view
+    }
+}
+
 // MARK: - Convenience
 extension UIView {
 
