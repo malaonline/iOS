@@ -162,7 +162,7 @@ class MemberPrivilegesViewController: UITableViewController {
         MAProvider.userStudyReport(failureHandler: { error in
             DispatchQueue.main.async {
                 self.reportStatus = .Error
-                self.ShowToast(L10n.memberServerError)
+                self.showToast(L10n.memberServerError)
             }
         }) { [weak self] results in
             println("学习报告：\(results)")
@@ -201,7 +201,7 @@ class MemberPrivilegesViewController: UITableViewController {
         MAProvider.userSubjectReport(id: 1, failureHandler: { error in
             DispatchQueue.main.async {
                 self.reportStatus = .Error
-                self.ShowToast(L10n.memberServerError)
+                self.showToast(L10n.memberServerError)
             }
         }) { report in
             println("学科学习报告：\(report)")

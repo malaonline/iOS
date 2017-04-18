@@ -478,17 +478,17 @@ open class CommentViewWindow: UIViewController, UITextViewDelegate {
     private func saveComment() {
         // 验证数据并创建评论模型
         guard model.id != 0 else {
-            ShowToast("课程信息错误，请稍后重试")
+            showToast("课程信息错误，请稍后重试")
             commitButton.isEnabled = true
             return
         }
         guard floatRating.rating > 0 else {
-            ShowToast("请给课程打个分吧")
+            showToast("请给课程打个分吧")
             commitButton.isEnabled = true
             return
         }
         guard textView.text != L10n.inputComment else {
-            ShowToast("请给课程写几句评价吧")
+            showToast("请给课程写几句评价吧")
             commitButton.isEnabled = true
             return
         }
@@ -496,7 +496,7 @@ open class CommentViewWindow: UIViewController, UITextViewDelegate {
         
         /// 创建评论
         MAProvider.createComment(comment: comment, failureHandler: { error in
-            self.ShowToast(L10n.networkNotReachable)
+            self.showToast(L10n.networkNotReachable)
             self.commitButton.isEnabled = true
         }) { result in
             DispatchQueue.main.async {
@@ -504,13 +504,13 @@ open class CommentViewWindow: UIViewController, UITextViewDelegate {
                     // 设置评价数据，用于Cell状态更新后显示评论
                     self.model.comment = comment
                     
-                    self.ShowToast("评价成功")
+                    self.showToast("评价成功")
                     delay(1.0, work: { () -> Void in
                         self.finishedAction?()
                         self.animateDismiss()
                     })
                 }else {
-                    self.ShowToast("评价失败，请重试")
+                    self.showToast("评价失败，请重试")
                     self.commitButton.isEnabled = true
                 }
             }

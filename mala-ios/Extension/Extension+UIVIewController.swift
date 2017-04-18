@@ -34,9 +34,9 @@ extension UIViewController {
             case .begin:
                 println("开始")
             case .success:
-                self.ShowToast("分享成功")
+                self.showToast("分享成功")
             case .fail:
-                self.ShowToast("分享失败")
+                self.showToast("分享失败")
             case .cancel:
                 println("分享已经取消")
             }
@@ -46,7 +46,7 @@ extension UIViewController {
 
 extension UIViewController {
     
-    public func ShowToast(_ message: String) {
+    public func showToast(_ message: String) {
         currentView?.showToastAtBottom(message)
     }
     

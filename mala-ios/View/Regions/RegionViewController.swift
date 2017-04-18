@@ -190,7 +190,7 @@ class RegionViewController: StatefulViewController, UITableViewDelegate, UITable
         currentCityLabel.text = MalaCurrentCity?.name ?? "未选择"
         
         guard let city = MalaCurrentCity else {
-            ShowToast("地区选择有误，请重试")
+            showToast("地区选择有误，请重试")
             return
         }
         

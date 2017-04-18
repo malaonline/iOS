@@ -178,7 +178,7 @@ class QRPaymentViewController: BaseViewController {
                 
                 /// 验证返回值是否有效
                 guard let charge = charges else {
-                    self?.ShowToast(L10n.qrCodeGetError)
+                    self?.showToast(L10n.qrCodeGetError)
                     return
                 }
                 
@@ -199,7 +199,7 @@ class QRPaymentViewController: BaseViewController {
                     
                     /// 验证数据正确性
                     guard let credential = charge["credential"] as? JSON else {
-                        self?.ShowToast(L10n.qrCodeCredentialGetError)
+                        self?.showToast(L10n.qrCodeCredentialGetError)
                         return
                     }
                     
@@ -207,7 +207,7 @@ class QRPaymentViewController: BaseViewController {
                     switch channel {
                     case .WxQR:
                         guard let qrPaymentURL = credential["wx_pub_qr"] as? String else {
-                            self?.ShowToast(L10n.weChatQRCodeInfoGetError)
+                            self?.showToast(L10n.weChatQRCodeInfoGetError)
                             return
                         }
                         self?.qrView.url = qrPaymentURL
@@ -216,7 +216,7 @@ class QRPaymentViewController: BaseViewController {
                         
                     case .AliQR:
                         guard let qrPaymentURL = credential["alipay_qr"] as? String else {
-                            self?.ShowToast(L10n.alipayQRCodeInfoGetError)
+                            self?.showToast(L10n.alipayQRCodeInfoGetError)
                             return
                         }
                         self?.qrView.url = qrPaymentURL
@@ -224,7 +224,7 @@ class QRPaymentViewController: BaseViewController {
                         break
                         
                     default:
-                        self?.ShowToast(L10n.qrCodeGetError)
+                        self?.showToast(L10n.qrCodeGetError)
                         break
                     }
                 }
@@ -235,7 +235,7 @@ class QRPaymentViewController: BaseViewController {
     private func cancelOrder() {
         MAProvider.cancelOrder(id: ServiceResponseOrder.id) { result in
             DispatchQueue.main.async {
-                self.ShowToast(result == true ? L10n.orderCanceledSuccess : L10n.orderCanceledFailure)
+                self.showToast(result == true ? L10n.orderCanceledSuccess : L10n.orderCanceledFailure)
                 _ = self.navigationController?.popViewController(animated: true)
             }
         }
@@ -248,7 +248,7 @@ class QRPaymentViewController: BaseViewController {
             println("订单状态获取成功 \(order?.status as Optional)")
             
             guard let order = order else {
-                self?.ShowToast(L10n.orderStatusError)
+                self?.showToast(L10n.orderStatusError)
                 return
             }
             
@@ -261,12 +261,12 @@ class QRPaymentViewController: BaseViewController {
                 // 判断订单状态
                 // 尚未支付
                 if order.status == MalaOrderStatus.penging.rawValue {
-                    self?.ShowToast(L10n.pleaseCompleteThePayment)
+                    self?.showToast(L10n.pleaseCompleteThePayment)
                     return
                 }
                 // 订单已失效
                 if order.status == MalaOrderStatus.canceled.rawValue {
-                    self?.ShowToast(L10n.orderExpired)
+                    self?.showToast(L10n.orderExpired)
                     _ = self?.navigationController?.popToViewController(LiveCourseViewController(), animated: true)
                     return
                 }
@@ -284,7 +284,7 @@ class QRPaymentViewController: BaseViewController {
                         handler.showSuccessAlert()
                     }
                 }else {
-                    self?.ShowToast(L10n.orderStatusError)
+                    self?.showToast(L10n.orderStatusError)
                     return
                 }
             }

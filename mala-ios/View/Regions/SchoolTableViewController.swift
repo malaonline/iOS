@@ -91,7 +91,7 @@ class SchoolTableViewController: UIViewController, UITableViewDelegate, UITableV
     private func loadCitylist() {
         
         guard let region = MalaCurrentCity else {
-            ShowToast("地区选择有误，请重试")
+            showToast("地区选择有误，请重试")
             return
         }
         

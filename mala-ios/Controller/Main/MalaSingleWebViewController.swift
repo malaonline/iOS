@@ -83,7 +83,7 @@ class MalaSingleWebViewController: BaseViewController, WKNavigationDelegate, WKU
                 if let htmlString = string {
                     self.HTMLString = htmlString
                 }else {
-                    self.ShowToast(L10n.networkNotReachable)
+                    self.showToast(L10n.networkNotReachable)
                 }
             }
         }

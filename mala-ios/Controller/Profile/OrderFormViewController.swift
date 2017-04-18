@@ -179,7 +179,7 @@ class OrderFormViewController: StatefulViewController, UITableViewDelegate, UITa
                 viewController.hidesBottomBarWhenPushed = true
                 self?.navigationController?.pushViewController(viewController, animated: true)
             }else {
-                self?.ShowToast(L10n.orderInfoError)
+                self?.showToast(L10n.orderInfoError)
             }
         }
         
@@ -203,7 +203,7 @@ class OrderFormViewController: StatefulViewController, UITableViewDelegate, UITa
                 })
                 
             }else {
-                self?.ShowToast(L10n.orderInfoError)
+                self?.showToast(L10n.orderInfoError)
             }
         }
     }
@@ -211,7 +211,7 @@ class OrderFormViewController: StatefulViewController, UITableViewDelegate, UITa
     private func cancelOrder(_ orderId: Int) {
         MAProvider.cancelOrder(id: orderId) { result in
             DispatchQueue.main.async {
-                self.ShowToast(result == true ? L10n.orderCanceledSuccess : L10n.orderCanceledFailure)
+                self.showToast(result == true ? L10n.orderCanceledSuccess : L10n.orderCanceledFailure)
                 _ = self.navigationController?.popViewController(animated: true)
             }
         }
