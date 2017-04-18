@@ -102,6 +102,8 @@ enum L10n {
     static let liveCourse = L10n.tr("Live course")
     /// 正在加载
     static let loading = L10n.tr("Loading")
+    /// 登录
+    static let login = L10n.tr("Login")
     /// 退出登录
     static let logout = L10n.tr("Logout")
     /// 退  出

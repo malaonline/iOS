@@ -8,15 +8,24 @@
 
 import UIKit
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: - Property
     /// 弹栈闭包
     var popAction: (()->())?
     /// 关闭闭包
     var closeAction: (()->())?
+
     
     // MARK: - Components
+    private lazy var titleLabel: UILabel = {
+        let label = UILabel()
+        label.text = L10n.login
+        label.font = FontFamily.PingFangSC.Regular.font(18)
+        label.textColor = UIColor.white
+        label.sizeToFit()
+        return label
+    }()
     private lazy var header: UIImageView = {
         let view = UIImageView(image: UIImage(asset: .loginFill))
         return view
@@ -41,12 +50,29 @@ class LoginViewController: UIViewController {
         let view = UIView.loginInputShadow()
         return view
     }()
-    /// 手机图标
     private lazy var phoneIcon: UIImageView = {
         let view = UIImageView(imageName: "phone")
         return view
     }()
-    /// 获取验证码按钮
+    private lazy var phoneTextField: UITextField = {
+        let textField = UITextField()
+        textField.keyboardType = .numberPad
+        textField.placeholder = L10n.inputYourNumber
+        textField.font = FontFamily.PingFangSC.Regular.font(16)
+        textField.textColor = UIColor(named: .ArticleSubTitle)
+        textField.addTarget(self, action: #selector(LoginViewController.textDidChange), for: .editingChanged)
+        textField.clearButtonMode = .never
+        textField.delegate = self
+        return textField
+    }()
+    private lazy var clearButton: UIButton = {
+        let button = UIButton()
+        button.setBackgroundImage(UIImage(asset: .clearNormal), for: .normal)
+        button.setBackgroundImage(UIImage(asset: .clearPress), for: .highlighted)
+        button.addTarget(self, action: #selector(LoginViewController.clearButtonDidTap), for: .touchUpInside)
+        button.isHidden = true
+        return button
+    }()
     private lazy var codeGetButton: UIButton = {
         let button = UIButton()
         button.setTitle(L10n.getVerificationCode, for: .normal)
@@ -57,49 +83,29 @@ class LoginViewController: UIViewController {
         button.isEnabled = false
         return button
     }()
-    /// 手机号码输入框
-    private lazy var phoneTextField: UITextField = {
-        let textField = UITextField()
-        textField.keyboardType = .numberPad
-        textField.placeholder = L10n.inputYourNumber
-        textField.font = FontFamily.PingFangSC.Regular.font(16)
-        textField.textColor = UIColor(named: .ArticleSubTitle)
-        textField.addTarget(self, action: #selector(LoginViewController.textDidChange), for: .editingChanged)
-        textField.addTarget(self, action: #selector(LoginViewController.didBeginEditing), for: .editingDidBegin)
-        textField.addTarget(self, action: #selector(LoginViewController.didEndEditing), for: .editingDidEnd)
-        textField.clearButtonMode = .never 
-        return textField
-    }()
-    /// 验证码图标
     private lazy var codeIcon: UIImageView = {
         let codeIcon = UIImageView(imageName: "verifyCode")
         return codeIcon
     }()
-    /// 验证码输入框
     private lazy var codeTextField: UITextField = {
         let textField = UITextField()
         textField.keyboardType = .numberPad
         textField.placeholder = L10n.verificationCode
         textField.textColor = UIColor(named: .ArticleSubTitle)
         textField.font = FontFamily.PingFangSC.Regular.font(16)
-        textField.addTarget(self, action: #selector(LoginViewController.didBeginEditing), for: .editingDidBegin)
-        textField.addTarget(self, action: #selector(LoginViewController.didEndEditing), for: .editingDidEnd)
         return textField
     }()
-    /// 登录按钮
     private lazy var verifyButton: UIButton = {
         let button = UIButton()
-        button.layer.cornerRadius = 24
-        button.layer.masksToBounds = true
-        button.setTitle("登  录", for: .normal)
+        button.setTitle("登    录", for: .normal)
+        button.titleLabel?.font = FontFamily.PingFangSC.Regular.font(18)
         button.setTitleColor(UIColor.white, for: .normal)
-        button.setBackgroundImage(UIImage.withColor(UIColor(named: .loginBlue)), for: .normal)
-        button.setBackgroundImage(UIImage.withColor(UIColor(named: .loginDisableBlue)), for: .highlighted)
-        button.setBackgroundImage(UIImage.withColor(UIColor(named: .loginDisableBlue)), for: .disabled)
+        button.setBackgroundImage(UIImage(asset: .loginNormal), for: .normal)
+        button.setBackgroundImage(UIImage(asset: .loginPress), for: .highlighted)
+        button.setBackgroundImage(UIImage(asset: .loginPress), for: .disabled)
         button.addTarget(self, action: #selector(LoginViewController.verifyButtonDidTap), for: .touchUpInside)
         return button
     }()
-    // 协议label
     private lazy var protocolLabel: UILabel = {
         let label = UILabel()
         label.font = FontFamily.PingFangSC.Regular.font(12)
@@ -107,7 +113,6 @@ class LoginViewController: UIViewController {
         label.text = L10n.protocolDesc
         return label
     }()
-    // 协议文字label
     private lazy var protocolString: UILabel = {
         let label = UILabel()
         label.font = FontFamily.PingFangSC.Regular.font(14)
@@ -136,12 +141,18 @@ class LoginViewController: UIViewController {
     private func setupUserInterface() {
         // Style
         view.backgroundColor = UIColor(named: .loginLightBlue)
+        view.addTapEvent(target: self, action: #selector(LoginViewController.backgroundDidTap))
         let leftBarButtonItem = UIBarButtonItem(customView:UIButton(imageName: "close_white", target: self, action: #selector(LoginViewController.closeButtonDidClick)))
         navigationItem.leftBarButtonItem = leftBarButtonItem
+        navigationItem.titleView = titleLabel
+        navigationItem.titleView?.alpha = 0
         
         UIApplication.shared.statusBarStyle = UIStatusBarStyle.default
         navigationController?.navigationBar.setBackgroundImage(UIImage.withColor(UIColor(named: .loginBlue)), for: .default)
         navigationController?.navigationBar.shadowImage = UIImage()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
         // SubView
         view.addSubview(header)
@@ -151,6 +162,7 @@ class LoginViewController: UIViewController {
         view.insertSubview(phoneViewShadow, belowSubview: phoneView)
         phoneView.addSubview(phoneIcon)
         phoneView.addSubview(phoneTextField)
+        phoneView.addSubview(clearButton)
         
         view.addSubview(codeView)
         view.insertSubview(codeViewShadow, belowSubview: codeView)
@@ -194,7 +206,13 @@ class LoginViewController: UIViewController {
             maker.centerY.equalTo(phoneView)
             maker.height.equalTo(22)
             maker.left.equalTo(phoneView).offset(41)
+            maker.right.equalTo(clearButton.snp.left).offset(-15)
+        }
+        clearButton.snp.makeConstraints { (maker) in
+            maker.centerY.equalTo(phoneView)
             maker.right.equalTo(phoneView).offset(-15)
+            maker.width.equalTo(20)
+            maker.height.equalTo(20)
         }
         // code
         codeView.snp.makeConstraints { (maker) in
@@ -217,17 +235,18 @@ class LoginViewController: UIViewController {
             maker.centerY.equalTo(codeView)
             maker.height.equalTo(22)
             maker.left.equalTo(codeView).offset(41)
-            maker.right.equalTo(codeView).offset(-15)
+            maker.right.equalTo(codeGetButton.snp.left).offset(-15)
         }
         codeGetButton.snp.makeConstraints { (maker) in
             maker.centerY.equalTo(codeView)
             maker.right.equalTo(codeView).offset(-15)
             maker.height.equalTo(22)
+            maker.width.equalTo(100)
         }
         
         verifyButton.snp.makeConstraints { (maker) in
-            maker.width.equalTo(320)
-            maker.height.equalTo(48)
+            maker.width.equalTo(340)
+            maker.height.equalTo(68)
             maker.centerX.equalTo(view)
             maker.top.equalTo(codeView.snp.bottom).offset(60)
         }
@@ -243,16 +262,9 @@ class LoginViewController: UIViewController {
     }
     
     private func validateMobile(_ mobile: String) -> Bool {
-        
-        guard mobile.characters.count >= 4 else {
-            return false
-        }
-        
+        guard mobile.characters.count >= 4 else { return false }
         // 演示账号处理
-        if mobile.subStringToIndex(3) == "000" && mobile.characters.count == 4 {
-            return true
-        }
-        
+        if mobile.subStringToIndex(3) == "000" && mobile.characters.count == 4 { return true }
         // 正式手机号
         let mobileRegex = "^1[3|4|5|7|8][0-9]\\d{8}$"
         let mobileTest = NSPredicate(format: "SELF MATCHES %@", mobileRegex)
@@ -287,19 +299,8 @@ class LoginViewController: UIViewController {
     }
     
     
-    // MARK: - Event Response
-    ///  用户协议点击事件
-    @objc private func protocolDidTap() {
-        let webViewController = MalaSingleWebViewController()
-        webViewController.url = ""
-        self.navigationController?.pushViewController(webViewController, animated: true)
-    }
-    
-    @objc private func textDidChange() {
-        codeGetButton.isEnabled = validateMobile(phoneTextField.text ?? "")
-    }
-    
-    @objc private func didBeginEditing() {
+    // MARK: - Keyboard Notification
+    func keyboardWillShow(_ notification : Notification?) -> Void {
         header.snp.remakeConstraints({ (maker) in
             maker.top.equalTo(view)
             maker.width.equalTo(view).multipliedBy(1.2)
@@ -315,11 +316,12 @@ class LoginViewController: UIViewController {
         
         self.view.setNeedsUpdateConstraints()
         UIView.animate(withDuration: 0.35, animations: { () -> Void in
+            self.titleLabel.alpha = 1
             self.view.layoutIfNeeded()
         })
     }
     
-    @objc private func didEndEditing() {
+    func keyboardWillHide(_ notification : Notification?) -> Void {
         header.snp.remakeConstraints { (maker) in
             maker.top.equalTo(view)
             maker.width.equalTo(view).multipliedBy(1.2)
@@ -335,8 +337,43 @@ class LoginViewController: UIViewController {
         
         self.view.setNeedsUpdateConstraints()
         UIView.animate(withDuration: 0.35, animations: { () -> Void in
+            self.titleLabel.alpha = 0
             self.view.layoutIfNeeded()
         })
+    }
+    
+    
+    // MARK: - TextField Delegate
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        let currentCharacterCount = textField.text?.characters.count ?? 0
+        if (range.length + range.location > currentCharacterCount){
+            return false
+        }
+        let newLength = currentCharacterCount + string.characters.count - range.length
+        return newLength <= 11
+    }
+    
+    
+    // MARK: - Event Response
+    @objc private func clearButtonDidTap() {
+        phoneTextField.text = nil
+        clearButton.isHidden = true
+    }
+    
+    @objc private func protocolDidTap() {
+        let webViewController = MalaSingleWebViewController()
+        webViewController.url = ""
+        self.navigationController?.pushViewController(webViewController, animated: true)
+    }
+    
+    @objc private func textDidChange() {
+        codeGetButton.isEnabled = validateMobile(phoneTextField.text ?? "")
+        clearButton.isHidden = !(phoneTextField.text?.characters.count > 0)
+    }
+    
+    @objc private func backgroundDidTap() {
+        resignResponder()
     }
     
     @objc private func codeGetButtonDidTap() {
@@ -345,10 +382,10 @@ class LoginViewController: UIViewController {
         
         // 发送SMS
         MAProvider.sendSMS(phone: phone, failureHandler: { [weak self] error in
-            self?.showToast(L10n.networkNotReachable)
+            self?.showToastAtCenter(L10n.networkNotReachable)
         }) { [weak self] sent in
             DispatchQueue.main.async {
-                self?.showToast(sent ? L10n.verificationCodeSentSuccess : L10n.verificationCodeSentFailure)
+                self?.showToastAtCenter(sent ? L10n.verificationCodeSentSuccess : L10n.verificationCodeSentFailure)
                 self?.codeTextField.becomeFirstResponder()
             }
         }
@@ -357,13 +394,13 @@ class LoginViewController: UIViewController {
     @objc private func verifyButtonDidTap() {
         // 验证信息
         if !validateMobile(phoneTextField.text ?? "") {
-            showToast(L10n.invalidNumber)
+            showToastAtCenter(L10n.invalidNumber)
             self.phoneTextField.text = ""
             self.phoneTextField.becomeFirstResponder()
             return
         }
         if (codeTextField.text ?? "") == "" {
-            showToast(L10n.verificationCodeNotMatch)
+            showToastAtCenter(L10n.verificationCodeNotMatch)
             self.codeTextField.text = ""
             self.codeTextField.becomeFirstResponder()
             return
@@ -380,7 +417,7 @@ class LoginViewController: UIViewController {
             
             guard let loginUser = loginUser else {
                 self.resetStatus()
-                self.showToast(L10n.verificationCodeNotMatch)
+                self.showToastAtCenter(L10n.verificationCodeNotMatch)
                 return
             }
             
@@ -397,12 +434,14 @@ class LoginViewController: UIViewController {
     }
     
     @objc private func closeButtonDidClick() {
-        
-        self.phoneTextField.resignFirstResponder()
-        self.codeTextField.resignFirstResponder()
-        
+        resignResponder()
         closeAction?()
         dismiss(animated: true, completion: nil)
+    }
+    
+    private func resignResponder() {
+        self.phoneTextField.resignFirstResponder()
+        self.codeTextField.resignFirstResponder()
     }
     
     // 状态恢复
@@ -422,6 +461,7 @@ class LoginViewController: UIViewController {
     
     func close(animated flag: Bool, completion: (() -> Void)? = nil) {
         DispatchQueue.main.async {
+            self.resignResponder()
             MalaUserDefaults.fetchUserInfo()
             super.dismiss(animated: flag, completion: completion)
         }
@@ -430,6 +470,10 @@ class LoginViewController: UIViewController {
     deinit {
         popAction?()
         MalaMainViewController?.loadUnpaindOrder()
+        
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        
         println("LoginViewController - Deinit")
     }
 }
