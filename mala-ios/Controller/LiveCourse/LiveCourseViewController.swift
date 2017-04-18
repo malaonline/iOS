@@ -264,7 +264,7 @@ class LiveCourseViewController: StatefulViewController, UITableViewDelegate, UIT
     }
     
     func scrollToTop() {
-        tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+        tableView.scrollRectToVisible(CGRect(x: 0, y: 0, width: 1, height: 1), animated: true)
     }
 }
 
