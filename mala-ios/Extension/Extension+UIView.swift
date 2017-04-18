@@ -89,4 +89,14 @@ extension UIView {
         let point: CGPoint = CGPoint(x: self.bounds.size.width / 2.0, y: (self.bounds.size.height - (toast.frame.size.height / 2.0)) - padding - 44 - 10)
         self.showToast(toast, duration: ToastManager.shared.duration, position: point, completion: completion)
     }
+    
+    /// Show Toast at center.
+    ///
+    /// - Parameters:
+    ///   - message: String of the message.
+    ///   - completion: completion.
+    func showToastAtCenter(_ message: String, completion: ((Bool) -> Void)? = nil) {
+        let toast: UIView = try! self.toastViewForMessage(message, title: nil, image: nil, style: ToastManager.shared.style)
+        self.showToast(toast, duration: ToastManager.shared.duration, position: .center, completion: completion)
+    }
 }

@@ -50,6 +50,10 @@ extension UIViewController {
         currentView?.showToastAtBottom(message)
     }
     
+    public func showToastAtCenter(_ message: String) {
+        currentView?.showToastAtCenter(message)
+    }
+    
     public func showActivity() {
         currentView?.makeToastActivity(.center)
     }
