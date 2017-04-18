@@ -41,8 +41,8 @@ class LoginViewController: UIViewController {
     }()
     /// 手机图标
     private lazy var phoneIcon: UIImageView = {
-        let phoneIcon = UIImageView(imageName: "phone")
-        return phoneIcon
+        let view = UIImageView(imageName: "phone")
+        return view
     }()
     /// 获取验证码按钮
     private lazy var codeGetButton: UIButton = {
@@ -52,18 +52,8 @@ class LoginViewController: UIViewController {
         button.setTitleColor(UIColor(named: .loginDisableBlue), for: .disabled)
         button.titleLabel?.font = FontFamily.PingFangSC.Regular.font(16)
         button.addTarget(self, action: #selector(LoginViewController.codeGetButtonDidTap), for: .touchUpInside)
+        button.isEnabled = false
         return button
-    }()
-    /// [手机号错误] 提示
-    private lazy var phoneError: UIButton = {
-        let phoneError = UIButton()
-        phoneError.setImage(UIImage(asset: .error), for: UIControlState())
-        phoneError.setTitleColor(UIColor(named: .OrderStatusRed), for: UIControlState())
-        phoneError.titleLabel?.font = UIFont.systemFont(ofSize: 11)
-        phoneError.setTitle(L10n.invalidNumber, for: UIControlState())
-        phoneError.imageEdgeInsets = UIEdgeInsets(top: 0, left: -2, bottom: 0, right: 2)
-        phoneError.isHidden = true
-        return phoneError
     }()
     /// 手机号码输入框
     private lazy var phoneTextField: UITextField = {
@@ -72,7 +62,7 @@ class LoginViewController: UIViewController {
         textField.placeholder = L10n.inputYourNumber
         textField.font = FontFamily.PingFangSC.Regular.font(16)
         textField.textColor = UIColor(named: .ArticleSubTitle)
-        textField.addTarget(self, action: #selector(UITextInputDelegate.textDidChange(_:)), for: .editingChanged)
+        textField.addTarget(self, action: #selector(LoginViewController.textDidChange), for: .editingChanged)
         textField.addTarget(self, action: #selector(LoginViewController.didBeginEditing), for: .editingDidBegin)
         textField.addTarget(self, action: #selector(LoginViewController.didEndEditing), for: .editingDidEnd)
         textField.clearButtonMode = .never 
@@ -83,17 +73,6 @@ class LoginViewController: UIViewController {
         let codeIcon = UIImageView(imageName: "verifyCode")
         return codeIcon
     }()
-    /// [验证码错误] 提示
-    private lazy var codeError: UIButton = {
-        let codeError = UIButton()
-        codeError.setImage(UIImage(asset: .error), for: UIControlState())
-        codeError.setTitleColor(UIColor(named: .OrderStatusRed), for: UIControlState())
-        codeError.titleLabel?.font = UIFont.systemFont(ofSize: 11)
-        codeError.setTitle(L10n.verificationCodeNotMatch, for: UIControlState())
-        codeError.imageEdgeInsets = UIEdgeInsets(top: 0, left: -2, bottom: 0, right: 2)
-        codeError.isHidden = true
-        return codeError
-    }()
     /// 验证码输入框
     private lazy var codeTextField: UITextField = {
         let textField = UITextField()
@@ -101,7 +80,6 @@ class LoginViewController: UIViewController {
         textField.placeholder = L10n.verificationCode
         textField.textColor = UIColor(named: .ArticleSubTitle)
         textField.font = FontFamily.PingFangSC.Regular.font(16)
-        textField.addTarget(self, action: #selector(UITextInputDelegate.textDidChange(_:)), for: .editingChanged)
         textField.addTarget(self, action: #selector(LoginViewController.didBeginEditing), for: .editingDidBegin)
         textField.addTarget(self, action: #selector(LoginViewController.didEndEditing), for: .editingDidEnd)
         return textField
@@ -176,8 +154,6 @@ class LoginViewController: UIViewController {
         codeView.addSubview(codeTextField)
         codeView.addSubview(codeGetButton)
         
-//        view.addSubview(phoneError)
-//        view.addSubview(codeError)
         view.addSubview(verifyButton)
         view.addSubview(protocolLabel)
         view.addSubview(protocolString)
@@ -256,6 +232,10 @@ class LoginViewController: UIViewController {
     
     private func validateMobile(_ mobile: String) -> Bool {
         
+        guard mobile.characters.count >= 4 else {
+            return false
+        }
+        
         // 演示账号处理
         if mobile.subStringToIndex(3) == "000" && mobile.characters.count == 4 {
             return true
@@ -280,12 +260,12 @@ class LoginViewController: UIViewController {
             if strongSelf.callMeInSeconds <= 0 { // 倒计时完成
                 timer.cancel()
                 DispatchQueue.main.async{ () -> Void in
-                    strongSelf.codeGetButton.setTitle(L10n.getVerificationCode, for: UIControlState())
+                    strongSelf.codeGetButton.setTitle(L10n.getVerificationCode, for: .normal)
                     strongSelf.codeGetButton.isEnabled = true
                 }
             }else { // 继续倒计时
                 DispatchQueue.main.async{ () -> Void in
-                    strongSelf.codeGetButton.setTitle(String(format: " %02ds后获取 ", Int(strongSelf.callMeInSeconds)), for: .normal)
+                    strongSelf.codeGetButton.setTitle(String(format: "%ds后获取", Int(strongSelf.callMeInSeconds)), for: .normal)
                     strongSelf.codeGetButton.isEnabled = false
                 }
                 strongSelf.callMeInSeconds -= 1
@@ -301,6 +281,10 @@ class LoginViewController: UIViewController {
         let webViewController = MalaSingleWebViewController()
         webViewController.url = ""
         self.navigationController?.pushViewController(webViewController, animated: true)
+    }
+    
+    @objc private func textDidChange() {
+        codeGetButton.isEnabled = validateMobile(phoneTextField.text ?? "")
     }
     
     @objc private func didBeginEditing() {
@@ -343,33 +327,16 @@ class LoginViewController: UIViewController {
         })
     }
     
-    @objc private func textDidChange(_ textField: UITextField) {
-        // 若当前有错误信息出现，用户开始编辑时移除错误显示
-        if !phoneError.isHidden {
-            phoneError.isHidden = true
-        }else if !codeError.isHidden {
-            codeError.isHidden = true
-        }
-    }
-    
-    @objc private func codeGetButtonDidTap() {        
-        // 验证手机号
-        if !validateMobile(phoneTextField.text ?? "") {
-            self.phoneError.isHidden = false
-            self.phoneTextField.text = ""
-            self.phoneTextField.becomeFirstResponder()
-            return
-        }
-                
+    @objc private func codeGetButtonDidTap() {
         countDown()
         guard let phone = self.phoneTextField.text else { return }
         
         // 发送SMS
         MAProvider.sendSMS(phone: phone, failureHandler: { [weak self] error in
-            self?.ShowToast(L10n.networkNotReachable)
+            self?.showToast(L10n.networkNotReachable)
         }) { [weak self] sent in
             DispatchQueue.main.async {
-                self?.ShowToast(sent ? L10n.verificationCodeSentSuccess : L10n.verificationCodeSentFailure)
+                self?.showToast(sent ? L10n.verificationCodeSentSuccess : L10n.verificationCodeSentFailure)
                 self?.codeTextField.becomeFirstResponder()
             }
         }
@@ -378,13 +345,13 @@ class LoginViewController: UIViewController {
     @objc private func verifyButtonDidTap() {
         // 验证信息
         if !validateMobile(phoneTextField.text ?? "") {
-            self.phoneError.isHidden = false
+            showToast(L10n.invalidNumber)
             self.phoneTextField.text = ""
             self.phoneTextField.becomeFirstResponder()
             return
         }
         if (codeTextField.text ?? "") == "" {
-            self.codeError.isHidden = false
+            showToast(L10n.verificationCodeNotMatch)
             self.codeTextField.text = ""
             self.codeTextField.becomeFirstResponder()
             return
@@ -401,7 +368,7 @@ class LoginViewController: UIViewController {
             
             guard let loginUser = loginUser else {
                 self.resetStatus()
-                self.ShowToast(L10n.verificationCodeNotMatch)
+                self.showToast(L10n.verificationCodeNotMatch)
                 return
             }
             
@@ -429,7 +396,6 @@ class LoginViewController: UIViewController {
     // 状态恢复
     func resetStatus() {
         DispatchQueue.main.async {
-            self.codeError.isHidden = false
             self.codeTextField.text = ""
         }
     }
