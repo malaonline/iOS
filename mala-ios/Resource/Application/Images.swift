@@ -207,6 +207,7 @@ enum ImageAsset: String {
     case clearPress = "clear_press"
     case loginNormal = "login_normal"
     case loginPress = "login_press"
+    case hot = "hot"
     
     var image: Image {
         return Image(asset: self)

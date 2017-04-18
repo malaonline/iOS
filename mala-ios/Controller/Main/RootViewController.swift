@@ -13,7 +13,7 @@ import PagingMenuController
 private struct PagingMenuOptions: PagingMenuControllerCustomizable {
     
     var backgroundColor: UIColor {
-        return UIColor(named: .RegularBackground)
+        return UIColor(named: .mainNaviBlue)
     }
     
     fileprivate var componentType: ComponentType {
@@ -28,10 +28,10 @@ private struct PagingMenuOptions: PagingMenuControllerCustomizable {
     
     fileprivate struct MenuOptions: MenuViewCustomizable {
         var backgroundColor: UIColor {
-            return UIColor(named: .OptionBackground)
+            return UIColor(named: .mainNaviBlue)
         }
         var selectedBackgroundColor: UIColor {
-            return UIColor(named: .OptionBackground)
+            return UIColor(named: .mainNaviBlue)
         }
         var displayMode: MenuDisplayMode {
             return .segmentedControl
@@ -40,18 +40,18 @@ private struct PagingMenuOptions: PagingMenuControllerCustomizable {
             return [MenuItem2(), MenuItem1()]
         }
         var focusMode: MenuFocusMode {
-            return .underline(height: 2, color: UIColor(named: .OptionSelectColor), horizontalPadding: 30, verticalPadding: 0)
+            return .underline(height: 2, color: UIColor.white, horizontalPadding: 30, verticalPadding: 0)
         }
     }
     
     fileprivate struct MenuItem1: MenuItemViewCustomizable {
         var displayMode: MenuItemDisplayMode {
-            return .text(title: MenuItemText(text: L10n.tuition, color: UIColor(named: .OptionTitle), selectedColor: UIColor(named: .OptionSelectColor)))
+            return .text(title: MenuItemText(text: L10n.tuition, color: UIColor.white, selectedColor: UIColor.white))
         }
     }
     fileprivate struct MenuItem2: MenuItemViewCustomizable {
         var displayMode: MenuItemDisplayMode {
-            return .text(title: MenuItemText(text: L10n.live, color: UIColor(named: .OptionTitle), selectedColor: UIColor(named: .OptionSelectColor)))
+            return .text(title: MenuItemText(text: L10n.live, color: UIColor.white, selectedColor: UIColor.white))
         }
     }
 }
@@ -101,7 +101,8 @@ class RootViewController: UIViewController {
     // MARK: - Private Method
     private func setupUserInterface() {
         // Style
-        navigationController?.navigationBar.shadowImage = UIImage.withColor(UIColor(named: .NavigationShadow))
+        navigationController?.navigationBar.setBackgroundImage(UIImage.withColor(UIColor(named: .mainNaviBlue)), for: .default)
+        navigationController?.navigationBar.shadowImage = UIImage()
         
         // TitleView
         navigationItem.titleView = regionPickButton
@@ -110,7 +111,7 @@ class RootViewController: UIViewController {
         let spacer = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
         spacer.width = -12
         navigationItem.leftBarButtonItems = []
-        navigationItem.rightBarButtonItems = [spacer, UIBarButtonItem(customView: rightBarButton)]
+        navigationItem.rightBarButtonItems = [UIBarButtonItem(customView: rightBarButton), spacer]
     }
     
     private func setupPageController() {

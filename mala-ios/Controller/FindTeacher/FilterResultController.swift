@@ -43,7 +43,7 @@ class FilterResultController: StatefulViewController, UITableViewDataSource, UIT
         let tableView = UITableView(frame: self.view.frame, style: .plain)
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.backgroundColor = UIColor(named: .RegularBackground)
+        tableView.backgroundColor = UIColor(named: .loginLightBlue)
         tableView.estimatedRowHeight = 200
         tableView.separatorStyle = .none
         tableView.contentInset = UIEdgeInsets(top: 6, left: 0, bottom: 48 + 6, right: 0)

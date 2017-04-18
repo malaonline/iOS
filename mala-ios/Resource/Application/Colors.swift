@@ -108,6 +108,8 @@ enum ColorName: UInt32 {
     case protocolGary = 0xA0A3ABFF
     case loginShadow = 0xCDE4FFFF
     
+    case mainNaviBlue = 0x73A4FCFF
+    
     var color: Color {
         return Color(named: self)
     }

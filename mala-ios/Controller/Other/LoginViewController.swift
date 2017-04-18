@@ -147,7 +147,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         navigationItem.titleView = titleLabel
         navigationItem.titleView?.alpha = 0
         
-        UIApplication.shared.statusBarStyle = UIStatusBarStyle.default
         navigationController?.navigationBar.setBackgroundImage(UIImage.withColor(UIColor(named: .loginBlue)), for: .default)
         navigationController?.navigationBar.shadowImage = UIImage()
         
