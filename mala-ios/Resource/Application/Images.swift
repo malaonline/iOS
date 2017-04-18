@@ -202,6 +202,12 @@ enum ImageAsset: String {
     case vipIcon = "vip_icon"
     case wechatIcon = "wechat_icon"
     
+    // New
+    case clearNormal = "clear_normal"
+    case clearPress = "clear_press"
+    case loginNormal = "login_normal"
+    case loginPress = "login_press"
+    
     var image: Image {
         return Image(asset: self)
     }
