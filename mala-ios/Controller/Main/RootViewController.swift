@@ -30,6 +30,9 @@ private struct PagingMenuOptions: PagingMenuControllerCustomizable {
         var backgroundColor: UIColor {
             return UIColor(named: .mainNaviBlue)
         }
+        var height: CGFloat {
+            return 34
+        }
         var selectedBackgroundColor: UIColor {
             return UIColor(named: .mainNaviBlue)
         }
@@ -40,7 +43,7 @@ private struct PagingMenuOptions: PagingMenuControllerCustomizable {
             return [MenuItem2(), MenuItem1()]
         }
         var focusMode: MenuFocusMode {
-            return .underline(height: 2, color: UIColor.white, horizontalPadding: 30, verticalPadding: 0)
+            return .underline(height: 2.5, color: UIColor.white, horizontalPadding: 30, verticalPadding: 0)
         }
     }
     
@@ -119,6 +122,16 @@ class RootViewController: UIViewController {
         addChildViewController(menu)
         view.addSubview(menu.view)
         menu.didMove(toParentViewController: self)
+        
+        // set HOT label
+        guard let label = menu.menuView?.currentMenuItemView.titleLabel else { return }
+        let hotImage = UIImageView(image: UIImage(asset: .hot))
+        
+        label.addSubview(hotImage)
+        hotImage.snp.makeConstraints { (maker) in
+            maker.bottom.equalTo(label.snp.centerY)
+            maker.left.equalTo(label.snp.centerX).offset(32)
+        }
     }
     
     private func getCurrentLocation() {
