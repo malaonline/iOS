@@ -105,7 +105,6 @@ class RootViewController: UIViewController {
     private func setupUserInterface() {
         // Style
         navigationController?.navigationBar.setBackgroundImage(UIImage.withColor(UIColor(named: .mainNaviBlue)), for: .default)
-        navigationController?.navigationBar.shadowImage = UIImage()
         
         // TitleView
         navigationItem.titleView = regionPickButton

@@ -172,12 +172,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - Appearance
     /// 设置公共外观样式
     private func customAppearance() {
+        
         // NavigationBar
-        UINavigationBar.appearance().tintColor = UIColor(named: .ArticleSubTitle)
-        UINavigationBar.appearance().setBackgroundImage(UIImage.withColor(UIColor.white), for: .default)
+        UINavigationBar.appearance().tintColor = UIColor.white
+        UINavigationBar.appearance().titleTextAttributes = [
+            NSFontAttributeName: FontFamily.PingFangSC.Regular.font(16),
+            NSForegroundColorAttributeName: UIColor.white
+        ]
+        UINavigationBar.appearance().setBackgroundImage(UIImage.withColor(UIColor(named: .mainNaviBlue)), for: .default)
+        UINavigationBar.appearance().shadowImage = UIImage.withColor(UIColor.clear)
+        
         // TabBar
-        UITabBar.appearance().tintColor = UIColor(named: .ThemeBlue)
-    }  
+        UITabBar.appearance().tintColor = UIColor(named: .mainNaviBlue)
+        UITabBar.appearance().backgroundImage = UIImage.withColor(UIColor.white)
+        UITabBar.appearance().shadowImage = UIImage.withColor(UIColor(named: .loginLightBlue))
+        
+        // StatusBar
+        UIApplication.shared.statusBarStyle = .lightContent
+    }
 }
 
 

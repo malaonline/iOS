@@ -77,9 +77,9 @@ public class CourseTableViewController: StatefulViewController, UITableViewDataS
     private lazy var titleLabel: UILabel = {
         let label = UILabel(
             text: L10n.schedule,
-            fontSize: 16,
-            textColor: UIColor.black
+            textColor: UIColor.white
         )
+        label.font = FontFamily.PingFangSC.Regular.font(16)
         return label
     }()
     
@@ -127,6 +127,7 @@ public class CourseTableViewController: StatefulViewController, UITableViewDataS
         // Style
         navigationItem.titleView = UIView()
         navigationItem.titleView?.addSubview(titleLabel)
+        navigationController?.navigationBar.setBackgroundImage(UIImage.withColor(UIColor(named: .mainNaviBlue)), for: .default)
         
         // SubViews
         view.addSubview(tableView)
