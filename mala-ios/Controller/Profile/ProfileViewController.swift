@@ -35,21 +35,18 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
     /// 顶部背景图
     private lazy var headerBackground: UIImageView = {
         let image = UIImageView(imageName: "profile_headerBackground")
-        image.contentMode = .scaleAspectFill
+        image.backgroundColor = UIColor(named: .profileBlue)
         return image
     }()
     /// [退出登录] 按钮
     private lazy var logoutButton: UIButton = {
         let button = UIButton()
-        button.layer.cornerRadius = 5
-        button.layer.masksToBounds = true
-        
-        button.setTitle("退  出", for: UIControlState())
-        button.setTitleColor(UIColor.white, for: UIControlState())
-        button.setBackgroundImage(UIImage.withColor(UIColor(named: .ThemeBlue)), for: UIControlState())
-        button.setBackgroundImage(UIImage.withColor(UIColor(named: .ThemeBlue)), for: .highlighted)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
-        
+        button.setTitle("退出登录", for: .normal)
+        button.titleLabel?.font = FontFamily.PingFangSC.Regular.font(18)
+        button.setTitleColor(UIColor.white, for: .normal)
+        button.setBackgroundImage(UIImage(asset: .loginNormal), for: .normal)
+        button.setBackgroundImage(UIImage(asset: .loginPress), for: .highlighted)
+        button.setBackgroundImage(UIImage(asset: .loginPress), for: .disabled)
         button.addTarget(self, action: #selector(ProfileViewController.logoutButtonDidTap), for: .touchUpInside)
         return button
     }()
@@ -105,7 +102,7 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
         // Style
         tableView.tableHeaderView = profileHeaderView
         tableView.tableFooterView = profileFooterView
-        tableView.backgroundColor = UIColor(named: .CardBackground)
+        tableView.backgroundColor = UIColor(named: .themeLightBlue)
         tableView.separatorStyle = .none
         
         // SubViews
@@ -117,14 +114,14 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
         headerBackground.snp.makeConstraints { (maker) -> Void in
             maker.top.equalTo(0)
             maker.centerX.equalTo(tableView)
-            maker.width.equalTo(MalaScreenWidth)
+            maker.width.equalTo(tableView)
             maker.height.equalTo(MalaLayout_ProfileHeaderViewHeight)
         }
         logoutButton.snp.makeConstraints { (maker) -> Void in
-            maker.bottom.equalTo(profileFooterView)
+            maker.top.equalTo(profileFooterView).offset(20)
             maker.centerX.equalTo(profileFooterView)
-            maker.width.equalTo(profileFooterView).multipliedBy(0.85)
-            maker.height.equalTo(37)
+            maker.width.equalTo(320)
+            maker.height.equalTo(68)
         }
     }
     
@@ -214,12 +211,16 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
     // MARK: - Delegate
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 8))
-        view.backgroundColor = UIColor(named: .CardBackground)
+        view.backgroundColor = UIColor(named: .themeLightBlue)
         return view
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return section == 0 ? 0 : 12
+        switch section {
+        case 0: return 0
+        case 1: return 12
+        default: return 1
+        }
     }
     
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
@@ -227,7 +228,7 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return indexPath.section == 0 ? 114 : 44
+        return indexPath.section == 0 ? 114 : 56
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

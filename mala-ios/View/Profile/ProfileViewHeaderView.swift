@@ -64,8 +64,8 @@ class ProfileViewHeaderView: UIView {
     /// 姓名label控件
     private lazy var nameLabel: UILabel = {
         let label = UILabel()
-        label.textColor = UIColor(named: .ThemeBlue)
-        label.font = UIFont.systemFont(ofSize: 14)
+        label.textColor = UIColor.white
+        label.font = FontFamily.PingFangSC.Regular.font(16)
         label.textAlignment = .center
         label.isUserInteractionEnabled = true
         label.addTapEvent(target: self, action: #selector(ProfileViewHeaderView.nameEditButtonDidTap(_:)))
@@ -74,7 +74,9 @@ class ProfileViewHeaderView: UIView {
     /// 姓名修改按钮
     private lazy var editButton: UIButton = {
         let button = UIButton()
-        button.setBackgroundImage(UIImage(asset: .editIcon), for: UIControlState())
+        button.setBackgroundImage(UIImage(asset: .editIcon), for: .normal)
+        button.setBackgroundImage(UIImage(asset: .editIconPress), for: .highlighted)
+        button.setBackgroundImage(UIImage(asset: .editIconPress), for: .disabled)
         button.addTarget(self, action: #selector(ProfileViewHeaderView.nameEditButtonDidTap(_:)), for: .touchUpInside)
         return button
     }()
@@ -130,10 +132,10 @@ class ProfileViewHeaderView: UIView {
             maker.height.equalTo(14)
         }
         editButton.snp.makeConstraints { (maker) -> Void in
-            maker.centerY.equalTo(nameLabel)
+            maker.bottom.equalTo(nameLabel)
             maker.left.equalTo(nameLabel.snp.right).offset(3)
-            maker.width.equalTo(9)
-            maker.height.equalTo(13)
+            maker.width.equalTo(18)
+            maker.height.equalTo(18)
         }
         activityIndicator.snp.makeConstraints { (maker) -> Void in
             maker.center.equalTo(avatarView)

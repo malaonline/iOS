@@ -78,6 +78,7 @@ enum ImageAsset: String {
     case dotLegend = "dot_legend"
     case dropArrow = "dropArrow"
     case editIcon = "edit_icon"
+    case editIconPress = "edit_icon_press"
     case error = "error"
     case examOutlineLecture = "examOutlineLecture"
     case examOutlineLectureDetail = "examOutlineLecture_detail"

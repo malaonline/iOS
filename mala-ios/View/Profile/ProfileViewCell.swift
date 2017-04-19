@@ -43,15 +43,15 @@ class ProfileViewCell: UITableViewCell {
     /// 标题label
     private lazy var titleLabel: UILabel = {
         let titleLabel = UILabel()
-        titleLabel.font = UIFont.systemFont(ofSize: 14)
-        titleLabel.textColor = UIColor(named: .ArticleText)
+        titleLabel.textColor = UIColor(named: .ArticleTitle)
+        titleLabel.font = FontFamily.PingFangSC.Regular.font(14)
         return titleLabel
     }()
     /// 信息label
     private lazy var infoLabel: UILabel = {
         let infoLabel = UILabel()
-        infoLabel.font = UIFont.systemFont(ofSize: 13)
         infoLabel.textColor = UIColor(named: .InfoText)
+        infoLabel.font = FontFamily.PingFangSC.Regular.font(13)
         return infoLabel
     }()
     /// 分割线
