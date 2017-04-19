@@ -30,7 +30,7 @@ public class StatefulViewController: UIViewController {
 
     override public func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.navigationBar.setBackgroundImage(UIImage.withColor(UIColor(named: .mainNaviBlue)), for: .default)
+        navigationController?.navigationBar.setBackgroundImage(UIImage.withColor(UIColor(named: .themeBlue)), for: .default)
     }
 
     override public func didReceiveMemoryWarning() {

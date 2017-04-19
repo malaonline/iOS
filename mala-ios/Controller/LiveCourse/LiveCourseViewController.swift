@@ -106,7 +106,7 @@ class LiveCourseViewController: StatefulViewController, UITableViewDelegate, UIT
     private func configration() {
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.backgroundColor = UIColor(named: .loginLightBlue)
+        tableView.backgroundColor = UIColor(named: .themeLightBlue)
         tableView.estimatedRowHeight = 200
         tableView.separatorStyle = .none
         tableView.tableHeaderView = banner

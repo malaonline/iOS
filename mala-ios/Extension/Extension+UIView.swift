@@ -26,7 +26,7 @@ extension UIView {
     ///
     /// - Returns: UIView
     class func loginInputShadow() -> UIView {
-        let view = UIView(UIColor(named: .loginLightBlue))
+        let view = UIView(UIColor(named: .themeLightBlue))
         view.layer.cornerRadius = 4
         view.layer.shadowColor = UIColor(named: .loginShadow).cgColor
         view.layer.shadowRadius = 4

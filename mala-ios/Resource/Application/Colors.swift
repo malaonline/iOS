@@ -102,8 +102,9 @@ enum ColorName: UInt32 {
     case CertificateBack = 0xFCDFB7FF
     
     // New
-    case mainNaviBlue = 0x73A4FCFF
-    case loginLightBlue = 0xE7F1FFFF
+    case themeBlue = 0x73A4FCFF
+    case themeLightBlue = 0xE7F1FFFF
+    
     case loginBlue = 0x78A8FEFF
     case loginDisableBlue = 0x78A8FE7F
     case protocolGary = 0xA0A3ABFF

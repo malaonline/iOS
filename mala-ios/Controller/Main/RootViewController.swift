@@ -13,7 +13,7 @@ import PagingMenuController
 private struct PagingMenuOptions: PagingMenuControllerCustomizable {
     
     var backgroundColor: UIColor {
-        return UIColor(named: .mainNaviBlue)
+        return UIColor(named: .themeBlue)
     }
     
     fileprivate var componentType: ComponentType {
@@ -28,13 +28,13 @@ private struct PagingMenuOptions: PagingMenuControllerCustomizable {
     
     fileprivate struct MenuOptions: MenuViewCustomizable {
         var backgroundColor: UIColor {
-            return UIColor(named: .mainNaviBlue)
+            return UIColor(named: .themeBlue)
         }
         var height: CGFloat {
             return 34
         }
         var selectedBackgroundColor: UIColor {
-            return UIColor(named: .mainNaviBlue)
+            return UIColor(named: .themeBlue)
         }
         var displayMode: MenuDisplayMode {
             return .segmentedControl
@@ -103,9 +103,6 @@ class RootViewController: UIViewController {
     
     // MARK: - Private Method
     private func setupUserInterface() {
-        // Style
-        navigationController?.navigationBar.setBackgroundImage(UIImage.withColor(UIColor(named: .mainNaviBlue)), for: .default)
-        
         // TitleView
         navigationItem.titleView = regionPickButton
         

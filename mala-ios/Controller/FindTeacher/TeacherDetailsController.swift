@@ -151,7 +151,7 @@ class TeacherDetailsController: BaseViewController, UIGestureRecognizerDelegate,
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        navigationController?.navigationBar.setBackgroundImage(UIImage.withColor(UIColor(named: .mainNaviBlue)), for: .default)
+        navigationController?.navigationBar.setBackgroundImage(UIImage.withColor(UIColor(named: .themeBlue)), for: .default)
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -279,7 +279,7 @@ class TeacherDetailsController: BaseViewController, UIGestureRecognizerDelegate,
     
     private func showBackground() {
         title = model.name
-        navigationController?.navigationBar.setBackgroundImage(UIImage.withColor(UIColor(named: .mainNaviBlue)), for: .default)
+        navigationController?.navigationBar.setBackgroundImage(UIImage.withColor(UIColor(named: .themeBlue)), for: .default)
         isNavigationBarShow = true
     }
     

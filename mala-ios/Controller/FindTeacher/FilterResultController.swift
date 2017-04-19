@@ -43,7 +43,7 @@ class FilterResultController: StatefulViewController, UITableViewDataSource, UIT
         let tableView = UITableView(frame: self.view.frame, style: .plain)
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.backgroundColor = UIColor(named: .loginLightBlue)
+        tableView.backgroundColor = UIColor(named: .themeLightBlue)
         tableView.estimatedRowHeight = 200
         tableView.separatorStyle = .none
         tableView.contentInset = UIEdgeInsets(top: 6, left: 0, bottom: 48 + 6, right: 0)
@@ -54,7 +54,7 @@ class FilterResultController: StatefulViewController, UITableViewDataSource, UIT
     /// 筛选条件面板
     private lazy var filterBar: FilterBar = {
         let filterBar = FilterBar(frame: CGRect.zero)
-        filterBar.backgroundColor = UIColor(named: .loginLightBlue)
+        filterBar.backgroundColor = UIColor(named: .themeLightBlue)
         filterBar.controller = self
         return filterBar
     }()

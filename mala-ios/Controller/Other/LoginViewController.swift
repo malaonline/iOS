@@ -140,7 +140,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     // MARK: - Private Method
     private func setupUserInterface() {
         // Style
-        view.backgroundColor = UIColor(named: .loginLightBlue)
+        view.backgroundColor = UIColor(named: .themeLightBlue)
         view.addTapEvent(target: self, action: #selector(LoginViewController.backgroundDidTap))
         let leftBarButtonItem = UIBarButtonItem(customView:UIButton(imageName: "close_white", target: self, action: #selector(LoginViewController.closeButtonDidClick)))
         navigationItem.leftBarButtonItem = leftBarButtonItem
