@@ -5,11 +5,33 @@
       "scale" : "1x"
     },
     {
+      "resizing" : {
+        "mode" : "3-part-vertical",
+        "center" : {
+          "mode" : "stretch",
+          "height" : 1
+        },
+        "cap-insets" : {
+          "top" : 0,
+          "bottom" : 61
+        }
+      },
       "idiom" : "universal",
       "filename" : "profile_headerBackground@2x.png",
       "scale" : "2x"
     },
     {
+      "resizing" : {
+        "mode" : "3-part-vertical",
+        "center" : {
+          "mode" : "stretch",
+          "height" : 1
+        },
+        "cap-insets" : {
+          "top" : 0,
+          "bottom" : 92
+        }
+      },
       "idiom" : "universal",
       "filename" : "profile_headerBackground@3x.png",
       "scale" : "3x"
