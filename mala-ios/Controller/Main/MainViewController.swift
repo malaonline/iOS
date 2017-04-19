@@ -156,7 +156,8 @@ class MainViewController: UITabBarController, UITabBarControllerDelegate {
      ///  - parameter imageName:      String for ImageName
     private func getNaviController(_ viewController: UIViewController, title: String, imageName: String) -> MainNavigationController {
         viewController.title = title
-        viewController.tabBarItem.image = UIImage(named: imageName)
+        viewController.tabBarItem.image = UIImage(named: imageName)?.withRenderingMode(.alwaysOriginal)
+        viewController.tabBarItem.selectedImage = UIImage(named: imageName)?.withRenderingMode(.alwaysTemplate)
         let navigationController = MainNavigationController(rootViewController: viewController)
         return navigationController
     }

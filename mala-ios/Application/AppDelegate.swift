@@ -187,6 +187,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UITabBar.appearance().backgroundImage = UIImage.withColor(UIColor.white)
         UITabBar.appearance().shadowImage = UIImage.withColor(UIColor(named: .loginLightBlue))
         
+        // TabBarItem
+        UITabBarItem.appearance().setTitleTextAttributes([
+            NSFontAttributeName: FontFamily.PingFangSC.Regular.font(8),
+            NSForegroundColorAttributeName: UIColor(named: .labelBlack)
+            ], for: .normal)
+        UITabBarItem.appearance().setTitleTextAttributes([
+            NSFontAttributeName: FontFamily.PingFangSC.Regular.font(8),
+            NSForegroundColorAttributeName: UIColor(named: .mainNaviBlue)
+            ], for: .highlighted)
+        UITabBarItem.appearance().setTitleTextAttributes([
+            NSFontAttributeName: FontFamily.PingFangSC.Regular.font(8),
+            NSForegroundColorAttributeName: UIColor(named: .mainNaviBlue)
+            ], for: .selected)
+        UITabBarItem.appearance().titlePositionAdjustment = UIOffset(horizontal: 0, vertical: -4)
         // StatusBar
         UIApplication.shared.statusBarStyle = .lightContent
     }
