@@ -204,7 +204,7 @@ class LiveCourseTableViewCell: UITableViewCell {
     // MARK: - Private Method
     private func setupUserInterface() {
         // Style
-        contentView.backgroundColor = UIColor(named: .RegularBackground)
+        contentView.backgroundColor = UIColor(named: .loginLightBlue)
         selectionStyle = .none
         
         // SubViews

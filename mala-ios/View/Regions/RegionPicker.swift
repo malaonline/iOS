@@ -13,21 +13,24 @@ class RegionPicker: UIView {
     // MARK: - Property
     var schoolName: String? = MalaCurrentSchool?.name {
         didSet {
-            regionLabel.text = String(format: "校区:%@", schoolName ?? "未选择")
+            regionLabel.text = schoolName ?? "未选择"
         }
     }
     
     
     // MARK: - Components
     private lazy var layoutView: UIView = {
-        let view = UIView()
+        let view = UIView(UIColor.white)
+        view.layer.cornerRadius = 12
+        view.layer.masksToBounds = true
+        view.alpha = 0.2
         return view
     }()
     private lazy var regionLabel: UILabel = {
         let label = UILabel(
-            text: String(format: "校区:%@", MalaCurrentSchool?.name ?? "未选择"),
-            fontSize: 15,
-            textColor: UIColor(named: .ArticleTitle)
+            text: MalaCurrentSchool?.name ?? "未选择",
+            fontSize: 12,
+            textColor: UIColor.white
         )
         return label
     }()
@@ -50,29 +53,28 @@ class RegionPicker: UIView {
 
     // MARK: - Private Method
     private func setupUserInterface() {
-        
         // SubViews
         addSubview(layoutView)
-        layoutView.addSubview(regionLabel)
-        layoutView.addSubview(arrow)
+        insertSubview(regionLabel, aboveSubview: layoutView)
+        insertSubview(arrow, aboveSubview: layoutView)
         
         // AutoLayout
         layoutView.snp.makeConstraints { (maker) in
             maker.center.equalTo(self)
-            maker.height.equalTo(self)
+            maker.height.equalTo(24)
         }
         regionLabel.snp.makeConstraints { (maker) in
             maker.centerY.equalTo(layoutView)
             maker.height.equalTo(layoutView)
-            maker.left.equalTo(layoutView)
+            maker.left.equalTo(layoutView).offset(15)
             maker.right.equalTo(arrow.snp.left).offset(-5)
         }
         arrow.snp.makeConstraints { (maker) in
             maker.width.equalTo(8)
-            maker.height.equalTo(4.5)
+            maker.height.equalTo(12)
             maker.centerY.equalTo(layoutView)
             maker.left.equalTo(regionLabel.snp.right).offset(5)
-            maker.right.equalTo(layoutView)
+            maker.right.equalTo(layoutView).offset(-15)
         }
     }
 }

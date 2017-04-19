@@ -106,11 +106,11 @@ class LiveCourseViewController: StatefulViewController, UITableViewDelegate, UIT
     private func configration() {
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.backgroundColor = UIColor(named: .RegularBackground)
+        tableView.backgroundColor = UIColor(named: .loginLightBlue)
         tableView.estimatedRowHeight = 200
         tableView.separatorStyle = .none
         tableView.tableHeaderView = banner
-        tableView.contentInset = UIEdgeInsets(top: 6, left: 0, bottom: 48 + 6, right: 0)
+        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 48 + 6, right: 0)
         tableView.register(LiveCourseTableViewCell.self, forCellReuseIdentifier: LiveCourseTableViewCellReusedId)
         tableView.register(ThemeReloadView.self, forCellReuseIdentifier: LiveCourseTableViewLoadmoreCellReusedId)
     }
@@ -264,7 +264,7 @@ class LiveCourseViewController: StatefulViewController, UITableViewDelegate, UIT
     }
     
     func scrollToTop() {
-        tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+        tableView.scrollRectToVisible(CGRect(x: 0, y: 0, width: 1, height: 1), animated: true)
     }
 }
 

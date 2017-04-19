@@ -15,8 +15,8 @@ open class BaseViewController: UIViewController {
     /// 导航栏返回按钮
     lazy var backBarButton: UIButton = {
         let backBarButton = UIButton(
-            imageName: "leftArrow_black",
-            highlightImageName: "leftArrow_black",
+            imageName: "leftArrow_white",
+            highlightImageName: "leftArrow_white",
             target: self,
             action: #selector(BaseViewController.popSelf)
         )
@@ -58,6 +58,7 @@ open class BaseViewController: UIViewController {
     }
     
     private func configure() {
+        navigationController?.navigationBar.setBackgroundImage(UIImage.withColor(UIColor(named: .mainNaviBlue)), for: .default)
         
         // 设置BarButtomItem间隔
         let spacer = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)

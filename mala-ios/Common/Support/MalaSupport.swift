@@ -78,7 +78,7 @@ public func commonTextStyle() -> [String: AnyObject]? {
 
 // MARK: - Method
 public func makeStatusBarBlack() {
-    UIApplication.shared.statusBarStyle = .default
+    UIApplication.shared.statusBarStyle = .lightContent // .default
 }
 
 public func makeStatusBarWhite() {

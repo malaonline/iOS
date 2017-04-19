@@ -118,14 +118,14 @@ class OrderFormInfoViewController: BaseViewController, OrderFormOperatingViewDel
         
         //  课时
         guard MalaCurrentCourse.classPeriod != 0 else {
-            ShowToast(L10n.periodError)
+            showToast(L10n.periodError)
             return
         }
         
         // 上课时间
         let timeslots = MalaCurrentCourse.selectedTime.map{$0.id}
         guard timeslots.count != 0 else {
-            ShowToast(L10n.timeslotsError)
+            showToast(L10n.timeslotsError)
             return
         }
         
@@ -135,7 +135,7 @@ class OrderFormInfoViewController: BaseViewController, OrderFormOperatingViewDel
         // 请求上课时间表
         MAProvider.getConcreteTimeslots(id: id, hours: hours, timeSlots: timeslots) { timeSlots in
             guard let timesSchedule = timeSlots else {
-                self.ShowToast(L10n.timeslotsGetError)
+                self.showToast(L10n.timeslotsGetError)
                 return
             }
             
@@ -155,7 +155,7 @@ class OrderFormInfoViewController: BaseViewController, OrderFormOperatingViewDel
     private func cancelOrder() {
         MAProvider.cancelOrder(id: id) { result in
             DispatchQueue.main.async {
-                self.ShowToast(result == true ? L10n.orderCanceledSuccess : L10n.orderCanceledFailure)
+                self.showToast(result == true ? L10n.orderCanceledSuccess : L10n.orderCanceledFailure)
                 _ = self.navigationController?.popViewController(animated: true)
             }
         }
@@ -165,7 +165,7 @@ class OrderFormInfoViewController: BaseViewController, OrderFormOperatingViewDel
         
         MAProvider.createOrder(order: MalaOrderObject.jsonDictionary(), failureHandler: { error in
             DispatchQueue.main.async {
-                self.ShowToast(L10n.networkNotReachable)
+                self.showToast(L10n.networkNotReachable)
             }
         }) { [weak self] order in
             // 订单创建错误
@@ -186,7 +186,7 @@ class OrderFormInfoViewController: BaseViewController, OrderFormOperatingViewDel
                     message = L10n.networkNotReachable
                 }
                 DispatchQueue.main.async{
-                    self?.ShowToast(message)
+                    self?.showToast(message)
                 }
             }else {
                 println("创建订单成功:\(order)")
@@ -238,7 +238,7 @@ class OrderFormInfoViewController: BaseViewController, OrderFormOperatingViewDel
             viewController.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(viewController, animated: true)
         }else {
-            self.ShowToast(L10n.orderInfoError)
+            self.showToast(L10n.orderInfoError)
         }
     }
     
@@ -259,6 +259,6 @@ class OrderFormInfoViewController: BaseViewController, OrderFormOperatingViewDel
     
     /// 申请退费
     func requestRefund() {
-        ShowToast(L10n.comingSoon)
+        showToast(L10n.comingSoon)
     }
 }

@@ -138,7 +138,7 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
                 
                 // 若对应项被冻结，则点击无效
                 if model.disabled, let message = model.disabledMessage {
-                    self?.ShowToast(message)
+                    self?.showToast(message)
                     return
                 }
                 

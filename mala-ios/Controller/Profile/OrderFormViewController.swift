@@ -56,6 +56,16 @@ class OrderFormViewController: StatefulViewController, UITableViewDelegate, UITa
         tableView.register(ThemeReloadView.self, forCellReuseIdentifier: OrderFormViewLoadmoreCellReusedId)
         return tableView
     }()
+    /// 导航栏返回按钮
+    lazy var backBarButton: UIButton = {
+        let backBarButton = UIButton(
+            imageName: "leftArrow_white",
+            highlightImageName: "leftArrow_white",
+            target: self,
+            action: #selector(FilterResultController.popSelf)
+        )
+        return backBarButton
+    }()
 
     
     // MARK: - Life Cycle
@@ -91,6 +101,12 @@ class OrderFormViewController: StatefulViewController, UITableViewDelegate, UITa
         
         // 开启下拉刷新
         tableView.startPullRefresh()
+        
+        // leftBarButtonItem
+        let spacer = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
+        spacer.width = -2
+        let leftBarButtonItem = UIBarButtonItem(customView: backBarButton)
+        navigationItem.leftBarButtonItems = [spacer, leftBarButtonItem]
         
         // 下拉刷新
         tableView.addPullRefresh{ [weak self] in
@@ -179,7 +195,7 @@ class OrderFormViewController: StatefulViewController, UITableViewDelegate, UITa
                 viewController.hidesBottomBarWhenPushed = true
                 self?.navigationController?.pushViewController(viewController, animated: true)
             }else {
-                self?.ShowToast(L10n.orderInfoError)
+                self?.showToast(L10n.orderInfoError)
             }
         }
         
@@ -203,7 +219,7 @@ class OrderFormViewController: StatefulViewController, UITableViewDelegate, UITa
                 })
                 
             }else {
-                self?.ShowToast(L10n.orderInfoError)
+                self?.showToast(L10n.orderInfoError)
             }
         }
     }
@@ -211,7 +227,7 @@ class OrderFormViewController: StatefulViewController, UITableViewDelegate, UITa
     private func cancelOrder(_ orderId: Int) {
         MAProvider.cancelOrder(id: orderId) { result in
             DispatchQueue.main.async {
-                self.ShowToast(result == true ? L10n.orderCanceledSuccess : L10n.orderCanceledFailure)
+                self.showToast(result == true ? L10n.orderCanceledSuccess : L10n.orderCanceledFailure)
                 _ = self.navigationController?.popViewController(animated: true)
             }
         }

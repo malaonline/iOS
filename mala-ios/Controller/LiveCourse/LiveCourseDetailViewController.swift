@@ -133,7 +133,7 @@ class LiveCourseDetailViewController: BaseViewController, LiveCourseConfirmViewD
 
         MAProvider.createOrder(order: OrderForm(classId: model.id).jsonForLiveCourse(), failureHandler: { error in
             DispatchQueue.main.async {
-                self.ShowToast(L10n.networkNotReachable)
+                self.showToast(L10n.networkNotReachable)
             }
         }) { [weak self] order in
             // 订单创建错误
@@ -154,7 +154,7 @@ class LiveCourseDetailViewController: BaseViewController, LiveCourseConfirmViewD
                     message = L10n.networkNotReachable
                 }
                 DispatchQueue.main.async{
-                    self?.ShowToast(message)
+                    self?.showToast(message)
                 }
             }else {
                 println("创建订单成功:\(order)")

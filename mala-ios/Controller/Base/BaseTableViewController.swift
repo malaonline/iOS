@@ -55,8 +55,8 @@ open class BaseTableViewController: UITableViewController {
         // leftBarButtonItem
         let leftBarButtonItem = UIBarButtonItem(customView:
             UIButton(
-                imageName: "leftArrow_black",
-                highlightImageName: "leftArrow_black",
+                imageName: "leftArrow_white",
+                highlightImageName: "leftArrow_white",
                 target: self,
                 action: #selector(BaseTableViewController.popSelf)
             )

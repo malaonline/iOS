@@ -32,7 +32,7 @@ class SchoolTableViewController: UIViewController, UITableViewDelegate, UITableV
     }()
     private lazy var popButton: UIButton = {
         let button = UIButton(
-            imageName: "leftArrow_black",
+            imageName: "leftArrow_white",
             target: self,
             action: #selector(SchoolTableViewController.pop)
         )
@@ -71,7 +71,6 @@ class SchoolTableViewController: UIViewController, UITableViewDelegate, UITableV
         title = "选择校区"
         let leftBarButtonItem = UIBarButtonItem(customView: popButton)
         navigationItem.leftBarButtonItem = leftBarButtonItem
-        UIApplication.shared.statusBarStyle = UIStatusBarStyle.default
         navigationController?.navigationBar.shadowImage = UIImage()
         
         // SubViews
@@ -91,7 +90,7 @@ class SchoolTableViewController: UIViewController, UITableViewDelegate, UITableV
     private func loadCitylist() {
         
         guard let region = MalaCurrentCity else {
-            ShowToast("地区选择有误，请重试")
+            showToast("地区选择有误，请重试")
             return
         }
         

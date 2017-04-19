@@ -43,7 +43,7 @@ class FilterResultController: StatefulViewController, UITableViewDataSource, UIT
         let tableView = UITableView(frame: self.view.frame, style: .plain)
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.backgroundColor = UIColor(named: .RegularBackground)
+        tableView.backgroundColor = UIColor(named: .loginLightBlue)
         tableView.estimatedRowHeight = 200
         tableView.separatorStyle = .none
         tableView.contentInset = UIEdgeInsets(top: 6, left: 0, bottom: 48 + 6, right: 0)
@@ -54,7 +54,7 @@ class FilterResultController: StatefulViewController, UITableViewDataSource, UIT
     /// 筛选条件面板
     private lazy var filterBar: FilterBar = {
         let filterBar = FilterBar(frame: CGRect.zero)
-        filterBar.backgroundColor = UIColor(named: .RegularBackground)
+        filterBar.backgroundColor = UIColor(named: .loginLightBlue)
         filterBar.controller = self
         return filterBar
     }()
@@ -67,8 +67,8 @@ class FilterResultController: StatefulViewController, UITableViewDataSource, UIT
     /// 导航栏返回按钮
     lazy var backBarButton: UIButton = {
         let backBarButton = UIButton(
-            imageName: "leftArrow_black",
-            highlightImageName: "leftArrow_black",
+            imageName: "leftArrow_white",
+            highlightImageName: "leftArrow_white",
             target: self,
             action: #selector(FilterResultController.popSelf)
         )

@@ -119,6 +119,7 @@ class TeacherDetailsController: BaseViewController, UIGestureRecognizerDelegate,
         super.viewDidLoad()
         
         ThemeHUD.showActivityIndicator()
+        turnBackButtonWhite()
         
         setupUserInterface()
         loadTeacherDetail()
@@ -150,7 +151,7 @@ class TeacherDetailsController: BaseViewController, UIGestureRecognizerDelegate,
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        navigationController?.navigationBar.setBackgroundImage(UIImage.withColor(UIColor.white), for: .default)
+        navigationController?.navigationBar.setBackgroundImage(UIImage.withColor(UIColor(named: .mainNaviBlue)), for: .default)
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -277,20 +278,15 @@ class TeacherDetailsController: BaseViewController, UIGestureRecognizerDelegate,
     }
     
     private func showBackground() {
-        // makeStatusBarBlack()
         title = model.name
-        navigationController?.navigationBar.setBackgroundImage(UIImage.withColor(UIColor.white), for: .default)
-        navigationController?.navigationBar.shadowImage = nil
-        turnBackButtonBlack()
+        navigationController?.navigationBar.setBackgroundImage(UIImage.withColor(UIColor(named: .mainNaviBlue)), for: .default)
         isNavigationBarShow = true
     }
     
     private func hideBackground() {
-        // makeStatusBarWhite()
         title = ""
         navigationController?.navigationBar.setBackgroundImage(UIImage.withColor(UIColor.clear), for: .default)
         navigationController?.navigationBar.shadowImage = UIImage()
-        turnBackButtonWhite()
         isNavigationBarShow = false
     }
     

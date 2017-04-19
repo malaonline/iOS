@@ -39,6 +39,7 @@ enum ImageAsset: String {
     case avatarPlaceholder = "avatar_placeholder"
     case callBg = "call_bg"
     case close = "close"
+    case closeWhite = "close_white"
     case closeNormal = "close_normal"
     case closePress = "close_press"
     case collectNoData = "collect_noData"
@@ -129,6 +130,8 @@ enum ImageAsset: String {
     case loading_imgBlue = "loading_imgBlue_78x78"
     case locationNormal = "location_normal"
     case locationPress = "location_press"
+    case loginFill = "login_fill"
+    case loginLogo = "login_logo"
     case minus = "minus"
     case networkError = "network_error"
     case noReport = "noReport"
@@ -198,6 +201,13 @@ enum ImageAsset: String {
     case vipLayer = "vipLayer"
     case vipIcon = "vip_icon"
     case wechatIcon = "wechat_icon"
+    
+    // New
+    case clearNormal = "clear_normal"
+    case clearPress = "clear_press"
+    case loginNormal = "login_normal"
+    case loginPress = "login_press"
+    case hot = "hot"
     
     var image: Image {
         return Image(asset: self)

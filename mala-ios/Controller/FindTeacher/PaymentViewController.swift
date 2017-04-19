@@ -92,7 +92,7 @@ class PaymentViewController: BaseViewController {
     private func cancelOrder() {
         MAProvider.cancelOrder(id: ServiceResponseOrder.id) { result in
             DispatchQueue.main.async {
-                self.ShowToast(result == true ? L10n.orderCanceledSuccess : L10n.orderCanceledFailure)
+                self.showToast(result == true ? L10n.orderCanceledSuccess : L10n.orderCanceledFailure)
                 _ = self.navigationController?.popViewController(animated: true)
             }
         }

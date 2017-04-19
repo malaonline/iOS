@@ -9,6 +9,33 @@
 import UIKit
 import Toast_Swift
 
+// MARK: - Class Method
+extension UIView {
+    
+    /// Convenience to create a UIView
+    ///
+    /// - Returns: UIView
+    class func loginInputView() -> UIView {
+        let view = UIView(UIColor.white)
+        view.layer.cornerRadius = 4
+        view.layer.masksToBounds = true
+        return view
+    }
+    
+    /// Convenience to create shadow of input view
+    ///
+    /// - Returns: UIView
+    class func loginInputShadow() -> UIView {
+        let view = UIView(UIColor(named: .loginLightBlue))
+        view.layer.cornerRadius = 4
+        view.layer.shadowColor = UIColor(named: .loginShadow).cgColor
+        view.layer.shadowRadius = 4
+        view.layer.shadowOffset = CGSize(width: 0, height: 2)
+        view.layer.shadowOpacity = 1
+        return view
+    }
+}
+
 // MARK: - Convenience
 extension UIView {
 
@@ -61,5 +88,15 @@ extension UIView {
         let padding: CGFloat = ToastManager.shared.style.verticalPadding
         let point: CGPoint = CGPoint(x: self.bounds.size.width / 2.0, y: (self.bounds.size.height - (toast.frame.size.height / 2.0)) - padding - 44 - 10)
         self.showToast(toast, duration: ToastManager.shared.duration, position: point, completion: completion)
+    }
+    
+    /// Show Toast at center.
+    ///
+    /// - Parameters:
+    ///   - message: String of the message.
+    ///   - completion: completion.
+    func showToastAtCenter(_ message: String, completion: ((Bool) -> Void)? = nil) {
+        let toast: UIView = try! self.toastViewForMessage(message, title: nil, image: nil, style: ToastManager.shared.style)
+        self.showToast(toast, duration: ToastManager.shared.duration, position: .center, completion: completion)
     }
 }
