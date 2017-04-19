@@ -56,7 +56,7 @@ class ProfileViewHeaderView: UIView {
     }()
     /// 头像背景
     private lazy var avatarBackground: UIView = {
-        let view = UIView(UIColor.white)
+        let view = UIView(UIColor(named: .profileAvatarBG))
         view.layer.cornerRadius = MalaLayout_AvatarSize*0.5
         view.layer.masksToBounds = true
         return view

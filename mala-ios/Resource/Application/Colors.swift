@@ -113,6 +113,7 @@ enum ColorName: UInt32 {
     case loginShadow = 0xCDE4FFFF
     
     case profileBlue = 0x7FAEFFFF
+    case profileAvatarBG = 0xA5C6FFFF
     
     
     var color: Color {

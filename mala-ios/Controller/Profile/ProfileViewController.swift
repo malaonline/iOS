@@ -29,7 +29,7 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
     }()
     /// [个人中心]底部视图
     private lazy var profileFooterView: UIView = {
-        let view = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 55))
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 120))
         return view
     }()
     /// 顶部背景图
@@ -46,7 +46,7 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
         button.setTitleColor(UIColor.white, for: .normal)
         button.setBackgroundImage(UIImage(asset: .loginNormal), for: .normal)
         button.setBackgroundImage(UIImage(asset: .loginPress), for: .highlighted)
-        button.setBackgroundImage(UIImage(asset: .loginPress), for: .disabled)
+        button.setBackgroundImage(UIImage(asset: .loginPress), for: .selected)
         button.addTarget(self, action: #selector(ProfileViewController.logoutButtonDidTap), for: .touchUpInside)
         return button
     }()
@@ -120,8 +120,8 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
         logoutButton.snp.makeConstraints { (maker) -> Void in
             maker.top.equalTo(profileFooterView).offset(20)
             maker.centerX.equalTo(profileFooterView)
-            maker.width.equalTo(320)
-            maker.height.equalTo(68)
+            maker.width.equalTo(332)
+            maker.height.equalTo(78)
         }
     }
     

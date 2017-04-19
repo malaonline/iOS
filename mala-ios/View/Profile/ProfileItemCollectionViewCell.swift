@@ -70,8 +70,8 @@ class ProfileItemCollectionViewCell: UICollectionViewCell {
         iconView.snp.makeConstraints { (maker) in
             maker.centerX.equalTo(contentView)
             maker.top.equalTo(contentView).offset(13)
-            maker.width.equalTo(63)
-            maker.height.equalTo(61)
+            maker.width.equalTo(60)
+            maker.height.equalTo(60)
         }
         newMessageView.snp.makeConstraints { (maker) in
             maker.top.equalTo(iconView)

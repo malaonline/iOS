@@ -76,7 +76,6 @@ class ProfileViewCell: UITableViewCell {
     // MARK: - Private Method
     private func setupUserInterface() {
         // Style
-        accessoryType = .disclosureIndicator
         selectionStyle = .none
         separatorInset = UIEdgeInsets(top: 0, left: 12, bottom: 0, right: 12)
         
@@ -102,6 +101,7 @@ class ProfileViewCell: UITableViewCell {
             maker.right.equalTo(contentView).offset(12)
             maker.height.equalTo(MalaScreenOnePixel)
         }
+        accessoryView = UIImageView(image: UIImage(asset: .rightArrow))
     }
     
     func hideSeparator() {
