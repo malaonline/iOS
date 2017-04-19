@@ -85,7 +85,6 @@ class FindTeacherViewController: StatefulViewController, UITableViewDelegate, UI
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        makeStatusBarBlack()
         filterResultDidShow = false
     }
     

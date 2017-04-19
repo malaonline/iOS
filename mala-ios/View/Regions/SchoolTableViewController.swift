@@ -32,7 +32,7 @@ class SchoolTableViewController: UIViewController, UITableViewDelegate, UITableV
     }()
     private lazy var popButton: UIButton = {
         let button = UIButton(
-            imageName: "leftArrow_black",
+            imageName: "leftArrow_white",
             target: self,
             action: #selector(SchoolTableViewController.pop)
         )
@@ -71,7 +71,6 @@ class SchoolTableViewController: UIViewController, UITableViewDelegate, UITableV
         title = "选择校区"
         let leftBarButtonItem = UIBarButtonItem(customView: popButton)
         navigationItem.leftBarButtonItem = leftBarButtonItem
-        UIApplication.shared.statusBarStyle = UIStatusBarStyle.default
         navigationController?.navigationBar.shadowImage = UIImage()
         
         // SubViews

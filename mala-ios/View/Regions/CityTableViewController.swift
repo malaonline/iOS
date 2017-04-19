@@ -53,7 +53,7 @@ class CityTableViewController: StatefulViewController, UITableViewDelegate, UITa
     // 关闭按钮
     private lazy var closeButton: UIButton = {
         let button = UIButton(
-            imageName: "leftArrow_black",
+            imageName: "leftArrow_white",
             target: self,
             action: #selector(CityTableViewController.pop)
         )
@@ -82,7 +82,7 @@ class CityTableViewController: StatefulViewController, UITableViewDelegate, UITa
         // style
         title = "选择城市"
         view.backgroundColor = UIColor.white
-        UIApplication.shared.statusBarStyle = UIStatusBarStyle.default
+        UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent
         navigationController?.navigationBar.shadowImage = UIImage()
         
         if !unSelectRegion {

@@ -127,7 +127,6 @@ public class CourseTableViewController: StatefulViewController, UITableViewDataS
         // Style
         navigationItem.titleView = UIView()
         navigationItem.titleView?.addSubview(titleLabel)
-        navigationController?.navigationBar.setBackgroundImage(UIImage.withColor(UIColor(named: .mainNaviBlue)), for: .default)
         
         // SubViews
         view.addSubview(tableView)

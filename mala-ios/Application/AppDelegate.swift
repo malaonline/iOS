@@ -201,6 +201,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             NSForegroundColorAttributeName: UIColor(named: .mainNaviBlue)
             ], for: .selected)
         UITabBarItem.appearance().titlePositionAdjustment = UIOffset(horizontal: 0, vertical: -4)
+        
         // StatusBar
         UIApplication.shared.statusBarStyle = .lightContent
     }

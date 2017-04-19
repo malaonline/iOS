@@ -83,7 +83,7 @@ class RegionViewController: StatefulViewController, UITableViewDelegate, UITable
     }()
     private lazy var popButton: UIButton = {
         let button = UIButton(
-            imageName: "close",
+            imageName: "close_white",
             target: self,
             action: #selector(RegionViewController.closeButtonDidTap)
         )
@@ -116,7 +116,6 @@ class RegionViewController: StatefulViewController, UITableViewDelegate, UITable
         
         let leftBarButtonItem = UIBarButtonItem(customView: popButton)
         navigationItem.leftBarButtonItem = leftBarButtonItem
-        UIApplication.shared.statusBarStyle = UIStatusBarStyle.default
         navigationController?.navigationBar.shadowImage = UIImage()
         
         // tableView Style
@@ -205,7 +204,7 @@ class RegionViewController: StatefulViewController, UITableViewDelegate, UITable
             delay(0.65, work: {
                 self.currentState = .content
                 self.models = schools.reversed()
-                println("校区列表 - \(schools)")
+                println("城市列表 - \(schools)")
             })
         }
     }

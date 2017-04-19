@@ -56,6 +56,16 @@ class OrderFormViewController: StatefulViewController, UITableViewDelegate, UITa
         tableView.register(ThemeReloadView.self, forCellReuseIdentifier: OrderFormViewLoadmoreCellReusedId)
         return tableView
     }()
+    /// 导航栏返回按钮
+    lazy var backBarButton: UIButton = {
+        let backBarButton = UIButton(
+            imageName: "leftArrow_white",
+            highlightImageName: "leftArrow_white",
+            target: self,
+            action: #selector(FilterResultController.popSelf)
+        )
+        return backBarButton
+    }()
 
     
     // MARK: - Life Cycle
@@ -91,6 +101,12 @@ class OrderFormViewController: StatefulViewController, UITableViewDelegate, UITa
         
         // 开启下拉刷新
         tableView.startPullRefresh()
+        
+        // leftBarButtonItem
+        let spacer = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
+        spacer.width = -2
+        let leftBarButtonItem = UIBarButtonItem(customView: backBarButton)
+        navigationItem.leftBarButtonItems = [spacer, leftBarButtonItem]
         
         // 下拉刷新
         tableView.addPullRefresh{ [weak self] in

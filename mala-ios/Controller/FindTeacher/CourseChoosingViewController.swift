@@ -118,9 +118,7 @@ class CourseChoosingViewController: BaseViewController, CourseChoosingConfirmVie
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        makeStatusBarBlack()
         sendScreenTrack(SACourseChoosingViewName)
-        navigationController?.navigationBar.shadowImage = nil
     }
 
     override func didReceiveMemoryWarning() {
@@ -131,7 +129,6 @@ class CourseChoosingViewController: BaseViewController, CourseChoosingConfirmVie
     // MARK: - Private method
     private func setupUserInterface() {
         // Style
-        makeStatusBarBlack()
         title = L10n.courseChoosing
         confirmView.delegate = self
         

@@ -13,7 +13,7 @@ class RegionPicker: UIView {
     // MARK: - Property
     var schoolName: String? = MalaCurrentSchool?.name {
         didSet {
-            regionLabel.text = String(format: "校区:%@", schoolName ?? "未选择")
+            regionLabel.text = schoolName ?? "未选择"
         }
     }
     
