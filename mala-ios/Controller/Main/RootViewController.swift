@@ -61,6 +61,8 @@ private struct PagingMenuOptions: PagingMenuControllerCustomizable {
 
 class RootViewController: UIViewController {
     
+    static let shared = RootViewController()
+    
     // MARK: - Components
     /// 上课地点选择按钮
     private lazy var regionPickButton: RegionPicker = {
