@@ -25,7 +25,7 @@ class MainViewController: UITabBarController, UITabBarControllerDelegate {
     /// 课程表
     private lazy var classScheduleViewController: MainNavigationController = {
         let naviVC = self.getNaviController(
-            CourseTableViewController(),
+            CourseTableViewController.shared,
             title: L10n.schedule,
             imageName: "schedule_normal"
         )
@@ -34,7 +34,7 @@ class MainViewController: UITabBarController, UITabBarControllerDelegate {
     /// 会员专享
     private lazy var memberPrivilegesViewController: MainNavigationController = {
         let naviVC  = self.getNaviController(
-            MemberPrivilegesViewController(),
+            MemberPrivilegesViewController.shared,
             title: L10n.member,
             imageName: "serivce_normal"
         )
@@ -43,7 +43,7 @@ class MainViewController: UITabBarController, UITabBarControllerDelegate {
     /// 个人
     private lazy var profileViewController: MainNavigationController = {
         let naviVC  = self.getNaviController(
-            ProfileViewController(style: .grouped),
+            ProfileViewController.shared,
             title: L10n.profile,
             imageName: "profile_normal"
         )

@@ -14,6 +14,8 @@ private let CourseTableViewCellReuseId = "CourseTableViewCellReuseId"
 
 public class CourseTableViewController: StatefulViewController, UITableViewDataSource, UITableViewDelegate {
 
+    static let shared = CourseTableViewController()
+    
     // MARK: - Property
     /// 上课时间表数据模型
     var model: [[[StudentCourseModel]]]? {
@@ -256,10 +258,7 @@ public class CourseTableViewController: StatefulViewController, UITableViewDataS
     }
     ///  跳转到挑选老师页面
     @objc fileprivate func switchToFindTeacher() {
-        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-            appDelegate.window?.rootViewController = MainViewController.shared
-            appDelegate.switchTabBarControllerWithIndex(0)
-        }
+        MainViewController.shared.selectedIndex = 0
     }
     ///  跳转到登陆页面
     @objc fileprivate func switchToLoginView() {

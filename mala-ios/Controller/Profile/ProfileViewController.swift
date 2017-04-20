@@ -14,6 +14,8 @@ private let ProfileViewTableViewItemCellReuseID = "ProfileViewTableViewItemCellR
 
 class ProfileViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, ProfileViewHeaderViewDelegate {
     
+    static let shared = ProfileViewController(style: .grouped)
+    
     // MARK: - Property
     /// [个人中心结构数据]
     private var model: [[ProfileElementModel]] = MalaConfig.profileData()

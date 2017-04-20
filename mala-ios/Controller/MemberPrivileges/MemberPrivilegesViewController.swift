@@ -13,6 +13,8 @@ private let MemberPrivilegesMemberSerivceCellReuseID = "MemberPrivilegesMemberSe
 
 class MemberPrivilegesViewController: UITableViewController {
 
+    static let shared = MemberPrivilegesViewController()
+    
     // MARK: - Property
     /// 学科学习报告模型
     var report: SubjectReport = SubjectReport() {

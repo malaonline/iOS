@@ -246,7 +246,7 @@ extension AppDelegate {
     
     ///  切换到首页
     func switchToStart() {
-        window?.rootViewController = MainViewController.shared
+        MainViewController.shared.selectedIndex = 0
     }
     
     ///  切换到TabBarController指定控制器
