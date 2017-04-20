@@ -10,6 +10,7 @@ import UIKit
 
 class MainViewController: UITabBarController, UITabBarControllerDelegate {
 
+    static let shared = MainViewController()
     
     // MARK: - Components
     /// 首页
@@ -166,13 +167,14 @@ class MainViewController: UITabBarController, UITabBarControllerDelegate {
     // MARK: - Delegate
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
         
+        /*
         guard let navi = viewController as? UINavigationController else {
             return false
         }
         
         
         // 点击[我的]页面前需要登录校验
-        if navi.topViewController is ProfileViewController /*||
+         if navi.topViewController is ProfileViewController /*||
            navi.topViewController is ClassScheduleViewController*/ {
             
             // 未登陆则进行登陆动作
@@ -187,7 +189,7 @@ class MainViewController: UITabBarController, UITabBarControllerDelegate {
                 return false
             }
         }
-        
+         */
         return true
     }
 }

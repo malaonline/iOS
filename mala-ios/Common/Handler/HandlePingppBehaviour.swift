@@ -195,7 +195,7 @@ class HandlePingppBehaviour: NSObject {
         delay(0.5) { () -> Void in
             
             if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-                appDelegate.window?.rootViewController = MainViewController()
+                appDelegate.window?.rootViewController = MainViewController.shared
                 appDelegate.switchTabBarControllerWithIndex(1)
             }
             ThemeHUD.hideActivityIndicator()

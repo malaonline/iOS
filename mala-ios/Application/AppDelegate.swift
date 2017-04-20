@@ -27,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Setup Window
         window = BaseWindow(frame: UIScreen.main.bounds)
         window?.backgroundColor = UIColor.white
-        let mainViewController = MainViewController()
+        let mainViewController = MainViewController.shared
         window?.rootViewController = mainViewController
         window?.makeKeyAndVisible()
 
@@ -246,7 +246,7 @@ extension AppDelegate {
     
     ///  切换到首页
     func switchToStart() {
-        window?.rootViewController = MainViewController()
+        window?.rootViewController = MainViewController.shared
     }
     
     ///  切换到TabBarController指定控制器

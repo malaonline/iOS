@@ -257,7 +257,7 @@ public class CourseTableViewController: StatefulViewController, UITableViewDataS
     ///  跳转到挑选老师页面
     @objc fileprivate func switchToFindTeacher() {
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-            appDelegate.window?.rootViewController = MainViewController()
+            appDelegate.window?.rootViewController = MainViewController.shared
             appDelegate.switchTabBarControllerWithIndex(0)
         }
     }
