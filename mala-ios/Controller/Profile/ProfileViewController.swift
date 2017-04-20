@@ -135,17 +135,7 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
             queue: nil
         ) { [weak self] (notification) -> Void in
             if let model = notification.object as? ProfileElementModel, let type = model.controller as? UIViewController.Type {
-                
-                // 若对应项被冻结，则点击无效
-                if model.disabled, let message = model.disabledMessage {
-                    self?.showToast(message)
-                    return
-                }
-                
-                let viewController = type.init()
-                viewController.title = model.controllerTitle
-                viewController.hidesBottomBarWhenPushed = true
-                self?.navigationController?.pushViewController(viewController, animated: true)
+                self?.cellDidTap(isItem: true, model: model)
             }
         }
     }
@@ -236,18 +226,7 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! ProfileViewCell
-        let model = cell.model
-        
-        // 若对应项被冻结，则点击无效
-        if model.disabled { return }
-        
-        // 跳转到对应的ViewController
-        if let type = model.controller as? UIViewController.Type {
-            let viewController = type.init()
-            viewController.title = model.controllerTitle
-            viewController.hidesBottomBarWhenPushed = true
-            self.navigationController?.pushViewController(viewController, animated: true)
-        }
+        cellDidTap(isItem: false, model: cell.model)
     }
 
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -260,6 +239,41 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
                 // 1.1为放大速率
                 maker.height.equalTo(MalaLayout_ProfileHeaderViewHeight + abs(displacement)*1.1)
             })
+        }
+    }
+    
+    
+    /// cell did tap
+    @objc private func cellDidTap(isItem: Bool, model: ProfileElementModel) {
+        
+        // 未登陆则进行登陆动作
+        guard MalaUserDefaults.isLogined else {
+            self.present(UINavigationController(rootViewController: LoginViewController()), animated: true)
+            return
+        }
+        
+        if isItem {
+            // 若对应项被冻结，则点击无效
+            if model.disabled, let message = model.disabledMessage {
+                showToast(message)
+                return
+            }
+            
+            if let viewController = (model.controller as? UIViewController.Type)?.init() {
+                viewController.title = model.controllerTitle
+                viewController.hidesBottomBarWhenPushed = true
+                navigationController?.pushViewController(viewController, animated: true)
+            }
+        }else {
+            // 若对应项被冻结，则点击无效
+            if model.disabled { return }
+            
+            if let type = model.controller as? UIViewController.Type {
+                let viewController = type.init()
+                viewController.title = model.controllerTitle
+                viewController.hidesBottomBarWhenPushed = true
+                navigationController?.pushViewController(viewController, animated: true)
+            }
         }
     }
     
