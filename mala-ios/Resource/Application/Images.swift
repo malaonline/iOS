@@ -152,6 +152,7 @@ enum ImageAsset: String {
     case profileCollect = "profile_collect"
     case profileComment = "profile_comment"
     case profileHeaderBackground = "profile_headerBackground"
+    case profileLogin = "profile_login"
     case profileNormal = "profile_normal"
     case profileOrder = "profile_order"
     case profilePress = "profile_press"
