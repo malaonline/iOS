@@ -84,6 +84,7 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
         model = MalaConfig.profileData()
         tableView.reloadData()
         profileHeaderView.refreshDataWithUserDefaults()
+        logoutButton.isHidden = !MalaUserDefaults.isLogined
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -267,6 +268,14 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
         let window = InfoModifyViewWindow(contentView: UIView())
         window.show()
     }
+    
+    func loginButtonDidTap(_ sender: UIButton) {
+        self.present(
+            UINavigationController(rootViewController: LoginViewController()),
+            animated: true
+        )
+    }
+
     
     ///  HeaderView头像点击事件
     ///
