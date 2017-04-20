@@ -11,7 +11,7 @@ import UIKit
 private let LiveCourseTableViewCellReusedId = "LiveCourseTableViewCellReusedId"
 private let LiveCourseTableViewLoadmoreCellReusedId = "LiveCourseTableViewLoadmoreCellReusedId"
 
-class LiveCourseViewController: StatefulViewController, UITableViewDelegate, UITableViewDataSource {
+class LiveCourseViewController: StatefulViewController, UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate {
     
     private enum Section: Int {
         case liveCourse
@@ -104,6 +104,17 @@ class LiveCourseViewController: StatefulViewController, UITableViewDelegate, UIT
     }
     
     private func configration() {
+        
+        let swipeUpGesture = UISwipeGestureRecognizer(target: self, action: #selector(LiveCourseViewController.didRecognize(gesture:)))
+        swipeUpGesture.direction = .up
+        let swipeDownGesture = UISwipeGestureRecognizer(target: self, action: #selector(LiveCourseViewController.didRecognize(gesture:)))
+        swipeDownGesture.direction = .down
+        
+        swipeUpGesture.delegate = self
+        swipeDownGesture.delegate = self
+        tableView.addGestureRecognizer(swipeUpGesture)
+        tableView.addGestureRecognizer(swipeDownGesture)
+        
         tableView.delegate = self
         tableView.dataSource = self
         tableView.backgroundColor = UIColor(named: .themeLightBlue)
@@ -265,6 +276,23 @@ class LiveCourseViewController: StatefulViewController, UITableViewDelegate, UIT
     
     func scrollToTop() {
         tableView.scrollRectToVisible(CGRect(x: 0, y: 0, width: 1, height: 1), animated: true)
+    }
+    
+    func didRecognize(gesture: UISwipeGestureRecognizer) {
+        if gesture.direction == .up {
+            RootViewController.shared.navigationController?.setNavigationBarHidden(true, animated: true)
+        }else if gesture.direction == .down {
+            RootViewController.shared.navigationController?.setNavigationBarHidden(false, animated: true)
+        }
+    }
+    
+    
+    // MARK: - UIGestureRecognizerDelegate
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        guard let direction = (otherGestureRecognizer as? UISwipeGestureRecognizer)?.direction, (direction == .up || direction == .down) else {
+            return false
+        }
+        return true
     }
 }
 
