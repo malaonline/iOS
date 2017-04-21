@@ -28,4 +28,9 @@ class MainNavigationController: UINavigationController {
         // Text Style
         navigationBar.titleTextAttributes = commonTextStyle()
     }
+    
+    override func pushViewController(_ viewController: UIViewController, animated: Bool) {
+        RootViewController.shared.navigationController?.setNavigationBarHidden(false, animated: false)
+        super.pushViewController(viewController, animated: animated)
+    }
 }
