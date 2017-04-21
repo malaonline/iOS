@@ -623,6 +623,9 @@
 		F46065291C97B168004056B1 /* CouponViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F460651C1C97B168004056B1 /* CouponViewController.swift */; };
 		F460652B1C97B168004056B1 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F460651E1C97B168004056B1 /* ProfileViewController.swift */; };
 		F460652D1C97B1C8004056B1 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F460652C1C97B1C8004056B1 /* AboutViewController.swift */; };
+		F4637C251EA8BAD600D306A9 /* YXWaveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4637C241EA8BAD500D306A9 /* YXWaveView.swift */; };
+		F4637C261EA8BAD700D306A9 /* YXWaveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4637C241EA8BAD500D306A9 /* YXWaveView.swift */; };
+		F4637C271EA8BAD700D306A9 /* YXWaveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4637C241EA8BAD500D306A9 /* YXWaveView.swift */; };
 		F464BD6B1DA8C1FF00032C88 /* jpush-ios-2.1.9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F464BD6A1DA8C1FF00032C88 /* jpush-ios-2.1.9.a */; };
 		F464BD6C1DA8C1FF00032C88 /* jpush-ios-2.1.9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F464BD6A1DA8C1FF00032C88 /* jpush-ios-2.1.9.a */; };
 		F464BD6D1DA8C1FF00032C88 /* jpush-ios-2.1.9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F464BD6A1DA8C1FF00032C88 /* jpush-ios-2.1.9.a */; };
@@ -999,6 +1002,7 @@
 		F460651C1C97B168004056B1 /* CouponViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CouponViewController.swift; sourceTree = "<group>"; };
 		F460651E1C97B168004056B1 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		F460652C1C97B1C8004056B1 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
+		F4637C241EA8BAD500D306A9 /* YXWaveView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YXWaveView.swift; sourceTree = "<group>"; };
 		F464BD6A1DA8C1FF00032C88 /* jpush-ios-2.1.9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "jpush-ios-2.1.9.a"; sourceTree = "<group>"; };
 		F464BD6E1DA8CDD500032C88 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		F464BD701DA8CE3A00032C88 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
@@ -1375,6 +1379,7 @@
 				F4D0D17D1CA148DF00B25704 /* FloatRatingView.swift */,
 				F49BD5A91CA413C000EB3CCF /* MalaPhotoBrowser.swift */,
 				F4767A421D348A7B00FD47F1 /* TagListView.swift */,
+				F4637C241EA8BAD500D306A9 /* YXWaveView.swift */,
 			);
 			path = Tool;
 			sourceTree = "<group>";
@@ -2454,6 +2459,7 @@
 				F45F27FA1CAA600D00F0012C /* MalaSingleWebViewController.swift in Sources */,
 				F44C86011E683CAB006E5557 /* YLProgressBar.m in Sources */,
 				F48BBADC1CE57F9E00774297 /* OrderFormOtherInfoCell.swift in Sources */,
+				F4637C251EA8BAD600D306A9 /* YXWaveView.swift in Sources */,
 				F4C5C2571C76B87800FB833B /* CouponModel.swift in Sources */,
 				F4402DAE1C58A64200E7D3DB /* KWStepper.swift in Sources */,
 				F46065251C97B168004056B1 /* MainNavigationController.swift in Sources */,
@@ -2664,6 +2670,7 @@
 				35FF7AC51CF8325A000A70EE /* MalaSingleWebViewController.swift in Sources */,
 				F44C86021E683CAB006E5557 /* YLProgressBar.m in Sources */,
 				35FF7AC61CF8325A000A70EE /* OrderFormOtherInfoCell.swift in Sources */,
+				F4637C261EA8BAD700D306A9 /* YXWaveView.swift in Sources */,
 				35FF7AC71CF8325A000A70EE /* CouponModel.swift in Sources */,
 				35FF7AC81CF8325A000A70EE /* KWStepper.swift in Sources */,
 				35FF7AC91CF8325A000A70EE /* MainNavigationController.swift in Sources */,
@@ -2874,6 +2881,7 @@
 				35FF7BA81CF83264000A70EE /* MalaSingleWebViewController.swift in Sources */,
 				F44C86031E683CAB006E5557 /* YLProgressBar.m in Sources */,
 				35FF7BA91CF83264000A70EE /* OrderFormOtherInfoCell.swift in Sources */,
+				F4637C271EA8BAD700D306A9 /* YXWaveView.swift in Sources */,
 				35FF7BAA1CF83264000A70EE /* CouponModel.swift in Sources */,
 				35FF7BAB1CF83264000A70EE /* KWStepper.swift in Sources */,
 				35FF7BAC1CF83264000A70EE /* MainNavigationController.swift in Sources */,

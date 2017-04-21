@@ -36,9 +36,19 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
     }()
     /// 顶部背景图
     private lazy var headerBackground: UIImageView = {
-        let image = UIImageView(imageName: "profile_headerBackground")
+        let image = UIImageView()
         image.backgroundColor = UIColor(named: .profileBlue)
         return image
+    }()
+    /// 波纹
+    private lazy var waveView: YXWaveView = {
+        let frame = CGRect(x: 0, y: 0, width: self.view.bounds.size.width, height: 100)
+        let view = YXWaveView(frame: frame, color: UIColor.white)
+        view.waveSpeed = 0.75
+        view.waveHeight = 13
+        view.waveCurvature = 0.65
+        view.backgroundColor = UIColor.clear
+        return view
     }()
     /// [退出登录] 按钮
     private lazy var logoutButton: UIButton = {
@@ -111,7 +121,7 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
         // SubViews
         tableView.insertSubview(headerBackground, at: 0)
         profileFooterView.addSubview(logoutButton)
-        
+        headerBackground.addSubview(waveView)
         
         // Autolayout
         headerBackground.snp.makeConstraints { (maker) -> Void in
@@ -120,12 +130,21 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
             maker.width.equalTo(tableView)
             maker.height.equalTo(MalaLayout_ProfileHeaderViewHeight)
         }
+        waveView.snp.makeConstraints { (maker) in
+            maker.bottom.equalTo(headerBackground)
+            maker.width.equalTo(headerBackground)
+            maker.height.equalTo(100)
+            maker.centerX.equalTo(headerBackground)
+        }
         logoutButton.snp.makeConstraints { (maker) -> Void in
             maker.top.equalTo(profileFooterView).offset(20)
             maker.centerX.equalTo(profileFooterView)
             maker.width.equalTo(332)
             maker.height.equalTo(78)
         }
+        
+        // Start wave
+        waveView.start()
     }
     
     private func setupNotification() {
@@ -134,7 +153,7 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
             object: nil,
             queue: nil
         ) { [weak self] (notification) -> Void in
-            if let model = notification.object as? ProfileElementModel, let type = model.controller as? UIViewController.Type {
+            if let model = notification.object as? ProfileElementModel {
                 self?.cellDidTap(isItem: true, model: model)
             }
         }
@@ -403,6 +422,7 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
                 }
                 
             }, cancelAction: { () -> Void in
+
         })
     }
     
