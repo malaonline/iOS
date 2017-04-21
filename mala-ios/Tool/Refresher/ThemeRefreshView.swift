@@ -19,6 +19,7 @@ class ThemeRefreshView: UIView {
         label.textColor = UIColor(named: .HeaderTitle)
         label.text = "下拉可刷新"
         label.sizeToFit()
+        label.isHidden = true
         return label
     }()
     /// 可刷新标记
