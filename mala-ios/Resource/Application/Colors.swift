@@ -104,6 +104,7 @@ enum ColorName: UInt32 {
     // New
     case themeBlue = 0x73A4FCFF
     case themeLightBlue = 0xE7F1FFFF
+    case themeShadowBlue = 0xBFDDFFFF
     
     case labelBlack = 0x373A41FF
     
