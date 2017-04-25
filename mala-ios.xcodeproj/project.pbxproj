@@ -547,6 +547,9 @@
 		F4402D851C5729A200E7D3DB /* ClassScheduleDayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4402D841C5729A200E7D3DB /* ClassScheduleDayModel.swift */; };
 		F4402DAE1C58A64200E7D3DB /* KWStepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4402DAD1C58A64200E7D3DB /* KWStepper.swift */; };
 		F4402DFE1C5A0DE200E7D3DB /* Extension+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4402DFD1C5A0DE200E7D3DB /* Extension+String.swift */; };
+		F440E9831EADDCA800813F56 /* MAFeatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F440E9821EADDCA800813F56 /* MAFeatureView.swift */; };
+		F440E9841EADDCA800813F56 /* MAFeatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F440E9821EADDCA800813F56 /* MAFeatureView.swift */; };
+		F440E9851EADDCA800813F56 /* MAFeatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F440E9821EADDCA800813F56 /* MAFeatureView.swift */; };
 		F4428C911DDC8E54000FEFA4 /* BaseWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4428C901DDC8E54000FEFA4 /* BaseWindow.swift */; };
 		F4428C921DDC8E54000FEFA4 /* BaseWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4428C901DDC8E54000FEFA4 /* BaseWindow.swift */; };
 		F4428C931DDC8E54000FEFA4 /* BaseWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4428C901DDC8E54000FEFA4 /* BaseWindow.swift */; };
@@ -625,6 +628,9 @@
 		F4637C351EA9EA9300D306A9 /* refreshImage@3x.gif in Resources */ = {isa = PBXBuildFile; fileRef = F4637C311EA9EA9300D306A9 /* refreshImage@3x.gif */; };
 		F4637C361EA9EA9300D306A9 /* refreshImage@3x.gif in Resources */ = {isa = PBXBuildFile; fileRef = F4637C311EA9EA9300D306A9 /* refreshImage@3x.gif */; };
 		F4637C371EA9EA9300D306A9 /* refreshImage@3x.gif in Resources */ = {isa = PBXBuildFile; fileRef = F4637C311EA9EA9300D306A9 /* refreshImage@3x.gif */; };
+		F4637C421EADAC8000D306A9 /* MAFeatureViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4637C411EADAC8000D306A9 /* MAFeatureViewCell.swift */; };
+		F4637C431EADAC8000D306A9 /* MAFeatureViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4637C411EADAC8000D306A9 /* MAFeatureViewCell.swift */; };
+		F4637C441EADAC8000D306A9 /* MAFeatureViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4637C411EADAC8000D306A9 /* MAFeatureViewCell.swift */; };
 		F464BD6B1DA8C1FF00032C88 /* jpush-ios-2.1.9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F464BD6A1DA8C1FF00032C88 /* jpush-ios-2.1.9.a */; };
 		F464BD6C1DA8C1FF00032C88 /* jpush-ios-2.1.9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F464BD6A1DA8C1FF00032C88 /* jpush-ios-2.1.9.a */; };
 		F464BD6D1DA8C1FF00032C88 /* jpush-ios-2.1.9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F464BD6A1DA8C1FF00032C88 /* jpush-ios-2.1.9.a */; };
@@ -954,6 +960,7 @@
 		F4402E161C5A16A700E7D3DB /* parentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = parentTests.swift; sourceTree = "<group>"; };
 		F4402E181C5A16A700E7D3DB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F4402E1E1C5A178900E7D3DB /* ThemeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeTests.swift; sourceTree = "<group>"; };
+		F440E9821EADDCA800813F56 /* MAFeatureView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MAFeatureView.swift; sourceTree = "<group>"; };
 		F4428C901DDC8E54000FEFA4 /* BaseWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseWindow.swift; sourceTree = "<group>"; };
 		F4428C981DDD500D000FEFA4 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		F4493C551E7919DF00D34918 /* MANetworkPlugin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MANetworkPlugin.swift; sourceTree = "<group>"; };
@@ -1002,6 +1009,7 @@
 		F4637C241EA8BAD500D306A9 /* YXWaveView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YXWaveView.swift; sourceTree = "<group>"; };
 		F4637C301EA9EA9300D306A9 /* refreshImage@2x.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "refreshImage@2x.gif"; sourceTree = "<group>"; };
 		F4637C311EA9EA9300D306A9 /* refreshImage@3x.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "refreshImage@3x.gif"; sourceTree = "<group>"; };
+		F4637C411EADAC8000D306A9 /* MAFeatureViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MAFeatureViewCell.swift; sourceTree = "<group>"; };
 		F464BD6A1DA8C1FF00032C88 /* jpush-ios-2.1.9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "jpush-ios-2.1.9.a"; sourceTree = "<group>"; };
 		F464BD6E1DA8CDD500032C88 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		F464BD701DA8CE3A00032C88 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
@@ -1665,6 +1673,15 @@
 			path = Profile;
 			sourceTree = "<group>";
 		};
+		F4637C3C1EADAC5900D306A9 /* FeatureView */ = {
+			isa = PBXGroup;
+			children = (
+				F440E9821EADDCA800813F56 /* MAFeatureView.swift */,
+				F4637C411EADAC8000D306A9 /* MAFeatureViewCell.swift */,
+			);
+			path = FeatureView;
+			sourceTree = "<group>";
+		};
 		F465F1421DB4ABB00025D867 /* LiveCourse */ = {
 			isa = PBXGroup;
 			children = (
@@ -1774,6 +1791,7 @@
 		F4B58F7B1C990274009B5B8D /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				F4637C3C1EADAC5900D306A9 /* FeatureView */,
 				F45F27F71CA9135A00F0012C /* MalaDefaultPanel.swift */,
 				F427FFB01CEDA47700EAB748 /* MalaBaseCardCell.swift */,
 				F474E89E1CF2DCEE0025A865 /* MalaBaseReportCardCell.swift */,
@@ -2408,6 +2426,7 @@
 				F4AE08081E7673CE006FA466 /* MalaInstance.swift in Sources */,
 				F4AE080B1E7673CE006FA466 /* MalaLog.swift in Sources */,
 				F452CD531CDC4CD2001A30E8 /* OrderFormViewController.swift in Sources */,
+				F4637C421EADAC8000D306A9 /* MAFeatureViewCell.swift in Sources */,
 				3037B5A21C3BAB15005672D9 /* TeacherDetailsPhotosCell.swift in Sources */,
 				F4AE08021E7673CE006FA466 /* MalaDataCenter.swift in Sources */,
 				F4303A5F1E6565DC0037D64D /* Strings.swift in Sources */,
@@ -2515,6 +2534,7 @@
 				307788591C2A58B1007AF6B0 /* OperatorOverload.swift in Sources */,
 				F4B58F751C9822ED009B5B8D /* AboutTitleView.swift in Sources */,
 				F45872001C51E0C40048D93F /* CourseChoosingConfirmView.swift in Sources */,
+				F440E9831EADDCA800813F56 /* MAFeatureView.swift in Sources */,
 				F45E69E31C8D2EAF00BD0859 /* Extension+Int.swift in Sources */,
 				30AE09341C2AC94F00FD607D /* FilterViewCell.swift in Sources */,
 				F46065261C97B168004056B1 /* MainViewController.swift in Sources */,
@@ -2619,6 +2639,7 @@
 				F4AE08091E7673CE006FA466 /* MalaInstance.swift in Sources */,
 				F4AE080C1E7673CE006FA466 /* MalaLog.swift in Sources */,
 				35FF7A941CF8325A000A70EE /* OrderFormViewController.swift in Sources */,
+				F4637C431EADAC8000D306A9 /* MAFeatureViewCell.swift in Sources */,
 				35FF7A961CF8325A000A70EE /* TeacherDetailsPhotosCell.swift in Sources */,
 				F4AE08031E7673CE006FA466 /* MalaDataCenter.swift in Sources */,
 				F4303A601E6565DC0037D64D /* Strings.swift in Sources */,
@@ -2726,6 +2747,7 @@
 				35FF7B011CF8325A000A70EE /* OperatorOverload.swift in Sources */,
 				35FF7B021CF8325A000A70EE /* AboutTitleView.swift in Sources */,
 				35FF7B031CF8325A000A70EE /* CourseChoosingConfirmView.swift in Sources */,
+				F440E9841EADDCA800813F56 /* MAFeatureView.swift in Sources */,
 				35FF7B041CF8325A000A70EE /* Extension+Int.swift in Sources */,
 				35FF7B051CF8325A000A70EE /* FilterViewCell.swift in Sources */,
 				35FF7B061CF8325A000A70EE /* MainViewController.swift in Sources */,
@@ -2830,6 +2852,7 @@
 				F4AE080A1E7673CE006FA466 /* MalaInstance.swift in Sources */,
 				F4AE080D1E7673CE006FA466 /* MalaLog.swift in Sources */,
 				35FF7B771CF83264000A70EE /* OrderFormViewController.swift in Sources */,
+				F4637C441EADAC8000D306A9 /* MAFeatureViewCell.swift in Sources */,
 				35FF7B791CF83264000A70EE /* TeacherDetailsPhotosCell.swift in Sources */,
 				F4AE08041E7673CE006FA466 /* MalaDataCenter.swift in Sources */,
 				F4303A611E6565DC0037D64D /* Strings.swift in Sources */,
@@ -2937,6 +2960,7 @@
 				35FF7BE41CF83264000A70EE /* OperatorOverload.swift in Sources */,
 				35FF7BE51CF83264000A70EE /* AboutTitleView.swift in Sources */,
 				35FF7BE61CF83264000A70EE /* CourseChoosingConfirmView.swift in Sources */,
+				F440E9851EADDCA800813F56 /* MAFeatureView.swift in Sources */,
 				35FF7BE71CF83264000A70EE /* Extension+Int.swift in Sources */,
 				35FF7BE81CF83264000A70EE /* FilterViewCell.swift in Sources */,
 				35FF7BE91CF83264000A70EE /* MainViewController.swift in Sources */,

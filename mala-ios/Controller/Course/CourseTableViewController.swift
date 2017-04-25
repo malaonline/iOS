@@ -42,6 +42,11 @@ public class CourseTableViewController: StatefulViewController, UITableViewDataS
             }
         }
     }
+    private lazy var featureView: MAFeatureView = {
+        let view = MAFeatureView()
+        view.button.addTarget(self, action: #selector(CourseTableViewController.featureViewButtonDidTap), for: .touchUpInside)
+        return view
+    }()
     override var currentState: StatefulViewState {
         didSet {
             if currentState != oldValue {
@@ -101,6 +106,13 @@ public class CourseTableViewController: StatefulViewController, UITableViewDataS
     override open func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         loadStudentCourseTable()
+        
+        if MalaUserDefaults.isLogined {
+            featureView.state = .sign
+        }else {
+            goTopButton.isHidden = true
+            featureView.state = .login
+        }
     }
     
     override open func viewDidAppear(_ animated: Bool) {
@@ -129,16 +141,13 @@ public class CourseTableViewController: StatefulViewController, UITableViewDataS
         // Style
         navigationItem.titleView = UIView()
         navigationItem.titleView?.addSubview(titleLabel)
+        view.backgroundColor = UIColor.white
         
         // SubViews
-        view.addSubview(tableView)
+        switchToSchedule()
         view.addSubview(goTopButton)
         
         // AutoLayout
-        tableView.snp.makeConstraints { (maker) -> Void in
-            maker.center.equalTo(view)
-            maker.size.equalTo(view)
-        }
         goTopButton.snp.makeConstraints { (maker) -> Void in
             maker.right.equalTo(view).offset(-20)
             maker.bottom.equalTo(view).offset(-64)
@@ -152,19 +161,34 @@ public class CourseTableViewController: StatefulViewController, UITableViewDataS
         }
     }
     
+    private func switchToSchedule() {
+        guard tableView.superview == nil else { return }
+        if let _ = featureView.superview { featureView.removeFromSuperview() }
+        
+        view.insertSubview(tableView, belowSubview: goTopButton)
+        tableView.snp.makeConstraints { (maker) -> Void in
+            maker.center.equalTo(view)
+            maker.size.equalTo(view)
+        }
+    }
+    
+    private func switchToFeature() {
+        guard featureView.superview == nil else { return }
+        if let _ = tableView.superview { tableView.removeFromSuperview() }
+        
+        view.insertSubview(featureView, belowSubview: goTopButton)
+        featureView.snp.makeConstraints { (maker) -> Void in
+            maker.center.equalTo(view)
+            maker.size.equalTo(view)
+        }
+    }
+    
     ///  获取学生可用时间表
     fileprivate func loadStudentCourseTable() {
         
         // 用户登录后请求数据，否则显示默认页面
         if !MalaUserDefaults.isLogined {
-            
-            currentState = .notLoggedIn
-            
-            // 若在注销后存在课程数据残留，清除数据并刷新日历
-            if model != nil {
-                model = nil
-                tableView.reloadData()
-            }
+            switchToFeature()
             return
         }
         
@@ -178,14 +202,15 @@ public class CourseTableViewController: StatefulViewController, UITableViewDataS
             println(error)
             self.currentState = .error
         }) { schedule in
+            self.currentState = .content
             
             guard !schedule.isEmpty else {
-                self.currentState = .empty
+                self.switchToFeature()
                 return
             }
         
             // 解析学生上课时间表
-            self.currentState = .content
+            self.switchToSchedule()
             let result = parseStudentCourseTable(schedule)
             self.recentlyCourseIndexPath = result.recently
             self.model = result.model
@@ -256,6 +281,14 @@ public class CourseTableViewController: StatefulViewController, UITableViewDataS
             self.tableView.scrollToRow(at: recent, at: .top, animated: true)
         }
     }
+    /// 特性视图按钮点击事件
+    @objc private func featureViewButtonDidTap() {
+        if MalaUserDefaults.isLogined {
+            switchToFindTeacher()
+        }else {
+            switchToLoginView()
+        }
+    }
     ///  跳转到挑选老师页面
     @objc fileprivate func switchToFindTeacher() {
         MainViewController.shared.selectedIndex = 0
@@ -270,7 +303,10 @@ public class CourseTableViewController: StatefulViewController, UITableViewDataS
             UINavigationController(rootViewController: loginView),
             animated: true,
             completion: { () -> Void in
-                
+                // 用户登录后请求数据，否则显示默认页面
+                if MalaUserDefaults.isLogined {
+                    self.switchToSchedule()
+                }
         })
     }
 }

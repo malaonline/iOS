@@ -111,6 +111,7 @@ class SingleCourseView: UIView {
     
     // MARK: - Private
     private func setupUserInterface() {
+        backgroundColor = UIColor.white 
         // SubView
         addSubview(headerBackground)
         headerBackground.addSubview(subjectLabel)

@@ -19,6 +19,7 @@ class CommonFlowLayout: UICollectionViewFlowLayout {
         case profileItem
         case detailPhotoView
         case `default`
+        case featureView
     }
     
     
@@ -42,6 +43,8 @@ class CommonFlowLayout: UICollectionViewFlowLayout {
             detailPhotoViewFlowLayout()
         case .default:
             defaultLayout(frame: frame)
+        case .featureView:
+            featureViewLayout()
         }
     }
 
@@ -121,6 +124,13 @@ class CommonFlowLayout: UICollectionViewFlowLayout {
     private func defaultLayout(frame: CGRect?) {
         scrollDirection = .horizontal
         if let frame = frame { itemSize = frame.size }
+        minimumInteritemSpacing = 0
+        minimumLineSpacing = 0
+    }
+    
+    private func featureViewLayout() {
+        scrollDirection = .horizontal
+        itemSize = CGSize(width: MalaLayout_FeatureViewWidth, height: MalaLayout_FeatureViewHeight)
         minimumInteritemSpacing = 0
         minimumLineSpacing = 0
     }
