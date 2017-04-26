@@ -178,12 +178,11 @@ class HandlePingppBehaviour: NSObject {
     
     ///  退回首页
     func popToRootViewController() {
-        guard let viewController = currentViewController else { return }
+        ThemeHUD.showActivityIndicator()
         
         // 回调回App时若直接PopToRootViewController会出现TabBar莫名自动添加一个item的问题，暂时使用此方式解决问题。
-        ThemeHUD.showActivityIndicator()
         delay(0.5) { () -> Void in
-            _ = viewController.navigationController?.popToRootViewController(animated: true)
+            RootViewController.shared.navigationController?.popToRootViewController(animated: true)
             ThemeHUD.hideActivityIndicator()
         }
     }
@@ -193,6 +192,7 @@ class HandlePingppBehaviour: NSObject {
         ThemeHUD.showActivityIndicator()
         
         delay(0.5) { () -> Void in
+            RootViewController.shared.navigationController?.popToRootViewController(animated: false)
             MainViewController.shared.selectedIndex = 1
             ThemeHUD.hideActivityIndicator()
         }
