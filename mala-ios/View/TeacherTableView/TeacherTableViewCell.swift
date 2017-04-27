@@ -126,7 +126,7 @@ class TeacherTableViewCell: UITableViewCell {
     // MARK: - Private Method
     private func setupUserInterface() {
         // Style
-        contentView.backgroundColor = UIColor(named: .loginLightBlue)
+        contentView.backgroundColor = UIColor(named: .themeLightBlue)
         selectionStyle = .none
         
         // SubViews

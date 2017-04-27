@@ -42,10 +42,8 @@ class ProfileItemCollectionViewCell: UICollectionViewCell {
     }()
     /// 标题标签
     private lazy var titleLabel: UILabel = {
-        let label = UILabel(
-            fontSize: 14,
-            textColor: UIColor(named: .ArticleText)
-        )
+        let label = UILabel(textColor: UIColor(named: .ArticleTitle))
+        label.font = FontFamily.PingFangSC.Regular.font(14)
         return label
     }()
     
@@ -72,19 +70,19 @@ class ProfileItemCollectionViewCell: UICollectionViewCell {
         iconView.snp.makeConstraints { (maker) in
             maker.centerX.equalTo(contentView)
             maker.top.equalTo(contentView).offset(13)
-            maker.width.equalTo(53)
-            maker.height.equalTo(53)
+            maker.width.equalTo(60)
+            maker.height.equalTo(60)
         }
         newMessageView.snp.makeConstraints { (maker) in
             maker.top.equalTo(iconView)
             maker.right.equalTo(contentView).offset(-10)
-            maker.width.equalTo(39)
-            maker.height.equalTo(15)
+            maker.width.equalTo(46)
+            maker.height.equalTo(19)
         }
         titleLabel.snp.makeConstraints { (maker) in
             maker.centerX.equalTo(contentView)
-            maker.top.equalTo(iconView.snp.bottom).offset(17)
-            maker.height.equalTo(14)
+            maker.top.equalTo(iconView.snp.bottom).offset(10)
+            maker.height.equalTo(15)
         }
     }
     

@@ -12,20 +12,34 @@ import Toast_Swift
 
 extension UIViewController {
     
-    public func showShareActionSheet(model: BaseObjectModel) {
+    public func showShareActionSheet(model: BaseObjectModel, isLiveCourse: Bool = false) {
         
-        guard let model = model as? TeacherDetailModel else {
-            println("Model is not match TeacherDetailModel.")
-            return
+        // 创建分享参数
+        let shareParames = NSMutableDictionary()
+        if isLiveCourse {
+            guard let model = model as? LiveClassModel else {
+                println("Model is not match LiveClassModel.")
+                return
+            }
+            
+            shareParames.ssdkSetupShareParams(byText: "顶级名师直播授课，当地老师全程辅导，赶快加入我们吧",
+                                              images: UIImage(named: MalaConfig.appIcon()),
+                                              url: model.shareURL as URL!,
+                                              title: model.shareText,
+                                              type: SSDKContentType.webPage)
+        }else {
+            guard let model = model as? TeacherDetailModel else {
+                println("Model is not match TeacherDetailModel.")
+                return
+            }
+            
+            shareParames.ssdkSetupShareParams(byText: model.shareText,
+                                              images : (model.avatar ?? UIImage(asset: .avatarPlaceholder)),
+                                              url : model.shareURL as URL!,
+                                              title : "我在麻辣老师发现一位好老师！",
+                                              type : SSDKContentType.webPage)
         }
         
-        // 创建分享参数
-        let shareParames = NSMutableDictionary()
-        shareParames.ssdkSetupShareParams(byText: model.shareText,
-                                          images : (model.avatar ?? UIImage(asset: .avatarPlaceholder)),
-                                          url : model.shareURL as URL!,
-                                          title : "我在麻辣老师发现一位好老师！",
-                                          type : SSDKContentType.webPage)
         // 简洁样式菜单
         SSUIShareActionSheetStyle.setShareActionSheetStyle(.simple)
         // 分享菜单

@@ -58,7 +58,7 @@ open class BaseViewController: UIViewController {
     }
     
     private func configure() {
-        navigationController?.navigationBar.setBackgroundImage(UIImage.withColor(UIColor(named: .mainNaviBlue)), for: .default)
+        navigationController?.navigationBar.setBackgroundImage(UIImage.withColor(UIColor(named: .themeBlue)), for: .default)
         
         // 设置BarButtomItem间隔
         let spacer = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)

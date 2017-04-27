@@ -13,7 +13,7 @@ import PagingMenuController
 private struct PagingMenuOptions: PagingMenuControllerCustomizable {
     
     var backgroundColor: UIColor {
-        return UIColor(named: .mainNaviBlue)
+        return UIColor(named: .themeBlue)
     }
     
     fileprivate var componentType: ComponentType {
@@ -28,13 +28,13 @@ private struct PagingMenuOptions: PagingMenuControllerCustomizable {
     
     fileprivate struct MenuOptions: MenuViewCustomizable {
         var backgroundColor: UIColor {
-            return UIColor(named: .mainNaviBlue)
+            return UIColor(named: .themeBlue)
         }
         var height: CGFloat {
-            return 34
+            return 57
         }
         var selectedBackgroundColor: UIColor {
-            return UIColor(named: .mainNaviBlue)
+            return UIColor(named: .themeBlue)
         }
         var displayMode: MenuDisplayMode {
             return .segmentedControl
@@ -49,17 +49,45 @@ private struct PagingMenuOptions: PagingMenuControllerCustomizable {
     
     fileprivate struct MenuItem1: MenuItemViewCustomizable {
         var displayMode: MenuItemDisplayMode {
-            return .text(title: MenuItemText(text: L10n.tuition, color: UIColor.white, selectedColor: UIColor.white))
+            let label = UILabel(text: L10n.tuition, textColor: UIColor.white)
+            let view = UIView(frame: CGRect(x: 0, y: 0, width: MalaScreenWidth/2, height: 57))
+            
+            view.addSubview(label)
+            label.snp.makeConstraints { (maker) in
+                maker.centerX.equalTo(view)
+                maker.top.equalTo(view).offset(30)
+                maker.height.equalTo(17)
+                maker.bottom.equalTo(view).offset(-10)
+            }
+            return .custom(view: view)
         }
     }
     fileprivate struct MenuItem2: MenuItemViewCustomizable {
         var displayMode: MenuItemDisplayMode {
-            return .text(title: MenuItemText(text: L10n.live, color: UIColor.white, selectedColor: UIColor.white))
+            let label = UILabel(text: L10n.live, textColor: UIColor.white)
+            let view = UIView(frame: CGRect(x: 0, y: 0, width: MalaScreenWidth/2, height: 57))
+            let hotImage = UIImageView(image: UIImage(asset: .hot))
+            
+            view.addSubview(label)
+            label.addSubview(hotImage)
+            label.snp.makeConstraints { (maker) in
+                maker.centerX.equalTo(view)
+                maker.top.equalTo(view).offset(30)
+                maker.bottom.equalTo(view).offset(-10)
+                maker.height.equalTo(17)
+            }
+            hotImage.snp.makeConstraints { (maker) in
+                maker.bottom.equalTo(label.snp.centerY)
+                maker.left.equalTo(label.snp.right).offset(3)
+            }
+            return .custom(view: view)
         }
     }
 }
 
 class RootViewController: UIViewController {
+    
+    static let shared = RootViewController()
     
     // MARK: - Components
     /// 上课地点选择按钮
@@ -103,9 +131,6 @@ class RootViewController: UIViewController {
     
     // MARK: - Private Method
     private func setupUserInterface() {
-        // Style
-        navigationController?.navigationBar.setBackgroundImage(UIImage.withColor(UIColor(named: .mainNaviBlue)), for: .default)
-        
         // TitleView
         navigationItem.titleView = regionPickButton
         
@@ -121,16 +146,6 @@ class RootViewController: UIViewController {
         addChildViewController(menu)
         view.addSubview(menu.view)
         menu.didMove(toParentViewController: self)
-        
-        // set HOT label
-        guard let label = menu.menuView?.currentMenuItemView.titleLabel else { return }
-        let hotImage = UIImageView(image: UIImage(asset: .hot))
-        
-        label.addSubview(hotImage)
-        hotImage.snp.makeConstraints { (maker) in
-            maker.bottom.equalTo(label.snp.centerY)
-            maker.left.equalTo(label.snp.centerX).offset(32)
-        }
     }
     
     private func getCurrentLocation() {

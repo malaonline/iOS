@@ -33,7 +33,15 @@ class LiveCourseDetailViewController: BaseViewController, LiveCourseConfirmViewD
         let confirmView = LiveCourseConfirmView()
         return confirmView
     }()
-    
+    private lazy var shareButton: UIButton = {
+        let button = UIButton(
+            imageName: "share_normal",
+            highlightImageName: "share_press",
+            target: self,
+            action: #selector(LiveCourseDetailViewController.shareButtonDidTap)
+        )
+        return button
+    }()
     
     // MARK: - Life Cycle
     override func viewDidLoad() {
@@ -59,10 +67,15 @@ class LiveCourseDetailViewController: BaseViewController, LiveCourseConfirmViewD
         // Style
         title = L10n.liveCourse
         
+        // rightBarButtonItem
+        let spacer2 = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
+        spacer2.width = -10
+        let rightBarButtonItem = UIBarButtonItem(customView: shareButton)
+        navigationItem.rightBarButtonItems = [spacer2, rightBarButtonItem]
+        
         // SubViews
         view.addSubview(tableView)
         view.addSubview(confirmView)
-        
         confirmView.delegate = self
         
         // Autolayout
@@ -164,6 +177,11 @@ class LiveCourseDetailViewController: BaseViewController, LiveCourseConfirmViewD
                 })
             }
         }
+    }
+    
+    
+    @objc private func shareButtonDidTap() {
+        showShareActionSheet(model: model, isLiveCourse: true)
     }
     
     // 跳转到支付页面

@@ -284,6 +284,26 @@ open class MalaConfig {
         ]
     }
     
+    class func featureViewData() -> [IntroductionModel] {
+        return [
+            IntroductionModel(
+                title: "要上的课在这里",
+                image: .featureInfo,
+                subTitle: "购课后 时间地点一目了然"
+            ),
+            IntroductionModel(
+                title: "温馨提醒上课通知",
+                image: .featureNotify,
+                subTitle: "不会错过上课的日子 暖暖的很贴心"
+            ),
+            IntroductionModel(
+                title: "课程评价看得见",
+                image: .featureComment,
+                subTitle: "上完课过来发表一下感受吧"
+            )
+        ]
+    }
+    
     class func chartsColor() -> [UIColor] {
         return [
             UIColor(named: .ChartYellow),

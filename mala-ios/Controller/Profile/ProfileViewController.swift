@@ -14,6 +14,8 @@ private let ProfileViewTableViewItemCellReuseID = "ProfileViewTableViewItemCellR
 
 class ProfileViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, ProfileViewHeaderViewDelegate {
     
+    static let shared = ProfileViewController(style: .grouped)
+    
     // MARK: - Property
     /// [个人中心结构数据]
     private var model: [[ProfileElementModel]] = MalaConfig.profileData()
@@ -29,27 +31,34 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
     }()
     /// [个人中心]底部视图
     private lazy var profileFooterView: UIView = {
-        let view = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 55))
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 120))
         return view
     }()
     /// 顶部背景图
     private lazy var headerBackground: UIImageView = {
-        let image = UIImageView(imageName: "profile_headerBackground")
-        image.contentMode = .scaleAspectFill
+        let image = UIImageView()
+        image.backgroundColor = UIColor(named: .profileBlue)
         return image
+    }()
+    /// 波纹
+    private lazy var waveView: YXWaveView = {
+        let frame = CGRect(x: 0, y: 0, width: self.view.bounds.size.width, height: 100)
+        let view = YXWaveView(frame: frame, color: UIColor.white)
+        view.waveSpeed = 0.75
+        view.waveHeight = 13
+        view.waveCurvature = 0.65
+        view.backgroundColor = UIColor.clear
+        return view
     }()
     /// [退出登录] 按钮
     private lazy var logoutButton: UIButton = {
         let button = UIButton()
-        button.layer.cornerRadius = 5
-        button.layer.masksToBounds = true
-        
-        button.setTitle("退  出", for: UIControlState())
-        button.setTitleColor(UIColor.white, for: UIControlState())
-        button.setBackgroundImage(UIImage.withColor(UIColor(named: .ThemeBlue)), for: UIControlState())
-        button.setBackgroundImage(UIImage.withColor(UIColor(named: .ThemeBlue)), for: .highlighted)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
-        
+        button.setTitle("退出登录", for: .normal)
+        button.titleLabel?.font = FontFamily.PingFangSC.Regular.font(18)
+        button.setTitleColor(UIColor.white, for: .normal)
+        button.setBackgroundImage(UIImage(asset: .loginNormal), for: .normal)
+        button.setBackgroundImage(UIImage(asset: .loginPress), for: .highlighted)
+        button.setBackgroundImage(UIImage(asset: .loginPress), for: .selected)
         button.addTarget(self, action: #selector(ProfileViewController.logoutButtonDidTap), for: .touchUpInside)
         return button
     }()
@@ -85,6 +94,7 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
         model = MalaConfig.profileData()
         tableView.reloadData()
         profileHeaderView.refreshDataWithUserDefaults()
+        logoutButton.isHidden = !MalaUserDefaults.isLogined
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -105,27 +115,36 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
         // Style
         tableView.tableHeaderView = profileHeaderView
         tableView.tableFooterView = profileFooterView
-        tableView.backgroundColor = UIColor(named: .CardBackground)
+        tableView.backgroundColor = UIColor(named: .themeLightBlue)
         tableView.separatorStyle = .none
         
         // SubViews
         tableView.insertSubview(headerBackground, at: 0)
         profileFooterView.addSubview(logoutButton)
-        
+        headerBackground.addSubview(waveView)
         
         // Autolayout
         headerBackground.snp.makeConstraints { (maker) -> Void in
             maker.top.equalTo(0)
             maker.centerX.equalTo(tableView)
-            maker.width.equalTo(MalaScreenWidth)
+            maker.width.equalTo(tableView)
             maker.height.equalTo(MalaLayout_ProfileHeaderViewHeight)
         }
-        logoutButton.snp.makeConstraints { (maker) -> Void in
-            maker.bottom.equalTo(profileFooterView)
-            maker.centerX.equalTo(profileFooterView)
-            maker.width.equalTo(profileFooterView).multipliedBy(0.85)
-            maker.height.equalTo(37)
+        waveView.snp.makeConstraints { (maker) in
+            maker.bottom.equalTo(headerBackground)
+            maker.width.equalTo(headerBackground)
+            maker.height.equalTo(100)
+            maker.centerX.equalTo(headerBackground)
         }
+        logoutButton.snp.makeConstraints { (maker) -> Void in
+            maker.top.equalTo(profileFooterView).offset(20)
+            maker.centerX.equalTo(profileFooterView)
+            maker.width.equalTo(332)
+            maker.height.equalTo(78)
+        }
+        
+        // Start wave
+        waveView.start()
     }
     
     private func setupNotification() {
@@ -134,18 +153,8 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
             object: nil,
             queue: nil
         ) { [weak self] (notification) -> Void in
-            if let model = notification.object as? ProfileElementModel, let type = model.controller as? UIViewController.Type {
-                
-                // 若对应项被冻结，则点击无效
-                if model.disabled, let message = model.disabledMessage {
-                    self?.showToast(message)
-                    return
-                }
-                
-                let viewController = type.init()
-                viewController.title = model.controllerTitle
-                viewController.hidesBottomBarWhenPushed = true
-                self?.navigationController?.pushViewController(viewController, animated: true)
+            if let model = notification.object as? ProfileElementModel {
+                self?.cellDidTap(isItem: true, model: model)
             }
         }
     }
@@ -214,12 +223,16 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
     // MARK: - Delegate
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 8))
-        view.backgroundColor = UIColor(named: .CardBackground)
+        view.backgroundColor = UIColor(named: .themeLightBlue)
         return view
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return section == 0 ? 0 : 12
+        switch section {
+        case 0: return 0
+        case 1: return 12
+        default: return 1
+        }
     }
     
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
@@ -227,23 +240,12 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return indexPath.section == 0 ? 114 : 44
+        return indexPath.section == 0 ? 114 : 56
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! ProfileViewCell
-        let model = cell.model
-        
-        // 若对应项被冻结，则点击无效
-        if model.disabled { return }
-        
-        // 跳转到对应的ViewController
-        if let type = model.controller as? UIViewController.Type {
-            let viewController = type.init()
-            viewController.title = model.controllerTitle
-            viewController.hidesBottomBarWhenPushed = true
-            self.navigationController?.pushViewController(viewController, animated: true)
-        }
+        cellDidTap(isItem: false, model: cell.model)
     }
 
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -259,11 +261,54 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
         }
     }
     
+    
+    /// cell did tap
+    @objc private func cellDidTap(isItem: Bool, model: ProfileElementModel) {
+        
+        // 未登陆则进行登陆动作
+        guard MalaUserDefaults.isLogined else {
+            self.present(UINavigationController(rootViewController: LoginViewController()), animated: true)
+            return
+        }
+        
+        if isItem {
+            // 若对应项被冻结，则点击无效
+            if model.disabled, let message = model.disabledMessage {
+                showToast(message)
+                return
+            }
+            
+            if let viewController = (model.controller as? UIViewController.Type)?.init() {
+                viewController.title = model.controllerTitle
+                viewController.hidesBottomBarWhenPushed = true
+                navigationController?.pushViewController(viewController, animated: true)
+            }
+        }else {
+            // 若对应项被冻结，则点击无效
+            if model.disabled { return }
+            
+            if let type = model.controller as? UIViewController.Type {
+                let viewController = type.init()
+                viewController.title = model.controllerTitle
+                viewController.hidesBottomBarWhenPushed = true
+                navigationController?.pushViewController(viewController, animated: true)
+            }
+        }
+    }
+    
     ///  HeaderView修改姓名
     func nameEditButtonDidTap(_ sender: UIButton) {
         let window = InfoModifyViewWindow(contentView: UIView())
         window.show()
     }
+    
+    func loginButtonDidTap(_ sender: UIButton) {
+        self.present(
+            UINavigationController(rootViewController: LoginViewController()),
+            animated: true
+        )
+    }
+
     
     ///  HeaderView头像点击事件
     ///
@@ -377,6 +422,7 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
                 }
                 
             }, cancelAction: { () -> Void in
+
         })
     }
     

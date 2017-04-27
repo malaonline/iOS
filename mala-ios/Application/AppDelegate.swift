@@ -27,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Setup Window
         window = BaseWindow(frame: UIScreen.main.bounds)
         window?.backgroundColor = UIColor.white
-        let mainViewController = MainViewController()
+        let mainViewController = MainViewController.shared
         window?.rootViewController = mainViewController
         window?.makeKeyAndVisible()
 
@@ -179,13 +179,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             NSFontAttributeName: FontFamily.PingFangSC.Regular.font(16),
             NSForegroundColorAttributeName: UIColor.white
         ]
-        UINavigationBar.appearance().setBackgroundImage(UIImage.withColor(UIColor(named: .mainNaviBlue)), for: .default)
+        UINavigationBar.appearance().setBackgroundImage(UIImage.withColor(UIColor(named: .themeBlue)), for: .default)
         UINavigationBar.appearance().shadowImage = UIImage.withColor(UIColor.clear)
         
         // TabBar
-        UITabBar.appearance().tintColor = UIColor(named: .mainNaviBlue)
+        UITabBar.appearance().tintColor = UIColor(named: .themeBlue)
         UITabBar.appearance().backgroundImage = UIImage.withColor(UIColor.white)
-        UITabBar.appearance().shadowImage = UIImage.withColor(UIColor(named: .loginLightBlue))
+        UITabBar.appearance().shadowImage = UIImage.withColor(UIColor(named: .themeLightBlue))
         
         // TabBarItem
         UITabBarItem.appearance().setTitleTextAttributes([
@@ -194,11 +194,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             ], for: .normal)
         UITabBarItem.appearance().setTitleTextAttributes([
             NSFontAttributeName: FontFamily.PingFangSC.Regular.font(8),
-            NSForegroundColorAttributeName: UIColor(named: .mainNaviBlue)
+            NSForegroundColorAttributeName: UIColor(named: .themeBlue)
             ], for: .highlighted)
         UITabBarItem.appearance().setTitleTextAttributes([
             NSFontAttributeName: FontFamily.PingFangSC.Regular.font(8),
-            NSForegroundColorAttributeName: UIColor(named: .mainNaviBlue)
+            NSForegroundColorAttributeName: UIColor(named: .themeBlue)
             ], for: .selected)
         UITabBarItem.appearance().titlePositionAdjustment = UIOffset(horizontal: 0, vertical: -4)
         
@@ -246,7 +246,7 @@ extension AppDelegate {
     
     ///  切换到首页
     func switchToStart() {
-        window?.rootViewController = MainViewController()
+        MainViewController.shared.selectedIndex = 0
     }
     
     ///  切换到TabBarController指定控制器

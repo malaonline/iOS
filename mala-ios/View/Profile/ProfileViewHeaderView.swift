@@ -11,6 +11,7 @@ import UIKit
 protocol ProfileViewHeaderViewDelegate: NSObjectProtocol {
     func avatarViewDidTap(_ sender: UIImageView)
     func nameEditButtonDidTap(_ sender: UIButton)
+    func loginButtonDidTap(_ sender: UIButton)
 }
 
 class ProfileViewHeaderView: UIView {
@@ -56,7 +57,7 @@ class ProfileViewHeaderView: UIView {
     }()
     /// 头像背景
     private lazy var avatarBackground: UIView = {
-        let view = UIView(UIColor.white)
+        let view = UIView(UIColor(named: .profileAvatarBG))
         view.layer.cornerRadius = MalaLayout_AvatarSize*0.5
         view.layer.masksToBounds = true
         return view
@@ -64,18 +65,30 @@ class ProfileViewHeaderView: UIView {
     /// 姓名label控件
     private lazy var nameLabel: UILabel = {
         let label = UILabel()
-        label.textColor = UIColor(named: .ThemeBlue)
-        label.font = UIFont.systemFont(ofSize: 14)
+        label.textColor = UIColor.white
+        label.font = FontFamily.PingFangSC.Regular.font(16)
         label.textAlignment = .center
         label.isUserInteractionEnabled = true
         label.addTapEvent(target: self, action: #selector(ProfileViewHeaderView.nameEditButtonDidTap(_:)))
+        label.isHidden = !MalaUserDefaults.isLogined
         return label
     }()
     /// 姓名修改按钮
     private lazy var editButton: UIButton = {
         let button = UIButton()
-        button.setBackgroundImage(UIImage(asset: .editIcon), for: UIControlState())
+        button.setBackgroundImage(UIImage(asset: .editIcon), for: .normal)
+        button.setBackgroundImage(UIImage(asset: .editIconPress), for: .highlighted)
+        button.setBackgroundImage(UIImage(asset: .editIconPress), for: .disabled)
         button.addTarget(self, action: #selector(ProfileViewHeaderView.nameEditButtonDidTap(_:)), for: .touchUpInside)
+        button.isHidden = !MalaUserDefaults.isLogined
+        return button
+    }()
+    /// 登录按钮
+    private lazy var loginButton: UIButton = {
+        let button = UIButton()
+        button.setBackgroundImage(UIImage(asset: .profileLogin), for: .normal)
+        button.addTarget(self, action: #selector(ProfileViewHeaderView.loginButtonDidTap(_:)), for: .touchUpInside)
+        button.isHidden = MalaUserDefaults.isLogined
         return button
     }()
     /// 头像刷新指示器
@@ -104,13 +117,14 @@ class ProfileViewHeaderView: UIView {
     private func setupUserInterface() {
         // Style
         backgroundColor = UIColor.clear
-        self.avatarURL = MalaUserDefaults.avatar.value ?? ""
+        avatarURL = MalaUserDefaults.avatar.value ?? ""
         
         // SubViews
         addSubview(avatarBackground)
         addSubview(avatarView)
         addSubview(nameLabel)
         addSubview(editButton)
+        addSubview(loginButton)
         avatarView.addSubview(activityIndicator)
         
         // Autolayout
@@ -129,11 +143,17 @@ class ProfileViewHeaderView: UIView {
             maker.centerX.equalTo(avatarView)
             maker.height.equalTo(14)
         }
+        loginButton.snp.makeConstraints { (maker) in
+            maker.top.equalTo(avatarBackground.snp.bottom).offset(14)
+            maker.centerX.equalTo(avatarView)
+            maker.width.equalTo(108)
+            maker.height.equalTo(32)
+        }
         editButton.snp.makeConstraints { (maker) -> Void in
-            maker.centerY.equalTo(nameLabel)
+            maker.bottom.equalTo(nameLabel)
             maker.left.equalTo(nameLabel.snp.right).offset(3)
-            maker.width.equalTo(9)
-            maker.height.equalTo(13)
+            maker.width.equalTo(18)
+            maker.height.equalTo(18)
         }
         activityIndicator.snp.makeConstraints { (maker) -> Void in
             maker.center.equalTo(avatarView)
@@ -160,12 +180,30 @@ class ProfileViewHeaderView: UIView {
         self.delegate?.nameEditButtonDidTap(sender)
     }
     
+    @objc private func loginButtonDidTap(_ sender: UIButton) {
+        self.delegate?.loginButtonDidTap(sender)
+    }
+    
+    
     // MARK: - Public Method
     ///  使用UserDefaults中的头像URL刷新头像
     func refreshDataWithUserDefaults() {
-        avatarURL = MalaUserDefaults.avatar.value ?? ""
-        name = MalaUserDefaults.studentName.value ?? ""
+        nameLabel.isHidden = !MalaUserDefaults.isLogined
+        editButton.isHidden = !MalaUserDefaults.isLogined
+        loginButton.isHidden = MalaUserDefaults.isLogined
+        
+        if !MalaUserDefaults.isLogined {
+            avatarView.setImage(withImageName: "profileAvatar_placeholder")
+        }
+        
+        delay(3) { 
+            if let url = MalaUserDefaults.avatar.value, MalaUserDefaults.isLogined {
+                self.avatarURL = url
+            }
+            self.name = MalaUserDefaults.studentName.value ?? "学生姓名"
+        }
     }
+    
     
     deinit {
         NotificationCenter.default.removeObserver(self, name: MalaNotification_RefreshStudentName, object: nil)

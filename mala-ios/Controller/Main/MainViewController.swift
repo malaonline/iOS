@@ -10,12 +10,13 @@ import UIKit
 
 class MainViewController: UITabBarController, UITabBarControllerDelegate {
 
+    static let shared = MainViewController()
     
     // MARK: - Components
     /// 首页
     private lazy var findTeacherViewController: MainNavigationController = {
         let naviVC = self.getNaviController(
-            RootViewController(),
+            RootViewController.shared,
             title: L10n.teacher,
             imageName: "search_normal"
         )
@@ -24,7 +25,7 @@ class MainViewController: UITabBarController, UITabBarControllerDelegate {
     /// 课程表
     private lazy var classScheduleViewController: MainNavigationController = {
         let naviVC = self.getNaviController(
-            CourseTableViewController(),
+            CourseTableViewController.shared,
             title: L10n.schedule,
             imageName: "schedule_normal"
         )
@@ -33,7 +34,7 @@ class MainViewController: UITabBarController, UITabBarControllerDelegate {
     /// 会员专享
     private lazy var memberPrivilegesViewController: MainNavigationController = {
         let naviVC  = self.getNaviController(
-            MemberPrivilegesViewController(),
+            MemberPrivilegesViewController.shared,
             title: L10n.member,
             imageName: "serivce_normal"
         )
@@ -42,7 +43,7 @@ class MainViewController: UITabBarController, UITabBarControllerDelegate {
     /// 个人
     private lazy var profileViewController: MainNavigationController = {
         let naviVC  = self.getNaviController(
-            ProfileViewController(style: .grouped),
+            ProfileViewController.shared,
             title: L10n.profile,
             imageName: "profile_normal"
         )
@@ -166,13 +167,14 @@ class MainViewController: UITabBarController, UITabBarControllerDelegate {
     // MARK: - Delegate
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
         
+        /*
         guard let navi = viewController as? UINavigationController else {
             return false
         }
         
         
         // 点击[我的]页面前需要登录校验
-        if navi.topViewController is ProfileViewController /*||
+         if navi.topViewController is ProfileViewController /*||
            navi.topViewController is ClassScheduleViewController*/ {
             
             // 未登陆则进行登陆动作
@@ -187,7 +189,7 @@ class MainViewController: UITabBarController, UITabBarControllerDelegate {
                 return false
             }
         }
-        
+         */
         return true
     }
 }

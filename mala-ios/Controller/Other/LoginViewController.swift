@@ -102,7 +102,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         button.setTitleColor(UIColor.white, for: .normal)
         button.setBackgroundImage(UIImage(asset: .loginNormal), for: .normal)
         button.setBackgroundImage(UIImage(asset: .loginPress), for: .highlighted)
-        button.setBackgroundImage(UIImage(asset: .loginPress), for: .disabled)
+        button.setBackgroundImage(UIImage(asset: .loginPress), for: .selected)
         button.addTarget(self, action: #selector(LoginViewController.verifyButtonDidTap), for: .touchUpInside)
         return button
     }()
@@ -140,7 +140,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     // MARK: - Private Method
     private func setupUserInterface() {
         // Style
-        view.backgroundColor = UIColor(named: .loginLightBlue)
+        view.backgroundColor = UIColor(named: .themeLightBlue)
         view.addTapEvent(target: self, action: #selector(LoginViewController.backgroundDidTap))
         let leftBarButtonItem = UIBarButtonItem(customView:UIButton(imageName: "close_white", target: self, action: #selector(LoginViewController.closeButtonDidClick)))
         navigationItem.leftBarButtonItem = leftBarButtonItem
@@ -244,8 +244,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         }
         
         verifyButton.snp.makeConstraints { (maker) in
-            maker.width.equalTo(340)
-            maker.height.equalTo(68)
+            maker.width.equalTo(332)
+            maker.height.equalTo(78)
             maker.centerX.equalTo(view)
             maker.top.equalTo(codeView.snp.bottom).offset(60)
         }

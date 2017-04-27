@@ -11,7 +11,7 @@ import UIKit
 private let TeacherTableViewCellReusedId = "TeacherTableViewCellReusedId"
 private let TeacherTableViewLoadmoreCellReusedId = "TeacherTableViewLoadmoreCellReusedId"
 
-class FindTeacherViewController: StatefulViewController, UITableViewDelegate, UITableViewDataSource {
+class FindTeacherViewController: StatefulViewController, UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate {
     
     private enum Section: Int {
         case teacher
@@ -44,7 +44,7 @@ class FindTeacherViewController: StatefulViewController, UITableViewDelegate, UI
         let tableView = UITableView(frame: self.view.frame, style: .plain)
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.backgroundColor = UIColor(named: .loginLightBlue)
+        tableView.backgroundColor = UIColor(named: .themeLightBlue)
         tableView.estimatedRowHeight = 200
         tableView.separatorStyle = .none
         tableView.contentInset = UIEdgeInsets(top: 6, left: 0, bottom: 48 + 6, right: 0)
@@ -98,6 +98,17 @@ class FindTeacherViewController: StatefulViewController, UITableViewDelegate, UI
         // stateful
         tableView.emptyDataSetSource = self
         tableView.emptyDataSetDelegate = self
+        
+        // gesture
+        let swipeUpGesture = UISwipeGestureRecognizer(target: self, action: #selector(LiveCourseViewController.didRecognize(gesture:)))
+        swipeUpGesture.direction = .up
+        let swipeDownGesture = UISwipeGestureRecognizer(target: self, action: #selector(LiveCourseViewController.didRecognize(gesture:)))
+        swipeDownGesture.direction = .down
+        
+        swipeUpGesture.delegate = self
+        swipeDownGesture.delegate = self
+        tableView.addGestureRecognizer(swipeUpGesture)
+        tableView.addGestureRecognizer(swipeDownGesture)
         
         // 下拉刷新
         tableView.addPullRefresh{ [weak self] in
@@ -280,6 +291,15 @@ class FindTeacherViewController: StatefulViewController, UITableViewDelegate, UI
     }
     
     
+    // MARK: - UIGestureRecognizerDelegate
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        guard let direction = (otherGestureRecognizer as? UISwipeGestureRecognizer)?.direction, (direction == .up || direction == .down) else {
+            return false
+        }
+        return true
+    }
+    
+    
     // MARK: - Private Method
     private func resolveFilterCondition() {
         let viewController = FilterResultController()
@@ -288,6 +308,14 @@ class FindTeacherViewController: StatefulViewController, UITableViewDelegate, UI
     
     @objc private func scrollToTop() {
         tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+    }
+    
+    func didRecognize(gesture: UISwipeGestureRecognizer) {
+        if gesture.direction == .up {
+            RootViewController.shared.navigationController?.setNavigationBarHidden(true, animated: true)
+        }else if gesture.direction == .down {
+            RootViewController.shared.navigationController?.setNavigationBarHidden(false, animated: true)
+        }
     }
 
     deinit {

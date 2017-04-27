@@ -46,6 +46,29 @@ class LiveClassModel: BaseObjectModel {
         }
     }
     
+    // 分享信息
+    var shareText: String {
+        get {
+            guard let teacherName = lecturerName, let courseName = courseName else {
+                return "火爆的双师直播课程"
+            }
+            return String(format: "%@%@%@", teacherName, "在麻辣老师为您讲授", courseName)
+        }
+    }
+    // 分享链接
+    var shareURL: URL? {
+        get {
+            #if USE_PRD_SERVER
+                return URL(string: String(format: "http://dev.malalaoshi.com/wechat/order/course_choosing/?step=live_class_page&liveclassid=%d", id))
+            #elseif USE_STAGE_SERVER
+                return URL(string: String(format: "https://stage.malalaoshi.com/wechat/order/course_choosing/?step=live_class_page&liveclassid=%d", id))
+            #else
+                return URL(string: String(format: "http://dev.malalaoshi.com/wechat/order/course_choosing/?step=live_class_page&liveclassid=%d", id))
+            #endif
+            
+        }
+    }
+    
     
     // MARK: - Instance Method
     override init() {

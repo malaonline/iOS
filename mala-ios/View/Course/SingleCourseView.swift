@@ -15,6 +15,7 @@ class SingleCourseView: UIView {
     var model: StudentCourseModel? {
         didSet {
             DispatchQueue.main.async {
+                self.changeDisplayMode()
                 self.setupCourseInfo()
             }
         }
@@ -95,6 +96,16 @@ class SingleCourseView: UIView {
         label.numberOfLines = 0
         return label
     }()
+    /// 评论按钮
+    private lazy var commentButton: UIButton = {
+        let button = UIButton()
+        button.layer.borderWidth = 1
+        button.layer.cornerRadius = 4
+        button.layer.masksToBounds = true
+        button.contentEdgeInsets = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
+        button.isHidden = true
+        return button
+    }()
     
     
     // MARK: - Instance Method
@@ -111,6 +122,7 @@ class SingleCourseView: UIView {
     
     // MARK: - Private
     private func setupUserInterface() {
+        backgroundColor = UIColor.white 
         // SubView
         addSubview(headerBackground)
         headerBackground.addSubview(subjectLabel)
@@ -123,6 +135,7 @@ class SingleCourseView: UIView {
         addSubview(timeSlotLabel)
         addSubview(schoolIcon)
         addSubview(schoolLabel)
+        addSubview(commentButton)
         
         // AutoLayout
         headerBackground.snp.makeConstraints { (maker) in
@@ -180,6 +193,11 @@ class SingleCourseView: UIView {
             maker.right.equalTo(self)
             maker.bottom.equalTo(self).offset(-20)
         }
+        commentButton.snp.makeConstraints { (maker) in
+            maker.top.equalTo(teacherLabel)
+            maker.right.equalTo(headerBackground)
+            maker.height.equalTo(24)
+        }
     }
     
     ///  加载课程数据
@@ -208,15 +226,87 @@ class SingleCourseView: UIView {
         switch course.status {
         case .Past:
             headerBackground.backgroundColor = UIColor(named: .Disabled)
+            commentButton.isHidden = false
             break
             
         case .Today:
             headerBackground.backgroundColor = UIColor(named: .ThemeDeepBlue)
+            commentButton.isHidden = true
             break
             
         case .Future:
             headerBackground.backgroundColor = UIColor(named: .ThemeDeepBlue)
+            commentButton.isHidden = true
             break
         }
+    }
+    
+    /// 根据当前课程评价状态，渲染对应UI样式
+    private func changeDisplayMode() {
+        // 课程评价状态
+        if model?.comment != nil {
+            setStyleCommented()
+        }else if model?.isExpired == true {
+            setStyleExpired()
+        }else {
+            setStyleNoComments()
+        }
+    }
+    
+    ///  设置过期样式
+    private func setStyleExpired() {
+        commentButton.layer.borderColor = UIColor(named: .HeaderTitle).cgColor
+        commentButton.setTitle("评价已过期", for: .normal)
+        commentButton.setTitleColor(UIColor(named: .HeaderTitle), for: .normal)
+        commentButton.setBackgroundImage(UIImage.withColor(UIColor.white), for: .normal)
+        commentButton.setBackgroundImage(UIImage.withColor(UIColor(named: .HeaderTitle)), for: .highlighted)
+        commentButton.titleLabel?.font = FontFamily.PingFangSC.Regular.font(12)
+        commentButton.isEnabled = false
+    }
+    
+    ///  设置待评论样式
+    private func setStyleNoComments() {
+        commentButton.layer.borderColor = UIColor(named: .ThemeRed).cgColor
+        commentButton.setTitle("去评价", for: .normal)
+        commentButton.setTitleColor(UIColor(named: .ThemeRed), for: .normal)
+        commentButton.setBackgroundImage(UIImage.withColor(UIColor.white), for: .normal)
+        commentButton.setBackgroundImage(UIImage.withColor(UIColor(named: .ThemeRedHighlight)), for: .highlighted)
+        commentButton.titleLabel?.font = FontFamily.PingFangSC.Regular.font(12)
+        commentButton.addTarget(self, action: #selector(SingleCourseView.toComment), for: .touchUpInside)
+    }
+    
+    ///  设置已评论样式
+    private func setStyleCommented() {
+        commentButton.layer.borderColor = UIColor(named: .commentBlue).cgColor
+        commentButton.setTitle("查看评价", for: .normal)
+        commentButton.setTitleColor(UIColor(named: .commentBlue), for: .normal)
+        commentButton.setBackgroundImage(UIImage.withColor(UIColor.white), for: .normal)
+        commentButton.setBackgroundImage(UIImage.withColor(UIColor(named: .CommitHighlightBlue)), for: .highlighted)
+        commentButton.titleLabel?.font = FontFamily.PingFangSC.Regular.font(12)
+        commentButton.addTarget(self, action: #selector(SingleCourseView.showComment), for: .touchUpInside)
+    }
+    
+    
+    // MARK: - Event Response
+    ///  去评价
+    @objc private func toComment() {
+        let commentWindow = CommentViewWindow(contentView: UIView())
+        
+        commentWindow.finishedAction = { [weak self] in
+            self?.commentButton.removeTarget(self, action: #selector(SingleCourseView.toComment), for: .touchUpInside)
+            self?.setStyleCommented()
+        }
+        
+        commentWindow.model = self.model ?? StudentCourseModel()
+        commentWindow.isJustShow = false
+        commentWindow.show()
+    }
+    
+    ///  查看评价
+    @objc private func showComment() {
+        let commentWindow = CommentViewWindow(contentView: UIView())
+        commentWindow.model = self.model ?? StudentCourseModel()
+        commentWindow.isJustShow = true
+        commentWindow.show()
     }
 }
