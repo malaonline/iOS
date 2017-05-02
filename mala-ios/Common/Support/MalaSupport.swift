@@ -370,12 +370,13 @@ func parseTimeSlots(_ timeSchedule: [[TimeInterval]]) -> (dates: [String], times
         
         // 垂直高度
         let count = slotDate.times.count
-        if (count <= 4) {
-            height += 14*2+2
-        }else {
-            height += 14*3+2*2
+        
+        switch count {
+        case 1...2: height += (17+20+12)
+        case 3...4: height += (33.5+20)
+        case 5:     height += (50.5+20)
+        default:    height += 0
         }
-        height += 20
     }
     height -= 20
     return (dateStrings, timeStrings, height)
