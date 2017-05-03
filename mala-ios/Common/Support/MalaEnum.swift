@@ -26,18 +26,20 @@ enum PaymentMethod: String {
 
 ///  支付手段
 ///  - See: [取值范围](https://www.pingxx.com/api#api-charges)
-///  - Wechat:  微信支付
-///  - Alipay:  支付宝手机支付
-///  - QRPay:   扫码支付
-///  - WxQR:    微信扫码支付
-///  - AliQR:   支付宝扫码支付
+///  - Wechat:      微信支付
+///  - Alipay:      支付宝手机支付
+///  - QRPay:       扫码支付
+///  - WxQR:        微信扫码支付
+///  - WechatPub:   微信公众号支付（自定义 非Ping++定义）
+///  - AliQR:       支付宝扫码支付
 enum MalaPaymentChannel: String {
-    case Wechat = "wx"
-    case Alipay = "alipay"
-    case QRPay  = "qrPay"
-    case WxQR   = "wx_pub_qr"
-    case AliQR  = "alipay_qr"
-    case Other  = "other"
+    case Wechat     = "wx"
+    case Alipay     = "alipay"
+    case QRPay      = "qrPay"
+    case WxQR       = "wx_pub_qr"
+    case AliQR      = "alipay_qr"
+    case WechatPub  = "wx_pub_mala"
+    case Other      = "other"
 }
 
 ///  跳转URLScheme
