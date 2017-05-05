@@ -523,6 +523,12 @@
 		F43525D41DE2CA55002116E5 /* LiveCourseDetailAssistantCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43525D31DE2CA55002116E5 /* LiveCourseDetailAssistantCell.swift */; };
 		F43525D51DE2CA55002116E5 /* LiveCourseDetailAssistantCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43525D31DE2CA55002116E5 /* LiveCourseDetailAssistantCell.swift */; };
 		F43525D61DE2CA55002116E5 /* LiveCourseDetailAssistantCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43525D31DE2CA55002116E5 /* LiveCourseDetailAssistantCell.swift */; };
+		F43C95D31EB9BA09000C884C /* ThemeRefreshHeaderAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43C95D21EB9BA09000C884C /* ThemeRefreshHeaderAnimator.swift */; };
+		F43C95D41EB9BA09000C884C /* ThemeRefreshHeaderAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43C95D21EB9BA09000C884C /* ThemeRefreshHeaderAnimator.swift */; };
+		F43C95D51EB9BA09000C884C /* ThemeRefreshHeaderAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43C95D21EB9BA09000C884C /* ThemeRefreshHeaderAnimator.swift */; };
+		F43C95DB1EB9BA65000C884C /* ThemeRefreshFooterAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43C95DA1EB9BA65000C884C /* ThemeRefreshFooterAnimator.swift */; };
+		F43C95DC1EB9BA65000C884C /* ThemeRefreshFooterAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43C95DA1EB9BA65000C884C /* ThemeRefreshFooterAnimator.swift */; };
+		F43C95DD1EB9BA65000C884C /* ThemeRefreshFooterAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43C95DA1EB9BA65000C884C /* ThemeRefreshFooterAnimator.swift */; };
 		F43C987E1D6AD7C40013799E /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F43C987D1D6AD7C40013799E /* libicucore.tbd */; };
 		F43C98801D6AD7DD0013799E /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F43C987F1D6AD7DD0013799E /* libstdc++.tbd */; };
 		F43C98821D6AD7E80013799E /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F43C98811D6AD7E80013799E /* JavaScriptCore.framework */; };
@@ -946,6 +952,8 @@
 		F4331AC31DD19B78003F062D /* BannerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerView.swift; sourceTree = "<group>"; };
 		F4331B991DD322A1003F062D /* Extension+Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension+Date.swift"; sourceTree = "<group>"; };
 		F43525D31DE2CA55002116E5 /* LiveCourseDetailAssistantCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveCourseDetailAssistantCell.swift; sourceTree = "<group>"; };
+		F43C95D21EB9BA09000C884C /* ThemeRefreshHeaderAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeRefreshHeaderAnimator.swift; sourceTree = "<group>"; };
+		F43C95DA1EB9BA65000C884C /* ThemeRefreshFooterAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeRefreshFooterAnimator.swift; sourceTree = "<group>"; };
 		F43C987D1D6AD7C40013799E /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
 		F43C987F1D6AD7DD0013799E /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
 		F43C98811D6AD7E80013799E /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
@@ -1726,6 +1734,8 @@
 				F48F13021DAB9211006A2F5C /* UIScrollViewExtension.swift */,
 				F4BD4FCF1C745C0900488613 /* ThemeRefreshView.swift */,
 				F46064F51C93C375004056B1 /* ThemeReloadView.swift */,
+				F43C95D21EB9BA09000C884C /* ThemeRefreshHeaderAnimator.swift */,
+				F43C95DA1EB9BA65000C884C /* ThemeRefreshFooterAnimator.swift */,
 			);
 			path = Refresher;
 			sourceTree = "<group>";
@@ -2364,10 +2374,12 @@
 				F4D0D14F1C9FACFC00B25704 /* TeacherFilterPopupWindow.swift in Sources */,
 				F4493C671E7A2B6300D34918 /* VerifyingSMS.swift in Sources */,
 				308063951C3A1C9800729832 /* Extension+UILabel.swift in Sources */,
+				F43C95D31EB9BA09000C884C /* ThemeRefreshHeaderAnimator.swift in Sources */,
 				F4B3C6731CFD3CF000C1B423 /* SubjectReport.swift in Sources */,
 				F4ADCFDE1D0E6E7C004D517A /* ProfileItemCollectionView.swift in Sources */,
 				30EB98B81C3CEBD6003977FF /* MATabListView.swift in Sources */,
 				F4ADCFD61D0D6E6E004D517A /* InfoModifyViewWindow.swift in Sources */,
+				F43C95DB1EB9BA65000C884C /* ThemeRefreshFooterAnimator.swift in Sources */,
 				F427FFAF1CEDA37400EAB748 /* LearningReportAbilityImproveCell.swift in Sources */,
 				307AB8601C323BDF00D8397F /* TeacherModel.swift in Sources */,
 				F48BBAEB1CE9D6A800774297 /* MemberPrivilegesViewController.swift in Sources */,
@@ -2577,10 +2589,12 @@
 				35FF7A651CF8325A000A70EE /* CouponRulesPopupWindow.swift in Sources */,
 				F4493C681E7A2B6300D34918 /* VerifyingSMS.swift in Sources */,
 				35FF7A671CF8325A000A70EE /* TeacherFilterPopupWindow.swift in Sources */,
+				F43C95D41EB9BA09000C884C /* ThemeRefreshHeaderAnimator.swift in Sources */,
 				35FF7A691CF8325A000A70EE /* Extension+UILabel.swift in Sources */,
 				F4ADCFDF1D0E6E7C004D517A /* ProfileItemCollectionView.swift in Sources */,
 				35FF7A6C1CF8325A000A70EE /* MATabListView.swift in Sources */,
 				F4ADCFD71D0D6E6E004D517A /* InfoModifyViewWindow.swift in Sources */,
+				F43C95DC1EB9BA65000C884C /* ThemeRefreshFooterAnimator.swift in Sources */,
 				35FF7A6E1CF8325A000A70EE /* LearningReportAbilityImproveCell.swift in Sources */,
 				35FF7A6F1CF8325A000A70EE /* TeacherModel.swift in Sources */,
 				35FF7A701CF8325A000A70EE /* MemberPrivilegesViewController.swift in Sources */,
@@ -2790,10 +2804,12 @@
 				35FF7B481CF83264000A70EE /* CouponRulesPopupWindow.swift in Sources */,
 				F4493C691E7A2B6300D34918 /* VerifyingSMS.swift in Sources */,
 				35FF7B4A1CF83264000A70EE /* TeacherFilterPopupWindow.swift in Sources */,
+				F43C95D51EB9BA09000C884C /* ThemeRefreshHeaderAnimator.swift in Sources */,
 				35FF7B4C1CF83264000A70EE /* Extension+UILabel.swift in Sources */,
 				F4ADCFE01D0E6E7C004D517A /* ProfileItemCollectionView.swift in Sources */,
 				35FF7B4F1CF83264000A70EE /* MATabListView.swift in Sources */,
 				F4ADCFD81D0D6E6E004D517A /* InfoModifyViewWindow.swift in Sources */,
+				F43C95DD1EB9BA65000C884C /* ThemeRefreshFooterAnimator.swift in Sources */,
 				35FF7B511CF83264000A70EE /* LearningReportAbilityImproveCell.swift in Sources */,
 				35FF7B521CF83264000A70EE /* TeacherModel.swift in Sources */,
 				35FF7B531CF83264000A70EE /* MemberPrivilegesViewController.swift in Sources */,

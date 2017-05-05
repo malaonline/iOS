@@ -6,6 +6,7 @@ PODS:
   - Charts/Core (3.0.1)
   - DateToolsSwift (2.0.0)
   - DZNEmptyDataSet (1.8.1)
+  - ESPullToRefresh (2.6)
   - FirebaseAnalytics (3.7.0):
     - FirebaseCore (~> 3.5)
     - FirebaseInstanceID (~> 1.0)
@@ -124,6 +125,7 @@ DEPENDENCIES:
   - Charts (~> 3.0.1)
   - DateToolsSwift
   - DZNEmptyDataSet (~> 1.8.1)
+  - ESPullToRefresh (~> 2.6)
   - Google/Analytics
   - IQKeyboardManagerSwift (~> 4.0.8)
   - Kingfisher (~> 3.1.0)
@@ -168,6 +170,7 @@ SPEC CHECKSUMS:
   Charts: 0e84f4418e87dad6a9edde221fba37ebb51d3ba7
   DateToolsSwift: 27336736d877c8734159da1f37afbda2aa704649
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
+  ESPullToRefresh: 85f4990acf87f78c6a1466bbbee7a75d7de24db9
   FirebaseAnalytics: 0d1b7d81d5021155be37702a94ba1ec16d45365d
   FirebaseCore: 1c0a13bf59bb95cdd19577252499f0ec6a03e999
   FirebaseInstanceID: 2d0518b1378fe9d685ef40cbdd63d2fdc1125339
@@ -192,6 +195,6 @@ SPEC CHECKSUMS:
   Toast-Swift: 5b2f8f720f7e78e48511f693df1f9c9a6e38a25a
   WZLBadge: 16c08aa0a645e2591690f21cbcb410a3d878c7ac
 
-PODFILE CHECKSUM: bce93a782ac0730e5bb50d0be16871a14d15b267
+PODFILE CHECKSUM: 434dd8153e28a9ad319053230c5080104ce2b9ed
 
 COCOAPODS: 1.2.0.beta.1
