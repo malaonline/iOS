@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ESPullToRefresh
 
 private let CouponViewCellReuseId = "CouponViewCellReuseId"
 
@@ -62,9 +63,12 @@ class CouponViewController: StatefulViewController, UITableViewDelegate, UITable
 
         configure()
         loadCoupons()
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         // 开启下拉刷新
-        tableView.startPullRefresh()
+        tableView.es_startPullToRefresh()
     }
 
     override func didReceiveMemoryWarning() {
@@ -82,9 +86,10 @@ class CouponViewController: StatefulViewController, UITableViewDelegate, UITable
         tableView.emptyDataSetDelegate = self
         
         // 下拉刷新
-        tableView.addPullRefresh{ [weak self] in
-            self?.loadCoupons()
-            self?.tableView.stopPullRefreshEver()
+        tableView.es_addPullToRefresh(animator: ThemeRefreshHeaderAnimator()) {
+            self.loadCoupons(finish: {
+                self.tableView.es_stopPullToRefresh()
+            })
         }
         
         // rightBarButtonItem
@@ -104,7 +109,7 @@ class CouponViewController: StatefulViewController, UITableViewDelegate, UITable
     
     
     ///  获取优惠券信息
-    @objc fileprivate func loadCoupons() {
+    @objc fileprivate func loadCoupons(finish: (()->())? = nil) {
         
         // 屏蔽[正在刷新]时的操作
         guard currentState != .loading else { return }
@@ -112,11 +117,12 @@ class CouponViewController: StatefulViewController, UITableViewDelegate, UITable
         currentState = .loading
 
         MAProvider.userCoupons(onlyValid: onlyValid, failureHandler: { error in
+            defer { DispatchQueue.main.async { finish?() } }
             // 显示缺省值
             self.currentState = .error
             self.models = MalaUserCoupons
         }) { coupons in
-            print(coupons.count)
+            defer { DispatchQueue.main.async { finish?() } }
             
             guard !coupons.isEmpty else {
                 self.currentState = .empty
