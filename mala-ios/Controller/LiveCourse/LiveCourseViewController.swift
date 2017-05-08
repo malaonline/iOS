@@ -83,8 +83,11 @@ class LiveCourseViewController: StatefulViewController, UITableViewDelegate, UIT
         
         // 下拉刷新
         tableView.es_addPullToRefresh(animator: ThemeRefreshHeaderAnimator()) {
-            self.loadLiveClasses()
-            self.tableView.es_stopPullToRefresh()
+            self.tableView.es_resetNoMoreData()
+            self.loadLiveClasses(finish: {
+                let isIgnore = (self.models.count > 0) && (self.models.count <= 2)
+                self.tableView.es_stopPullToRefresh(ignoreDate: false, ignoreFooter: isIgnore)
+            })
         }
         
         tableView.es_addInfiniteScrolling(animator: ThemeRefreshFooterAnimator()) {
@@ -126,7 +129,7 @@ class LiveCourseViewController: StatefulViewController, UITableViewDelegate, UIT
             forName: MalaNotification_LoadTeachers,
             object: nil,
             queue: nil) { [weak self] (notification) in
-                self?.loadLiveClasses()
+                self?.tableView.es_startPullToRefresh()
         }
     }
     
@@ -166,15 +169,13 @@ class LiveCourseViewController: StatefulViewController, UITableViewDelegate, UIT
                 return
             }
     
-            
-            
             ///  加载更多
             if isLoadMore {
-                if self.allCount == count {
+                self.models += classList
+                if self.models.count == count {
                     self.tableView.es_noticeNoMoreData()
                 }else {
                     self.tableView.es_resetNoMoreData()
-                    self.models += classList
                 }
             }else {
                 ///  如果不是加载更多，则刷新数据

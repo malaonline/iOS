@@ -102,9 +102,10 @@ class OrderFormViewController: StatefulViewController, UITableViewDelegate, UITa
         
         // 下拉刷新
         tableView.es_addPullToRefresh(animator: ThemeRefreshHeaderAnimator()) {
+            self.tableView.es_resetNoMoreData()
             self.loadOrderForm(finish: {
-                print("stop pull")
-                self.tableView.es_stopPullToRefresh()
+                let isIgnore = (self.models.count > 0) && (self.models.count <= 2)
+                self.tableView.es_stopPullToRefresh(ignoreDate: false, ignoreFooter: isIgnore)
             })
         }
         
@@ -161,11 +162,11 @@ class OrderFormViewController: StatefulViewController, UITableViewDelegate, UITa
             
             ///  加载更多
             if isLoadMore {
-                if self.allCount == count {
+                self.models += list
+                if self.models.count == count {
                     self.tableView.es_noticeNoMoreData()
                 }else {
                     self.tableView.es_resetNoMoreData()
-                    self.models += list
                 }
             }else {
                 ///  如果不是加载更多，则刷新数据

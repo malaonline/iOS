@@ -101,8 +101,10 @@ class FindTeacherViewController: StatefulViewController, UITableViewDelegate, UI
         
         // 下拉刷新
         tableView.es_addPullToRefresh(animator: ThemeRefreshHeaderAnimator()) {
+            self.tableView.es_resetNoMoreData()
             self.loadTeachers(finish: {
-                self.tableView.es_stopPullToRefresh()
+                let isIgnore = (self.models.count > 0) && (self.models.count <= 2)
+                self.tableView.es_stopPullToRefresh(ignoreDate: false, ignoreFooter: isIgnore)
             })
         }
         
@@ -143,7 +145,7 @@ class FindTeacherViewController: StatefulViewController, UITableViewDelegate, UI
             forName: MalaNotification_LoadTeachers,
             object: nil,
             queue: nil) { [weak self] (notification) in
-                self?.loadTeachers()
+                self?.tableView.es_startPullToRefresh()
         }
     }
     
@@ -184,11 +186,11 @@ class FindTeacherViewController: StatefulViewController, UITableViewDelegate, UI
             
             ///  加载更多
             if isLoadMore {
-                if self.allTeacherCount == count {
+                self.models += teachers
+                if self.models.count == count {
                     self.tableView.es_noticeNoMoreData()
                 }else {
                     self.tableView.es_resetNoMoreData()
-                    self.models += teachers
                 }
             }else {
                 ///  如果不是加载更多，则刷新数据

@@ -97,8 +97,10 @@ class FilterResultController: StatefulViewController, UITableViewDataSource, UIT
         
         // 加载更多
         tableView.es_addPullToRefresh(animator: ThemeRefreshHeaderAnimator()) {
+            self.tableView.es_resetNoMoreData()
             self.loadTeachers(MalaCondition.getParam(), finish: {
-                self.tableView.es_stopPullToRefresh()
+                let isIgnore = (self.models.count > 0) && (self.models.count <= 2)
+                self.tableView.es_stopPullToRefresh(ignoreDate: false, ignoreFooter: isIgnore)
             })
         }
         
@@ -139,7 +141,7 @@ class FilterResultController: StatefulViewController, UITableViewDataSource, UIT
     }
     
     func loadTeachersWithCommonCondition() {
-        loadTeachers(MalaCondition.getParam())
+        self.tableView.es_startPullToRefresh()
     }
     
     ///  根据筛选条件字典，请求老师列表
@@ -181,11 +183,11 @@ class FilterResultController: StatefulViewController, UITableViewDataSource, UIT
             
             ///  加载更多
             if isLoadMore {
-                if self.allTeacherCount == count {
+                self.models += teachers
+                if self.models.count == count {
                     self.tableView.es_noticeNoMoreData()
                 }else {
                     self.tableView.es_resetNoMoreData()
-                    self.models += teachers
                 }
             }else {
                 ///  如果不是加载更多，则刷新数据
