@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ESPullToRefresh
 
 private let CommentViewCellReuseId = "CommentViewCellReuseId"
 
@@ -22,16 +23,6 @@ class CommentViewController: BaseTableViewController {
     /// 是否正在拉取数据
     var isFetching: Bool = false
     
-    
-    // MARK: - Components
-    /// 下拉刷新视图
-    private lazy var refresher: UIRefreshControl = {
-        let refresher = UIRefreshControl()
-        refresher.addTarget(self, action: #selector(CommentViewController.loadCourse), for: .valueChanged)
-        return refresher
-    }()
-    
-    
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,6 +30,8 @@ class CommentViewController: BaseTableViewController {
         setupUserInterface()
         configure()
         loadCourse()
+        
+        tableView.es_startPullToRefresh()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -53,7 +46,12 @@ class CommentViewController: BaseTableViewController {
     
     // MARK: - Private Method
     private func configure() {
-        refreshControl = refresher
+        tableView.es_addPullToRefresh(animator: ThemeRefreshHeaderAnimator(), handler: { 
+            self.loadCourse(finish: { 
+                self.tableView.es_stopPullToRefresh()
+            })
+        })
+        
         tableView.separatorStyle = .none
         tableView.estimatedRowHeight = 208
         tableView.backgroundColor = UIColor(named: .RegularBackground)
@@ -69,21 +67,15 @@ class CommentViewController: BaseTableViewController {
     }
     
     ///  获取学生课程信息
-    @objc private func loadCourse() {
-        
-        // 屏蔽[正在刷新]时的操作
-        guard isFetching == false else { return }
-        isFetching = true
-        
-        refreshControl?.beginRefreshing()
-        
+    @objc private func loadCourse(finish: (()->())? = nil) {
+
         ///  获取学生课程信息
         MAProvider.getStudentSchedule(onlyPassed: true, failureHandler: { error in
+            defer { DispatchQueue.main.async { finish?() } }
             self.models = []
-            self.refreshControl?.endRefreshing()
             self.isFetching = false
         }) { schedule in
-            self.refreshControl?.endRefreshing()
+            defer { DispatchQueue.main.async { finish?() } }
             self.isFetching = false
             self.models = schedule
         }

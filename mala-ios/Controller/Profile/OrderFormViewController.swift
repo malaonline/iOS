@@ -7,17 +7,12 @@
 //
 
 import UIKit
+import ESPullToRefresh
 
 private let OrderFormViewCellReuseId = "OrderFormViewCellReuseId"
-private let OrderFormViewLoadmoreCellReusedId = "OrderFormViewLoadmoreCellReusedId"
 
 class OrderFormViewController: StatefulViewController, UITableViewDelegate, UITableViewDataSource {
-    
-    private enum Section: Int {
-        case teacher
-        case loadMore
-    }
-    
+
     // MARK: - Property
     /// 优惠券模型数组
     var models: [OrderForm] = [] {
@@ -53,7 +48,6 @@ class OrderFormViewController: StatefulViewController, UITableViewDelegate, UITa
         tableView.separatorStyle = .none
         tableView.backgroundColor = UIColor(named: .RegularBackground)
         tableView.register(OrderFormViewCell.self, forCellReuseIdentifier: OrderFormViewCellReuseId)
-        tableView.register(ThemeReloadView.self, forCellReuseIdentifier: OrderFormViewLoadmoreCellReusedId)
         return tableView
     }()
     /// 导航栏返回按钮
@@ -82,7 +76,8 @@ class OrderFormViewController: StatefulViewController, UITableViewDelegate, UITa
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        loadOrderForm()
+        // 开启下拉刷新
+        tableView.es_startPullToRefresh()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -99,9 +94,6 @@ class OrderFormViewController: StatefulViewController, UITableViewDelegate, UITa
         tableView.emptyDataSetDelegate = self
         tableView.emptyDataSetSource = self
         
-        // 开启下拉刷新
-        tableView.startPullRefresh()
-        
         // leftBarButtonItem
         let spacer = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
         spacer.width = -2
@@ -109,9 +101,18 @@ class OrderFormViewController: StatefulViewController, UITableViewDelegate, UITa
         navigationItem.leftBarButtonItems = [spacer, leftBarButtonItem]
         
         // 下拉刷新
-        tableView.addPullRefresh{ [weak self] in
-            self?.loadOrderForm()
-            self?.tableView.stopPullRefreshEver()
+        tableView.es_addPullToRefresh(animator: ThemeRefreshHeaderAnimator()) {
+            self.tableView.es_resetNoMoreData()
+            self.loadOrderForm(finish: {
+                let isIgnore = (self.models.count > 0) && (self.models.count <= 2)
+                self.tableView.es_stopPullToRefresh(ignoreDate: false, ignoreFooter: isIgnore)
+            })
+        }
+        
+        tableView.es_addInfiniteScrolling(animator: ThemeRefreshFooterAnimator()) {
+            self.loadOrderForm(isLoadMore: true, finish: {
+                self.tableView.es_stopLoadingMore()
+            })
         }
         
         // autoLayout
@@ -128,42 +129,52 @@ class OrderFormViewController: StatefulViewController, UITableViewDelegate, UITa
         
         // 屏蔽[正在刷新]时的操作
         guard currentState != .loading else { return }
-        if !isLoadMore { models = [] }
         currentState = .loading
         
         if isLoadMore {
             currentPageIndex += 1
         }else {
+            models = []
             currentPageIndex = 1
         }
         
         ///  获取用户订单列表
         MAProvider.getOrderList(page: currentPageIndex, failureHandler: { error in
+            defer { DispatchQueue.main.async { finish?() } }
+
+            if let statusCode = error.response?.statusCode, statusCode == 404 {
+                if isLoadMore {
+                    self.currentPageIndex -= 1
+                }
+                self.tableView.es_noticeNoMoreData()
+            }else {
+                self.tableView.es_resetNoMoreData()
+            }
+
             self.currentState = .error
         }) { (list, count) in
-            
+            defer { DispatchQueue.main.async { finish?() } }
+
             guard !list.isEmpty && count != 0 else {
                 self.currentState = .empty
                 return
             }
             
-            /// 记录数据量
-            self.allCount = count
-            
             ///  加载更多
             if isLoadMore {
-                for order in list {
-                    self.models.append(order)
+                self.models += list
+                if self.models.count == count {
+                    self.tableView.es_noticeNoMoreData()
+                }else {
+                    self.tableView.es_resetNoMoreData()
                 }
-                ///  如果不是加载更多，则刷新数据
             }else {
+                ///  如果不是加载更多，则刷新数据
                 self.models = list
             }
             
+            self.allCount = count
             self.currentState = .content
-            DispatchQueue.main.async {
-                finish?()
-            }
         }
     }
     
@@ -250,31 +261,6 @@ class OrderFormViewController: StatefulViewController, UITableViewDelegate, UITa
         return MalaLayout_CardCellWidth*0.6
     }
     
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        
-        switch indexPath.section {
-            
-        case Section.teacher.rawValue:
-            break
-            
-        case Section.loadMore.rawValue:
-            if let cell = cell as? ThemeReloadView {
-                println("load more orderForm")
-                
-                if !cell.activityIndicator.isAnimating {
-                    cell.activityIndicator.startAnimating()
-                }
-                
-                loadOrderForm(isLoadMore: true, finish: { 
-                    cell.activityIndicator.stopAnimating()
-                })
-            }
-            
-        default:
-            break
-        }
-    }
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let viewController = OrderFormInfoViewController()
         let model = models[indexPath.row]
@@ -284,41 +270,15 @@ class OrderFormViewController: StatefulViewController, UITableViewDelegate, UITa
     
     
     // MARK: - DataSource
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
-    }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch section {
-            
-        case Section.teacher.rawValue:
-            return models.count 
-            
-        case Section.loadMore.rawValue:
-            return allCount == models.count ? 0 : (models.isEmpty ? 0 : 1)
-            
-        default:
-            return 0
-        }
+        return models.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        switch indexPath.section {
-            
-        case Section.teacher.rawValue:
-            let cell = tableView.dequeueReusableCell(withIdentifier: OrderFormViewCellReuseId, for: indexPath) as! OrderFormViewCell
-            cell.selectionStyle = .none
-            cell.model = models[indexPath.row]
-            return cell
-            
-        case Section.loadMore.rawValue:
-            let cell = tableView.dequeueReusableCell(withIdentifier: OrderFormViewLoadmoreCellReusedId, for: indexPath) as! ThemeReloadView
-            return cell
-            
-        default:
-            return UITableViewCell()
-        }
+        let cell = tableView.dequeueReusableCell(withIdentifier: OrderFormViewCellReuseId, for: indexPath) as! OrderFormViewCell
+        cell.selectionStyle = .none
+        cell.model = models[indexPath.row]
+        return cell
     }
     
     

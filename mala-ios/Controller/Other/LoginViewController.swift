@@ -300,6 +300,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: - Keyboard Notification
     func keyboardWillShow(_ notification : Notification?) -> Void {
+        
+        guard !(self.view is SaveNameView) else { return }
+        
         header.snp.remakeConstraints({ (maker) in
             maker.top.equalTo(view)
             maker.width.equalTo(view).multipliedBy(1.2)
@@ -321,6 +324,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     func keyboardWillHide(_ notification : Notification?) -> Void {
+        
+        guard !(self.view is SaveNameView) else { return }
+        
         header.snp.remakeConstraints { (maker) in
             maker.top.equalTo(view)
             maker.width.equalTo(view).multipliedBy(1.2)

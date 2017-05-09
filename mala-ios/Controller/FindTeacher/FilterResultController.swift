@@ -7,17 +7,12 @@
 //
 
 import UIKit
+import ESPullToRefresh
 
 private let TeacherTableViewCellReusedId = "TeacherTableViewCellReusedId"
-private let TeacherTableViewLoadmoreCellReusedId = "TeacherTableViewLoadmoreCellReusedId"
 
 class FilterResultController: StatefulViewController, UITableViewDataSource, UITableViewDelegate {
 
-    private enum Section: Int {
-        case teacher
-        case loadMore
-    }
-    
     // MARK: - Property
     var models: [TeacherModel] = [] {
         didSet {
@@ -46,9 +41,8 @@ class FilterResultController: StatefulViewController, UITableViewDataSource, UIT
         tableView.backgroundColor = UIColor(named: .themeLightBlue)
         tableView.estimatedRowHeight = 200
         tableView.separatorStyle = .none
-        tableView.contentInset = UIEdgeInsets(top: 6, left: 0, bottom: 48 + 6, right: 0)
+        tableView.contentInset = UIEdgeInsets(top: 6, left: 0, bottom: 0, right: 0)
         tableView.register(TeacherTableViewCell.self, forCellReuseIdentifier: TeacherTableViewCellReusedId)
-        tableView.register(ThemeReloadView.self, forCellReuseIdentifier: TeacherTableViewLoadmoreCellReusedId)
         return tableView
     }()
     /// 筛选条件面板
@@ -57,11 +51,6 @@ class FilterResultController: StatefulViewController, UITableViewDataSource, UIT
         filterBar.backgroundColor = UIColor(named: .themeLightBlue)
         filterBar.controller = self
         return filterBar
-    }()
-    /// 上拉刷新视图
-    private lazy var reloadView: ThemeReloadView = {
-        let reloadView = ThemeReloadView(frame: CGRect(x: 0, y: 0, width: 0, height: 30))
-        return reloadView
     }()
     // MARK: - Components
     /// 导航栏返回按钮
@@ -107,9 +96,18 @@ class FilterResultController: StatefulViewController, UITableViewDataSource, UIT
         tableView.emptyDataSetDelegate = self
         
         // 加载更多
-        tableView.addPushRefresh { [weak self] in
-            self?.loadTeachers(isLoadMore: true)
-            self?.tableView.stopPushRefreshEver()
+        tableView.es_addPullToRefresh(animator: ThemeRefreshHeaderAnimator()) {
+            self.tableView.es_resetNoMoreData()
+            self.loadTeachers(MalaCondition.getParam(), finish: {
+                let isIgnore = (self.models.count > 0) && (self.models.count <= 2)
+                self.tableView.es_stopPullToRefresh(ignoreDate: false, ignoreFooter: isIgnore)
+            })
+        }
+        
+        tableView.es_addInfiniteScrolling(animator: ThemeRefreshFooterAnimator()) {
+            self.loadTeachers(MalaCondition.getParam(), isLoadMore: true, finish: {
+                self.tableView.es_stopLoadingMore()
+            })
         }
         
         // SubViews
@@ -143,7 +141,7 @@ class FilterResultController: StatefulViewController, UITableViewDataSource, UIT
     }
     
     func loadTeachersWithCommonCondition() {
-        loadTeachers(MalaCondition.getParam())
+        self.tableView.es_startPullToRefresh()
     }
     
     ///  根据筛选条件字典，请求老师列表
@@ -152,60 +150,57 @@ class FilterResultController: StatefulViewController, UITableViewDataSource, UIT
     func loadTeachers(_ filters: [String: Any]? = nil, isLoadMore: Bool = false, finish: (()->())? = nil) {
         
         guard currentState != .loading else { return }
-        models = []
         currentState = .loading
         
         if isLoadMore {
             currentPageIndex += 1
         }else {
+            models = []
             currentPageIndex = 1
         }
 
         MAProvider.loadTeachers(condition: filters, page: currentPageIndex, failureHandler: { error in
-            self.currentState = .error
-            DispatchQueue.main.async {
-                finish?()
+            defer { DispatchQueue.main.async { finish?() } }
+            
+            if let statusCode = error.response?.statusCode, statusCode == 404 {
+                if isLoadMore {
+                    self.currentPageIndex -= 1
+                }
+                self.tableView.es_noticeNoMoreData()
+            }else {
+                self.tableView.es_resetNoMoreData()
             }
+            
+            self.currentState = .error
         }) { (teachers, count) in
+            
+            defer { DispatchQueue.main.async { finish?() } }
             
             guard count != 0 && !teachers.isEmpty else {
                 self.currentState = .empty
                 return
             }
             
-            /// 记录数据量
-            self.allTeacherCount = count
-            
+            ///  加载更多
             if isLoadMore {
-                ///  加载更多
-                for teacher in teachers {
-                    self.models.append(teacher)
+                self.models += teachers
+                if self.models.count == count {
+                    self.tableView.es_noticeNoMoreData()
+                }else {
+                    self.tableView.es_resetNoMoreData()
                 }
             }else {
                 ///  如果不是加载更多，则刷新数据
                 self.models = teachers
             }
             
+            self.allTeacherCount = count
             self.currentState = .content
-            DispatchQueue.main.async { () -> Void in
-                finish?()
-            }
         }
     }
     
     
     // MARK: - Delegate
-    func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
-        switch indexPath.section {
-        case Section.teacher.rawValue:
-            return true
-        case Section.loadMore.rawValue:
-            return false
-        default:
-            return true
-        }
-    }
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let teacherId = (tableView.cellForRow(at: indexPath) as? TeacherTableViewCell)?.model?.id else { return }
         let viewController = TeacherDetailsController()
@@ -216,67 +211,16 @@ class FilterResultController: StatefulViewController, UITableViewDataSource, UIT
     
     
     // MARK: - DataSource
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
-    }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch section {
-            
-        case Section.teacher.rawValue:
-            return models.count
-            
-        case Section.loadMore.rawValue:
-            return allTeacherCount == models.count ? 0 : (models.isEmpty ? 0 : 1)
-
-        default:
-            return 0
-        }
+        return models.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        switch indexPath.section {
-            
-        case Section.teacher.rawValue:
-            let cell = tableView.dequeueReusableCell(withIdentifier: TeacherTableViewCellReusedId, for: indexPath) as! TeacherTableViewCell
-            cell.model = models[indexPath.row]
-            return cell
-            
-        case Section.loadMore.rawValue:
-            let cell = tableView.dequeueReusableCell(withIdentifier: TeacherTableViewLoadmoreCellReusedId, for: indexPath) as! ThemeReloadView
-            return cell
-            
-        default:
-            return UITableViewCell()
-        }
+        let cell = tableView.dequeueReusableCell(withIdentifier: TeacherTableViewCellReusedId, for: indexPath) as! TeacherTableViewCell
+        cell.model = models[indexPath.row]
+        return cell
     }
-    
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        
-        switch indexPath.section {
-            
-        case Section.teacher.rawValue:
-            break
-            
-        case Section.loadMore.rawValue:
-            if let cell = cell as? ThemeReloadView {
-                println("load more Teacher info")
-                
-                if !cell.activityIndicator.isAnimating {
-                    cell.activityIndicator.startAnimating()
-                }
-                
-                self.loadTeachers(isLoadMore: true, finish: { [weak cell] in
-                    cell?.activityIndicator.stopAnimating()
-                })
-            }
-            
-        default:
-            break
-        }
-    }
-    
+
 
     deinit {
         println("FilterResultController - Deinit")

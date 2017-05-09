@@ -119,13 +119,10 @@ class SaveNameView: UIView, UITextFieldDelegate {
     @objc private func finishButtonDidTap() {
         guard let name = inputField.text else { return }
         
-        MAProvider.saveStudentName(name: name) { result in
+        MAProvider.saveStudentName(name: name, failureHandler: { (error) in
+            self.showToastAtBottom(L10n.networkNotReachable)
+        }) { result in
             println("Save Student Name - \(result as Optional)")
-            
-            guard let result = result, result == true else {
-                self.showToastAtBottom(L10n.networkNotReachable)
-                return
-            }
             
             MalaUserDefaults.studentName.value = name
             MalaUserDefaults.fetchUserInfo()

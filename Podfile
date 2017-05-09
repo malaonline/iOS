@@ -28,6 +28,7 @@ def pods
   pod 'Proposer', '~> 1.1.0'
   pod 'WZLBadge', '~> 1.2.5'
   pod 'Toast-Swift', '~> 2.0.0'
+  pod 'ESPullToRefresh', '~> 2.6'
   pod 'DZNEmptyDataSet', '~> 1.8.1'
   pod 'KYCircularProgress', '~> 1.0.0'
   pod 'IQKeyboardManagerSwift', '~> 4.0.8'
