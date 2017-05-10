@@ -16,6 +16,13 @@ class LiveCourseViewController: StatefulViewController, UITableViewDelegate, UIT
     // MARK: - Property
     var models: [LiveClassModel] = [] {
         didSet {
+            
+            if models.count == 0 && self.tableView.es_footer != nil {
+                self.tableView.es_removeRefreshFooter()
+            }else {
+                self.addLoadMoreAction()
+            }
+            
             self.tableView.reloadData()
         }
     }
@@ -89,12 +96,8 @@ class LiveCourseViewController: StatefulViewController, UITableViewDelegate, UIT
                 self.tableView.es_stopPullToRefresh(ignoreDate: false, ignoreFooter: isIgnore)
             })
         }
+        self.addLoadMoreAction()
         
-        tableView.es_addInfiniteScrolling(animator: ThemeRefreshFooterAnimator()) {
-            self.loadLiveClasses(isLoadMore: true, finish: {
-                self.tableView.es_stopLoadingMore()
-            })
-        }
         
         // SubViews
         view.addSubview(tableView)
@@ -137,17 +140,17 @@ class LiveCourseViewController: StatefulViewController, UITableViewDelegate, UIT
     func loadLiveClasses(_ page: Int = 1, isLoadMore: Bool = false, finish: (()->())? = nil) {
         // 屏蔽[正在刷新]时的操作
         guard currentState != .loading else { return }
-        if !isLoadMore { models = [] }
+        
         currentState = .loading
         
         if isLoadMore {
             currentPageIndex += 1
         }else {
+            models = []
             currentPageIndex = 1
         }
 
         MAProvider.getLiveClasses(page: currentPageIndex, failureHandler: { error in
-            
             defer { DispatchQueue.main.async { finish?() } }
             
             if let statusCode = error.response?.statusCode, statusCode == 404 {
@@ -184,6 +187,14 @@ class LiveCourseViewController: StatefulViewController, UITableViewDelegate, UIT
             
             self.allCount = count
             self.currentState = .content
+        }
+    }
+    
+    private func addLoadMoreAction() {
+        tableView.es_addInfiniteScrolling(animator: ThemeRefreshFooterAnimator()) {
+            self.loadLiveClasses(isLoadMore: true, finish: {
+                self.tableView.es_stopLoadingMore()
+            })
         }
     }
     
