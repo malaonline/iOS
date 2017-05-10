@@ -106,6 +106,8 @@ enum ColorName: UInt32 {
     case themeLightBlue = 0xE7F1FFFF
     case themeShadowBlue = 0xBFDDFFFF
     case labelBlack = 0x373A41FF
+    case labelLightGray = 0xC3C5CDFF
+    
     case pageControlGray = 0xD8D8D8FF
     case loginBlue = 0x78A8FEFF
     case loginDisableBlue = 0x78A8FE7F

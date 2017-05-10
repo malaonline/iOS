@@ -78,7 +78,7 @@ class MemberPrivilegesViewController: UITableViewController {
     // MARK: - Private Method
     private func configure() {
         
-        tableView.estimatedRowHeight = 230
+        tableView.estimatedRowHeight = 270
         
         // register
         tableView.register(LearningReportCell.self, forCellReuseIdentifier: MemberPrivilegesLearningReportCellReuseID)
@@ -87,7 +87,7 @@ class MemberPrivilegesViewController: UITableViewController {
     
     private func setupUserInterface() {
         // Style
-        tableView.backgroundColor = UIColor(named: .RegularBackground)
+        tableView.backgroundColor = UIColor(named: .themeLightBlue)
         tableView.separatorStyle = .none
     }
     
