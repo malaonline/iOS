@@ -156,8 +156,8 @@ extension StatefulViewController: DZNEmptyDataSetSource {
     public func verticalOffset(forEmptyDataSet scrollView: UIScrollView!) -> CGFloat {
         switch self {
         case is CourseTableViewController:  return -30
-        case is LiveCourseViewController:   return MalaScreenWidth/3
-        case is FindTeacherViewController:  return 44
+        case is LiveCourseViewController:   return MalaScreenWidth/3 - 64
+        case is FindTeacherViewController:  return 0
         case is FilterResultController:     return -44
         default: return 0.0
         }
