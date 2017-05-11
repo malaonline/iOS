@@ -665,6 +665,9 @@
 		F4767A491D34930C00FD47F1 /* ThemeTagListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4767A461D34930C00FD47F1 /* ThemeTagListView.swift */; };
 		F47C2AB71C8445950051A880 /* PaymentChannelSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47C2AB61C8445950051A880 /* PaymentChannelSectionHeaderView.swift */; };
 		F47C2ABD1C85785A0051A880 /* MalaAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47C2ABC1C85785A0051A880 /* MalaAlert.swift */; };
+		F487932B1EC4450C00341703 /* MalaBaseMemberCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F487932A1EC4450C00341703 /* MalaBaseMemberCardCell.swift */; };
+		F487932C1EC4450C00341703 /* MalaBaseMemberCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F487932A1EC4450C00341703 /* MalaBaseMemberCardCell.swift */; };
+		F487932D1EC4450C00341703 /* MalaBaseMemberCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F487932A1EC4450C00341703 /* MalaBaseMemberCardCell.swift */; };
 		F48BBAD21CE4309B00774297 /* CouponRulesPopupWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48BBAD11CE4309B00774297 /* CouponRulesPopupWindow.swift */; };
 		F48BBAD41CE57D1500774297 /* OrderFormTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48BBAD31CE57D1500774297 /* OrderFormTableView.swift */; };
 		F48BBAD61CE57F6E00774297 /* OrderFormStatusCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48BBAD51CE57F6E00774297 /* OrderFormStatusCell.swift */; };
@@ -1018,6 +1021,7 @@
 		F4767A461D34930C00FD47F1 /* ThemeTagListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeTagListView.swift; sourceTree = "<group>"; };
 		F47C2AB61C8445950051A880 /* PaymentChannelSectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentChannelSectionHeaderView.swift; sourceTree = "<group>"; };
 		F47C2ABC1C85785A0051A880 /* MalaAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MalaAlert.swift; sourceTree = "<group>"; };
+		F487932A1EC4450C00341703 /* MalaBaseMemberCardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MalaBaseMemberCardCell.swift; sourceTree = "<group>"; };
 		F48BBAD11CE4309B00774297 /* CouponRulesPopupWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CouponRulesPopupWindow.swift; sourceTree = "<group>"; };
 		F48BBAD31CE57D1500774297 /* OrderFormTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderFormTableView.swift; sourceTree = "<group>"; };
 		F48BBAD51CE57F6E00774297 /* OrderFormStatusCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderFormStatusCell.swift; sourceTree = "<group>"; };
@@ -1780,6 +1784,7 @@
 				F474E89E1CF2DCEE0025A865 /* MalaBaseReportCardCell.swift */,
 				F41A01AB1D212B1F0069CF29 /* MalaBaseCell.swift */,
 				F4FF66EE1DB87E920036E299 /* MalaBaseLiveCourseCell.swift */,
+				F487932A1EC4450C00341703 /* MalaBaseMemberCardCell.swift */,
 				F4F5F26F1DC6F34100096CD0 /* LiveCourseAvatarView.swift */,
 			);
 			path = Base;
@@ -2461,6 +2466,7 @@
 				F4402DAE1C58A64200E7D3DB /* KWStepper.swift in Sources */,
 				F46065251C97B168004056B1 /* MainNavigationController.swift in Sources */,
 				F46065211C97B168004056B1 /* FilterResultController.swift in Sources */,
+				F487932B1EC4450C00341703 /* MalaBaseMemberCardCell.swift in Sources */,
 				F48BBAE61CE5C2AC00774297 /* ThemeTimeLine.swift in Sources */,
 				303BCFEC1C43885700B37DD9 /* TeacherDetailsHighScoreTableView.swift in Sources */,
 				F455EB301C91981B00BAEC78 /* ProfileViewCell.swift in Sources */,
@@ -2671,6 +2677,7 @@
 				35FF7AC81CF8325A000A70EE /* KWStepper.swift in Sources */,
 				35FF7AC91CF8325A000A70EE /* MainNavigationController.swift in Sources */,
 				35FF7ACA1CF8325A000A70EE /* FilterResultController.swift in Sources */,
+				F487932C1EC4450C00341703 /* MalaBaseMemberCardCell.swift in Sources */,
 				35FF7ACB1CF8325A000A70EE /* ThemeTimeLine.swift in Sources */,
 				35FF7ACC1CF8325A000A70EE /* TeacherDetailsHighScoreTableView.swift in Sources */,
 				35FF7ACF1CF8325A000A70EE /* ProfileViewCell.swift in Sources */,
@@ -2881,6 +2888,7 @@
 				35FF7BAB1CF83264000A70EE /* KWStepper.swift in Sources */,
 				35FF7BAC1CF83264000A70EE /* MainNavigationController.swift in Sources */,
 				35FF7BAD1CF83264000A70EE /* FilterResultController.swift in Sources */,
+				F487932D1EC4450C00341703 /* MalaBaseMemberCardCell.swift in Sources */,
 				35FF7BAE1CF83264000A70EE /* ThemeTimeLine.swift in Sources */,
 				35FF7BAF1CF83264000A70EE /* TeacherDetailsHighScoreTableView.swift in Sources */,
 				35FF7BB21CF83264000A70EE /* ProfileViewCell.swift in Sources */,

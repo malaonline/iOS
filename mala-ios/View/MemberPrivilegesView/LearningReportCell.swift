@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LearningReportCell: UITableViewCell {
+class LearningReportCell: MalaBaseMemberCardCell {
     
     // MARK: - Property
     /// 总练习数
@@ -20,14 +20,8 @@ class LearningReportCell: UITableViewCell {
     /// 练习正确数
     var rightNum: CGFloat = 0 {
         didSet {
-            
             // 若总练习数为零
-            if totalNum == 0 {
-                correctRateLabel.text = "0%"
-            }else {
-                correctRateLabel.text = String(format: "%.2f%%", CGFloat(rightNum/totalNum))
-            }
-            
+            correctRateLabel.text = (totalNum == 0 ? "0%" : String(format: "%.2f%%", CGFloat(rightNum/totalNum)))
         }
     }
     /// 学习报告状态
@@ -40,29 +34,14 @@ class LearningReportCell: UITableViewCell {
     }
     
     // MARK: - Components
-    /// 父布局容器（白色卡片）
-    private lazy var content: UIView = {
-        let view = UIView(UIColor.white)
-        view.layer.cornerRadius = 8
-        view.layer.masksToBounds = true
-        return view
-    }()
-    private lazy var contentShadow: UIView = {
-        let view = UIView(UIColor.clear)
-        view.layer.shadowColor = UIColor(named: .themeShadowBlue).cgColor
-        view.layer.shadowRadius = 8
-        view.layer.shadowOffset = CGSize(width: 4, height: 4)
-        view.layer.shadowOpacity = 1.0
-        return view
-    }()
     /// 按钮
     private lazy var button: UIButton = {
         let button = UIButton()
         button.setTitle("查看我的学习报告", for: .normal)
         button.titleLabel?.font = FontFamily.PingFangSC.Regular.font(18)
-        button.setBackgroundImage(UIImage(asset: .buttonBlueNormal), for: .normal)
-        button.setBackgroundImage(UIImage(asset: .buttonBluePress), for: .highlighted)
-        button.setBackgroundImage(UIImage(asset: .buttonBluePress), for: .selected)
+        button.setBackgroundImage(UIImage(asset: .noteButtonNormal), for: .normal)
+        button.setBackgroundImage(UIImage(asset: .noteButtonPress), for: .highlighted)
+        button.setBackgroundImage(UIImage(asset: .noteButtonPress), for: .selected)
         return button
     }()
     /// 学科标签
@@ -171,12 +150,7 @@ class LearningReportCell: UITableViewCell {
     
     // MARK: - Private Method
     private func setupUserInterface() {
-        // Style
-        contentView.backgroundColor = UIColor(named: .themeLightBlue)
-        
         // SubViews
-        contentView.addSubview(contentShadow)
-        contentShadow.addSubview(content)
         content.addSubview(button)
         content.addSubview(titleLabel)
         content.addSubview(separator)
@@ -192,17 +166,6 @@ class LearningReportCell: UITableViewCell {
         button.addSubview(loadingView)
         
         // Autolayout
-        contentShadow.snp.makeConstraints { (maker) in
-            maker.top.equalTo(contentView).offset(10)
-            maker.left.equalTo(contentView).offset(10)
-            maker.right.equalTo(contentView).offset(-10)
-            maker.height.equalTo(266)
-            maker.bottom.equalTo(contentView)
-        }
-        content.snp.makeConstraints { (maker) in
-            maker.center.equalTo(contentShadow)
-            maker.size.equalTo(contentShadow)
-        }
         titleLabel.snp.makeConstraints { (maker) in
             maker.top.equalTo(content).offset(16)
             maker.left.equalTo(content).offset(12)
@@ -318,7 +281,7 @@ class LearningReportCell: UITableViewCell {
             loadingView.stopAnimating()
             
             layerLabel.text = "登录可查看专属学习报告哦"
-            button.setTitle("登录", for: UIControlState())
+            button.setTitle("去登录", for: UIControlState())
             button.addTarget(self, action: #selector(LearningReportCell.login), for: .touchUpInside)
             break
             
