@@ -42,27 +42,34 @@ class LearningReportCell: UITableViewCell {
     // MARK: - Components
     /// 父布局容器（白色卡片）
     private lazy var content: UIView = {
-        let view = UIView()
+        let view = UIView(UIColor.white)
+        view.layer.cornerRadius = 8
+        view.layer.masksToBounds = true
+        return view
+    }()
+    private lazy var contentShadow: UIView = {
+        let view = UIView(UIColor.clear)
+        view.layer.shadowColor = UIColor(named: .themeShadowBlue).cgColor
+        view.layer.shadowRadius = 8
+        view.layer.shadowOffset = CGSize(width: 4, height: 4)
+        view.layer.shadowOpacity = 1.0
         return view
     }()
     /// 按钮
     private lazy var button: UIButton = {
         let button = UIButton()
-        
-        button.backgroundColor = UIColor(named: .ThemeBlue)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
-        button.setTitle("查看我的学习报告", for: UIControlState())
-        button.setTitleColor(UIColor.white, for: UIControlState())
-        
-        button.layer.cornerRadius = 5
-        button.layer.masksToBounds = true
+        button.setTitle("查看我的学习报告", for: .normal)
+        button.titleLabel?.font = FontFamily.PingFangSC.Regular.font(18)
+        button.setBackgroundImage(UIImage(asset: .buttonBlueNormal), for: .normal)
+        button.setBackgroundImage(UIImage(asset: .buttonBluePress), for: .highlighted)
+        button.setBackgroundImage(UIImage(asset: .buttonBluePress), for: .selected)
         return button
     }()
     /// 学科标签
     private lazy var subjectLabel: UIButton = {
         let button = UIButton()
-        button.setBackgroundImage(UIImage(named:"subject_background"), for: UIControlState())
-        button.setTitle("数学", for: UIControlState())
+        button.setBackgroundImage(UIImage(named:"subject_background"), for: .normal)
+        button.setTitle("数学", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 12)
         button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 2, bottom: 0, right: -2)
         button.isUserInteractionEnabled = false
@@ -135,9 +142,9 @@ class LearningReportCell: UITableViewCell {
     /// 遮罩层说明标签
     private lazy var layerLabel: UILabel = {
         let label = UILabel(
-            text: "登录可查看专属学习报告哦",
-            fontSize: 12,
-            textColor: UIColor(named: .PageControl)
+            text: "登录可查看错题本和学习报告哦",
+            font: FontFamily.PingFangSC.Regular.font(14),
+            textColor: UIColor(named: .protocolGary)
         )
         return label
     }()
@@ -165,11 +172,11 @@ class LearningReportCell: UITableViewCell {
     // MARK: - Private Method
     private func setupUserInterface() {
         // Style
-        contentView.backgroundColor = UIColor(named: .RegularBackground)
-        content.backgroundColor = UIColor.white
+        contentView.backgroundColor = UIColor(named: .themeLightBlue)
         
         // SubViews
-        contentView.addSubview(content)
+        contentView.addSubview(contentShadow)
+        contentShadow.addSubview(content)
         content.addSubview(button)
         content.addSubview(titleLabel)
         content.addSubview(separator)
@@ -185,12 +192,16 @@ class LearningReportCell: UITableViewCell {
         button.addSubview(loadingView)
         
         // Autolayout
-        content.snp.makeConstraints { (maker) in
-            maker.top.equalTo(contentView).offset(8)
-            maker.left.equalTo(contentView)
-            maker.right.equalTo(contentView)
-            maker.height.equalTo(212)
+        contentShadow.snp.makeConstraints { (maker) in
+            maker.top.equalTo(contentView).offset(10)
+            maker.left.equalTo(contentView).offset(10)
+            maker.right.equalTo(contentView).offset(-10)
+            maker.height.equalTo(266)
             maker.bottom.equalTo(contentView)
+        }
+        content.snp.makeConstraints { (maker) in
+            maker.center.equalTo(contentShadow)
+            maker.size.equalTo(contentShadow)
         }
         titleLabel.snp.makeConstraints { (maker) in
             maker.top.equalTo(content).offset(16)
@@ -230,12 +241,11 @@ class LearningReportCell: UITableViewCell {
             maker.top.equalTo(separator).offset(8)
         }
         button.snp.makeConstraints { (maker) in
-            maker.height.equalTo(37)
-            maker.left.equalTo(content).offset(12)
-            maker.right.equalTo(content).offset(-12)
-            maker.bottom.equalTo(content).offset(-20)
+            maker.height.equalTo(65)
+            maker.centerX.equalTo(content)
+            maker.width.equalTo(160)
+            maker.bottom.equalTo(content).offset(-10)
         }
-        
         layerView.snp.makeConstraints { (maker) in
             maker.left.equalTo(content)
             maker.right.equalTo(content)
@@ -245,7 +255,7 @@ class LearningReportCell: UITableViewCell {
         layerLabel.snp.makeConstraints { (maker) in
             maker.height.equalTo(12)
             maker.centerX.equalTo(layerView)
-            maker.bottom.equalTo(layerView).offset(-15)
+            maker.bottom.equalTo(layerView)
         }
         layerImage.snp.makeConstraints { (maker) in
             maker.width.equalTo(92)
