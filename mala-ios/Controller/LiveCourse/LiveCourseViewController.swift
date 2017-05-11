@@ -58,8 +58,8 @@ class LiveCourseViewController: StatefulViewController, UITableViewDelegate, UIT
     }()
     private lazy var goTopButton: UIButton = {
         let button = UIButton()
-        button.setBackgroundImage(UIImage(asset: .goTop_normal), for: .normal)
-        button.setBackgroundImage(UIImage(asset: .goTop_press), for: .highlighted)
+        button.setBackgroundImage(UIImage(asset: .gotopNormal), for: .normal)
+        button.setBackgroundImage(UIImage(asset: .gotopPress), for: .highlighted)
         button.addTarget(self, action: #selector(LiveCourseViewController.scrollToTop), for: .touchUpInside)
         button.isHidden = true
         return button
