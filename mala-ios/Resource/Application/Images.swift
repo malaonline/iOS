@@ -139,6 +139,8 @@ enum ImageAsset: String {
     case networkError = "network_error"
     case noCoupons = "no_coupons"
     case noOrder = "no_order"
+    case noteButtonNormal = "noteButton_normal"
+    case noteButtonPress = "noteButton_press"
     case nomoreContent = "nomoreContent"
     case noteDisable = "note_disable"
     case noteNormal = "note_normal"
