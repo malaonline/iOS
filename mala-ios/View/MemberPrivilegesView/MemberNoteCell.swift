@@ -25,7 +25,11 @@ class MemberNoteCell: MalaBaseMemberCardCell {
     
     // MARK: - Private Method
     private func setup() {
-        setupDefaultStyle(image: .noteNormal, title: "你课中答错的题目会出现在这里哦！", buttonTitle: "查看错题本样本")
+        setupDefaultStyle(image: .noteNormal,
+                          disabledImage: .noteDisable,
+                          title: "你课中答错的题目会出现在这里哦！",
+                          disabledTitle: "错题本数据获取失败！",
+                          buttonTitle: "查看错题本样本")
         actionButton.addTarget(self, action: #selector(MemberNoteCell.buttonDidTap), for: .touchUpInside)
     }
     

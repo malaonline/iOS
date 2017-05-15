@@ -33,6 +33,7 @@ enum ImageAsset: String {
     case avatarPlaceholder = "avatar_placeholder"
     case buttonBlueNormal = "button_blue_normal"
     case buttonBluePress = "button_blue_press"
+    case buttonLoading = "button_loading"
     case buttonRedNormal = "button_red_normal"
     case buttonRedPress = "button_red_press"
     case callBg = "call_bg"

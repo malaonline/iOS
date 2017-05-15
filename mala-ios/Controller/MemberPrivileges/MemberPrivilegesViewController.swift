@@ -213,7 +213,7 @@ class MemberPrivilegesViewController: UITableViewController {
     
     // MARK: - Event Response
     /// 登录
-    @objc func login() {
+    @objc func login(completion: (()->Void)? = nil) {
                 
         let loginViewController = LoginViewController()
         loginViewController.popAction = { [weak self] in
@@ -223,9 +223,8 @@ class MemberPrivilegesViewController: UITableViewController {
         self.present(
             UINavigationController(rootViewController: loginViewController),
             animated: true,
-            completion: { () -> Void in
-                
-        })
+            completion: completion
+        )
         isPushed = true
     }
     /// 显示学习报告样本
