@@ -8,8 +8,11 @@
 
 import UIKit
 
-private let MemberPrivilegesLearningReportCellReuseID = "MemberPrivilegesLearningReportCellReuseID"
+private let MemberPrivilegesMemberLoginCellReuseID = "MemberPrivilegesMemberLoginCellReuseID"
+private let MemberPrivilegesMemberNoteCellReuseID = "MemberPrivilegesMemberNoteCellReuseID"
+private let MemberPrivilegesMemberReportCellReuseID = "MemberPrivilegesMemberReportCellReuseID"
 private let MemberPrivilegesMemberSerivceCellReuseID = "MemberPrivilegesMemberSerivceCellReuseID"
+
 
 class MemberPrivilegesViewController: UITableViewController {
 
@@ -51,7 +54,6 @@ class MemberPrivilegesViewController: UITableViewController {
         super.viewDidLoad()
         
         configure()
-        setupUserInterface()
         setupNotification()
     }
     
@@ -77,19 +79,15 @@ class MemberPrivilegesViewController: UITableViewController {
     
     // MARK: - Private Method
     private func configure() {
-        
-        tableView.estimatedRowHeight = 270
-        
-        // register
-        tableView.register(LearningReportCell.self, forCellReuseIdentifier: MemberPrivilegesLearningReportCellReuseID)
-        tableView.register(MemberSerivceCell.self, forCellReuseIdentifier: MemberPrivilegesMemberSerivceCellReuseID)
-    }
-    
-    private func setupUserInterface() {
-        // Style
         tableView.backgroundColor = UIColor(named: .themeLightBlue)
         tableView.separatorStyle = .none
+        tableView.estimatedRowHeight = 270
+        tableView.register(MemberLoginCell.self, forCellReuseIdentifier: MemberPrivilegesMemberLoginCellReuseID)
+        tableView.register(MemberNoteCell.self, forCellReuseIdentifier: MemberPrivilegesMemberNoteCellReuseID)
+        tableView.register(MemberReportCell.self, forCellReuseIdentifier: MemberPrivilegesMemberReportCellReuseID)
+        tableView.register(MemberSerivceCell.self, forCellReuseIdentifier: MemberPrivilegesMemberSerivceCellReuseID)
     }
+
     
     private func setupNotification() {
         NotificationCenter.default.addObserver(
@@ -215,7 +213,7 @@ class MemberPrivilegesViewController: UITableViewController {
     
     // MARK: - Event Response
     /// 登录
-    @objc private func login() {
+    @objc func login() {
                 
         let loginViewController = LoginViewController()
         loginViewController.popAction = { [weak self] in
@@ -249,32 +247,24 @@ class MemberPrivilegesViewController: UITableViewController {
     
     // MARK: - DataSource
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return MalaUserDefaults.isLogined ? 3 : 2
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        switch indexPath.row {
-        case 0:
-            /// 学习报告
-            let cell = tableView.dequeueReusableCell(withIdentifier: MemberPrivilegesLearningReportCellReuseID, for: indexPath) as! LearningReportCell
-            
-            println("\(self.rightNum)-\(self.totalNum)")
-            
-            cell.totalNum = self.totalNum
-            cell.rightNum = self.rightNum
-            cell.reportStatus = self.reportStatus
-            
-            return cell
-            
-        case 1:
-            /// 会员专享
-            let cell = tableView.dequeueReusableCell(withIdentifier: MemberPrivilegesMemberSerivceCellReuseID, for: indexPath) as! MemberSerivceCell
-            return cell
-            
-            
-        default:
-            return UITableViewCell()
+        if MalaUserDefaults.isLogined {
+            switch indexPath.row {
+            case 0: return tableView.dequeueReusableCell(withIdentifier: MemberPrivilegesMemberNoteCellReuseID, for: indexPath) as! MemberNoteCell
+            case 1: return tableView.dequeueReusableCell(withIdentifier: MemberPrivilegesMemberReportCellReuseID, for: indexPath) as! MemberReportCell
+            case 2: return tableView.dequeueReusableCell(withIdentifier: MemberPrivilegesMemberSerivceCellReuseID, for: indexPath) as! MemberSerivceCell
+            default: return UITableViewCell()
+            }
+        }else {
+            switch indexPath.row {
+            case 0: return tableView.dequeueReusableCell(withIdentifier: MemberPrivilegesMemberLoginCellReuseID, for: indexPath) as! MemberLoginCell
+            case 1: return tableView.dequeueReusableCell(withIdentifier: MemberPrivilegesMemberSerivceCellReuseID, for: indexPath) as! MemberSerivceCell
+            default: return UITableViewCell()
+            }
         }
     }
     

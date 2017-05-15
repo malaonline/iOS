@@ -63,9 +63,10 @@ class MemberSerivceCell: MalaBaseMemberCardCell {
         }
         collectionView.snp.makeConstraints { (maker) in
             maker.top.equalTo(line.snp.bottom)
-            maker.bottom.equalTo(content)
+            maker.height.equalTo(192)
             maker.left.equalTo(content).offset(12)
             maker.right.equalTo(content).offset(-12)
+            maker.bottom.equalTo(content).offset(-20)
         }
     }
 }
