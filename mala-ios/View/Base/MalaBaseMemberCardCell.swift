@@ -61,6 +61,10 @@ class MalaBaseMemberCardCell: UITableViewCell {
         return view
     }()
     /// default components
+    lazy var defaultContainer: UIView = {
+        let view = UIView(UIColor.white)
+        return view
+    }()
     /// icon
     lazy var imageIcon: UIImageView = {
         let imageView = UIImageView()
@@ -150,12 +154,17 @@ class MalaBaseMemberCardCell: UITableViewCell {
         actionButton.setTitle(_buttonTitle, for: .normal)
         
         // SubViews
-        content.addSubview(imageIcon)
-        content.addSubview(label)
-        content.addSubview(actionButton)
+        content.addSubview(defaultContainer)
+        defaultContainer.addSubview(imageIcon)
+        defaultContainer.addSubview(label)
+        defaultContainer.addSubview(actionButton)
         actionButton.addSubview(loading)
         
         // Autolayout
+        defaultContainer.snp.makeConstraints { (maker) in
+            maker.center.equalTo(content)
+            maker.size.equalTo(content)
+        }
         imageIcon.snp.makeConstraints { (maker) in
             maker.top.equalTo(content).offset(24)
             maker.centerX.equalTo(content)

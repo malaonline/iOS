@@ -10,40 +10,6 @@ import UIKit
 
 class ExerciseMistakeViewCell: UICollectionViewCell {
     
-    enum memberCardState {
-        case normal
-        case disabled
-        case loading
-    }
-    
-    // MARK: - Property
-    var state: memberCardState = .normal {
-        didSet {
-            switch state {
-            case .normal:
-                actionButton.setTitle(_buttonTitle, for: .normal)
-                imageIcon.image = UIImage(asset: _icon)
-                loading.isHidden = true
-                loading.stopAnimating()
-            case .disabled:
-                actionButton.setTitle(_disabledTitle, for: .normal)
-                imageIcon.image = UIImage(asset: _disabledIcon)
-                loading.isHidden = true
-                loading.stopAnimating()
-            case .loading:
-                actionButton.setTitle("正在加载", for: .normal)
-                imageIcon.image = UIImage(asset: _icon)
-                loading.isHidden = false
-                loading.layer.add(animation, forKey: "Mala.Base.Member.CardCell.Animation")
-            }
-        }
-    }
-    var _icon: ImageAsset = .none
-    var _disabledIcon: ImageAsset = .none
-    var _title: String = ""
-    var _disabledTitle: String = ""
-    var _buttonTitle: String = ""
-    
     // MARK: - Components
     /// container card
     lazy var content: UIView = {
@@ -60,51 +26,54 @@ class ExerciseMistakeViewCell: UICollectionViewCell {
         view.layer.shadowOpacity = 1.0
         return view
     }()
-    /// default components
-    /// icon
-    lazy var imageIcon: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage(asset: .noteNormal)
-        return imageView
-    }()
-    /// description label
-    lazy var label: UILabel = {
+    /// index
+    private lazy var indexLabel: UILabel = {
         let label = UILabel(
-            text: "",
-            font: FontFamily.PingFangSC.Regular.font(14),
-            textColor: UIColor(named: .protocolGary)
+            text: "1/5",
+            font: FontFamily.PingFangSC.Regular.font(16),
+            textColor: UIColor(named: .indexBlue),
+            textAlignment: .right
         )
         return label
     }()
-    /// button
-    lazy var actionButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("", for: .normal)
-        button.titleLabel?.font = FontFamily.PingFangSC.Regular.font(18)
-        button.setBackgroundImage(UIImage(asset: .noteButtonNormal), for: .normal)
-        button.setBackgroundImage(UIImage(asset: .noteButtonPress), for: .highlighted)
-        button.setBackgroundImage(UIImage(asset: .noteButtonPress), for: .selected)
-        return button
+    /// exercise-group title
+    private lazy var groupTitle: UILabel = {
+        let label = UILabel(
+            text: "2016中考 - 关系代词",
+            font: FontFamily.PingFangSC.Regular.font(12),
+            textColor: UIColor(named: .groupTitleGray),
+            textAlignment: .center,
+            opacity: 0.9,
+            borderColor: UIColor(named: .protocolGary),
+            borderWidth: 1.0,
+            cornerRadius: 12
+        )
+        return label
     }()
-    private lazy var loading: UIImageView = {
-        let imageView = UIImageView(image: UIImage(asset: .buttonLoading))
-        imageView.isHidden = true
-        return imageView
+    /// exercise-group description
+    private lazy var groupDesc: UILabel = {
+        let label = UILabel(
+            text: "Sweet wormwood 青蒿是我国常见的植物．屠呦呦是用植物的特殊力量拯救数百万生命的女人．",
+            font: FontFamily.PingFangSC.Regular.font(14),
+            textColor: UIColor(named: .protocolGary),
+            textAlignment: .justified
+        )
+        label.numberOfLines = 0
+        return label
+    }()
+    private lazy var separator1: UIView = {
+        let line = UIView(UIColor(named: .themeLightBlue))
+        return line
+    }()
+    private lazy var separator2: UIView = {
+        let line = UIView(UIColor(named: .themeLightBlue))
+        return line
     }()
     
-    private lazy var animation: CABasicAnimation = {
-        let animation = CABasicAnimation(keyPath: "transform")
-        animation.fromValue = NSValue(caTransform3D: CATransform3DIdentity)
-        animation.toValue = NSValue(caTransform3D: CATransform3DMakeRotation(-(.pi / 2), 0.0, 0.0, 1.0))
-        animation.duration = 0.25
-        animation.isCumulative = true
-        animation.repeatCount = MAXFLOAT
-        return animation
-    }()
     
     // MARK: - Instance Method
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         setupUserInterface()
     }
     
@@ -121,6 +90,10 @@ class ExerciseMistakeViewCell: UICollectionViewCell {
         // SubViews
         contentView.addSubview(contentShadow)
         contentShadow.addSubview(content)
+        content.addSubview(indexLabel)
+        content.addSubview(groupTitle)
+        content.addSubview(groupDesc)
+        content.addSubview(separator1)
         
         
         // Autolayout
@@ -128,59 +101,37 @@ class ExerciseMistakeViewCell: UICollectionViewCell {
             maker.top.equalTo(contentView).offset(10)
             maker.left.equalTo(contentView).offset(10)
             maker.right.equalTo(contentView).offset(-10)
-            maker.bottom.equalTo(contentView)
+            maker.bottom.equalTo(contentView).offset(-10)
             
         }
         content.snp.makeConstraints { (maker) in
             maker.center.equalTo(contentShadow)
             maker.size.equalTo(contentShadow)
         }
+        indexLabel.snp.makeConstraints { (maker) in
+            maker.width.equalTo(32)
+            maker.height.equalTo(22)
+            maker.top.equalTo(content).offset(18)
+            maker.right.equalTo(content).offset(-13)
+        }
+        let width = (groupTitle.text! as NSString).size(attributes: [NSFontAttributeName : FontFamily.PingFangSC.Regular.font(12)]).width + (12*2)
+        groupTitle.snp.makeConstraints { (maker) in
+            maker.width.equalTo(width)
+            maker.height.equalTo(24)
+            maker.top.equalTo(content).offset(20)
+            maker.left.equalTo(content).offset(15)
+        }
+        groupDesc.snp.makeConstraints { (maker) in
+            maker.top.equalTo(groupTitle.snp.bottom).offset(10)
+            maker.left.equalTo(content).offset(15)
+            maker.right.equalTo(content).offset(-15)
+        }
+        separator1.snp.makeConstraints { (maker) in
+            maker.height.equalTo(1)
+            maker.left.equalTo(content).offset(10)
+            maker.right.equalTo(content).offset(-10)
+            maker.top.equalTo(groupDesc.snp.bottom).offset(18)
+        }
     }
     
-    func setupDefaultStyle(image: ImageAsset, disabledImage: ImageAsset, title: String, disabledTitle: String, buttonTitle: String) {
-        // Resource
-        _icon = image
-        _disabledIcon = disabledImage
-        _title = title
-        _disabledTitle = disabledTitle
-        _buttonTitle = buttonTitle
-        
-        imageIcon.image = UIImage(asset: _icon)
-        label.text = _title
-        actionButton.setTitle(_buttonTitle, for: .normal)
-        
-        // SubViews
-        content.addSubview(imageIcon)
-        content.addSubview(label)
-        content.addSubview(actionButton)
-        actionButton.addSubview(loading)
-        
-        // Autolayout
-        imageIcon.snp.makeConstraints { (maker) in
-            maker.top.equalTo(content).offset(24)
-            maker.centerX.equalTo(content)
-            maker.width.equalTo(89)
-            maker.height.equalTo(107)
-            maker.bottom.equalTo(label.snp.top).offset(-18)
-        }
-        label.snp.makeConstraints { (maker) in
-            maker.top.equalTo(imageIcon.snp.bottom).offset(18)
-            maker.centerX.equalTo(content)
-            maker.height.equalTo(20)
-            maker.bottom.equalTo(label.snp.top).offset(-18)
-        }
-        actionButton.snp.makeConstraints { (maker) in
-            maker.top.equalTo(label.snp.bottom)
-            maker.centerX.equalTo(content)
-            maker.width.equalTo(240)
-            maker.height.equalTo(65)
-            maker.bottom.equalTo(content).offset(-10)
-        }
-        loading.snp.makeConstraints { (maker) in
-            maker.centerY.equalTo(actionButton)
-            maker.right.equalTo(actionButton.titleLabel!.snp.left).offset(-6)
-            maker.height.equalTo(22)
-            maker.width.equalTo(22)
-        }
-    }
 }
