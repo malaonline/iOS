@@ -34,6 +34,6 @@ class MemberNoteCell: MalaBaseMemberCardCell {
     }
     
     @objc private func buttonDidTap() {
-        MemberPrivilegesViewController.shared.login()
+        MemberPrivilegesViewController.shared.showMistakeDemo()
     }
 }
