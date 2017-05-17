@@ -136,13 +136,24 @@ class MemberPrivilegesViewController: UITableViewController {
         
         MAProvider.userNewMessageCount(failureHandler: { (error) in
             defer { self.tableView.es_stopPullToRefresh() }
-            
+            DispatchQueue.main.async {
+                self.showToast("网络不给力，可尝试下拉刷新")
+            }
             self.exerciseRecord = MalaUserDefaults.exerciseRecord.value
         }) { (messages) in
             defer { self.tableView.es_stopPullToRefresh() }
             
             guard let messages = messages else { return }
             print("Exercise Record", messages.description)
+            
+            if let newTotal = messages.exerciseRecord?.mistakes?.total,
+               let oldTotal = self.exerciseRecord?.mistakes?.total,
+                newTotal > oldTotal {
+                DispatchQueue.main.async {
+                    self.showToast(String(format: "新增%d题", (newTotal-oldTotal)))
+                }
+            }
+            
             self.exerciseRecord = messages.exerciseRecord
             MalaUserDefaults.exerciseRecord.value = messages.exerciseRecord
         }
@@ -160,10 +171,10 @@ class MemberPrivilegesViewController: UITableViewController {
         }
         
         MAProvider.userStudyReport(failureHandler: { error in
-            DispatchQueue.main.async {
+            /* DispatchQueue.main.async {
                 self.reportStatus = .Error
                 self.showToast(L10n.memberServerError)
-            }
+            } */
         }) { [weak self] results in
             println("学习报告：\(results)")
             
