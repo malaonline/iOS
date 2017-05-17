@@ -8,7 +8,7 @@
 
 import UIKit
 
-class UserExerciseRecord: NSObject {
+class UserExerciseRecord: NSObject, NSCoding {
     
     var student: String = ""
     var school: String = ""
@@ -25,7 +25,10 @@ class UserExerciseRecord: NSObject {
     }
     
     required public init(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init()
+        self.student = aDecoder.decodeObject(forKey: "student") as? String ?? ""
+        self.school = aDecoder.decodeObject(forKey: "school") as? String ?? ""
+        self.mistakes = aDecoder.decodeObject(forKey: "mistakes") as? UserExerciseMistake
     }
     
     override func setValue(_ value: Any?, forKey key: String) {
@@ -38,6 +41,12 @@ class UserExerciseRecord: NSObject {
         super.setValue(value, forKey: key)
     }
     
+    // MARK: - Coding
+    open func encode(with aCoder: NSCoder) {
+        aCoder.encode(student, forKey: "student")
+        aCoder.encode(school, forKey: "school")
+        aCoder.encode(mistakes, forKey: "mistakes")
+    }
     
     // MARK: - Description
     override open var description: String {

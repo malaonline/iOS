@@ -45,6 +45,13 @@ class MemberPrivilegesViewController: UITableViewController {
             }
         }
     }
+    var exerciseRecord: UserExerciseRecord? {
+        didSet {
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+    }
     /// 是否已Push新控制器标示（屏蔽pop到本页面时的数据刷新动作）
     var isPushed: Bool = false
 
@@ -80,7 +87,12 @@ class MemberPrivilegesViewController: UITableViewController {
     
     // MARK: - Private Method
     private func configure() {
+        tableView.es_addPullToRefresh(animator: ThemeRefreshHeaderAnimator()) {
+            self.loadUserExerciseRecord()
+        }
+        
         tableView.backgroundColor = UIColor(named: .themeLightBlue)
+        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 10, right: 0)
         tableView.separatorStyle = .none
         tableView.estimatedRowHeight = 270
         tableView.register(MemberLoginCell.self, forCellReuseIdentifier: MemberPrivilegesMemberLoginCellReuseID)
@@ -113,52 +125,26 @@ class MemberPrivilegesViewController: UITableViewController {
             queue: nil) { [weak self] (notification) in
                 self?.loadStudyReportOverview()
         }
-        
-        NotificationCenter.default.addObserver(
-            forName: MalaNotification_ShowLearningReport,
-            object: nil,
-            queue: nil
-        ) { [weak self] (notification) -> Void in
-            
-            /// 执行学习报告相关操作
-            if let index = notification.object as? Int {
-                
-                switch index {
-                case -1:
-                    
-                    // 登录
-                    self?.login()
-                    break
-                    
-                case 0:
-                    
-                    // 显示学习报告样本
-                    self?.showReportDemo()
-                    break
-                    
-                case 1:
-                    
-                    // 显示真实学习报告
-                    self?.showMyReport()
-                    break
-                    
-                default:
-                    break
-                }
-            }
-        }
     }
     
     private func loadUserExerciseRecord() {
         
-        if !MalaUserDefaults.isLogined { return }
+        if !MalaUserDefaults.isLogined {
+            self.tableView.es_stopPullToRefresh()
+            return
+        }
         
         MAProvider.userNewMessageCount(failureHandler: { (error) in
+            defer { self.tableView.es_stopPullToRefresh() }
             
+            self.exerciseRecord = MalaUserDefaults.exerciseRecord.value
         }) { (messages) in
-            guard let messages = messages else { return }
+            defer { self.tableView.es_stopPullToRefresh() }
             
+            guard let messages = messages else { return }
             print("Exercise Record", messages.description)
+            self.exerciseRecord = messages.exerciseRecord
+            MalaUserDefaults.exerciseRecord.value = messages.exerciseRecord
         }
     }
     
@@ -228,7 +214,7 @@ class MemberPrivilegesViewController: UITableViewController {
     // MARK: - Event Response
     /// 登录
     @objc func login(completion: (()->Void)? = nil) {
-                
+        
         let loginViewController = LoginViewController()
         loginViewController.popAction = { [weak self] in
             self?.loadStudyReportOverview()
@@ -251,14 +237,14 @@ class MemberPrivilegesViewController: UITableViewController {
     
     
     /// 显示学习报告样本
-    @objc private func showReportDemo() {
+    @objc func showReportDemo() {
         let viewController = LearningReportViewController()
         viewController.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(viewController, animated: true)
         isPushed = true
     }
     /// 显示我的学习报告
-    @objc private func showMyReport() {
+    @objc func showMyReport() {
         let viewController = LearningReportViewController()
         viewController.sample = false
         viewController.hidesBottomBarWhenPushed = true
@@ -276,7 +262,10 @@ class MemberPrivilegesViewController: UITableViewController {
         
         if MalaUserDefaults.isLogined {
             switch indexPath.row {
-            case 0: return tableView.dequeueReusableCell(withIdentifier: MemberPrivilegesMemberNoteCellReuseID, for: indexPath) as! MemberNoteCell
+            case 0:
+                let cell = tableView.dequeueReusableCell(withIdentifier: MemberPrivilegesMemberNoteCellReuseID, for: indexPath) as! MemberNoteCell
+                cell.model = self.exerciseRecord
+                return cell
             case 1: return tableView.dequeueReusableCell(withIdentifier: MemberPrivilegesMemberReportCellReuseID, for: indexPath) as! MemberReportCell
             case 2: return tableView.dequeueReusableCell(withIdentifier: MemberPrivilegesMemberSerivceCellReuseID, for: indexPath) as! MemberSerivceCell
             default: return UITableViewCell()
@@ -306,7 +295,6 @@ class MemberPrivilegesViewController: UITableViewController {
     
     deinit {
         NotificationCenter.default.removeObserver(self, name: MalaNotification_PushIntroduction, object: nil)
-        NotificationCenter.default.removeObserver(self, name: MalaNotification_ShowLearningReport, object: nil)
         NotificationCenter.default.removeObserver(self, name: MalaNotification_ReloadLearningReport, object: nil)
     }
 }

@@ -10,6 +10,22 @@ import UIKit
 
 class MemberNoteCell: MalaBaseMemberCardCell {
 
+    var model: UserExerciseRecord? {
+        didSet {
+            // make sure that student has mistake record.
+            guard let model = model,
+                  let mistakes = model.mistakes, mistakes.total != 0 else {
+                    setupDefaultPanel()
+                    return
+            }
+            
+            setupUserInterface()
+            titleLabel.text = String(format: "Hi %@ %@同学：", model.school, model.student)
+            englishLabel.text = String(format: "%d题", mistakes.english)
+            mathLabel.text = String(format: "%d题", mistakes.math)
+        }
+    }
+    
     // MARK: - Components
     private lazy var titleLabel: UILabel = {
         let label = UILabel(
@@ -61,8 +77,8 @@ class MemberNoteCell: MalaBaseMemberCardCell {
     // MARK: - Instance Method
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        setupUserInterface()
-//        setup()
+//        setupUserInterface()
+        setupDefaultPanel()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -71,6 +87,8 @@ class MemberNoteCell: MalaBaseMemberCardCell {
     
     // MARK: - Private Method
     private func setupUserInterface() {
+        releaseDefaultPanel()
+        
         content.insertSubview(titleLabel, at: 0)
         content.insertSubview(helpButton, at: 1)
         content.insertSubview(separator, at: 2)
@@ -84,6 +102,7 @@ class MemberNoteCell: MalaBaseMemberCardCell {
             maker.height.equalTo(20)
             maker.top.equalTo(content).offset(20)
             maker.left.equalTo(content).offset(20)
+            maker.right.equalTo(helpButton.snp.left)
         }
         helpButton.snp.makeConstraints { (maker) in
             maker.width.equalTo(84)
@@ -119,7 +138,8 @@ class MemberNoteCell: MalaBaseMemberCardCell {
         }
     }
     
-    private func setup() {
+    private func setupDefaultPanel() {
+        releaseContentPanel()
         setupDefaultStyle(image: .noteNormal,
                           disabledImage: .noteDisable,
                           title: "你课中答错的题目会出现在这里哦！",
@@ -129,18 +149,20 @@ class MemberNoteCell: MalaBaseMemberCardCell {
     }
     
     @objc private func buttonDidTap() {
-        delay(3) { 
-            self.defaultContainer.removeFromSuperview()
-            
-//            delay(2, work: { 
-//                self.setupDefaultStyle(image: .noteNormal,
-//                                       disabledImage: .noteDisable,
-//                                       title: "你课中答错的题目会出现在这里哦！",
-//                                       disabledTitle: "错题本数据获取失败！",
-//                                       buttonTitle: "查看错题本样本")
-//            })
-        }
         MemberPrivilegesViewController.shared.showMistakeDemo()
     }
+    
+    private func releaseDefaultPanel() {
+        defaultContainer.removeFromSuperview()
+    }
+    
+    private func releaseContentPanel() {
+        titleLabel.removeFromSuperview()
+        helpButton.removeFromSuperview()
+        separator.removeFromSuperview()
+        englishIcon.removeFromSuperview()
+        englishLabel.removeFromSuperview()
+        mathIcon.removeFromSuperview()
+        mathLabel.removeFromSuperview()
+    }
 }
-

@@ -129,22 +129,19 @@ class MemberReportCell: MalaBaseMemberCardCell {
     
     // MARK: - Event Response
     @objc private func buttonDidTap() {
-        NotificationCenter.default.post(name: MalaNotification_ShowLearningReport, object: 0)
+        MemberPrivilegesViewController.shared.showReportDemo()
     }
     /// 登录
     @objc private func login() {
-        println("登录")
-        NotificationCenter.default.post(name: MalaNotification_ShowLearningReport, object: -1)
+        MemberPrivilegesViewController.shared.login()
     }
     /// 显示学习报告样本
     @objc private func showReportDemo() {
-        println("样本")
-        NotificationCenter.default.post(name: MalaNotification_ShowLearningReport, object: 0)
+        MemberPrivilegesViewController.shared.showReportDemo()
     }
     /// 显示我的学习报告
     @objc private func showMyReport() {
-        println("报告")
-        NotificationCenter.default.post(name: MalaNotification_ShowLearningReport, object: 1)
+        MemberPrivilegesViewController.shared.showMyReport()
     }
     /// 重新获取学习报告
     @objc private func reloadStatus() {

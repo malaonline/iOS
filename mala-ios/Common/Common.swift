@@ -50,7 +50,6 @@ let MalaNotification_PushTeacherDetailView = NSNotification.Name(rawValue: "com.
 let MalaNotification_CancelOrderForm = NSNotification.Name(rawValue: "com.malalaoshi.app.CancelOrderForm")
 let MalaNotification_PushToPayment = NSNotification.Name(rawValue: "com.malalaoshi.app.PushToPayment")
 let MalaNotification_PushIntroduction = NSNotification.Name(rawValue: "com.malalaoshi.app.PushIntroduction")
-let MalaNotification_ShowLearningReport = NSNotification.Name(rawValue: "com.malalaoshi.app.ShowLearningReport")
 let MalaNotification_RefreshStudentName = NSNotification.Name(rawValue: "com.malalaoshi.app.RefreshStudentName")
 let MalaNotification_PushProfileItemController = NSNotification.Name(rawValue: "com.malalaoshi.app.PushProfileItemController")
 let MalaNotification_ReloadLearningReport = NSNotification.Name(rawValue: "com.malalaoshi.app.ReloadLearningReport")

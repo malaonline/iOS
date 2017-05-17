@@ -22,6 +22,8 @@ let SchoolNameKey = "SchoolNameKey"
 let CurrentCityKey = "CurrentCityKey"
 let CurrentSchoolKey = "CurrentSchoolKey"
 
+let UserExerciseRecordKey = "UserExerciseRecordKey"
+
 ///  监听者
 struct Listener<T>: Hashable {
     /// 监听者名称
@@ -220,6 +222,21 @@ class MalaUserDefaults {
             }
         }
     }()
+    
+    /// user exercise-record
+    static var exerciseRecord: Listenable<UserExerciseRecord?> = {
+        var exerciseRecord: UserExerciseRecord?
+        if let data = defaults.object(forKey: UserExerciseRecordKey) as? Data {
+            exerciseRecord = NSKeyedUnarchiver.unarchiveObject(with: data) as? UserExerciseRecord
+        }
+        
+        return Listenable<UserExerciseRecord?>(exerciseRecord) { exerciseRecord in
+            if let object  = exerciseRecord {
+                let encodedObject = NSKeyedArchiver.archivedData(withRootObject: object)
+                defaults.set(encodedObject, forKey: UserExerciseRecordKey)
+            }
+        }
+    }()
 }
 
 
@@ -240,6 +257,7 @@ extension MalaUserDefaults {
         schoolName.removeAllListeners()
         currentCity.removeAllListeners()
         currentSchool.removeAllListeners()
+        exerciseRecord.removeAllListeners()
         
         defaults.removeObject(forKey: userAccessTokenKey)
         defaults.removeObject(forKey: UserIDKey)
@@ -252,6 +270,7 @@ extension MalaUserDefaults {
         defaults.removeObject(forKey: SchoolNameKey)
         defaults.removeObject(forKey: CurrentCityKey)
         defaults.removeObject(forKey: CurrentSchoolKey)
+        defaults.removeObject(forKey: UserExerciseRecordKey)
         
         // 配置清空成功表示注销成功
         MalaUserDefaults.isLogouted = defaults.synchronize()

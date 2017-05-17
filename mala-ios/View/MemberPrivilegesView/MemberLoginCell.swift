@@ -34,9 +34,6 @@ class MemberLoginCell: MalaBaseMemberCardCell {
     }
     
     @objc private func buttonDidTap() {
-        state = .loading
-        MemberPrivilegesViewController.shared.login { 
-            self.state = .normal
-        }
+        MemberPrivilegesViewController.shared.login()
     }
 }
