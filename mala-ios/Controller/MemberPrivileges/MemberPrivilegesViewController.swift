@@ -64,6 +64,7 @@ class MemberPrivilegesViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if !isPushed {
+            loadUserExerciseRecord()
             loadStudyReportOverview()
         }
         isPushed = false
@@ -145,6 +146,19 @@ class MemberPrivilegesViewController: UITableViewController {
                     break
                 }
             }
+        }
+    }
+    
+    private func loadUserExerciseRecord() {
+        
+        if !MalaUserDefaults.isLogined { return }
+        
+        MAProvider.userNewMessageCount(failureHandler: { (error) in
+            
+        }) { (messages) in
+            guard let messages = messages else { return }
+            
+            print("Exercise Record", messages.description)
         }
     }
     
