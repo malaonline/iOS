@@ -31,11 +31,11 @@ class MainViewController: UITabBarController, UITabBarControllerDelegate {
         )
         return naviVC
     }()
-    /// 会员专享
+    /// 错题本
     private lazy var memberPrivilegesViewController: MainNavigationController = {
         let naviVC  = self.getNaviController(
             MemberPrivilegesViewController.shared,
-            title: L10n.member,
+            title: "错题本",
             imageName: "serivce_normal"
         )
         return naviVC
@@ -69,7 +69,7 @@ class MainViewController: UITabBarController, UITabBarControllerDelegate {
             case .profile:
                 return L10n.profile
             case .memberPrivileges:
-                return L10n.member
+                return "错题本"
             }
         }
     }
