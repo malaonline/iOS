@@ -667,6 +667,12 @@
 		F47AD4ED1ECD6E0E0042440A /* PaymentChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47AD4A11ECD6E0D0042440A /* PaymentChannel.swift */; };
 		F47AD4EE1ECD6E0E0042440A /* PaymentChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47AD4A11ECD6E0D0042440A /* PaymentChannel.swift */; };
 		F47AD4EF1ECD6E0E0042440A /* PaymentChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47AD4A11ECD6E0D0042440A /* PaymentChannel.swift */; };
+		F47AD4F11ECD6F310042440A /* ExerciseMistakeRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47AD4F01ECD6F310042440A /* ExerciseMistakeRecord.swift */; };
+		F47AD4F21ECD6F310042440A /* ExerciseMistakeRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47AD4F01ECD6F310042440A /* ExerciseMistakeRecord.swift */; };
+		F47AD4F31ECD6F310042440A /* ExerciseMistakeRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47AD4F01ECD6F310042440A /* ExerciseMistakeRecord.swift */; };
+		F47AD4F51ECD70660042440A /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47AD4F41ECD70660042440A /* Exercise.swift */; };
+		F47AD4F61ECD70660042440A /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47AD4F41ECD70660042440A /* Exercise.swift */; };
+		F47AD4F71ECD70660042440A /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47AD4F41ECD70660042440A /* Exercise.swift */; };
 		F47C2AB71C8445950051A880 /* PaymentChannelSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47C2AB61C8445950051A880 /* PaymentChannelSectionHeaderView.swift */; };
 		F47C2ABD1C85785A0051A880 /* MalaAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47C2ABC1C85785A0051A880 /* MalaAlert.swift */; };
 		F487932B1EC4450C00341703 /* MalaBaseMemberCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F487932A1EC4450C00341703 /* MalaBaseMemberCardCell.swift */; };
@@ -1032,6 +1038,8 @@
 		F47AD49E1ECD6E0D0042440A /* SMSResultModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMSResultModel.swift; sourceTree = "<group>"; };
 		F47AD4A01ECD6E0D0042440A /* OrderForm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderForm.swift; sourceTree = "<group>"; };
 		F47AD4A11ECD6E0D0042440A /* PaymentChannel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentChannel.swift; sourceTree = "<group>"; };
+		F47AD4F01ECD6F310042440A /* ExerciseMistakeRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExerciseMistakeRecord.swift; sourceTree = "<group>"; };
+		F47AD4F41ECD70660042440A /* Exercise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Exercise.swift; sourceTree = "<group>"; };
 		F47C2AB61C8445950051A880 /* PaymentChannelSectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentChannelSectionHeaderView.swift; sourceTree = "<group>"; };
 		F47C2ABC1C85785A0051A880 /* MalaAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MalaAlert.swift; sourceTree = "<group>"; };
 		F487932A1EC4450C00341703 /* MalaBaseMemberCardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MalaBaseMemberCardCell.swift; sourceTree = "<group>"; };
@@ -1729,6 +1737,8 @@
 			isa = PBXGroup;
 			children = (
 				F47AD4961ECD6E0D0042440A /* SimpleReportResultModel.swift */,
+				F47AD4F01ECD6F310042440A /* ExerciseMistakeRecord.swift */,
+				F47AD4F41ECD70660042440A /* Exercise.swift */,
 			);
 			path = ExerciseRecord;
 			sourceTree = "<group>";
@@ -2432,6 +2442,7 @@
 				F427FFAF1CEDA37400EAB748 /* LearningReportAbilityImproveCell.swift in Sources */,
 				F48BBAEB1CE9D6A800774297 /* MemberPrivilegesViewController.swift in Sources */,
 				F4B3C6871CFD486800C1B423 /* SingleTopicScoreData.swift in Sources */,
+				F47AD4F51ECD70660042440A /* Exercise.swift in Sources */,
 				F4AE07F21E7673AD006FA466 /* MalaRemoteNotificationHandler.swift in Sources */,
 				30B598191C47ACCD00169390 /* TeacherTableViewCell.swift in Sources */,
 				F48BBAD61CE57F6E00774297 /* OrderFormStatusCell.swift in Sources */,
@@ -2479,6 +2490,7 @@
 				F46065291C97B168004056B1 /* CouponViewController.swift in Sources */,
 				F47AD4A81ECD6E0D0042440A /* ClassScheduleDayModel.swift in Sources */,
 				F4D6785B1CEACD0E009EC956 /* MemberSerivceCell.swift in Sources */,
+				F47AD4F11ECD6F310042440A /* ExerciseMistakeRecord.swift in Sources */,
 				30D4AA141C2417A700C5A336 /* Extension+UIButton.swift in Sources */,
 				F47AD4BD1ECD6E0E0042440A /* LiveClassModel.swift in Sources */,
 				F47AD4ED1ECD6E0E0042440A /* PaymentChannel.swift in Sources */,
@@ -2650,6 +2662,7 @@
 				35FF7A701CF8325A000A70EE /* MemberPrivilegesViewController.swift in Sources */,
 				F4B3C6881CFD486800C1B423 /* SingleTopicScoreData.swift in Sources */,
 				F4AE07F31E7673AD006FA466 /* MalaRemoteNotificationHandler.swift in Sources */,
+				F47AD4F61ECD70660042440A /* Exercise.swift in Sources */,
 				35FF7A711CF8325A000A70EE /* TeacherTableViewCell.swift in Sources */,
 				35FF7A741CF8325A000A70EE /* OrderFormStatusCell.swift in Sources */,
 				F4CECD9C1DD45DA300E64B58 /* QRCodeView.swift in Sources */,
@@ -2697,6 +2710,7 @@
 				35FF7A921CF8325A000A70EE /* MemberSerivceCell.swift in Sources */,
 				F47AD4A91ECD6E0D0042440A /* ClassScheduleDayModel.swift in Sources */,
 				F4B3C6741CFD3CF000C1B423 /* SubjectReport.swift in Sources */,
+				F47AD4F21ECD6F310042440A /* ExerciseMistakeRecord.swift in Sources */,
 				35FF7A931CF8325A000A70EE /* Extension+UIButton.swift in Sources */,
 				F47AD4BE1ECD6E0E0042440A /* LiveClassModel.swift in Sources */,
 				F47AD4EE1ECD6E0E0042440A /* PaymentChannel.swift in Sources */,
@@ -2868,6 +2882,7 @@
 				35FF7B531CF83264000A70EE /* MemberPrivilegesViewController.swift in Sources */,
 				F4B3C6891CFD486800C1B423 /* SingleTopicScoreData.swift in Sources */,
 				F4AE07F41E7673AD006FA466 /* MalaRemoteNotificationHandler.swift in Sources */,
+				F47AD4F71ECD70660042440A /* Exercise.swift in Sources */,
 				35FF7B541CF83264000A70EE /* TeacherTableViewCell.swift in Sources */,
 				35FF7B571CF83264000A70EE /* OrderFormStatusCell.swift in Sources */,
 				F4CECD9D1DD45DA300E64B58 /* QRCodeView.swift in Sources */,
@@ -2915,6 +2930,7 @@
 				35FF7B751CF83264000A70EE /* MemberSerivceCell.swift in Sources */,
 				F47AD4AA1ECD6E0D0042440A /* ClassScheduleDayModel.swift in Sources */,
 				F4B3C6751CFD3CF000C1B423 /* SubjectReport.swift in Sources */,
+				F47AD4F31ECD6F310042440A /* ExerciseMistakeRecord.swift in Sources */,
 				35FF7B761CF83264000A70EE /* Extension+UIButton.swift in Sources */,
 				F47AD4BF1ECD6E0E0042440A /* LiveClassModel.swift in Sources */,
 				F47AD4EF1ECD6E0E0042440A /* PaymentChannel.swift in Sources */,
