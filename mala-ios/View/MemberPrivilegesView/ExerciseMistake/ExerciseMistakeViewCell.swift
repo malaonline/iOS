@@ -10,6 +10,15 @@ import UIKit
 
 class ExerciseMistakeViewCell: UICollectionViewCell {
     
+    var index: Int = 0
+    var model: ExerciseMistakeRecord = MalaConfig.exerciseRecordDefaultData().first! {
+        didSet {
+            guard let model = model else { return }
+            
+        }
+    }
+    
+    
     // MARK: - Components
     /// container card
     lazy var content: UIView = {
@@ -65,9 +74,71 @@ class ExerciseMistakeViewCell: UICollectionViewCell {
         let line = UIView(UIColor(named: .themeLightBlue))
         return line
     }()
+    private lazy var exerciseLabel: UILabel = {
+        let label = UILabel(
+            text: "2.The__________Brazil’s Olympic games will be held on August 5.\n_________exciting news for the long summer vacation!",
+            font: FontFamily.PingFangSC.Regular.font(16),
+            textColor: UIColor(named: .labelBlack)
+        )
+        label.numberOfLines = 0
+        return label
+    }()
+    private lazy var optionA: UILabel = {
+        let label = UILabel(
+            text: "A． thirty-one; How a",
+            font: FontFamily.PingFangSC.Regular.font(16),
+            textColor: UIColor(named: .labelBlack)
+        )
+        label.numberOfLines = 0
+        return label
+    }()
+    private lazy var optionB: UILabel = {
+        let label = UILabel(
+            text: "B． thirty-first; What",
+            font: FontFamily.PingFangSC.Regular.font(16),
+            textColor: UIColor(named: .labelBlack)
+        )
+        label.numberOfLines = 0
+        return label
+    }()
+    private lazy var optionC: UILabel = {
+        let label = UILabel(
+            text: "C． thirty-first; What an",
+            font: FontFamily.PingFangSC.Regular.font(16),
+            textColor: UIColor(named: .labelBlack)
+        )
+        label.numberOfLines = 0
+        return label
+    }()
+    private lazy var optionD: UILabel = {
+        let label = UILabel(
+            text: "D． thirty-one; How",
+            font: FontFamily.PingFangSC.Regular.font(16),
+            textColor: UIColor(named: .labelBlack)
+        )
+        label.numberOfLines = 0
+        return label
+    }()
     private lazy var separator2: UIView = {
         let line = UIView(UIColor(named: .themeLightBlue))
         return line
+    }()
+    private lazy var solutionLabel: UILabel = {
+        let label = UILabel(
+            text: "【试题解析】答案B",
+            font: FontFamily.PingFangSC.Regular.font(16),
+            textColor: UIColor(named: .solutionBlue)
+        )
+        return label
+    }()
+    private lazy var explanationLabel: UILabel = {
+        let label = UILabel(
+            text: "根据语境，used the plant's special power to save millions of lives．可知其缺少主语的定语从句，故可排除答案C，D．又从句的先行词为woman（女人）是指人，故可排除答案A，所以答案为B．",
+            font: FontFamily.PingFangSC.Regular.font(14),
+            textColor: UIColor(named: .groupTitleGray)
+        )
+        label.numberOfLines = 0
+        return label
     }()
     
     
@@ -93,8 +164,19 @@ class ExerciseMistakeViewCell: UICollectionViewCell {
         content.addSubview(indexLabel)
         content.addSubview(groupTitle)
         content.addSubview(groupDesc)
+        
         content.addSubview(separator1)
         
+        content.addSubview(exerciseLabel)
+        content.addSubview(optionA)
+        content.addSubview(optionB)
+        content.addSubview(optionC)
+        content.addSubview(optionD)
+        
+        content.addSubview(separator2)
+        
+        content.addSubview(solutionLabel)
+        content.addSubview(explanationLabel)
         
         // Autolayout
         contentShadow.snp.makeConstraints { (maker) in
@@ -132,6 +214,42 @@ class ExerciseMistakeViewCell: UICollectionViewCell {
             maker.right.equalTo(content).offset(-10)
             maker.top.equalTo(groupDesc.snp.bottom).offset(18)
         }
+        exerciseLabel.snp.makeConstraints { (maker) in
+            maker.top.equalTo(separator1.snp.bottom).offset(22)
+            maker.left.equalTo(content).offset(14)
+            maker.right.equalTo(content).offset(-14)
+        }
+        optionA.snp.makeConstraints { (maker) in
+            maker.top.equalTo(exerciseLabel.snp.bottom).offset(20)
+            maker.left.equalTo(exerciseLabel)
+        }
+        optionB.snp.makeConstraints { (maker) in
+            maker.top.equalTo(optionA.snp.bottom).offset(8)
+            maker.left.equalTo(exerciseLabel)
+        }
+        optionC.snp.makeConstraints { (maker) in
+            maker.top.equalTo(optionB.snp.bottom).offset(8)
+            maker.left.equalTo(exerciseLabel)
+        }
+        optionD.snp.makeConstraints { (maker) in
+            maker.top.equalTo(optionC.snp.bottom).offset(8)
+            maker.left.equalTo(exerciseLabel)
+        }
+        separator2.snp.makeConstraints { (maker) in
+            maker.height.equalTo(1)
+            maker.left.equalTo(content).offset(10)
+            maker.right.equalTo(content).offset(-10)
+            maker.top.equalTo(optionD.snp.bottom).offset(22)
+        }
+        solutionLabel.snp.makeConstraints { (maker) in
+            maker.top.equalTo(separator2.snp.bottom).offset(10)
+            maker.height.equalTo(28)
+            maker.left.equalTo(content).offset(10)
+        }
+        explanationLabel.snp.makeConstraints { (maker) in
+            maker.top.equalTo(solutionLabel.snp.bottom).offset(8)
+            maker.left.equalTo(content).offset(16)
+            maker.right.equalTo(content).offset(-16)
+        }
     }
-    
 }
