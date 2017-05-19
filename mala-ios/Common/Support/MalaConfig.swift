@@ -410,4 +410,99 @@ open class MalaConfig {
             SingleTopicScoreData(id: "8", name: L10n.Chart.Geo.operation, score: NSNumber(value: 0.55 as Double), aveScore: NSNumber(value: 0.21 as Double))
         ]
     }
+    
+    class func exerciseRecordDefaultData() -> [ExerciseMistakeRecord] {
+        return [
+            ExerciseMistakeRecord(
+                id: 100,
+                submit: 0,
+                updatedAt: 1494490662,
+                group: BaseObjectModel(
+                    id: 1000,
+                    name: "关系代词",
+                    desc: "2016•临沂中考试题。 Sweet wormwood 青蒿是我国常见的植物．屠呦呦是用植物的特殊力量拯救数百万生命的女人．"),
+                exercise: Exercise(
+                    id: 0,
+                    title: "Sweet wormwood （青蒿）is a common plant in China．Tu Youyou is the woman______used the plant's special power to save millions of lives．",
+                    solution: 102,
+                    exp: "答案B．根据语境，used the plant's special power to save millions of lives．可知其缺少主语的定语从句，故可排除答案C，D．又从句的先行词为woman（女人）是指人，故可排除答案A，所以答案为B．",
+                    options: [
+                        BaseObjectModel(id: 101, name: "which"),
+                        BaseObjectModel(id: 102, name: "who"),
+                        BaseObjectModel(id: 103, name: "whose"),
+                        BaseObjectModel(id: 104, name: "/")])),
+            ExerciseMistakeRecord(
+                id: 200,
+                submit: 0,
+                updatedAt: 1494490662,
+                group: BaseObjectModel(
+                    id: 2000,
+                    name: "序数词和感叹句",
+                    desc: "2016•咸宁中考真题。题干表达表达第三十一届奥运会，注意序数词考法；以及what 引导的感叹句用法。"),
+                exercise: Exercise(
+                    id: 0,
+                    title: "The__________Brazil’s Olympic games will be held on August 5.\n_________exciting news for the long summer vacation! ",
+                    solution: 202,
+                    exp: "考查序数词和感叹句。thirty-one 是基数词为“三十一”； thirty-first 为序数词为“第三十一”，题干表达第三十一届奥运会，故第一个序数词；感叹句为“What + 不可数名词/名词性短语（+ 主谓）”或“How + 形容词（+ 主谓）”因此正确答案为B。",
+                    options: [
+                        BaseObjectModel(id: 201, name: "thirty-one; How a"),
+                        BaseObjectModel(id: 202, name: "thirty-first; What"),
+                        BaseObjectModel(id: 203, name: "thirty-first; What an"),
+                        BaseObjectModel(id: 204, name: "thirty-one")])),
+            ExerciseMistakeRecord(
+                id: 300,
+                submit: 0,
+                updatedAt: 1494490662,
+                group: BaseObjectModel(
+                    id: 3000,
+                    name: "情景交际",
+                    desc: "2015•沈阳中考试题"),
+                exercise: Exercise(
+                    id: 0,
+                    title: "______ Hello, Joyce, you are busy. Can I give you a hand? —Thanks very much, ______ I can manage.",
+                    solution: 304,
+                    exp: "考查情景交际。句意：“——你好，乔伊斯，你很忙。我可以帮你吗？”“——非常感谢，我自己能行”。如果不需要帮忙，习惯可以这么回答：Thanks very much, but I can manage.（非常感谢，但我自己可以应付。）如果需要帮忙，可以这么回答：Oh, that would be good. Thanks a lot.（哦，那太好了，太感谢了。）故选D。",
+                    options: [
+                        BaseObjectModel(id: 301, name: "and"),
+                        BaseObjectModel(id: 302, name: "or"),
+                        BaseObjectModel(id: 303, name: "so"),
+                        BaseObjectModel(id: 304, name: "but")])),
+            ExerciseMistakeRecord(
+                id: 400,
+                submit: 0,
+                updatedAt: 1494490662,
+                group: BaseObjectModel(
+                    id: 4000,
+                    name: "基数词、序数词",
+                    desc: "2016•天津中考试题。李明将要16岁了．他的父母将为了他的16岁生日举行聚会"),
+                exercise: Exercise(
+                    id: 0,
+                    title: "Li Ming will be ______ ．His parents are going to have a party for his ______ birthday",
+                    solution: 401,
+                    exp: "根据Li Ming will be…可知本句是描述李明的年龄，表示年龄用基数词，故第一个空用sixteen．根据第二个空后的birthday（单数名词），可知其前需要序数词（序数词+名词的单数形式）．故选A．",
+                    options: [
+                        BaseObjectModel(id: 401, name: "sixteen； sixteenth"),
+                        BaseObjectModel(id: 402, name: "sixteenth； sixteenth"),
+                        BaseObjectModel(id: 403, name: "sixteen； sixteen"),
+                        BaseObjectModel(id: 404, name: "sixteenth； sixteen")])),
+            ExerciseMistakeRecord(
+                id: 500,
+                submit: 0,
+                updatedAt: 1494490662,
+                group: BaseObjectModel(
+                    id: 5000,
+                    name: "实义动词的过去分词",
+                    desc: "2016 厦门中考真题"),
+                exercise: Exercise(
+                    id: 0,
+                    title: "---Tom，let's hang out after school．\n---Sorry．I have_____Frank to work on the biology report with him．",
+                    solution: 503,
+                    exp: "各个选项的意义分别是A  advise 建议； B expect 期待；   C promise 承诺．跟语境\"sorry（对不起）\"以及\"work on the biology report with him（和他一起为生物学报告而工作）\"可以推知本空应填\"许诺\"，又\"许诺\"是已经完成的动作，结合have故本句应为现在完成时态，故用其过去分词promised，故答案选C",
+                    options: [
+                        BaseObjectModel(id: 501, name: "advised"),
+                        BaseObjectModel(id: 502, name: "expected"),
+                        BaseObjectModel(id: 503, name: "promised"),
+                        BaseObjectModel(id: 504, name: "/")])),
+        ]
+    }
 }

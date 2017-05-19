@@ -15,6 +15,11 @@ class ExerciseMistakeController: BaseViewController, UICollectionViewDelegate, U
     // MARK: - Property
     /// 当前下标
     var index: Int?
+    var models: [ExerciseMistakeRecord] = MalaConfig.exerciseRecordDefaultData() {
+        didSet {
+            collectionView.reloadData()
+        }
+    }
     
     
     // MARK: - Components
@@ -77,7 +82,9 @@ class ExerciseMistakeController: BaseViewController, UICollectionViewDelegate, U
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ExerciseMistakeViewCellReuseId, for: indexPath) as! ExerciseMistakeViewCell
-        cell.accessibilityLabel = String(indexPath.row)
+        cell.index = indexPath.row+1
+        cell.amount = self.models.count
+        cell.model = models[indexPath.row]
         return cell
     }
     

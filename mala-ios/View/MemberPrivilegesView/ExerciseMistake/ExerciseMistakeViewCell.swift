@@ -11,10 +11,68 @@ import UIKit
 class ExerciseMistakeViewCell: UICollectionViewCell {
     
     var index: Int = 0
-    var model: ExerciseMistakeRecord = MalaConfig.exerciseRecordDefaultData().first! {
+    var amount: Int = 0
+    var model: ExerciseMistakeRecord? {
         didSet {
-            guard let model = model else { return }
+            guard let model = model,
+                  let group = model.exerciseGroup,
+                  let exerc = model.exercise else { return }
             
+            indexLabel.text = String(format: "%d/%d", index, amount)
+            groupTitle.text = group.name
+            remakeGroupTitleWidth()
+            
+            groupDesc.text = group.desc
+            exerciseLabel.text = String(format: "%d.%@", index, exerc.name ?? "")
+            
+            let options = exerc.options.sorted { $0.id < $1.id }
+            var solutionString = "*"
+            
+            for (index, value) in options.enumerated() {
+                switch index {
+                case 0:
+                    optionA.text = String(format: "A. %@", value.name ?? "")
+                    
+                    if value.id == exerc.solution {
+                        optionA.textColor = UIColor(named: .solutionBlue)
+                        solutionString = "A"
+                    }else {
+                        optionA.textColor = UIColor(named: .labelBlack)
+                    }
+                case 1:
+                    optionB.text = String(format: "B. %@", value.name ?? "")
+                    
+                    if value.id == exerc.solution {
+                        optionA.textColor = UIColor(named: .solutionBlue)
+                        solutionString = "B"
+                    }else {
+                        optionA.textColor = UIColor(named: .labelBlack)
+                    }
+                case 2:
+                    optionC.text = String(format: "C. %@", value.name ?? "")
+                    
+                    if value.id == exerc.solution {
+                        optionA.textColor = UIColor(named: .solutionBlue)
+                        solutionString = "C"
+                    }else {
+                        optionA.textColor = UIColor(named: .labelBlack)
+                    }
+                case 3:
+                    optionD.text = String(format: "D. %@", value.name ?? "")
+                    
+                    if value.id == exerc.solution {
+                        optionA.textColor = UIColor(named: .solutionBlue)
+                        solutionString = "D"
+                    }else {
+                        optionA.textColor = UIColor(named: .labelBlack)
+                    }
+                default:
+                    break
+                }
+            }
+            
+            solutionLabel.text = String(format: "【试题解析】答案%@", solutionString)
+            explanationLabel.text = exerc.explanatioin
         }
     }
     
@@ -250,6 +308,16 @@ class ExerciseMistakeViewCell: UICollectionViewCell {
             maker.top.equalTo(solutionLabel.snp.bottom).offset(8)
             maker.left.equalTo(content).offset(16)
             maker.right.equalTo(content).offset(-16)
+        }
+    }
+    
+    private func remakeGroupTitleWidth() {
+        let width = (groupTitle.text! as NSString).size(attributes: [NSFontAttributeName : FontFamily.PingFangSC.Regular.font(12)]).width + (12*2)
+        groupTitle.snp.remakeConstraints { (maker) in
+            maker.width.equalTo(width)
+            maker.height.equalTo(24)
+            maker.top.equalTo(content).offset(20)
+            maker.left.equalTo(content).offset(15)
         }
     }
 }
