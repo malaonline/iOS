@@ -71,8 +71,7 @@ class MemberPrivilegesViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if !isPushed {
-            loadUserExerciseRecord()
-            loadStudyReportOverview()
+            self.tableView.es_startPullToRefresh()
         }
         isPushed = false
     }
@@ -89,6 +88,7 @@ class MemberPrivilegesViewController: UITableViewController {
     private func configure() {
         tableView.es_addPullToRefresh(animator: ThemeRefreshHeaderAnimator()) {
             self.loadUserExerciseRecord()
+            self.loadStudyReportOverview()
         }
         
         tableView.backgroundColor = UIColor(named: .themeLightBlue)
