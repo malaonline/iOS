@@ -40,6 +40,7 @@ class MemberNoteCell: MalaBaseMemberCardCell {
         let button = UIButton()
         button.setTitle("错题哪里来？", for: .normal)
         button.setTitleColor(UIColor(named: .indexBlue), for: .normal)
+        button.setTitleColor(UIColor(named: .indexBluePress), for: .highlighted)
         button.titleLabel?.font = FontFamily.PingFangSC.Regular.font(14)
         button.addTarget(self, action: #selector(MemberNoteCell.helpButtonDidTap), for: .touchUpInside)
         return button
@@ -155,7 +156,7 @@ class MemberNoteCell: MalaBaseMemberCardCell {
     }
     
     @objc private func helpButtonDidTap() {
-        let popup = PopupDialog(viewController: MAHelpViewController(), buttonAlignment: .horizontal, transitionStyle: .bounceDown, gestureDismissal: true)
+        let popup = PopupDialog(viewController: MAHelpViewController(), buttonAlignment: .horizontal, transitionStyle: .zoomIn, gestureDismissal: true)
         MemberPrivilegesViewController.shared.present(popup, animated: true, completion: nil)
     }
     
