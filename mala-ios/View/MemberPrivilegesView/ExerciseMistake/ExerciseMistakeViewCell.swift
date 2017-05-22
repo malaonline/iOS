@@ -136,7 +136,8 @@ class ExerciseMistakeViewCell: UICollectionViewCell {
         let label = UILabel(
             text: "2.The__________Brazil’s Olympic games will be held on August 5.\n_________exciting news for the long summer vacation!",
             font: FontFamily.PingFangSC.Regular.font(16),
-            textColor: UIColor(named: .labelBlack)
+            textColor: UIColor(named: .labelBlack),
+            textAlignment: .justified
         )
         label.numberOfLines = 0
         return label
@@ -193,7 +194,8 @@ class ExerciseMistakeViewCell: UICollectionViewCell {
         let label = UILabel(
             text: "根据语境，used the plant's special power to save millions of lives．可知其缺少主语的定语从句，故可排除答案C，D．又从句的先行词为woman（女人）是指人，故可排除答案A，所以答案为B．",
             font: FontFamily.PingFangSC.Regular.font(14),
-            textColor: UIColor(named: .groupTitleGray)
+            textColor: UIColor(named: .groupTitleGray),
+            textAlignment: .justified
         )
         label.numberOfLines = 0
         return label

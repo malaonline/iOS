@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import PopupDialog
 
 class MemberNoteCell: MalaBaseMemberCardCell {
 
@@ -40,6 +41,7 @@ class MemberNoteCell: MalaBaseMemberCardCell {
         button.setTitle("错题哪里来？", for: .normal)
         button.setTitleColor(UIColor(named: .indexBlue), for: .normal)
         button.titleLabel?.font = FontFamily.PingFangSC.Regular.font(14)
+        button.addTarget(self, action: #selector(MemberNoteCell.helpButtonDidTap), for: .touchUpInside)
         return button
     }()
     private lazy var separator: UIView = {
@@ -150,6 +152,11 @@ class MemberNoteCell: MalaBaseMemberCardCell {
     
     @objc private func buttonDidTap() {
         MemberPrivilegesViewController.shared.showMistakeDemo()
+    }
+    
+    @objc private func helpButtonDidTap() {
+        let popup = PopupDialog(viewController: MAHelpViewController(), buttonAlignment: .horizontal, transitionStyle: .bounceDown, gestureDismissal: true)
+        MemberPrivilegesViewController.shared.present(popup, animated: true, completion: nil)
     }
     
     private func releaseDefaultPanel() {

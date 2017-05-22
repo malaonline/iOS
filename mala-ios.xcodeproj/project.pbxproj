@@ -424,6 +424,12 @@
 		F4303A5F1E6565DC0037D64D /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4303A5E1E6565DC0037D64D /* Strings.swift */; };
 		F4303A601E6565DC0037D64D /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4303A5E1E6565DC0037D64D /* Strings.swift */; };
 		F4303A611E6565DC0037D64D /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4303A5E1E6565DC0037D64D /* Strings.swift */; };
+		F43235A51ED2C09C00374D8D /* MAHelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43235A41ED2C09C00374D8D /* MAHelpViewController.swift */; };
+		F43235A61ED2C09C00374D8D /* MAHelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43235A41ED2C09C00374D8D /* MAHelpViewController.swift */; };
+		F43235A71ED2C09C00374D8D /* MAHelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43235A41ED2C09C00374D8D /* MAHelpViewController.swift */; };
+		F43235A91ED2C0BF00374D8D /* MAHelpViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43235A81ED2C0BF00374D8D /* MAHelpViewCell.swift */; };
+		F43235AA1ED2C0BF00374D8D /* MAHelpViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43235A81ED2C0BF00374D8D /* MAHelpViewCell.swift */; };
+		F43235AB1ED2C0BF00374D8D /* MAHelpViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43235A81ED2C0BF00374D8D /* MAHelpViewCell.swift */; };
 		F4331AC41DD19B78003F062D /* BannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4331AC31DD19B78003F062D /* BannerView.swift */; };
 		F4331AC51DD19B78003F062D /* BannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4331AC31DD19B78003F062D /* BannerView.swift */; };
 		F4331AC61DD19B78003F062D /* BannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4331AC31DD19B78003F062D /* BannerView.swift */; };
@@ -927,6 +933,8 @@
 		F4303A561E6565C50037D64D /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		F4303A571E6565C50037D64D /* Images.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
 		F4303A5E1E6565DC0037D64D /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
+		F43235A41ED2C09C00374D8D /* MAHelpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MAHelpViewController.swift; sourceTree = "<group>"; };
+		F43235A81ED2C0BF00374D8D /* MAHelpViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MAHelpViewCell.swift; sourceTree = "<group>"; };
 		F4331AC31DD19B78003F062D /* BannerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerView.swift; sourceTree = "<group>"; };
 		F4331B991DD322A1003F062D /* Extension+Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension+Date.swift"; sourceTree = "<group>"; };
 		F43525D31DE2CA55002116E5 /* LiveCourseDetailAssistantCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveCourseDetailAssistantCell.swift; sourceTree = "<group>"; };
@@ -1534,6 +1542,15 @@
 			path = Application;
 			sourceTree = "<group>";
 		};
+		F43235A31ED2C08C00374D8D /* Help */ = {
+			isa = PBXGroup;
+			children = (
+				F43235A41ED2C09C00374D8D /* MAHelpViewController.swift */,
+				F43235A81ED2C0BF00374D8D /* MAHelpViewCell.swift */,
+			);
+			path = Help;
+			sourceTree = "<group>";
+		};
 		F4402E151C5A16A700E7D3DB /* parentTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -1855,6 +1872,7 @@
 			isa = PBXGroup;
 			children = (
 				F4637C3C1EADAC5900D306A9 /* FeatureView */,
+				F43235A31ED2C08C00374D8D /* Help */,
 				F45F27F71CA9135A00F0012C /* MalaDefaultPanel.swift */,
 				F427FFB01CEDA47700EAB748 /* MalaBaseCardCell.swift */,
 				F474E89E1CF2DCEE0025A865 /* MalaBaseReportCardCell.swift */,
@@ -2447,6 +2465,7 @@
 				30B598191C47ACCD00169390 /* TeacherTableViewCell.swift in Sources */,
 				F48BBAD61CE57F6E00774297 /* OrderFormStatusCell.swift in Sources */,
 				F4CECD9B1DD45DA300E64B58 /* QRCodeView.swift in Sources */,
+				F43235A51ED2C09C00374D8D /* MAHelpViewController.swift in Sources */,
 				F427FF9A1CEB0B5C00EAB748 /* MemberSerivceCollectionView.swift in Sources */,
 				F47AD4A21ECD6E0D0042440A /* BaseObjectModel.swift in Sources */,
 				30445B201C4A3B96002CD290 /* StyleFilterView.swift in Sources */,
@@ -2495,6 +2514,7 @@
 				F47AD4BD1ECD6E0E0042440A /* LiveClassModel.swift in Sources */,
 				F47AD4ED1ECD6E0E0042440A /* PaymentChannel.swift in Sources */,
 				F4AE08181E7681D0006FA466 /* MANetworking.swift in Sources */,
+				F43235A91ED2C0BF00374D8D /* MAHelpViewCell.swift in Sources */,
 				F4AE08081E7673CE006FA466 /* MalaInstance.swift in Sources */,
 				F4AE080B1E7673CE006FA466 /* MalaLog.swift in Sources */,
 				F452CD531CDC4CD2001A30E8 /* OrderFormViewController.swift in Sources */,
@@ -2667,6 +2687,7 @@
 				35FF7A741CF8325A000A70EE /* OrderFormStatusCell.swift in Sources */,
 				F4CECD9C1DD45DA300E64B58 /* QRCodeView.swift in Sources */,
 				35FF7A751CF8325A000A70EE /* MemberSerivceCollectionView.swift in Sources */,
+				F43235A61ED2C09C00374D8D /* MAHelpViewController.swift in Sources */,
 				35FF7A771CF8325A000A70EE /* StyleFilterView.swift in Sources */,
 				F47AD4A31ECD6E0D0042440A /* BaseObjectModel.swift in Sources */,
 				F465F1451DB4ABB00025D867 /* LiveCourseViewController.swift in Sources */,
@@ -2715,6 +2736,7 @@
 				F47AD4BE1ECD6E0E0042440A /* LiveClassModel.swift in Sources */,
 				F47AD4EE1ECD6E0E0042440A /* PaymentChannel.swift in Sources */,
 				F4AE08191E7681D0006FA466 /* MANetworking.swift in Sources */,
+				F43235AA1ED2C0BF00374D8D /* MAHelpViewCell.swift in Sources */,
 				F4AE08091E7673CE006FA466 /* MalaInstance.swift in Sources */,
 				F4AE080C1E7673CE006FA466 /* MalaLog.swift in Sources */,
 				35FF7A941CF8325A000A70EE /* OrderFormViewController.swift in Sources */,
@@ -2887,6 +2909,7 @@
 				35FF7B571CF83264000A70EE /* OrderFormStatusCell.swift in Sources */,
 				F4CECD9D1DD45DA300E64B58 /* QRCodeView.swift in Sources */,
 				35FF7B581CF83264000A70EE /* MemberSerivceCollectionView.swift in Sources */,
+				F43235A71ED2C09C00374D8D /* MAHelpViewController.swift in Sources */,
 				35FF7B5A1CF83264000A70EE /* StyleFilterView.swift in Sources */,
 				F47AD4A41ECD6E0D0042440A /* BaseObjectModel.swift in Sources */,
 				F465F1461DB4ABB00025D867 /* LiveCourseViewController.swift in Sources */,
@@ -2935,6 +2958,7 @@
 				F47AD4BF1ECD6E0E0042440A /* LiveClassModel.swift in Sources */,
 				F47AD4EF1ECD6E0E0042440A /* PaymentChannel.swift in Sources */,
 				F4AE081A1E7681D0006FA466 /* MANetworking.swift in Sources */,
+				F43235AB1ED2C0BF00374D8D /* MAHelpViewCell.swift in Sources */,
 				F4AE080A1E7673CE006FA466 /* MalaInstance.swift in Sources */,
 				F4AE080D1E7673CE006FA466 /* MalaLog.swift in Sources */,
 				35FF7B771CF83264000A70EE /* OrderFormViewController.swift in Sources */,
