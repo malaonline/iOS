@@ -8,26 +8,25 @@
 
 import UIKit
 
-class MemberSerivceCell: UITableViewCell {
+class MemberSerivceCell: MalaBaseMemberCardCell {
 
     // MARK: - Components
-    /// 父布局容器（白色卡片）
-    private lazy var content: UIView = {
-        let view = UIView()
-        return view
-    }()
     /// 标题标签
     private lazy var titleLabel: UILabel = {
         let label = UILabel(
             text: L10n.member,
-            fontSize: 15,
-            textColor: UIColor(named: .ArticleTitle)
+            font: FontFamily.PingFangSC.Regular.font(16),
+            textColor: UIColor(named: .labelLightGray)
         )
         return label
     }()
+    private lazy var line: UIView = {
+        let view = UIView(UIColor(named: .themeLightBlue))
+        return view
+    }()
     /// 会员服务视图
     private lazy var collectionView: MemberSerivceCollectionView = {
-        let view = MemberSerivceCollectionView(frame: CGRect.zero, collectionViewLayout: MemberSerivceFlowLayout(frame: CGRect.zero))
+        let view = MemberSerivceCollectionView(frame: CGRect.zero, collectionViewLayout: MemberSerivceFlowLayout())
         return view
     }()
     
@@ -45,33 +44,29 @@ class MemberSerivceCell: UITableViewCell {
     
     // MARK: - Private Method
     private func setupUserInterface() {
-        // Style
-        contentView.backgroundColor = UIColor(named: .RegularBackground)
-        content.backgroundColor = UIColor.white
-        
         // SubViews
-        contentView.addSubview(content)
         content.addSubview(titleLabel)
+        content.addSubview(line)
         content.addSubview(collectionView)
         
         // Autolayout
-        content.snp.makeConstraints { (maker) in
-            maker.top.equalTo(contentView).offset(8)
-            maker.left.equalTo(contentView)
-            maker.right.equalTo(contentView)
-            maker.height.equalTo(229)
-            maker.bottom.equalTo(contentView)
-        }
         titleLabel.snp.makeConstraints { (maker) in
-            maker.top.equalTo(content).offset(16)
-            maker.left.equalTo(content).offset(12)
-            maker.height.equalTo(15)
+            maker.top.equalTo(content).offset(18)
+            maker.left.equalTo(content).offset(10)
+            maker.height.equalTo(22)
+        }
+        line.snp.makeConstraints { (maker) in
+            maker.top.equalTo(titleLabel.snp.bottom).offset(12)
+            maker.height.equalTo(1)
+            maker.left.equalTo(content).offset(10)
+            maker.right.equalTo(content).offset(-10)
         }
         collectionView.snp.makeConstraints { (maker) in
-            maker.top.equalTo(titleLabel.snp.bottom).offset(16)
-            maker.bottom.equalTo(content)
+            maker.top.equalTo(line.snp.bottom)
+            maker.height.equalTo(192)
             maker.left.equalTo(content).offset(12)
             maker.right.equalTo(content).offset(-12)
+            maker.bottom.equalTo(content).offset(-20)
         }
     }
 }

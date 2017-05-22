@@ -42,36 +42,11 @@ class MemberSerivceCollectionView: UICollectionView, UICollectionViewDelegate, U
         backgroundColor = UIColor.white
         bounces = false
         isScrollEnabled = false
-        
         register(MemberSerivceCollectionViewCell.self, forCellWithReuseIdentifier: MemberSerivceCollectionViewCellReuseId)
-        register(
-            MemberSerivceCollectionViewSectionHeader.self,
-            forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
-            withReuseIdentifier: MemberSerivceCollectionViewSectionHeaderReuseId
-        )
-        register(
-            MemberSerivceCollectionViewSectionHeader.self,
-            forSupplementaryViewOfKind: UICollectionElementKindSectionFooter,
-            withReuseIdentifier: MemberSerivceCollectionViewSectionFooterReuseId
-        )
     }
     
     
     // MARK: - Delegate
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        
-        // Section 头部视图
-        if kind == UICollectionElementKindSectionHeader {
-            let sectionHeaderView = collectionView.dequeueReusableSupplementaryView(
-                ofKind: UICollectionElementKindSectionHeader,
-                withReuseIdentifier: MemberSerivceCollectionViewSectionHeaderReuseId,
-                for: indexPath
-                ) as! MemberSerivceCollectionViewSectionHeader
-            return sectionHeaderView
-        }
-        return UICollectionReusableView()
-    }
-    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         // 所有操作结束弹栈时，取消选中项
         defer {
@@ -98,35 +73,12 @@ class MemberSerivceCollectionView: UICollectionView, UICollectionViewDelegate, U
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MemberSerivceCollectionViewCellReuseId, for: indexPath) as! MemberSerivceCollectionViewCell
         let index = indexPath.section*4+(indexPath.row)
         cell.model = self.model[index]
-        if indexPath.row == 0 {
-            cell.hideSeparator(true)
-        }
         return cell
     }
 }
 
 
-// MARK: - MemberSerivceCollectionViewSectionHeader
-class MemberSerivceCollectionViewSectionHeader: UICollectionReusableView {
-    
-    // MARK: - Contructed
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setupUserInterface()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    
-    // MARK: - Private Method
-    private func setupUserInterface() {
-        backgroundColor = UIColor(named: .SeparatorLine)
-    }
-}
-
-
+// MARK: - MemberSerivceCollectionViewCell
 class MemberSerivceCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Property
@@ -137,17 +89,7 @@ class MemberSerivceCollectionViewCell: UICollectionViewCell {
             titleLabel.text = model?.title
         }
     }
-    /// 选中状态
-    override internal var isSelected: Bool {
-        didSet {
-            if isSelected {
-                contentView.backgroundColor = UIColor(named: .SeparatorLine)
-            }else {
-                contentView.backgroundColor = UIColor.white
-            }
-        }
-    }
-
+    
     
     // MARK: - Compontents
     /// 图标
@@ -159,16 +101,11 @@ class MemberSerivceCollectionViewCell: UICollectionViewCell {
     private lazy var titleLabel: UILabel = {
         let label = UILabel(
             text: "",
-            fontSize: 13,
+            font: FontFamily.PingFangSC.Regular.font(14),
             textColor: UIColor(named: .ArticleText)
         )
         label.textAlignment = .center
         return label
-    }()
-    /// 侧分割线
-    lazy var separator: UIView = {
-        let view = UIView(UIColor(named: .SeparatorLine))
-        return view
     }()
     
     
@@ -186,35 +123,23 @@ class MemberSerivceCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Private Method
     private func setupUserInterface() {
-        // Style
-        
         // SubViews
         contentView.addSubview(iconView)
         contentView.addSubview(titleLabel)
-        contentView.addSubview(separator)
         
         // Autolayout
         iconView.snp.makeConstraints { (maker) -> Void in
             maker.top.equalTo(contentView).offset(20)
             maker.centerX.equalTo(contentView)
-            maker.width.equalTo(23)
-            maker.height.equalTo(23)
+            maker.width.equalTo(50)
+            maker.height.equalTo(50)
         }
         titleLabel.snp.makeConstraints { (maker) -> Void in
             maker.centerX.equalTo(contentView)
-            maker.height.equalTo(13)
-            maker.top.equalTo(iconView.snp.bottom).offset(14)
+            maker.height.equalTo(14)
+            maker.top.equalTo(iconView.snp.bottom).offset(12)
+            maker.bottom.equalTo(contentView)
         }
-        separator.snp.makeConstraints { (maker) in
-            maker.left.equalTo(contentView)
-            maker.width.equalTo(MalaScreenOnePixel)
-            maker.top.equalTo(contentView).offset(15)
-            maker.bottom.equalTo(contentView).offset(-15)
-        }
-    }
-    
-    func hideSeparator(_ hide: Bool) {
-        separator.isHidden = hide
     }
 }
 
@@ -222,7 +147,7 @@ class MemberSerivceCollectionViewCell: UICollectionViewCell {
 class MemberSerivceFlowLayout: UICollectionViewFlowLayout {
     
     // MARK: - Instance Method
-    init(frame: CGRect) {
+    init(frame: CGRect = CGRect.zero) {
         super.init()
         configure()
     }
@@ -235,10 +160,9 @@ class MemberSerivceFlowLayout: UICollectionViewFlowLayout {
     // MARK: - Private Method
     private func configure() {
         scrollDirection = .vertical
-        let itemWidth: CGFloat = MalaLayout_CardCellWidth / 4
-        let itemHeight: CGFloat = 91
+        let itemWidth: CGFloat = (MalaLayout_CardCellWidth - (10*2)) / 4
+        let itemHeight: CGFloat = 96
         itemSize = CGSize(width: itemWidth, height: itemHeight)
-        headerReferenceSize = CGSize(width: 300, height: MalaScreenOnePixel)
         minimumInteritemSpacing = 0
         minimumLineSpacing = 0
     }

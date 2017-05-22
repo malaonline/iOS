@@ -8,8 +8,11 @@
 
 import UIKit
 
-private let MemberPrivilegesLearningReportCellReuseID = "MemberPrivilegesLearningReportCellReuseID"
+private let MemberPrivilegesMemberLoginCellReuseID = "MemberPrivilegesMemberLoginCellReuseID"
+private let MemberPrivilegesMemberNoteCellReuseID = "MemberPrivilegesMemberNoteCellReuseID"
+private let MemberPrivilegesMemberReportCellReuseID = "MemberPrivilegesMemberReportCellReuseID"
 private let MemberPrivilegesMemberSerivceCellReuseID = "MemberPrivilegesMemberSerivceCellReuseID"
+
 
 class MemberPrivilegesViewController: UITableViewController {
 
@@ -42,6 +45,13 @@ class MemberPrivilegesViewController: UITableViewController {
             }
         }
     }
+    var exerciseRecord: UserExerciseRecord? {
+        didSet {
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+    }
     /// 是否已Push新控制器标示（屏蔽pop到本页面时的数据刷新动作）
     var isPushed: Bool = false
 
@@ -51,7 +61,6 @@ class MemberPrivilegesViewController: UITableViewController {
         super.viewDidLoad()
         
         configure()
-        setupUserInterface()
         setupNotification()
     }
     
@@ -62,6 +71,7 @@ class MemberPrivilegesViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if !isPushed {
+            loadUserExerciseRecord()
             loadStudyReportOverview()
         }
         isPushed = false
@@ -77,19 +87,20 @@ class MemberPrivilegesViewController: UITableViewController {
     
     // MARK: - Private Method
     private func configure() {
+        tableView.es_addPullToRefresh(animator: ThemeRefreshHeaderAnimator()) {
+            self.loadUserExerciseRecord()
+        }
         
-        tableView.estimatedRowHeight = 230
-        
-        // register
-        tableView.register(LearningReportCell.self, forCellReuseIdentifier: MemberPrivilegesLearningReportCellReuseID)
+        tableView.backgroundColor = UIColor(named: .themeLightBlue)
+        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 10, right: 0)
+        tableView.separatorStyle = .none
+        tableView.estimatedRowHeight = 270
+        tableView.register(MemberLoginCell.self, forCellReuseIdentifier: MemberPrivilegesMemberLoginCellReuseID)
+        tableView.register(MemberNoteCell.self, forCellReuseIdentifier: MemberPrivilegesMemberNoteCellReuseID)
+        tableView.register(MemberReportCell.self, forCellReuseIdentifier: MemberPrivilegesMemberReportCellReuseID)
         tableView.register(MemberSerivceCell.self, forCellReuseIdentifier: MemberPrivilegesMemberSerivceCellReuseID)
     }
-    
-    private func setupUserInterface() {
-        // Style
-        tableView.backgroundColor = UIColor(named: .RegularBackground)
-        tableView.separatorStyle = .none
-    }
+
     
     private func setupNotification() {
         NotificationCenter.default.addObserver(
@@ -114,39 +125,37 @@ class MemberPrivilegesViewController: UITableViewController {
             queue: nil) { [weak self] (notification) in
                 self?.loadStudyReportOverview()
         }
+    }
+    
+    private func loadUserExerciseRecord() {
         
-        NotificationCenter.default.addObserver(
-            forName: MalaNotification_ShowLearningReport,
-            object: nil,
-            queue: nil
-        ) { [weak self] (notification) -> Void in
+        if !MalaUserDefaults.isLogined {
+            self.tableView.es_stopPullToRefresh()
+            return
+        }
+        
+        MAProvider.userNewMessageCount(failureHandler: { (error) in
+            defer { self.tableView.es_stopPullToRefresh() }
+            DispatchQueue.main.async {
+                self.showToast("网络不给力，可尝试下拉刷新")
+            }
+            self.exerciseRecord = MalaUserDefaults.exerciseRecord.value
+        }) { (messages) in
+            defer { self.tableView.es_stopPullToRefresh() }
             
-            /// 执行学习报告相关操作
-            if let index = notification.object as? Int {
-                
-                switch index {
-                case -1:
-                    
-                    // 登录
-                    self?.login()
-                    break
-                    
-                case 0:
-                    
-                    // 显示学习报告样本
-                    self?.showReportDemo()
-                    break
-                    
-                case 1:
-                    
-                    // 显示真实学习报告
-                    self?.showMyReport()
-                    break
-                    
-                default:
-                    break
+            guard let messages = messages else { return }
+            print("Exercise Record", messages.description)
+            
+            if let newTotal = messages.exerciseRecord?.mistakes?.total,
+               let oldTotal = self.exerciseRecord?.mistakes?.total,
+                newTotal > oldTotal {
+                DispatchQueue.main.async {
+                    self.showToast(String(format: "新增%d题", (newTotal-oldTotal)))
                 }
             }
+            
+            self.exerciseRecord = messages.exerciseRecord
+            MalaUserDefaults.exerciseRecord.value = messages.exerciseRecord
         }
     }
     
@@ -162,10 +171,10 @@ class MemberPrivilegesViewController: UITableViewController {
         }
         
         MAProvider.userStudyReport(failureHandler: { error in
-            DispatchQueue.main.async {
+            /* DispatchQueue.main.async {
                 self.reportStatus = .Error
                 self.showToast(L10n.memberServerError)
-            }
+            } */
         }) { [weak self] results in
             println("学习报告：\(results)")
             
@@ -215,8 +224,8 @@ class MemberPrivilegesViewController: UITableViewController {
     
     // MARK: - Event Response
     /// 登录
-    @objc private func login() {
-                
+    @objc func login(completion: (()->Void)? = nil) {
+        
         let loginViewController = LoginViewController()
         loginViewController.popAction = { [weak self] in
             self?.loadStudyReportOverview()
@@ -225,20 +234,28 @@ class MemberPrivilegesViewController: UITableViewController {
         self.present(
             UINavigationController(rootViewController: loginViewController),
             animated: true,
-            completion: { () -> Void in
-                
-        })
+            completion: completion
+        )
         isPushed = true
     }
+    /// 错题本样本
+    @objc func showMistakeDemo(completion: (()->Void)? = nil) {
+        let viewController = ExerciseMistakeController()
+        viewController.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(viewController, animated: true)
+        isPushed = true
+    }
+    
+    
     /// 显示学习报告样本
-    @objc private func showReportDemo() {
+    @objc func showReportDemo() {
         let viewController = LearningReportViewController()
         viewController.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(viewController, animated: true)
         isPushed = true
     }
     /// 显示我的学习报告
-    @objc private func showMyReport() {
+    @objc func showMyReport() {
         let viewController = LearningReportViewController()
         viewController.sample = false
         viewController.hidesBottomBarWhenPushed = true
@@ -249,32 +266,27 @@ class MemberPrivilegesViewController: UITableViewController {
     
     // MARK: - DataSource
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return MalaUserDefaults.isLogined ? 3 : 2
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        switch indexPath.row {
-        case 0:
-            /// 学习报告
-            let cell = tableView.dequeueReusableCell(withIdentifier: MemberPrivilegesLearningReportCellReuseID, for: indexPath) as! LearningReportCell
-            
-            println("\(self.rightNum)-\(self.totalNum)")
-            
-            cell.totalNum = self.totalNum
-            cell.rightNum = self.rightNum
-            cell.reportStatus = self.reportStatus
-            
-            return cell
-            
-        case 1:
-            /// 会员专享
-            let cell = tableView.dequeueReusableCell(withIdentifier: MemberPrivilegesMemberSerivceCellReuseID, for: indexPath) as! MemberSerivceCell
-            return cell
-            
-            
-        default:
-            return UITableViewCell()
+        if MalaUserDefaults.isLogined {
+            switch indexPath.row {
+            case 0:
+                let cell = tableView.dequeueReusableCell(withIdentifier: MemberPrivilegesMemberNoteCellReuseID, for: indexPath) as! MemberNoteCell
+                cell.model = self.exerciseRecord
+                return cell
+            case 1: return tableView.dequeueReusableCell(withIdentifier: MemberPrivilegesMemberReportCellReuseID, for: indexPath) as! MemberReportCell
+            case 2: return tableView.dequeueReusableCell(withIdentifier: MemberPrivilegesMemberSerivceCellReuseID, for: indexPath) as! MemberSerivceCell
+            default: return UITableViewCell()
+            }
+        }else {
+            switch indexPath.row {
+            case 0: return tableView.dequeueReusableCell(withIdentifier: MemberPrivilegesMemberLoginCellReuseID, for: indexPath) as! MemberLoginCell
+            case 1: return tableView.dequeueReusableCell(withIdentifier: MemberPrivilegesMemberSerivceCellReuseID, for: indexPath) as! MemberSerivceCell
+            default: return UITableViewCell()
+            }
         }
     }
     
@@ -294,7 +306,6 @@ class MemberPrivilegesViewController: UITableViewController {
     
     deinit {
         NotificationCenter.default.removeObserver(self, name: MalaNotification_PushIntroduction, object: nil)
-        NotificationCenter.default.removeObserver(self, name: MalaNotification_ShowLearningReport, object: nil)
         NotificationCenter.default.removeObserver(self, name: MalaNotification_ReloadLearningReport, object: nil)
     }
 }

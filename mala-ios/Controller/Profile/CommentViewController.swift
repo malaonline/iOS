@@ -30,13 +30,13 @@ class CommentViewController: BaseTableViewController {
         setupUserInterface()
         configure()
         loadCourse()
-        
-        tableView.es_startPullToRefresh()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         sendScreenTrack(SAMyCommentsViewName)
+        // 开启下拉刷新
+        tableView.es_startPullToRefresh()
     }
     
     override func didReceiveMemoryWarning() {

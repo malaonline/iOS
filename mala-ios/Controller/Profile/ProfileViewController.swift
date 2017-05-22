@@ -168,11 +168,13 @@ class ProfileViewController: UITableViewController, UIImagePickerControllerDeleg
         
         MAProvider.userNewMessageCount(failureHandler: { error in
             self.isFetching = false
-        }) { (order, comment) in
-            println("未支付订单数量：\(order) - 待评价数量：\(comment)")
+        }) { (messages) in
+            guard let messages = messages else { return }
+            println("未支付订单数量：\(messages.unpaid) - 待评价数量：\(messages.tocomments)")
+            
             self.isFetching = false
-            MalaUnpaidOrderCount = order
-            MalaToCommentCount = comment
+            MalaUnpaidOrderCount = messages.unpaid
+            MalaToCommentCount = messages.tocomments
             self.navigationController?.showTabBadgePoint = (MalaUnpaidOrderCount > 0 || MalaToCommentCount > 0)
         }
     }

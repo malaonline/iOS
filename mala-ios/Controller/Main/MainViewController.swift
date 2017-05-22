@@ -31,11 +31,11 @@ class MainViewController: UITabBarController, UITabBarControllerDelegate {
         )
         return naviVC
     }()
-    /// 会员专享
+    /// 错题本
     private lazy var memberPrivilegesViewController: MainNavigationController = {
         let naviVC  = self.getNaviController(
             MemberPrivilegesViewController.shared,
-            title: L10n.member,
+            title: "错题本",
             imageName: "serivce_normal"
         )
         return naviVC
@@ -69,7 +69,7 @@ class MainViewController: UITabBarController, UITabBarControllerDelegate {
             case .profile:
                 return L10n.profile
             case .memberPrivileges:
-                return L10n.member
+                return "错题本"
             }
         }
     }
@@ -111,13 +111,14 @@ class MainViewController: UITabBarController, UITabBarControllerDelegate {
                 
         if !MalaUserDefaults.isLogined { return }
         
-        MAProvider.userNewMessageCount { (order, comment) in
-            println("未支付订单数量：\(order), 待评价数量：\(comment)")
+        MAProvider.userNewMessageCount { (messages) in
+            guard let messages = messages else { return }
+            println("未支付订单数量：\(messages.unpaid) - 待评价数量：\(messages.tocomments)")
             
-            MalaUnpaidOrderCount = order
-            MalaToCommentCount = comment
+            MalaUnpaidOrderCount = messages.unpaid
+            MalaToCommentCount = messages.tocomments
             
-            if order != 0, let viewController = getActivityViewController() {
+            if messages.unpaid != 0, let viewController = getActivityViewController() {
                 DispatchQueue.main.async {
                     self.popAlert(viewController)
                 }

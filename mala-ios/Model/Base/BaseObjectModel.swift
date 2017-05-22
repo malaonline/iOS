@@ -14,6 +14,10 @@ open class BaseObjectModel: NSObject, NSCoding {
     var id: Int = 0
     var name: String?
     
+    
+    // only for exercise-group
+    var desc: String?
+    
     /// first letter that object name transform in mandarin latin, default is "#".
     var firstLetter: String {
         get {
@@ -38,16 +42,29 @@ open class BaseObjectModel: NSObject, NSCoding {
         self.name = aDecoder.decodeObject(forKey: "name") as? String
     }
     
-    convenience init(id: Int, name: String) {
+    convenience init(id: Int, name: String, desc: String = "") {
         self.init()
         self.id = id
         self.name = name
+        self.desc = desc
     }
     
     
     // MARK: - Override
     open override func setValue(_ value: Any?, forUndefinedKey key: String) {
         println("BaseObjectModel - Set for UndefinedKey: \(key)")
+    }
+    
+    override open func setValue(_ value: Any?, forKey key: String) {
+        if key == "title", let string = value as? String {
+            name = string
+            return
+        }
+        if key == "description", let string = value as? String {
+            desc = string
+            return
+        }
+        super.setValue(value, forKey: key)
     }
     
     // MARK: - Coding

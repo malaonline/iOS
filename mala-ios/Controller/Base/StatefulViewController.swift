@@ -122,17 +122,15 @@ extension StatefulViewController: DZNEmptyDataSetSource {
     public func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
         
         switch (self, currentState) {
-        case (is CourseTableViewController, .empty):        return UIImage(asset: .courseNoData)
-        case (is CourseTableViewController, .notLoggedIn):  return UIImage(asset: .courseNoData)
         case (is LiveCourseViewController, .empty):         return UIImage(asset: .filterNoResult)
         case (is FindTeacherViewController, .empty):        return UIImage(asset: .filterNoResult)
         case (is FilterResultController, .empty):           return UIImage(asset: .filterNoResult)
         case (is CouponViewController, .empty):             return UIImage(asset: .noCoupons)
         case (is OrderFormViewController, .empty):          return UIImage(asset: .noOrder)
         // commen
-        case (is CourseTableViewController, .loading):     return UIImage(asset: .loading_imgBlue)
-        case (is CityTableViewController, .loading):       return UIImage(asset: .loading_imgBlue)
-        case (is RegionViewController, .loading):          return UIImage(asset: .loading_imgBlue)
+        case (is CourseTableViewController, .loading):     return UIImage(asset: .loadingImgBlue78x78)
+        case (is CityTableViewController, .loading):       return UIImage(asset: .loadingImgBlue78x78)
+        case (is RegionViewController, .loading):          return UIImage(asset: .loadingImgBlue78x78)
         case (_, .error):   return UIImage(asset: .networkError)
         default:            return UIImage.withColor(UIColor.white)
         }
@@ -156,8 +154,8 @@ extension StatefulViewController: DZNEmptyDataSetSource {
     public func verticalOffset(forEmptyDataSet scrollView: UIScrollView!) -> CGFloat {
         switch self {
         case is CourseTableViewController:  return -30
-        case is LiveCourseViewController:   return MalaScreenWidth/3
-        case is FindTeacherViewController:  return 44
+        case is LiveCourseViewController:   return MalaScreenWidth/3 - 64
+        case is FindTeacherViewController:  return 0
         case is FilterResultController:     return -44
         default: return 0.0
         }

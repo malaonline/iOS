@@ -267,16 +267,14 @@ extension MoyaProvider {
     ///   - completion:     Completion
     /// - Returns:          Cancellable
     @discardableResult
-    func userNewMessageCount(failureHandler: failureHandler? = nil, completion: @escaping (Int, Int) -> Void) -> Cancellable {
+    func userNewMessageCount(failureHandler: failureHandler? = nil, completion: @escaping (UserMessageCenterModel?) -> Void) -> Cancellable {
         return self.sendRequest(.userNewMessageCount(), failureHandler: failureHandler, completion: { json in
-            if let order = json["unpaid_num"] as? Int,
-               let comment = json["tocomment_num"] as? Int {
-                completion(order, comment)
-                return
-            }else {
-                completion(0, 0)
+            guard let _ = json["unpaid_num"] as? Int,
+                  let _ = json["tocomment_num"] as? Int else {
+                completion(nil)
                 return
             }
+            completion(UserMessageCenterModel(dict: json))
         })
     }
     

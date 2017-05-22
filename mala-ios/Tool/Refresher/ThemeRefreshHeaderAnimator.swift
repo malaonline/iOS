@@ -44,6 +44,7 @@ public class ThemeRefreshHeaderAnimator: UIView, ESRefreshProtocol, ESRefreshAni
     
     // MARK: - ESRefresh Protocol
     public func refreshAnimationBegin(view: ESRefreshComponent) {
+        resetImageViewSize()
         imageView.image = (UIScreen.main.scale == 3 ? UIImage(asset: .refreshGif3x) : UIImage(asset: .refreshGif2x))
     }
     
@@ -52,7 +53,6 @@ public class ThemeRefreshHeaderAnimator: UIView, ESRefreshProtocol, ESRefreshAni
     }
     
     public func refresh(view: ESRefreshComponent, progressDidChange progress: CGFloat) {
-        
         var percent: CGFloat = 0
         
         if progress <= 0.3 {
@@ -72,5 +72,13 @@ public class ThemeRefreshHeaderAnimator: UIView, ESRefreshProtocol, ESRefreshAni
     
     public func refresh(view: ESRefreshComponent, stateDidChange state: ESRefreshViewState) {
         return
+    }
+    
+    private func resetImageViewSize() {
+        imageView.snp.remakeConstraints { (maker) in
+            maker.center.equalTo(self)
+            maker.height.equalTo(imageSize)
+            maker.width.equalTo(imageSize)
+        }
     }
 }
