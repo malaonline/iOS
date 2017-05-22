@@ -21,7 +21,7 @@ class MemberNoteCell: MalaBaseMemberCardCell {
             }
             
             setupUserInterface()
-            titleLabel.text = String(format: "Hi %@ %@同学：", model.school, model.student)
+            titleLabel.text = String(format: "Hi，%@ %@同学：", model.school, model.student)
             englishLabel.text = String(format: "%d题", mistakes.english)
             mathLabel.text = String(format: "%d题", mistakes.math)
         }
@@ -30,7 +30,7 @@ class MemberNoteCell: MalaBaseMemberCardCell {
     // MARK: - Components
     private lazy var titleLabel: UILabel = {
         let label = UILabel(
-            text: "Hi 临沂校区 王新宇同学：",
+            text: "Hi，临沂校区 王新宇同学：",
             font: FontFamily.PingFangSC.Regular.font(14),
             textColor: UIColor(named: .protocolGary)
         )
@@ -145,8 +145,8 @@ class MemberNoteCell: MalaBaseMemberCardCell {
         releaseContentPanel()
         setupDefaultStyle(image: .noteNormal,
                           disabledImage: .noteDisable,
-                          title: "你课中答错的题目会出现在这里哦！",
-                          disabledTitle: "错题本数据获取失败！",
+                          title: "你课中答错的题目会出现在这里哦",
+                          disabledTitle: "错题本数据获取失败",
                           buttonTitle: "查看错题本样本")
         actionButton.addTarget(self, action: #selector(MemberNoteCell.buttonDidTap), for: .touchUpInside)
     }
