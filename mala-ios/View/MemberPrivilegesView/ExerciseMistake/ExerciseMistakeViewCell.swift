@@ -22,7 +22,7 @@ class ExerciseMistakeViewCell: UICollectionViewCell {
             groupTitle.text = group.name
             remakeGroupTitleWidth()
             
-            groupDesc.text = group.desc
+            groupDesc.text = String(format: "【描述】%@", group.desc ?? "")
             exerciseLabel.text = String(format: "%d.%@", index, exerc.name ?? "")
             
             let options = exerc.options.sorted { $0.id < $1.id }
@@ -43,28 +43,28 @@ class ExerciseMistakeViewCell: UICollectionViewCell {
                     optionB.text = String(format: "B. %@", value.name ?? "")
                     
                     if value.id == exerc.solution {
-                        optionA.textColor = UIColor(named: .solutionBlue)
+                        optionB.textColor = UIColor(named: .solutionBlue)
                         solutionString = "B"
                     }else {
-                        optionA.textColor = UIColor(named: .labelBlack)
+                        optionB.textColor = UIColor(named: .labelBlack)
                     }
                 case 2:
                     optionC.text = String(format: "C. %@", value.name ?? "")
                     
                     if value.id == exerc.solution {
-                        optionA.textColor = UIColor(named: .solutionBlue)
+                        optionC.textColor = UIColor(named: .solutionBlue)
                         solutionString = "C"
                     }else {
-                        optionA.textColor = UIColor(named: .labelBlack)
+                        optionC.textColor = UIColor(named: .labelBlack)
                     }
                 case 3:
                     optionD.text = String(format: "D. %@", value.name ?? "")
                     
                     if value.id == exerc.solution {
-                        optionA.textColor = UIColor(named: .solutionBlue)
+                        optionD.textColor = UIColor(named: .solutionBlue)
                         solutionString = "D"
                     }else {
-                        optionA.textColor = UIColor(named: .labelBlack)
+                        optionD.textColor = UIColor(named: .labelBlack)
                     }
                 default:
                     break
