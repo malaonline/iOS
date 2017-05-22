@@ -100,6 +100,7 @@ PODS:
   - Pingpp/Core (2.2.10)
   - Pingpp/Wx (2.2.10):
     - Pingpp/Core
+  - PopupDialog (0.5.3)
   - Proposer (1.1.0)
   - QRCode (2.0)
   - Result (3.1.0)
@@ -137,6 +138,7 @@ DEPENDENCIES:
   - PagingMenuController (from `https://github.com/kitasuke/PagingMenuController.git`, commit `3d4e5cc2096bc7ebbf9ff9e3b31c8d5e168062d5`)
   - Pingpp/Alipay (~> 2.2.10)
   - Pingpp/Wx (~> 2.2.10)
+  - PopupDialog (~> 0.5.3)
   - Proposer (~> 1.1.0)
   - QRCode (~> 2.0)
   - ShareSDK3
@@ -186,6 +188,7 @@ SPEC CHECKSUMS:
   Moya: 47f61da5b634aa71f676431b64ee0f81e976296d
   PagingMenuController: 60602bfb5421d6536c1e3097baeed601dec1d85b
   Pingpp: a267566fbab76c4c3b65adb0655635b1d5ba7fdc
+  PopupDialog: 533dd564f8781633375505b9fbd406f8f146ccc9
   Proposer: 422c693b1917a461af30e7139b0d05eefe999e16
   QRCode: f98a1886c8f37523704a7512a4c0cd45b34c18a4
   Result: 4e3ed5995ed94d0cd6a09be9a431fce3f3624bbf
@@ -195,6 +198,6 @@ SPEC CHECKSUMS:
   Toast-Swift: 5b2f8f720f7e78e48511f693df1f9c9a6e38a25a
   WZLBadge: 16c08aa0a645e2591690f21cbcb410a3d878c7ac
 
-PODFILE CHECKSUM: 434dd8153e28a9ad319053230c5080104ce2b9ed
+PODFILE CHECKSUM: 35174e7766e3c81aa06c65afc30404af54493c8a
 
 COCOAPODS: 1.2.0.beta.1

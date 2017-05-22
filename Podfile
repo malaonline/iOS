@@ -27,6 +27,7 @@ def pods
   pod 'QRCode', '~> 2.0'
   pod 'Proposer', '~> 1.1.0'
   pod 'WZLBadge', '~> 1.2.5'
+  pod 'PopupDialog', '~> 0.5.3'
   pod 'Toast-Swift', '~> 2.0.0'
   pod 'ESPullToRefresh', '~> 2.6'
   pod 'DZNEmptyDataSet', '~> 1.8.1'
