@@ -811,4 +811,33 @@ extension MoyaProvider {
             completion(tags)
         })
     }
+    
+    /// Get list of all use's exercise mistake of the given subject
+    ///
+    /// - Parameters:
+    ///   - subject:        Subject id
+    ///   - page:           Page number
+    ///   - failureHandler: FailureHandler
+    ///   - completion:     Completion
+    /// - Returns:          Cancellable
+    @discardableResult
+    func loadExerciseMistakes(subject: Int?, page: Int = 1, failureHandler: failureHandler? = nil, completion: @escaping ([ExerciseMistakeRecord], Int) -> Void) -> Cancellable {
+        return self.sendRequest(.exerciseMistakes(subject: subject, page: page), failureHandler: failureHandler, completion: { json in
+            
+            var list: [ExerciseMistakeRecord] = []
+            
+            guard let exercises = json["results"] as? [JSON],
+                let count = json["count"] as? Int, count != 0 else {
+                    completion(list, 0)
+                    return
+            }
+            
+            for exercise in exercises {
+                if let _ = exercise["id"] as? Int {
+                    list.append(ExerciseMistakeRecord(dict: teacher))
+                }
+            }
+            completion(list, count)
+        })
+    }
 }
