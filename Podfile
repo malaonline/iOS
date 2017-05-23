@@ -25,6 +25,7 @@ def pods
   pod 'KSCrash', '~> 1.8.13'
   
   pod 'QRCode', '~> 2.0'
+  pod 'Popover', '~> 1.0.4'
   pod 'Proposer', '~> 1.1.0'
   pod 'WZLBadge', '~> 1.2.5'
   pod 'PopupDialog', '~> 0.5.3'
