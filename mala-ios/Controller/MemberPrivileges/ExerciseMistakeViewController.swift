@@ -38,6 +38,10 @@ class ExerciseMistakeViewController: StatefulViewController, UITableViewDataSour
         )
         return backBarButton
     }()
+    private lazy var subjectBar: SubjectSelectionBar = {
+        let bar = SubjectSelectionBar(UIColor.white)
+        return bar
+    }()
     lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.delegate = self
@@ -96,12 +100,21 @@ class ExerciseMistakeViewController: StatefulViewController, UITableViewDataSour
         view.backgroundColor = UIColor.white
         
         // SubViews
+        view.addSubview(subjectBar)
         view.addSubview(tableView)
         
         // AutoLayout
+        subjectBar.snp.makeConstraints { (maker) in
+            maker.top.equalTo(view)
+            maker.left.equalTo(view)
+            maker.right.equalTo(view)
+            maker.height.equalTo(44)
+        }
         tableView.snp.makeConstraints { (maker) -> Void in
-            maker.center.equalTo(view)
-            maker.size.equalTo(view)
+            maker.top.equalTo(subjectBar.snp.bottom)
+            maker.left.equalTo(view)
+            maker.right.equalTo(view)
+            maker.bottom.equalTo(view)
         }
     }
     
@@ -170,7 +183,7 @@ class ExerciseMistakeViewController: StatefulViewController, UITableViewDataSour
     }
     
     
-    // MARK: -
+    // MARK: - Delegate
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 110
     }
