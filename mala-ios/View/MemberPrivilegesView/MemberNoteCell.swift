@@ -153,6 +153,14 @@ class MemberNoteCell: MalaBaseMemberCardCell {
                           disabledTitle: "错题本数据获取失败",
                           buttonTitle: "查看错题本样本")
         actionButton.addTarget(self, action: #selector(MemberNoteCell.buttonDidTap), for: .touchUpInside)
+        
+        defaultContainer.insertSubview(helpButton, at: 1)
+        helpButton.snp.makeConstraints { (maker) in
+            maker.width.equalTo(84)
+            maker.height.equalTo(20)
+            maker.top.equalTo(defaultContainer).offset(20)
+            maker.right.equalTo(defaultContainer).offset(-14)
+        }
     }
     
     @objc private func buttonDidTap() {
