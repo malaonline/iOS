@@ -430,6 +430,12 @@
 		F43235A91ED2C0BF00374D8D /* MAHelpViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43235A81ED2C0BF00374D8D /* MAHelpViewCell.swift */; };
 		F43235AA1ED2C0BF00374D8D /* MAHelpViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43235A81ED2C0BF00374D8D /* MAHelpViewCell.swift */; };
 		F43235AB1ED2C0BF00374D8D /* MAHelpViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43235A81ED2C0BF00374D8D /* MAHelpViewCell.swift */; };
+		F43235AD1ED3D57100374D8D /* ExerciseMistakeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43235AC1ED3D57100374D8D /* ExerciseMistakeViewController.swift */; };
+		F43235AE1ED3D57100374D8D /* ExerciseMistakeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43235AC1ED3D57100374D8D /* ExerciseMistakeViewController.swift */; };
+		F43235AF1ED3D57100374D8D /* ExerciseMistakeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43235AC1ED3D57100374D8D /* ExerciseMistakeViewController.swift */; };
+		F43235B11ED3D77400374D8D /* ExerciseMistakeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43235B01ED3D77400374D8D /* ExerciseMistakeCell.swift */; };
+		F43235B21ED3D77400374D8D /* ExerciseMistakeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43235B01ED3D77400374D8D /* ExerciseMistakeCell.swift */; };
+		F43235B31ED3D77400374D8D /* ExerciseMistakeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43235B01ED3D77400374D8D /* ExerciseMistakeCell.swift */; };
 		F4331AC41DD19B78003F062D /* BannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4331AC31DD19B78003F062D /* BannerView.swift */; };
 		F4331AC51DD19B78003F062D /* BannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4331AC31DD19B78003F062D /* BannerView.swift */; };
 		F4331AC61DD19B78003F062D /* BannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4331AC31DD19B78003F062D /* BannerView.swift */; };
@@ -935,6 +941,8 @@
 		F4303A5E1E6565DC0037D64D /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		F43235A41ED2C09C00374D8D /* MAHelpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MAHelpViewController.swift; sourceTree = "<group>"; };
 		F43235A81ED2C0BF00374D8D /* MAHelpViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MAHelpViewCell.swift; sourceTree = "<group>"; };
+		F43235AC1ED3D57100374D8D /* ExerciseMistakeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExerciseMistakeViewController.swift; path = "mala-ios/Controller/MemberPrivileges/ExerciseMistakeViewController.swift"; sourceTree = SOURCE_ROOT; };
+		F43235B01ED3D77400374D8D /* ExerciseMistakeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExerciseMistakeCell.swift; sourceTree = "<group>"; };
 		F4331AC31DD19B78003F062D /* BannerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerView.swift; sourceTree = "<group>"; };
 		F4331B991DD322A1003F062D /* Extension+Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension+Date.swift"; sourceTree = "<group>"; };
 		F43525D31DE2CA55002116E5 /* LiveCourseDetailAssistantCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveCourseDetailAssistantCell.swift; sourceTree = "<group>"; };
@@ -1706,6 +1714,7 @@
 			children = (
 				F47AD4541EC99D190042440A /* ExerciseMistakeController.swift */,
 				F47AD4581EC99E140042440A /* ExerciseMistakeViewCell.swift */,
+				F43235B01ED3D77400374D8D /* ExerciseMistakeCell.swift */,
 			);
 			path = ExerciseMistake;
 			sourceTree = "<group>";
@@ -1788,6 +1797,7 @@
 			children = (
 				F48BBAEA1CE9D6A800774297 /* MemberPrivilegesViewController.swift */,
 				F427FFA11CED9A4300EAB748 /* LearningReportViewController.swift */,
+				F43235AC1ED3D57100374D8D /* ExerciseMistakeViewController.swift */,
 			);
 			name = MemberPrivileges;
 			path = memberPrivileges;
@@ -2467,6 +2477,7 @@
 				F4CECD9B1DD45DA300E64B58 /* QRCodeView.swift in Sources */,
 				F43235A51ED2C09C00374D8D /* MAHelpViewController.swift in Sources */,
 				F427FF9A1CEB0B5C00EAB748 /* MemberSerivceCollectionView.swift in Sources */,
+				F43235AD1ED3D57100374D8D /* ExerciseMistakeViewController.swift in Sources */,
 				F47AD4A21ECD6E0D0042440A /* BaseObjectModel.swift in Sources */,
 				30445B201C4A3B96002CD290 /* StyleFilterView.swift in Sources */,
 				F47AD4BA1ECD6E0E0042440A /* HighScoreModel.swift in Sources */,
@@ -2632,6 +2643,7 @@
 				F47AD4D51ECD6E0E0042440A /* CommentModel.swift in Sources */,
 				F46065261C97B168004056B1 /* MainViewController.swift in Sources */,
 				F43525D41DE2CA55002116E5 /* LiveCourseDetailAssistantCell.swift in Sources */,
+				F43235B11ED3D77400374D8D /* ExerciseMistakeCell.swift in Sources */,
 				F4AE07E91E7673AC006FA466 /* CommonFlowLayout.swift in Sources */,
 				304D6D351C3E65ED00282925 /* TeacherDetailsHeaderView.swift in Sources */,
 				F4402DFE1C5A0DE200E7D3DB /* Extension+String.swift in Sources */,
@@ -2689,6 +2701,7 @@
 				35FF7A751CF8325A000A70EE /* MemberSerivceCollectionView.swift in Sources */,
 				F43235A61ED2C09C00374D8D /* MAHelpViewController.swift in Sources */,
 				35FF7A771CF8325A000A70EE /* StyleFilterView.swift in Sources */,
+				F43235AE1ED3D57100374D8D /* ExerciseMistakeViewController.swift in Sources */,
 				F47AD4A31ECD6E0D0042440A /* BaseObjectModel.swift in Sources */,
 				F465F1451DB4ABB00025D867 /* LiveCourseViewController.swift in Sources */,
 				F47AD4BB1ECD6E0E0042440A /* HighScoreModel.swift in Sources */,
@@ -2854,6 +2867,7 @@
 				F47AD4D61ECD6E0E0042440A /* CommentModel.swift in Sources */,
 				35FF7B061CF8325A000A70EE /* MainViewController.swift in Sources */,
 				F43525D51DE2CA55002116E5 /* LiveCourseDetailAssistantCell.swift in Sources */,
+				F43235B21ED3D77400374D8D /* ExerciseMistakeCell.swift in Sources */,
 				F4AE07EA1E7673AC006FA466 /* CommonFlowLayout.swift in Sources */,
 				35FF7B071CF8325A000A70EE /* TeacherDetailsHeaderView.swift in Sources */,
 				35FF7B081CF8325A000A70EE /* Extension+String.swift in Sources */,
@@ -2911,6 +2925,7 @@
 				35FF7B581CF83264000A70EE /* MemberSerivceCollectionView.swift in Sources */,
 				F43235A71ED2C09C00374D8D /* MAHelpViewController.swift in Sources */,
 				35FF7B5A1CF83264000A70EE /* StyleFilterView.swift in Sources */,
+				F43235AF1ED3D57100374D8D /* ExerciseMistakeViewController.swift in Sources */,
 				F47AD4A41ECD6E0D0042440A /* BaseObjectModel.swift in Sources */,
 				F465F1461DB4ABB00025D867 /* LiveCourseViewController.swift in Sources */,
 				F47AD4BC1ECD6E0E0042440A /* HighScoreModel.swift in Sources */,
@@ -3076,6 +3091,7 @@
 				F47AD4D71ECD6E0E0042440A /* CommentModel.swift in Sources */,
 				35FF7BE91CF83264000A70EE /* MainViewController.swift in Sources */,
 				F43525D61DE2CA55002116E5 /* LiveCourseDetailAssistantCell.swift in Sources */,
+				F43235B31ED3D77400374D8D /* ExerciseMistakeCell.swift in Sources */,
 				F4AE07EB1E7673AC006FA466 /* CommonFlowLayout.swift in Sources */,
 				35FF7BEA1CF83264000A70EE /* TeacherDetailsHeaderView.swift in Sources */,
 				35FF7BEB1CF83264000A70EE /* Extension+String.swift in Sources */,

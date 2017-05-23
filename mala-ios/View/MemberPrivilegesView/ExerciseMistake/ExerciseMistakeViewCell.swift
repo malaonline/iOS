@@ -135,7 +135,7 @@ class ExerciseMistakeViewCell: UICollectionViewCell {
     private lazy var exerciseLabel: UILabel = {
         let label = UILabel(
             text: "2.The__________Brazil’s Olympic games will be held on August 5.\n_________exciting news for the long summer vacation!",
-            font: FontFamily.PingFangSC.Regular.font(16),
+            font: FontFamily.PingFangSC.Semibold.font(16),
             textColor: UIColor(named: .labelBlack),
             textAlignment: .justified
         )
@@ -145,7 +145,7 @@ class ExerciseMistakeViewCell: UICollectionViewCell {
     private lazy var optionA: UILabel = {
         let label = UILabel(
             text: "A． thirty-one; How a",
-            font: FontFamily.PingFangSC.Regular.font(16),
+            font: FontFamily.PingFangSC.Semibold.font(16),
             textColor: UIColor(named: .labelBlack)
         )
         label.numberOfLines = 0
@@ -154,7 +154,7 @@ class ExerciseMistakeViewCell: UICollectionViewCell {
     private lazy var optionB: UILabel = {
         let label = UILabel(
             text: "B． thirty-first; What",
-            font: FontFamily.PingFangSC.Regular.font(16),
+            font: FontFamily.PingFangSC.Semibold.font(16),
             textColor: UIColor(named: .labelBlack)
         )
         label.numberOfLines = 0
@@ -163,7 +163,7 @@ class ExerciseMistakeViewCell: UICollectionViewCell {
     private lazy var optionC: UILabel = {
         let label = UILabel(
             text: "C． thirty-first; What an",
-            font: FontFamily.PingFangSC.Regular.font(16),
+            font: FontFamily.PingFangSC.Semibold.font(16),
             textColor: UIColor(named: .labelBlack)
         )
         label.numberOfLines = 0
@@ -172,7 +172,7 @@ class ExerciseMistakeViewCell: UICollectionViewCell {
     private lazy var optionD: UILabel = {
         let label = UILabel(
             text: "D． thirty-one; How",
-            font: FontFamily.PingFangSC.Regular.font(16),
+            font: FontFamily.PingFangSC.Semibold.font(16),
             textColor: UIColor(named: .labelBlack)
         )
         label.numberOfLines = 0

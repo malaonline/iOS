@@ -11,7 +11,7 @@ import UIKit
 class ExerciseMistakeRecord: BaseObjectModel {
     
     var submitOption: Int = 0
-    var updatedAt: Int = 0
+    var updatedAt: TimeInterval = 0
     var exerciseGroup: BaseObjectModel?
     var exercise: Exercise?
     
@@ -30,7 +30,7 @@ class ExerciseMistakeRecord: BaseObjectModel {
         fatalError("init(coder:) has not been implemented")
     }
     
-    init(id: Int, submit: Int, updatedAt: Int, group: BaseObjectModel, exercise: Exercise) {
+    init(id: Int, submit: Int, updatedAt: TimeInterval, group: BaseObjectModel, exercise: Exercise) {
         super.init()
         self.id = id
         self.submitOption = submit
@@ -46,7 +46,7 @@ class ExerciseMistakeRecord: BaseObjectModel {
             submitOption = number
             return
         }
-        if key == "updated_at", let number = value as? Int {
+        if key == "updated_at", let number = value as? TimeInterval {
             updatedAt = number
             return
         }

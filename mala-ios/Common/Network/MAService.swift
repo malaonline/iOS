@@ -834,7 +834,7 @@ extension MoyaProvider {
             
             for exercise in exercises {
                 if let _ = exercise["id"] as? Int {
-                    list.append(ExerciseMistakeRecord(dict: teacher))
+                    list.append(ExerciseMistakeRecord(dict: exercise))
                 }
             }
             completion(list, count)

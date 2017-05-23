@@ -245,8 +245,13 @@ class MemberPrivilegesViewController: UITableViewController {
         self.navigationController?.pushViewController(viewController, animated: true)
         isPushed = true
     }
-    
-    
+    /// 显示错题本
+    @objc func showExerciseMistakeRecord() {
+        let viewController = ExerciseMistakeViewController()
+        viewController.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(viewController, animated: true)
+        isPushed = true
+    }
     /// 显示学习报告样本
     @objc func showReportDemo() {
         let viewController = LearningReportViewController()

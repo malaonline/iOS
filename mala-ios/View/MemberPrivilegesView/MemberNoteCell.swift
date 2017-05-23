@@ -52,6 +52,7 @@ class MemberNoteCell: MalaBaseMemberCardCell {
     }()
     private lazy var englishIcon: UIImageView = {
         let icon = UIImageView(image: UIImage(asset: .subjectEnglish))
+        icon.addTapEvent(target: self, action: #selector(MemberNoteCell.noteButtonDidTap))
         return icon
     }()
     private lazy var englishLabel: UILabel = {
@@ -60,10 +61,12 @@ class MemberNoteCell: MalaBaseMemberCardCell {
             font: FontFamily.PingFangSC.Regular.font(20),
             textColor: UIColor(named: .subjectGray)
         )
+        label.addTapEvent(target: self, action: #selector(MemberNoteCell.noteButtonDidTap))
         return label
     }()
     private lazy var mathIcon: UIImageView = {
         let icon = UIImageView(image: UIImage(asset: .subjectMath))
+        icon.addTapEvent(target: self, action: #selector(MemberNoteCell.noteButtonDidTap))
         return icon
     }()
     private lazy var mathLabel: UILabel = {
@@ -72,6 +75,7 @@ class MemberNoteCell: MalaBaseMemberCardCell {
             font: FontFamily.PingFangSC.Regular.font(20),
             textColor: UIColor(named: .subjectGray)
         )
+        label.addTapEvent(target: self, action: #selector(MemberNoteCell.noteButtonDidTap))
         return label
     }()
     
@@ -158,6 +162,10 @@ class MemberNoteCell: MalaBaseMemberCardCell {
     @objc private func helpButtonDidTap() {
         let popup = PopupDialog(viewController: MAHelpViewController(), buttonAlignment: .horizontal, transitionStyle: .zoomIn, gestureDismissal: true)
         MemberPrivilegesViewController.shared.present(popup, animated: true, completion: nil)
+    }
+    
+    @objc private func noteButtonDidTap() {
+        MemberPrivilegesViewController.shared.showExerciseMistakeRecord()
     }
     
     private func releaseDefaultPanel() {
