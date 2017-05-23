@@ -29,6 +29,15 @@ class ExerciseMistakeViewController: StatefulViewController, UITableViewDataSour
     }
     
     // MARK: - Components
+    lazy var backBarButton: UIButton = {
+        let backBarButton = UIButton(
+            imageName: "leftArrow_white",
+            highlightImageName: "leftArrow_white",
+            target: self,
+            action: #selector(ExerciseMistakeViewController.popSelf)
+        )
+        return backBarButton
+    }()
     lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.delegate = self
@@ -55,6 +64,17 @@ class ExerciseMistakeViewController: StatefulViewController, UITableViewDataSour
     
     // MARK: - Private Method
     private func setup() {
+        
+        title = "我的错题"
+        
+        // 设置BarButtomItem间隔
+        let spacer = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
+        spacer.width = -2
+        
+        // leftBarButtonItem
+        let leftBarButtonItem = UIBarButtonItem(customView: backBarButton)
+        navigationItem.leftBarButtonItems = [spacer, leftBarButtonItem]
+        
         // stateful
         tableView.emptyDataSetSource = self
         tableView.emptyDataSetDelegate = self
@@ -158,4 +178,5 @@ class ExerciseMistakeViewController: StatefulViewController, UITableViewDataSour
     func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
         return false
     }
+    
 }

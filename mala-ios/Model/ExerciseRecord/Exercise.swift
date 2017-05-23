@@ -41,8 +41,12 @@ class Exercise: BaseObjectModel {
     
     // MARK: - Override
     override func setValue(_ value: Any?, forKey key: String) {
-        if key == "solution", let number = value as? Int {
-            solution = number
+        if key == "solution" {
+            if let number = value as? Int {
+                solution = number
+            }else {
+                solution = 0
+            }
             return
         }
         if key == "explanation", let string = value as? String {

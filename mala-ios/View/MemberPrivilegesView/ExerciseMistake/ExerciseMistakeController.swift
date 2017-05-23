@@ -61,7 +61,7 @@ class ExerciseMistakeController: BaseViewController, UICollectionViewDelegate, U
     
     private func setupUserInterface() {
         // Style
-        title = "错题本样本"
+        title = "错题样本"
         collectionView.backgroundColor = UIColor(named: .themeLightBlue)
         
         // SubViews
