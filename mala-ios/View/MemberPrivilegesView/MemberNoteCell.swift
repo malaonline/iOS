@@ -52,6 +52,7 @@ class MemberNoteCell: MalaBaseMemberCardCell {
     }()
     private lazy var englishIcon: UIImageView = {
         let icon = UIImageView(image: UIImage(asset: .subjectEnglish))
+        MalaCurrentSubject = .english
         icon.addTapEvent(target: self, action: #selector(MemberNoteCell.noteButtonDidTap))
         return icon
     }()
@@ -61,11 +62,13 @@ class MemberNoteCell: MalaBaseMemberCardCell {
             font: FontFamily.PingFangSC.Regular.font(20),
             textColor: UIColor(named: .subjectGray)
         )
+        MalaCurrentSubject = .english
         label.addTapEvent(target: self, action: #selector(MemberNoteCell.noteButtonDidTap))
         return label
     }()
     private lazy var mathIcon: UIImageView = {
         let icon = UIImageView(image: UIImage(asset: .subjectMath))
+        MalaCurrentSubject = .math
         icon.addTapEvent(target: self, action: #selector(MemberNoteCell.noteButtonDidTap))
         return icon
     }()
@@ -75,6 +78,7 @@ class MemberNoteCell: MalaBaseMemberCardCell {
             font: FontFamily.PingFangSC.Regular.font(20),
             textColor: UIColor(named: .subjectGray)
         )
+        MalaCurrentSubject = .math
         label.addTapEvent(target: self, action: #selector(MemberNoteCell.noteButtonDidTap))
         return label
     }()

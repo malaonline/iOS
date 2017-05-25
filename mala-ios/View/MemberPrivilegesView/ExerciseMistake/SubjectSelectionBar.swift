@@ -11,7 +11,22 @@ import Popover
 
 class SubjectSelectionBar: UIView, UITableViewDataSource, UITableViewDelegate {
 
-    let subjects: [String] = ["英语", "数学"]
+    struct subjectSelection {
+        var title: String
+        var subject: MASubjectId
+        
+        init(title: String, subject: MASubjectId) {
+            self.title = title
+            self.subject = subject
+        }
+    }
+    
+    let subjects: [subjectSelection] = [
+        subjectSelection(title: "英语", subject: .english),
+        subjectSelection(title: "数学", subject: .math)
+    ]
+    
+    var refreshAction: (()->())?
     
     // MARK: - Components
     private lazy var subjectTableView: UITableView = {
@@ -28,6 +43,8 @@ class SubjectSelectionBar: UIView, UITableViewDataSource, UITableViewDelegate {
             font: FontFamily.PingFangSC.Regular.font(16),
             textColor: UIColor(named: .labelBlack)
         )
+        let subjectName = MalaCurrentSubject == .math ? "数学" : "英语"
+        label.text = String(format: "科目：%@ %d", subjectName, getSubjectRecord(subject: MalaCurrentSubject) ?? 0)
         return label
     }()
     private lazy var popover: Popover = {
@@ -71,7 +88,14 @@ class SubjectSelectionBar: UIView, UITableViewDataSource, UITableViewDelegate {
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
-        cell.textLabel?.text = self.subjects[indexPath.row]
+        let model = subjects[indexPath.row]
+        
+        cell.textLabel?.text = String(format: "%@ %d", model.title, getSubjectRecord(subject: model.subject) ?? 0)
+        
+        print("backgroundColor", model.subject, MalaCurrentSubject)
+        if model.subject == MalaCurrentSubject {
+            cell.contentView.backgroundColor = UIColor(named: .themeLightBlue)
+        }
         return cell
     }
     
@@ -84,12 +108,17 @@ class SubjectSelectionBar: UIView, UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         defer {
             tableView.cellForRow(at: indexPath)?.isSelected = false
+            self.popover.dismiss()
+            refreshAction?()
         }
-        self.popover.dismiss()
+        let model = subjects[indexPath.row]
+        subjectLabel.text = String(format: "科目：%@ %d", model.title, getSubjectRecord(subject: model.subject) ?? 0)
+        MalaCurrentSubject = model.subject
     }
     
     
     @objc private func subjectBarDidTap() {
+        subjectTableView.reloadData()
         self.popover.show(subjectTableView, fromView: self.subjectLabel)
     }
 }

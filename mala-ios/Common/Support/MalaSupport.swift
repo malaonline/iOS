@@ -574,3 +574,13 @@ func makeTeacherAttrString(_ LecturerName: String?, _ assistantName: String?) ->
 func setIfNeed(_ str: inout String?, bak: String) {
     str = (str == nil ? bak : str)
 }
+
+func getSubjectRecord(subject: MASubjectId) -> Int? {
+    if subject == .math {
+        return MalaExerciseRecordMath
+    }else if subject == .english {
+        return MalaExerciseRecordEnglish
+    }else {
+        return nil
+    }
+}

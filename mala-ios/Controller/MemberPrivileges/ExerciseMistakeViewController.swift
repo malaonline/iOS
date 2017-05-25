@@ -40,6 +40,9 @@ class ExerciseMistakeViewController: StatefulViewController, UITableViewDataSour
     }()
     private lazy var subjectBar: SubjectSelectionBar = {
         let bar = SubjectSelectionBar(UIColor.white)
+        bar.refreshAction = {
+            self.tableView.es_startPullToRefresh()
+        }
         return bar
     }()
     lazy var tableView: UITableView = {
@@ -118,7 +121,7 @@ class ExerciseMistakeViewController: StatefulViewController, UITableViewDataSour
         }
     }
     
-    private func loadExerciseMistakes(_ subject: Int? = 2, page: Int = 1, isLoadMore: Bool = false, finish: (()->())? = nil) {
+    private func loadExerciseMistakes(_ subject: Int? = MalaCurrentSubject.rawValue, page: Int = 1, isLoadMore: Bool = false, finish: (()->())? = nil) {
         
         guard currentState != .loading else { return }
         currentState = .loading
