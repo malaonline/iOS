@@ -96,17 +96,17 @@ class FilterResultController: StatefulViewController, UITableViewDataSource, UIT
         tableView.emptyDataSetDelegate = self
         
         // 加载更多
-        tableView.es_addPullToRefresh(animator: ThemeRefreshHeaderAnimator()) {
-            self.tableView.es_resetNoMoreData()
-            self.loadTeachers(MalaCondition.getParam(), finish: {
-                let isIgnore = (self.models.count > 0) && (self.models.count <= 2)
-                self.tableView.es_stopPullToRefresh(ignoreDate: false, ignoreFooter: isIgnore)
+        tableView.es_addPullToRefresh(animator: ThemeRefreshHeaderAnimator()) { [weak self] in
+            self?.tableView.es_resetNoMoreData()
+            self?.loadTeachers(MalaCondition.getParam(), finish: {
+                let isIgnore = (self?.models.count ?? 0 >= 0) && (self?.models.count ?? 0 <= 2)
+                self?.tableView.es_stopPullToRefresh(ignoreDate: false, ignoreFooter: isIgnore)
             })
         }
         
-        tableView.es_addInfiniteScrolling(animator: ThemeRefreshFooterAnimator()) {
-            self.loadTeachers(MalaCondition.getParam(), isLoadMore: true, finish: {
-                self.tableView.es_stopLoadingMore()
+        tableView.es_addInfiniteScrolling(animator: ThemeRefreshFooterAnimator()) { [weak self] in
+            self?.loadTeachers(MalaCondition.getParam(), isLoadMore: true, finish: {
+                self?.tableView.es_stopLoadingMore()
             })
         }
         

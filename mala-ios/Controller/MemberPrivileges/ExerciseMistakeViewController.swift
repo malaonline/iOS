@@ -102,13 +102,13 @@ class ExerciseMistakeViewController: StatefulViewController, UITableViewDataSour
         tableView.es_addPullToRefresh(animator: ThemeRefreshHeaderAnimator()) { [weak self] in
             self?.tableView.es_resetNoMoreData()
             self?.loadExerciseMistakes(finish: {
-                self?.tableView.es_stopPullToRefresh()
+                let isIgnore = (self?.models.count ?? 0) >= 0 && (self?.models.count ?? 0) <= 5
+                self?.tableView.es_stopPullToRefresh(ignoreDate: false, ignoreFooter: isIgnore)
             })
         }
         tableView.es_addInfiniteScrolling(animator: ThemeRefreshFooterAnimator()) { [weak self] in
             self?.loadExerciseMistakes(isLoadMore: true, finish: {
-                let isIgnore = ((self?.models.count ?? 0) > 0) && ((self?.models.count ?? 0) <= 5)
-                self?.tableView.es_stopPullToRefresh(ignoreDate: false, ignoreFooter: isIgnore)
+                self?.tableView.es_stopLoadingMore()
             })
         }
         

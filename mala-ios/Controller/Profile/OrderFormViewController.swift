@@ -101,17 +101,17 @@ class OrderFormViewController: StatefulViewController, UITableViewDelegate, UITa
         navigationItem.leftBarButtonItems = [spacer, leftBarButtonItem]
         
         // 下拉刷新
-        tableView.es_addPullToRefresh(animator: ThemeRefreshHeaderAnimator()) {
-            self.tableView.es_resetNoMoreData()
-            self.loadOrderForm(finish: {
-                let isIgnore = (self.models.count > 0) && (self.models.count <= 2)
-                self.tableView.es_stopPullToRefresh(ignoreDate: false, ignoreFooter: isIgnore)
+        tableView.es_addPullToRefresh(animator: ThemeRefreshHeaderAnimator()) { [weak self] in
+            self?.tableView.es_resetNoMoreData()
+            self?.loadOrderForm(finish: {
+                let isIgnore = (self?.models.count ?? 0 >= 0) && (self?.models.count ?? 0 <= 2)
+                self?.tableView.es_stopPullToRefresh(ignoreDate: false, ignoreFooter: isIgnore)
             })
         }
         
-        tableView.es_addInfiniteScrolling(animator: ThemeRefreshFooterAnimator()) {
-            self.loadOrderForm(isLoadMore: true, finish: {
-                self.tableView.es_stopLoadingMore()
+        tableView.es_addInfiniteScrolling(animator: ThemeRefreshFooterAnimator()) { [weak self] in
+            self?.loadOrderForm(isLoadMore: true, finish: {
+                self?.tableView.es_stopLoadingMore()
             })
         }
         
