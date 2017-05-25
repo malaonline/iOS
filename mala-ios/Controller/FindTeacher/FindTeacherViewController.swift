@@ -100,17 +100,17 @@ class FindTeacherViewController: StatefulViewController, UITableViewDelegate, UI
         tableView.addGestureRecognizer(swipeDownGesture)
         
         // 下拉刷新
-        tableView.es_addPullToRefresh(animator: ThemeRefreshHeaderAnimator()) {
-            self.tableView.es_resetNoMoreData()
-            self.loadTeachers(finish: {
-                let isIgnore = (self.models.count > 0) && (self.models.count <= 2)
-                self.tableView.es_stopPullToRefresh(ignoreDate: false, ignoreFooter: isIgnore)
+        tableView.es_addPullToRefresh(animator: ThemeRefreshHeaderAnimator()) { [weak self] in
+            self?.tableView.es_resetNoMoreData()
+            self?.loadTeachers(finish: {
+                let isIgnore = (self?.models.count ?? 0 >= 0) && (self?.models.count ?? 0 <= 2)
+                self?.tableView.es_stopPullToRefresh(ignoreDate: false, ignoreFooter: isIgnore)
             })
         }
         
-        tableView.es_addInfiniteScrolling(animator: ThemeRefreshFooterAnimator()) {
-            self.loadTeachers(isLoadMore: true, finish: {
-                self.tableView.es_stopLoadingMore()
+        tableView.es_addInfiniteScrolling(animator: ThemeRefreshFooterAnimator()) { [weak self] in
+            self?.loadTeachers(isLoadMore: true, finish: {
+                self?.tableView.es_stopLoadingMore()
             })
         }
         

@@ -181,8 +181,7 @@ enum MalaStudyReportAbility: String {
     case unkown     = "unkown"
 }
 
-
-/// 下单异常错误吗
+/// 下单异常错误码
 ///
 /// - timeslotConflict: 该老师部分时段已被占用
 /// - couponInvalid: 奖学金使用信息有误
@@ -193,4 +192,17 @@ enum OrderErrorCode: Int {
     case couponConflict     = -2
     case liveClassFull      = -3
     case alreadyJoin        = -4
+}
+
+/// 学科 - id
+enum MASubjectId: Int {
+    case math       = 1
+    case english    = 2
+    case chinese    = 3
+    case physics    = 4
+    case chemistry  = 5
+    case geography  = 6
+    case history    = 7
+    case politics   = 8
+    case biology    = 9
 }

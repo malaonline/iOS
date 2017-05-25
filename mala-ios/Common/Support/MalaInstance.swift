@@ -59,3 +59,11 @@ var MalaSubjectReport = SubjectReport()
 var MalaReportTotalNum: CGFloat = 0
 /// 用户学习报告正确练习数
 var MalaReportRightNum: CGFloat = 0
+
+
+/// 当前用户选择学科
+var MalaCurrentSubject: MASubjectId = .math
+var MalaExerciseRecordMath: Int? = MalaUserDefaults.exerciseRecord.value?.mistakes?.math ?? 0
+var MalaExerciseRecordEnglish: Int? = MalaUserDefaults.exerciseRecord.value?.mistakes?.english ?? 0
+
+var MalaCurrentExerciseIndex: Int?

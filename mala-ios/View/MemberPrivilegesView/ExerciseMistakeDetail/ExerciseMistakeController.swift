@@ -36,13 +36,12 @@ class ExerciseMistakeController: BaseViewController, UICollectionViewDelegate, U
         super.viewDidLoad()
         setupUserInterface()
         configure()
-//        delay(0.05) {
-//            if let i = self.index {
-//                self.collectionView.scrollToItem(at: IndexPath(item: i, section: 0), at: [], animated: false)
-//            }
-//        }
+        delay(0.05) {
+            if let i = self.index {
+                self.collectionView.scrollToItem(at: IndexPath(item: i, section: 0), at: [], animated: false)
+            }
+        }
     }
-    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -61,7 +60,7 @@ class ExerciseMistakeController: BaseViewController, UICollectionViewDelegate, U
     
     private func setupUserInterface() {
         // Style
-        title = "错题本样本"
+        title = "错题样本"
         collectionView.backgroundColor = UIColor(named: .themeLightBlue)
         
         // SubViews
@@ -77,15 +76,15 @@ class ExerciseMistakeController: BaseViewController, UICollectionViewDelegate, U
     
     // MARK: - DataSource
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return models.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ExerciseMistakeViewCellReuseId, for: indexPath) as! ExerciseMistakeViewCell
+        MalaCurrentExerciseIndex = indexPath.row
         cell.index = indexPath.row+1
-        cell.amount = self.models.count
+        cell.amount = models.count
         cell.model = models[indexPath.row]
         return cell
     }
-    
 }

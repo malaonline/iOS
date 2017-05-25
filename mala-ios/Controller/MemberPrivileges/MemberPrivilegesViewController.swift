@@ -70,15 +70,11 @@ class MemberPrivilegesViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if !isPushed {
-            loadUserExerciseRecord()
-            loadStudyReportOverview()
-        }
-        isPushed = false
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        self.tableView.es_startPullToRefresh()
         if !isPushed {
             sendScreenTrack(SAStudyReportViewName)
         }
@@ -89,6 +85,7 @@ class MemberPrivilegesViewController: UITableViewController {
     private func configure() {
         tableView.es_addPullToRefresh(animator: ThemeRefreshHeaderAnimator()) {
             self.loadUserExerciseRecord()
+            self.loadStudyReportOverview()
         }
         
         tableView.backgroundColor = UIColor(named: .themeLightBlue)
@@ -245,8 +242,13 @@ class MemberPrivilegesViewController: UITableViewController {
         self.navigationController?.pushViewController(viewController, animated: true)
         isPushed = true
     }
-    
-    
+    /// 显示错题本
+    @objc func showExerciseMistakeRecord() {
+        let viewController = ExerciseMistakeViewController()
+        viewController.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(viewController, animated: true)
+        isPushed = true
+    }
     /// 显示学习报告样本
     @objc func showReportDemo() {
         let viewController = LearningReportViewController()

@@ -22,7 +22,7 @@ class ExerciseMistakeViewCell: UICollectionViewCell {
             groupTitle.text = group.name
             remakeGroupTitleWidth()
             
-            groupDesc.text = group.desc
+            groupDesc.text = String(format: "【描述】%@", group.desc ?? "")
             exerciseLabel.text = String(format: "%d.%@", index, exerc.name ?? "")
             
             let options = exerc.options.sorted { $0.id < $1.id }
@@ -43,28 +43,28 @@ class ExerciseMistakeViewCell: UICollectionViewCell {
                     optionB.text = String(format: "B. %@", value.name ?? "")
                     
                     if value.id == exerc.solution {
-                        optionA.textColor = UIColor(named: .solutionBlue)
+                        optionB.textColor = UIColor(named: .solutionBlue)
                         solutionString = "B"
                     }else {
-                        optionA.textColor = UIColor(named: .labelBlack)
+                        optionB.textColor = UIColor(named: .labelBlack)
                     }
                 case 2:
                     optionC.text = String(format: "C. %@", value.name ?? "")
                     
                     if value.id == exerc.solution {
-                        optionA.textColor = UIColor(named: .solutionBlue)
+                        optionC.textColor = UIColor(named: .solutionBlue)
                         solutionString = "C"
                     }else {
-                        optionA.textColor = UIColor(named: .labelBlack)
+                        optionC.textColor = UIColor(named: .labelBlack)
                     }
                 case 3:
                     optionD.text = String(format: "D. %@", value.name ?? "")
                     
                     if value.id == exerc.solution {
-                        optionA.textColor = UIColor(named: .solutionBlue)
+                        optionD.textColor = UIColor(named: .solutionBlue)
                         solutionString = "D"
                     }else {
-                        optionA.textColor = UIColor(named: .labelBlack)
+                        optionD.textColor = UIColor(named: .labelBlack)
                     }
                 default:
                     break
@@ -135,8 +135,9 @@ class ExerciseMistakeViewCell: UICollectionViewCell {
     private lazy var exerciseLabel: UILabel = {
         let label = UILabel(
             text: "2.The__________Brazil’s Olympic games will be held on August 5.\n_________exciting news for the long summer vacation!",
-            font: FontFamily.PingFangSC.Regular.font(16),
-            textColor: UIColor(named: .labelBlack)
+            font: FontFamily.PingFangSC.Semibold.font(16),
+            textColor: UIColor(named: .labelBlack),
+            textAlignment: .justified
         )
         label.numberOfLines = 0
         return label
@@ -144,7 +145,7 @@ class ExerciseMistakeViewCell: UICollectionViewCell {
     private lazy var optionA: UILabel = {
         let label = UILabel(
             text: "A． thirty-one; How a",
-            font: FontFamily.PingFangSC.Regular.font(16),
+            font: FontFamily.PingFangSC.Semibold.font(16),
             textColor: UIColor(named: .labelBlack)
         )
         label.numberOfLines = 0
@@ -153,7 +154,7 @@ class ExerciseMistakeViewCell: UICollectionViewCell {
     private lazy var optionB: UILabel = {
         let label = UILabel(
             text: "B． thirty-first; What",
-            font: FontFamily.PingFangSC.Regular.font(16),
+            font: FontFamily.PingFangSC.Semibold.font(16),
             textColor: UIColor(named: .labelBlack)
         )
         label.numberOfLines = 0
@@ -162,7 +163,7 @@ class ExerciseMistakeViewCell: UICollectionViewCell {
     private lazy var optionC: UILabel = {
         let label = UILabel(
             text: "C． thirty-first; What an",
-            font: FontFamily.PingFangSC.Regular.font(16),
+            font: FontFamily.PingFangSC.Semibold.font(16),
             textColor: UIColor(named: .labelBlack)
         )
         label.numberOfLines = 0
@@ -171,7 +172,7 @@ class ExerciseMistakeViewCell: UICollectionViewCell {
     private lazy var optionD: UILabel = {
         let label = UILabel(
             text: "D． thirty-one; How",
-            font: FontFamily.PingFangSC.Regular.font(16),
+            font: FontFamily.PingFangSC.Semibold.font(16),
             textColor: UIColor(named: .labelBlack)
         )
         label.numberOfLines = 0
@@ -193,7 +194,8 @@ class ExerciseMistakeViewCell: UICollectionViewCell {
         let label = UILabel(
             text: "根据语境，used the plant's special power to save millions of lives．可知其缺少主语的定语从句，故可排除答案C，D．又从句的先行词为woman（女人）是指人，故可排除答案A，所以答案为B．",
             font: FontFamily.PingFangSC.Regular.font(14),
-            textColor: UIColor(named: .groupTitleGray)
+            textColor: UIColor(named: .groupTitleGray),
+            textAlignment: .justified
         )
         label.numberOfLines = 0
         return label
@@ -249,7 +251,7 @@ class ExerciseMistakeViewCell: UICollectionViewCell {
             maker.size.equalTo(contentShadow)
         }
         indexLabel.snp.makeConstraints { (maker) in
-            maker.width.equalTo(32)
+            maker.left.equalTo(groupTitle.snp.right)
             maker.height.equalTo(22)
             maker.top.equalTo(content).offset(18)
             maker.right.equalTo(content).offset(-13)

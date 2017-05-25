@@ -27,8 +27,8 @@ class MemberLoginCell: MalaBaseMemberCardCell {
     private func setup() {
         setupDefaultStyle(image: .noteNormal,
                           disabledImage: .noteNormal,
-                          title: "登录可查看错题本和学习报告哦！",
-                          disabledTitle: "学习报告数据获取失败！",
+                          title: "登录可查看错题本和学习报告哦",
+                          disabledTitle: "学习报告数据获取失败",
                           buttonTitle: "立即登录")
         actionButton.addTarget(self, action: #selector(MemberLoginCell.buttonDidTap), for: .touchUpInside)
     }

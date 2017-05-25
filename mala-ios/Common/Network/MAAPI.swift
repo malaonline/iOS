@@ -61,6 +61,9 @@ internal enum MAAPI {
     // region
     case loadRegions()
     case getSchools(regionId: Int?, teacherId: Int?)
+    
+    // exercise record
+    case exerciseMistakes(subject: Int?, page: Int)
 }
 
 extension MAAPI: TargetType {
@@ -127,6 +130,8 @@ extension MAAPI: TargetType {
             return "/schools"
         case .loadTags:
             return "/tags"
+        case .exerciseMistakes:
+            return "/exercise"
         }
     }
     public var method: Moya.Method {
@@ -209,6 +214,12 @@ extension MAAPI: TargetType {
                 params["teacher"] = teacherId
             }
             return params
+        case .exerciseMistakes(let subject, let page):
+            if let id = subject {
+                return ["subject": id, "page": page]
+            }else {
+                return ["page": page]
+            }
         default:
             return nil
         }

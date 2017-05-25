@@ -41,8 +41,12 @@ class Exercise: BaseObjectModel {
     
     // MARK: - Override
     override func setValue(_ value: Any?, forKey key: String) {
-        if key == "solution", let number = value as? Int {
-            solution = number
+        if key == "solution" {
+            if let number = value as? Int {
+                solution = number
+            }else {
+                solution = 0
+            }
             return
         }
         if key == "explanation", let string = value as? String {
@@ -50,7 +54,7 @@ class Exercise: BaseObjectModel {
             return
         }
         if key == "options" {
-            if let dicts = value as? [[String: AnyObject]] {
+            if let dicts = value as? [[String: AnyObject]], options.isEmpty {
                 for dict in dicts {
                     options.append(BaseObjectModel(dict: dict))
                 }

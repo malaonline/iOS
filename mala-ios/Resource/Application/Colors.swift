@@ -108,6 +108,7 @@ enum ColorName: UInt32 {
     case labelBlack = 0x373A41FF
     case labelLightGray = 0xC3C5CDFF
     case indexBlue = 0x76A7FDFF
+    case indexBluePress = 0x76A7FDAA
     case groupTitleGray = 0x8F929BFF
     case lineGray = 0x979797FF
     case subjectGray = 0x656970FF

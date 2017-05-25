@@ -424,6 +424,27 @@
 		F4303A5F1E6565DC0037D64D /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4303A5E1E6565DC0037D64D /* Strings.swift */; };
 		F4303A601E6565DC0037D64D /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4303A5E1E6565DC0037D64D /* Strings.swift */; };
 		F4303A611E6565DC0037D64D /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4303A5E1E6565DC0037D64D /* Strings.swift */; };
+		F43235A51ED2C09C00374D8D /* MAHelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43235A41ED2C09C00374D8D /* MAHelpViewController.swift */; };
+		F43235A61ED2C09C00374D8D /* MAHelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43235A41ED2C09C00374D8D /* MAHelpViewController.swift */; };
+		F43235A71ED2C09C00374D8D /* MAHelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43235A41ED2C09C00374D8D /* MAHelpViewController.swift */; };
+		F43235A91ED2C0BF00374D8D /* MAHelpViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43235A81ED2C0BF00374D8D /* MAHelpViewCell.swift */; };
+		F43235AA1ED2C0BF00374D8D /* MAHelpViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43235A81ED2C0BF00374D8D /* MAHelpViewCell.swift */; };
+		F43235AB1ED2C0BF00374D8D /* MAHelpViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43235A81ED2C0BF00374D8D /* MAHelpViewCell.swift */; };
+		F43235AD1ED3D57100374D8D /* ExerciseMistakeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43235AC1ED3D57100374D8D /* ExerciseMistakeViewController.swift */; };
+		F43235AE1ED3D57100374D8D /* ExerciseMistakeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43235AC1ED3D57100374D8D /* ExerciseMistakeViewController.swift */; };
+		F43235AF1ED3D57100374D8D /* ExerciseMistakeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43235AC1ED3D57100374D8D /* ExerciseMistakeViewController.swift */; };
+		F43235B11ED3D77400374D8D /* ExerciseMistakeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43235B01ED3D77400374D8D /* ExerciseMistakeCell.swift */; };
+		F43235B21ED3D77400374D8D /* ExerciseMistakeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43235B01ED3D77400374D8D /* ExerciseMistakeCell.swift */; };
+		F43235B31ED3D77400374D8D /* ExerciseMistakeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43235B01ED3D77400374D8D /* ExerciseMistakeCell.swift */; };
+		F43235B71ED4380000374D8D /* ExerciseMistakeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43235B51ED4380000374D8D /* ExerciseMistakeController.swift */; };
+		F43235B81ED4380000374D8D /* ExerciseMistakeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43235B51ED4380000374D8D /* ExerciseMistakeController.swift */; };
+		F43235B91ED4380000374D8D /* ExerciseMistakeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43235B51ED4380000374D8D /* ExerciseMistakeController.swift */; };
+		F43235BA1ED4380000374D8D /* ExerciseMistakeViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43235B61ED4380000374D8D /* ExerciseMistakeViewCell.swift */; };
+		F43235BB1ED4380000374D8D /* ExerciseMistakeViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43235B61ED4380000374D8D /* ExerciseMistakeViewCell.swift */; };
+		F43235BC1ED4380000374D8D /* ExerciseMistakeViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43235B61ED4380000374D8D /* ExerciseMistakeViewCell.swift */; };
+		F43235BE1ED4383D00374D8D /* SubjectSelectionBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43235BD1ED4383D00374D8D /* SubjectSelectionBar.swift */; };
+		F43235BF1ED4383D00374D8D /* SubjectSelectionBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43235BD1ED4383D00374D8D /* SubjectSelectionBar.swift */; };
+		F43235C01ED4383D00374D8D /* SubjectSelectionBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43235BD1ED4383D00374D8D /* SubjectSelectionBar.swift */; };
 		F4331AC41DD19B78003F062D /* BannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4331AC31DD19B78003F062D /* BannerView.swift */; };
 		F4331AC51DD19B78003F062D /* BannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4331AC31DD19B78003F062D /* BannerView.swift */; };
 		F4331AC61DD19B78003F062D /* BannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4331AC31DD19B78003F062D /* BannerView.swift */; };
@@ -574,12 +595,6 @@
 		F4767A471D34930C00FD47F1 /* ThemeTagListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4767A461D34930C00FD47F1 /* ThemeTagListView.swift */; };
 		F4767A481D34930C00FD47F1 /* ThemeTagListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4767A461D34930C00FD47F1 /* ThemeTagListView.swift */; };
 		F4767A491D34930C00FD47F1 /* ThemeTagListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4767A461D34930C00FD47F1 /* ThemeTagListView.swift */; };
-		F47AD4551EC99D190042440A /* ExerciseMistakeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47AD4541EC99D190042440A /* ExerciseMistakeController.swift */; };
-		F47AD4561EC99D190042440A /* ExerciseMistakeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47AD4541EC99D190042440A /* ExerciseMistakeController.swift */; };
-		F47AD4571EC99D190042440A /* ExerciseMistakeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47AD4541EC99D190042440A /* ExerciseMistakeController.swift */; };
-		F47AD4591EC99E140042440A /* ExerciseMistakeViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47AD4581EC99E140042440A /* ExerciseMistakeViewCell.swift */; };
-		F47AD45A1EC99E140042440A /* ExerciseMistakeViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47AD4581EC99E140042440A /* ExerciseMistakeViewCell.swift */; };
-		F47AD45B1EC99E140042440A /* ExerciseMistakeViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47AD4581EC99E140042440A /* ExerciseMistakeViewCell.swift */; };
 		F47AD47A1ECD6C0C0042440A /* UserExerciseMistake.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47AD4771ECD6C0C0042440A /* UserExerciseMistake.swift */; };
 		F47AD47B1ECD6C0C0042440A /* UserExerciseMistake.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47AD4771ECD6C0C0042440A /* UserExerciseMistake.swift */; };
 		F47AD47C1ECD6C0C0042440A /* UserExerciseMistake.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47AD4771ECD6C0C0042440A /* UserExerciseMistake.swift */; };
@@ -927,6 +942,13 @@
 		F4303A561E6565C50037D64D /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		F4303A571E6565C50037D64D /* Images.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
 		F4303A5E1E6565DC0037D64D /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
+		F43235A41ED2C09C00374D8D /* MAHelpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MAHelpViewController.swift; sourceTree = "<group>"; };
+		F43235A81ED2C0BF00374D8D /* MAHelpViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MAHelpViewCell.swift; sourceTree = "<group>"; };
+		F43235AC1ED3D57100374D8D /* ExerciseMistakeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExerciseMistakeViewController.swift; path = "mala-ios/Controller/MemberPrivileges/ExerciseMistakeViewController.swift"; sourceTree = SOURCE_ROOT; };
+		F43235B01ED3D77400374D8D /* ExerciseMistakeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExerciseMistakeCell.swift; sourceTree = "<group>"; };
+		F43235B51ED4380000374D8D /* ExerciseMistakeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExerciseMistakeController.swift; sourceTree = "<group>"; };
+		F43235B61ED4380000374D8D /* ExerciseMistakeViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExerciseMistakeViewCell.swift; sourceTree = "<group>"; };
+		F43235BD1ED4383D00374D8D /* SubjectSelectionBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubjectSelectionBar.swift; sourceTree = "<group>"; };
 		F4331AC31DD19B78003F062D /* BannerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerView.swift; sourceTree = "<group>"; };
 		F4331B991DD322A1003F062D /* Extension+Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension+Date.swift"; sourceTree = "<group>"; };
 		F43525D31DE2CA55002116E5 /* LiveCourseDetailAssistantCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveCourseDetailAssistantCell.swift; sourceTree = "<group>"; };
@@ -1007,8 +1029,6 @@
 		F4767A3E1D2CDCD000FD47F1 /* ThemePhotoCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemePhotoCollectionView.swift; sourceTree = "<group>"; };
 		F4767A421D348A7B00FD47F1 /* TagListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagListView.swift; sourceTree = "<group>"; };
 		F4767A461D34930C00FD47F1 /* ThemeTagListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeTagListView.swift; sourceTree = "<group>"; };
-		F47AD4541EC99D190042440A /* ExerciseMistakeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExerciseMistakeController.swift; sourceTree = "<group>"; };
-		F47AD4581EC99E140042440A /* ExerciseMistakeViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExerciseMistakeViewCell.swift; sourceTree = "<group>"; };
 		F47AD4771ECD6C0C0042440A /* UserExerciseMistake.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserExerciseMistake.swift; sourceTree = "<group>"; };
 		F47AD4781ECD6C0C0042440A /* UserExerciseRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserExerciseRecord.swift; sourceTree = "<group>"; };
 		F47AD4791ECD6C0C0042440A /* UserMessageCenterModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserMessageCenterModel.swift; sourceTree = "<group>"; };
@@ -1534,6 +1554,24 @@
 			path = Application;
 			sourceTree = "<group>";
 		};
+		F43235A31ED2C08C00374D8D /* Help */ = {
+			isa = PBXGroup;
+			children = (
+				F43235A41ED2C09C00374D8D /* MAHelpViewController.swift */,
+				F43235A81ED2C0BF00374D8D /* MAHelpViewCell.swift */,
+			);
+			path = Help;
+			sourceTree = "<group>";
+		};
+		F43235B41ED4380000374D8D /* ExerciseMistakeDetail */ = {
+			isa = PBXGroup;
+			children = (
+				F43235B51ED4380000374D8D /* ExerciseMistakeController.swift */,
+				F43235B61ED4380000374D8D /* ExerciseMistakeViewCell.swift */,
+			);
+			path = ExerciseMistakeDetail;
+			sourceTree = "<group>";
+		};
 		F4402E151C5A16A700E7D3DB /* parentTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -1687,8 +1725,8 @@
 		F47AD4531EC99CEF0042440A /* ExerciseMistake */ = {
 			isa = PBXGroup;
 			children = (
-				F47AD4541EC99D190042440A /* ExerciseMistakeController.swift */,
-				F47AD4581EC99E140042440A /* ExerciseMistakeViewCell.swift */,
+				F43235B01ED3D77400374D8D /* ExerciseMistakeCell.swift */,
+				F43235BD1ED4383D00374D8D /* SubjectSelectionBar.swift */,
 			);
 			path = ExerciseMistake;
 			sourceTree = "<group>";
@@ -1771,6 +1809,7 @@
 			children = (
 				F48BBAEA1CE9D6A800774297 /* MemberPrivilegesViewController.swift */,
 				F427FFA11CED9A4300EAB748 /* LearningReportViewController.swift */,
+				F43235AC1ED3D57100374D8D /* ExerciseMistakeViewController.swift */,
 			);
 			name = MemberPrivileges;
 			path = memberPrivileges;
@@ -1855,6 +1894,7 @@
 			isa = PBXGroup;
 			children = (
 				F4637C3C1EADAC5900D306A9 /* FeatureView */,
+				F43235A31ED2C08C00374D8D /* Help */,
 				F45F27F71CA9135A00F0012C /* MalaDefaultPanel.swift */,
 				F427FFB01CEDA47700EAB748 /* MalaBaseCardCell.swift */,
 				F474E89E1CF2DCEE0025A865 /* MalaBaseReportCardCell.swift */,
@@ -1911,6 +1951,7 @@
 			isa = PBXGroup;
 			children = (
 				F427FFA31CEDA1D100EAB748 /* LearningReportCollectionViewCell */,
+				F43235B41ED4380000374D8D /* ExerciseMistakeDetail */,
 				F47AD4531EC99CEF0042440A /* ExerciseMistake */,
 				F48793361EC4522200341703 /* MemberLoginCell.swift */,
 				F487933E1EC4686800341703 /* MemberNoteCell.swift */,
@@ -2447,7 +2488,9 @@
 				30B598191C47ACCD00169390 /* TeacherTableViewCell.swift in Sources */,
 				F48BBAD61CE57F6E00774297 /* OrderFormStatusCell.swift in Sources */,
 				F4CECD9B1DD45DA300E64B58 /* QRCodeView.swift in Sources */,
+				F43235A51ED2C09C00374D8D /* MAHelpViewController.swift in Sources */,
 				F427FF9A1CEB0B5C00EAB748 /* MemberSerivceCollectionView.swift in Sources */,
+				F43235AD1ED3D57100374D8D /* ExerciseMistakeViewController.swift in Sources */,
 				F47AD4A21ECD6E0D0042440A /* BaseObjectModel.swift in Sources */,
 				30445B201C4A3B96002CD290 /* StyleFilterView.swift in Sources */,
 				F47AD4BA1ECD6E0E0042440A /* HighScoreModel.swift in Sources */,
@@ -2465,7 +2508,6 @@
 				F4331AC41DD19B78003F062D /* BannerView.swift in Sources */,
 				F40B53D21C841AD600C20037 /* PaymentAmountCell.swift in Sources */,
 				F4767A471D34930C00FD47F1 /* ThemeTagListView.swift in Sources */,
-				F47AD4551EC99D190042440A /* ExerciseMistakeController.swift in Sources */,
 				F41CE64C1D86826C00B57F69 /* CityTableViewController.swift in Sources */,
 				F45F27F61CA8E07E00F0012C /* Extension+UIVIewController.swift in Sources */,
 				F4B3C6831CFD450600C1B423 /* SingleAbilityData.swift in Sources */,
@@ -2495,6 +2537,7 @@
 				F47AD4BD1ECD6E0E0042440A /* LiveClassModel.swift in Sources */,
 				F47AD4ED1ECD6E0E0042440A /* PaymentChannel.swift in Sources */,
 				F4AE08181E7681D0006FA466 /* MANetworking.swift in Sources */,
+				F43235A91ED2C0BF00374D8D /* MAHelpViewCell.swift in Sources */,
 				F4AE08081E7673CE006FA466 /* MalaInstance.swift in Sources */,
 				F4AE080B1E7673CE006FA466 /* MalaLog.swift in Sources */,
 				F452CD531CDC4CD2001A30E8 /* OrderFormViewController.swift in Sources */,
@@ -2560,6 +2603,7 @@
 				F41CE64F1D86826C00B57F69 /* SchoolTableViewController.swift in Sources */,
 				F4F29B061D10FF92000D1904 /* SingleCourseView.swift in Sources */,
 				F48793371EC4522200341703 /* MemberLoginCell.swift in Sources */,
+				F43235B71ED4380000374D8D /* ExerciseMistakeController.swift in Sources */,
 				F45871FA1C51E0270048D93F /* CourseChoosingTimeScheduleCell.swift in Sources */,
 				F4AE07FF1E7673CE006FA466 /* MalaConfig.swift in Sources */,
 				304135A51C23AE6400830C43 /* AppDelegate.swift in Sources */,
@@ -2571,6 +2615,7 @@
 				F4493C561E7919DF00D34918 /* MANetworkPlugin.swift in Sources */,
 				F4767A3F1D2CDCD000FD47F1 /* ThemePhotoCollectionView.swift in Sources */,
 				F4D678591CEACCF2009EC956 /* MemberReportCell.swift in Sources */,
+				F43235BA1ED4380000374D8D /* ExerciseMistakeViewCell.swift in Sources */,
 				F48BBADE1CE5816800774297 /* OrderFormInfoViewController.swift in Sources */,
 				F4E106261CC0D390001AD4AF /* Extension+UIDevice.swift in Sources */,
 				F4FF66E81DB87D5F0036E299 /* LiveCourseConfirmView.swift in Sources */,
@@ -2591,7 +2636,7 @@
 				F4B3C67B1CFD416F00C1B423 /* SingleTimeIntervalData.swift in Sources */,
 				F4493C631E7A2B4000D34918 /* LoginUser.swift in Sources */,
 				3037B5A51C3BAB52005672D9 /* TeacherDetailsCertificateCell.swift in Sources */,
-				F47AD4591EC99E140042440A /* ExerciseMistakeViewCell.swift in Sources */,
+				F43235BE1ED4383D00374D8D /* SubjectSelectionBar.swift in Sources */,
 				F46065281C97B168004056B1 /* LoginViewController.swift in Sources */,
 				F45871F71C51DFFF0048D93F /* CourseChoosingClassPeriodCell.swift in Sources */,
 				F4FF66DA1DB875FD0036E299 /* LiveCourseDetailViewController.swift in Sources */,
@@ -2612,6 +2657,7 @@
 				F47AD4D51ECD6E0E0042440A /* CommentModel.swift in Sources */,
 				F46065261C97B168004056B1 /* MainViewController.swift in Sources */,
 				F43525D41DE2CA55002116E5 /* LiveCourseDetailAssistantCell.swift in Sources */,
+				F43235B11ED3D77400374D8D /* ExerciseMistakeCell.swift in Sources */,
 				F4AE07E91E7673AC006FA466 /* CommonFlowLayout.swift in Sources */,
 				304D6D351C3E65ED00282925 /* TeacherDetailsHeaderView.swift in Sources */,
 				F4402DFE1C5A0DE200E7D3DB /* Extension+String.swift in Sources */,
@@ -2667,7 +2713,9 @@
 				35FF7A741CF8325A000A70EE /* OrderFormStatusCell.swift in Sources */,
 				F4CECD9C1DD45DA300E64B58 /* QRCodeView.swift in Sources */,
 				35FF7A751CF8325A000A70EE /* MemberSerivceCollectionView.swift in Sources */,
+				F43235A61ED2C09C00374D8D /* MAHelpViewController.swift in Sources */,
 				35FF7A771CF8325A000A70EE /* StyleFilterView.swift in Sources */,
+				F43235AE1ED3D57100374D8D /* ExerciseMistakeViewController.swift in Sources */,
 				F47AD4A31ECD6E0D0042440A /* BaseObjectModel.swift in Sources */,
 				F465F1451DB4ABB00025D867 /* LiveCourseViewController.swift in Sources */,
 				F47AD4BB1ECD6E0E0042440A /* HighScoreModel.swift in Sources */,
@@ -2684,7 +2732,6 @@
 				F47AD4C11ECD6E0E0042440A /* MemberServiceModel.swift in Sources */,
 				35FF7A7F1CF8325A000A70EE /* PaymentAmountCell.swift in Sources */,
 				F4767A481D34930C00FD47F1 /* ThemeTagListView.swift in Sources */,
-				F47AD4561EC99D190042440A /* ExerciseMistakeController.swift in Sources */,
 				F41CE64D1D86826C00B57F69 /* CityTableViewController.swift in Sources */,
 				35FF7A801CF8325A000A70EE /* Extension+UIVIewController.swift in Sources */,
 				F4B3C6841CFD450600C1B423 /* SingleAbilityData.swift in Sources */,
@@ -2715,6 +2762,7 @@
 				F47AD4BE1ECD6E0E0042440A /* LiveClassModel.swift in Sources */,
 				F47AD4EE1ECD6E0E0042440A /* PaymentChannel.swift in Sources */,
 				F4AE08191E7681D0006FA466 /* MANetworking.swift in Sources */,
+				F43235AA1ED2C0BF00374D8D /* MAHelpViewCell.swift in Sources */,
 				F4AE08091E7673CE006FA466 /* MalaInstance.swift in Sources */,
 				F4AE080C1E7673CE006FA466 /* MalaLog.swift in Sources */,
 				35FF7A941CF8325A000A70EE /* OrderFormViewController.swift in Sources */,
@@ -2780,6 +2828,7 @@
 				F41CE6501D86826C00B57F69 /* SchoolTableViewController.swift in Sources */,
 				F4F29B071D10FF92000D1904 /* SingleCourseView.swift in Sources */,
 				F48793381EC4522200341703 /* MemberLoginCell.swift in Sources */,
+				F43235B81ED4380000374D8D /* ExerciseMistakeController.swift in Sources */,
 				35FF7AD41CF8325A000A70EE /* CourseChoosingTimeScheduleCell.swift in Sources */,
 				F4AE08001E7673CE006FA466 /* MalaConfig.swift in Sources */,
 				35FF7AD51CF8325A000A70EE /* AppDelegate.swift in Sources */,
@@ -2791,6 +2840,7 @@
 				F4493C571E7919DF00D34918 /* MANetworkPlugin.swift in Sources */,
 				F4767A401D2CDCD000FD47F1 /* ThemePhotoCollectionView.swift in Sources */,
 				35FF7ADD1CF8325A000A70EE /* MemberReportCell.swift in Sources */,
+				F43235BB1ED4380000374D8D /* ExerciseMistakeViewCell.swift in Sources */,
 				35FF7ADF1CF8325A000A70EE /* OrderFormInfoViewController.swift in Sources */,
 				35FF7AE71CF8325A000A70EE /* Extension+UIDevice.swift in Sources */,
 				F4FF66E91DB87D5F0036E299 /* LiveCourseConfirmView.swift in Sources */,
@@ -2811,7 +2861,7 @@
 				F4B3C67C1CFD416F00C1B423 /* SingleTimeIntervalData.swift in Sources */,
 				F4493C641E7A2B4000D34918 /* LoginUser.swift in Sources */,
 				35FF7AF91CF8325A000A70EE /* TeacherDetailsCertificateCell.swift in Sources */,
-				F47AD45A1EC99E140042440A /* ExerciseMistakeViewCell.swift in Sources */,
+				F43235BF1ED4383D00374D8D /* SubjectSelectionBar.swift in Sources */,
 				35FF7AFA1CF8325A000A70EE /* LoginViewController.swift in Sources */,
 				35FF7AFB1CF8325A000A70EE /* CourseChoosingClassPeriodCell.swift in Sources */,
 				F4FF66DB1DB875FD0036E299 /* LiveCourseDetailViewController.swift in Sources */,
@@ -2832,6 +2882,7 @@
 				F47AD4D61ECD6E0E0042440A /* CommentModel.swift in Sources */,
 				35FF7B061CF8325A000A70EE /* MainViewController.swift in Sources */,
 				F43525D51DE2CA55002116E5 /* LiveCourseDetailAssistantCell.swift in Sources */,
+				F43235B21ED3D77400374D8D /* ExerciseMistakeCell.swift in Sources */,
 				F4AE07EA1E7673AC006FA466 /* CommonFlowLayout.swift in Sources */,
 				35FF7B071CF8325A000A70EE /* TeacherDetailsHeaderView.swift in Sources */,
 				35FF7B081CF8325A000A70EE /* Extension+String.swift in Sources */,
@@ -2887,7 +2938,9 @@
 				35FF7B571CF83264000A70EE /* OrderFormStatusCell.swift in Sources */,
 				F4CECD9D1DD45DA300E64B58 /* QRCodeView.swift in Sources */,
 				35FF7B581CF83264000A70EE /* MemberSerivceCollectionView.swift in Sources */,
+				F43235A71ED2C09C00374D8D /* MAHelpViewController.swift in Sources */,
 				35FF7B5A1CF83264000A70EE /* StyleFilterView.swift in Sources */,
+				F43235AF1ED3D57100374D8D /* ExerciseMistakeViewController.swift in Sources */,
 				F47AD4A41ECD6E0D0042440A /* BaseObjectModel.swift in Sources */,
 				F465F1461DB4ABB00025D867 /* LiveCourseViewController.swift in Sources */,
 				F47AD4BC1ECD6E0E0042440A /* HighScoreModel.swift in Sources */,
@@ -2904,7 +2957,6 @@
 				F47AD4C21ECD6E0E0042440A /* MemberServiceModel.swift in Sources */,
 				35FF7B621CF83264000A70EE /* PaymentAmountCell.swift in Sources */,
 				F4767A491D34930C00FD47F1 /* ThemeTagListView.swift in Sources */,
-				F47AD4571EC99D190042440A /* ExerciseMistakeController.swift in Sources */,
 				F41CE64E1D86826C00B57F69 /* CityTableViewController.swift in Sources */,
 				35FF7B631CF83264000A70EE /* Extension+UIVIewController.swift in Sources */,
 				F4B3C6851CFD450600C1B423 /* SingleAbilityData.swift in Sources */,
@@ -2935,6 +2987,7 @@
 				F47AD4BF1ECD6E0E0042440A /* LiveClassModel.swift in Sources */,
 				F47AD4EF1ECD6E0E0042440A /* PaymentChannel.swift in Sources */,
 				F4AE081A1E7681D0006FA466 /* MANetworking.swift in Sources */,
+				F43235AB1ED2C0BF00374D8D /* MAHelpViewCell.swift in Sources */,
 				F4AE080A1E7673CE006FA466 /* MalaInstance.swift in Sources */,
 				F4AE080D1E7673CE006FA466 /* MalaLog.swift in Sources */,
 				35FF7B771CF83264000A70EE /* OrderFormViewController.swift in Sources */,
@@ -3000,6 +3053,7 @@
 				F41CE6511D86826C00B57F69 /* SchoolTableViewController.swift in Sources */,
 				F4F29B081D10FF92000D1904 /* SingleCourseView.swift in Sources */,
 				F48793391EC4522200341703 /* MemberLoginCell.swift in Sources */,
+				F43235B91ED4380000374D8D /* ExerciseMistakeController.swift in Sources */,
 				35FF7BB71CF83264000A70EE /* CourseChoosingTimeScheduleCell.swift in Sources */,
 				F4AE08011E7673CE006FA466 /* MalaConfig.swift in Sources */,
 				35FF7BB81CF83264000A70EE /* AppDelegate.swift in Sources */,
@@ -3011,6 +3065,7 @@
 				F4493C581E7919DF00D34918 /* MANetworkPlugin.swift in Sources */,
 				F4767A411D2CDCD000FD47F1 /* ThemePhotoCollectionView.swift in Sources */,
 				35FF7BC01CF83264000A70EE /* MemberReportCell.swift in Sources */,
+				F43235BC1ED4380000374D8D /* ExerciseMistakeViewCell.swift in Sources */,
 				35FF7BC21CF83264000A70EE /* OrderFormInfoViewController.swift in Sources */,
 				35FF7BCA1CF83264000A70EE /* Extension+UIDevice.swift in Sources */,
 				F4FF66EA1DB87D5F0036E299 /* LiveCourseConfirmView.swift in Sources */,
@@ -3031,7 +3086,7 @@
 				F4B3C67D1CFD416F00C1B423 /* SingleTimeIntervalData.swift in Sources */,
 				F4493C651E7A2B4000D34918 /* LoginUser.swift in Sources */,
 				35FF7BDC1CF83264000A70EE /* TeacherDetailsCertificateCell.swift in Sources */,
-				F47AD45B1EC99E140042440A /* ExerciseMistakeViewCell.swift in Sources */,
+				F43235C01ED4383D00374D8D /* SubjectSelectionBar.swift in Sources */,
 				35FF7BDD1CF83264000A70EE /* LoginViewController.swift in Sources */,
 				35FF7BDE1CF83264000A70EE /* CourseChoosingClassPeriodCell.swift in Sources */,
 				F4FF66DC1DB875FD0036E299 /* LiveCourseDetailViewController.swift in Sources */,
@@ -3052,6 +3107,7 @@
 				F47AD4D71ECD6E0E0042440A /* CommentModel.swift in Sources */,
 				35FF7BE91CF83264000A70EE /* MainViewController.swift in Sources */,
 				F43525D61DE2CA55002116E5 /* LiveCourseDetailAssistantCell.swift in Sources */,
+				F43235B31ED3D77400374D8D /* ExerciseMistakeCell.swift in Sources */,
 				F4AE07EB1E7673AC006FA466 /* CommonFlowLayout.swift in Sources */,
 				35FF7BEA1CF83264000A70EE /* TeacherDetailsHeaderView.swift in Sources */,
 				35FF7BEB1CF83264000A70EE /* Extension+String.swift in Sources */,

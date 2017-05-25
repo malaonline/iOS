@@ -120,8 +120,8 @@ class MemberReportCell: MalaBaseMemberCardCell {
     private func setup() {
         setupDefaultStyle(image: .reportNormal,
                           disabledImage: .reportDisable,
-                          title: "学习报告目前只支持数学科目！",
-                          disabledTitle: "学习报告数据获取失败！",
+                          title: "学习报告目前只支持数学科目",
+                          disabledTitle: "学习报告数据获取失败",
                           buttonTitle: "查看学习报告样本")
         actionButton.addTarget(self, action: #selector(MemberReportCell.buttonDidTap), for: .touchUpInside)
     }
