@@ -92,7 +92,6 @@ class SubjectSelectionBar: UIView, UITableViewDataSource, UITableViewDelegate {
         
         cell.textLabel?.text = String(format: "%@ %d", model.title, getSubjectRecord(subject: model.subject) ?? 0)
         
-        print("backgroundColor", model.subject, MalaCurrentSubject)
         if model.subject == MalaCurrentSubject {
             cell.contentView.backgroundColor = UIColor(named: .themeLightBlue)
         }

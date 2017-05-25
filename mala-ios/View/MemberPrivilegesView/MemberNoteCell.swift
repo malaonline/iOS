@@ -52,8 +52,8 @@ class MemberNoteCell: MalaBaseMemberCardCell {
     }()
     private lazy var englishIcon: UIImageView = {
         let icon = UIImageView(image: UIImage(asset: .subjectEnglish))
-        MalaCurrentSubject = .english
-        icon.addTapEvent(target: self, action: #selector(MemberNoteCell.noteButtonDidTap))
+        icon.tag = 2
+        icon.addTapEvent(target: self, action: #selector(MemberNoteCell.noteButtonDidTap(sender:)))
         return icon
     }()
     private lazy var englishLabel: UILabel = {
@@ -62,14 +62,14 @@ class MemberNoteCell: MalaBaseMemberCardCell {
             font: FontFamily.PingFangSC.Regular.font(20),
             textColor: UIColor(named: .subjectGray)
         )
-        MalaCurrentSubject = .english
-        label.addTapEvent(target: self, action: #selector(MemberNoteCell.noteButtonDidTap))
+        label.tag = 2
+        label.addTapEvent(target: self, action: #selector(MemberNoteCell.noteButtonDidTap(sender:)))
         return label
     }()
     private lazy var mathIcon: UIImageView = {
         let icon = UIImageView(image: UIImage(asset: .subjectMath))
-        MalaCurrentSubject = .math
-        icon.addTapEvent(target: self, action: #selector(MemberNoteCell.noteButtonDidTap))
+        icon.tag = 1
+        icon.addTapEvent(target: self, action: #selector(MemberNoteCell.noteButtonDidTap(sender:)))
         return icon
     }()
     private lazy var mathLabel: UILabel = {
@@ -78,8 +78,8 @@ class MemberNoteCell: MalaBaseMemberCardCell {
             font: FontFamily.PingFangSC.Regular.font(20),
             textColor: UIColor(named: .subjectGray)
         )
-        MalaCurrentSubject = .math
-        label.addTapEvent(target: self, action: #selector(MemberNoteCell.noteButtonDidTap))
+        label.tag = 1
+        label.addTapEvent(target: self, action: #selector(MemberNoteCell.noteButtonDidTap(sender:)))
         return label
     }()
     
@@ -176,7 +176,8 @@ class MemberNoteCell: MalaBaseMemberCardCell {
         MemberPrivilegesViewController.shared.present(popup, animated: true, completion: nil)
     }
     
-    @objc private func noteButtonDidTap() {
+    @objc private func noteButtonDidTap(sender: UITapGestureRecognizer) {
+        MalaCurrentSubject = sender.view?.tag == 1 ? .math : .english
         MemberPrivilegesViewController.shared.showExerciseMistakeRecord()
     }
     
