@@ -510,7 +510,7 @@ open class MalaConfig {
         return [
             IntroductionModel(title: "1.课前", image: .helpBell, subTitle: "查看错题本案例"),
             IntroductionModel(title: "2.课中", image: .helpLive, subTitle: "学生通过pad答题，点击提交。同步App可以根据登录手机号匹配传送给错题本，实时查看。"),
-            IntroductionModel(title: "3.课后", image: .helpNote, subTitle: "学生在App里会对课程中打错的题进行二次复习，温故知新，云端存储。不受地域、设备限制，实现个性化复习。")
+            IntroductionModel(title: "3.课后", image: .helpNote, subTitle: "学生在App里会对课程中答错的题进行二次复习，温故知新，云端存储。不受地域、设备限制，实现个性化复习。")
         ]
     }
 }
