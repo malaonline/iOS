@@ -180,6 +180,22 @@ class ExerciseMistakeViewController: StatefulViewController, UITableViewDataSour
                 self.models = mistakes
             }
             
+            switch MalaCurrentSubject {
+            case .math:
+                if count > MalaExerciseRecordMath {
+                    self.showToast(String(format: "新增%d题", count-(MalaExerciseRecordMath ?? 0)))
+                    MalaExerciseRecordMath = count
+                }
+            case .english:
+                if count > MalaExerciseRecordEnglish {
+                    self.showToast(String(format: "新增%d题", count-(MalaExerciseRecordEnglish ?? 0)))
+                    MalaExerciseRecordEnglish = count
+                }
+            default:
+                break
+            }
+            self.subjectBar.refreshTitle()
+            
             self.allCount = count
             self.currentState = .content
         }

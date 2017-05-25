@@ -120,4 +120,11 @@ class SubjectSelectionBar: UIView, UITableViewDataSource, UITableViewDelegate {
         subjectTableView.reloadData()
         self.popover.show(subjectTableView, fromView: self.subjectLabel)
     }
+    
+    
+    // MARK: - API
+    func refreshTitle() {
+        let subjectName = MalaCurrentSubject == .math ? "数学" : "英语"
+        subjectLabel.text = String(format: "科目：%@ %d", subjectName, getSubjectRecord(subject: MalaCurrentSubject) ?? 0)
+    }
 }
