@@ -66,3 +66,4 @@ var MalaCurrentSubject: MASubjectId = .math
 var MalaExerciseRecordMath: Int? = MalaUserDefaults.exerciseRecord.value?.mistakes?.math ?? 0
 var MalaExerciseRecordEnglish: Int? = MalaUserDefaults.exerciseRecord.value?.mistakes?.english ?? 0
 
+var MalaCurrentExerciseIndex: Int?

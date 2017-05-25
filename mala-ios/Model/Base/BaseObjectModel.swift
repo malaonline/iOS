@@ -60,6 +60,11 @@ open class BaseObjectModel: NSObject, NSCoding {
             name = string
             return
         }
+        // only for option
+        if key == "text", let string = value as? String {
+            name = string
+            return
+        }
         if key == "description", let string = value as? String {
             desc = string
             return

@@ -86,6 +86,7 @@ class ExerciseMistakeCell: UITableViewCell {
     // MARK: - Private Method
     private func  setup() {
         contentView.backgroundColor = UIColor(named: .themeLightBlue)
+        selectionStyle = .none
         
         contentView.addSubview(content)
         content.addSubview(groupTitle)

@@ -251,7 +251,7 @@ class ExerciseMistakeViewCell: UICollectionViewCell {
             maker.size.equalTo(contentShadow)
         }
         indexLabel.snp.makeConstraints { (maker) in
-            maker.width.equalTo(32)
+            maker.left.equalTo(groupTitle.snp.right)
             maker.height.equalTo(22)
             maker.top.equalTo(content).offset(18)
             maker.right.equalTo(content).offset(-13)

@@ -11,6 +11,8 @@ import UIKit
 private let ExerciseMistakeCellReuseId = "ExerciseMistakeCellReuseId"
 
 class ExerciseMistakeViewController: StatefulViewController, UITableViewDataSource, UITableViewDelegate {
+    
+    static let shared = ExerciseMistakeViewController()
 
     // MARK: - Models
     var models: [ExerciseMistakeRecord] = [] {
@@ -27,6 +29,8 @@ class ExerciseMistakeViewController: StatefulViewController, UITableViewDataSour
             }
         }
     }
+    var isPushed: Bool = false
+    
     
     // MARK: - Components
     lazy var backBarButton: UIButton = {
@@ -40,8 +44,8 @@ class ExerciseMistakeViewController: StatefulViewController, UITableViewDataSour
     }()
     private lazy var subjectBar: SubjectSelectionBar = {
         let bar = SubjectSelectionBar(UIColor.white)
-        bar.refreshAction = {
-            self.tableView.es_startPullToRefresh()
+        bar.refreshAction = { [weak self] in
+            self?.tableView.es_startPullToRefresh()
         }
         return bar
     }()
@@ -63,7 +67,15 @@ class ExerciseMistakeViewController: StatefulViewController, UITableViewDataSour
         
         tableView.es_startPullToRefresh()
     }
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if isPushed, MalaCurrentExerciseIndex != nil {
+            tableView.scrollToRow(at: IndexPath(row: MalaCurrentExerciseIndex!, section: 0), at: .top, animated: false)
+            isPushed = false
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -87,15 +99,16 @@ class ExerciseMistakeViewController: StatefulViewController, UITableViewDataSour
         tableView.emptyDataSetDelegate = self
         
         // 下拉刷新
-        tableView.es_addPullToRefresh(animator: ThemeRefreshHeaderAnimator()) {
-            self.tableView.es_resetNoMoreData()
-            self.loadExerciseMistakes(finish: { 
-                self.tableView.es_stopPullToRefresh()
+        tableView.es_addPullToRefresh(animator: ThemeRefreshHeaderAnimator()) { [weak self] in
+            self?.tableView.es_resetNoMoreData()
+            self?.loadExerciseMistakes(finish: {
+                self?.tableView.es_stopPullToRefresh()
             })
         }
-        tableView.es_addInfiniteScrolling(animator: ThemeRefreshFooterAnimator()) {
-            self.loadExerciseMistakes(isLoadMore: true, finish: {
-                self.tableView.es_stopLoadingMore()
+        tableView.es_addInfiniteScrolling(animator: ThemeRefreshFooterAnimator()) { [weak self] in
+            self?.loadExerciseMistakes(isLoadMore: true, finish: {
+                let isIgnore = ((self?.models.count ?? 0) > 0) && ((self?.models.count ?? 0) <= 5)
+                self?.tableView.es_stopPullToRefresh(ignoreDate: false, ignoreFooter: isIgnore)
             })
         }
         
@@ -190,9 +203,18 @@ class ExerciseMistakeViewController: StatefulViewController, UITableViewDataSour
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 110
     }
-    
-    func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
-        return false
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let viewController = ExerciseMistakeController()
+        viewController.hidesBottomBarWhenPushed = true
+        viewController.index = indexPath.row
+        viewController.models = self.models
+        navigationController?.pushViewController(viewController, animated: true)
+        isPushed = true
     }
+
     
+    deinit {
+        print("ExerciseMistakeViewController deinit")
+    }
 }

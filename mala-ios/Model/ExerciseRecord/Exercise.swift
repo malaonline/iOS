@@ -54,7 +54,7 @@ class Exercise: BaseObjectModel {
             return
         }
         if key == "options" {
-            if let dicts = value as? [[String: AnyObject]] {
+            if let dicts = value as? [[String: AnyObject]], options.isEmpty {
                 for dict in dicts {
                     options.append(BaseObjectModel(dict: dict))
                 }
