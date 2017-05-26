@@ -60,6 +60,7 @@ extension StatefulViewController: DZNEmptyDataSetSource {
         case (is FilterResultController, .empty):           plug.title = L10n.noMatchTeacher
         case (is CouponViewController, .empty):             plug.title = L10n.noCoupon
         case (is OrderFormViewController, .empty):          plug.title = L10n.noOrder
+        case (is ExerciseMistakeViewController, .empty):    plug.title = "目前科目暂没有题目哦~"
         // commen
         case (is CourseTableViewController, .loading):      plug.title = L10n.loading
         case (is CityTableViewController, .loading):        plug.title = L10n.loading
@@ -127,6 +128,7 @@ extension StatefulViewController: DZNEmptyDataSetSource {
         case (is FilterResultController, .empty):           return UIImage(asset: .filterNoResult)
         case (is CouponViewController, .empty):             return UIImage(asset: .noCoupons)
         case (is OrderFormViewController, .empty):          return UIImage(asset: .noOrder)
+        case (is ExerciseMistakeViewController, .empty):    return UIImage(asset: .noExercise)
         // commen
         case (is CourseTableViewController, .loading):     return UIImage(asset: .loadingImgBlue78x78)
         case (is CityTableViewController, .loading):       return UIImage(asset: .loadingImgBlue78x78)
