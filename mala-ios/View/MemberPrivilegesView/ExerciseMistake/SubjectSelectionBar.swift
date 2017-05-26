@@ -47,6 +47,10 @@ class SubjectSelectionBar: UIView, UITableViewDataSource, UITableViewDelegate {
         label.text = String(format: "科目：%@ %d", subjectName, getSubjectRecord(subject: MalaCurrentSubject) ?? 0)
         return label
     }()
+    private lazy var arrow: UIImageView = {
+        let imageView = UIImageView(image: UIImage(asset: .blackArrow))
+        return imageView
+    }()
     private lazy var popover: Popover = {
         let popover = Popover(options: [
             .arrowSize(CGSize(width: 9, height: 7.9)),
@@ -54,9 +58,15 @@ class SubjectSelectionBar: UIView, UITableViewDataSource, UITableViewDelegate {
             .cornerRadius(4),
             .blackOverlayColor(UIColor(white: 0.0, alpha: 0.6))
             ])
+        popover.willDismissHandler = { [weak self] in
+            self?.arrow.transform = CGAffineTransform.identity
+        }
+        popover.willShowHandler = { [weak self] in
+            self?.arrow.transform = CGAffineTransform(rotationAngle: .pi)
+        }
         return popover
     }()
-    
+
     
     // MARK: - Constructed
     override init(frame: CGRect) {
@@ -74,9 +84,14 @@ class SubjectSelectionBar: UIView, UITableViewDataSource, UITableViewDelegate {
         addTapEvent(target: self, action: #selector(SubjectSelectionBar.subjectBarDidTap))
         
         addSubview(subjectLabel)
+        addSubview(arrow)
         subjectLabel.snp.makeConstraints { (maker) in
             maker.height.equalTo(22)
             maker.center.equalTo(self)
+        }
+        arrow.snp.makeConstraints { (maker) in
+            maker.centerY.equalTo(subjectLabel)
+            maker.left.equalTo(subjectLabel.snp.right).offset(5)
         }
     }
     
