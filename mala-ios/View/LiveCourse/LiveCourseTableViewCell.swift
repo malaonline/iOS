@@ -25,7 +25,7 @@ class LiveCourseTableViewCell: UITableViewCell {
             courseName.text = model.courseName
             gradeLabel.text = (model.courseGrade ?? "")+"  "
             courseDateLabel.text = String(format: "%@-%@", getDateString(model.courseStart, format: "MM月dd日"), getDateString(model.courseEnd, format: "MM月dd日"))
-            priceLabel.text = String(format: "%@/", model.courseFee?.priceCNY ?? "")
+            priceLabel.text = String(format: "%@/", model.courseFee?.liveCoursePrice ?? "")
             lessionsLabel.text = String(format: "%d次", model.courseLessons ?? 0)
         }
     }
