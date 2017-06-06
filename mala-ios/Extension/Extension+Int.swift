@@ -41,4 +41,14 @@ extension Int {
             return Int(Double(self)/100)
         }
     }
+    
+    public var liveCoursePrice: String {
+        get {
+            #if USE_PRD_SERVER
+                return String(format: "¥%@", String(Int(self)/100))
+            #else
+                return String(format: "¥%@", String(Double(self)/100))
+            #endif
+        }
+    }
 }

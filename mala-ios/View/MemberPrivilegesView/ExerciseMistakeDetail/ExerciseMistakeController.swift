@@ -59,8 +59,13 @@ class ExerciseMistakeController: BaseViewController, UICollectionViewDelegate, U
     }
     
     private func setupUserInterface() {
+        
+        let modelsFirstId = models.first?.id
+        let defaultFirstId = MalaConfig.exerciseRecordDefaultData().first?.id
+        
+        title = modelsFirstId == defaultFirstId ? "错题样本" : "错题详情"
+        
         // Style
-        title = "错题样本"
         collectionView.backgroundColor = UIColor(named: .themeLightBlue)
         
         // SubViews

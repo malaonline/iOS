@@ -85,7 +85,7 @@ class MemberPrivilegesViewController: UITableViewController {
     private func configure() {
         tableView.es_addPullToRefresh(animator: ThemeRefreshHeaderAnimator()) {
             self.loadUserExerciseRecord()
-            self.loadStudyReportOverview()
+            // self.loadStudyReportOverview()
         }
         
         tableView.backgroundColor = UIColor(named: .themeLightBlue)

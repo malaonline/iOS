@@ -414,7 +414,7 @@ open class MalaConfig {
     class func exerciseRecordDefaultData() -> [ExerciseMistakeRecord] {
         return [
             ExerciseMistakeRecord(
-                id: 100,
+                id: -33,
                 submit: 0,
                 updatedAt: 1494490662,
                 group: BaseObjectModel(

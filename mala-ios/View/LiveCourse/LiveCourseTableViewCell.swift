@@ -21,12 +21,11 @@ class LiveCourseTableViewCell: UITableViewCell {
             lecturerNameLabel.text = model.lecturerName
             assistantNameLabel.text = String(format: "助教:%@", (model.assistantName ?? 0))
             lecturerTitleLabel.text = model.lecturerTitle
-            classLevelLabel.text = String(format: "%d人小班", model.roomCapacity ?? 0)
             
             courseName.text = model.courseName
             gradeLabel.text = (model.courseGrade ?? "")+"  "
             courseDateLabel.text = String(format: "%@-%@", getDateString(model.courseStart, format: "MM月dd日"), getDateString(model.courseEnd, format: "MM月dd日"))
-            priceLabel.text = String(format: "%@/", model.courseFee?.priceCNY ?? "")
+            priceLabel.text = String(format: "%@/", model.courseFee?.liveCoursePrice ?? "")
             lessionsLabel.text = String(format: "%d次", model.courseLessons ?? 0)
         }
     }
@@ -119,18 +118,6 @@ class LiveCourseTableViewCell: UITableViewCell {
         let view = UIView(UIColor.white)
         return view
     }()
-    /// 班级级别标签
-    private lazy var classLevelLabel: UILabel = {
-        let label = UILabel(
-            text: "班级规模",
-            font: FontFamily.PingFangSC.Light.font(10),
-            textColor: UIColor.white,
-            textAlignment: .center,
-            backgroundColor: UIColor(named: .LiveClassCapacity)
-        )
-        label.addShadow(color: UIColor(named: .LiveClassCapacityShadow))
-        return label
-    }()
     /// 课程名称
     private lazy var courseName: UILabel = {
         let label = UILabel(
@@ -221,7 +208,6 @@ class LiveCourseTableViewCell: UITableViewCell {
         teacherContent.addSubview(lecturerTitleLabel)
         teacherContent.addSubview(avatarLine1)
         teacherContent.addSubview(avatarLine2)
-        teacherContent.addSubview(classLevelLabel)
         courseContent.addSubview(courseName)
         courseContent.addSubview(dateIcon)
         courseContent.addSubview(courseDateLabel)
@@ -304,13 +290,6 @@ class LiveCourseTableViewCell: UITableViewCell {
             maker.centerX.equalTo(teacherContent).offset(20)
             maker.centerY.equalTo(lecturerAvatar).offset(5)
         }
-        classLevelLabel.snp.makeConstraints { (maker) in
-            maker.right.equalTo(teacherContent).offset(15.6)
-            maker.top.equalTo(teacherContent).offset(11)
-            maker.height.equalTo(15)
-            maker.width.equalTo(70)
-        }
-        classLevelLabel.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi / 4))
         courseName.snp.makeConstraints { (maker) in
             maker.top.equalTo(courseContent).offset(17)
             maker.left.equalTo(courseContent).offset(12)
