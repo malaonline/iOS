@@ -58,13 +58,6 @@
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-	<key>NSAppTransportSecurity</key>
-	<dict>
-		<key>NSAllowsArbitraryLoads</key>
-		<true/>
-		<key>NSExceptionDomains</key>
-		<dict/>
-	</dict>
 	<key>NSBluetoothPeripheralUsageDescription</key>
 	<string>是否允许麻辣老师使用蓝牙</string>
 	<key>NSCalendarsUsageDescription</key>

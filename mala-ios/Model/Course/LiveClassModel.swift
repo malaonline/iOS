@@ -63,7 +63,7 @@ class LiveClassModel: BaseObjectModel {
             #elseif USE_STAGE_SERVER
                 return URL(string: String(format: "https://stage.malalaoshi.com/wechat/order/course_choosing/?step=live_class_page&liveclassid=%d", id))
             #else
-                return URL(string: String(format: "http://dev.malalaoshi.com/wechat/order/course_choosing/?step=live_class_page&liveclassid=%d", id))
+                return URL(string: String(format: "https://dev.malalaoshi.com/wechat/order/course_choosing/?step=live_class_page&liveclassid=%d", id))
             #endif
             
         }
