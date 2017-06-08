@@ -32,9 +32,12 @@ class LiveClassModel: BaseObjectModel {
     var courseDesc: String?
     var studentsCount: Int?
     var lecturerBio: String?
-    
     var isPaid: Bool = true
     
+    var subjectString: String?
+    
+    
+    // MARK: - Ca Property
     var remaining: Int {
         get {
             return (roomCapacity ?? 0) - (studentsCount ?? 0)
@@ -145,6 +148,10 @@ class LiveClassModel: BaseObjectModel {
         }
         if key == "course_lessons", let int = value as? Int {
             courseLessons = int
+            return
+        }
+        if key == "course_subject", let string = value as? String {
+            subjectString = string
             return
         }
         // 详细信息
