@@ -67,3 +67,5 @@ var MalaExerciseRecordMath: Int? = MalaUserDefaults.exerciseRecord.value?.mistak
 var MalaExerciseRecordEnglish: Int? = MalaUserDefaults.exerciseRecord.value?.mistakes?.english ?? 0
 
 var MalaCurrentExerciseIndex: Int?
+
+var MACurrentSeason: LiveCourseSeason = getSeasonType(withStartDate: Date().timeIntervalSince1970)

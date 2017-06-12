@@ -22,7 +22,12 @@ class LiveClassModel: BaseObjectModel {
     var schoolName: String?
     var schoolAddress: String?
     var courseName: String?
-    var courseStart: TimeInterval?
+    var courseStart: TimeInterval? {
+        didSet {
+            guard let date = courseStart, date != 0 else { return }
+            seasonType = getSeasonType(withStartDate: date)
+        }
+    }
     var courseEnd: TimeInterval?
     var courseGrade: String?
     var courseFee: Int?
@@ -35,6 +40,23 @@ class LiveClassModel: BaseObjectModel {
     var isPaid: Bool = true
     
     var subjectString: String?
+    var seasonType: LiveCourseSeason? {
+        didSet {
+            guard let season = seasonType,
+                  let start = courseStart else { return }
+            let startDate = Date(timeIntervalSince1970: start)
+            let nextSeason = LiveCourseSeason(rawValue: MACurrentSeason.rawValue+1) ?? .spring
+            
+            if season == MACurrentSeason && startDate.isEarlier(than: Date()) {
+                signState = .inClass
+            }else if (season == MACurrentSeason && startDate.isLater(than: Date())) || (season == nextSeason) {
+                signState = .enrolling
+            }else {
+                signState = .preEnrollment
+            }
+        }
+    }
+    var signState: LiveCourseSignState?
     
     
     // MARK: - Ca Property

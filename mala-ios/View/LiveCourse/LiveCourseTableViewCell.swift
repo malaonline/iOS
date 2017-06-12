@@ -14,21 +14,42 @@ class LiveCourseTableViewCell: UITableViewCell {
     /// 老师简介模型
     var model: LiveClassModel? {
         didSet {
-            guard let model = model else { return }
+            guard let model = model,
+                  let courseTitle = model.courseName else { return }
+
+            
+            let rangeLocation = (courseTitle as NSString).range(of: "(").location
+            if rangeLocation <= courseTitle.characters.count {
+                let attrString: NSMutableAttributedString = NSMutableAttributedString(string: courseTitle)
+                attrString.addAttribute(
+                    NSFontAttributeName,
+                    value: UIFont.systemFont(ofSize: 18),
+                    range: NSMakeRange(0, rangeLocation)
+                )
+                attrString.addAttribute(
+                    NSFontAttributeName,
+                    value: UIFont.systemFont(ofSize: 14),
+                    range: NSMakeRange(rangeLocation, courseTitle.characters.count - rangeLocation)
+                )
+                courseName.attributedText = attrString
+            }else {
+                courseName.text = courseTitle
+            }
             
             lecturerAvatar.setImage(withURL: model.lecturerAvatar)
+            lecturerTitleLabel.text = model.lecturerTitle
             assistantAvatar.setImage(withURL: model.assistantAvatar)
             lecturerNameLabel.text = model.lecturerName
             assistantNameLabel.text = String(format: "助教 %@", (model.assistantName ?? 0))
-            lecturerTitleLabel.text = model.lecturerTitle
             
-            courseName.text = model.courseName
             gradeLabel.text = (model.courseGrade ?? "")+"  "
             courseDateLabel.text = String(format: "%@-%@", getDateString(model.courseStart, format: "MM月dd日"), getDateString(model.courseEnd, format: "MM月dd日"))
             priceLabel.text = String(format: "%@/", model.courseFee?.liveCoursePrice ?? "")
             lessionsLabel.text = String(format: "%d次", model.courseLessons ?? 0)
             
             subjectLabel.text = model.subjectString?.subStringToIndex(1)
+            classTypeLabel.text = getDescForSeasonType(type: model.seasonType)
+            courseState.image = UIImage(named: model.signState?.rawValue ?? "")
         }
     }
     
@@ -76,7 +97,7 @@ class LiveCourseTableViewCell: UITableViewCell {
     /// live-course type
     private lazy var classTypeLabel: UILabel = {
         let label = UILabel(
-            text: "暑期班",
+            text: "其他班",
             font: FontFamily.PingFangSC.Regular.font(12),
             textColor: UIColor(named: .liveCourseTypeBlue),
             textAlignment: .center,
@@ -252,7 +273,7 @@ class LiveCourseTableViewCell: UITableViewCell {
         courseName.snp.makeConstraints { (maker) in
             maker.centerY.equalTo(classTypeLabel)
             maker.left.equalTo(classTypeLabel.snp.right).offset(8)
-            maker.right.equalTo(courseState.snp.left).offset(-10)
+            maker.right.equalTo(courseState.snp.left)
             maker.height.equalTo(25)
         }
         courseState.snp.makeConstraints { (maker) in
@@ -284,13 +305,14 @@ class LiveCourseTableViewCell: UITableViewCell {
             maker.height.equalTo(50)
         }
         lecturerNameLabel.snp.makeConstraints { (maker) in
+            maker.left.equalTo(teacherContent).offset(6)
             maker.right.equalTo(lecturerAvatarBackground.snp.left).offset(-6)
             maker.height.equalTo(25)
             maker.centerY.equalTo(lecturerAvatarBackground)
         }
         lecturerTitleLabel.snp.makeConstraints { (maker) in
             maker.right.equalTo(lecturerNameLabel)
-            maker.left.equalTo(teacherContent).offset(22)
+            maker.left.equalTo(teacherContent).offset(6)
             maker.top.equalTo(lecturerNameLabel).offset(6)
             maker.bottom.equalTo(teacherContent)
         }
