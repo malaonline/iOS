@@ -125,8 +125,8 @@ enum ColorName: UInt32 {
     
     case liveShadowBlue = 0xB6D7FCFF
     case liveThemeBlue = 0x75A6FCFF
-    case liveMathGreen = 0x99D03BFF
-    case liveEnglishPurple = 0xB790FFFF
+    case liveMathPurple = 0x99D03BFF
+    case liveEnglishGreen = 0xB790FFFF
     case liveCourseTypeBlue = 0x76A6FDFF
     case livePriceRed = 0xFE3059FF
     

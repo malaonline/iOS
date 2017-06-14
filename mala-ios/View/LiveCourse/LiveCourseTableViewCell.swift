@@ -75,9 +75,9 @@ class LiveCourseTableViewCell: UITableViewCell {
         let label = UILabel(
             text: "科",
             font: FontFamily.PingFangSC.Regular.font(12),
-            textColor: UIColor(named: .liveMathGreen),
+            textColor: UIColor(named: .liveMathPurple),
             textAlignment: .center,
-            borderColor: UIColor(named: .liveMathGreen),
+            borderColor: UIColor(named: .liveEnglishGreen),
             borderWidth: 1.0,
             cornerRadius: 2
         )

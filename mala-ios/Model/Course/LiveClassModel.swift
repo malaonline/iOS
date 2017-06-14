@@ -90,11 +90,11 @@ class LiveClassModel: BaseObjectModel {
     }
     var subjectColor: UIColor {
         get {
-            guard let chart = firstSubjectChart else { return UIColor(named: .liveMathGreen) }
+            guard let chart = firstSubjectChart else { return UIColor(named: .liveMathPurple) }
             switch chart {
-            case "数":   return UIColor(named: .liveMathGreen)
-            case "英":   return UIColor(named: .liveEnglishPurple)
-            default:     return UIColor(named: .liveMathGreen)
+            case "数":   return UIColor(named: .liveEnglishGreen)
+            case "英":   return UIColor(named: .liveMathPurple)
+            default:     return UIColor(named: .liveMathPurple)
             }
         }
     }
