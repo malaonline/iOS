@@ -17,21 +17,8 @@ class LiveCourseTableViewCell: UITableViewCell {
             guard let model = model,
                   let courseTitle = model.courseName else { return }
 
-            
-            let rangeLocation = (courseTitle as NSString).range(of: "(").location
-            if rangeLocation <= courseTitle.characters.count {
-                let attrString: NSMutableAttributedString = NSMutableAttributedString(string: courseTitle)
-                attrString.addAttribute(
-                    NSFontAttributeName,
-                    value: UIFont.systemFont(ofSize: 18),
-                    range: NSMakeRange(0, rangeLocation)
-                )
-                attrString.addAttribute(
-                    NSFontAttributeName,
-                    value: UIFont.systemFont(ofSize: 14),
-                    range: NSMakeRange(rangeLocation, courseTitle.characters.count - rangeLocation)
-                )
-                courseName.attributedText = attrString
+            if let title = model.attrCourseTitle {
+                courseName.attributedText = title
             }else {
                 courseName.text = courseTitle
             }
@@ -47,7 +34,9 @@ class LiveCourseTableViewCell: UITableViewCell {
             priceLabel.text = String(format: "%@/", model.courseFee?.liveCoursePrice ?? "")
             lessionsLabel.text = String(format: "%d次", model.courseLessons ?? 0)
             
-            subjectLabel.text = model.subjectString?.subStringToIndex(1)
+            subjectLabel.text = model.firstSubjectChart
+            subjectLabel.textColor = model.subjectColor
+            subjectLabel.layer.borderColor = model.subjectColor.cgColor
             classTypeLabel.text = getDescForSeasonType(type: model.seasonType)
             courseState.image = UIImage(named: model.signState?.rawValue ?? "")
         }

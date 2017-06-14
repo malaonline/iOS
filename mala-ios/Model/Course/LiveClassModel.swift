@@ -60,6 +60,44 @@ class LiveClassModel: BaseObjectModel {
     
     
     // MARK: - Ca Property
+    var attrCourseTitle: NSMutableAttributedString? {
+        get {
+            guard let courseTitle = self.courseName else { return nil }
+            
+            let rangeLocation = (courseTitle as NSString).range(of: "(").location
+            if rangeLocation <= courseTitle.characters.count {
+                let attrString: NSMutableAttributedString = NSMutableAttributedString(string: courseTitle)
+                attrString.addAttribute(
+                    NSFontAttributeName,
+                    value: UIFont.systemFont(ofSize: 18),
+                    range: NSMakeRange(0, rangeLocation)
+                )
+                attrString.addAttribute(
+                    NSFontAttributeName,
+                    value: UIFont.systemFont(ofSize: 14),
+                    range: NSMakeRange(rangeLocation, courseTitle.characters.count - rangeLocation)
+                )
+                return attrString
+            }else {
+                return nil
+            }
+        }
+    }
+    var firstSubjectChart: String? {
+        get {
+            return subjectString?.subStringToIndex(1)
+        }
+    }
+    var subjectColor: UIColor {
+        get {
+            guard let chart = firstSubjectChart else { return UIColor(named: .liveMathGreen) }
+            switch chart {
+            case "数":   return UIColor(named: .liveMathGreen)
+            case "英":   return UIColor(named: .liveEnglishPurple)
+            default:     return UIColor(named: .liveMathGreen)
+            }
+        }
+    }
     var remaining: Int {
         get {
             return (roomCapacity ?? 0) - (studentsCount ?? 0)
