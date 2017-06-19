@@ -220,7 +220,7 @@ class LiveCourseViewController: StatefulViewController, UITableViewDelegate, UIT
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 222
+        return 232
     }
     
     
