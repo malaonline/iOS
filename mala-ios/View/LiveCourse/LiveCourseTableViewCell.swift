@@ -236,9 +236,9 @@ class LiveCourseTableViewCell: UITableViewCell {
         
         // Autolayout
         content.snp.makeConstraints { (maker) -> Void in
-            maker.top.equalTo(contentView).offset(4)
+            maker.top.equalTo(contentView).offset(5)
             maker.left.equalTo(contentView).offset(10)
-            maker.bottom.equalTo(contentView).offset(-4)
+            maker.bottom.equalTo(contentView).offset(-5)
             maker.right.equalTo(contentView).offset(-10)
         }
         teacherContent.snp.makeConstraints { (maker) in
