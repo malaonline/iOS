@@ -36,9 +36,18 @@ class MalaSingleWebViewController: BaseViewController, WKNavigationDelegate, WKU
         let configuration = WKWebViewConfiguration()
         configuration.preferences = WKPreferences()
         configuration.preferences.minimumFontSize = 13
-        
         let webView = WKWebView(frame: self.view.bounds, configuration: configuration)
+        webView.navigationDelegate = self
+        webView.uiDelegate = self
         return webView
+    }()
+    private lazy var progressView: WebViewProgressView = {
+        let progressBarHeight: CGFloat = 2.0
+        let navigationBarBounds = self.navigationController!.navigationBar.bounds
+        let barFrame = CGRect(x: 0, y: navigationBarBounds.size.height - progressBarHeight, width: navigationBarBounds.width, height: progressBarHeight)
+        let progressView = WebViewProgressView(frame: barFrame)
+        progressView.autoresizingMask = [.flexibleWidth, .flexibleTopMargin]
+        return progressView
     }()
     
     
@@ -54,15 +63,16 @@ class MalaSingleWebViewController: BaseViewController, WKNavigationDelegate, WKU
         super.didReceiveMemoryWarning()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController!.navigationBar.addSubview(progressView)
+    }
     
     // MARK: - Private Method
     private func configure() {
-        webView.navigationDelegate = self
-        webView.uiDelegate = self
-        
         webView.addObserver(self, forKeyPath: "title", options: .new, context: nil)
+        webView.addObserver(self, forKeyPath: "estimatedProgress", options: .new, context: nil)
         // webView.addObserver(self, forKeyPath: "loading", options: .new, context: nil)
-        // webView.addObserver(self, forKeyPath: "estimatedProgress", options: .new, context: nil)
     }
     
     private func setupUserInterface() {
@@ -97,8 +107,15 @@ class MalaSingleWebViewController: BaseViewController, WKNavigationDelegate, WKU
     // MARK: - API
     open func loadURL(url: String) {
         delay(0.5) { [weak self] () -> Void in
-            _ = self?.webView.load(URLRequest(url: URL(string: url)!))
+            let request = URLRequest(url: URL(string: url)!)
+            self?.webView.load(request)
+            // self?.webView.loadRequest(request)
         }
+    }
+    
+    // MARK: - WebViewProgressDelegate
+    func webViewProgress(_ webViewProgress: WebViewProgress, updateProgress progress: Float) {
+        progressView.setProgress(progress, animated: true)
     }
     
     
@@ -110,7 +127,7 @@ class MalaSingleWebViewController: BaseViewController, WKNavigationDelegate, WKU
         switch keyPath! {
         case "title":
             
-            self.title = webView.title
+            self.title = self.navigationController?.title
             
             break
         case "loading":
@@ -119,8 +136,8 @@ class MalaSingleWebViewController: BaseViewController, WKNavigationDelegate, WKU
             
             break
         case "estimatedProgress":
-            
-            println("estimatedProgress - \(webView.estimatedProgress)")
+            progressView.setProgress(Float(webView.estimatedProgress), animated: true)
+            // println("estimatedProgress - \(webView.estimatedProgress)")
             
             break
         default:
@@ -130,5 +147,6 @@ class MalaSingleWebViewController: BaseViewController, WKNavigationDelegate, WKU
     
     deinit {
         webView.removeObserver(self, forKeyPath: "title", context: nil)
+        webView.removeObserver(self, forKeyPath: "estimatedProgress", context: nil)
     }
 }

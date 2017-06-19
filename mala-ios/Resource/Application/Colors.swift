@@ -130,6 +130,8 @@ enum ColorName: UInt32 {
     case liveCourseTypeBlue = 0x76A6FDFF
     case livePriceRed = 0xFE3059FF
     
+    case webProgressBlue = 0x4E85E7FF
+    
     var color: Color {
         return Color(named: self)
     }
