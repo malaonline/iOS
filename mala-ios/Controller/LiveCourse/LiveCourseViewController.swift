@@ -219,6 +219,10 @@ class LiveCourseViewController: StatefulViewController, UITableViewDelegate, UIT
         self.navigationController?.pushViewController(viewController, animated: true)
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 222
+    }
+    
     
     // MARK: - DataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

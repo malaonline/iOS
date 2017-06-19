@@ -206,3 +206,27 @@ enum MASubjectId: Int {
     case politics   = 8
     case biology    = 9
 }
+
+/// 直播课程 - 季度类型
+///
+/// - spring: 春季班：3月1日－7月1日
+/// - summer: 暑假班：7月1日－9月1日
+/// - autumn: 秋季班：9月1日－1月1日（跨年）
+/// - winter: 寒假班：1月1日－3月1日
+enum LiveCourseSeason: Int {
+    case spring = 1
+    case summer = 2
+    case autumn = 3
+    case winter = 4
+}
+
+/// 直播课程 - 招生状态
+///
+/// - inClass: 开课中
+/// - enrolling: 火热报名
+/// - preEnrollment: 预报中
+enum LiveCourseSignState: String {
+    case inClass = "in_class"
+    case enrolling = "enrolling"
+    case preEnrollment = "pre_enrollment"
+}

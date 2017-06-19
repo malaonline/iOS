@@ -22,7 +22,12 @@ class LiveClassModel: BaseObjectModel {
     var schoolName: String?
     var schoolAddress: String?
     var courseName: String?
-    var courseStart: TimeInterval?
+    var courseStart: TimeInterval? {
+        didSet {
+            guard let date = courseStart, date != 0 else { return }
+            seasonType = getSeasonType(withStartDate: date)
+        }
+    }
     var courseEnd: TimeInterval?
     var courseGrade: String?
     var courseFee: Int?
@@ -32,9 +37,67 @@ class LiveClassModel: BaseObjectModel {
     var courseDesc: String?
     var studentsCount: Int?
     var lecturerBio: String?
-    
     var isPaid: Bool = true
     
+    var subjectString: String?
+    var seasonType: LiveCourseSeason? {
+        didSet {
+            guard let season = seasonType,
+                  let start = courseStart else { return }
+            let startDate = Date(timeIntervalSince1970: start)
+            let nextSeason = LiveCourseSeason(rawValue: MACurrentSeason.rawValue+1) ?? .spring
+            
+            if season == MACurrentSeason && startDate.isEarlier(than: Date()) {
+                signState = .inClass
+            }else if (season == MACurrentSeason && startDate.isLater(than: Date())) || (season == nextSeason) {
+                signState = .enrolling
+            }else {
+                signState = .preEnrollment
+            }
+        }
+    }
+    var signState: LiveCourseSignState?
+    
+    
+    // MARK: - Ca Property
+    var attrCourseTitle: NSMutableAttributedString? {
+        get {
+            guard let courseTitle = self.courseName else { return nil }
+            
+            let rangeLocation = (courseTitle as NSString).range(of: "(").location
+            if rangeLocation <= courseTitle.characters.count {
+                let attrString: NSMutableAttributedString = NSMutableAttributedString(string: courseTitle)
+                attrString.addAttribute(
+                    NSFontAttributeName,
+                    value: UIFont.systemFont(ofSize: 18),
+                    range: NSMakeRange(0, rangeLocation)
+                )
+                attrString.addAttribute(
+                    NSFontAttributeName,
+                    value: UIFont.systemFont(ofSize: 14),
+                    range: NSMakeRange(rangeLocation, courseTitle.characters.count - rangeLocation)
+                )
+                return attrString
+            }else {
+                return nil
+            }
+        }
+    }
+    var firstSubjectChart: String? {
+        get {
+            return subjectString?.subStringToIndex(1)
+        }
+    }
+    var subjectColor: UIColor {
+        get {
+            guard let chart = firstSubjectChart else { return UIColor(named: .liveMathPurple) }
+            switch chart {
+            case "数":   return UIColor(named: .liveEnglishGreen)
+            case "英":   return UIColor(named: .liveMathPurple)
+            default:     return UIColor(named: .liveMathPurple)
+            }
+        }
+    }
     var remaining: Int {
         get {
             return (roomCapacity ?? 0) - (studentsCount ?? 0)
@@ -63,7 +126,7 @@ class LiveClassModel: BaseObjectModel {
             #elseif USE_STAGE_SERVER
                 return URL(string: String(format: "https://stage.malalaoshi.com/wechat/order/course_choosing/?step=live_class_page&liveclassid=%d", id))
             #else
-                return URL(string: String(format: "http://dev.malalaoshi.com/wechat/order/course_choosing/?step=live_class_page&liveclassid=%d", id))
+                return URL(string: String(format: "https://dev.malalaoshi.com/wechat/order/course_choosing/?step=live_class_page&liveclassid=%d", id))
             #endif
             
         }
@@ -145,6 +208,10 @@ class LiveClassModel: BaseObjectModel {
         }
         if key == "course_lessons", let int = value as? Int {
             courseLessons = int
+            return
+        }
+        if key == "course_subject", let string = value as? String {
+            subjectString = string
             return
         }
         // 详细信息

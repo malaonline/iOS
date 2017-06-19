@@ -584,3 +584,37 @@ func getSubjectRecord(subject: MASubjectId) -> Int? {
         return nil
     }
 }
+
+func getSeasonType(withStartDate startDate: TimeInterval) -> LiveCourseSeason {
+    let date = Date(timeIntervalSince1970: startDate)
+    let now = Date()
+    
+    func sameYearDate(month: Int, day: Int) -> Date {
+        return Date(year: date.year, month: month, day: day)
+    }
+    
+    if date.isLater(than: sameYearDate(month: 3, day: 1)) &&
+        date.isEarlier(than: sameYearDate(month: 7, day: 1)) {
+        return .spring
+    }
+    if date.isLater(than: sameYearDate(month: 7, day: 1)) &&
+        date.isEarlier(than: sameYearDate(month: 9, day: 1)) {
+        return .summer
+    }
+    if date.isLater(than: sameYearDate(month: 1, day: 1)) &&
+        date.isEarlier(than: sameYearDate(month: 3, day: 1)) {
+        return .winter
+    }
+    return .autumn
+}
+
+func getDescForSeasonType(type: LiveCourseSeason?) -> String {
+    guard let type = type else { return "其他班" }
+    
+    switch type {
+    case .spring: return "春季班"
+    case .summer: return "暑假班"
+    case .autumn: return "秋季班"
+    case .winter: return "寒假班"
+    }
+}

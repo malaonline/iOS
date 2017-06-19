@@ -127,6 +127,7 @@ class MemberPrivilegesViewController: UITableViewController {
     private func loadUserExerciseRecord() {
         
         if !MalaUserDefaults.isLogined {
+            self.tableView.reloadData()
             self.tableView.es_stopPullToRefresh()
             return
         }

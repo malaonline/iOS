@@ -123,6 +123,12 @@ enum ColorName: UInt32 {
     case profileAvatarBG = 0xA5C6FFFF
     case commentBlue = 0x82B4D9FF
     
+    case liveShadowBlue = 0xB6D7FCFF
+    case liveThemeBlue = 0x75A6FCFF
+    case liveMathPurple = 0x99D03BFF
+    case liveEnglishGreen = 0xB790FFFF
+    case liveCourseTypeBlue = 0x76A6FDFF
+    case livePriceRed = 0xFE3059FF
     
     var color: Color {
         return Color(named: self)

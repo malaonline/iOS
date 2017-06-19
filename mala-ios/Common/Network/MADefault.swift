@@ -16,7 +16,7 @@ public typealias JSON = [String: Any]
 #elseif USE_STAGE_SERVER
     public var MABaseURL: URL { return URL(string: "https://stage.malalaoshi.com/api/v1")! }
 #else
-    public var MABaseURL: URL { return URL(string: "http://dev.malalaoshi.com/api/v1")! }
+    public var MABaseURL: URL { return URL(string: "https://dev.malalaoshi.com/api/v1")! }
 #endif
 
 let endpointClosure = { (target: MAAPI) -> Endpoint<MAAPI> in
