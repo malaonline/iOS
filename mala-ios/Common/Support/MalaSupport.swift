@@ -65,6 +65,10 @@ func cleanCaches() {
     KingfisherManager.shared.cache.clearDiskCache()
     KingfisherManager.shared.cache.clearMemoryCache()
     KingfisherManager.shared.cache.cleanExpiredDiskCache()
+    
+    MalaUnpaidOrderCount = 0
+    MalaToCommentCount = 0
+    MainViewController.shared.profileViewController.showTabBadgePoint = false
 }
 
 
