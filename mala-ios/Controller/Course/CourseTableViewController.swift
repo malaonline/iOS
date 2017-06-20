@@ -107,7 +107,7 @@ public class CourseTableViewController: StatefulViewController, UITableViewDataS
         super.viewWillAppear(animated)
         loadStudentCourseTable()
         
-        if MalaUserDefaults.isLogined {
+        if MalaUserDefaults.isLogined && model?.count > 0 {
             featureView.state = .sign
         }else {
             goTopButton.isHidden = true
