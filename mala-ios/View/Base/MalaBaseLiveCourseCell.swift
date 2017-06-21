@@ -39,14 +39,14 @@ class MalaBaseLiveCourseCell: UITableViewCell {
     lazy var titleLabel: UILabel = {
         let label = UILabel(
             text: "title",
-            font: FontFamily.PingFangSC.Light.font(15),
-            textColor: UIColor(named: .LiveDetailCardTitle)
+            font: FontFamily.PingFangSC.Regular.font(16),
+            textColor: UIColor(named: .labelBlack)
         )
         return label
     }()
     /// 分割线
     lazy var line: UIView = {
-        let view = UIView(UIColor(named: .CardBackground))
+        let view = UIView(UIColor(named: .themeLightBlue))
         return view
     }()
     /// 布局容器
@@ -90,21 +90,21 @@ class MalaBaseLiveCourseCell: UITableViewCell {
             maker.bottom.equalTo(contentView)
         }
         titleLabel.snp.makeConstraints { (maker) in
-            maker.top.equalTo(cardContent).offset(11.5)
-            maker.left.equalTo(cardContent).offset(12)
-            maker.height.equalTo(15)
+            maker.top.equalTo(cardContent).offset(15)
+            maker.left.equalTo(cardContent).offset(10)
+            maker.height.equalTo(16)
         }
         line.snp.makeConstraints { (maker) in
-            maker.top.equalTo(cardContent).offset(36)
-            maker.height.equalTo(MalaScreenOnePixel)
-            maker.left.equalTo(cardContent).offset(6)
-            maker.right.equalTo(cardContent).offset(-6)
+            maker.top.equalTo(titleLabel.snp.bottom).offset(15)
+            maker.height.equalTo(1)
+            maker.left.equalTo(cardContent).offset(10)
+            maker.right.equalTo(cardContent).offset(-10)
         }
         content.snp.makeConstraints { (maker) in
-            maker.top.equalTo(line.snp.bottom).offset(12)
-            maker.left.equalTo(cardContent).offset(12)
-            maker.right.equalTo(cardContent).offset(-12)
-            maker.bottom.equalTo(cardContent).offset(-12)
+            maker.top.equalTo(line.snp.bottom).offset(10)
+            maker.left.equalTo(cardContent).offset(10)
+            maker.right.equalTo(cardContent).offset(-10)
+            maker.bottom.equalTo(cardContent).offset(-10)
         }
     }
 }
