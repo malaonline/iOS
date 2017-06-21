@@ -39,7 +39,7 @@ class BannerView: UIView {
     // MARK: - Private
     private func setupUserInterface() {
         // Style
-        backgroundColor = UIColor(named: .RegularBackground)
+        backgroundColor = UIColor(named: .themeLightBlue)
         
         // SubViews
         addSubview(button)

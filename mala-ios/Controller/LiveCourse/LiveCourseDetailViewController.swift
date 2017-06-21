@@ -27,7 +27,15 @@ class LiveCourseDetailViewController: BaseViewController, LiveCourseConfirmViewD
     // MARK: - Compontents
     private lazy var tableView: LiveCourseDetailTableView = {
         let tableView = LiveCourseDetailTableView(frame: CGRect.zero, style: .grouped)
+        tableView.separatorStyle = .none
+        tableView.tableHeaderView = self.banner
         return tableView
+    }()
+    private lazy var banner: BannerView = {
+        let view = BannerView(frame: CGRect(x: 0, y: 0, width: MalaScreenWidth, height: MalaScreenWidth*0.4))
+        view.button.setImage(UIImage(named: "live_intro_banner"), for: .normal)
+        view.button.isUserInteractionEnabled = false
+        return view
     }()
     private lazy var confirmView: LiveCourseConfirmView = {
         let confirmView = LiveCourseConfirmView()

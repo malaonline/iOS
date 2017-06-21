@@ -46,7 +46,6 @@ class LiveCourseViewController: StatefulViewController, UITableViewDelegate, UIT
         tableView.delegate = self
         tableView.dataSource = self
         tableView.backgroundColor = UIColor(named: .themeLightBlue)
-        tableView.estimatedRowHeight = 200
         tableView.separatorStyle = .none
         tableView.tableHeaderView = self.banner
         tableView.register(LiveCourseTableViewCell.self, forCellReuseIdentifier: LiveCourseTableViewCellReusedId)
