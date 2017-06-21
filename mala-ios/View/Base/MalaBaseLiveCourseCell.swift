@@ -20,10 +20,19 @@ class MalaBaseLiveCourseCell: UITableViewCell {
     
     
     // MARK: - Components
-    /// 卡片布局容器
+    /// container card
     lazy var cardContent: UIView = {
         let view = UIView(UIColor.white)
-        view.addShadow(color: UIColor(named: .ShadowGray))
+        view.layer.cornerRadius = 8
+        view.layer.masksToBounds = true
+        return view
+    }()
+    lazy var contentShadow: UIView = {
+        let view = UIView(UIColor.clear)
+        view.layer.shadowColor = UIColor(named: .themeShadowBlue).cgColor
+        view.layer.shadowRadius = 8
+        view.layer.shadowOffset = CGSize(width: 0, height: 2)
+        view.layer.shadowOpacity = 1.0
         return view
     }()
     /// 标题标签
@@ -64,10 +73,11 @@ class MalaBaseLiveCourseCell: UITableViewCell {
     private func setupUserInterface() {
         // Style
         selectionStyle = .none
-        contentView.backgroundColor = UIColor(named: .RegularBackground)
+        contentView.backgroundColor = UIColor(named: .themeLightBlue)
         
         // SubViews
-        contentView.addSubview(cardContent)
+        contentView.addSubview(contentShadow)
+        contentShadow.addSubview(cardContent)
         cardContent.addSubview(titleLabel)
         cardContent.addSubview(line)
         cardContent.addSubview(content)

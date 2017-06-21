@@ -47,7 +47,7 @@ class LiveCourseDetailTableView: UITableView, UITableViewDelegate, UITableViewDa
     private func configration() {
         delegate = self
         dataSource = self
-        backgroundColor = UIColor(named: .RegularBackground)
+        backgroundColor = UIColor(named: .themeLightBlue)
         estimatedRowHeight = 400
         separatorStyle = .none
         
