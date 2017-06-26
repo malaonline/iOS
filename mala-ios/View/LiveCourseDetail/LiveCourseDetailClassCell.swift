@@ -220,7 +220,7 @@ class LiveCourseDetailClassCell: MalaBaseLiveCourseCell {
             maker.height.equalTo(15)
         }
         schoolLabel.snp.makeConstraints { (maker) in
-            maker.top.equalTo(schoolIcon).offset(-4)
+            maker.top.equalTo(schoolIcon).offset(-2)
             maker.left.equalTo(checkinStringLabel)
             maker.right.equalTo(content)
             maker.bottom.equalTo(content)
