@@ -56,11 +56,9 @@ class MalaBaseLiveCourseCell: UITableViewCell {
     }()
     
     
-    
     // MARK: - Instance Method
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
         setupUserInterface()
     }
     
@@ -73,6 +71,7 @@ class MalaBaseLiveCourseCell: UITableViewCell {
     private func setupUserInterface() {
         // Style
         selectionStyle = .none
+        contentView.isUserInteractionEnabled = true
         contentView.backgroundColor = UIColor(named: .themeLightBlue)
         
         // SubViews
@@ -83,11 +82,17 @@ class MalaBaseLiveCourseCell: UITableViewCell {
         cardContent.addSubview(content)
         
         // Autolayout
-        cardContent.snp.makeConstraints { (maker) in
+        contentShadow.snp.makeConstraints { (maker) in
             maker.top.equalTo(contentView)
             maker.left.equalTo(contentView).offset(12)
             maker.right.equalTo(contentView).offset(-12)
             maker.bottom.equalTo(contentView)
+        }
+        cardContent.snp.makeConstraints { (maker) in
+            maker.top.equalTo(contentShadow)
+            maker.left.equalTo(contentShadow)
+            maker.right.equalTo(contentShadow)
+            maker.bottom.equalTo(contentShadow)
         }
         titleLabel.snp.makeConstraints { (maker) in
             maker.top.equalTo(cardContent).offset(15)
