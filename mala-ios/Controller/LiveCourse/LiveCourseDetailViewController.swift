@@ -33,7 +33,7 @@ class LiveCourseDetailViewController: BaseViewController, LiveCourseConfirmViewD
     }()
     private lazy var banner: BannerView = {
         let view = BannerView(frame: CGRect(x: 0, y: 0, width: MalaScreenWidth, height: MalaScreenWidth*0.4))
-        view.button.setImage(UIImage(named: "live_intro_banner"), for: .normal)
+        view.button.setBackgroundImage(UIImage(named: "live_intro_banner"), for: .normal)
         view.button.isUserInteractionEnabled = false
         return view
     }()
