@@ -109,7 +109,7 @@ class LiveCourseViewController: StatefulViewController, UITableViewDelegate, UIT
         }
         goTopButton.snp.makeConstraints { (maker) -> Void in
             maker.right.equalTo(view).offset(-20)
-            maker.bottom.equalTo(view).offset(-64)
+            maker.bottom.equalTo(view).offset(-20)
             maker.width.equalTo(56)
             maker.height.equalTo(56)
         }
