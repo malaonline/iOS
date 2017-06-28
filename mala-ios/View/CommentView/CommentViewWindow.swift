@@ -91,7 +91,7 @@ open class CommentViewWindow: UIViewController, UITextViewDelegate {
     /// 关闭按钮
     private lazy var closeButton: UIButton = {
         let button = UIButton()
-        button.setBackgroundImage(UIImage(asset: .close), for: UIControlState())
+        button.setBackgroundImage(UIImage(named: "close_main"), for: .normal)
         button.addTarget(self, action: #selector(CommentViewWindow.closeButtonDidTap), for: .touchUpInside)
         return button
     }()
@@ -268,17 +268,15 @@ open class CommentViewWindow: UIViewController, UITextViewDelegate {
         
         // SubViews
         view.addSubview(window)
+        view.addSubview(closeButton)
         window.addSubview(titleView)
-        window.addSubview(closeButton)
         window.addSubview(titleLine)
         window.addSubview(avatarView)
-        
         avatarView.addSubview(avatar)
         avatarView.addSubview(lecturerAvatar)
         avatarView.insertSubview(lecturerAvatarBackground, belowSubview: lecturerAvatar)
         avatarView.addSubview(assistantAvatar)
         avatarView.insertSubview(assistantAvatarBackground, belowSubview: assistantAvatar)
-        
         window.addSubview(teacherNameLabel)
         window.addSubview(subjectLabel)
         window.addSubview(floatRating)
@@ -302,15 +300,15 @@ open class CommentViewWindow: UIViewController, UITextViewDelegate {
             maker.width.equalTo(MalaLayout_CommentPopupWindowWidth)
             maker.height.equalTo(MalaLayout_CommentPopupWindowHeight)
         }
+        closeButton.snp.makeConstraints { (maker) -> Void in
+            maker.centerX.equalTo(titleView)
+            maker.top.equalTo(window.snp.bottom).offset(20)
+        }
         titleView.snp.makeConstraints { (maker) -> Void in
             maker.top.equalTo(window).offset(10)
             maker.left.equalTo(window)
             maker.right.equalTo(window)
             maker.height.equalTo(28)
-        }
-        closeButton.snp.makeConstraints { (maker) -> Void in
-            maker.centerY.equalTo(titleView)
-            maker.right.equalTo(window).offset(-12)
         }
         titleLine.snp.makeConstraints { (maker) -> Void in
             maker.top.equalTo(window).offset(48)
