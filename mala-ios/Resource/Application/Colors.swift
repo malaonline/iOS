@@ -108,6 +108,7 @@ enum ColorName: UInt32 {
     case labelBlack = 0x373A41FF
     case labelLightGray = 0xC3C5CDFF
     case indexBlue = 0x76A7FDFF
+    case indexBlueClear = 0x76A7FD33
     case indexBluePress = 0x76A7FDAA
     case groupTitleGray = 0x8F929BFF
     case lineGray = 0x979797FF
@@ -133,6 +134,7 @@ enum ColorName: UInt32 {
     case liveDetailThemeRed = 0xF9151BFF
     
     case webProgressBlue = 0x4E85E7FF
+    case midGray = 0xE3E3E3FF
     
     
     var color: Color {
