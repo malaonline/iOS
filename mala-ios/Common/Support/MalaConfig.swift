@@ -513,4 +513,12 @@ open class MalaConfig {
             IntroductionModel(title: "3.课后", image: .helpNote, subTitle: "学生在App里会对课程中答错的题进行二次复习，温故知新，云端存储。不受地域、设备限制，实现个性化复习。")
         ]
     }
+    
+    class func liveCourseSerivce() -> [String] {
+        return [
+            "名师授课", "随时看回放", "实时播放",
+            "私教辅导", "考试检测", "学习家长会",
+            "互动答题器", "标准化讲义", "额外网络学习"
+        ]
+    }
 }

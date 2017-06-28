@@ -41,7 +41,7 @@ class MainViewController: UITabBarController, UITabBarControllerDelegate {
         return naviVC
     }()
     /// 个人
-    private lazy var profileViewController: MainNavigationController = {
+    lazy var profileViewController: MainNavigationController = {
         let naviVC  = self.getNaviController(
             ProfileViewController.shared,
             title: L10n.profile,

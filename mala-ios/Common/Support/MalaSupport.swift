@@ -65,6 +65,10 @@ func cleanCaches() {
     KingfisherManager.shared.cache.clearDiskCache()
     KingfisherManager.shared.cache.clearMemoryCache()
     KingfisherManager.shared.cache.cleanExpiredDiskCache()
+    
+    MalaUnpaidOrderCount = 0
+    MalaToCommentCount = 0
+    MainViewController.shared.profileViewController.showTabBadgePoint = false
 }
 
 
@@ -511,22 +515,22 @@ func makeAddressAttrString(_ schoolName: String?, _ schoolAddress: String?) -> N
     
     attrString.addAttribute(
         NSForegroundColorAttributeName,
-        value: UIColor(named: .ArticleText),
+        value: UIColor(named: .ArticleTitle),
         range: NSMakeRange(0, location)
     )
     attrString.addAttribute(
         NSFontAttributeName,
-        value: UIFont.systemFont(ofSize: 14),
+        value: FontFamily.PingFangSC.Regular.font(14),
         range: NSMakeRange(0, location)
     )
     attrString.addAttribute(
         NSForegroundColorAttributeName,
-        value: UIColor(named: .HeaderTitle),
+        value: UIColor(named: .protocolGary),
         range: NSMakeRange(location, leftLength)
     )
     attrString.addAttribute(
         NSFontAttributeName,
-        value: UIFont.systemFont(ofSize: 12),
+        value: FontFamily.PingFangSC.Regular.font(14),
         range: NSMakeRange(location, leftLength)
     )
     

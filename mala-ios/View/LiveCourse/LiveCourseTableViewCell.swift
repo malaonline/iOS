@@ -236,14 +236,15 @@ class LiveCourseTableViewCell: UITableViewCell {
         
         // Autolayout
         content.snp.makeConstraints { (maker) -> Void in
-            maker.top.equalTo(contentView).offset(4)
+            maker.top.equalTo(contentView).offset(5)
             maker.left.equalTo(contentView).offset(10)
-            maker.bottom.equalTo(contentView).offset(-4)
+            maker.bottom.equalTo(contentView).offset(-5)
             maker.right.equalTo(contentView).offset(-10)
         }
         teacherContent.snp.makeConstraints { (maker) in
             maker.top.equalTo(content).offset(45)
             maker.left.equalTo(content)
+            maker.height.equalTo(139)
             maker.bottom.equalTo(content).offset(-38)
             maker.right.equalTo(content)
         }
@@ -300,16 +301,15 @@ class LiveCourseTableViewCell: UITableViewCell {
             maker.centerY.equalTo(lecturerAvatarBackground)
         }
         lecturerTitleLabel.snp.makeConstraints { (maker) in
-            maker.right.equalTo(lecturerNameLabel)
+            maker.top.equalTo(lecturerNameLabel.snp.bottom).offset(6)
             maker.left.equalTo(teacherContent).offset(6)
-            maker.top.equalTo(lecturerNameLabel).offset(6)
-            maker.bottom.equalTo(teacherContent)
+            maker.right.equalTo(lecturerNameLabel)
         }
         assistantNameLabel.snp.makeConstraints { (maker) in
             maker.height.equalTo(20)
-            maker.left.equalTo(assistantAvatarBackground.snp.right).offset(1)
+            maker.left.equalTo(assistantAvatarBackground.snp.right).offset(6)
             maker.right.equalTo(teacherContent).offset(-6)
-            maker.top.equalTo(assistantAvatar.snp.centerY)
+            maker.top.equalTo(lecturerTitleLabel)
         }
         courseDateLabel.snp.makeConstraints { (maker) in
             maker.height.equalTo(17)
@@ -326,6 +326,7 @@ class LiveCourseTableViewCell: UITableViewCell {
             maker.right.equalTo(content).offset(-12)
             maker.bottom.equalTo(content).offset(-12)
             maker.height.equalTo(14)
+            maker.left.equalTo(priceLabel.snp.right)
         }
         priceLabel.snp.makeConstraints { (maker) in
             maker.right.equalTo(lessionsLabel.snp.left)

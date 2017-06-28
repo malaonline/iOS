@@ -405,6 +405,9 @@
 		F4215D6B1D50521A0014B653 /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4215D6A1D50521A0014B653 /* FavoriteViewController.swift */; };
 		F4215D6C1D50521A0014B653 /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4215D6A1D50521A0014B653 /* FavoriteViewController.swift */; };
 		F4215D6D1D50521A0014B653 /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4215D6A1D50521A0014B653 /* FavoriteViewController.swift */; };
+		F426A6161F01F73800A469D6 /* LiveCourseDetailServiceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F426A6151F01F73700A469D6 /* LiveCourseDetailServiceCell.swift */; };
+		F426A6171F01F73800A469D6 /* LiveCourseDetailServiceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F426A6151F01F73700A469D6 /* LiveCourseDetailServiceCell.swift */; };
+		F426A6181F01F73800A469D6 /* LiveCourseDetailServiceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F426A6151F01F73700A469D6 /* LiveCourseDetailServiceCell.swift */; };
 		F427FF9A1CEB0B5C00EAB748 /* MemberSerivceCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F427FF991CEB0B5C00EAB748 /* MemberSerivceCollectionView.swift */; };
 		F427FF9E1CEC1DFA00EAB748 /* ThemeIntroductionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F427FF9D1CEC1DFA00EAB748 /* ThemeIntroductionView.swift */; };
 		F427FFA21CED9A4300EAB748 /* LearningReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F427FFA11CED9A4300EAB748 /* LearningReportViewController.swift */; };
@@ -717,6 +720,12 @@
 		F49432D81D237B34001C4D22 /* FilterBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49432D71D237B34001C4D22 /* FilterBar.swift */; };
 		F49432D91D237B34001C4D22 /* FilterBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49432D71D237B34001C4D22 /* FilterBar.swift */; };
 		F49432DA1D237B34001C4D22 /* FilterBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49432D71D237B34001C4D22 /* FilterBar.swift */; };
+		F49BD57F1EF7B9F000CB0367 /* SwiftWebViewProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49BD57D1EF7B9F000CB0367 /* SwiftWebViewProgress.swift */; };
+		F49BD5801EF7B9F000CB0367 /* SwiftWebViewProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49BD57D1EF7B9F000CB0367 /* SwiftWebViewProgress.swift */; };
+		F49BD5811EF7B9F000CB0367 /* SwiftWebViewProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49BD57D1EF7B9F000CB0367 /* SwiftWebViewProgress.swift */; };
+		F49BD5821EF7B9F000CB0367 /* SwiftWebViewProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49BD57E1EF7B9F000CB0367 /* SwiftWebViewProgressView.swift */; };
+		F49BD5831EF7B9F000CB0367 /* SwiftWebViewProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49BD57E1EF7B9F000CB0367 /* SwiftWebViewProgressView.swift */; };
+		F49BD5841EF7B9F000CB0367 /* SwiftWebViewProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49BD57E1EF7B9F000CB0367 /* SwiftWebViewProgressView.swift */; };
 		F49BD5AA1CA413C000EB3CCF /* MalaPhotoBrowser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49BD5A91CA413C000EB3CCF /* MalaPhotoBrowser.swift */; };
 		F4ADCFD61D0D6E6E004D517A /* InfoModifyViewWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4ADCFD51D0D6E6E004D517A /* InfoModifyViewWindow.swift */; };
 		F4ADCFD71D0D6E6E004D517A /* InfoModifyViewWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4ADCFD51D0D6E6E004D517A /* InfoModifyViewWindow.swift */; };
@@ -929,6 +938,7 @@
 		F41CE64A1D86826C00B57F69 /* CityTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CityTableViewController.swift; sourceTree = "<group>"; };
 		F41CE64B1D86826C00B57F69 /* SchoolTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchoolTableViewController.swift; sourceTree = "<group>"; };
 		F4215D6A1D50521A0014B653 /* FavoriteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
+		F426A6151F01F73700A469D6 /* LiveCourseDetailServiceCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveCourseDetailServiceCell.swift; sourceTree = "<group>"; };
 		F427FF991CEB0B5C00EAB748 /* MemberSerivceCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberSerivceCollectionView.swift; sourceTree = "<group>"; };
 		F427FF9D1CEC1DFA00EAB748 /* ThemeIntroductionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeIntroductionView.swift; sourceTree = "<group>"; };
 		F427FFA11CED9A4300EAB748 /* LearningReportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LearningReportViewController.swift; path = "mala-ios/Controller/MemberPrivileges/LearningReportViewController.swift"; sourceTree = SOURCE_ROOT; };
@@ -1080,6 +1090,8 @@
 		F48F12FC1DAB8E5A006A2F5C /* PageControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageControl.swift; sourceTree = "<group>"; };
 		F4934DE31DEBC5740011C409 /* parent.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = parent.entitlements; sourceTree = "<group>"; };
 		F49432D71D237B34001C4D22 /* FilterBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterBar.swift; sourceTree = "<group>"; };
+		F49BD57D1EF7B9F000CB0367 /* SwiftWebViewProgress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftWebViewProgress.swift; sourceTree = "<group>"; };
+		F49BD57E1EF7B9F000CB0367 /* SwiftWebViewProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftWebViewProgressView.swift; sourceTree = "<group>"; };
 		F49BD5A91CA413C000EB3CCF /* MalaPhotoBrowser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MalaPhotoBrowser.swift; sourceTree = "<group>"; };
 		F4ADCFD51D0D6E6E004D517A /* InfoModifyViewWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoModifyViewWindow.swift; sourceTree = "<group>"; };
 		F4ADCFDD1D0E6E7C004D517A /* ProfileItemCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileItemCollectionView.swift; sourceTree = "<group>"; };
@@ -1378,6 +1390,7 @@
 		30E3366C1C27C41800DCF1C5 /* Tool */ = {
 			isa = PBXGroup;
 			children = (
+				F49BD57C1EF7B9F000CB0367 /* SwiftWebViewProgress */,
 				F44C85FE1E683CAB006E5557 /* YLProgressBar */,
 				F491A8BF1C7364C500B5D520 /* Refresher */,
 				F45E69D71C8D278A00BD0859 /* ThemeTool */,
@@ -1832,6 +1845,15 @@
 			path = Refresher;
 			sourceTree = "<group>";
 		};
+		F49BD57C1EF7B9F000CB0367 /* SwiftWebViewProgress */ = {
+			isa = PBXGroup;
+			children = (
+				F49BD57D1EF7B9F000CB0367 /* SwiftWebViewProgress.swift */,
+				F49BD57E1EF7B9F000CB0367 /* SwiftWebViewProgressView.swift */,
+			);
+			path = SwiftWebViewProgress;
+			sourceTree = "<group>";
+		};
 		F4ADCFE11D0FC158004D517A /* Course */ = {
 			isa = PBXGroup;
 			children = (
@@ -1988,6 +2010,7 @@
 			children = (
 				F4FF66E71DB87D5F0036E299 /* LiveCourseDetailTableView.swift */,
 				F4FF66F21DB87EB80036E299 /* LiveCourseDetailClassCell.swift */,
+				F426A6151F01F73700A469D6 /* LiveCourseDetailServiceCell.swift */,
 				F4FF66F61DB88E960036E299 /* LiveCourseDetailDescCell.swift */,
 				F4FF66FA1DB88EAC0036E299 /* LiveCourseDetailLecturerCell.swift */,
 				F43525D31DE2CA55002116E5 /* LiveCourseDetailAssistantCell.swift */,
@@ -2620,6 +2643,7 @@
 				F4E106261CC0D390001AD4AF /* Extension+UIDevice.swift in Sources */,
 				F4FF66E81DB87D5F0036E299 /* LiveCourseConfirmView.swift in Sources */,
 				F44DC7C21D59C6D400E5979B /* DOFavoriteButton.swift in Sources */,
+				F426A6161F01F73800A469D6 /* LiveCourseDetailServiceCell.swift in Sources */,
 				F47AD4AB1ECD6E0D0042440A /* ConditionObject.swift in Sources */,
 				F47C2ABD1C85785A0051A880 /* MalaAlert.swift in Sources */,
 				30445B1D1C4A3B3D002CD290 /* SubjectFilterView.swift in Sources */,
@@ -2641,10 +2665,12 @@
 				F45871F71C51DFFF0048D93F /* CourseChoosingClassPeriodCell.swift in Sources */,
 				F4FF66DA1DB875FD0036E299 /* LiveCourseDetailViewController.swift in Sources */,
 				F4F29B001D0FF001000D1904 /* CourseTableViewCell.swift in Sources */,
+				F49BD57F1EF7B9F000CB0367 /* SwiftWebViewProgress.swift in Sources */,
 				F4AE080E1E7673CE006FA466 /* MalaSupport.swift in Sources */,
 				F43F44C91D0CFD2800B7A358 /* CommentViewWindow.swift in Sources */,
 				F46065231C97B168004056B1 /* PaymentViewController.swift in Sources */,
 				30445B171C4A3959002CD290 /* FilterView.swift in Sources */,
+				F49BD5821EF7B9F000CB0367 /* SwiftWebViewProgressView.swift in Sources */,
 				307788591C2A58B1007AF6B0 /* OperatorOverload.swift in Sources */,
 				F4B58F751C9822ED009B5B8D /* AboutTitleView.swift in Sources */,
 				F45872001C51E0C40048D93F /* CourseChoosingConfirmView.swift in Sources */,
@@ -2845,6 +2871,7 @@
 				35FF7AE71CF8325A000A70EE /* Extension+UIDevice.swift in Sources */,
 				F4FF66E91DB87D5F0036E299 /* LiveCourseConfirmView.swift in Sources */,
 				F44DC7C31D59C6D400E5979B /* DOFavoriteButton.swift in Sources */,
+				F426A6171F01F73800A469D6 /* LiveCourseDetailServiceCell.swift in Sources */,
 				F47AD4AC1ECD6E0E0042440A /* ConditionObject.swift in Sources */,
 				35FF7AEB1CF8325A000A70EE /* MalaAlert.swift in Sources */,
 				35FF7AEC1CF8325A000A70EE /* SubjectFilterView.swift in Sources */,
@@ -2866,10 +2893,12 @@
 				35FF7AFB1CF8325A000A70EE /* CourseChoosingClassPeriodCell.swift in Sources */,
 				F4FF66DB1DB875FD0036E299 /* LiveCourseDetailViewController.swift in Sources */,
 				F4F29B011D0FF001000D1904 /* CourseTableViewCell.swift in Sources */,
+				F49BD5801EF7B9F000CB0367 /* SwiftWebViewProgress.swift in Sources */,
 				F4AE080F1E7673CE006FA466 /* MalaSupport.swift in Sources */,
 				F43F44CA1D0CFD2800B7A358 /* CommentViewWindow.swift in Sources */,
 				35FF7AFD1CF8325A000A70EE /* PaymentViewController.swift in Sources */,
 				35FF7AFE1CF8325A000A70EE /* FilterView.swift in Sources */,
+				F49BD5831EF7B9F000CB0367 /* SwiftWebViewProgressView.swift in Sources */,
 				35FF7B011CF8325A000A70EE /* OperatorOverload.swift in Sources */,
 				35FF7B021CF8325A000A70EE /* AboutTitleView.swift in Sources */,
 				35FF7B031CF8325A000A70EE /* CourseChoosingConfirmView.swift in Sources */,
@@ -3070,6 +3099,7 @@
 				35FF7BCA1CF83264000A70EE /* Extension+UIDevice.swift in Sources */,
 				F4FF66EA1DB87D5F0036E299 /* LiveCourseConfirmView.swift in Sources */,
 				F44DC7C41D59C6D400E5979B /* DOFavoriteButton.swift in Sources */,
+				F426A6181F01F73800A469D6 /* LiveCourseDetailServiceCell.swift in Sources */,
 				F47AD4AD1ECD6E0E0042440A /* ConditionObject.swift in Sources */,
 				35FF7BCE1CF83264000A70EE /* MalaAlert.swift in Sources */,
 				35FF7BCF1CF83264000A70EE /* SubjectFilterView.swift in Sources */,
@@ -3091,10 +3121,12 @@
 				35FF7BDE1CF83264000A70EE /* CourseChoosingClassPeriodCell.swift in Sources */,
 				F4FF66DC1DB875FD0036E299 /* LiveCourseDetailViewController.swift in Sources */,
 				F4F29B021D0FF001000D1904 /* CourseTableViewCell.swift in Sources */,
+				F49BD5811EF7B9F000CB0367 /* SwiftWebViewProgress.swift in Sources */,
 				F4AE08101E7673CE006FA466 /* MalaSupport.swift in Sources */,
 				F43F44CB1D0CFD2800B7A358 /* CommentViewWindow.swift in Sources */,
 				35FF7BE01CF83264000A70EE /* PaymentViewController.swift in Sources */,
 				35FF7BE11CF83264000A70EE /* FilterView.swift in Sources */,
+				F49BD5841EF7B9F000CB0367 /* SwiftWebViewProgressView.swift in Sources */,
 				35FF7BE41CF83264000A70EE /* OperatorOverload.swift in Sources */,
 				35FF7BE51CF83264000A70EE /* AboutTitleView.swift in Sources */,
 				35FF7BE61CF83264000A70EE /* CourseChoosingConfirmView.swift in Sources */,

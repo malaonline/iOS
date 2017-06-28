@@ -12,16 +12,18 @@ class LiveCourseDetailTableView: UITableView, UITableViewDelegate, UITableViewDa
     
     let LiveCourseDetailCellReuseId = [
         0: "LiveCourseDetailClassCellReuseId",          // 班级名称
-        1: "LiveCourseDetailDescCellReuseId",           // 课程介绍
-        2: "LiveCourseDetailLecturerCellReuseId",       // 直播名师
-        3: "LiveCourseAssistantCellReuseId",            // 助教
+        1: "LiveCourseDetailServiceCellReuseId",        // 课程服务
+        2: "LiveCourseDetailDescCellReuseId",           // 课程介绍
+        3: "LiveCourseDetailLecturerCellReuseId",       // 直播名师
+        4: "LiveCourseAssistantCellReuseId",            // 助教
     ]
     
     let LiveCourseDetailCellTitle = [
         1: "班级名称",
-        2: "课程介绍",
-        3: "直播名师",
-        4: "联系助教",
+        2: "课程服务",
+        3: "课程介绍",
+        4: "直播名师",
+        5: "联系助教",
     ]
     
     // MARK: - Property
@@ -47,14 +49,15 @@ class LiveCourseDetailTableView: UITableView, UITableViewDelegate, UITableViewDa
     private func configration() {
         delegate = self
         dataSource = self
-        backgroundColor = UIColor(named: .RegularBackground)
+        backgroundColor = UIColor(named: .themeLightBlue)
         estimatedRowHeight = 400
         separatorStyle = .none
         
         register(LiveCourseDetailClassCell.self, forCellReuseIdentifier: LiveCourseDetailCellReuseId[0]!)
-        register(LiveCourseDetailDescCell.self, forCellReuseIdentifier: LiveCourseDetailCellReuseId[1]!)
-        register(LiveCourseDetailLecturerCell.self, forCellReuseIdentifier: LiveCourseDetailCellReuseId[2]!)
-        register(LiveCourseDetailAssistantCell.self, forCellReuseIdentifier: LiveCourseDetailCellReuseId[3]!)
+        register(LiveCourseDetailServiceCell.self, forCellReuseIdentifier: LiveCourseDetailCellReuseId[1]!)
+        register(LiveCourseDetailDescCell.self, forCellReuseIdentifier: LiveCourseDetailCellReuseId[2]!)
+        register(LiveCourseDetailLecturerCell.self, forCellReuseIdentifier: LiveCourseDetailCellReuseId[3]!)
+        register(LiveCourseDetailAssistantCell.self, forCellReuseIdentifier: LiveCourseDetailCellReuseId[4]!)
     }
     
     // MARK: - Delegate
@@ -91,16 +94,20 @@ class LiveCourseDetailTableView: UITableView, UITableViewDelegate, UITableViewDa
             return cell
             
         case 1:
+            let cell = reuseCell as! LiveCourseDetailServiceCell
+            return cell
+            
+        case 2:
             let cell = reuseCell as! LiveCourseDetailDescCell
             cell.model = model
             return cell
             
-        case 2:
+        case 3:
             let cell = reuseCell as! LiveCourseDetailLecturerCell
             cell.model = model
             return cell
             
-        case 3:
+        case 4:
             let cell = reuseCell as! LiveCourseDetailAssistantCell
             cell.model = model
             return cell

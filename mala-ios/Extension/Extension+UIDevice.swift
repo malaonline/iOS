@@ -10,6 +10,39 @@ import UIKit
 
 public extension UIDevice {
     
+    public enum DeviceType {
+        case iPhone5
+        case iPhone5s
+        case iPhone6
+        case iPhone6Plus
+        case iPhone6s
+        case iPhone6sPlus
+        case iPhone7
+        case iPhone7Plus
+        case unKnown
+    }
+    
+    var deviceType: DeviceType {
+        switch modelName {
+        case "iPhone 5":        return .iPhone5
+        case "iPhone 5s":       return .iPhone5s
+        case "iPhone 6":        return .iPhone6
+        case "iPhone 6 Plus":   return .iPhone6Plus
+        case "iPhone 6s":       return .iPhone6s
+        case "iPhone 6s Plus":  return .iPhone6sPlus
+        case "iPhone 7":        return .iPhone7
+        case "iPhone 7 Plus":   return .iPhone7Plus
+        default:                return .unKnown
+        }
+    }
+    
+    var isPlus: Bool {
+        switch deviceType {
+        case .iPhone6Plus, .iPhone6sPlus, .iPhone7Plus: return true
+        default: return false
+        }
+    }
+    
     var modelName: String {
         var systemInfo = utsname()
         uname(&systemInfo)
@@ -31,7 +64,9 @@ public extension UIDevice {
         case "iPhone7,1":                               return "iPhone 6 Plus"
         case "iPhone8,1":                               return "iPhone 6s"
         case "iPhone8,2":                               return "iPhone 6s Plus"
-        case "iPhone8,4":                               return "iPhone SE"
+        case "iPhone8,3", "iPhone8,4":                  return "iPhone SE"
+        case "iPhone9,1":                               return "iPhone 7"
+        case "iPhone9,2":                               return "iPhone 7 Plus"
         case "iPad2,1", "iPad2,2", "iPad2,3", "iPad2,4":return "iPad 2"
         case "iPad3,1", "iPad3,2", "iPad3,3":           return "iPad 3"
         case "iPad3,4", "iPad3,5", "iPad3,6":           return "iPad 4"

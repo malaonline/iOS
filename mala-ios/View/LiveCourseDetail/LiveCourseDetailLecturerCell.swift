@@ -16,8 +16,24 @@ class LiveCourseDetailLecturerCell: MalaBaseLiveCourseCell {
         didSet{
             guard let model = model else { return }
             lecturerNameLabel.text = model.lecturerName
-            lecturerBioView.text = model.lecturerBio?.trim().replacingOccurrences(of: ";", with: "\n")
             lecturerAvatar.setImage(withURL: model.lecturerAvatar)
+            lecturerBioView.text = model.lecturerBio?.trim().replacingOccurrences(of: ";", with: "\n")
+            
+            if (UIDevice.current.isPlus && model.lecturerBio?.characters.count > 123)
+            || (!UIDevice.current.isPlus && model.lecturerBio?.characters.count > 91) {
+                lecturerAvatar.snp.remakeConstraints { (maker) in
+                    maker.top.equalTo(content).offset(10)
+                    maker.left.equalTo(content)
+                    maker.width.equalTo(97)
+                    maker.height.equalTo(126)
+                }
+            }else {
+                lecturerBioView.snp.remakeConstraints { (maker) in
+                    maker.top.equalTo(content)
+                    maker.left.equalTo(content)
+                    maker.right.equalTo(content)
+                }
+            }
         }
     }
     
@@ -27,26 +43,30 @@ class LiveCourseDetailLecturerCell: MalaBaseLiveCourseCell {
     private lazy var lecturerNameLabel: UILabel = {
         let label = UILabel(
             text: "老师姓名",
-            font: FontFamily.PingFangSC.Light.font(15),
-            textColor: UIColor(named: .ArticleTitle)
+            font: FontFamily.PingFangSC.Regular.font(14),
+            textColor: UIColor.white,
+            textAlignment: .center,
+            backgroundColor: UIColor(named: .themeBlue)
         )
         return label
     }()
     /// 主讲资历
-    private lazy var lecturerBioView: UILabel = {
-        let label = UILabel(
-            text: "",
-            font: FontFamily.HeitiSC.Light.font(14),
-            textColor: UIColor(named: .ArticleText)
-        )
-        label.numberOfLines = 0
-        return label
+    private lazy var lecturerBioView: UITextView = {
+        let textView = UITextView()
+        textView.font = FontFamily.PingFangSC.Regular.font(14)
+        textView.textColor = UIColor(named: .ArticleTitle)
+        textView.isEditable = false
+        textView.isScrollEnabled = false
+        textView.isSelectable = false
+        let bezierPath = UIBezierPath(rect: CGRect(x: 0, y: 0, width: 96+12, height: 126+2))
+        textView.textContainer.exclusionPaths = [bezierPath]
+        return textView
     }()
     /// 老师头像
     private lazy var lecturerAvatar: UIImageView = {
         let imageView = UIImageView(
-            frame: CGRect(x: 0, y: 0, width: 56, height: 56),
-            cornerRadius: 28,
+            frame: CGRect(x: 0, y: 0, width: 97, height: 126),
+            cornerRadius: 6,
             image: "avatar_placeholder"
         )
         imageView.enableOneTapToLaunchPhotoBrowser()
@@ -68,30 +88,31 @@ class LiveCourseDetailLecturerCell: MalaBaseLiveCourseCell {
     
     // MARK: - Private Method
     private func setupUserInterface() {
-        // Style
-        
         // SubViews
-        content.addSubview(lecturerNameLabel)
         content.addSubview(lecturerBioView)
         content.addSubview(lecturerAvatar)
+        lecturerAvatar.addSubview(lecturerNameLabel)
         
         // Autolayout
-        lecturerNameLabel.snp.makeConstraints { (maker) in
+        lecturerBioView.snp.makeConstraints { (maker) in
             maker.top.equalTo(content)
             maker.left.equalTo(content)
-            maker.height.equalTo(15)
-        }
-        lecturerBioView.snp.makeConstraints { (maker) in
-            maker.top.equalTo(lecturerNameLabel.snp.bottom).offset(9)
-            maker.left.equalTo(lecturerNameLabel)
-            maker.right.equalTo(lecturerAvatar.snp.left).offset(-18)
+            maker.right.equalTo(content)
             maker.bottom.equalTo(content)
         }
         lecturerAvatar.snp.makeConstraints { (maker) in
-            maker.right.equalTo(content)
-            maker.centerY.equalTo(content)
-            maker.height.equalTo(56)
-            maker.width.equalTo(56)
+            maker.top.equalTo(content).offset(10)
+            maker.left.equalTo(content)
+            maker.width.equalTo(97)
+            maker.height.equalTo(126)
+            maker.bottom.equalTo(content).offset(-10)
         }
+        lecturerNameLabel.snp.makeConstraints { (maker) in
+            maker.left.equalTo(lecturerAvatar)
+            maker.right.equalTo(lecturerAvatar)
+            maker.bottom.equalTo(lecturerAvatar)
+            maker.height.equalTo(27)
+        }
+
     }
 }

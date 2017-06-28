@@ -20,6 +20,7 @@ class CommonFlowLayout: UICollectionViewFlowLayout {
         case detailPhotoView
         case `default`
         case featureView
+        case liveCourseService
     }
     
     
@@ -29,22 +30,15 @@ class CommonFlowLayout: UICollectionViewFlowLayout {
         
         // 根据Type来应用对应的布局样式
         switch layoutType {
-        case .findTeacherView:
-            findTeacherViewFlowLayout()
-        case .filterView:
-            filterViewFlowLayout()
-        case .subjectView:
-            subjectViewFlowLayout()
-        case .gradeSelection:
-            gradeSelectionFlowLayout()
-        case .profileItem:
-            profileItemFlowLayout()
-        case .detailPhotoView:
-            detailPhotoViewFlowLayout()
-        case .default:
-            defaultLayout(frame: frame)
-        case .featureView:
-            featureViewLayout()
+        case .findTeacherView:      findTeacherViewFlowLayout()
+        case .filterView:           filterViewFlowLayout()
+        case .subjectView:          subjectViewFlowLayout()
+        case .gradeSelection:       gradeSelectionFlowLayout()
+        case .profileItem:          profileItemFlowLayout()
+        case .detailPhotoView:      detailPhotoViewFlowLayout()
+        case .default:              defaultLayout(frame: frame)
+        case .featureView:          featureViewLayout()
+        case .liveCourseService:    liveCourseServiceLayout()
         }
     }
 
@@ -131,6 +125,13 @@ class CommonFlowLayout: UICollectionViewFlowLayout {
     private func featureViewLayout() {
         scrollDirection = .horizontal
         itemSize = CGSize(width: MalaLayout_FeatureViewWidth, height: MalaLayout_FeatureViewHeight)
+        minimumInteritemSpacing = 0
+        minimumLineSpacing = 0
+    }
+    
+    private func liveCourseServiceLayout() {
+        scrollDirection = .horizontal
+        itemSize = CGSize(width: MalaLayout_LiveCourseCardWidth/3, height: 34)
         minimumInteritemSpacing = 0
         minimumLineSpacing = 0
     }

@@ -20,24 +20,33 @@ class MalaBaseLiveCourseCell: UITableViewCell {
     
     
     // MARK: - Components
-    /// 卡片布局容器
+    /// container card
     lazy var cardContent: UIView = {
         let view = UIView(UIColor.white)
-        view.addShadow(color: UIColor(named: .ShadowGray))
+        view.layer.cornerRadius = 8
+        view.layer.masksToBounds = true
+        return view
+    }()
+    lazy var contentShadow: UIView = {
+        let view = UIView(UIColor.clear)
+        view.layer.shadowColor = UIColor(named: .themeShadowBlue).cgColor
+        view.layer.shadowRadius = 8
+        view.layer.shadowOffset = CGSize(width: 0, height: 2)
+        view.layer.shadowOpacity = 1.0
         return view
     }()
     /// 标题标签
     lazy var titleLabel: UILabel = {
         let label = UILabel(
             text: "title",
-            font: FontFamily.PingFangSC.Light.font(15),
-            textColor: UIColor(named: .LiveDetailCardTitle)
+            font: FontFamily.PingFangSC.Regular.font(16),
+            textColor: UIColor(named: .labelBlack)
         )
         return label
     }()
     /// 分割线
     lazy var line: UIView = {
-        let view = UIView(UIColor(named: .CardBackground))
+        let view = UIView(UIColor(named: .themeLightBlue))
         return view
     }()
     /// 布局容器
@@ -47,11 +56,9 @@ class MalaBaseLiveCourseCell: UITableViewCell {
     }()
     
     
-    
     // MARK: - Instance Method
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
         setupUserInterface()
     }
     
@@ -64,37 +71,45 @@ class MalaBaseLiveCourseCell: UITableViewCell {
     private func setupUserInterface() {
         // Style
         selectionStyle = .none
-        contentView.backgroundColor = UIColor(named: .RegularBackground)
+        contentView.isUserInteractionEnabled = true
+        contentView.backgroundColor = UIColor(named: .themeLightBlue)
         
         // SubViews
-        contentView.addSubview(cardContent)
+        contentView.addSubview(contentShadow)
+        contentShadow.addSubview(cardContent)
         cardContent.addSubview(titleLabel)
         cardContent.addSubview(line)
         cardContent.addSubview(content)
         
         // Autolayout
-        cardContent.snp.makeConstraints { (maker) in
+        contentShadow.snp.makeConstraints { (maker) in
             maker.top.equalTo(contentView)
             maker.left.equalTo(contentView).offset(12)
             maker.right.equalTo(contentView).offset(-12)
             maker.bottom.equalTo(contentView)
         }
+        cardContent.snp.makeConstraints { (maker) in
+            maker.top.equalTo(contentShadow)
+            maker.left.equalTo(contentShadow)
+            maker.right.equalTo(contentShadow)
+            maker.bottom.equalTo(contentShadow)
+        }
         titleLabel.snp.makeConstraints { (maker) in
-            maker.top.equalTo(cardContent).offset(11.5)
-            maker.left.equalTo(cardContent).offset(12)
-            maker.height.equalTo(15)
+            maker.top.equalTo(cardContent).offset(15)
+            maker.left.equalTo(cardContent).offset(10)
+            maker.height.equalTo(16)
         }
         line.snp.makeConstraints { (maker) in
-            maker.top.equalTo(cardContent).offset(36)
-            maker.height.equalTo(MalaScreenOnePixel)
-            maker.left.equalTo(cardContent).offset(6)
-            maker.right.equalTo(cardContent).offset(-6)
+            maker.top.equalTo(titleLabel.snp.bottom).offset(15)
+            maker.height.equalTo(1)
+            maker.left.equalTo(cardContent).offset(10)
+            maker.right.equalTo(cardContent).offset(-10)
         }
         content.snp.makeConstraints { (maker) in
-            maker.top.equalTo(line.snp.bottom).offset(12)
-            maker.left.equalTo(cardContent).offset(12)
-            maker.right.equalTo(cardContent).offset(-12)
-            maker.bottom.equalTo(cardContent).offset(-12)
+            maker.top.equalTo(line.snp.bottom).offset(10)
+            maker.left.equalTo(cardContent).offset(10)
+            maker.right.equalTo(cardContent).offset(-10)
+            maker.bottom.equalTo(cardContent).offset(-10)
         }
     }
 }
