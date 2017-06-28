@@ -80,6 +80,10 @@ class LiveCourseDetailDescCell: MalaBaseLiveCourseCell, UITableViewDelegate, UIT
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.labels.count
     }
+    
+    func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+        return false
+    }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: LiveCourseDetailIntroTableViewCellReuseId, for: indexPath) as! LiveCourseDetailIntroTableViewCell
