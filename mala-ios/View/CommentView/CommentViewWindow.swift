@@ -411,23 +411,23 @@ open class CommentViewWindow: UIViewController, UITextViewDelegate {
             maker.right.equalTo(window).offset(-18)
             maker.bottom.equalTo(commitButton.snp.top).offset(-12)
         })
-        avatarView.snp.updateConstraints { (maker) -> Void in
+        avatarView.snp.remakeConstraints { (maker) -> Void in
             maker.centerX.equalTo(window)
             maker.top.equalTo(titleLine.snp.bottom)
             maker.width.equalTo(0)
             maker.height.equalTo(0)
         }
-        teacherNameLabel.snp.updateConstraints { (maker) -> Void in
+        teacherNameLabel.snp.remakeConstraints { (maker) -> Void in
             maker.right.equalTo(avatarView.snp.centerX).offset(-5)
             maker.top.equalTo(avatarView.snp.bottom).offset(10)
             maker.height.equalTo(0)
         }
-        subjectLabel.snp.updateConstraints { (maker) -> Void in
+        subjectLabel.snp.remakeConstraints { (maker) -> Void in
             maker.left.equalTo(avatarView.snp.centerX).offset(5)
             maker.top.equalTo(avatarView.snp.bottom).offset(10)
             maker.height.equalTo(0)
         }
-        floatRating.snp.updateConstraints { (maker) -> Void in
+        floatRating.snp.remakeConstraints { (maker) -> Void in
             maker.top.equalTo(subjectLabel.snp.bottom)
             maker.centerX.equalTo(avatarView)
             maker.height.equalTo(0)
