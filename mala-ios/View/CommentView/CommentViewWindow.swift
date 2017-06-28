@@ -55,7 +55,13 @@ open class CommentViewWindow: UIViewController, UITextViewDelegate {
     /// 遮罩层透明度
     let tBakcgroundTansperancy: CGFloat = 0.7
     /// 布局容器（窗口）
-    var window = UIView()
+    var window: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.white
+        view.layer.cornerRadius = 8
+        view.layer.masksToBounds = true
+        return view
+    }()
     /// 内容视图
     var contentView: UIView?
     /// 单击背景close窗口
