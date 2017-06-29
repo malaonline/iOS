@@ -14,8 +14,7 @@ open class CommentViewWindow: UIViewController, UITextViewDelegate {
     var model: StudentCourseModel = StudentCourseModel() {
         didSet {
             // 课程信息
-            teacherNameLabel.text = model.teacher?.name
-            subjectLabel.text = model.subject
+            courseInfoLabel.text = (model.teacher?.name ?? "") + " " + model.subject
             textView.text = model.comment?.content
             floatRating.rating = Float((model.comment?.score) ?? 0)
             
@@ -81,7 +80,7 @@ open class CommentViewWindow: UIViewController, UITextViewDelegate {
     /// 标题视图
     private lazy var titleView: UILabel = {
         let label = UILabel(
-            text: "评  价",
+            text: "评 价",
             fontSize: 20,
             textColor: UIColor(named: .labelBlack),
             textAlignment: .center
@@ -147,21 +146,12 @@ open class CommentViewWindow: UIViewController, UITextViewDelegate {
         let view = UIView(UIColor(named: .LiveAvatarBack), cornerRadius: 17.5)
         return view
     }()
-    /// 老师姓名label
-    private lazy var teacherNameLabel: UILabel = {
+    /// 课程信息
+    private lazy var courseInfoLabel: UILabel = {
         let label = UILabel(
-            text: "老师姓名",
-            fontSize : 13,
-            textColor: UIColor(named: .HeaderTitle)
-        )
-        return label
-    }()
-    /// 教授科目label
-    private lazy var subjectLabel: UILabel = {
-        let label = UILabel(
-            text: "教授科目",
-            fontSize : 13,
-            textColor: UIColor(named: .HeaderTitle)
+            text: "课程信息",
+            font: FontFamily.PingFangSC.Regular.font(14),
+            textColor: UIColor(named: .protocolGary)
         )
         return label
     }()
@@ -277,8 +267,7 @@ open class CommentViewWindow: UIViewController, UITextViewDelegate {
         avatarView.insertSubview(lecturerAvatarBackground, belowSubview: lecturerAvatar)
         avatarView.addSubview(assistantAvatar)
         avatarView.insertSubview(assistantAvatarBackground, belowSubview: assistantAvatar)
-        window.addSubview(teacherNameLabel)
-        window.addSubview(subjectLabel)
+        window.addSubview(courseInfoLabel)
         window.addSubview(floatRating)
         window.addSubview(textView)
         window.addSubview(commitButton)
@@ -297,7 +286,7 @@ open class CommentViewWindow: UIViewController, UITextViewDelegate {
         // Autolayout
         window.snp.makeConstraints { (maker) -> Void in
             maker.center.equalTo(view)
-            maker.width.equalTo(MalaLayout_CommentPopupWindowWidth)
+            maker.width.equalTo(MalaScreenWidth*0.853)
             maker.height.equalTo(MalaLayout_CommentPopupWindowHeight)
         }
         closeButton.snp.makeConstraints { (maker) -> Void in
@@ -329,7 +318,7 @@ open class CommentViewWindow: UIViewController, UITextViewDelegate {
             maker.height.equalTo(MalaLayout_CoursePopupWindowTitleViewHeight)
         }
         lecturerAvatarBackground.snp.makeConstraints { (maker) in
-            maker.centerX.equalTo(avatarView.snp.right).multipliedBy(0.48)
+            maker.centerX.equalTo(avatarView.snp.right).multipliedBy(0.444)
             maker.centerY.equalTo(avatarView)
             maker.width.equalTo(58)
             maker.height.equalTo(58)
@@ -351,21 +340,16 @@ open class CommentViewWindow: UIViewController, UITextViewDelegate {
             maker.height.equalTo(33)
         }
         
-        teacherNameLabel.snp.makeConstraints { (maker) -> Void in
-            maker.right.equalTo(avatarView.snp.centerX).offset(-5)
+        courseInfoLabel.snp.makeConstraints { (maker) -> Void in
+            maker.centerX.equalTo(window)
             maker.top.equalTo(avatarView.snp.bottom).offset(10)
-            maker.height.equalTo(13)
-        }
-        subjectLabel.snp.makeConstraints { (maker) -> Void in
-            maker.left.equalTo(avatarView.snp.centerX).offset(5)
-            maker.top.equalTo(avatarView.snp.bottom).offset(10)
-            maker.height.equalTo(13)
+            maker.height.equalTo(14)
         }
         floatRating.snp.makeConstraints { (maker) -> Void in
-            maker.top.equalTo(subjectLabel.snp.bottom).offset(12)
-            maker.centerX.equalTo(avatarView)
+            maker.top.equalTo(courseInfoLabel.snp.bottom).offset(10)
+            maker.left.equalTo(window).offset(68)
+            maker.right.equalTo(window).offset(-68)
             maker.height.equalTo(30)
-            maker.width.equalTo(120)
         }
         textView.snp.makeConstraints { (maker) -> Void in
             maker.top.equalTo(floatRating.snp.bottom).offset(8)
@@ -385,8 +369,7 @@ open class CommentViewWindow: UIViewController, UITextViewDelegate {
             self.window.setNeedsUpdateConstraints()
             UIView.animate(withDuration: 0.35, animations: { () -> Void in
                 self.avatarView.alpha = 1
-                self.teacherNameLabel.alpha = 1
-                self.subjectLabel.alpha = 1
+                self.courseInfoLabel.alpha = 1
                 self.floatRating.alpha = 1
                 self.window.layoutIfNeeded()
             }) 
@@ -415,18 +398,13 @@ open class CommentViewWindow: UIViewController, UITextViewDelegate {
             maker.width.equalTo(0)
             maker.height.equalTo(0)
         }
-        teacherNameLabel.snp.remakeConstraints { (maker) -> Void in
-            maker.right.equalTo(avatarView.snp.centerX).offset(-5)
-            maker.top.equalTo(avatarView.snp.bottom).offset(10)
-            maker.height.equalTo(0)
-        }
-        subjectLabel.snp.remakeConstraints { (maker) -> Void in
-            maker.left.equalTo(avatarView.snp.centerX).offset(5)
+        courseInfoLabel.snp.remakeConstraints { (maker) -> Void in
+            maker.centerX.equalTo(window)
             maker.top.equalTo(avatarView.snp.bottom).offset(10)
             maker.height.equalTo(0)
         }
         floatRating.snp.remakeConstraints { (maker) -> Void in
-            maker.top.equalTo(subjectLabel.snp.bottom)
+            maker.top.equalTo(courseInfoLabel.snp.bottom)
             maker.centerX.equalTo(avatarView)
             maker.height.equalTo(0)
             maker.width.equalTo(0)
@@ -436,8 +414,7 @@ open class CommentViewWindow: UIViewController, UITextViewDelegate {
         self.window.setNeedsUpdateConstraints()
         UIView.animate(withDuration: 0.35, animations: { () -> Void in
             self.avatarView.alpha = 0
-            self.teacherNameLabel.alpha = 0
-            self.subjectLabel.alpha = 0
+            self.courseInfoLabel.alpha = 0
             self.floatRating.alpha = 0
             self.window.layoutIfNeeded()
         }) 
@@ -450,8 +427,7 @@ open class CommentViewWindow: UIViewController, UITextViewDelegate {
         closeButton.snp.removeConstraints()
         titleLine.snp.removeConstraints()
         avatarView.snp.removeConstraints()
-        teacherNameLabel.snp.removeConstraints()
-        subjectLabel.snp.removeConstraints()
+        courseInfoLabel.snp.removeConstraints()
         floatRating.snp.removeConstraints()
         textView.snp.removeConstraints()
         commitButton.snp.removeConstraints()
