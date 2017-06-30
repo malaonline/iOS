@@ -27,7 +27,7 @@ class LiveCourseDetailClassCell: MalaBaseLiveCourseCell {
             scheduleLabel.text = model.coursePeriod?.trim().replacingOccurrences(of: ";", with: "\n")
             checkinLabel.text = String(format: "%d人", model.remaining)
             schoolLabel.attributedText = model.attrAddressString
-            progressBar.progress = CGFloat((model.studentsCount ?? 0)/(model.roomCapacity ?? 0))
+            progressBar.progress = CGFloat(CGFloat(model.studentsCount ?? 0) / CGFloat(model.roomCapacity ?? 0))
         }
     }
     
@@ -91,7 +91,7 @@ class LiveCourseDetailClassCell: MalaBaseLiveCourseCell {
     /// 报课人数条形图
     private lazy var progressBar: YLProgressBar = {
         let bar = YLProgressBar()
-        bar.indicatorTextDisplayMode = .progress
+        bar.indicatorTextDisplayMode = .none
         bar.behavior = .indeterminate
         bar.stripesOrientation = .left
         bar.progressTintColor = UIColor(named: .pageControlGray)
