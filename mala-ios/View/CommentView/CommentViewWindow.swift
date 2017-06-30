@@ -14,7 +14,7 @@ open class CommentViewWindow: UIViewController, UITextViewDelegate {
     var model: StudentCourseModel = StudentCourseModel() {
         didSet {
             // 课程信息
-            courseInfoLabel.text = (model.teacher?.name ?? "") + " " + model.subject
+            courseInfoLabel.text = (model.lecturer?.name ?? "") + " " + model.subject
             textView.text = model.comment?.content
             floatRating.rating = Float((model.comment?.score) ?? 0)
             
