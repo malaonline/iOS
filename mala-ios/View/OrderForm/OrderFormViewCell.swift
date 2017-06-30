@@ -417,6 +417,7 @@ class OrderFormViewCell: UITableViewCell {
             cancelButton.isHidden = true
             confirmButton.isHidden = false
             confirmButton.setTitle("重新购买", for: .normal)
+            confirmButton.setTitleColor(UIColor(named: .indexBlue), for: .normal)
             confirmButton.setBackgroundImage(UIImage.withColor(UIColor.white), for: .normal)
             confirmButton.setTitleColor(UIColor(named: .ThemeRed), for: .normal)
             confirmButton.addTarget(self, action: #selector(OrderFormViewCell.buyAgain), for: .touchUpInside)
