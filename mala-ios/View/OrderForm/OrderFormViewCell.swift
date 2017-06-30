@@ -292,8 +292,8 @@ class OrderFormViewCell: UITableViewCell {
         liveCourseAvatarView.snp.makeConstraints { (maker) in
             maker.centerX.equalTo(statusLabel)
             maker.centerY.equalTo(schoolLabel)
-            maker.width.equalTo(72)
-            maker.height.equalTo(45)
+            maker.width.equalTo(87)
+            maker.height.equalTo(58)
         }
         separatorLine.snp.makeConstraints { (maker) in
             maker.top.equalTo(amountLabel.snp.bottom).offset(20)
