@@ -108,6 +108,7 @@ enum ColorName: UInt32 {
     case labelBlack = 0x373A41FF
     case labelLightGray = 0xC3C5CDFF
     case indexBlue = 0x76A7FDFF
+    case indexBlueClear = 0x76A7FD33
     case indexBluePress = 0x76A7FDAA
     case groupTitleGray = 0x8F929BFF
     case lineGray = 0x979797FF
@@ -118,6 +119,7 @@ enum ColorName: UInt32 {
     case loginBlue = 0x78A8FEFF
     case loginDisableBlue = 0x78A8FE7F
     case protocolGary = 0xA0A3ABFF
+    case protocolGaryHighlight = 0xA0A3AB4C
     case loginShadow = 0xCDE4FFFF
     case profileBlue = 0x7FAEFFFF
     case profileAvatarBG = 0xA5C6FFFF
@@ -129,11 +131,14 @@ enum ColorName: UInt32 {
     case liveEnglishGreen = 0xB790FFFF
     case liveCourseTypeBlue = 0x76A6FDFF
     case livePriceRed = 0xFE3059FF
+    case livePriceRedHighlight = 0xFE305933
     case liveDetailThemeBlue = 0x74A5FCFF
     case liveDetailThemeRed = 0xF9151BFF
     
     case webProgressBlue = 0x4E85E7FF
-    
+    case midGray = 0xE3E3E3FF
+    case orderLightRed = 0xFA8487FF
+    case orderDisabledGray = 0xDCDCDCFF
     
     var color: Color {
         return Color(named: self)

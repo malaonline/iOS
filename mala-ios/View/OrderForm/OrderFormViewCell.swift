@@ -15,25 +15,24 @@ class OrderFormViewCell: UITableViewCell {
     var model: OrderForm? {
         didSet {
             // 订单课程数据
-            orderIdString.text = model?.orderId
-            subjectString.text = (model?.gradeName ?? "") + " " + (model?.subjectName ?? "")
-            schoolString.text = model?.schoolName
-            amountString.text = model?.amount.priceCNY
+            orderIdLabel.text = "订单编号：" + (model?.orderId ?? "")
+            subjectLabel.attributedText = model?.orderCourseInfoAttr
+            schoolLabel.attributedText = model?.orderSchoolAttr
+            amountLabel.attributedText = model?.orderAmountPriceAttr
+            
             // 订单状态
             if let status = model?.status, let orderStatus = MalaOrderStatus(rawValue: status) {
                 self.orderStatus = orderStatus
             }
-            
-            // 仅课程类型为一对一课程时,老师下架状态才会生效
-            if let isLiveCourse = model?.isLiveCourse, isLiveCourse == false  {
-                disabledLabel.isHidden = !(model?.isTeacherPublished == false)
-            }
-            
             // 根据课程类型加载数据
             if let isLive = model?.isLiveCourse, isLive == true {
                 setupLiveCourseOrderInfo()
             }else {
                 setupPrivateTuitionOrderInfo()
+            }
+            // 仅课程类型为一对一课程时,老师下架状态才会生效
+            if let isLiveCourse = model?.isLiveCourse, isLiveCourse == false  {
+                disabledLabel.isHidden = !(model?.isTeacherPublished == false)
             }
         }
     }
@@ -48,58 +47,50 @@ class OrderFormViewCell: UITableViewCell {
     
     
     // MARK: - Components
-    /// 顶部分隔视图
-    private lazy var separatorView: UIView = {
-        let view = UIView()
+    /// container card
+    lazy var cardContent: UIView = {
+        let view = UIView(UIColor.white)
+        view.layer.cornerRadius = 8
+        view.layer.masksToBounds = true
         return view
     }()
-    /// 父布局容器
-    private lazy var content: UIImageView = {
-        let imageView = UIImageView(imageName: "orderForm_background")
-        imageView.isUserInteractionEnabled = true
-        return imageView
+    lazy var contentShadow: UIView = {
+        let view = UIView(UIColor.clear)
+        view.layer.shadowColor = UIColor(named: .themeShadowBlue).cgColor
+        view.layer.shadowRadius = 8
+        view.layer.shadowOffset = CGSize(width: 0, height: 2)
+        view.layer.shadowOpacity = 1.0
+        return view
     }()
     /// 顶部订单编号布局容器
     private lazy var topLayoutView: UIView = {
         let view = UIView(UIColor(named: .ThemeBlue))
         return view
     }()
-    /// "订单编号"文字
+    /// 订单编号
     private lazy var orderIdLabel: UILabel = {
         let label = UILabel(
             text: "订单编号：",
-            font: UIFont.systemFont(ofSize: 11),
+            font: FontFamily.PingFangSC.Regular.font(14),
             textColor: UIColor.white
         )
         return label
     }()
-    /// 订单编号
-    private lazy var orderIdString: UILabel = {
+    /// 订单状态
+    private lazy var statusLabel: UILabel = {
         let label = UILabel(
-            font: UIFont.systemFont(ofSize: 11),
+            text: "订单状态",
+            font: FontFamily.PingFangSC.Regular.font(14),
             textColor: UIColor.white
-        )
-        return label
-    }()
-    /// 中部订单信息布局容器
-    private lazy var middleLayoutView: UIView = {
-        let view = UIView()
-        return view
-    }()
-    /// "老师姓名"文字
-    private lazy var teacherNameLabel: UILabel = {
-        let label = UILabel(
-            text: "教师姓名：",
-            font: UIFont.systemFont(ofSize: 11),
-            textColor: UIColor(named: .ArticleText)
         )
         return label
     }()
     /// 老师姓名
-    private lazy var teacherNameString: UILabel = {
+    private lazy var teacherNameLabel: UILabel = {
         let label = UILabel(
-            font: UIFont.systemFont(ofSize: 11),
-            textColor: UIColor(named: .HeaderTitle)
+            text: "教师姓名：",
+            font: FontFamily.PingFangSC.Regular.font(14),
+            textColor: UIColor(named: .ArticleTitle)
         )
         return label
     }()
@@ -107,16 +98,8 @@ class OrderFormViewCell: UITableViewCell {
     private lazy var subjectLabel: UILabel = {
         let label = UILabel(
             text: "课程名称：",
-            font: UIFont.systemFont(ofSize: 11),
-            textColor: UIColor(named: .ArticleText)
-        )
-        return label
-    }()
-    /// 课程名称
-    private lazy var subjectString: UILabel = {
-        let label = UILabel(
-            font: UIFont.systemFont(ofSize: 11),
-            textColor: UIColor(named: .HeaderTitle)
+            font: FontFamily.PingFangSC.Regular.font(14),
+            textColor: UIColor(named: .ArticleTitle)
         )
         return label
     }()
@@ -124,31 +107,19 @@ class OrderFormViewCell: UITableViewCell {
     private lazy var schoolLabel: UILabel = {
         let label = UILabel(
             text: "上课地点：",
-            font: UIFont.systemFont(ofSize: 11),
-            textColor: UIColor(named: .ArticleText)
+            font: FontFamily.PingFangSC.Regular.font(14),
+            textColor: UIColor(named: .ArticleTitle)
         )
         return label
     }()
-    /// 课程名称
-    private lazy var schoolString: UILabel = {
-        let label = UILabel(
-            font: UIFont.systemFont(ofSize: 11),
-            textColor: UIColor(named: .HeaderTitle)
-        )
-        return label
+    /// lecturer-avatar background
+    private lazy var avatarBackground: UIView = {
+        let view = UIView(UIColor(named: .LiveAvatarBack), cornerRadius: 58/2)
+        return view
     }()
-    /// 订单状态
-    private lazy var statusString: UILabel = {
-        let label = UILabel(
-            text: "订单状态",
-            font: UIFont.systemFont(ofSize: 12),
-            textColor: UIColor(named: .HeaderTitle)
-        )
-        return label
-    }()
-    /// 老师头像
+    /// lecturer-avatar
     private lazy var avatarView: UIImageView = {
-        let imageView = UIImageView(cornerRadius: 55/2, image: "avatar_placeholder")
+        let imageView = UIImageView(cornerRadius: 54/2, image: "avatar_placeholder")
         return imageView
     }()
     /// 双师直播课程头像
@@ -158,30 +129,15 @@ class OrderFormViewCell: UITableViewCell {
     }()
     /// 中部分割线
     private lazy var separatorLine: UIView = {
-        let view = UIView(UIColor(named: .SeparatorLine))
+        let view = UIView(UIColor(named: .themeLightBlue))
         return view
     }()
-    
-    /// 底部价格及操作布局容器
-    private lazy var bottomLayoutView: UIView = {
-        let view = UIView()
-        return view
-    }()
-    /// "共计"文字
+    /// 金额
     private lazy var amountLabel: UILabel = {
         let label = UILabel(
-            text: "共计：",
-            font: UIFont.systemFont(ofSize: 12),
-            textColor: UIColor(named: .ArticleText)
-        )
-        return label
-    }()
-    /// 共计金额
-    private lazy var amountString: UILabel = {
-        let label = UILabel(
-            text: "共计：",
-            font: UIFont.systemFont(ofSize: 16),
-            textColor: UIColor(named: .ArticleTitle)
+            text: "共    计：",
+            font: FontFamily.PingFangSC.Regular.font(14),
+            textColor: UIColor(named: .livePriceRed)
         )
         return label
     }()
@@ -199,14 +155,16 @@ class OrderFormViewCell: UITableViewCell {
     private lazy var confirmButton: UIButton = {
         let button = UIButton()
         
-        button.layer.borderColor = UIColor(named: .ThemeRed).cgColor
-        button.layer.borderWidth = MalaScreenOnePixel
-        button.layer.cornerRadius = 3
+        button.layer.borderColor = UIColor(named: .livePriceRed).cgColor
+        button.layer.borderWidth = 1
+        button.layer.cornerRadius = 17
         button.layer.masksToBounds = true
         
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 12)
+        button.titleLabel?.font = FontFamily.PingFangSC.Regular.font(18)
         button.setTitle("再次购买", for: .normal)
-        button.setTitleColor(UIColor(named: .ThemeRed), for: .normal)
+        button.setTitleColor(UIColor(named: .livePriceRed), for: .normal)
+        button.setBackgroundImage(UIImage.withColor(UIColor.white), for: .normal)
+        button.setBackgroundImage(UIImage.withColor(UIColor(named: .livePriceRedHighlight)), for: .highlighted)
         button.addTarget(self, action: #selector(OrderFormViewCell.buyAgain), for: .touchUpInside)
         return button
     }()
@@ -215,13 +173,15 @@ class OrderFormViewCell: UITableViewCell {
         let button = UIButton()
         
         button.layer.borderColor = UIColor(named: .HeaderTitle).cgColor
-        button.layer.borderWidth = MalaScreenOnePixel
-        button.layer.cornerRadius = 3
+        button.layer.borderWidth = 1
+        button.layer.cornerRadius = 17
         button.layer.masksToBounds = true
         
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 12)
+        button.titleLabel?.font = FontFamily.PingFangSC.Regular.font(18)
         button.setTitle(L10n.cancelOrder, for: .normal)
         button.setTitleColor(UIColor(named: .HeaderTitle), for: .normal)
+        button.setBackgroundImage(UIImage.withColor(UIColor.white), for: .normal)
+        button.setBackgroundImage(UIImage.withColor(UIColor(named: .protocolGaryHighlight)), for: .highlighted)
         button.addTarget(self, action: #selector(OrderFormViewCell.cancelOrderForm), for: .touchUpInside)
         return button
     }()
@@ -244,166 +204,138 @@ class OrderFormViewCell: UITableViewCell {
         contentView.backgroundColor = UIColor(named: .RegularBackground)
         
         // SubViews
-        contentView.addSubview(separatorView)
-        contentView.addSubview(content)
+        contentView.addSubview(contentShadow)
+        contentShadow.addSubview(cardContent)
         
-        content.addSubview(topLayoutView)
+        cardContent.addSubview(topLayoutView)
         topLayoutView.addSubview(orderIdLabel)
-        topLayoutView.addSubview(orderIdString)
+        topLayoutView.addSubview(statusLabel)
         
-        content.addSubview(middleLayoutView)
-        middleLayoutView.addSubview(teacherNameLabel)
-        middleLayoutView.addSubview(teacherNameString)
-        middleLayoutView.addSubview(subjectLabel)
-        middleLayoutView.addSubview(subjectString)
-        middleLayoutView.addSubview(schoolLabel)
-        middleLayoutView.addSubview(schoolString)
-        middleLayoutView.addSubview(separatorLine)
-        middleLayoutView.addSubview(statusString)
-        middleLayoutView.addSubview(avatarView)
-        middleLayoutView.addSubview(liveCourseAvatarView)
+        cardContent.addSubview(teacherNameLabel)
+        cardContent.addSubview(subjectLabel)
+        cardContent.addSubview(schoolLabel)
+        cardContent.addSubview(amountLabel)
+        cardContent.addSubview(avatarBackground)
+        avatarBackground.addSubview(avatarView)
+        cardContent.addSubview(liveCourseAvatarView)
         
-        content.addSubview(bottomLayoutView)
-        bottomLayoutView.addSubview(amountLabel)
-        bottomLayoutView.addSubview(amountString)
-        bottomLayoutView.addSubview(confirmButton)
-        bottomLayoutView.addSubview(cancelButton)
-        bottomLayoutView.addSubview(disabledLabel)
+        cardContent.addSubview(separatorLine)
+        cardContent.addSubview(confirmButton)
+        cardContent.addSubview(cancelButton)
+        cardContent.addSubview(disabledLabel)
         
         // Autolayout
-        separatorView.snp.makeConstraints { (maker) -> Void in
-            maker.top.equalTo(contentView)
-            maker.left.equalTo(contentView).offset(6)
-            maker.bottom.equalTo(content.snp.top)
-            maker.right.equalTo(contentView).offset(-6)
-            maker.height.equalTo(6)
+        contentShadow.snp.makeConstraints { (maker) in
+            maker.top.equalTo(contentView).offset(0)
+            maker.left.equalTo(contentView).offset(10)
+            maker.bottom.equalTo(contentView).offset(-10)
+            maker.right.equalTo(contentView).offset(-10)
         }
-        content.snp.makeConstraints { (maker) in
-            maker.top.equalTo(separatorView.snp.bottom)
-            maker.left.equalTo(contentView).offset(6)
-            maker.bottom.equalTo(contentView)
-            maker.right.equalTo(contentView).offset(-6)
+        cardContent.snp.makeConstraints { (maker) in
+            maker.top.equalTo(contentShadow)
+            maker.left.equalTo(contentShadow)
+            maker.right.equalTo(contentShadow)
+            maker.bottom.equalTo(contentShadow)
         }
-        
         topLayoutView.snp.makeConstraints { (maker) in
-            maker.top.equalTo(content)
-            maker.left.equalTo(content).offset(MalaScreenOnePixel)
-            maker.right.equalTo(content).offset(-MalaScreenOnePixel)
-            maker.height.equalTo(content).multipliedBy(0.15)
+            maker.top.equalTo(cardContent)
+            maker.left.equalTo(cardContent)
+            maker.right.equalTo(cardContent)
+            maker.height.equalTo(40)
+            maker.bottom.equalTo(teacherNameLabel.snp.top).offset(-20)
         }
         orderIdLabel.snp.makeConstraints { (maker) in
-            maker.height.equalTo(11)
+            maker.left.equalTo(topLayoutView).offset(10)
             maker.centerY.equalTo(topLayoutView)
-            maker.left.equalTo(topLayoutView).offset(12)
+            maker.height.equalTo(14)
         }
-        orderIdString.snp.makeConstraints { (maker) in
-            maker.height.equalTo(11)
-            maker.centerY.equalTo(orderIdLabel)
-            maker.left.equalTo(orderIdLabel.snp.right)
-        }
-        
-        middleLayoutView.snp.makeConstraints { (maker) in
-            maker.top.equalTo(topLayoutView.snp.bottom)
-            maker.left.equalTo(content).offset(12)
-            maker.right.equalTo(content).offset(-12)
-            maker.height.equalTo(content).multipliedBy(0.55)
+        statusLabel.snp.makeConstraints { (maker) in
+            maker.centerY.equalTo(topLayoutView)
+            maker.right.equalTo(cardContent).offset(-24)
+            maker.height.equalTo(14)
         }
         teacherNameLabel.snp.makeConstraints { (maker) in
-            maker.top.equalTo(middleLayoutView).offset(14)
-            maker.left.equalTo(middleLayoutView)
-            maker.height.equalTo(11)
-        }
-        teacherNameString.snp.makeConstraints { (maker) in
-            maker.top.equalTo(teacherNameLabel)
-            maker.left.equalTo(teacherNameLabel.snp.right)
-            maker.height.equalTo(11)
+            maker.top.equalTo(topLayoutView.snp.bottom).offset(20)
+            maker.left.equalTo(cardContent).offset(10)
+            maker.height.equalTo(14)
+            maker.bottom.equalTo(subjectLabel.snp.top).offset(-14)
         }
         subjectLabel.snp.makeConstraints { (maker) in
             maker.top.equalTo(teacherNameLabel.snp.bottom).offset(14)
-            maker.left.equalTo(middleLayoutView)
-            maker.height.equalTo(11)
-        }
-        subjectString.snp.makeConstraints { (maker) in
-            maker.top.equalTo(subjectLabel)
-            maker.left.equalTo(subjectLabel.snp.right)
-            maker.height.equalTo(11)
+            maker.left.equalTo(teacherNameLabel)
+            maker.height.equalTo(14)
+            maker.bottom.equalTo(schoolLabel.snp.top).offset(-14)
         }
         schoolLabel.snp.makeConstraints { (maker) in
             maker.top.equalTo(subjectLabel.snp.bottom).offset(14)
-            maker.left.equalTo(middleLayoutView)
-            maker.height.equalTo(11)
-        }
-        schoolString.snp.makeConstraints { (maker) in
-            maker.top.equalTo(schoolLabel)
-            maker.left.equalTo(schoolLabel.snp.right)
-            maker.height.equalTo(11)
-        }
-        statusString.snp.makeConstraints { (maker) in
-            maker.centerX.equalTo(confirmButton)
-            maker.top.equalTo(middleLayoutView).offset(14)
-            maker.height.equalTo(12)
-        }
-        avatarView.snp.makeConstraints { (maker) in
-            maker.centerX.equalTo(statusString)
-            maker.bottom.equalTo(middleLayoutView).offset(-14)
-            maker.height.equalTo(55)
-            maker.width.equalTo(55)
-        }
-        liveCourseAvatarView.snp.makeConstraints { (maker) in
-            maker.centerX.equalTo(statusString)
-            maker.bottom.equalTo(middleLayoutView).offset(-14)
-            maker.width.equalTo(72)
-            maker.height.equalTo(45)
-        }
-        separatorLine.snp.makeConstraints { (maker) in
-            maker.left.equalTo(middleLayoutView).offset(-3)
-            maker.right.equalTo(middleLayoutView).offset(3)
-            maker.bottom.equalTo(middleLayoutView)
-            maker.height.equalTo(MalaScreenOnePixel)
-        }
-        
-        bottomLayoutView.snp.makeConstraints { (maker) in
-            maker.top.equalTo(middleLayoutView.snp.bottom)
-            maker.left.equalTo(content).offset(12)
-            maker.right.equalTo(content).offset(-12)
-            maker.height.equalTo(content).multipliedBy(0.24)
+            maker.left.equalTo(teacherNameLabel)
+            maker.height.equalTo(14)
+            maker.bottom.equalTo(amountLabel.snp.top).offset(-14)
         }
         amountLabel.snp.makeConstraints { (maker) in
-            maker.centerY.equalTo(bottomLayoutView)
-            maker.left.equalTo(bottomLayoutView)
-            maker.height.equalTo(12)
+            maker.top.equalTo(schoolLabel.snp.bottom).offset(14)
+            maker.left.equalTo(teacherNameLabel)
+            maker.height.equalTo(14)
+            maker.bottom.equalTo(separatorLine.snp.top).offset(-20)
         }
-        amountString.snp.makeConstraints { (maker) in
-            maker.centerY.equalTo(bottomLayoutView)
-            maker.left.equalTo(amountLabel.snp.right)
-            maker.height.equalTo(16)
+        avatarBackground.snp.makeConstraints { (maker) in
+            maker.centerX.equalTo(statusLabel)
+            maker.centerY.equalTo(subjectLabel.snp.bottom).offset(5)
+            maker.height.equalTo(58)
+            maker.width.equalTo(58)
+        }
+        avatarView.snp.makeConstraints { (maker) in
+            maker.center.equalTo(avatarBackground)
+            maker.height.equalTo(54)
+            maker.width.equalTo(54)
+        }
+        liveCourseAvatarView.snp.makeConstraints { (maker) in
+            maker.centerX.equalTo(statusLabel)
+            maker.centerY.equalTo(schoolLabel)
+            maker.width.equalTo(87)
+            maker.height.equalTo(58)
+        }
+        separatorLine.snp.makeConstraints { (maker) in
+            maker.top.equalTo(amountLabel.snp.bottom).offset(20)
+            maker.left.equalTo(cardContent)
+            maker.right.equalTo(cardContent)
+            maker.height.equalTo(1)
         }
         confirmButton.snp.makeConstraints { (maker) in
-            maker.width.equalTo(content).multipliedBy(0.23)
-            maker.height.equalTo(24)
-            maker.centerY.equalTo(bottomLayoutView)
-            maker.right.equalTo(bottomLayoutView)
+            maker.top.equalTo(separatorLine.snp.bottom).offset(10)
+            maker.bottom.equalTo(cardContent).offset(-10)
+            maker.width.equalTo(120)
+            maker.height.equalTo(34)
+            maker.centerX.equalTo(cardContent.snp.right).multipliedBy(0.754)
         }
         disabledLabel.snp.makeConstraints { (maker) in
             maker.center.equalTo(confirmButton)
         }
         cancelButton.snp.makeConstraints { (maker) in
-            maker.width.equalTo(content).multipliedBy(0.23)
-            maker.height.equalTo(24)
-            maker.centerY.equalTo(bottomLayoutView)
-            maker.right.equalTo(confirmButton.snp.left).offset(-14)
+            maker.width.equalTo(120)
+            maker.height.equalTo(34)
+            maker.centerY.equalTo(confirmButton)
+            maker.centerX.equalTo(cardContent.snp.right).multipliedBy(0.246)
         }
     }
     
     /// 加载一对一课程订单数据
     private func setupPrivateTuitionOrderInfo() {
         // 显示老师信息
-        teacherNameLabel.isHidden = false
-        teacherNameString.isHidden = false
-        avatarView.isHidden = false
+        teacherNameLabel.snp.remakeConstraints { (maker) in
+            maker.top.equalTo(topLayoutView.snp.bottom).offset(20)
+            maker.left.equalTo(cardContent).offset(10)
+            maker.height.equalTo(14)
+        }
+        subjectLabel.snp.remakeConstraints { (maker) in
+            maker.top.equalTo(teacherNameLabel.snp.bottom).offset(14)
+            maker.left.equalTo(teacherNameLabel)
+            maker.height.equalTo(14)
+        }
+        avatarBackground.isHidden = false
         liveCourseAvatarView.isHidden = true
         
-        teacherNameString.text = model?.teacherName
+        teacherNameLabel.attributedText = model?.orderTeacherNameAttr
         avatarView.setImage(withURL: model?.avatarURL)
 
     }
@@ -411,12 +343,20 @@ class OrderFormViewCell: UITableViewCell {
     /// 加载双师直播课程订单数据
     private func setupLiveCourseOrderInfo() {
         // 隐藏老师信息
-        teacherNameLabel.isHidden = true
-        teacherNameString.isHidden = true
-        avatarView.isHidden = true
+        teacherNameLabel.snp.remakeConstraints { (maker) in
+            maker.top.equalTo(topLayoutView.snp.bottom).offset(20)
+            maker.left.equalTo(cardContent).offset(10)
+            maker.height.equalTo(0)
+        }
+        subjectLabel.snp.remakeConstraints { (maker) in
+            maker.top.equalTo(topLayoutView.snp.bottom).offset(20)
+            maker.left.equalTo(teacherNameLabel)
+            maker.height.equalTo(14)
+        }
+        avatarBackground.isHidden = true
         liveCourseAvatarView.isHidden = false
         
-        subjectString.text = model?.liveClass?.courseName
+        subjectLabel.attributedText = model?.orderLiveCourseNameAttr
         liveCourseAvatarView.setAvatar(lecturer: model?.liveClass?.lecturerAvatar, assistant: model?.liveClass?.assistantAvatar)
     }
     
@@ -432,44 +372,52 @@ class OrderFormViewCell: UITableViewCell {
         switch orderStatus {
         case .penging:
             // 待付款
-            topLayoutView.backgroundColor = UIColor(named: .ThemeBlue)
-            statusString.text = "订单待支付"
-            statusString.textColor = UIColor(named: .ThemeRed)
+            topLayoutView.backgroundColor = UIColor(named: .orderLightRed)
+            orderIdLabel.alpha = 0.5
+            statusLabel.text = "订单待支付"
             cancelButton.isHidden = false
+            cancelButton.addTarget(self, action: #selector(OrderFormViewCell.cancelOrderForm), for: .touchUpInside)
             confirmButton.isHidden = false
             confirmButton.setTitle("立即支付", for: .normal)
-            confirmButton.setBackgroundImage(UIImage.withColor(UIColor(named: .ThemeRed)), for: .normal)
-            confirmButton.setTitleColor(UIColor.white, for: .normal)
-            cancelButton.addTarget(self, action: #selector(OrderFormViewCell.cancelOrderForm), for: .touchUpInside)
+            confirmButton.layer.borderColor = UIColor(named: .livePriceRed).cgColor
+            confirmButton.setBackgroundImage(UIImage.withColor(UIColor.white), for: .normal)
+            confirmButton.setBackgroundImage(UIImage.withColor(UIColor(named: .livePriceRedHighlight)), for: .highlighted)
+            confirmButton.setTitleColor(UIColor(named: .livePriceRed), for: .normal)
             confirmButton.addTarget(self, action: #selector(OrderFormViewCell.pay), for: .touchUpInside)
+            showButtonPanel()
             break
         
         case .paid:
             // 已付款
-            topLayoutView.backgroundColor = UIColor(named: .ThemeBlue)
-            statusString.text = "交易完成"
-            statusString.textColor = UIColor(named: .ThemeBlue)
+            topLayoutView.backgroundColor = UIColor(named: .indexBlue)
+            orderIdLabel.alpha = 0.5
+            statusLabel.text = "交易完成"
             cancelButton.isHidden = true
             confirmButton.isHidden = false
             confirmButton.setTitle("再次购买", for: .normal)
-            confirmButton.setBackgroundImage(UIImage.withColor(UIColor(named: .ThemeRedHighlight)), for: .normal)
-            confirmButton.setTitleColor(UIColor(named: .ThemeRed), for: .normal)
+            confirmButton.setTitleColor(UIColor(named: .indexBlue), for: .normal)
+            confirmButton.layer.borderColor = UIColor(named: .indexBlue).cgColor
+            confirmButton.setBackgroundImage(UIImage.withColor(UIColor.white), for: .normal)
+            confirmButton.setBackgroundImage(UIImage.withColor(UIColor(named: .indexBlueClear)), for: .highlighted)
             confirmButton.addTarget(self, action: #selector(OrderFormViewCell.buyAgain), for: .touchUpInside)
             if let isLiveCourse = model?.isLiveCourse, isLiveCourse == true {
                 cancelButton.isHidden = true
                 confirmButton.isHidden = true
-                break
+                hideButtonPanel()
+            }else {
+                showButtonPanel(onlyOneButton: true)
             }
             break
         
         case .canceled:
             // 已取消
-            statusString.text = "订单已关闭"
-            topLayoutView.backgroundColor = UIColor(named: .Disabled)
-            statusString.textColor = UIColor(named: .HeaderTitle)
+            topLayoutView.backgroundColor = UIColor(named: .orderDisabledGray)
+            orderIdLabel.alpha = 1
+            statusLabel.text = "订单已关闭"
             cancelButton.isHidden = true
             confirmButton.isHidden = false
             confirmButton.setTitle("重新购买", for: .normal)
+            confirmButton.setTitleColor(UIColor(named: .indexBlue), for: .normal)
             confirmButton.setBackgroundImage(UIImage.withColor(UIColor.white), for: .normal)
             confirmButton.setTitleColor(UIColor(named: .ThemeRed), for: .normal)
             confirmButton.addTarget(self, action: #selector(OrderFormViewCell.buyAgain), for: .touchUpInside)
@@ -477,17 +425,21 @@ class OrderFormViewCell: UITableViewCell {
             if let isLiveCourse = model?.isLiveCourse, isLiveCourse == true {
                 cancelButton.isHidden = true
                 confirmButton.isHidden = true
-                break
+                hideButtonPanel()
+            }else {
+                showButtonPanel(onlyOneButton: true)
             }
             break
         
         case .refund:
             // 已退款
-            topLayoutView.backgroundColor = UIColor(named: .ThemeBlue)
-            statusString.text = "退款成功"
-            statusString.textColor = UIColor(named: .OrderGreen)
+            topLayoutView.backgroundColor = UIColor(named: .indexBlue)
+            orderIdLabel.alpha = 0.5
+            statusLabel.text = "退款成功"
             cancelButton.isHidden = true
             confirmButton.isHidden = true
+            
+            hideButtonPanel()
             break
             
         case .confirm:
@@ -522,6 +474,64 @@ class OrderFormViewCell: UITableViewCell {
     }
     
     
+    private func hideButtonPanel() {
+        separatorLine.snp.remakeConstraints { (maker) in
+            maker.top.equalTo(amountLabel.snp.bottom).offset(20)
+            maker.left.equalTo(cardContent)
+            maker.right.equalTo(cardContent)
+            maker.height.equalTo(1)
+            maker.bottom.equalTo(cardContent)
+        }
+        confirmButton.snp.remakeConstraints { (maker) in
+            maker.top.equalTo(separatorLine.snp.bottom).offset(10)
+            maker.width.equalTo(120)
+            maker.height.equalTo(34)
+            maker.centerX.equalTo(cardContent.snp.right).multipliedBy(0.754)
+        }
+        cancelButton.snp.remakeConstraints { (maker) in
+            maker.width.equalTo(120)
+            maker.height.equalTo(34)
+            maker.centerY.equalTo(confirmButton)
+            maker.centerX.equalTo(cardContent.snp.right).multipliedBy(0.246)
+        }
+    }
+    
+    private func showButtonPanel(onlyOneButton: Bool = false) {
+        separatorLine.snp.remakeConstraints { (maker) in
+            maker.top.equalTo(amountLabel.snp.bottom).offset(20)
+            maker.left.equalTo(cardContent)
+            maker.right.equalTo(cardContent)
+            maker.height.equalTo(1)
+        }
+        
+        disabledLabel.snp.remakeConstraints { (maker) in
+            maker.center.equalTo(confirmButton)
+        }
+        cancelButton.snp.remakeConstraints { (maker) in
+            maker.width.equalTo(120)
+            maker.height.equalTo(34)
+            maker.centerY.equalTo(confirmButton)
+            maker.centerX.equalTo(cardContent.snp.right).multipliedBy(0.246)
+        }
+        
+        if onlyOneButton {
+            confirmButton.snp.remakeConstraints { (maker) in
+                maker.top.equalTo(separatorLine.snp.bottom).offset(10)
+                maker.bottom.equalTo(cardContent).offset(-10)
+                maker.width.equalTo(120)
+                maker.height.equalTo(34)
+                maker.centerX.equalTo(cardContent)
+            }
+        }else {
+            confirmButton.snp.remakeConstraints { (maker) in
+                maker.top.equalTo(separatorLine.snp.bottom).offset(10)
+                maker.bottom.equalTo(cardContent).offset(-10)
+                maker.width.equalTo(120)
+                maker.height.equalTo(34)
+                maker.centerX.equalTo(cardContent.snp.right).multipliedBy(0.754)
+            }
+        }
+    }
     
     // MARK: - Override
     override func prepareForReuse() {

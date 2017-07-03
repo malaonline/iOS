@@ -47,6 +47,7 @@ class OrderFormViewController: StatefulViewController, UITableViewDelegate, UITa
         tableView.dataSource = self
         tableView.separatorStyle = .none
         tableView.backgroundColor = UIColor(named: .RegularBackground)
+        tableView.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0)
         tableView.register(OrderFormViewCell.self, forCellReuseIdentifier: OrderFormViewCellReuseId)
         return tableView
     }()
@@ -258,7 +259,25 @@ class OrderFormViewController: StatefulViewController, UITableViewDelegate, UITa
     
     // MARK: - Delegate
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return MalaLayout_CardCellWidth*0.6
+        guard let status = MalaOrderStatus(rawValue: models[indexPath.row].status ?? "c"), let isLiveCourse = models[indexPath.row].isLiveCourse else {
+            return 162
+        }
+        
+        switch (status, isLiveCourse) {
+        // 待付款
+        case (.penging, true):      return 213  // 支付 退款
+        case (.penging, false):     return 240  // 支付 退款
+        // 已付款
+        case (.paid, true):         return 162
+        case (.paid, false):        return 240  // 再次购买
+        // 已关闭
+        case (.canceled, true):     return 162
+        case (.canceled, false):    return 240  // 再次购买
+        // 已退费
+        case (.refund, true):       return 162
+        case (.refund, false):      return 190
+        default:                    return 162
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

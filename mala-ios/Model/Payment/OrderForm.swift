@@ -187,6 +187,43 @@ class OrderForm: BaseObjectModel {
         }
     }
     
+    // MARK: - Order attr
+    var orderTeacherNameAttr: NSMutableAttributedString {
+        get {
+            let attributedString = NSMutableAttributedString(string: "教师姓名：" + (teacherName ?? ""))
+            attributedString.addAttribute(NSForegroundColorAttributeName, value: UIColor(named: .protocolGary), range: NSRange(location: 0, length: 5))
+            return attributedString
+        }
+    }
+    var orderCourseInfoAttr: NSMutableAttributedString {
+        get {
+            let attributedString = NSMutableAttributedString(string: "课程名称：" + (gradeName ?? "") + " " + (subjectName ?? ""))
+            attributedString.addAttribute(NSForegroundColorAttributeName, value: UIColor(named: .protocolGary), range: NSRange(location: 0, length: 5))
+            return attributedString
+        }
+    }
+    var orderLiveCourseNameAttr: NSMutableAttributedString {
+        get {
+            let attributedString = NSMutableAttributedString(string: "课程名称：" + (liveClass?.courseName ?? ""))
+            attributedString.addAttribute(NSForegroundColorAttributeName, value: UIColor(named: .protocolGary), range: NSRange(location: 0, length: 5))
+            return attributedString
+        }
+    }
+    var orderSchoolAttr: NSMutableAttributedString {
+        get {
+            let attributedString = NSMutableAttributedString(string: "上课地点：" + (schoolName ?? ""))
+            attributedString.addAttribute(NSForegroundColorAttributeName, value: UIColor(named: .protocolGary), range: NSRange(location: 0, length: 5))
+            return attributedString
+        }
+    }
+    var orderAmountPriceAttr: NSMutableAttributedString {
+        get {
+            let attributedString = NSMutableAttributedString(string: "共      计：" + amount.priceCNY)
+            attributedString.addAttribute(NSForegroundColorAttributeName, value: UIColor(named: .protocolGary), range: NSRange(location: 0, length: 9))
+            return attributedString
+        }
+    }
+    
     
     // MARK: - Instance Method
     override init() {
